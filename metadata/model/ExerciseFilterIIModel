@@ -1,0 +1,27 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ExerciseFilterIIModel"
+    },
+    "designerId": "b5a534b2-a001-4820-b6c1-84d248bdd7d3",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "text",
+                "type": "string"
+            },
+            "designerId": "4327389f-0c05-4541-a4f3-4b28d0ebcaf4"
+        }
+    ]
+}

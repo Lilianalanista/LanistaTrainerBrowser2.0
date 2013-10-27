@@ -1,0 +1,42 @@
+{
+    children: [{
+                text: "name 1.1",
+                leaf: true,
+                value: '',
+                type: 1
+            }, 
+            {
+                text: "name 1.2",
+                children: [
+                    {
+                        text: 'name 1.2 Hijo 1',
+                        leaf: true,
+                        value: '',
+                        type: 1
+                    },
+                    {
+                        text: 'name 1.2 Hijo 2',
+                        children: [
+                            {
+                                text: 'name 1.2 Hijo 2 Hijo 1',
+                                leaf: true,
+                                value: '',
+                                type: 1
+                            },
+                            {
+                                text: 'name 1.2 Hijo 2 Hijo 2',
+                                leaf: true,
+                                value: '',
+                                type: 1
+                            }
+                         ] 
+                    },
+                    {
+                        text: 'name 1.2 Hijo 3',
+                        leaf: true,
+                        value: '',
+                        type: 1
+                    }
+                ]
+            }]
+}

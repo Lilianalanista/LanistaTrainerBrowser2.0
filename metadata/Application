@@ -1,0 +1,54 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "ExerciseModel",
+            "ExerciseFilterModel",
+            "ExerciseFilterIIModel"
+        ],
+        "stores": [
+            "ExerciseInitialStore",
+            "ExerciseStore",
+            "ExerciseFilters",
+            "ExerciseFilterII"
+        ],
+        "views": [
+            "MyViewport",
+            "ExercisesPanel",
+            "LanistaButton",
+            "rightView"
+        ],
+        "autoCreateViewport": true,
+        "controllers": [
+            "ExerciseController"
+        ],
+        "name": "LanistaTrainer"
+    },
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "console.log(\"START\");",
+                    "LanistaTrainer.app.fireEvent('loadExercises', function() {",
+                    "    console.log(\"EXERCISES LOADED\");",
+                    "    LanistaTrainer.app.fireEvent('showExercises');",
+                    "});"
+                ]
+            },
+            "designerId": "540e0df4-6911-4642-bb43-5792b95099a5"
+        }
+    ]
+}

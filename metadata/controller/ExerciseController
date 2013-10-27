@@ -1,0 +1,462 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "id": "ExerciseController",
+        "designer|userClassName": "ExerciseController"
+    },
+    "configAlternates": {
+        "filters": "array",
+        "var stExerciseFilt": "object"
+    },
+    "designerId": "99893bf5-abac-473b-bb29-dbab94e182ab",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "filters",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "ViewPortCapacityGlb",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "stExerciseFilt",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onLoadExercises",
+                "designer|params": [
+                    "afterLoadCallback"
+                ],
+                "implHandler": [
+                    "var controller = this;",
+                    "Ext.getStore('ExerciseStore').load({",
+                    "\tcallback: function(records, operation, success) {",
+                    "        console.log(\"RECORDS \" + records.length);",
+                    "\t\tif (records.length == 0) {",
+                    "\t\t\tExt.getStore('ExerciseInitialStore').load({",
+                    "\t\t\t\tcallback: function(records, operation, success) {",
+                    "\t\t\t\t\tvar data = records;",
+                    "\t\t\t\t\tvar record = null;",
+                    "\t\t\t\t\tfor (var i = 0; i < records.length; i++) {",
+                    "\t\t\t\t\t\trecord = records[i].copy();",
+                    "\t\t\t\t\t\tExt.getStore('ExerciseStore').add(record);",
+                    "\t\t\t\t\t}",
+                    "\t\t\t\t\tExt.getStore('ExerciseStore').sync();",
+                    "                    Ext.getStore('ExerciseInitialStore').removeAll();",
+                    "                    Ext.getStore('ExerciseStore').loadPage(1);",
+                    "                    if (afterLoadCallback instanceof Function) {",
+                    "\t\t\t\t\t\tafterLoadCallback();",
+                    "\t\t\t\t\t}",
+                    "\t\t\t\t},",
+                    "\t\t\t\t\tscope: this",
+                    "\t\t\t});",
+                    "\t\t} else {",
+                    "            Ext.getStore('ExerciseStore').loadPage(1);",
+                    "\t\t\tafterLoadCallback();",
+                    "\t\t}",
+                    "\t},",
+                    "\tscope: this",
+                    "});"
+                ],
+                "name": "loadExercises",
+                "scope": "this"
+            },
+            "designerId": "285dfddc-4efe-4a88-8fc1-79bce42d417c"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowExercises",
+                "designer|params": [
+                    "callback"
+                ],
+                "implHandler": [
+                    "console.log(\"SHOWING EXERCISES\");",
+                    "var exercisesView = this.getExercisesView();",
+                    "mainStage = this.getMainStage();",
+                    "mainStage.add(exercisesView);",
+                    "exercisesView.show();",
+                    "console.log(exercisesView);",
+                    "",
+                    "var viewportXCapacity\t= Math.floor(exercisesView.el.dom.clientWidth/187);",
+                    "var viewportCapacity \t= Math.floor((exercisesView.el.dom.clientHeight-47)/177) * viewportXCapacity;",
+                    "Ext.getStore(\"ExerciseStore\").pageSize = viewportCapacity;",
+                    "",
+                    "this.ViewPortCapacityGlb = viewportCapacity;",
+                    "Ext.getStore(\"ExerciseStore\").load({",
+                    "\tcallback: function(records, operation, success) {",
+                    "        LanistaTrainer.app.fireEvent('HeaderUpdate', 1);",
+                    "    }",
+                    " });",
+                    "",
+                    "console.log(\"VIEWPORT CAPACITY: \" + viewportCapacity);",
+                    "",
+                    "",
+                    "// create the icons",
+                    "/*this.getRightCommandPanel().add(",
+                    "\tExt.create('LanistaTrainer.view.LanistaButton', {",
+                    "\ticonCls: 'search',",
+                    "\ttext: 'Suchen',",
+                    "    id: 'showExerciseFilter'",
+                    "    })",
+                    ");*/",
+                    "this.getLeftCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        iconCls: 'home',",
+                    "        text: 'Anmelden'",
+                    "    })",
+                    ");",
+                    "this.getLeftCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        iconCls: 'refresh',",
+                    "        text: 'Werkzeuge'",
+                    "    })",
+                    ");",
+                    "",
+                    "this.fnChargeFilters(this);",
+                    "",
+                    "if (callback instanceof Function) callback();",
+                    ""
+                ],
+                "name": "showExercises",
+                "scope": "this"
+            },
+            "designerId": "2af1fe77-b487-4b7c-8397-232bc088acd1"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onHeaderUpdate",
+                "designer|params": [
+                    "page"
+                ],
+                "implHandler": [
+                    "var store = Ext.getStore('ExerciseStore');",
+                    "var totalCounts = store.getTotalCount();",
+                    "",
+                    "var exercisesView = this.getExercisesView();",
+                    "var HeaderView = this.getHeaderView();",
+                    "",
+                    "var totalPages = Math.ceil(totalCounts/this.ViewPortCapacityGlb);",
+                    "",
+                    "//var filter = (isNaN(this.filters[1]) ? 'Musclegruppe: '+ this.filters[1] + '<br>' : '') + (isNaN(this.filters[2]) ? ' Übungstyp: '+ this.filters[2] + '<br>' : '') + (isNaN(this.filters[3]) ? ' Zusätze: '+ this.filters[3] + '<br>' : '');",
+                    "",
+                    "var t = new Ext.Template(",
+                    "    '<div class=\"header-logo\">Lanista</div>',",
+                    "    '<div class=\"header-info\">{info}</div>'",
+                    ");",
+                    "t.overwrite('header', {info: '<span class=\"header-subtitle\">Seite '+ page +' von '+totalPages+'</span>'});",
+                    "",
+                    "console.log(\"Header Tpl appplied \" + '<span class=\"header-subtitle\">Seite '+ page +' von '+totalPages+'</span>');",
+                    "",
+                    "if (totalPages < page){",
+                    "    //this.getExerciseView().setActiveItem(0);",
+                    "    //this.getExerciseView().getComponent(\"MyView\")......;",
+                    "}",
+                    "",
+                    ""
+                ],
+                "name": "HeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "fba37802-89c9-4a89-9123-34683dcb4aa6"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "exercisesView",
+                "selector": "exercisesPanel",
+                "xtype": "exercisesPanel"
+            },
+            "designerId": "8a0927c4-6cdc-4f3e-a8ff-8b642db88a17"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "0e7d9df3-d2fb-494d-b562-ea06a138c068"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowNextExercises",
+                "implHandler": [
+                    "console.log(\"SHOW NEXT EXERCISES\");",
+                    "Ext.getStore(\"ExerciseStore\").nextPage();"
+                ],
+                "name": "click",
+                "scope": "me",
+                "designer|targetType": "Ext.panel.Tool",
+                "designer|controlQuery": "exercisesPanel #nextExercises"
+            },
+            "designerId": "2effbd54-53a5-4037-89a7-1d14e2312bda"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowPreviousExercises",
+                "implHandler": [
+                    "console.log(\"SHOW PREVIOUS EXERCISES\");",
+                    "if (Ext.getStore(\"ExerciseStore\").currentPage > 1)",
+                    "\tExt.getStore(\"ExerciseStore\").previousPage();"
+                ],
+                "name": "click",
+                "scope": "me",
+                "designer|targetType": "Ext.panel.Tool",
+                "designer|controlQuery": "exercisesPanel #previousExercises"
+            },
+            "designerId": "2ad45132-b90e-48b8-a900-9629446b86d8"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "MainView",
+                "selector": "#myViewport"
+            },
+            "designerId": "7851b261-0c8e-4e38-a65c-b22505749b1b"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "HeaderView",
+                "selector": "#header"
+            },
+            "designerId": "e56bb3e5-64c6-451a-b507-82b9a7171591"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "RightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "eb8c1f7e-581f-4954-95fb-f83e83a434b6"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "LeftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "a819f664-a5eb-48d8-9490-16456a668ae8"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonClick",
+                "implHandler": [
+                    "Ext.getStore(\"ExerciseFilterII\").load();",
+                    "var actionSheet = Ext.create('LanistaTrainer.view.RightView', {",
+                    "",
+                    "});",
+                    "",
+                    "this.getRightCommandPanel().add(actionSheet);",
+                    "actionSheet.show();"
+                ],
+                "name": "click",
+                "scope": "me",
+                "designer|targetType": "LanistaButton",
+                "designer|controlQuery": "#showExerciseFilter"
+            },
+            "designerId": "265a3157-4d8c-4dfc-967e-277222deacab"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "RightView",
+                "selector": "#rightView"
+            },
+            "designerId": "4f7a608c-3b77-407b-a130-0484c9908a39"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "fnChargeFilters",
+                "designer|params": [
+                    "Cmp"
+                ],
+                "implHandler": [
+                    "var htmlpanel = \"\";",
+                    "",
+                    "stExerciseFilt = Ext.getStore(\"ExerciseFilters\").load({",
+                    "    callback: function(records, operation, success) {",
+                    "        var fieldValue,",
+                    "            record,",
+                    "            rChildren,",
+                    "            Childrens,",
+                    "            idLevel1,",
+                    "            idLevel2;",
+                    "",
+                    "        if (success)",
+                    "        {",
+                    "            var panel_ppal = new Ext.Panel({",
+                    "                id:\"main_panel_id\",",
+                    "                collapsible:false,",
+                    "                region:\"center\",",
+                    "                layout:'fit',",
+                    "                html:\"\"",
+                    "            });",
+                    "",
+                    "            for (var i = 0; i < records.length; i++) {",
+                    "                            Ext.getCmp(\"main_panel_id\").add({",
+                    "                                id: \"Level1\" + i,",
+                    "                                collapsible: true,",
+                    "                                collapsed: false,",
+                    "                                //collapseFirst:true,",
+                    "                                title: records[i].data.text,",
+                    "                                layout:\"accordion\",",
+                    "                                autoScroll:true,",
+                    "                                html:\"\",",
+                    "                                animate:true,",
+                    "                                titleCollapse:true,",
+                    "                                listeners: {",
+                    "                                      afterrender: function(panel) {",
+                    "                                        panel.header.el.on('click', function() {",
+                    "                                          if (panel.collapsed) {panel.expand();}",
+                    "                                          else {panel.collapse();}",
+                    "                                        });",
+                    "                                      }",
+                    "                                }",
+                    "                              });",
+                    "                            Ext.getCmp(\"main_panel_id\").doLayout();",
+                    "",
+                    "                            idLevel1 = \"Level1\" + i;",
+                    "                            for (var j = 0; j < records[i].childNodes.length; j++){",
+                    "                                  if (!records[i].childNodes[j].hasChildNodes()){",
+                    "                                      if (j==0){",
+                    "                                          Ext.getCmp(idLevel1).add({",
+                    "                                            layout:'fit',",
+                    "                                            id: 'Panel' + i,",
+                    "                                            html:\"\",",
+                    "                                            title:'Wählen'",
+                    "                                          });",
+                    "                                      }",
+                    "",
+                    "                                      htmlpanel = '<div <a id=btn2' + j + ' class=\"btn\" type=\"button\">' + records[i].childNodes[j].data.text + '</a> </div>';",
+                    "                                      Ext.getCmp('Panel' + i).html += htmlpanel;",
+                    "                                  }",
+                    "                                  else{",
+                    "                                        Ext.getCmp(idLevel1).add({",
+                    "                                            id: \"Level2\" + j,",
+                    "                                            collapsible: true,",
+                    "                                            collapsed: true,",
+                    "                                            title: records[i].childNodes[j].data.text,",
+                    "                                            layout:\"accordion\",",
+                    "                                            autoScroll:true,",
+                    "                                            html:\"\",",
+                    "                                            animate:true,",
+                    "                                            titleCollapse:true",
+                    "                                        });",
+                    "                                        Ext.getCmp(idLevel1).doLayout();",
+                    "",
+                    "                                        idLevel2 = \"Level2\" + j;",
+                    "                                        for (var k = 0; k < records[i].childNodes[j].childNodes.length; k++){",
+                    "                                            htmlpanel = '<div <a id=btn3' + k + ' class=\"btn\" type=\"button\">' + records[i].childNodes[j].childNodes[k].data.text + '</a> </div>';",
+                    "                            \t\t\t\tExt.getCmp(idLevel2).html += htmlpanel;",
+                    "                                        };",
+                    "                                        Ext.getCmp(\"Level2\" + j).doLayout();",
+                    "                                  }",
+                    "                             }",
+                    "                             Ext.getCmp(\"Level1\" + i).doLayout();",
+                    "            }",
+                    "",
+                    "\t\t\tExt.getCmp(\"main_panel_id\").doLayout();",
+                    "            Cmp.getRightCommandPanel().add(panel_ppal);",
+                    "            panel_ppal.show();",
+                    "        }",
+                    "        else",
+                    "            alert(\"There were problems loading the filters\");",
+                    "    }",
+                    "",
+                    "});",
+                    ""
+                ]
+            },
+            "designerId": "b8dff83d-4bb8-4791-8ff2-ccafe5b432ff"
+        }
+    ]
+}

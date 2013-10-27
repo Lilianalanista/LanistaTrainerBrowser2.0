@@ -1,0 +1,37 @@
+{
+    "type": "Ext.view.View",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "height": 250,
+        "id": "rightView",
+        "itemId": "rightView",
+        "width": 400,
+        "designer|userClassName": "rightView",
+        "itemSelector": "div",
+        "store": "ExerciseFilterII"
+    },
+    "designerId": "cb771e34-01f3-4053-9728-66bbe12ab562",
+    "cn": [
+        {
+            "type": "Ext.XTemplate",
+            "reference": {
+                "name": "tpl",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "implHandler": [
+                    "<tpl for=\".\">",
+                    "\t<div>{text}</div>",
+                    "</tpl>"
+                ],
+                "designer|displayName": "tpl"
+            },
+            "designerId": "b55e9c52-ae24-4cec-b4c9-5fa1e0b73dcc"
+        }
+    ]
+}

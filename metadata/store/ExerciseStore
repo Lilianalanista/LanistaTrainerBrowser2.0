@@ -1,0 +1,108 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "model": "ExerciseModel",
+        "storeId": "ExerciseStore",
+        "designer|userClassName": "ExerciseStore",
+        "pageSize": 10
+    },
+    "designerId": "7a310724-974e-4711-a167-473c89ee2ce9",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.LocalStorage",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "1"
+            },
+            "designerId": "52f30d14-e75e-49ad-bf48-8cfd93c8632c",
+            "cn": [
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "read",
+                        "designer|params": [
+                            "operation",
+                            "callback",
+                            "scope"
+                        ],
+                        "implHandler": [
+                            "var me = this,",
+                            "            records = [],",
+                            "            i = 0,",
+                            "            success = true,",
+                            "            Model = me.model,",
+                            "            ids, length, record, data, id;",
+                            "",
+                            "        operation.setStarted();",
+                            "",
+                            "        if(me.isHierarchical) {",
+                            "            records = me.getTreeData();",
+                            "        } else {",
+                            "            ids = me.getIds();",
+                            "            length = ids.length;",
+                            "            id = operation.id;",
+                            "            //read a single record",
+                            "            if (id) {",
+                            "                data = me.getRecord(id);",
+                            "                if (data !== null) {",
+                            "                    record = new Model(data, id, data);",
+                            "                }",
+                            "",
+                            "                if (record) {",
+                            "                    records.push(record);",
+                            "                } else {",
+                            "                    success = false;",
+                            "                }",
+                            "            } else {",
+                            "                console.log(operation);",
+                            "                for (; i < length; i++) {",
+                            "                    id = ids[i];",
+                            "                    data = me.getRecord(id);",
+                            "                    records.push(new Model(data, id, data));",
+                            "                }",
+                            "                var collection = Ext.create('Ext.util.MixedCollection');",
+                            "                collection.addAll(records);",
+                            "                console.log(operation.start);",
+                            "                console.log(operation.limit);",
+                            "                    records = collection.items.slice(operation.start, operation.start + operation.limit);",
+                            "",
+                            "            }",
+                            "",
+                            "        }",
+                            "",
+                            "        if(success) {",
+                            "            operation.setSuccessful();",
+                            "        }",
+                            "        operation.setCompleted();",
+                            "",
+                            "        operation.resultSet = Ext.create('Ext.data.ResultSet', {",
+                            "            records: records,",
+                            "            total  : records.length,",
+                            "            loaded : true",
+                            "        });",
+                            "",
+                            "        if (typeof callback == 'function') {",
+                            "            callback.call(scope || me, operation);",
+                            "        }"
+                        ]
+                    },
+                    "designerId": "40849cc5-aba9-45b3-8ead-cc06f306b99f"
+                }
+            ]
+        }
+    ]
+}

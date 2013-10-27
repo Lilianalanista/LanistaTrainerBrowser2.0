@@ -1,0 +1,20 @@
+{
+    "type": "Ext.button.Button",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "cls": "lanista-command-buton",
+        "height": 36,
+        "designer|userClassName": "LanistaButton",
+        "designer|ui-data": [
+            "{\"901655a0-4efe-415a-b4b1-7e600dd6eff8\":\"default\"}"
+        ],
+        "iconAlign": "top",
+        "iconCls": "refresh",
+        "text": "command"
+    },
+    "designerId": "1e317829-2f19-4cbf-896a-798df5232ab1"
+}

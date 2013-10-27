@@ -1,0 +1,31 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "model": "ExerciseModel",
+        "storeId": "ExerciseInitialStore",
+        "designer|userClassName": "ExerciseInitialStore"
+    },
+    "designerId": "3c8af507-ba84-4600-a4d6-ac0712d01a25",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "JSON Local File",
+                "noCache": false,
+                "url": "/~lilianadiaz/LanistaTrainerBrowser2.0/app/model/data/exercises.json"
+            },
+            "designerId": "1f5ad69c-1fd7-4c87-b6ed-6201dee1f4c8"
+        }
+    ]
+}

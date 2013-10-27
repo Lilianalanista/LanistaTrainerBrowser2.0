@@ -1,0 +1,64 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ExerciseFilterModel"
+    },
+    "designerId": "c5013a1c-d608-4b81-b0ad-cbdf8caec308",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "text"
+            },
+            "designerId": "0cbee5b3-66d0-4a36-b4af-e9a5b548b187"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "value",
+                "type": "int"
+            },
+            "designerId": "5f0634c6-a269-4c03-929c-6e972c068a34"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "leaf",
+                "type": "boolean"
+            },
+            "designerId": "79ae1d3d-14b4-4442-94fb-3998fece8908"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "type"
+            },
+            "designerId": "65bb924b-e50d-410d-9754-628544091a86"
+        }
+    ]
+}

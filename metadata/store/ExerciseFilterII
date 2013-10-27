@@ -1,0 +1,39 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "model": "ExerciseFilterModel",
+        "storeId": "MyJsonStore",
+        "designer|userClassName": "ExerciseFilterII"
+    },
+    "designerId": "fdba92b2-f9a0-4432-905c-ef2ef0c7122c",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "/~lilianadiaz/LanistaTrainerBrowser2.0/app/model/data/exercisefilters.json"
+            },
+            "designerId": "f933fb40-1919-4421-90e2-c1a772cba535",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "designerId": "092ea4c6-f9f6-4ff8-9a3b-36144007425b"
+                }
+            ]
+        }
+    ]
+}

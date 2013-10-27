@@ -1,0 +1,233 @@
+{
+children:[
+                {
+                    text: '<span class="lanista-list-icon">b</span>Muskelgruppe',
+                    children: [
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Alle Muskelgruppen',
+                            leaf: true,
+                            value: '',
+                            type: 1
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Schulter',
+                            leaf: true,
+                            value: '3',
+                            type: 1
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">b</span>Arme',
+                            children: [
+                                {
+                                    text: '<span class="lanista-list-icon">a</span>Biceps',
+                                    leaf: true,
+                                    value: '8',
+                                    type: 1
+                                },
+                                {
+                                    text: '<span class="lanista-list-icon">a</span>Triceps',
+                                    leaf: true,
+                                    value: '9',
+                                    type: 1
+                                },
+                                {
+                                    text: '<span class="lanista-list-icon">a</span>Unterarm',
+                                    leaf: true,
+                                    value: '10',
+                                    type: 1
+                                }
+                            ]
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Brust',
+                            leaf: true,
+                            value: '1',
+                            type: 1
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">b</span>Rücken',
+                            children: [
+                                {
+                                    text: '<span class="lanista-list-icon">a</span>oberer Rücken',
+                                    leaf: true,
+                                    value: '2',
+                                    type: 1
+                                },
+                                {
+                                    text: '<span class="lanista-list-icon">a</span>unterer Rücken',
+                                    leaf: true,
+                                    value: '5',
+                                    type: 1
+                                }
+                            ]
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Bauch',
+                            leaf: true,
+                            value: '7',
+                            type: 1
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Hüfte / Gesäß',
+                            leaf: true,
+                            value: '6',
+                            type: 1
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">b</span>Beine',
+                            children: [
+                                {
+                                    text: '<span class="lanista-list-icon">a</span>Oberschenkel Vorderseite',
+                                    leaf: true,
+                                    value: '4',
+                                    type: 1
+                                },
+                                {
+                                    text: '<span class="lanista-list-icon">a</span>Oberschenkel Rückseite',
+                                    leaf: true,
+                                    value: '14',
+                                    type: 1
+                                },
+                                {
+                                    text: '<span class="lanista-list-icon">a</span>Unterschenkel',
+                                    leaf: true,
+                                    value: '11',
+                                    type: 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    text: '<span class="lanista-list-icon">b</span>Übungstyp',
+                    children: [
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Alle Übungstypen',
+                            leaf: true,
+                            value: '',
+                            type: 2
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Körpergewicht',
+                            leaf: true,
+                            value: '4',
+                            type: 2
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Maschine',
+                            leaf: true,
+                            value: '1',
+                            type: 2
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Freie Gewichte',
+                            leaf: true,
+                            value: '2',
+                            type: 2
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Seilzug',
+                            leaf: true,
+                            value: '3',
+                            type: 2
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Stretching & Mobilisation',
+                            leaf: true,
+                            value: '5',
+                            type: 2
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Ausdauer',
+                            leaf: true,
+                            value: '7',
+                            type: 2
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Sonderübungen',
+                            leaf: true,
+                            value: '8',
+                            type: 2
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Unilateral',
+                            leaf: true,
+                            value: '9',
+                            type: 2
+                        }
+                    ]
+                },
+                {
+                    text: '<span class="lanista-list-icon">b</span>Zusätze',
+                    children: [
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Alle Zusätze',
+                            leaf: true,
+                            value: '',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Kurzhanteln',
+                            leaf: true,
+                            value: '1',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Langhantel',
+                            leaf: true,
+                            value: '3',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Kettlebells',
+                            leaf: true,
+                            value: '2',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Bank / Box',
+                            leaf: true,
+                            value: '4',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Diverse Zusätze',
+                            leaf: true,
+                            value: '5',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Gymnastikball',
+                            leaf: true,
+                            value: '6',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Blast Straps',
+                            leaf: true,
+                            value: '7',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Jumper',
+                            leaf: true,
+                            value: '8',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Foam Roller',
+                            leaf: true,
+                            value: '9',
+                            type: 3
+                        },
+                        {
+                            text: '<span class="lanista-list-icon">a</span>Miniband',
+                            leaf: true,
+                            value: '11',
+                            type: 3
+                        }
+                    ]
+                }
+            ]
+}
+        

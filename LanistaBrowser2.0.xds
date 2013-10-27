@@ -1,0 +1,50 @@
+{
+    "name": "LanistaBrowser2.0",
+    "settings": {
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        },
+        "urlPrefix": "",
+        "exportPath": ""
+    },
+    "xdsVersion": "3.0.0",
+    "xdsBuild": 1130,
+    "schemaVersion": 1,
+    "upgradeVersion": 210000000503,
+    "framework": "ext42",
+    "viewOrderMap": {
+        "view": [
+            "8dbc66f3-5106-43e9-a072-6fde27e9cdbe",
+            "7b6b8165-f918-4dba-af71-f1183b637161",
+            "1e317829-2f19-4cbf-896a-798df5232ab1",
+            "cb771e34-01f3-4053-9728-66bbe12ab562"
+        ],
+        "store": [
+            "3c8af507-ba84-4600-a4d6-ac0712d01a25",
+            "7a310724-974e-4711-a167-473c89ee2ce9",
+            "6ae595e3-06b8-4c69-8bf2-ee06faa119e2",
+            "fdba92b2-f9a0-4432-905c-ef2ef0c7122c"
+        ],
+        "controller": [
+            "99893bf5-abac-473b-bb29-dbab94e182ab"
+        ],
+        "model": [
+            "66a8eaf7-a566-40b9-8b53-cc931f03fe3f",
+            "c5013a1c-d608-4b81-b0ad-cbdf8caec308",
+            "b5a534b2-a001-4820-b6c1-84d248bdd7d3"
+        ],
+        "resource": [
+            "f0206f51-1d2e-4633-bbc5-fb00924663a5",
+            "901655a0-4efe-415a-b4b1-7e600dd6eff8",
+            "c6dec7c8-f39f-4797-b9f7-9acecf90709b"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

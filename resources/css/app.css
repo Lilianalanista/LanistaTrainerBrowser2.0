@@ -1,0 +1,51 @@
+/*.header {
+	z-index: 1 !important;
+	background-color: rgba(227, 227, 227, 0.7);
+}*/
+
+/* line 104, ../sass/default-theme.scss */
+.header-logo {
+  float: left;
+  font-family: "Harabara Bold";
+  font-size: 29px;
+  padding-top: 31px;
+  padding-left: 25px;
+}
+
+/* line 112, ../sass/default-theme.scss */
+.header-info {
+  float: right;
+  padding-right: 25px;
+  padding-top: 33px;
+  font-family: "Avenir LT Std";
+  font-size: 22px;
+  line-height: 21px;
+  text-align: right;
+  width: 70%;
+}
+
+.exercise-item {
+	height: 177px;
+	width: 180px;
+	overflow: hidden;
+	float: left;
+	margin: 9px;
+}
+
+.exercise-list-text {
+	font-size: 13px;
+}
+
+.exercise-list-img {
+	width: 90px;
+	height: 90px;
+	background-size: cover;
+}
+
+.exercise-list-img-right {
+	float: right;
+}
+
+.exercise-list-img-left {
+	float: left;
+}
