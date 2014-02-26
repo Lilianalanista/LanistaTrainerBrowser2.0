@@ -1,0 +1,62 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ToolsController",
+        "id": "languagesController"
+    },
+    "designerId": "b6853927-1cee-4f44-b43b-573f2b4c1993",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #toolsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onToolsButtonClick",
+                "implHandler": [
+                    "",
+                    "button.menu.alignTo(button, 'c-c',[100,0]);",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "8f72e1ad-6198-4d40-8f2c-a9d912e8a911"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "tool"
+                ],
+                "fn": "onShowTools",
+                "implHandler": [
+                    "//if (tool == 'MUSCLES')",
+                    "",
+                    "//if (tool == 'SKELETON')",
+                    "",
+                    "if (tool == 'STOP_WATCH')",
+                    "    LanistaTrainer.app.fireEvent('showStopWatch');",
+                    ""
+                ],
+                "name": "showTools",
+                "scope": "this"
+            },
+            "designerId": "65d575d8-657f-46ff-a352-203bd2a7f861"
+        }
+    ]
+}

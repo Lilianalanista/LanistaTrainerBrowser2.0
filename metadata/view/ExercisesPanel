@@ -7,20 +7,21 @@
     "codeClass": null,
     "userConfig": {
         "border": false,
-        "height": 250,
-        "width": 400,
-        "designer|userClassName": "ExercisesPanel",
-        "designer|userAlias": "exercisesPanel",
-        "designer|ui-data": [
-            "{\"901655a0-4efe-415a-b4b1-7e600dd6eff8\":\"default\"}"
-        ],
-        "layout": "fit",
         "defaultDockWeights": [
             "{\"top\":{\"render\":1,\"visual\":1},\"left\":{\"render\":3,\"visual\":5},\"right\":{\"render\":5,\"visual\":7},\"bottom\":{\"render\":7,\"visual\":3}}"
         ],
+        "designer|userAlias": "exercisesPanel",
+        "designer|userClassName": "ExercisesPanel",
         "frameHeader": false,
         "headerPosition": "bottom",
-        "title": null
+        "height": 250,
+        "layout": "fit",
+        "style": "padding-top: 120px;",
+        "title": null,
+        "width": 400
+    },
+    "configAlternates": {
+        "style": "string"
     },
     "designerId": "7b6b8165-f918-4dba-af71-f1183b637161",
     "cn": [
@@ -33,10 +34,10 @@
             "codeClass": null,
             "userConfig": {
                 "height": 250,
-                "id": "MyView",
-                "width": 400,
+                "id": "viewExercises",
                 "itemSelector": "div.exercise-item",
-                "store": "ExerciseStore"
+                "store": "ExerciseStore",
+                "width": 400
             },
             "designerId": "63d9f1d0-5c39-4b4b-9e0b-ad40ac21845e",
             "cn": [
@@ -65,16 +66,16 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "designer|displayName": "tpl",
                         "implHandler": [
                             "<tpl for=\".\">",
                             "\t<div class=\"exercise-item\">",
                             "        <div class=\"exercise-list-img exercise-list-img-right\" style=\"background-image: url(resources/images/previews/{ext_id}_2.jpg);\"></div>",
                             "    \t<div class=\"exercise-list-img exercise-list-img-left\" style=\"background-image: url(resources/images/previews/{ext_id}_1.jpg);\"></div>",
-                            "        <div class=\"exercise-list-text\"/>{name_DE}</div>",
+                            "        <div class=\"exercise-list-text\"/>{[values[\"name_\" + Ext.ux.LanguageManager.lang]]}</div>",
                             "    </div>",
                             "</tpl>"
-                        ],
-                        "designer|displayName": "tpl"
+                        ]
                     },
                     "designerId": "b3fb943d-fed0-4f83-91dc-3b3ff9ea4253"
                 }
@@ -88,12 +89,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "id": "previousExercises",
-                "designer|displayName": "previousExercises",
                 "designer|createAlias": "",
-                "designer|ui-data": [
-                    "{\"901655a0-4efe-415a-b4b1-7e600dd6eff8\":\"default\"}"
-                ],
+                "designer|displayName": "previousExercises",
+                "id": "previousExercises",
                 "type": "left"
             },
             "designerId": "cd9765fc-65b5-44d0-83c7-ca280f596e2b"
@@ -106,12 +104,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "id": "nextExercises",
-                "designer|displayName": "",
                 "designer|createAlias": "",
-                "designer|ui-data": [
-                    "{\"901655a0-4efe-415a-b4b1-7e600dd6eff8\":\"default\"}"
-                ],
+                "designer|displayName": "",
+                "id": "nextExercises",
                 "type": "right"
             },
             "designerId": "87be644a-8db7-445a-92b8-8f9fc872fd1d"

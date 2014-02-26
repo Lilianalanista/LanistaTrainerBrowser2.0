@@ -1,0 +1,194 @@
+{
+    "type": "Ext.container.Viewport",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "cls": null,
+        "designer|initialView": true,
+        "designer|userAlias": "mainViewport",
+        "designer|userClassName": "MainViewport",
+        "id": "mainViewport",
+        "layout": "fit"
+    },
+    "designerId": "8dbc66f3-5106-43e9-a072-6fde27e9cdbe",
+    "cn": [
+        {
+            "type": "Ext.Component",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 150,
+                "id": "header",
+                "maxHeight": 100,
+                "style": "z-index:1;"
+            },
+            "configAlternates": {
+                "style": "string"
+            },
+            "designerId": "e4ca5265-dd1d-4e14-92b8-9ef52397c440",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "tpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tpl",
+                        "implHandler": [
+                            "<div class=\"header-logo\">",
+                            "\tLanista",
+                            "</div>",
+                            "<div class=\"header-title\">{title}</div>",
+                            "<div class=\"header-info\">{info}</div>"
+                        ]
+                    },
+                    "designerId": "ac5cc1e4-41a4-4f10-a291-632bcc415a9e"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "",
+                "container|align": "stretch",
+                "container|pack": "center",
+                "id": "lanistaStage",
+                "layout": "hbox",
+                "style": "top:0!important;position: absolute;",
+                "width": 150
+            },
+            "configAlternates": {
+                "style": "string"
+            },
+            "designerId": "fe9426cf-3beb-4cb6-ac03-7c99102bdb83",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "animCollapse": true,
+                        "border": false,
+                        "cls": "lanista-command-panel",
+                        "collapseDirection": "right",
+                        "collapsed": false,
+                        "collapsedCls": null,
+                        "collapsible": true,
+                        "container|align": "center",
+                        "container|pack": "center",
+                        "header": false,
+                        "id": "leftCommandPanel",
+                        "layout": "vbox",
+                        "layout|flex": 1,
+                        "manageHeight": false,
+                        "maxWidth": 88,
+                        "style": "margin-top:100px;",
+                        "title": null,
+                        "titleCollapse": true,
+                        "width": 88
+                    },
+                    "configAlternates": {
+                        "style": "string"
+                    },
+                    "designerId": "76e57de7-2e0b-4cf6-9ab6-6f7721c3ba18"
+                },
+                {
+                    "type": "Ext.resizer.Splitter",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "collapseTarget": "prev",
+                        "collapsible": true,
+                        "id": "splitterLeft",
+                        "margin": null,
+                        "shrinkWrap": 1,
+                        "width": null
+                    },
+                    "designerId": "b9f59694-4d64-4761-af84-3a5ae16f1ba8"
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "bodyBorder": false,
+                        "border": false,
+                        "id": "mainStage",
+                        "layout": "fit",
+                        "layout|flex": 1
+                    },
+                    "designerId": "89ed8e73-3879-42f8-b569-573e21ad4a0f"
+                },
+                {
+                    "type": "Ext.resizer.Splitter",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "collapsible": true,
+                        "id": "splitterRight"
+                    },
+                    "designerId": "a2ac503f-d0a7-4b58-b0dc-a6f617617c3e"
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "animCollapse": true,
+                        "border": false,
+                        "cls": "lanista-command-panel",
+                        "collapseDirection": "left",
+                        "collapsed": false,
+                        "collapsible": true,
+                        "container|align": "center",
+                        "container|pack": "center",
+                        "header": false,
+                        "id": "rightCommandPanel",
+                        "layout": "vbox",
+                        "layout|flex": 1,
+                        "layout|margins": null,
+                        "manageHeight": false,
+                        "margin": null,
+                        "maxWidth": 88,
+                        "style": "margin-top:100px;",
+                        "title": null,
+                        "titleCollapse": null,
+                        "width": 88
+                    },
+                    "configAlternates": {
+                        "style": "string"
+                    },
+                    "designerId": "7a55967d-79bf-4330-ba90-1215fac38338"
+                }
+            ]
+        }
+    ]
+}

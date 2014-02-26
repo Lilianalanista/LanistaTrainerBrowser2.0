@@ -1,0 +1,442 @@
+@font-face {
+  font-family: "Harabara Bold";
+  src:  url('fonts/lanista/Harabara.ttf') format('truetype'),
+        url('fonts/lanista/Harabara.otf') format('opentype'),
+        url('fonts/lanista/Harabara.woff') format('woff'),
+        url('fonts/lanista/Harabara.eot') format('embedded-opentype');
+}
+
+@font-face {
+  font-family: "Roboto Light";
+  src:  url('fonts/lanista/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Roboto Medium";
+  src:  url('fonts/lanista/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Roboto Black";
+  src:  url('fonts/lanista/Roboto-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "League Gothic";
+  src:  url('fonts/lanista/League-Gothic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Avenir LT Std";
+  src:  url('fonts/lanista/AvenirLTStd-Roman.woff') format('truetype');
+}
+
+@font-face {
+  font-family: "Avenir LT Light";
+  src:  url('fonts/lanista/AvenirLTLight-Roman.woff') format('truetype');
+}
+
+
+@font-face {
+  font-family: "Lanista Icons";
+  src:  url('fonts/lanista/Lanista-2-0.woff') format('truetype');
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src:  url('fonts/lanista/BebasNeue-webfont.woff') format('truetype');
+}
+
+$font-family: 'Roboto Light';
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:900);
+
+$list-active-gradient: "none";
+$base-gradient: "none";
+
+.header-logo {
+	float: left;
+	font-family: "Harabara Bold";
+	font-size: 29px;
+	padding-top: 31px;
+	padding-left: 25px;
+	color: rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+}
+
+.header-info  {
+	float: right;
+	padding-right: 25px;
+	//padding-top: 33px;
+	font-family: "Avenir LT Std";
+	font-size: 22px;
+	line-height: 21px;
+	text-align: right;
+	width: 70%;
+}
+
+.header-title {
+	float: left;
+	padding-top: 31px;
+	font-family: "Roboto Black";
+	text-transform: uppercase;
+	font-size: 25px;
+	line-height: 33px;
+	letter-spacing: -1px;
+	color: rgba(0,0,0,0.2);
+}
+
+.lanista-guest #lanistaStage {
+    background-image: url(../resources/images/login-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 200px 43px #424242 inset;
+}
+
+.lanista-guest .lanista-command-panel {
+    top:50px!important;
+}
+
+.x-autocontainer-form-item, .x-anchor-form-item, .x-vbox-form-item, .x-table-form-item {
+    margin-bottom: 0px;
+}
+
+.lanista-form input {
+    border-bottom-width: 0px;
+}
+
+.lanista-form table:first-child input {
+    -moz-border-radius-topleft: 0.4em;
+    -webkit-border-top-left-radius: 0.4em;
+    border-top-left-radius: 0.4em;
+    -moz-border-radius-topright: 0.4em;
+    -webkit-border-top-right-radius: 0.4em;
+    border-top-right-radius: 0.4em;
+}
+
+.lanista-form table:last-child input {
+    -moz-border-radius-bottomleft: 0.4em;
+    -webkit-border-bottom-left-radius: 0.4em;
+    border-bottom-left-radius: 0.4em;
+    -moz-border-radius-bottomright: 0.4em;
+    -webkit-border-bottom-right-radius: 0.4em;
+    border-bottom-right-radius: 0.4em;
+    border-bottom-width: 1px;
+}
+
+
+.fieldset-login .x-fieldset-header-text {
+    font: 22px normal "Roboto Light";
+    color: #15428b;
+    padding: 1px 0;
+}
+
+.x-container .container-group {
+    padding-top: 20%;
+}
+
+.lanista-command-panel, #mainStage {
+	-webkit-transition: opacity 0.5s ease-in-out;
+}
+
+.lanista-command-button {
+	height: 100px!important;
+	//width: 80px!important;
+	margin-left: 7px;
+	padding: 0px!important;
+	color: rgb(74,172,216);
+    background-image: none;
+    background-color: transparent;
+    border: 0;
+}
+
+.lanista-command-button-red, .lanista-command-button-red .x-button-icon{
+	color: rgb(247, 59, 62);
+	border-color: rgb(247, 59, 62);
+}
+
+.lanista-command-button-green, .lanista-command-button-green .x-button-icon{
+	color: rgb(89,215,110);
+	border-color: rgb(89,215,110);
+}
+
+.lanista-command-button-violet, .lanista-command-button-violet .x-button-icon{
+	color: #B180BE;
+	border-color: #B180BE;
+}
+
+.x-btn-button {
+    height: 100px!important;
+    width: 70px!important;
+}
+
+.lanista-command-button .x-btn-glyph {
+    height: 70px!important;
+	width: 70px!important;
+	border-style: solid!important;
+	border-width: 4px!important;
+	border-color: rgb(74,172,216);
+	border-radius: 50%;
+    font-size: 30px;
+    line-height: 60px;
+    color: rgb(74,172,216);
+    opacity:1;
+}
+
+.lanista-command-button .x-btn-inner {
+    line-height: 16px;
+    top: 70px;
+    font-size: 13px;
+    position: relative;
+    width: 70px;
+    display: inline-block!important;
+    margin-right: auto;
+    margin-left: auto;
+    font-weight: initial;
+    margin: 0!important;
+    text-align: center;
+    font-family: Roboto Light;
+    -webkit-font-smoothing: antialiased;
+    color: rgb(74,172,216);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+.lanista-command-button .x-btn-arrow {
+    padding-right: 0px;
+}
+
+
+.menu-lanista-button {
+    text-transform: uppercase;
+}
+
+.x-menu .x-menu-icon-separator {
+    background-color: transparent;
+    border-left: transparent;
+}
+
+.x-menu-item-arrow {
+    background-image: transparent!important;
+}
+
+.lanista-command-panel .two-lines .x-btn-inner {
+    white-space: normal;
+    line-height: 11px;
+    top: 40px;
+    height: 32px;
+}
+
+.lanista-guest .x-btn-glyph, .lanista-guest .x-btn-inner {
+	border-color: white;
+    color: white!important;
+}
+
+.lanista-guest .lanista-command-panel .x-btn-glyph {
+    border-color: transparent!important;
+}
+
+.lanista-guest .lanista-command-panel .x-btn-inner {
+	top: 52px;
+}
+
+.lanista-guest .lanista-command-panel .two-lines .x-btn-inner {
+	top: 62px;
+}
+
+//Login Area
+.login-buttons-container .x-btn {
+    background-image: none;
+    background-color: transparent;
+    border: none;
+    overflow: visible;
+}
+
+.login-buttons-container label {
+    font-family: Roboto Light;
+    font-size: 22px;
+    color: rgb(104,104,104);
+}
+
+#infologinButton .x-btn-inner {
+    text-align: left;
+    color: #686868;
+    font-size: 15px;
+    overflow: visible;
+    font-family: 'Roboto Medium';
+    white-space: initial;
+}
+
+#infologinButton .x-btn-inner span {
+    color: #4aacd8;
+}
+
+#infologinButton .x-btn-button {
+    height: 36px!important;
+    width: 100%!important;
+    padding-top: 4%;
+    overflow: visible;
+}
+
+#bottonPanel .x-btn-button {
+    height: 240px!important;
+    width: 150px!important;
+}
+
+#bottonPanel .x-btn-glyph {
+    height: 150px!important;
+    width: 150px!important;
+    font-size: 72px;
+    line-height: 140px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+#bottonPanel  .x-btn-inner {
+    top: 155px!important;
+    font-size: 26px;
+    width: 150px;
+    height: 80px;
+    line-height: 25px;
+    white-space: initial;
+}
+
+#bottonPanel .x-panel-body {
+    padding: 0 20%;
+}
+
+.x-help-panel {
+    background-color: rgba(255,255,255,0.9);
+    width: 1100px !important;
+    height: 450px!important;
+    position: relative;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    top: 200px;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
+    -o-border-radius: 0.3em;
+    border-radius: 0.3em;
+    -webkit-box-shadow: rgba(0,0,0,0.8) 0 0.2em 0.6em;
+    -moz-box-shadow: rgba(0,0,0,0.8) 0 0.2em 0.6em;
+    box-shadow: rgba(0,0,0,0.8) 0 0.2em 0.6em;
+    background-image: none;
+}
+
+.x-help-panel .x-panel-body {
+    border:0;
+}
+
+.x-help-panel  .x-window-body-default {
+    background-color: transparent;
+}
+
+
+
+$arrow-height: $button-large-arrow-height;
+$arrow-width: $button-large-arrow-width;
+$background-color: $button-default-background-color;
+$background-color-disabled: $button-default-background-color-disabled;
+$background-color-focus: $button-default-background-color-focus;
+$background-color-over: $button-default-background-color-over;
+$background-color-pressed: $button-default-background-color-pressed;
+$background-gradient: $button-default-background-gradient;
+$background-gradient-disabled: $button-default-background-gradient-disabled;
+$background-gradient-focus: $button-default-background-gradient-focus;
+$background-gradient-over: $button-default-background-gradient-over;
+$background-gradient-pressed: $button-default-background-gradient-pressed;
+$border-color: $button-default-border-color;
+$border-color-disabled: $button-default-border-color-disabled;
+$border-color-focus: $button-default-border-color-focus;
+$border-color-over: $button-default-border-color-over;
+$border-color-pressed: $button-default-border-color-pressed;
+$border-radius: $button-large-border-radius;
+$border-width: $button-large-border-width;
+$color: $button-default-color;
+$color-disabled: $button-default-color-disabled;
+$color-focus: $button-default-color-focus;
+$color-over: $button-default-color-over;
+$color-pressed: $button-default-color-pressed;
+$font-family: $button-large-font-family;
+$font-family-disabled: $button-large-font-family-disabled;
+$font-family-focus: $button-large-font-family-focus;
+$font-family-over: $button-large-font-family-over;
+$font-family-pressed: $button-large-font-family-pressed;
+$font-size: $button-large-font-size;
+$font-size-disabled: $button-large-font-size-disabled;
+$font-size-focus: $button-large-font-size-focus;
+$font-size-over: $button-large-font-size-over;
+$font-size-pressed: $button-large-font-size-pressed;
+$font-weight: $button-large-font-weight;
+$font-weight-disabled: $button-large-font-weight-disabled;
+$font-weight-focus: $button-large-font-weight-focus;
+$font-weight-over: $button-large-font-weight-over;
+$font-weight-pressed: $button-large-font-weight-pressed;
+$glyph-color: $button-default-glyph-color;
+$glyph-opacity: $button-default-glyph-opacity;
+$icon-size: $button-large-icon-size;
+$include-split-noline-arrows: false;
+$include-split-over-arrows: $button-include-split-over-arrows;
+$include-ui-menu-arrows: $button-include-ui-menu-arrows;
+$include-ui-split-arrows: $button-include-ui-split-arrows;
+$inner-opacity-disabled: $button-inner-opacity-disabled;
+$opacity-disabled: $button-opacity-disabled;
+$padding: $button-large-padding;
+$split-height: $button-large-split-height;
+$split-width: $button-large-split-width;
+$text-padding: $button-large-text-padding;
+
+@include extjs-button-ui($ui:"untitled-ui-1-large",
+$arrow-height: $arrow-height,
+$arrow-width: $arrow-width,
+$background-color: $background-color,
+$background-color-disabled: $background-color-disabled,
+$background-color-focus: $background-color-focus,
+$background-color-over: $background-color-over,
+$background-color-pressed: $background-color-pressed,
+$background-gradient: $background-gradient,
+$background-gradient-disabled: $background-gradient-disabled,
+$background-gradient-focus: $background-gradient-focus,
+$background-gradient-over: $background-gradient-over,
+$background-gradient-pressed: $background-gradient-pressed,
+$border-color: $border-color,
+$border-color-disabled: $border-color-disabled,
+$border-color-focus: $border-color-focus,
+$border-color-over: $border-color-over,
+$border-color-pressed: $border-color-pressed,
+$border-radius: $border-radius,
+$border-width: $border-width,
+$color: $color,
+$color-disabled: $color-disabled,
+$color-focus: $color-focus,
+$color-over: $color-over,
+$color-pressed: $color-pressed,
+$font-family: $font-family,
+$font-family-disabled: $font-family-disabled,
+$font-family-focus: $font-family-focus,
+$font-family-over: $font-family-over,
+$font-family-pressed: $font-family-pressed,
+$font-size: $font-size,
+$font-size-disabled: $font-size-disabled,
+$font-size-focus: $font-size-focus,
+$font-size-over: $font-size-over,
+$font-size-pressed: $font-size-pressed,
+$font-weight: $font-weight,
+$font-weight-disabled: $font-weight-disabled,
+$font-weight-focus: $font-weight-focus,
+$font-weight-over: $font-weight-over,
+$font-weight-pressed: $font-weight-pressed,
+$glyph-color: $glyph-color,
+$glyph-opacity: $glyph-opacity,
+$icon-size: $icon-size,
+$include-split-noline-arrows: $include-split-noline-arrows,
+$include-split-over-arrows: $include-split-over-arrows,
+$include-ui-menu-arrows: $include-ui-menu-arrows,
+$include-ui-split-arrows: $include-ui-split-arrows,
+$inner-opacity-disabled: $inner-opacity-disabled,
+$opacity-disabled: $opacity-disabled,
+$padding: $padding,
+$split-height: $split-height,
+$split-width: $split-width,
+$text-padding: $text-padding);

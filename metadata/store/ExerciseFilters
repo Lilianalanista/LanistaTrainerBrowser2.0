@@ -6,10 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "model": "ExerciseFilterModel",
-        "storeId": "ExerciseFilters",
+        "defaultRootProperty": null,
         "designer|userClassName": "ExerciseFilters",
-        "defaultRootProperty": null
+        "model": "ExerciseFilterModel",
+        "storeId": "ExerciseFilters"
     },
     "designerId": "6ae595e3-06b8-4c69-8bf2-ee06faa119e2",
     "cn": [

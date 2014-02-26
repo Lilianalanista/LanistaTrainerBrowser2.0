@@ -1,6 +1,11 @@
 {
     "name": "LanistaBrowser2.0",
     "settings": {
+        "cmd": {
+            "license": "commercial",
+            "cmdVersion": "4.0.2.67",
+            "frameworkVersion": "4.2.1.883"
+        },
         "canvasControls": {
             "viewportSize": {
                 "name": "Auto Expand",
@@ -10,38 +15,70 @@
             }
         },
         "urlPrefix": "",
-        "exportPath": ""
+        "exportPath": "",
+        "spacesToIndent": 4,
+        "sdkPath": "",
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "lastBuildSelection": {
+            "value": "webBuild",
+            "display": "Build web app"
+        }
     },
-    "xdsVersion": "3.0.0",
-    "xdsBuild": 1130,
+    "xdsVersion": "3.0.2",
+    "xdsBuild": 1375,
     "schemaVersion": 1,
-    "upgradeVersion": 210000000503,
+    "upgradeVersion": 300000000004,
     "framework": "ext42",
     "viewOrderMap": {
         "view": [
             "8dbc66f3-5106-43e9-a072-6fde27e9cdbe",
             "7b6b8165-f918-4dba-af71-f1183b637161",
+            "48392689-f462-4834-9fae-83d1892e53f7",
             "1e317829-2f19-4cbf-896a-798df5232ab1",
-            "cb771e34-01f3-4053-9728-66bbe12ab562"
+            "cb771e34-01f3-4053-9728-66bbe12ab562",
+            "3b736aa7-734f-4eb4-9c3b-de035ba6d14a",
+            "1a25ee7d-39cf-4c13-b9dc-cd6973d85792",
+            "927250fa-d17c-4f23-8f4a-d75936bd89c4",
+            "f247031b-2e01-4366-bbd5-e45a9d3b58ad",
+            "b96b856b-77f6-4a65-8405-0b13d4ac2d13",
+            "b9eb068c-5951-4785-bcf3-01af1d6813c0"
         ],
         "store": [
             "3c8af507-ba84-4600-a4d6-ac0712d01a25",
             "7a310724-974e-4711-a167-473c89ee2ce9",
             "6ae595e3-06b8-4c69-8bf2-ee06faa119e2",
-            "fdba92b2-f9a0-4432-905c-ef2ef0c7122c"
+            "fdba92b2-f9a0-4432-905c-ef2ef0c7122c",
+            "044975f8-4682-4881-88e1-ec02d7e2b521"
         ],
         "controller": [
-            "99893bf5-abac-473b-bb29-dbab94e182ab"
+            "23d09b6b-e2b7-4a99-beb8-bf61e6bfdda2",
+            "71a5e61d-4614-4e37-ba11-385b01ff0e19",
+            "52ded827-c29d-4d9f-8209-c4791844ebf6",
+            "23bd7433-e1b9-436a-94f9-f5c4f49e13cc",
+            "58c79cb0-029e-49ab-ae3b-f1616da701b4",
+            "b6853927-1cee-4f44-b43b-573f2b4c1993",
+            "273d92fa-f47b-404a-bea3-4ca170838bd7",
+            "508219c0-9471-4ec3-8aa1-a7a9402632fb",
+            "534f5094-7b81-46e2-8a37-31eacec32a2b",
+            "652f8a88-5031-43a4-836d-050989e7485e",
+            "16630f1f-c099-4905-a757-af7f967204f8",
+            "260d0b7c-3d84-46d4-908d-3196335a55ba"
         ],
         "model": [
             "66a8eaf7-a566-40b9-8b53-cc931f03fe3f",
             "c5013a1c-d608-4b81-b0ad-cbdf8caec308",
-            "b5a534b2-a001-4820-b6c1-84d248bdd7d3"
+            "b5a534b2-a001-4820-b6c1-84d248bdd7d3",
+            "b71d8ae4-205d-482d-83bb-0fec3cbba36f"
         ],
         "resource": [
             "f0206f51-1d2e-4633-bbc5-fb00924663a5",
+            "c6dec7c8-f39f-4797-b9f7-9acecf90709b",
             "901655a0-4efe-415a-b4b1-7e600dd6eff8",
-            "c6dec7c8-f39f-4797-b9f7-9acecf90709b"
+            "16fb325b-0587-48a9-a9a1-6acfc7392039"
         ],
         "app": [
             "application"

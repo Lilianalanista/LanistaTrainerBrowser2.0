@@ -1,0 +1,146 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "stopWatchController",
+        "designer|userClassName": "StopWatchController",
+        "id": "stopWatchController"
+    },
+    "designerId": "652f8a88-5031-43a4-836d-050989e7485e",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "stopWatch #startStopWatch",
+                "designer|targetType": "Ext.button.Button",
+                "fn": "onStartStopWatch",
+                "implHandler": [
+                    "if (button.getText() == 'STOP') {",
+                    "    this.getStopWatch().stopWatch.stop();",
+                    "    button.setText(\"START\");",
+                    "} else {",
+                    "    this.getStopWatch().stopWatch.start();",
+                    "    button.setText(\"STOP\");",
+                    "}",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "1816d8af-4a26-4b69-b929-a0b48f9fdc8d"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "stopWatch #resetStopWatch",
+                "designer|targetType": "Ext.button.Button",
+                "fn": "onResetStopWatch",
+                "implHandler": [
+                    "this.getStopWatch().stopWatch.reset();",
+                    "this.getStopWatch().body.update(this.getStopWatch().stopWatch.toString());",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "85cf47d1-d287-4a7d-88f6-fef538a12e09"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "stopWatch #closeStopWatch",
+                "designer|targetType": "Ext.button.Button",
+                "fn": "onCloseStopWatch",
+                "implHandler": [
+                    "this.getStopWatch().hide();"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "d14dfcd7-6594-4d79-a0dd-74e643c767a9"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowStopWatch",
+                "implHandler": [
+                    "console.log (\"Showing stopwatch...\");",
+                    "",
+                    "controller = this;",
+                    "",
+                    "var floatingPanel = this.getStopWatch();",
+                    "var updateClock = function (watch) {",
+                    "    floatingPanel.body.update(watch.toString());",
+                    "};",
+                    "var watch = new Stopwatch(updateClock);",
+                    "",
+                    "floatingPanel.stopWatch = watch;",
+                    "var mainViewPort = controller.getMainViewport();",
+                    "mainViewPort.add(floatingPanel);",
+                    "",
+                    "floatingPanel.show(null, function() {",
+                    "    floatingPanel.body.update(watch.toString());",
+                    "});",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "showStopWatch",
+                "scope": "this"
+            },
+            "designerId": "5da6e53e-0329-42bf-bd09-1606e777e929"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "stopWatch",
+                "selector": "stopWatch",
+                "xtype": "stopWatch"
+            },
+            "designerId": "c7787400-0dc5-476b-9f70-b19a8ac85a7c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "61d3e3c3-0704-45db-94e3-f79ff06ad661"
+        }
+    ]
+}

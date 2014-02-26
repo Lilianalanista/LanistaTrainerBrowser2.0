@@ -1,0 +1,366 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "loginController",
+        "designer|userClassName": "LoginController",
+        "id": "loginController"
+    },
+    "designerId": "71a5e61d-4614-4e37-ba11-385b01ff0e19",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "f62db686-c1a1-4bf2-9daf-d8a96a6f81c4"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "780e0182-a92c-4865-982c-a73d475686de"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "233daeb6-753d-49f0-99ee-cc8ea6e591ca"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "e2f87468-3d12-4203-89b4-5cf16eae688e"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "loginPanel",
+                "selector": "loginPanel",
+                "xtype": "loginPanel"
+            },
+            "designerId": "bc0b5d57-ad31-4054-8542-dfc0581e477b"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowLoginPanel",
+                "implHandler": [
+                    "var controller = this,",
+                    "    loginPanel\t= controller.getLoginPanel(),",
+                    "    mainStage\t= controller.getMainStage();",
+                    "",
+                    "controller.getMainViewport().addCls(\"lanista-guest\");",
+                    "",
+                    "LanistaTrainer.app.activePanel = \"loginPanel\";",
+                    "mainStage.add( loginPanel );",
+                    "",
+                    "loginPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons();",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "loginPanel.show();",
+                    "",
+                    "controller.getMainViewport().down(\"#header\").update({",
+                    "    info: '' }",
+                    ");",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    ""
+                ],
+                "name": "showLoginPanel",
+                "scope": "this"
+            },
+            "designerId": "cfdd3480-a683-443a-8238-6d5c2c86530b"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseLoginPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "",
+                    "controller.getMainViewport().removeCls(\"lanista-guest\");",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLoginPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closeLoginPanel",
+                "scope": "this"
+            },
+            "designerId": "739d0eaf-9afb-496c-a631-652dc6dcae09"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "flagfocus",
+                    "fieldfocus"
+                ],
+                "fn": "onSetFieldSFocus",
+                "implHandler": [
+                    "var controller = this;",
+                    "    form = controller.getLoginPanel();",
+                    "",
+                    "    if (flagfocus)",
+                    "        form.getForm().findField(fieldfocus).focus();",
+                    "    else",
+                    "    {",
+                    "        form.getForm().findField('email').reset();",
+                    "        form.getForm().findField('password').reset();",
+                    "        form.getForm().findField('email').focus();",
+                    "    }",
+                    "",
+                    ""
+                ],
+                "name": "setFieldsFocus",
+                "scope": "this"
+            },
+            "designerId": "d9c86e15-4aac-4e77-afe3-6086ad3379d2"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "",
+                    "var controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "//Adding bottoms into RightPanel",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.MENU_LOGIN,",
+                    "        itemId: 'loginButton',",
+                    "        userAlias: 'loginButton',",
+                    "        glyph: '101@Lanista Icons' //e",
+                    "    })",
+                    ");",
+                    "",
+                    "var lLanguages = controller.listLanguages();",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_LANGUAGE,",
+                    "        itemId: 'showLanguagesPanelButton',",
+                    "        menu: lLanguages,",
+                    "        menuButtonAlign: 'right',",
+                    "        glyph: '114@Lanista Icons' //r",
+                    "    })",
+                    ");",
+                    "",
+                    "",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_REGISTRATION,",
+                    "        itemId: 'showRegistrationPanelButton',",
+                    "        cls: [",
+                    "            'lanista-command-button',",
+                    "            'two-lines'",
+                    "        ],",
+                    "        glyph: '103@Lanista Icons' //g",
+                    "    })",
+                    ");",
+                    "this.getRightCommandPanel().doLayout();",
+                    "",
+                    "//Adding bottoms into BottonPanel",
+                    "this.getLoginPanel().down(\"#bottonPanel\").add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_EXPLORE_EXERCISES,",
+                    "        itemId: 'showExercisesPanelButton',",
+                    "        style: 'float: left;',",
+                    "        glyph: '78@Lanista Icons' //g",
+                    "    })",
+                    ");",
+                    "",
+                    "this.getLoginPanel().down(\"#bottonPanel\").add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_EXPLORE_TEMPLATES,",
+                    "        itemId: 'showTemplatesPanelButton',",
+                    "        style: 'float: right;',",
+                    "        glyph: '110@Lanista Icons' //n",
+                    "    })",
+                    ");",
+                    "this.getLoginPanel().doLayout();"
+                ]
+            },
+            "designerId": "530b2fb7-5f54-4448-8426-7f38f1221689"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "e3a219d2-3949-4061-871a-caf4d113369e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "listLanguages",
+                "implHandler": [
+                    "var menuItems = new Array();",
+                    "currLanguage = Ext.ux.LanguageManager.lang;",
+                    "",
+                    "if (currLanguage == 'DE') {",
+                    "    menuItems.push(",
+                    "\t{",
+                    "\t\ttext:'ENGLISH',",
+                    "        handler: function () {",
+                    "                                 LanistaTrainer.app.fireEvent('changeLanguage', 'EN');",
+                    "                             }",
+                    "\t});",
+                    "    menuItems.push(",
+                    "    {",
+                    "\t\ttext:'ESPAÑOL',",
+                    "        handler: function () {",
+                    "                                 LanistaTrainer.app.fireEvent('changeLanguage', 'ES');",
+                    "                             }",
+                    "\t});",
+                    "} else if (currLanguage == 'EN') {",
+                    "    menuItems.push(",
+                    "\t{",
+                    "\t\ttext:'DEUTSCH',",
+                    "        handler: function () {",
+                    "                                 LanistaTrainer.app.fireEvent('changeLanguage', 'DE');",
+                    "                             }",
+                    "\t});",
+                    "    menuItems.push(",
+                    "    {",
+                    "\t\ttext:'ESPAÑOL',",
+                    "        handler: function () {",
+                    "                                 LanistaTrainer.app.fireEvent('changeLanguage', 'ES');",
+                    "                             }",
+                    "\t});",
+                    "} else {",
+                    "    menuItems.push(",
+                    "\t{",
+                    "\t\ttext:'DEUTSCH',",
+                    "        handler: function () {",
+                    "                                 LanistaTrainer.app.fireEvent('changeLanguage', 'DE');",
+                    "                             }",
+                    "\t});",
+                    "    menuItems.push(",
+                    "    {",
+                    "\t\ttext:'ENGLISH',",
+                    "        handler: function () {",
+                    "                                 LanistaTrainer.app.fireEvent('changeLanguage', 'EN');",
+                    "                             }",
+                    "\t});",
+                    "}",
+                    "",
+                    "",
+                    "var languages = new Ext.menu.Menu(",
+                    "{",
+                    "    defaults: { ",
+                    "        height: '50px',",
+                    "        width: '220px'",
+                    "    },",
+                    "    items:[]",
+                    "});    ",
+                    "languages.add(menuItems);",
+                    "",
+                    "return languages;"
+                ]
+            },
+            "designerId": "660aec4c-fb86-4489-af9e-104640a33b26"
+        }
+    ]
+}

@@ -6,30 +6,65 @@
     },
     "codeClass": null,
     "userConfig": {
+        "controllers": [
+            "MainController",
+            "LoginController",
+            "ExerciseController",
+            "TemplatesController",
+            "RegistrationController",
+            "LanguagesController",
+            "AutheticationController",
+            "StopWatchController",
+            "ToolsController",
+            "HelpController",
+            "DashBoardController",
+            "CustomerController"
+        ],
         "models": [
             "ExerciseModel",
             "ExerciseFilterModel",
-            "ExerciseFilterIIModel"
+            "ExerciseFilterIIModel",
+            "Customer"
+        ],
+        "name": "LanistaTrainer",
+        "requires": [
+            "Ext.ux.LanguageManager",
+            "Ext.ux.SessionManager"
         ],
         "stores": [
             "ExerciseInitialStore",
             "ExerciseStore",
             "ExerciseFilters",
-            "ExerciseFilterII"
+            "ExerciseFilterII",
+            "CustomerStore"
         ],
         "views": [
-            "MyViewport",
+            "MainViewport",
             "ExercisesPanel",
             "LanistaButton",
-            "rightView"
-        ],
-        "autoCreateViewport": true,
-        "controllers": [
-            "ExerciseController"
-        ],
-        "name": "LanistaTrainer"
+            "rightView",
+            "LoginPanel",
+            "TemplatesPanel",
+            "RegistrationPanel",
+            "StopWatch",
+            "HelpPanel",
+            "DashBoardPanel",
+            "CustomerPanel"
+        ]
     },
     "designerId": "application",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "activePanel",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "previuosPanel",
+            "type": "string"
+        }
+    ],
     "cn": [
         {
             "type": "fixedfunction",
@@ -44,11 +79,133 @@
                     "console.log(\"START\");",
                     "LanistaTrainer.app.fireEvent('loadExercises', function() {",
                     "    console.log(\"EXERCISES LOADED\");",
-                    "    LanistaTrainer.app.fireEvent('showExercises');",
+                    "",
+                    "    Ext.ux.SessionManager.loadLastUser();",
+                    "    if ( !Ext.ux.SessionManager.getIsLoggedIn() )",
+                    "        LanistaTrainer.app.fireEvent('showLoginPanel');",
+                    "    else",
+                    "    {",
+                    "        LanistaTrainer.app.setProxies();",
+                    "        LanistaTrainer.app.fireEvent('showDashboardPanel');",
+                    "    }",
                     "});"
                 ]
             },
             "designerId": "540e0df4-6911-4642-bb43-5792b95099a5"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "backBotonId"
+                ],
+                "fn": "setStandardButtons",
+                "implHandler": [
+                    "var LeftPanel = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#leftCommandPanel\");",
+                    "",
+                    "LeftPanel.items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "",
+                    "if ( !Ext.isEmpty(backBotonId) )",
+                    "{\tLeftPanel.add(",
+                    "        Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "            text: Ext.ux.LanguageManager.TranslationArray.CLOSE,",
+                    "            itemId: backBotonId,",
+                    "            glyph: '98@Lanista Icons' //b",
+                    "        })",
+                    "    );",
+                    "}",
+                    "",
+                    "",
+                    "tools = new Ext.menu.Menu(",
+                    "{",
+                    "    defaults: {",
+                    "        height: '50px',",
+                    "        width: '220px'",
+                    "    },",
+                    "    items:",
+                    "    [",
+                    "        {text:   Ext.ux.LanguageManager.TranslationArray.MUSCLES,",
+                    "                 handler: function () {",
+                    "                     LanistaTrainer.app.fireEvent('showTools', 'MUSCLES');",
+                    "                 }",
+                    "        },",
+                    "        {text:\t Ext.ux.LanguageManager.TranslationArray.SKELETON,",
+                    "                 handler: function () {",
+                    "                     LanistaTrainer.app.fireEvent('showTools', 'SKELETON');",
+                    "                 }",
+                    "        },",
+                    "        {text:   Ext.ux.LanguageManager.TranslationArray.STOP_WATCH,",
+                    "                 handler: function () {",
+                    "                     LanistaTrainer.app.fireEvent('showTools', 'STOP_WATCH');",
+                    "                 }",
+                    "        }",
+                    "    ]",
+                    "});",
+                    "LeftPanel.add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.TOOLS,",
+                    "        itemId: 'toolsButton',",
+                    "        menu: tools,",
+                    "        menuButtonAlign: 'left',",
+                    "        glyph: '102@Lanista Icons' //f",
+                    "    })",
+                    ");",
+                    "",
+                    "",
+                    "LeftPanel.add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_HELP,",
+                    "        itemId: 'helpButton',",
+                    "        glyph: '104@Lanista Icons' //h",
+                    "    })",
+                    ");",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "68a9a979-8c81-47ec-990d-290a250418c3"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "setProxies",
+                "implHandler": [
+                    "console.log('Setting Proxys....');",
+                    "",
+                    "var userId = localStorage.getItem(\"user_id\");",
+                    "",
+                    "if (userId)",
+                    "{",
+                    "    Ext.getStore('CustomerStore').setProxy(new Ext.data.proxy.Ajax({",
+                    "        url: '/~lilianadiaz/tpmanager/user/json',",
+                    "        model: 'Customer',",
+                    "        noCache: false,",
+                    "        reader: {",
+                    "            type: 'json',",
+                    "            root: 'entries'",
+                    "        },",
+                    "        headers: {",
+                    "            user_id: userId",
+                    "        }",
+                    "    }));",
+                    "}",
+                    ""
+                ]
+            },
+            "designerId": "4b0733de-d84b-4332-ace2-3d8a17523dde"
         }
     ]
 }

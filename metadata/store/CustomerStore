@@ -1,0 +1,53 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "CustomerStore",
+        "model": "Customer",
+        "remoteFilter": true,
+        "remoteSort": true,
+        "requires": [
+            "Ext.data.proxy.Ajax",
+            "Ext.data.reader.Json"
+        ],
+        "storeId": "CustomerStore"
+    },
+    "designerId": "044975f8-4682-4881-88e1-ec02d7e2b521",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "headers": [
+                    "{ ",
+                    "    user_id: 5",
+                    "}"
+                ],
+                "url": "/~lilianadiaz/tpmanager/user/json"
+            },
+            "designerId": "eec306b5-eda2-4ad9-adc0-8321c33ba190",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "entries"
+                    },
+                    "designerId": "5d3068ab-094e-428e-9cba-bcf3a3e68c88"
+                }
+            ]
+        }
+    ]
+}

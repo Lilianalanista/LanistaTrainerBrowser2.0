@@ -1,0 +1,233 @@
+{
+children:[
+                {
+                    text: 'Muskelgruppe',
+                    children: [
+                        {
+                            text: 'Alle Muskelgruppen',
+                            leaf: true,
+                            value: '',
+                            type: 1
+                        },
+                        {
+                            text: 'Schulter',
+                            leaf: true,
+                            value: '3',
+                            type: 1
+                        },
+                        {
+                            text: 'Arme',
+                            children: [
+                                {
+                                    text: 'Biceps',
+                                    leaf: true,
+                                    value: '8',
+                                    type: 1
+                                },
+                                {
+                                    text: 'Triceps',
+                                    leaf: true,
+                                    value: '9',
+                                    type: 1
+                                },
+                                {
+                                    text: 'Unterarm',
+                                    leaf: true,
+                                    value: '10',
+                                    type: 1
+                                }
+                            ]
+                        },
+                        {
+                            text: 'Brust',
+                            leaf: true,
+                            value: '1',
+                            type: 1
+                        },
+                        {
+                            text: 'Rücken',
+                            children: [
+                                {
+                                    text: 'oberer Rücken',
+                                    leaf: true,
+                                    value: '2',
+                                    type: 1
+                                },
+                                {
+                                    text: 'unterer Rücken',
+                                    leaf: true,
+                                    value: '5',
+                                    type: 1
+                                }
+                            ]
+                        },
+                        {
+                            text: 'Bauch',
+                            leaf: true,
+                            value: '7',
+                            type: 1
+                        },
+                        {
+                            text: 'Hüfte / Gesäß',
+                            leaf: true,
+                            value: '6',
+                            type: 1
+                        },
+                        {
+                            text: 'Beine',
+                            children: [
+                                {
+                                    text: 'Oberschenkel Vorderseite',
+                                    leaf: true,
+                                    value: '4',
+                                    type: 1
+                                },
+                                {
+                                    text: 'Oberschenkel Rückseite',
+                                    leaf: true,
+                                    value: '14',
+                                    type: 1
+                                },
+                                {
+                                    text: 'Unterschenkel',
+                                    leaf: true,
+                                    value: '11',
+                                    type: 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    text: 'Übungstyp',
+                    children: [
+                        {
+                            text: 'Alle Übungstypen',
+                            leaf: true,
+                            value: '',
+                            type: 2
+                        },
+                        {
+                            text: 'Körpergewicht',
+                            leaf: true,
+                            value: '4',
+                            type: 2                        
+                        },
+                        {
+                            text: 'Maschine',
+                            leaf: true,
+                            value: '1',
+                            type: 2
+                        },
+                        {
+                            text: 'Freie Gewichte',
+                            leaf: true,
+                            value: '2',
+                            type: 2
+                        },
+                        {
+                            text: 'Seilzug',
+                            leaf: true,
+                            value: '3',
+                            type: 2
+                        },
+                        {
+                            text: 'Stretching & Mobilisation',
+                            leaf: true,
+                            value: '5',
+                            type: 2
+                        },
+                        {
+                            text: 'Ausdauer',
+                            leaf: true,
+                            value: '7',
+                            type: 2
+                        },
+                        {
+                            text: 'Sonderübungen',
+                            leaf: true,
+                            value: '8',
+                            type: 2
+                        },
+                        {
+                            text: 'Unilateral',
+                            leaf: true,
+                            value: '9',
+                            type: 2
+                        }
+                    ]
+                },
+                {
+                    text: 'Zusätze',
+                    children: [
+                        {
+                            text: 'Alle Zusätze',
+                            leaf: true,
+                            value: '',
+                            type: 3
+                        },
+                        {
+                            text: 'Kurzhanteln',
+                            leaf: true,
+                            value: '1',
+                            type: 3
+                        },
+                        {
+                            text: 'Langhantel',
+                            leaf: true,
+                            value: '3',
+                            type: 3
+                        },
+                        {
+                            text: 'Kettlebells',
+                            leaf: true,
+                            value: '2',
+                            type: 3
+                        },
+                        {
+                            text: 'Bank / Box',
+                            leaf: true,
+                            value: '4',
+                            type: 3
+                        },
+                        {
+                            text: 'Diverse Zusätze',
+                            leaf: true,
+                            value: '5',
+                            type: 3
+                        },
+                        {
+                            text: 'Gymnastikball',
+                            leaf: true,
+                            value: '6',
+                            type: 3
+                        },
+                        {
+                            text: 'Blast Straps',
+                            leaf: true,
+                            value: '7',
+                            type: 3
+                        },
+                        {
+                            text: 'Jumper',
+                            leaf: true,
+                            value: '8',
+                            type: 3
+                        },
+                        {
+                            text: 'Foam Roller',
+                            leaf: true,
+                            value: '9',
+                            type: 3
+                        },
+                        {
+                            text: 'Miniband',
+                            leaf: true,
+                            value: '11',
+                            type: 3
+                        }
+                    ]
+                }
+            ]
+}
+        

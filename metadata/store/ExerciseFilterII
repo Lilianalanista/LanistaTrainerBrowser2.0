@@ -6,9 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
+        "designer|userClassName": "ExerciseFilterII",
         "model": "ExerciseFilterModel",
-        "storeId": "MyJsonStore",
-        "designer|userClassName": "ExerciseFilterII"
+        "storeId": "MyJsonStore"
     },
     "designerId": "fdba92b2-f9a0-4432-905c-ef2ef0c7122c",
     "cn": [

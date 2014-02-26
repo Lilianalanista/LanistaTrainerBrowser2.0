@@ -1,0 +1,125 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "cls": "x-help-panel",
+        "container|align": "stretch",
+        "defaultAlign": "c-c",
+        "designer|userAlias": "helpPanel",
+        "designer|userClassName": "HelpPanel",
+        "floating": true,
+        "height": 450,
+        "id": "helpPanel",
+        "layout": "hbox",
+        "modal": true,
+        "style": "bottom:0",
+        "title": null,
+        "width": 1100
+    },
+    "configAlternates": {
+        "style": "string"
+    },
+    "designerId": "b96b856b-77f6-4a65-8405-0b13d4ac2d13",
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onHelpPanelShow",
+                "implHandler": [
+                    "var container = this,",
+                    "    viewPort = Ext.ComponentQuery.query(\"viewport\")[0];",
+                    "    xPosotionIniX = (viewPort.width - component.width) / 2;",
+                    "    xPosotionIniY = viewPort.height - component.height;",
+                    "",
+                    "component.animate({",
+                    "    to: {",
+                    "        x: xPosotionIniX,",
+                    "        y: xPosotionIniY",
+                    "    }",
+                    "});",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "show",
+                "scope": "me"
+            },
+            "designerId": "2b59e4f9-18a1-49cc-896a-0bed09fdbcb8"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onHelpPanelBeforeClose",
+                "implHandler": [
+                    "",
+                    "panel.el.ghost('b', {",
+                    "    remove: true,",
+                    "    callback: function(){",
+                    "        panel.destroy(true);",
+                    "    }",
+                    "});",
+                    "return false;"
+                ],
+                "name": "beforeclose",
+                "scope": "me"
+            },
+            "designerId": "56d251f5-6a6c-4843-8dfa-dd157d2bd1b6"
+        },
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoScroll": true,
+                "dock": null,
+                "header": false,
+                "html": "Loading...",
+                "id": "sideHelpPanel",
+                "layout|flex": 1,
+                "title": null
+            },
+            "configAlternates": {
+                "html": "string"
+            },
+            "designerId": "2e649e54-6aa4-48b9-915b-7ced91f58a07"
+        },
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoScroll": true,
+                "dock": null,
+                "header": false,
+                "html": "Loading...",
+                "id": "sideTutorialPanel",
+                "layout|flex": 1,
+                "title": null
+            },
+            "configAlternates": {
+                "html": "string"
+            },
+            "designerId": "920f62be-5bf8-4ffd-b422-7592f51816ca"
+        }
+    ]
+}

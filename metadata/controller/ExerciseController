@@ -6,31 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
-        "id": "ExerciseController",
-        "designer|userClassName": "ExerciseController"
+        "designer|userAlias": "exerciseController",
+        "designer|userClassName": "ExerciseController",
+        "id": "exerciseController"
     },
-    "configAlternates": {
-        "filters": "array",
-        "var stExerciseFilt": "object"
-    },
-    "designerId": "99893bf5-abac-473b-bb29-dbab94e182ab",
-    "customConfigs": [
-        {
-            "group": "(Custom Properties)",
-            "name": "filters",
-            "type": "string"
-        },
-        {
-            "group": "(Custom Properties)",
-            "name": "ViewPortCapacityGlb",
-            "type": "string"
-        },
-        {
-            "group": "(Custom Properties)",
-            "name": "stExerciseFilt",
-            "type": "string"
-        }
-    ],
+    "designerId": "52ded827-c29d-4d9f-8209-c4791844ebf6",
     "cn": [
         {
             "type": "applicationaction",
@@ -40,11 +20,121 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onLoadExercises",
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowExercisesPanel",
+                "implHandler": [
+                    "",
+                    "var controller = this,",
+                    "    exercisesPanel\t= controller.getExercisesPanel(),",
+                    "    mainStage\t= controller.getMainStage();",
+                    "",
+                    "LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;",
+                    "LanistaTrainer.app.activePanel = \"exercisesPanel\";",
+                    "",
+                    "mainStage.add( exercisesPanel );",
+                    "",
+                    "exercisesPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "var viewExercises = exercisesPanel.down('#viewExercises');",
+                    "store = viewExercises.store;",
+                    "store.clearFilter(true);",
+                    "store.sort('name_' + Ext.ux.LanguageManager.lang, 'ASC');",
+                    "console.log(\"Total: \" + store.proxy.totalCount);",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons('closeExercisesPanelButton');",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "exercisesPanel.show();",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();"
+                ],
+                "name": "showExercisesPanel",
+                "scope": "this"
+            },
+            "designerId": "38c4d2c6-9096-4906-aed3-66d874f3fb51"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseExercisesPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getExercisesPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closeExercisesPanel",
+                "scope": "this"
+            },
+            "designerId": "d6974465-aac4-4a2f-9d1e-bb810ce2cb05"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "value",
+                    "type"
+                ],
+                "fn": "onShowExercisesFiltered",
+                "implHandler": [
+                    "console.log(value);",
+                    "console.log(type);",
+                    "",
+                    "//Ext.getStore('ExerciseStore')",
+                    ""
+                ],
+                "name": "showExercisesFiltered",
+                "scope": "this"
+            },
+            "designerId": "d12722c9-b60f-48d7-a9df-26a14003dbf4"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "designer|params": [
                     "afterLoadCallback"
                 ],
+                "fn": "onLoadExercises",
                 "implHandler": [
+                    "",
                     "var controller = this;",
                     "Ext.getStore('ExerciseStore').load({",
                     "\tcallback: function(records, operation, success) {",
@@ -78,7 +168,7 @@
                 "name": "loadExercises",
                 "scope": "this"
             },
-            "designerId": "285dfddc-4efe-4a88-8fc1-79bce42d417c"
+            "designerId": "b19e224b-b5fa-4840-8dd2-aeb2542dd943"
         },
         {
             "type": "applicationaction",
@@ -88,105 +178,48 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onShowExercises",
                 "designer|params": [
-                    "callback"
+                    "currPanelTitle"
                 ],
+                "fn": "onShowSearchHeaderUpdate",
                 "implHandler": [
-                    "console.log(\"SHOWING EXERCISES\");",
-                    "var exercisesView = this.getExercisesView();",
-                    "mainStage = this.getMainStage();",
-                    "mainStage.add(exercisesView);",
-                    "exercisesView.show();",
-                    "console.log(exercisesView);",
+                    "var store = Ext.getStore('ExerciseStore'),",
+                    "     page = store.currentPage,",
+                    "     totalPages = \"\",",
+                    "     filter = \"\",",
+                    "     controller = this,",
+                    "     numOfExercises = store.proxy.totalCount,",
+                    "     totalPages = Math.ceil(numOfExercises/store.pageSize);",
                     "",
-                    "var viewportXCapacity\t= Math.floor(exercisesView.el.dom.clientWidth/187);",
-                    "var viewportCapacity \t= Math.floor((exercisesView.el.dom.clientHeight-47)/177) * viewportXCapacity;",
-                    "Ext.getStore(\"ExerciseStore\").pageSize = viewportCapacity;",
+                    "if (store.filters.items.length !== 0)",
+                    "   filter = (store.filters.items[1].textOptSel ? 'Musclegruppe: '+store.filters.items[1].textOptSel+'<br>' : '') + (store.filters.items[0].textOptSel ? ' Übungstyp: '+store.filters.items[0].textOptSel+'<br>' : '') + (store.filters.items[2].textOptSel ? ' Zusätze: '+store.filters.items[2].textOptSel+'<br>' : '');",
                     "",
-                    "this.ViewPortCapacityGlb = viewportCapacity;",
-                    "Ext.getStore(\"ExerciseStore\").load({",
-                    "\tcallback: function(records, operation, success) {",
-                    "        LanistaTrainer.app.fireEvent('HeaderUpdate', 1);",
-                    "    }",
-                    " });",
+                    "if (Ext.getStore(\"ExerciseStore\").currentPage > totalPages)",
+                    "    return false;",
                     "",
-                    "console.log(\"VIEWPORT CAPACITY: \" + viewportCapacity);",
+                    "if (this.getExercisesPanel() && !this.getExercisesPanel().isHidden()) {",
+                    "    console.log(\"numOfExercises \" + numOfExercises);",
+                    "    console.log(\"store.getCount() \" + store.getCount());",
                     "",
-                    "",
-                    "// create the icons",
-                    "/*this.getRightCommandPanel().add(",
-                    "\tExt.create('LanistaTrainer.view.LanistaButton', {",
-                    "\ticonCls: 'search',",
-                    "\ttext: 'Suchen',",
-                    "    id: 'showExerciseFilter'",
-                    "    })",
-                    ");*/",
-                    "this.getLeftCommandPanel().add(",
-                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
-                    "        iconCls: 'home',",
-                    "        text: 'Anmelden'",
-                    "    })",
-                    ");",
-                    "this.getLeftCommandPanel().add(",
-                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
-                    "        iconCls: 'refresh',",
-                    "        text: 'Werkzeuge'",
-                    "    })",
-                    ");",
-                    "",
-                    "this.fnChargeFilters(this);",
-                    "",
-                    "if (callback instanceof Function) callback();",
-                    ""
-                ],
-                "name": "showExercises",
-                "scope": "this"
-            },
-            "designerId": "2af1fe77-b487-4b7c-8397-232bc088acd1"
-        },
-        {
-            "type": "applicationaction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onHeaderUpdate",
-                "designer|params": [
-                    "page"
-                ],
-                "implHandler": [
-                    "var store = Ext.getStore('ExerciseStore');",
-                    "var totalCounts = store.getTotalCount();",
-                    "",
-                    "var exercisesView = this.getExercisesView();",
-                    "var HeaderView = this.getHeaderView();",
-                    "",
-                    "var totalPages = Math.ceil(totalCounts/this.ViewPortCapacityGlb);",
-                    "",
-                    "//var filter = (isNaN(this.filters[1]) ? 'Musclegruppe: '+ this.filters[1] + '<br>' : '') + (isNaN(this.filters[2]) ? ' Übungstyp: '+ this.filters[2] + '<br>' : '') + (isNaN(this.filters[3]) ? ' Zusätze: '+ this.filters[3] + '<br>' : '');",
-                    "",
-                    "var t = new Ext.Template(",
-                    "    '<div class=\"header-logo\">Lanista</div>',",
-                    "    '<div class=\"header-info\">{info}</div>'",
-                    ");",
-                    "t.overwrite('header', {info: '<span class=\"header-subtitle\">Seite '+ page +' von '+totalPages+'</span>'});",
-                    "",
-                    "console.log(\"Header Tpl appplied \" + '<span class=\"header-subtitle\">Seite '+ page +' von '+totalPages+'</span>');",
-                    "",
-                    "if (totalPages < page){",
-                    "    //this.getExerciseView().setActiveItem(0);",
-                    "    //this.getExerciseView().getComponent(\"MyView\")......;",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: '<div class=\"exercises-header\"><div class=\"header-filter\">' + filter + '</div>' + numOfExercises + ' ' + currPanelTitle + '<br><span class=\"header-subtitle\">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>',",
+                    "       title: '-' + currPanelTitle",
+                    "    });",
                     "}",
                     "",
+                    "//var exercisesView = this.getExercisesView();",
+                    "//var HeaderView = this.getHeaderView();",
+                    "//var totalPages = Math.ceil(totalCounts/this.ViewPortCapacityGlb);",
+                    "//var filter = (isNaN(this.filters[1]) ? 'Musclegruppe: '+ this.filters[1] + '<br>' : '') + (isNaN(this.filters[2]) ? ' Übungstyp: '+ this.filters[2] + '<br>' : '') + (isNaN(this.filters[3]) ? ' Zusätze: '+ this.filters[3] + '<br>' : '');",
+                    "",
+                    "",
+                    "",
                     ""
                 ],
-                "name": "HeaderUpdate",
+                "name": "showSearchHeaderUpdate",
                 "scope": "this"
             },
-            "designerId": "fba37802-89c9-4a89-9123-34683dcb4aa6"
+            "designerId": "e8f65cd2-661e-415f-8682-d58a4fc3e3c0"
         },
         {
             "type": "controllerref",
@@ -197,11 +230,50 @@
             "codeClass": null,
             "userConfig": {
                 "autoCreate": true,
-                "ref": "exercisesView",
+                "ref": "exercisesPanel",
                 "selector": "exercisesPanel",
                 "xtype": "exercisesPanel"
             },
-            "designerId": "8a0927c4-6cdc-4f3e-a8ff-8b642db88a17"
+            "designerId": "58237758-0edc-4723-875b-e89b846e5629"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "e47bbced-f583-4394-815e-17c2f7afa899"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "53331e97-5d6e-490f-8b58-8757289cb2c8"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "908fc6da-9d3f-4096-b25e-ab58eeff1b32"
         },
         {
             "type": "controllerref",
@@ -214,138 +286,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
-            "designerId": "0e7d9df3-d2fb-494d-b562-ea06a138c068"
-        },
-        {
-            "type": "controlleraction",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onShowNextExercises",
-                "implHandler": [
-                    "console.log(\"SHOW NEXT EXERCISES\");",
-                    "Ext.getStore(\"ExerciseStore\").nextPage();"
-                ],
-                "name": "click",
-                "scope": "me",
-                "designer|targetType": "Ext.panel.Tool",
-                "designer|controlQuery": "exercisesPanel #nextExercises"
-            },
-            "designerId": "2effbd54-53a5-4037-89a7-1d14e2312bda"
-        },
-        {
-            "type": "controlleraction",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onShowPreviousExercises",
-                "implHandler": [
-                    "console.log(\"SHOW PREVIOUS EXERCISES\");",
-                    "if (Ext.getStore(\"ExerciseStore\").currentPage > 1)",
-                    "\tExt.getStore(\"ExerciseStore\").previousPage();"
-                ],
-                "name": "click",
-                "scope": "me",
-                "designer|targetType": "Ext.panel.Tool",
-                "designer|controlQuery": "exercisesPanel #previousExercises"
-            },
-            "designerId": "2ad45132-b90e-48b8-a900-9629446b86d8"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "MainView",
-                "selector": "#myViewport"
-            },
-            "designerId": "7851b261-0c8e-4e38-a65c-b22505749b1b"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "HeaderView",
-                "selector": "#header"
-            },
-            "designerId": "e56bb3e5-64c6-451a-b507-82b9a7171591"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "RightCommandPanel",
-                "selector": "#rightCommandPanel"
-            },
-            "designerId": "eb8c1f7e-581f-4954-95fb-f83e83a434b6"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "LeftCommandPanel",
-                "selector": "#leftCommandPanel"
-            },
-            "designerId": "a819f664-a5eb-48d8-9490-16456a668ae8"
-        },
-        {
-            "type": "controlleraction",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onButtonClick",
-                "implHandler": [
-                    "Ext.getStore(\"ExerciseFilterII\").load();",
-                    "var actionSheet = Ext.create('LanistaTrainer.view.RightView', {",
-                    "",
-                    "});",
-                    "",
-                    "this.getRightCommandPanel().add(actionSheet);",
-                    "actionSheet.show();"
-                ],
-                "name": "click",
-                "scope": "me",
-                "designer|targetType": "LanistaButton",
-                "designer|controlQuery": "#showExerciseFilter"
-            },
-            "designerId": "265a3157-4d8c-4dfc-967e-277222deacab"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "RightView",
-                "selector": "#rightView"
-            },
-            "designerId": "4f7a608c-3b77-407b-a130-0484c9908a39"
+            "designerId": "6b1c562d-0e4c-4aca-9574-2115eee9624f"
         },
         {
             "type": "basicfunction",
@@ -355,108 +296,510 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "fnChargeFilters",
                 "designer|params": [
-                    "Cmp"
+                    "callback"
                 ],
+                "fn": "showCommands",
                 "implHandler": [
-                    "var htmlpanel = \"\";",
                     "",
-                    "stExerciseFilt = Ext.getStore(\"ExerciseFilters\").load({",
-                    "    callback: function(records, operation, success) {",
-                    "        var fieldValue,",
-                    "            record,",
-                    "            rChildren,",
-                    "            Childrens,",
-                    "            idLevel1,",
-                    "            idLevel2;",
-                    "",
-                    "        if (success)",
-                    "        {",
-                    "            var panel_ppal = new Ext.Panel({",
-                    "                id:\"main_panel_id\",",
-                    "                collapsible:false,",
-                    "                region:\"center\",",
-                    "                layout:'fit',",
-                    "                html:\"\"",
-                    "            });",
-                    "",
-                    "            for (var i = 0; i < records.length; i++) {",
-                    "                            Ext.getCmp(\"main_panel_id\").add({",
-                    "                                id: \"Level1\" + i,",
-                    "                                collapsible: true,",
-                    "                                collapsed: false,",
-                    "                                //collapseFirst:true,",
-                    "                                title: records[i].data.text,",
-                    "                                layout:\"accordion\",",
-                    "                                autoScroll:true,",
-                    "                                html:\"\",",
-                    "                                animate:true,",
-                    "                                titleCollapse:true,",
-                    "                                listeners: {",
-                    "                                      afterrender: function(panel) {",
-                    "                                        panel.header.el.on('click', function() {",
-                    "                                          if (panel.collapsed) {panel.expand();}",
-                    "                                          else {panel.collapse();}",
-                    "                                        });",
-                    "                                      }",
-                    "                                }",
-                    "                              });",
-                    "                            Ext.getCmp(\"main_panel_id\").doLayout();",
-                    "",
-                    "                            idLevel1 = \"Level1\" + i;",
-                    "                            for (var j = 0; j < records[i].childNodes.length; j++){",
-                    "                                  if (!records[i].childNodes[j].hasChildNodes()){",
-                    "                                      if (j==0){",
-                    "                                          Ext.getCmp(idLevel1).add({",
-                    "                                            layout:'fit',",
-                    "                                            id: 'Panel' + i,",
-                    "                                            html:\"\",",
-                    "                                            title:'Wählen'",
-                    "                                          });",
-                    "                                      }",
-                    "",
-                    "                                      htmlpanel = '<div <a id=btn2' + j + ' class=\"btn\" type=\"button\">' + records[i].childNodes[j].data.text + '</a> </div>';",
-                    "                                      Ext.getCmp('Panel' + i).html += htmlpanel;",
-                    "                                  }",
-                    "                                  else{",
-                    "                                        Ext.getCmp(idLevel1).add({",
-                    "                                            id: \"Level2\" + j,",
-                    "                                            collapsible: true,",
-                    "                                            collapsed: true,",
-                    "                                            title: records[i].childNodes[j].data.text,",
-                    "                                            layout:\"accordion\",",
-                    "                                            autoScroll:true,",
-                    "                                            html:\"\",",
-                    "                                            animate:true,",
-                    "                                            titleCollapse:true",
-                    "                                        });",
-                    "                                        Ext.getCmp(idLevel1).doLayout();",
-                    "",
-                    "                                        idLevel2 = \"Level2\" + j;",
-                    "                                        for (var k = 0; k < records[i].childNodes[j].childNodes.length; k++){",
-                    "                                            htmlpanel = '<div <a id=btn3' + k + ' class=\"btn\" type=\"button\">' + records[i].childNodes[j].childNodes[k].data.text + '</a> </div>';",
-                    "                            \t\t\t\tExt.getCmp(idLevel2).html += htmlpanel;",
-                    "                                        };",
-                    "                                        Ext.getCmp(\"Level2\" + j).doLayout();",
-                    "                                  }",
-                    "                             }",
-                    "                             Ext.getCmp(\"Level1\" + i).doLayout();",
-                    "            }",
-                    "",
-                    "\t\t\tExt.getCmp(\"main_panel_id\").doLayout();",
-                    "            Cmp.getRightCommandPanel().add(panel_ppal);",
-                    "            panel_ppal.show();",
-                    "        }",
-                    "        else",
-                    "            alert(\"There were problems loading the filters\");",
-                    "    }",
-                    "",
+                    "var controller = this;",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
                     "});",
+                    "",
+                    "//Adding bottoms into RightPanel",
+                    "var menuFilters = controller.showExercisesMenu();",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.SEARCH,",
+                    "        itemId: 'searchButton',",
+                    "        menu: menuFilters,",
+                    "        menuButtonAlign: 'right',",
+                    "        glyph: 72",
+                    "    })",
+                    ");",
+                    "",
                     ""
                 ]
             },
-            "designerId": "b8dff83d-4bb8-4791-8ff2-ccafe5b432ff"
+            "designerId": "fee35e2c-2118-4dc7-a82e-3723921f9658"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #showExercisesPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onShowExercisesPanelButtonClick",
+                "implHandler": [
+                    "",
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
+                    "    LanistaTrainer.app.fireEvent('showExercisesPanel');",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "67abd17d-564e-42ba-a557-2d80975d3dd3"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeExercisesPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseExercisesPanelButtonClick",
+                "implHandler": [
+                    "",
+                    "LanistaTrainer.app.fireEvent('closeExercisesPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "a02d89a3-b821-4071-bd5c-a1a72fbd60d4"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "0c52d427-6a4b-4540-8aee-8c3cf6871c39"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showExercisesMenu",
+                "implHandler": [
+                    "container = this;",
+                    "tools = new Ext.menu.Menu(",
+                    "    {",
+                    "        defaults: {",
+                    "            height: '50px',",
+                    "            width: '220px'",
+                    "        },",
+                    "        items:",
+                    "        [",
+                    "            {text:\tExt.ux.LanguageManager.TranslationArray.FILTER_MUSCLES.toUpperCase(),",
+                    "             menuAlign: 'tr-tl?',",
+                    "             rtl: true,",
+                    "             menu:{",
+                    "                     defaults: {",
+                    "                         height: '50px',",
+                    "                         width: '220px'",
+                    "                     },",
+                    "                     items:",
+                    "                     [",
+                    "                             {text:\tExt.ux.LanguageManager.TranslationArray.FILTER_ALL_MUSCLES.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('', 1, this.text);",
+                    "                                  }",
+                    "                             },",
+                    "                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_SHOULDER.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('3', 1, this.text);",
+                    "                                  }",
+                    "                             },",
+                    "                             {text:   Ext.ux.LanguageManager.TranslationArray.FILTER_ARMS.toUpperCase(),",
+                    "                                      menuAlign: 'tr-tl?',",
+                    "                                      rtl: true,",
+                    "                                      menu:{",
+                    "                                              defaults: {",
+                    "                                                      height: '50px',",
+                    "                                                      width: '220px'",
+                    "                                                  },",
+                    "                                              items:",
+                    "                                              [",
+                    "                                                      {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BICEPS.toUpperCase(),",
+                    "                                                           handler: function () {",
+                    "                                                               container.showFilteredExercises('8', 1, this.text);",
+                    "                                                           }",
+                    "                                                      },",
+                    "                                                      {text: Ext.ux.LanguageManager.TranslationArray.FILTER_TRICEPS.toUpperCase(),",
+                    "                                                           handler: function () {",
+                    "                                                               container.showFilteredExercises('9', 1, this.text);",
+                    "                                                           }",
+                    "                                                      },",
+                    "                                                      {text: Ext.ux.LanguageManager.TranslationArray.FILTER_FOREARM.toUpperCase(),",
+                    "                                                           handler: function () {",
+                    "                                                               container.showFilteredExercises('10', 1, this.text);",
+                    "                                                           }",
+                    "                                                      }",
+                    "                                               ]",
+                    "                                           }",
+                    "                             },",
+                    "                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('1', 1, this.text);",
+                    "                                  }",
+                    "                             },",
+                    "                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BACK.toUpperCase(),",
+                    "                                    menuAlign: 'tr-tl?',",
+                    "                                      rtl: true,",
+                    "                                      menu:{",
+                    "                                              defaults: {",
+                    "                                                      height: '50px',",
+                    "                                                      width: '220px'",
+                    "                                                  },",
+                    "                                              items:",
+                    "                                              [",
+                    "                                                      {text: Ext.ux.LanguageManager.TranslationArray.FILTER_UPPERBACK.toUpperCase(),",
+                    "                                                           handler: function () {",
+                    "                                                               container.showFilteredExercises('2', 1, this.text);",
+                    "                                                           }",
+                    "                                                      },",
+                    "                                                      {text: Ext.ux.LanguageManager.TranslationArray.FILTER_LOWERBACK.toUpperCase(),",
+                    "                                                           handler: function () {",
+                    "                                                               container.showFilteredExercises('5', 1, this.text);",
+                    "                                                           }",
+                    "                                                      }",
+                    "                                               ]",
+                    "                                           }",
+                    "                             },",
+                    "                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_AB.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('7', 1, this.text);",
+                    "                                  }",
+                    "                             },",
+                    "                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_WAISHIP.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('6', 1, this.text);",
+                    "                                  }",
+                    "                             },",
+                    "                             {text:   Ext.ux.LanguageManager.TranslationArray.FILTER_LEGS.toUpperCase(),",
+                    "                                      menuAlign: 'tr-tl?',",
+                    "                                      rtl: true,",
+                    "                                      menu:{",
+                    "                                              defaults: {",
+                    "                                                  height: '50px',",
+                    "                                                  width: '220px'",
+                    "                                              },",
+                    "                                              items:",
+                    "                                              [",
+                    "                                                  {text: Ext.ux.LanguageManager.TranslationArray.FILTER_FRONTTHIG.toUpperCase(),",
+                    "                                                   handler: function () {",
+                    "                                                       container.showFilteredExercises('4', 1, this.text);",
+                    "                                                   }",
+                    "                                                  },",
+                    "                                                  {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BACKTHIGH.toUpperCase(),",
+                    "                                                   handler: function () {",
+                    "                                                       container.showFilteredExercises('14', 1, this.text);",
+                    "                                                   }",
+                    "                                                  },",
+                    "                                                  {text: Ext.ux.LanguageManager.TranslationArray.FILTER_LOWERLEG.toUpperCase(),",
+                    "                                                   handler: function () {",
+                    "                                                       container.showFilteredExercises('11', 1, this.text);",
+                    "                                                   }",
+                    "                                                  }",
+                    "                                               ]",
+                    "                                           }",
+                    "                             }",
+                    "                     ]",
+                    "                  }",
+                    "            },",
+                    "            {text:\t Ext.ux.LanguageManager.TranslationArray.FILTER_TYPE.toUpperCase(),",
+                    "                     menuAlign: 'tr-tl?',",
+                    "                     rtl: true,",
+                    "                     menu:{",
+                    "                             defaults: {",
+                    "                                     height: '50px',",
+                    "                                     width: '220px'",
+                    "                                 },",
+                    "                             items:",
+                    "                             [",
+                    "                                 {text: Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_EXERCISES.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('', 2, this.text);",
+                    "                                  }",
+                    "                                 },",
+                    "                                 {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BODYWEIGHT.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('4', 2, this.text);",
+                    "                                  }",
+                    "                                 },",
+                    "                                 {text: Ext.ux.LanguageManager.TranslationArray.FILTER_MACHINE.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('1', 2, this.text);",
+                    "                                  }",
+                    "                                 },",
+                    "                                 {text: Ext.ux.LanguageManager.TranslationArray.FILTER_FREEWEIGHTS.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('2', 2, this.text);",
+                    "                                  }",
+                    "                                 },",
+                    "                                 {text: Ext.ux.LanguageManager.TranslationArray.FILTER_CABLE.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('3', 2, this.text);",
+                    "                                  }",
+                    "                                 },",
+                    "                                 {text: Ext.ux.LanguageManager.TranslationArray.FILTER_STRETCH.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('5', 2, this.text);",
+                    "                                  }",
+                    "                                 },",
+                    "                                 {text: Ext.ux.LanguageManager.TranslationArray.FILTER_CARDIO.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('7', 2, this.text);",
+                    "                                  }",
+                    "                                 },",
+                    "                                 {text: Ext.ux.LanguageManager.TranslationArray.FILTER_SPEC.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('8', 2, this.text);",
+                    "                                  }",
+                    "                                 },",
+                    "                                 {text: Ext.ux.LanguageManager.TranslationArray.FILTER_UNILATERAL.toUpperCase(),",
+                    "                                  handler: function () {",
+                    "                                      container.showFilteredExercises('9', 2, this.text);",
+                    "                                  }",
+                    "                                 }",
+                    "                             ]",
+                    "                         }",
+                    "            },",
+                    "            {text:   Ext.ux.LanguageManager.TranslationArray.FILTER_ADDITIVES.toUpperCase(),",
+                    "                     menuAlign: 'tr-tl?',",
+                    "                     rtl: true,",
+                    "                     menu:{",
+                    "                             defaults: {",
+                    "                                     height: '50px',",
+                    "                                     width: '220px'",
+                    "                                 },",
+                    "                             items:",
+                    "                             [",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_MACHINES.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_DUMBBELLS.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('1', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BARBELL.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('3', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_KETT.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('2', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BANK.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('4', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_VARADD.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('5', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BALL.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('6', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BLAST.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('7', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_JUMPER.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('8', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_FOAM.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('9', 3, this.text);",
+                    "                                          }",
+                    "                                     },",
+                    "                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_MINIBAND.toUpperCase(),",
+                    "                                          handler: function () {",
+                    "                                              container.showFilteredExercises('11', 3, this.text);",
+                    "                                          }",
+                    "                                     }",
+                    "                             ]",
+                    "                          }",
+                    "            }",
+                    "        ]",
+                    "    }",
+                    ");",
+                    "",
+                    "",
+                    "return tools;"
+                ]
+            },
+            "designerId": "f3c98974-e437-437c-b5d4-6ea676002b7e"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #nextExercises",
+                "designer|targetType": "Ext.panel.Tool",
+                "fn": "onNextExercisesClick",
+                "implHandler": [
+                    "console.log(\"SHOW NEXT EXERCISES\");",
+                    "",
+                    "var store = Ext.getStore(\"ExerciseStore\");",
+                    "var totalPages = Math.ceil(store.proxy.totalCount/store.pageSize);",
+                    "",
+                    "console.log('totalPages: ' + totalPages);",
+                    "",
+                    "if (Ext.getStore(\"ExerciseStore\").currentPage < totalPages)",
+                    "{",
+                    "    store.nextPage();",
+                    "    LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());",
+                    "}"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "e650672e-8593-4b0e-b6b6-729c60f4fcf3"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #previousExercises",
+                "designer|targetType": "Ext.panel.Tool",
+                "fn": "onPreviousExercisesClick",
+                "implHandler": [
+                    "console.log(\"SHOW PREVIOUS EXERCISES\");",
+                    "if (Ext.getStore(\"ExerciseStore\").currentPage > 1)",
+                    "{",
+                    "    var store = Ext.getStore(\"ExerciseStore\");",
+                    "    store.previousPage();",
+                    "    LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());",
+                    "}"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "cd3002fb-27ed-4209-9e7f-4b62b83c0d80"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "seekValue",
+                    "type",
+                    "text"
+                ],
+                "fn": "showFilteredExercises",
+                "implHandler": [
+                    "",
+                    "var store = Ext.getStore('ExerciseStore'),",
+                    "    language = Ext.ux.LanguageManager.lang,",
+                    "    numOfFilters = store.filters.length,",
+                    "    varSearch = seekValue;",
+                    "",
+                    "if (numOfFilters === 0)",
+                    "{",
+                    "    store.filters.add(new Ext.util.Filter({",
+                    "        property: 'type',",
+                    "        value: new RegExp(\"^$|^(?:[0-9 ]+$)\"),",
+                    "        root: 'data',",
+                    "        exactMatch: true",
+                    "    }));",
+                    "    store.filters.add(new Ext.util.Filter({",
+                    "        property: 'muscle',",
+                    "        value: new RegExp(\"^$|^(?:[0-9 ]+$)\"),",
+                    "        root: 'data',",
+                    "        exactMatch: true",
+                    "    }));",
+                    "",
+                    "    var filterFunction = new Ext.util.Filter({",
+                    "        filterFn: function(item){",
+                    "            if (Ext.isEmpty(this.serchValue)) return true;",
+                    "            for (var i = 0; i < item.data.addition.length; i++) {",
+                    "                if (item.data.addition[i] ==  this.serchValue)",
+                    "                    return true;",
+                    "            }",
+                    "            return false;",
+                    "        }",
+                    "    });",
+                    "",
+                    "    store.filters.add(filterFunction);",
+                    "}",
+                    "",
+                    "var seekValue1 = \"\";",
+                    "if (type === 3)",
+                    "{",
+                    "    if (seekValue !== \"\")",
+                    "        seekValue1 = parseInt(seekValue);",
+                    "}",
+                    "else",
+                    "    seekValue1 = (seekValue === \"\") ? new RegExp(\"^$|^(?:[0-9 ]+$)\") : parseInt(seekValue);",
+                    "",
+                    "switch(type)",
+                    "{",
+                    "    case 1: //By Muscle",
+                    "        store.filters.items[1].textOptSel = text;",
+                    "        store.filters.items[1].setValue(seekValue1);",
+                    "      break;",
+                    "    case 2: //By Type",
+                    "        store.filters.items[0].textOptSel = text;",
+                    "        store.filters.items[0].setValue(seekValue1);",
+                    "      break;",
+                    "    case 3://By Addtion",
+                    "        store.filters.items[2].textOptSel = text;",
+                    "        store.filters.items[2].setValue(seekValue1);",
+                    "        store.filters.items[2].serchValue = seekValue1;",
+                    "      break;",
+                    "    default:",
+                    "      //",
+                    "}",
+                    "",
+                    "store.sort('name_' + language, 'ASC');",
+                    "//store.load();",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "640971d2-2bcc-4982-8946-088ed20ae9a9"
         }
     ]
 }

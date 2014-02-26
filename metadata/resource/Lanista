@@ -1,0 +1,737 @@
+{
+    "type": "classicthemeresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Lanista"
+    },
+    "designerId": "901655a0-4efe-415a-b4b1-7e600dd6eff8",
+    "storage": {
+        "needsCompile": false,
+        "simple": {
+            "pkgVersion": 1,
+            "pkgPath": "packages"
+        },
+        "nameIndex": 2,
+        "varData": {
+            "Ext.button.Button": {
+                "globalVars": [
+                    {
+                        "name": "button-include-ui-menu-arrows",
+                        "enabled": true,
+                        "value": "true"
+                    }
+                ],
+                "uis": [
+                    {
+                        "name": "untitled-ui-1-large",
+                        "displayName": "Untitled 1 (large)",
+                        "variables": [
+                            {
+                                "name": "arrow-height",
+                                "value": "$button-large-arrow-height",
+                                "defValue": "$button-large-arrow-height"
+                            },
+                            {
+                                "name": "arrow-width",
+                                "value": "$button-large-arrow-width",
+                                "defValue": "$button-large-arrow-width"
+                            },
+                            {
+                                "name": "background-color",
+                                "value": "$button-default-background-color",
+                                "defValue": "$button-default-background-color"
+                            },
+                            {
+                                "name": "background-color-disabled",
+                                "value": "$button-default-background-color-disabled",
+                                "defValue": "$button-default-background-color-disabled"
+                            },
+                            {
+                                "name": "background-color-focus",
+                                "value": "$button-default-background-color-focus",
+                                "defValue": "$button-default-background-color-focus"
+                            },
+                            {
+                                "name": "background-color-over",
+                                "value": "$button-default-background-color-over",
+                                "defValue": "$button-default-background-color-over"
+                            },
+                            {
+                                "name": "background-color-pressed",
+                                "value": "$button-default-background-color-pressed",
+                                "defValue": "$button-default-background-color-pressed"
+                            },
+                            {
+                                "name": "background-gradient",
+                                "value": "$button-default-background-gradient",
+                                "defValue": "$button-default-background-gradient"
+                            },
+                            {
+                                "name": "background-gradient-disabled",
+                                "value": "$button-default-background-gradient-disabled",
+                                "defValue": "$button-default-background-gradient-disabled"
+                            },
+                            {
+                                "name": "background-gradient-focus",
+                                "value": "$button-default-background-gradient-focus",
+                                "defValue": "$button-default-background-gradient-focus"
+                            },
+                            {
+                                "name": "background-gradient-over",
+                                "value": "$button-default-background-gradient-over",
+                                "defValue": "$button-default-background-gradient-over"
+                            },
+                            {
+                                "name": "background-gradient-pressed",
+                                "value": "$button-default-background-gradient-pressed",
+                                "defValue": "$button-default-background-gradient-pressed"
+                            },
+                            {
+                                "name": "border-color",
+                                "value": "$button-default-border-color",
+                                "defValue": "$button-default-border-color"
+                            },
+                            {
+                                "name": "border-color-disabled",
+                                "value": "$button-default-border-color-disabled",
+                                "defValue": "$button-default-border-color-disabled"
+                            },
+                            {
+                                "name": "border-color-focus",
+                                "value": "$button-default-border-color-focus",
+                                "defValue": "$button-default-border-color-focus"
+                            },
+                            {
+                                "name": "border-color-over",
+                                "value": "$button-default-border-color-over",
+                                "defValue": "$button-default-border-color-over"
+                            },
+                            {
+                                "name": "border-color-pressed",
+                                "value": "$button-default-border-color-pressed",
+                                "defValue": "$button-default-border-color-pressed"
+                            },
+                            {
+                                "name": "border-radius",
+                                "value": "$button-large-border-radius",
+                                "defValue": "$button-large-border-radius"
+                            },
+                            {
+                                "name": "border-width",
+                                "value": "$button-large-border-width",
+                                "defValue": "$button-large-border-width"
+                            },
+                            {
+                                "name": "color",
+                                "value": "$button-default-color",
+                                "defValue": "$button-default-color"
+                            },
+                            {
+                                "name": "color-disabled",
+                                "value": "$button-default-color-disabled",
+                                "defValue": "$button-default-color-disabled"
+                            },
+                            {
+                                "name": "color-focus",
+                                "value": "$button-default-color-focus",
+                                "defValue": "$button-default-color-focus"
+                            },
+                            {
+                                "name": "color-over",
+                                "value": "$button-default-color-over",
+                                "defValue": "$button-default-color-over"
+                            },
+                            {
+                                "name": "color-pressed",
+                                "value": "$button-default-color-pressed",
+                                "defValue": "$button-default-color-pressed"
+                            },
+                            {
+                                "name": "font-family",
+                                "value": "$button-large-font-family",
+                                "defValue": "$button-large-font-family"
+                            },
+                            {
+                                "name": "font-family-disabled",
+                                "value": "$button-large-font-family-disabled",
+                                "defValue": "$button-large-font-family-disabled"
+                            },
+                            {
+                                "name": "font-family-focus",
+                                "value": "$button-large-font-family-focus",
+                                "defValue": "$button-large-font-family-focus"
+                            },
+                            {
+                                "name": "font-family-over",
+                                "value": "$button-large-font-family-over",
+                                "defValue": "$button-large-font-family-over"
+                            },
+                            {
+                                "name": "font-family-pressed",
+                                "value": "$button-large-font-family-pressed",
+                                "defValue": "$button-large-font-family-pressed"
+                            },
+                            {
+                                "name": "font-size",
+                                "value": "$button-large-font-size",
+                                "defValue": "$button-large-font-size"
+                            },
+                            {
+                                "name": "font-size-disabled",
+                                "value": "$button-large-font-size-disabled",
+                                "defValue": "$button-large-font-size-disabled"
+                            },
+                            {
+                                "name": "font-size-focus",
+                                "value": "$button-large-font-size-focus",
+                                "defValue": "$button-large-font-size-focus"
+                            },
+                            {
+                                "name": "font-size-over",
+                                "value": "$button-large-font-size-over",
+                                "defValue": "$button-large-font-size-over"
+                            },
+                            {
+                                "name": "font-size-pressed",
+                                "value": "$button-large-font-size-pressed",
+                                "defValue": "$button-large-font-size-pressed"
+                            },
+                            {
+                                "name": "font-weight",
+                                "value": "$button-large-font-weight",
+                                "defValue": "$button-large-font-weight"
+                            },
+                            {
+                                "name": "font-weight-disabled",
+                                "value": "$button-large-font-weight-disabled",
+                                "defValue": "$button-large-font-weight-disabled"
+                            },
+                            {
+                                "name": "font-weight-focus",
+                                "value": "$button-large-font-weight-focus",
+                                "defValue": "$button-large-font-weight-focus"
+                            },
+                            {
+                                "name": "font-weight-over",
+                                "value": "$button-large-font-weight-over",
+                                "defValue": "$button-large-font-weight-over"
+                            },
+                            {
+                                "name": "font-weight-pressed",
+                                "value": "$button-large-font-weight-pressed",
+                                "defValue": "$button-large-font-weight-pressed"
+                            },
+                            {
+                                "name": "glyph-color",
+                                "value": "$button-default-glyph-color",
+                                "defValue": "$button-default-glyph-color"
+                            },
+                            {
+                                "name": "glyph-opacity",
+                                "value": "$button-default-glyph-opacity",
+                                "defValue": "$button-default-glyph-opacity"
+                            },
+                            {
+                                "name": "icon-size",
+                                "value": "$button-large-icon-size",
+                                "defValue": "$button-large-icon-size"
+                            },
+                            {
+                                "name": "include-split-noline-arrows",
+                                "value": "false",
+                                "defValue": "false"
+                            },
+                            {
+                                "name": "include-split-over-arrows",
+                                "value": "$button-include-split-over-arrows",
+                                "defValue": "$button-include-split-over-arrows"
+                            },
+                            {
+                                "name": "include-ui-menu-arrows",
+                                "value": "$button-include-ui-menu-arrows",
+                                "defValue": "$button-include-ui-menu-arrows"
+                            },
+                            {
+                                "name": "include-ui-split-arrows",
+                                "value": "$button-include-ui-split-arrows",
+                                "defValue": "$button-include-ui-split-arrows"
+                            },
+                            {
+                                "name": "inner-opacity-disabled",
+                                "value": "$button-inner-opacity-disabled",
+                                "defValue": "$button-inner-opacity-disabled"
+                            },
+                            {
+                                "name": "opacity-disabled",
+                                "value": "$button-opacity-disabled",
+                                "defValue": "$button-opacity-disabled"
+                            },
+                            {
+                                "name": "padding",
+                                "value": "$button-large-padding",
+                                "defValue": "$button-large-padding"
+                            },
+                            {
+                                "name": "split-height",
+                                "value": "$button-large-split-height",
+                                "defValue": "$button-large-split-height"
+                            },
+                            {
+                                "name": "split-width",
+                                "value": "$button-large-split-width",
+                                "defValue": "$button-large-split-width"
+                            },
+                            {
+                                "name": "text-padding",
+                                "value": "$button-large-text-padding",
+                                "defValue": "$button-large-text-padding"
+                            }
+                        ],
+                        "baseUiName": "large"
+                    }
+                ]
+            },
+            "Ext.Component": {
+                "globalVars": [
+                    {
+                        "name": "font-family",
+                        "enabled": true,
+                        "value": "Roboto Light"
+                    }
+                ]
+            },
+            "Ext.form.field.Base": {
+                "globalVars": [
+                    {
+                        "name": "form-field-background-image",
+                        "enabled": true,
+                        "value": "\"\""
+                    },
+                    {
+                        "name": "form-field-font-size",
+                        "enabled": true,
+                        "value": "18px"
+                    },
+                    {
+                        "name": "form-field-height",
+                        "enabled": true,
+                        "value": "46px"
+                    }
+                ]
+            },
+            "Ext.form.FieldSet": {
+                "globalVars": [
+                    {
+                        "name": "fieldset-header-font-weight",
+                        "enabled": true,
+                        "value": "normal"
+                    },
+                    {
+                        "name": "fieldset-header-padding",
+                        "enabled": true,
+                        "value": "10 13px 11px"
+                    },
+                    {
+                        "name": "fieldset-margin",
+                        "enabled": true,
+                        "value": "0 0 10"
+                    },
+                    {
+                        "name": "fieldset-padding",
+                        "enabled": true,
+                        "value": "12px 0px"
+                    }
+                ]
+            },
+            "Ext.menu.Menu": {
+                "globalVars": [
+                    {
+                        "name": "menu-item-arrow-width",
+                        "enabled": true,
+                        "value": "0px"
+                    },
+                    {
+                        "name": "menu-item-icon-size",
+                        "enabled": true,
+                        "value": "0px"
+                    }
+                ]
+            },
+            "Ext.panel.Panel": {
+                "globalVars": [
+                    {
+                        "name": "panel-base-color",
+                        "enabled": true,
+                        "value": "#b5b8c8"
+                    },
+                    {
+                        "name": "panel-body-background-color",
+                        "enabled": true,
+                        "value": "transparent"
+                    },
+                    {
+                        "name": "panel-border-color",
+                        "enabled": true,
+                        "value": "#b5b8c8"
+                    }
+                ]
+            }
+        }
+    },
+    "cn": [
+        {
+            "type": "themescss",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "Scss Resource",
+                "implHandler": [
+                    "@font-face {",
+                    "  font-family: \"Harabara Bold\";",
+                    "  src:  url('fonts/lanista/Harabara.ttf') format('truetype'),",
+                    "        url('fonts/lanista/Harabara.otf') format('opentype'),",
+                    "        url('fonts/lanista/Harabara.woff') format('woff'),",
+                    "        url('fonts/lanista/Harabara.eot') format('embedded-opentype');",
+                    "}",
+                    "",
+                    "@font-face {",
+                    "  font-family: \"Roboto Light\";",
+                    "  src:  url('fonts/lanista/Roboto-Light.ttf') format('truetype');",
+                    "}",
+                    "",
+                    "@font-face {",
+                    "  font-family: \"Roboto Medium\";",
+                    "  src:  url('fonts/lanista/Roboto-Medium.ttf') format('truetype');",
+                    "}",
+                    "",
+                    "@font-face {",
+                    "  font-family: \"Roboto Black\";",
+                    "  src:  url('fonts/lanista/Roboto-Black.ttf') format('truetype');",
+                    "}",
+                    "",
+                    "@font-face {",
+                    "  font-family: \"League Gothic\";",
+                    "  src:  url('fonts/lanista/League-Gothic.ttf') format('truetype');",
+                    "}",
+                    "",
+                    "@font-face {",
+                    "  font-family: \"Avenir LT Std\";",
+                    "  src:  url('fonts/lanista/AvenirLTStd-Roman.woff') format('truetype');",
+                    "}",
+                    "",
+                    "@font-face {",
+                    "  font-family: \"Avenir LT Light\";",
+                    "  src:  url('fonts/lanista/AvenirLTLight-Roman.woff') format('truetype');",
+                    "}",
+                    "",
+                    "",
+                    "@font-face {",
+                    "  font-family: \"Lanista Icons\";",
+                    "  src:  url('fonts/lanista/Lanista-2-0.woff') format('truetype');",
+                    "}",
+                    "",
+                    "@font-face {",
+                    "  font-family: \"Bebas Neue\";",
+                    "  src:  url('fonts/lanista/BebasNeue-webfont.woff') format('truetype');",
+                    "}",
+                    "",
+                    "$font-family: 'Roboto Light';",
+                    "@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:900);",
+                    "",
+                    "$list-active-gradient: \"none\";",
+                    "$base-gradient: \"none\";",
+                    "",
+                    ".header-logo {",
+                    "\tfloat: left;",
+                    "\tfont-family: \"Harabara Bold\";",
+                    "\tfont-size: 29px;",
+                    "\tpadding-top: 31px;",
+                    "\tpadding-left: 25px;",
+                    "\tcolor: rgba(0,0,0,0.2);",
+                    "    letter-spacing: 1px;",
+                    "}",
+                    "",
+                    ".header-info  {",
+                    "\tfloat: right;",
+                    "\tpadding-right: 25px;",
+                    "\t//padding-top: 33px;",
+                    "\tfont-family: \"Avenir LT Std\";",
+                    "\tfont-size: 22px;",
+                    "\tline-height: 21px;",
+                    "\ttext-align: right;",
+                    "\twidth: 70%;",
+                    "}",
+                    "",
+                    ".header-title {",
+                    "\tfloat: left;",
+                    "\tpadding-top: 31px;",
+                    "\tfont-family: \"Roboto Black\";",
+                    "\ttext-transform: uppercase;",
+                    "\tfont-size: 25px;",
+                    "\tline-height: 33px;",
+                    "\tletter-spacing: -1px;",
+                    "\tcolor: rgba(0,0,0,0.2);",
+                    "}",
+                    "",
+                    ".lanista-guest #lanistaStage {",
+                    "    background-image: url(../resources/images/login-background.png);",
+                    "    background-repeat: no-repeat;",
+                    "    background-size: cover;",
+                    "    box-shadow: 0 0 200px 43px #424242 inset;",
+                    "}",
+                    "",
+                    ".lanista-guest .lanista-command-panel {",
+                    "    top:50px!important;",
+                    "}",
+                    "",
+                    ".x-autocontainer-form-item, .x-anchor-form-item, .x-vbox-form-item, .x-table-form-item {",
+                    "    margin-bottom: 0px;",
+                    "}",
+                    "",
+                    ".lanista-form input {",
+                    "    border-bottom-width: 0px;",
+                    "}",
+                    "",
+                    ".lanista-form table:first-child input {",
+                    "    -moz-border-radius-topleft: 0.4em;",
+                    "    -webkit-border-top-left-radius: 0.4em;",
+                    "    border-top-left-radius: 0.4em;",
+                    "    -moz-border-radius-topright: 0.4em;",
+                    "    -webkit-border-top-right-radius: 0.4em;",
+                    "    border-top-right-radius: 0.4em;",
+                    "}",
+                    "",
+                    ".lanista-form table:last-child input {",
+                    "    -moz-border-radius-bottomleft: 0.4em;",
+                    "    -webkit-border-bottom-left-radius: 0.4em;",
+                    "    border-bottom-left-radius: 0.4em;",
+                    "    -moz-border-radius-bottomright: 0.4em;",
+                    "    -webkit-border-bottom-right-radius: 0.4em;",
+                    "    border-bottom-right-radius: 0.4em;",
+                    "    border-bottom-width: 1px;",
+                    "}",
+                    "",
+                    "",
+                    ".fieldset-login .x-fieldset-header-text {",
+                    "    font: 22px normal \"Roboto Light\";",
+                    "    color: #15428b;",
+                    "    padding: 1px 0;",
+                    "}",
+                    "",
+                    ".x-container .container-group {",
+                    "    padding-top: 20%;",
+                    "}",
+                    "",
+                    ".lanista-command-panel, #mainStage {",
+                    "\t-webkit-transition: opacity 0.5s ease-in-out;",
+                    "}",
+                    "",
+                    ".lanista-command-button {",
+                    "\theight: 100px!important;",
+                    "\t//width: 80px!important;",
+                    "\tmargin-left: 7px;",
+                    "\tpadding: 0px!important;",
+                    "\tcolor: rgb(74,172,216);",
+                    "    background-image: none;",
+                    "    background-color: transparent;",
+                    "    border: 0;",
+                    "}",
+                    "",
+                    ".lanista-command-button-red, .lanista-command-button-red .x-button-icon{",
+                    "\tcolor: rgb(247, 59, 62);",
+                    "\tborder-color: rgb(247, 59, 62);",
+                    "}",
+                    "",
+                    ".lanista-command-button-green, .lanista-command-button-green .x-button-icon{",
+                    "\tcolor: rgb(89,215,110);",
+                    "\tborder-color: rgb(89,215,110);",
+                    "}",
+                    "",
+                    ".lanista-command-button-violet, .lanista-command-button-violet .x-button-icon{",
+                    "\tcolor: #B180BE;",
+                    "\tborder-color: #B180BE;",
+                    "}",
+                    "",
+                    ".x-btn-button {",
+                    "    height: 100px!important;",
+                    "    width: 70px!important;",
+                    "}",
+                    "",
+                    ".lanista-command-button .x-btn-glyph {",
+                    "    height: 70px!important;",
+                    "\twidth: 70px!important;",
+                    "\tborder-style: solid!important;",
+                    "\tborder-width: 4px!important;",
+                    "\tborder-color: rgb(74,172,216);",
+                    "\tborder-radius: 50%;",
+                    "    font-size: 30px;",
+                    "    line-height: 60px;",
+                    "    color: rgb(74,172,216);",
+                    "    opacity:1;",
+                    "}",
+                    "",
+                    ".lanista-command-button .x-btn-inner {",
+                    "    line-height: 16px;",
+                    "    top: 70px;",
+                    "    font-size: 13px;",
+                    "    position: relative;",
+                    "    width: 70px;",
+                    "    display: inline-block!important;",
+                    "    margin-right: auto;",
+                    "    margin-left: auto;",
+                    "    font-weight: initial;",
+                    "    margin: 0!important;",
+                    "    text-align: center;",
+                    "    font-family: Roboto Light;",
+                    "    -webkit-font-smoothing: antialiased;",
+                    "    color: rgb(74,172,216);",
+                    "    padding-left: 0;",
+                    "    padding-right: 0;",
+                    "}",
+                    "",
+                    "",
+                    ".lanista-command-button .x-btn-arrow {",
+                    "    padding-right: 0px;",
+                    "}",
+                    "",
+                    "",
+                    ".menu-lanista-button {",
+                    "    text-transform: uppercase;",
+                    "}",
+                    "",
+                    ".x-menu .x-menu-icon-separator {",
+                    "    background-color: transparent;",
+                    "    border-left: transparent;",
+                    "}",
+                    "",
+                    ".x-menu-item-arrow {",
+                    "    background-image: transparent!important;",
+                    "}",
+                    "",
+                    ".lanista-command-panel .two-lines .x-btn-inner {",
+                    "    white-space: normal;",
+                    "    line-height: 11px;",
+                    "    top: 40px;",
+                    "    height: 32px;",
+                    "}",
+                    "",
+                    ".lanista-guest .x-btn-glyph, .lanista-guest .x-btn-inner {",
+                    "\tborder-color: white;",
+                    "    color: white!important;",
+                    "}",
+                    "",
+                    ".lanista-guest .lanista-command-panel .x-btn-glyph {",
+                    "    border-color: transparent!important;",
+                    "}",
+                    "",
+                    ".lanista-guest .lanista-command-panel .x-btn-inner {",
+                    "\ttop: 52px;",
+                    "}",
+                    "",
+                    ".lanista-guest .lanista-command-panel .two-lines .x-btn-inner {",
+                    "\ttop: 62px;",
+                    "}",
+                    "",
+                    "//Login Area",
+                    ".login-buttons-container .x-btn {",
+                    "    background-image: none;",
+                    "    background-color: transparent;",
+                    "    border: none;",
+                    "    overflow: visible;",
+                    "}",
+                    "",
+                    ".login-buttons-container label {",
+                    "    font-family: Roboto Light;",
+                    "    font-size: 22px;",
+                    "    color: rgb(104,104,104);",
+                    "}",
+                    "",
+                    "#infologinButton .x-btn-inner {",
+                    "    text-align: left;",
+                    "    color: #686868;",
+                    "    font-size: 15px;",
+                    "    overflow: visible;",
+                    "    font-family: 'Roboto Medium';",
+                    "    white-space: initial;",
+                    "}",
+                    "",
+                    "#infologinButton .x-btn-inner span {",
+                    "    color: #4aacd8;",
+                    "}",
+                    "",
+                    "#infologinButton .x-btn-button {",
+                    "    height: 36px!important;",
+                    "    width: 100%!important;",
+                    "    padding-top: 4%;",
+                    "    overflow: visible;",
+                    "}",
+                    "",
+                    "#bottonPanel .x-btn-button {",
+                    "    height: 240px!important;",
+                    "    width: 150px!important;",
+                    "}",
+                    "",
+                    "#bottonPanel .x-btn-glyph {",
+                    "    height: 150px!important;",
+                    "    width: 150px!important;",
+                    "    font-size: 72px;",
+                    "    line-height: 140px;",
+                    "    background-color: rgba(255,255,255,0.2);",
+                    "}",
+                    "",
+                    "#bottonPanel  .x-btn-inner {",
+                    "    top: 155px!important;",
+                    "    font-size: 26px;",
+                    "    width: 150px;",
+                    "    height: 80px;",
+                    "    line-height: 25px;",
+                    "    white-space: initial;",
+                    "}",
+                    "",
+                    "#bottonPanel .x-panel-body {",
+                    "    padding: 0 20%;",
+                    "}",
+                    "",
+                    ".x-help-panel {",
+                    "    background-color: rgba(255,255,255,0.9);",
+                    "    width: 1100px !important;",
+                    "    height: 450px!important;",
+                    "    position: relative;",
+                    "    display: block;",
+                    "    margin-right: auto;",
+                    "    margin-left: auto;",
+                    "    top: 200px;",
+                    "    -webkit-border-radius: 0.3em;",
+                    "    -moz-border-radius: 0.3em;",
+                    "    -ms-border-radius: 0.3em;",
+                    "    -o-border-radius: 0.3em;",
+                    "    border-radius: 0.3em;",
+                    "    -webkit-box-shadow: rgba(0,0,0,0.8) 0 0.2em 0.6em;",
+                    "    -moz-box-shadow: rgba(0,0,0,0.8) 0 0.2em 0.6em;",
+                    "    box-shadow: rgba(0,0,0,0.8) 0 0.2em 0.6em;",
+                    "    background-image: none;",
+                    "}",
+                    "",
+                    ".x-help-panel .x-panel-body {",
+                    "    border:0;",
+                    "}",
+                    "",
+                    ".x-help-panel  .x-window-body-default {",
+                    "    background-color: transparent;",
+                    "}",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "eefb4d7e-74c5-4d9e-ae6f-2258aa8e8753"
+        }
+    ]
+}

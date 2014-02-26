@@ -6,15 +6,146 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": "lanista-command-buton",
-        "height": 36,
+        "cls": "lanista-command-button",
         "designer|userClassName": "LanistaButton",
-        "designer|ui-data": [
-            "{\"901655a0-4efe-415a-b4b1-7e600dd6eff8\":\"default\"}"
-        ],
-        "iconAlign": "top",
-        "iconCls": "refresh",
+        "glyph": null,
+        "height": null,
+        "icon": null,
+        "iconAlign": null,
+        "iconCls": null,
+        "scale": null,
+        "style": null,
         "text": "command"
     },
-    "designerId": "1e317829-2f19-4cbf-896a-798df5232ab1"
+    "configAlternates": {
+        "style": "string"
+    },
+    "designerId": "1e317829-2f19-4cbf-896a-798df5232ab1",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "menuButtonAlign",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonMouseOver",
+                "implHandler": [
+                    "",
+                    "if (button.menu)",
+                    "{",
+                    "    button.menu.show();",
+                    "    if (button.menuButtonAlign == 'left')",
+                    "        button.menu.alignTo(button, 'c-c',[150,0]);",
+                    "    else",
+                    "        if (button.menuButtonAlign == 'right')",
+                    "            button.menu.alignTo(button, 'c-c',[-150,0]);",
+                    "}",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "mouseover",
+                "scope": "me"
+            },
+            "designerId": "674ad016-c69f-4175-8bf5-9b657e2bd926"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonAfterRender",
+                "implHandler": [
+                    "",
+                    "if (component.menu)",
+                    "{",
+                    "    component.menu.addCls('menu-lanista-button');",
+                    "    component.menu.on('mouseleave', function() {",
+                    "        component.menu.locked = false;",
+                    "        component.menu.hide();",
+                    "    });",
+                    "",
+                    "    component.menu.on('mouseenter', function() {",
+                    "        component.menu.locked = true;",
+                    "    });",
+                    "}",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "208b736f-2360-427f-a7a9-83e3b60f2003"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonMouseOut",
+                "implHandler": [
+                    "",
+                    "setTimeout(function()",
+                    "{",
+                    "    if (button.menu && !button.menu.locked)",
+                    "        button.menu.hide();",
+                    "}, 100);",
+                    ""
+                ],
+                "name": "mouseout",
+                "scope": "me"
+            },
+            "designerId": "9753a6d7-4bb6-4de1-99ef-68cadc482204"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonClick",
+                "implHandler": [
+                    "if (button.menu)",
+                    "{",
+                    "    button.menu.show();",
+                    "    if (button.menuButtonAlign == 'left')",
+                    "        button.menu.alignTo(button, 'c-c',[150,0]);",
+                    "    else",
+                    "        if (button.menuButtonAlign == 'right')",
+                    "            button.menu.alignTo(button, 'c-c',[-150,0]);",
+                    "}",
+                    "else",
+                    "{",
+                    "    setTimeout(function()",
+                    "    {",
+                    "        if (button.menu && !button.menu.locked)",
+                    "            button.menu.hide();",
+                    "    }, 100);",
+                    "",
+                    "}"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "dc94d7dc-b18e-4b9e-81c9-bc0f30850957"
+        }
+    ]
 }

@@ -1,0 +1,116 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": false,
+        "defaultDockWeights": [
+            "{\"top\":{\"render\":1,\"visual\":1},\"left\":{\"render\":3,\"visual\":5},\"right\":{\"render\":5,\"visual\":7},\"bottom\":{\"render\":7,\"visual\":3}}"
+        ],
+        "designer|userAlias": "customerpanel",
+        "designer|userClassName": "CustomerPanel",
+        "frameHeader": false,
+        "headerPosition": "bottom",
+        "height": 250,
+        "id": "customerPanel",
+        "layout": "fit",
+        "style": "padding-top: 120px;",
+        "title": null,
+        "width": 400
+    },
+    "configAlternates": {
+        "style": "string"
+    },
+    "designerId": "48392689-f462-4834-9fae-83d1892e53f7",
+    "cn": [
+        {
+            "type": "Ext.view.View",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 250,
+                "id": "viewCustomers",
+                "itemSelector": "div.exercise-item",
+                "store": "CustomerStore",
+                "width": 400
+            },
+            "designerId": "bf64ca82-bbb6-496d-a66f-e63a2f38bcf7",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onDataviewHide",
+                        "implHandler": [
+                            "component.destroy();"
+                        ],
+                        "name": "hide",
+                        "scope": "me"
+                    },
+                    "designerId": "bf8c60e6-b6fe-45d8-8430-811f1c865efc"
+                },
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "tpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tpl",
+                        "implHandler": [
+                            "<tpl for=\".\">",
+                            "\t<div class=\"exercise-item\">",
+                            "        <div class=\"exercise-list-img exercise-list-img-right\" style=\"background-image: url(resources/images/previews/{ext_id}_2.jpg);\"></div>",
+                            "    \t<div class=\"exercise-list-img exercise-list-img-left\" style=\"background-image: url(resources/images/previews/{ext_id}_1.jpg);\"></div>",
+                            "        <div class=\"exercise-list-text\"/>{[values['first_name']]}</div>",
+                            "    </div>",
+                            "</tpl>"
+                        ]
+                    },
+                    "designerId": "face26eb-0ad9-4df2-bb62-04acc63c3d68"
+                }
+            ]
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|createAlias": "",
+                "designer|displayName": "previousCustomers",
+                "id": "previousCustomers",
+                "type": "left"
+            },
+            "designerId": "7ae7981c-4ee8-48ea-a9f9-2dfc13565045"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|createAlias": "",
+                "designer|displayName": "",
+                "id": "nextCustomers",
+                "type": "right"
+            },
+            "designerId": "edabaaaa-ec97-472b-a4d0-9872a2a963d5"
+        }
+    ]
+}

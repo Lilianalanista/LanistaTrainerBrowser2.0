@@ -1,0 +1,71 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "cls": "stop-watch",
+        "designer|userAlias": "stopWatch",
+        "designer|userClassName": "StopWatch",
+        "floating": true,
+        "height": 200,
+        "id": "stopWatch",
+        "resizable": false,
+        "style": "'background-color: rgba(0,0,0,0.7);'",
+        "title": null,
+        "width": 400
+    },
+    "configAlternates": {
+        "style": "string",
+        "resizable": "boolean"
+    },
+    "designerId": "f247031b-2e01-4366-bbd5-e45a9d3b58ad",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dock": "bottom",
+                "height": 50,
+                "id": "swToolBottom"
+            },
+            "designerId": "a990f8d8-6e82-4d03-824b-0c166b45f1d4",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "startStopWatch",
+                        "layout|flex": null,
+                        "text": "START"
+                    },
+                    "designerId": "47a9cb41-b2d9-4aa7-9989-260ac155d894"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "resetStopWatch",
+                        "layout|flex": null,
+                        "text": "RESET"
+                    },
+                    "designerId": "acda1303-a227-4187-84f9-4c8354db9937"
+                }
+            ]
+        }
+    ]
+}

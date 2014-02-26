@@ -1,0 +1,133 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "helpController",
+        "designer|userClassName": "HelpController",
+        "id": "helpController"
+    },
+    "designerId": "534f5094-7b81-46e2-8a37-31eacec32a2b",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #helpButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onHelpButtonClick",
+                "implHandler": [
+                    "var controller = this;",
+                    "var mainViewPort = controller.getMainViewport(),",
+                    "    helpPanel = controller.getHelpPanel();",
+                    "",
+                    "var toXY = mainViewPort.getAnchorXY('bl', true);",
+                    "var xPosotionIni = (mainViewPort.width - helpPanel.width) / 2;",
+                    "",
+                    "helpPanel.setPosition(xPosotionIni,toXY[1]);",
+                    "helpPanel.show();",
+                    "",
+                    "var panelOnStage = LanistaTrainer.app.activePanel,",
+                    "    currentLanguage = Ext.ux.LanguageManager.getLanguage();",
+                    "",
+                    "console.log(panelOnStage);",
+                    "console.log(currentLanguage);",
+                    "",
+                    "Ext.Ajax.request({",
+                    "    url: 'helps/' + panelOnStage + '_' + currentLanguage + '.html',",
+                    "    method: \"GET\",",
+                    "    success: function(response, request) {",
+                    "        // We should use the setter for the HTML config for this",
+                    "        helpPanel.down ( '#sideHelpPanel' ).update( response.responseText );",
+                    "    },",
+                    "    failure: function(response, request) {",
+                    "        helpPanel.down ( '#sideHelpPanel' ).update( \"No help available\" );",
+                    "    }",
+                    "});",
+                    "Ext.Ajax.request({",
+                    "    url: 'tutorials/' + panelOnStage + '_' + currentLanguage + '.html',",
+                    "    method: \"GET\",",
+                    "    success: function(response, request) {",
+                    "        // We should use the setter for the HTML config for this",
+                    "        //me.down ( '#help-tutorials-panel' ).setWidth ( 1000 );",
+                    "        helpPanel.down ( '#sideTutorialPanel' ).update( response.responseText );",
+                    "        /*",
+                    "        $(\".iframe\").fancybox({",
+                    "            'width' : 600,",
+                    "            'height' : 450,",
+                    "            'autoScale' : true,",
+                    "            'transitionIn' : 'elastic',",
+                    "            'transitionOut' : 'elastic',",
+                    "            'type' : 'iframe'",
+                    "        });",
+                    "        */",
+                    "    },",
+                    "    failure: function(response, request) {",
+                    "        helpPanel.down ( '#sideTutorialPanel' ).update( \"No tutorials available\" );",
+                    "    }",
+                    "});",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "dcf9bf6e-47a5-4172-b33d-7a40e2500d03"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "helpPanel",
+                "selector": "helpPanel",
+                "xtype": "helpPanel"
+            },
+            "designerId": "2bb46dcd-1fd4-478d-ba8e-f737bb8c7809"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "357ae812-3a52-4a83-8b1c-44f12c375072"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "d1082375-035a-4538-8438-3b4d1bb5bf21"
+        }
+    ]
+}

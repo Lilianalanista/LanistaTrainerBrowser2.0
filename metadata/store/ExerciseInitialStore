@@ -7,9 +7,9 @@
     "codeClass": null,
     "userConfig": {
         "autoLoad": true,
+        "designer|userClassName": "ExerciseInitialStore",
         "model": "ExerciseModel",
-        "storeId": "ExerciseInitialStore",
-        "designer|userClassName": "ExerciseInitialStore"
+        "storeId": "ExerciseInitialStore"
     },
     "designerId": "3c8af507-ba84-4600-a4d6-ac0712d01a25",
     "cn": [

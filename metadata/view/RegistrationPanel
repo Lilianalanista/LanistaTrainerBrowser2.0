@@ -1,0 +1,17 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "registrationPanel",
+        "designer|userClassName": "RegistrationPanel",
+        "height": 250,
+        "id": "registrationPanel",
+        "title": null,
+        "width": 400
+    },
+    "designerId": "927250fa-d17c-4f23-8f4a-d75936bd89c4"
+}

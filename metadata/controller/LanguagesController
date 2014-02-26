@@ -1,0 +1,64 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "languagesController",
+        "designer|userClassName": "LanguagesController",
+        "id": "languagesController"
+    },
+    "designerId": "58c79cb0-029e-49ab-ae3b-f1616da701b4",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #showLanguagesPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onShowLanguagesPanelButtonClick",
+                "implHandler": [
+                    "",
+                    "button.menu.alignTo(button, 'c-c',[-220,0]);",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "e24bd665-af25-467c-bae3-6ad7640df162"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "language"
+                ],
+                "fn": "onChangeLanguage",
+                "implHandler": [
+                    "Ext.ux.LanguageManager.setLanguage(language, function () {",
+                    "    Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_1, Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_2, function(button) {",
+                    "        self.lang = language;",
+                    "        if (button == 'yes') {",
+                    "            location.reload();",
+                    "        }",
+                    "    });",
+                    "});"
+                ],
+                "name": "changeLanguage",
+                "scope": "this"
+            },
+            "designerId": "44af204d-7e44-492b-8319-564f899e3e33"
+        }
+    ]
+}

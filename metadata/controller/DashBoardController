@@ -1,0 +1,314 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "dashBoardController",
+        "designer|userClassName": "DashBoardController",
+        "id": "dashBoardController"
+    },
+    "designerId": "16630f1f-c099-4905-a757-af7f967204f8",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "729ff64a-4397-47e7-aa12-1628f2f472c2"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "987ec33b-3b25-4898-af61-59c2b9442fe1"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "7911d5bb-447c-4deb-b060-5722110b2e9c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "8154209f-c41e-49a8-90c5-1504fc479246"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "dashBoardPanel",
+                "selector": "#dashBoardPanel",
+                "xtype": "dashBoardPanel"
+            },
+            "designerId": "1d67c2f3-5ce8-421e-9844-0d3abd78ef45"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowDashBoardPanel",
+                "implHandler": [
+                    "if (LanistaTrainer.app.activePanel)",
+                    "{",
+                    "    LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
+                    "        LanistaTrainer.app.fireEvent('displayDashBoard');",
+                    "    });",
+                    "}",
+                    "else",
+                    "    LanistaTrainer.app.fireEvent('displayDashBoard');"
+                ],
+                "name": "ShowDashBoardPanel",
+                "scope": "this"
+            },
+            "designerId": "ee542d08-300e-45ba-9086-69db31eb30cf"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseDashBoardPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getDashBoardPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "CloseDashBoardPanel",
+                "scope": "this"
+            },
+            "designerId": "af005e76-6327-4a96-bd49-2ac626c54ccd"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onDisplayDashBoard",
+                "implHandler": [
+                    "var controller = this,",
+                    "    dashBoardPanel\t= controller.getDashBoardPanel(),",
+                    "    mainStage\t= controller.getMainStage();",
+                    "",
+                    "mainStage.add( dashBoardPanel );",
+                    "",
+                    "dashBoardPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons();",
+                    "this.showCommands();",
+                    "",
+                    "LanistaTrainer.app.activePanel = \"dashBoardPanel\";",
+                    "",
+                    "// *** 2 Show the panel",
+                    "dashBoardPanel.show();",
+                    "/*controller.getMainView().down(\"#header\").setData({",
+                    "        info: '',",
+                    "        title: '-'+ Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()}",
+                    "                                                      );",
+                    "    */",
+                    "controller.getMainViewport().down(\"#header\").update({",
+                    "    info: '' }",
+                    "                                                   );",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();"
+                ],
+                "name": "displayDashBoard",
+                "scope": "this"
+            },
+            "designerId": "47b97486-e22a-4018-aa21-76e8b6325557"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "",
+                    "var controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST,",
+                    "        itemId: 'showCustomerPanelButton',",
+                    "        userAlias: 'customerButton',",
+                    "        glyph: '113@Lanista Icons' //q",
+                    "    })",
+                    ");",
+                    "",
+                    "/*",
+                    "var privacySettingsButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
+                    "    iconCls: 'lanista-privacy',",
+                    "    text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_PRIVACY,",
+                    "    itemId: 'privacySettingsButton'",
+                    "});",
+                    "var passwordResetButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
+                    "    iconCls: 'lanista-question',",
+                    "    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PASSWORD_RESET,",
+                    "    itemId: 'forgotPasswordButton'",
+                    "});",
+                    "var licenceButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
+                    "    iconCls: localStorage.getItem(\"status\") == '1' ? 'lanista-checkmark' : 'lanista-cart',",
+                    "    text: Ext.ux.LanguageManager.TranslationArray.LICENSE,",
+                    "    itemId: 'licenseButton',",
+                    "    cls: localStorage.getItem(\"status\") == '1' ? ['lanista-command-buton'] : ['lanista-command-buton','lanista-command-buton-red']",
+                    "});",
+                    "",
+                    "controller.getRightCommandPanel().add(",
+                    "    passwordResetButton",
+                    ");",
+                    "controller.getRightCommandPanel().add(",
+                    "    privacySettingsButton",
+                    ");",
+                    "controller.getRightCommandPanel().add(",
+                    "    licenceButton",
+                    ");",
+                    "*/",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "32b2b0ae-42d2-4c60-a858-4e12f9ed4db0"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #ShowDashBoardPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onShowDashBoardButtonPanelClick",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
+                    "    LanistaTrainer.app.fireEvent('showDashBoardPanel');",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "5a8c5e79-76d0-49c9-bccc-0587b99d3ad1"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeDashBoardPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseDashBoardButtonPanelClick",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('closeDashBoardPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);",
+                    "});",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "27226ac9-f1a0-4190-bffe-d5b2d443dc26"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "20a317cd-9e24-4134-aa0b-1ac69eb21d14"
+        }
+    ]
+}

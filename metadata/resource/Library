@@ -6,10 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "Library",
-        "basePath": "http://localhost//~lilianadiaz/ext-4.2.1.883/",
+        "basePath": "/~lilianadiaz/ext-4.2.1.883/",
         "debug": true,
-        "theme": "MyClassicTheme"
+        "designer|userClassName": "Library",
+        "theme": "Lanista"
     },
     "designerId": "f0206f51-1d2e-4633-bbc5-fb00924663a5"
 }

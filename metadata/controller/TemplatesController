@@ -1,0 +1,290 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "templatesController",
+        "designer|userClassName": "TemplatesController",
+        "id": "templatesController"
+    },
+    "designerId": "23bd7433-e1b9-436a-94f9-f5c4f49e13cc",
+    "cn": [
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowTemplatesPanel",
+                "implHandler": [
+                    "var controller = this,",
+                    "    templatesPanel\t= controller.getTemplatesPanel(),",
+                    "    mainStage\t= controller.getMainStage();",
+                    "",
+                    "LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;",
+                    "LanistaTrainer.app.activePanel = \"templatesPanel\";",
+                    "",
+                    "mainStage.add( templatesPanel );",
+                    "",
+                    "templatesPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons('closeTemplatesPanelButton');",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "templatesPanel.show();",
+                    "/*controller.getMainView().down(\"#header\").setData({",
+                    "    info: '',",
+                    "    title: '-'+ Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()}",
+                    "                                                  );",
+                    "*/",
+                    "",
+                    "controller.getMainViewport().down(\"#header\").update({",
+                    "    info: '' }",
+                    ");",
+                    "",
+                    "//controller.fnChargeFilters(this);",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "ShowTemplatesPanel",
+                "scope": "this"
+            },
+            "designerId": "d015d8bd-2ae9-4d3e-ac98-7743a3486d35"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseTemplatesPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getTemplatesPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closeTemplatesPanel",
+                "scope": "this"
+            },
+            "designerId": "43a10d19-b274-4888-b6ab-5e179eae762f"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "",
+                    "var controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "",
+                    "/*",
+                    "var privacySettingsButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
+                    "    iconCls: 'lanista-privacy',",
+                    "    text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_PRIVACY,",
+                    "    itemId: 'privacySettingsButton'",
+                    "});",
+                    "var passwordResetButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
+                    "    iconCls: 'lanista-question',",
+                    "    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PASSWORD_RESET,",
+                    "    itemId: 'forgotPasswordButton'",
+                    "});",
+                    "var licenceButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
+                    "    iconCls: localStorage.getItem(\"status\") == '1' ? 'lanista-checkmark' : 'lanista-cart',",
+                    "    text: Ext.ux.LanguageManager.TranslationArray.LICENSE,",
+                    "    itemId: 'licenseButton',",
+                    "    cls: localStorage.getItem(\"status\") == '1' ? ['lanista-command-buton'] : ['lanista-command-buton','lanista-command-buton-red']",
+                    "});",
+                    "",
+                    "controller.getRightCommandPanel().add(",
+                    "    passwordResetButton",
+                    ");",
+                    "controller.getRightCommandPanel().add(",
+                    "    privacySettingsButton",
+                    ");",
+                    "controller.getRightCommandPanel().add(",
+                    "    licenceButton",
+                    ");",
+                    "",
+                    "*/"
+                ]
+            },
+            "designerId": "246ba341-ffe9-4c19-a768-c2a384e2a376"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #showTemplatesPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onShowTemplatesPanelButtonClick",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
+                    "    LanistaTrainer.app.fireEvent('showTemplatesPanel');",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "0746b288-c25f-43b2-8962-b6ddc63df002"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeTemplatesPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseTemplatesPanelButtonClick",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('closeTemplatesPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "51adcc79-593e-4222-bc01-9044b09ea9d0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "16959bf4-591e-4a79-9b38-9fb9e6008d69"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "templatesPanel",
+                "selector": "templatesPanel",
+                "xtype": "templatesPanel"
+            },
+            "designerId": "8152a411-e066-4aed-a1dd-f4887bd5e54f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "0a07f2ad-9d9b-474c-85ba-9b8a1e4a054f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "02151c19-3114-4d2a-9e81-1f4fbbc19233"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "d7ee0cc0-412b-4a54-8dba-296feb6766ad"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "1da13181-97b7-4a8d-bce3-6665e994badb"
+        }
+    ]
+}

@@ -1,0 +1,146 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "autheticationController",
+        "designer|userClassName": "AutheticationController"
+    },
+    "designerId": "508219c0-9471-4ec3-8aa1-a7a9402632fb",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #loginButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onLoginButtonClick",
+                "implHandler": [
+                    "var self = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "",
+                    "    var form = self.getLoginPanel(),",
+                    "        form_data = form.getValues(),",
+                    "        email = form_data.email,",
+                    "        password = form_data.password,",
+                    "        controller = controller;",
+                    "",
+                    "    if (email === '' || password === '') {",
+                    "        Ext.Msg.alert('Email oder Passwort waren leer', 'Versuche es noch mal !', function() {",
+                    "            LanistaTrainer.app.fireEvent('showStage');",
+                    "            LanistaTrainer.app.fireEvent('setFieldsFocus', true, 'email');",
+                    "        });",
+                    "    } else {",
+                    "        var reg = /^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$/;",
+                    "        if(reg.test(email) === false) {",
+                    "            Ext.Msg.alert('Falsche Emailadresse', 'Versuche es noch mal !', function() {",
+                    "                LanistaTrainer.app.fireEvent('showStage');",
+                    "                LanistaTrainer.app.fireEvent('setFieldsFocus', false, \"\");",
+                    "            });",
+                    "        } else {",
+                    "            LanistaTrainer.app.fireEvent('loginUser', email, password, function (data) {",
+                    "",
+                    "                //LanistaTrainer.app.fireEvent('showMessage', \"Anmeldung war erfolgreich. <br> Herzlich willkommen \" + data.first_name+ '<br>LanistaTrainer wird vorbereitet...', function () {",
+                    "",
+                    "                alert(\"Anmeldung war erfolgreich. <br> Herzlich willkommen \" + data.first_name+ '<br>Lanista wird vorbereitet...');",
+                    "                    LanistaTrainer.app.setProxies();",
+                    "                    LanistaTrainer.app.fireEvent('showDashboardPanel');",
+                    "            },",
+                    "                                  function (status) {",
+                    "                                      console.log(\"MARK 2\");",
+                    "                                      console.log(status);",
+                    "                                      if (status == 3){",
+                    "                                          Ext.Msg.alert('Anmeldungsfehler', 'Konto inaktiv. Bitte bestätige die Aktivierungsmail', function() {",
+                    "                                              LanistaTrainer.app.fireEvent('showStage');",
+                    "                                              LanistaTrainer.app.fireEvent('setFieldsFocus', false, \"\");",
+                    "                                          });",
+                    "                                      }else if (status == 2){",
+                    "                                          Ext.Msg.alert('Anmeldungsfehler', 'Email oder password waren inkorrekt', function() {",
+                    "                                              LanistaTrainer.app.fireEvent('showStage');",
+                    "                                              LanistaTrainer.app.fireEvent('setFieldsFocus', false, \"\");",
+                    "                                          });",
+                    "                                      } else if (status == 100){",
+                    "                                          Ext.Msg.alert('Login fehlgeschlagen', 'Trainings-App ist nur für Sportler', function() {",
+                    "                                              LanistaTrainer.app.fireEvent('showStage');",
+                    "                                              LanistaTrainer.app.fireEvent('setFieldsFocus', false, \"\");",
+                    "                                          });",
+                    "                                      } else {",
+                    "                                          Ext.Msg.alert('Verbindungsfehler', 'Versuche es noch mal !', function() {",
+                    "                                              LanistaTrainer.app.fireEvent('showStage');",
+                    "                                              LanistaTrainer.app.fireEvent('setFieldsFocus', false, \"\");",
+                    "                                          });",
+                    "                                      }",
+                    "",
+                    "                                  });",
+                    "        }",
+                    "    }",
+                    "});",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "6038646c-653a-4e27-ba40-7a37ea024b87"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "email",
+                    "password",
+                    "successCallback",
+                    "errorCallback"
+                ],
+                "fn": "onLoginUser",
+                "implHandler": [
+                    "Ext.ux.SessionManager.login (email, password, function(success, data) {",
+                    "    if (success) {",
+                    "        //hub.state = 1;",
+                    "        //hub.user_id = data.id;",
+                    "        if (successCallback && successCallback instanceof Function) {",
+                    "            successCallback(data);",
+                    "        }",
+                    "    } else {",
+                    "        //hub.state = 0;",
+                    "        //console.log(hub.loginfail);",
+                    "        //console.log(hub.loginfail instanceof Function);",
+                    "        if (errorCallback && errorCallback instanceof Function) {",
+                    "            errorCallback(data);",
+                    "        }",
+                    "    }",
+                    "});"
+                ],
+                "name": "loginUser",
+                "scope": "this"
+            },
+            "designerId": "77a295bd-ba54-48c4-a693-d995ce8a716c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "loginPanel",
+                "selector": "loginPanel",
+                "xtype": "loginPanel"
+            },
+            "designerId": "194c27df-71e9-4622-ab1c-23ad60d078c3"
+        }
+    ]
+}

@@ -1,0 +1,135 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "mainController",
+        "designer|userClassName": "MainController",
+        "id": "mainController"
+    },
+    "designerId": "23d09b6b-e2b7-4a99-beb8-bf61e6bfdda2",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "2c31514e-620d-4f0d-83c0-fd698a173678"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "08031f00-28ff-4d7d-bdf0-ad2a9fae06fe"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "1c2fdd0f-e670-43c1-b22b-abf2d1da65ad"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "lanistaStage",
+                "selector": "#lanistaStage"
+            },
+            "designerId": "d1a8c04b-2e78-4988-b116-62f7b529c6f7"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onHideStage",
+                "implHandler": [
+                    "var leftCommandPanel = this.getLeftCommandPanel();",
+                    "",
+                    "this.getMainStage().el.setStyle('opacity', '0');",
+                    "",
+                    "leftCommandPanel.el.setStyle('opacity', '0');",
+                    "leftCommandPanel.up().down('#splitterLeft').el.setStyle('opacity', '0');",
+                    "leftCommandPanel.up().down('#splitterRight').el.setStyle('opacity', '0');",
+                    "",
+                    "",
+                    "this.getRightCommandPanel().el.setStyle('opacity', '0');",
+                    "setTimeout(",
+                    "    function(){",
+                    "        if (callback instanceof Function) callback();",
+                    "    },",
+                    "    1000",
+                    ");",
+                    ""
+                ],
+                "name": "hideStage",
+                "scope": "this"
+            },
+            "designerId": "559e775a-5859-47df-9920-c2108e32d69b"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowStage",
+                "implHandler": [
+                    "var leftCommandPanel = this.getLeftCommandPanel();",
+                    "",
+                    "this.getMainStage().el.setStyle('opacity', '1');",
+                    "",
+                    "leftCommandPanel.el.setStyle('opacity', '1');",
+                    "leftCommandPanel.up().down('#splitterLeft').el.setStyle('opacity', '1');",
+                    "leftCommandPanel.up().down('#splitterRight').el.setStyle('opacity', '1');",
+                    "",
+                    "this.getRightCommandPanel().el.setStyle('opacity', '1');",
+                    "setTimeout(function(){",
+                    "    if (callback instanceof Function) callback();",
+                    "}, 1000);"
+                ],
+                "name": "showStage",
+                "scope": "this"
+            },
+            "designerId": "d928606f-b887-4922-8070-b8420825c873"
+        }
+    ]
+}

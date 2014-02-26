@@ -1,0 +1,249 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": null,
+        "border": false,
+        "cls": "lanista-form",
+        "designer|userAlias": "loginPanel",
+        "designer|userClassName": "LoginPanel",
+        "header": false,
+        "height": 504,
+        "id": "loginPanel",
+        "layout": null,
+        "padding": null,
+        "title": null,
+        "width": 802
+    },
+    "configAlternates": {
+        "style": "string"
+    },
+    "designerId": "3b736aa7-734f-4eb4-9c3b-de035ba6d14a",
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onLoginPanelAfterRender",
+                "implHandler": [
+                    "",
+                    "document.getElementsByName(\"email\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_EMAIL;",
+                    "document.getElementsByName(\"password\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD;",
+                    "component.down(\"#loginTitle\").setText(Ext.ux.LanguageManager.TranslationArray.FORM_TITLE_LOGIN, false);",
+                    "component.down(\"#infologinButton\").setText(Ext.ux.LanguageManager.TranslationArray.BUTTON_PASSWORD_QUESTION, false);",
+                    "",
+                    "document.getElementsByName(\"email\")[0].focus();",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "ef8aca09-9037-4bf0-b86f-20245de6f812"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "container-group",
+                "container|pack": "center",
+                "container|padding": 20,
+                "dock": null,
+                "id": "containerGroup",
+                "layout": "hbox",
+                "padding": null,
+                "style": null
+            },
+            "configAlternates": {
+                "style": "string"
+            },
+            "designerId": "40d3f29c-9d71-42aa-9fc1-33f8fea9508b",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "border": false,
+                        "header": false,
+                        "height": 360,
+                        "id": "bottonPanel",
+                        "layout|flex": 1,
+                        "title": "",
+                        "width": null
+                    },
+                    "designerId": "c5b0627a-38d1-4b47-916e-2f5a8870108e"
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "login-buttons-container",
+                        "container|align": "stretch",
+                        "container|padding": 40,
+                        "id": "formContainer",
+                        "layout": "vbox",
+                        "layout|flex": 1,
+                        "style": "background-color: rgba(255,255,255,0.4);",
+                        "width": 200
+                    },
+                    "configAlternates": {
+                        "style": "string"
+                    },
+                    "designerId": "67a36997-a904-43d3-870d-87450d517b78",
+                    "cn": [
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 60,
+                                "html": "",
+                                "id": "loginTitle",
+                                "text": null
+                            },
+                            "designerId": "76f67e70-55a7-4bc7-93a1-97a7004059df"
+                        },
+                        {
+                            "type": "Ext.form.FieldSet",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "border": 0,
+                                "cls": "fieldset-login",
+                                "height": null,
+                                "id": "fieldSetGroup",
+                                "layout|flex": 1,
+                                "padding": null,
+                                "title": ""
+                            },
+                            "designerId": "d72c69d3-d2de-46cd-a349-1dcac6515c70",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "enableKeyEvents": true,
+                                        "fieldLabel": null,
+                                        "id": "email",
+                                        "layout|anchor": "100%",
+                                        "name": "email",
+                                        "padding": null,
+                                        "tabIndex": 1
+                                    },
+                                    "designerId": "8c3ceea1-f2e8-4f29-9a3b-51742dc5cb6f",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onEmailKeypress",
+                                                "implHandler": [
+                                                    "if(e.getKey() == e.ENTER){",
+                                                    "    Ext.getCmp('rightCommandPanel').down('#loginButton').fireEvent('click');",
+                                                    "}"
+                                                ],
+                                                "name": "keypress",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "91bedf05-8538-4244-af49-5633bb8f8bff"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "enableKeyEvents": true,
+                                        "fieldLabel": null,
+                                        "id": "password",
+                                        "inputType": "password",
+                                        "layout|anchor": "100%",
+                                        "name": "password",
+                                        "tabIndex": 2
+                                    },
+                                    "designerId": "25797736-9a89-4c7f-bfe9-22d9c218108f",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onPasswordKeypress",
+                                                "implHandler": [
+                                                    "if(e.getKey() == e.ENTER){",
+                                                    "    Ext.getCmp('rightCommandPanel').down('#loginButton').fireEvent('click');",
+                                                    "}",
+                                                    ""
+                                                ],
+                                                "name": "keypress",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "4fbdb1d9-aff2-4297-b912-9449697cfd55"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 40,
+                                "id": "infologinButton",
+                                "layout|flex": 1,
+                                "text": null
+                            },
+                            "designerId": "a9b1cb96-1b85-46c9-9efe-b6e56627967c"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
