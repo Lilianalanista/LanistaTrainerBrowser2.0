@@ -31,7 +31,7 @@ Ext.define('LanistaTrainer.store.ExerciseInitialStore', {
             proxy: {
                 type: 'ajax',
                 noCache: false,
-                url: '/~lilianadiaz/LanistaTrainerBrowser2.0/app/model/data/exercises.json'
+                url: 'app/model/data/exercises.json'
             }
         }, cfg)]);
     }

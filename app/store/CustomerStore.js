@@ -32,7 +32,7 @@ Ext.define('LanistaTrainer.store.CustomerStore', {
             storeId: 'CustomerStore',
             proxy: {
                 type: 'ajax',
-                url: '/~lilianadiaz/tpmanager/user/json',
+                url: '/tpmanager/user/json',
                 headers: {
                     user_id: 5
                 },
