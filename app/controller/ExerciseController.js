@@ -113,7 +113,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         // *** 2 Show the panel
         exercisesPanel.show();
 
-        LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
+        LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
@@ -178,7 +178,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         });
     },
 
-    onShowSearchHeaderUpdate: function(currPanelTitle) {
+    onShowSearchHeaderUpdate: function() {
         var store = Ext.getStore('ExerciseStore'),
              page = store.currentPage,
              totalPages = "",
@@ -198,8 +198,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             console.log("store.getCount() " + store.getCount());
 
             controller.getMainViewport().down("#header").update({
-               info: '<div class="exercises-header"><div class="header-filter">' + filter + '</div>' + numOfExercises + ' ' + currPanelTitle + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>',
-               title: '-' + currPanelTitle
+               info: '<div class="exercises-header"><div class="header-filter">' + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>',
+               title: '-' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
             });
         }
 
@@ -209,6 +209,9 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         //var filter = (isNaN(this.filters[1]) ? 'Musclegruppe: '+ this.filters[1] + '<br>' : '') + (isNaN(this.filters[2]) ? ' Übungstyp: '+ this.filters[2] + '<br>' : '') + (isNaN(this.filters[3]) ? ' Zusätze: '+ this.filters[3] + '<br>' : '');
 
 
+        //*****************************************
+        //OJO:  BUSCAR TAMANIO DEL BROWSER!!!!!!  PARA SABER CUANTOS EJERCICIOS ENTRAN EN LA PAGINA!!!!!!!
+        //*****************************************
 
 
     },

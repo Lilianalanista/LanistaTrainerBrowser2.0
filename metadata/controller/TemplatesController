@@ -45,18 +45,8 @@
                     "",
                     "// *** 2 Show the panel",
                     "templatesPanel.show();",
-                    "/*controller.getMainView().down(\"#header\").setData({",
-                    "    info: '',",
-                    "    title: '-'+ Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()}",
-                    "                                                  );",
-                    "*/",
                     "",
-                    "controller.getMainViewport().down(\"#header\").update({",
-                    "    info: '' }",
-                    ");",
-                    "",
-                    "//controller.fnChargeFilters(this);",
-                    "",
+                    "LanistaTrainer.app.fireEvent('showTemplatesHeaderUpdate');",
                     "LanistaTrainer.app.fireEvent('showStage');",
                     "",
                     "// *** 4 Callback",
@@ -285,6 +275,29 @@
                 "selector": "#leftCommandPanel"
             },
             "designerId": "1da13181-97b7-4a8d-bce3-6665e994badb"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowTemplatesHeaderUpdate",
+                "implHandler": [
+                    "var controller = this;",
+                    "if (this.getTemplatesPanel() && !this.getTemplatesPanel().isHidden()) {",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: '',",
+                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES.toUpperCase()",
+                    "    });",
+                    "}"
+                ],
+                "name": "showTemplatesHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "8ec6ce60-049e-4492-84f9-57f308317479"
         }
     ]
 }

@@ -49,7 +49,8 @@ Ext.application({
         'StopWatch',
         'HelpPanel',
         'DashBoardPanel',
-        'CustomerPanel'
+        'CustomersPanel',
+        'UserInfoPanel'
     ],
     controllers: [
         'MainController',
@@ -63,7 +64,8 @@ Ext.application({
         'ToolsController',
         'HelpController',
         'DashBoardController',
-        'CustomerController'
+        'CustomerController',
+        'UserInfoController'
     ],
     name: 'LanistaTrainer',
 

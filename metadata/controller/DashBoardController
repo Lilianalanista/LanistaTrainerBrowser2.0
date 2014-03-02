@@ -101,7 +101,7 @@
                     "else",
                     "    LanistaTrainer.app.fireEvent('displayDashBoard');"
                 ],
-                "name": "ShowDashBoardPanel",
+                "name": "showDashBoardPanel",
                 "scope": "this"
             },
             "designerId": "ee542d08-300e-45ba-9086-69db31eb30cf"
@@ -131,7 +131,7 @@
                     "    if (callback instanceof Function) callback();",
                     "});"
                 ],
-                "name": "CloseDashBoardPanel",
+                "name": "closeDashBoardPanel",
                 "scope": "this"
             },
             "designerId": "af005e76-6327-4a96-bd49-2ac626c54ccd"
@@ -166,16 +166,7 @@
                     "LanistaTrainer.app.activePanel = \"dashBoardPanel\";",
                     "",
                     "// *** 2 Show the panel",
-                    "dashBoardPanel.show();",
-                    "/*controller.getMainView().down(\"#header\").setData({",
-                    "        info: '',",
-                    "        title: '-'+ Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()}",
-                    "                                                      );",
-                    "    */",
-                    "controller.getMainViewport().down(\"#header\").update({",
-                    "    info: '' }",
-                    "                                                   );",
-                    "",
+                    "LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');",
                     "LanistaTrainer.app.fireEvent('showStage');",
                     "",
                     "// *** 4 Callback",
@@ -218,34 +209,24 @@
                     "    })",
                     ");",
                     "",
-                    "/*",
-                    "var privacySettingsButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
-                    "    iconCls: 'lanista-privacy',",
-                    "    text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_PRIVACY,",
-                    "    itemId: 'privacySettingsButton'",
-                    "});",
-                    "var passwordResetButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
-                    "    iconCls: 'lanista-question',",
-                    "    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PASSWORD_RESET,",
-                    "    itemId: 'forgotPasswordButton'",
-                    "});",
-                    "var licenceButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
-                    "    iconCls: localStorage.getItem(\"status\") == '1' ? 'lanista-checkmark' : 'lanista-cart',",
-                    "    text: Ext.ux.LanguageManager.TranslationArray.LICENSE,",
-                    "    itemId: 'licenseButton',",
-                    "    cls: localStorage.getItem(\"status\") == '1' ? ['lanista-command-buton'] : ['lanista-command-buton','lanista-command-buton-red']",
-                    "});",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.EXERCISES,",
+                    "        itemId: 'showExercisesPanelButton',",
+                    "        style: 'float: left;',",
+                    "        glyph: '78@Lanista Icons' //g",
+                    "    })",
+                    ");",
                     "",
-                    "controller.getRightCommandPanel().add(",
-                    "    passwordResetButton",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES,",
+                    "        itemId: 'showTemplatesPanelButton',",
+                    "        style: 'float: right;',",
+                    "        glyph: '110@Lanista Icons' //n",
+                    "    })",
                     ");",
-                    "controller.getRightCommandPanel().add(",
-                    "    privacySettingsButton",
-                    ");",
-                    "controller.getRightCommandPanel().add(",
-                    "    licenceButton",
-                    ");",
-                    "*/",
+                    "",
                     "",
                     ""
                 ]
@@ -309,6 +290,34 @@
                 ]
             },
             "designerId": "20a317cd-9e24-4134-aa0b-1ac69eb21d14"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowDashBoardHeaderUpdate",
+                "implHandler": [
+                    "",
+                    "var controller = this,",
+                    "    user = Ext.ux.SessionManager.getUser(),",
+                    "    divLogo = '<div class=\"lansita-header-customer-image-not-found show-info-customer\" id=\"showPersonalDataButton\"><div class=\"lansita-header-customer-logo show-info-customer\" id=\"showPersonalDataButton\" > </div></div> ',",
+                    "    divInfoCustomer = '<div class=\"lansita-header-customer-name\"> <span class=\"last-name\">' + user.last_name + '</span><br> <span class=\"first-name\">' + user.first_name +'</span></div>';",
+                    "",
+                    "controller.getMainViewport().down(\"#header\").update({",
+                    "    info: divLogo + divInfoCustomer,",
+                    "    title: '-' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD.toUpperCase()",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "showDashBoardHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "25d6a991-ecba-46c7-a17a-90cb5359ee05"
         }
     ]
 }

@@ -100,16 +100,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         LanistaTrainer.app.activePanel = "dashBoardPanel";
 
         // *** 2 Show the panel
-        dashBoardPanel.show();
-        /*controller.getMainView().down("#header").setData({
-                info: '',
-                title: '-'+ Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()}
-                                                              );
-            */
-        controller.getMainViewport().down("#header").update({
-            info: '' }
-                                                           );
-
+        LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
@@ -136,39 +127,44 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
             })
         );
 
-        /*
-        var privacySettingsButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {
-            iconCls: 'lanista-privacy',
-            text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_PRIVACY,
-            itemId: 'privacySettingsButton'
-        });
-        var passwordResetButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {
-            iconCls: 'lanista-question',
-            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PASSWORD_RESET,
-            itemId: 'forgotPasswordButton'
-        });
-        var licenceButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {
-            iconCls: localStorage.getItem("status") == '1' ? 'lanista-checkmark' : 'lanista-cart',
-            text: Ext.ux.LanguageManager.TranslationArray.LICENSE,
-            itemId: 'licenseButton',
-            cls: localStorage.getItem("status") == '1' ? ['lanista-command-buton'] : ['lanista-command-buton','lanista-command-buton-red']
-        });
+        this.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.EXERCISES,
+                itemId: 'showExercisesPanelButton',
+                style: 'float: left;',
+                glyph: '78@Lanista Icons' //g
+            })
+        );
 
-        controller.getRightCommandPanel().add(
-            passwordResetButton
+        this.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES,
+                itemId: 'showTemplatesPanelButton',
+                style: 'float: right;',
+                glyph: '110@Lanista Icons' //n
+            })
         );
-        controller.getRightCommandPanel().add(
-            privacySettingsButton
-        );
-        controller.getRightCommandPanel().add(
-            licenceButton
-        );
-        */
+
 
 
     },
 
     loadData: function() {
+
+    },
+
+    onShowDashBoardHeaderUpdate: function() {
+
+        var controller = this,
+            user = Ext.ux.SessionManager.getUser(),
+            divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer" id="showPersonalDataButton"><div class="lansita-header-customer-logo show-info-customer" id="showPersonalDataButton" > </div></div> ',
+            divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + user.last_name + '</span><br> <span class="first-name">' + user.first_name +'</span></div>';
+
+        controller.getMainViewport().down("#header").update({
+            info: divLogo + divInfoCustomer,
+            title: '-' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD.toUpperCase()
+        });
+
 
     },
 
@@ -183,16 +179,20 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         });
 
         application.on({
-            ShowDashBoardPanel: {
+            showDashBoardPanel: {
                 fn: this.onShowDashBoardPanel,
                 scope: this
             },
-            CloseDashBoardPanel: {
+            closeDashBoardPanel: {
                 fn: this.onCloseDashBoardPanel,
                 scope: this
             },
             displayDashBoard: {
                 fn: this.onDisplayDashBoard,
+                scope: this
+            },
+            showDashBoardHeaderUpdate: {
+                fn: this.onShowDashBoardHeaderUpdate,
                 scope: this
             }
         });

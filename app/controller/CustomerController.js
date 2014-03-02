@@ -38,9 +38,9 @@ Ext.define('LanistaTrainer.controller.CustomerController', {
         },
         {
             autoCreate: true,
-            ref: 'CustomerPanel',
-            selector: '#customerPanel',
-            xtype: 'customerpanel'
+            ref: 'CustomersPanel',
+            selector: '#customersPanel',
+            xtype: 'customersPanel'
         }
     ],
 
@@ -86,7 +86,7 @@ Ext.define('LanistaTrainer.controller.CustomerController', {
         Ext.getStore('CustomerStore').load();
 
         var controller = this,
-            customerPanel	= controller.getCustomerPanel(),
+            customerPanel	= controller.getCustomersPanel(),
             mainStage	= controller.getMainStage();
 
         LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;
@@ -111,7 +111,7 @@ Ext.define('LanistaTrainer.controller.CustomerController', {
         // *** 2 Show the panel
         customerPanel.show();
 
-        //LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
+        LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
@@ -132,7 +132,7 @@ Ext.define('LanistaTrainer.controller.CustomerController', {
             controller.getLeftCommandPanel().items.each(function (item) {
                 item.hide();
             });
-            controller.getCustomerPanel().hide();
+            controller.getCustomersPanel().hide();
             if (callback instanceof Function) callback();
         });
     },
@@ -182,6 +182,16 @@ Ext.define('LanistaTrainer.controller.CustomerController', {
 
     },
 
+    onShowCustomersHeaderUpdate: function() {
+        var controller = this;
+        if (this.getCustomersPanel() && !this.getCustomersPanel().isHidden()) {
+            controller.getMainViewport().down("#header").update({
+               info: '',
+               title: '-' + Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase()
+            });
+        }
+    },
+
     init: function(application) {
         this.control({
             "viewport #showCustomerPanelButton": {
@@ -205,6 +215,10 @@ Ext.define('LanistaTrainer.controller.CustomerController', {
             },
             closeCustomerPanel: {
                 fn: this.onCloseCustomerPanel,
+                scope: this
+            },
+            showCustomersHeaderUpdate: {
+                fn: this.onShowCustomersHeaderUpdate,
                 scope: this
             }
         });

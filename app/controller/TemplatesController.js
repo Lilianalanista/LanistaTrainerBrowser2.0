@@ -81,18 +81,8 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
 
         // *** 2 Show the panel
         templatesPanel.show();
-        /*controller.getMainView().down("#header").setData({
-            info: '',
-            title: '-'+ Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()}
-                                                          );
-        */
 
-        controller.getMainViewport().down("#header").update({
-            info: '' }
-        );
-
-        //controller.fnChargeFilters(this);
-
+        LanistaTrainer.app.fireEvent('showTemplatesHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
@@ -164,6 +154,16 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
 
     },
 
+    onShowTemplatesHeaderUpdate: function() {
+        var controller = this;
+        if (this.getTemplatesPanel() && !this.getTemplatesPanel().isHidden()) {
+            controller.getMainViewport().down("#header").update({
+               info: '',
+               title: '-' + Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES.toUpperCase()
+            });
+        }
+    },
+
     init: function(application) {
         this.control({
             "viewport #showTemplatesPanelButton": {
@@ -181,6 +181,10 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
             },
             closeTemplatesPanel: {
                 fn: this.onCloseTemplatesPanel,
+                scope: this
+            },
+            showTemplatesHeaderUpdate: {
+                fn: this.onShowTemplatesHeaderUpdate,
                 scope: this
             }
         });

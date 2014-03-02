@@ -10,12 +10,12 @@
         "defaultDockWeights": [
             "{\"top\":{\"render\":1,\"visual\":1},\"left\":{\"render\":3,\"visual\":5},\"right\":{\"render\":5,\"visual\":7},\"bottom\":{\"render\":7,\"visual\":3}}"
         ],
-        "designer|userAlias": "customerpanel",
-        "designer|userClassName": "CustomerPanel",
+        "designer|userAlias": "customersPanel",
+        "designer|userClassName": "CustomersPanel",
         "frameHeader": false,
         "headerPosition": "bottom",
         "height": 250,
-        "id": "customerPanel",
+        "id": "customersPanel",
         "layout": "fit",
         "style": "padding-top: 120px;",
         "title": null,

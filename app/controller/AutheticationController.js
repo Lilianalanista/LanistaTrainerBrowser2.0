@@ -54,37 +54,73 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                         //LanistaTrainer.app.fireEvent('showMessage', "Anmeldung war erfolgreich. <br> Herzlich willkommen " + data.first_name+ '<br>LanistaTrainer wird vorbereitet...', function () {
 
                         alert("Anmeldung war erfolgreich. <br> Herzlich willkommen " + data.first_name+ '<br>Lanista wird vorbereitet...');
+                            Ext.ux.SessionManager.loadLastUser();
                             LanistaTrainer.app.setProxies();
                             LanistaTrainer.app.fireEvent('showDashboardPanel');
                     },
-                                          function (status) {
-                                              console.log("MARK 2");
-                                              console.log(status);
-                                              if (status == 3){
-                                                  Ext.Msg.alert('Anmeldungsfehler', 'Konto inaktiv. Bitte bestätige die Aktivierungsmail', function() {
-                                                      LanistaTrainer.app.fireEvent('showStage');
-                                                      LanistaTrainer.app.fireEvent('setFieldsFocus', false, "");
-                                                  });
-                                              }else if (status == 2){
-                                                  Ext.Msg.alert('Anmeldungsfehler', 'Email oder password waren inkorrekt', function() {
-                                                      LanistaTrainer.app.fireEvent('showStage');
-                                                      LanistaTrainer.app.fireEvent('setFieldsFocus', false, "");
-                                                  });
-                                              } else if (status == 100){
-                                                  Ext.Msg.alert('Login fehlgeschlagen', 'Trainings-App ist nur für Sportler', function() {
-                                                      LanistaTrainer.app.fireEvent('showStage');
-                                                      LanistaTrainer.app.fireEvent('setFieldsFocus', false, "");
-                                                  });
-                                              } else {
-                                                  Ext.Msg.alert('Verbindungsfehler', 'Versuche es noch mal !', function() {
-                                                      LanistaTrainer.app.fireEvent('showStage');
-                                                      LanistaTrainer.app.fireEvent('setFieldsFocus', false, "");
-                                                  });
-                                              }
+                                                 function (status) {
+                                                     console.log("MARK 2");
+                                                     console.log(status);
+                                                     if (status == 3){
+                                                         Ext.Msg.alert('Anmeldungsfehler', 'Konto inaktiv. Bitte bestätige die Aktivierungsmail', function() {
+                                                             LanistaTrainer.app.fireEvent('showStage');
+                                                             LanistaTrainer.app.fireEvent('setFieldsFocus', false, "");
+                                                         });
+                                                     }else if (status == 2){
+                                                         Ext.Msg.alert('Anmeldungsfehler', 'Email oder password waren inkorrekt', function() {
+                                                             LanistaTrainer.app.fireEvent('showStage');
+                                                             LanistaTrainer.app.fireEvent('setFieldsFocus', false, "");
+                                                         });
+                                                     } else if (status == 100){
+                                                         Ext.Msg.alert('Login fehlgeschlagen', 'Trainings-App ist nur für Sportler', function() {
+                                                             LanistaTrainer.app.fireEvent('showStage');
+                                                             LanistaTrainer.app.fireEvent('setFieldsFocus', false, "");
+                                                         });
+                                                     } else {
+                                                         Ext.Msg.alert('Verbindungsfehler', 'Versuche es noch mal !', function() {
+                                                             LanistaTrainer.app.fireEvent('showStage');
+                                                             LanistaTrainer.app.fireEvent('setFieldsFocus', false, "");
+                                                         });
+                                                     }
 
-                                          });
+                                                 });
                 }
             }
+        });
+
+    },
+
+    onLogoutButtonClick: function(button, e, eOpts) {
+
+        LanistaTrainer.app.fireEvent('hideStage', function () {
+            LanistaTrainer.app.fireEvent('logoutUser', function () {
+               LanistaTrainer.app.fireEvent('closeUserInfoPanel', function() {
+                    localStorage.removeItem("user_id");
+                    localStorage.removeItem("user_name");
+                    localStorage.removeItem("password");
+                    localStorage.removeItem("email");
+                    localStorage.removeItem("language");
+                    localStorage.removeItem("first_name");
+                    localStorage.removeItem("last_name");
+                    localStorage.removeItem("birthday");
+                    localStorage.removeItem("gender");
+                    localStorage.removeItem("status");
+                    localStorage.removeItem("expiration_date");
+                    localStorage.removeItem("bu");
+                    localStorage.removeItem("role");
+                    localStorage.removeItem("version");
+                    localStorage.removeItem("country");
+                    localStorage.removeItem("zipcode");
+                    localStorage.removeItem("city");
+                    localStorage.removeItem("street");
+                    localStorage.removeItem("company_name");
+                    localStorage.removeItem("phone_nr");
+                    localStorage.removeItem("recognition");
+                    localStorage.removeItem("privacy");
+                    localStorage.removeItem("website");
+                    LanistaTrainer.app.fireEvent('showLoginPanel');
+               });
+            });
         });
 
     },
@@ -92,18 +128,21 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
     onLoginUser: function(email, password, successCallback, errorCallback) {
         Ext.ux.SessionManager.login (email, password, function(success, data) {
             if (success) {
-                //hub.state = 1;
-                //hub.user_id = data.id;
                 if (successCallback && successCallback instanceof Function) {
                     successCallback(data);
                 }
             } else {
-                //hub.state = 0;
-                //console.log(hub.loginfail);
-                //console.log(hub.loginfail instanceof Function);
                 if (errorCallback && errorCallback instanceof Function) {
                     errorCallback(data);
                 }
+            }
+        });
+    },
+
+    onLogoutUser: function(CallBack) {
+        Ext.ux.SessionManager.logout ( function() {
+            if (CallBack && CallBack instanceof Function) {
+                CallBack();
             }
         });
     },
@@ -112,12 +151,19 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
         this.control({
             "viewport #loginButton": {
                 click: this.onLoginButtonClick
+            },
+            "viewport #logoutButton": {
+                click: this.onLogoutButtonClick
             }
         });
 
         application.on({
             loginUser: {
                 fn: this.onLoginUser,
+                scope: this
+            },
+            logoutUser: {
+                fn: this.onLogoutUser,
                 scope: this
             }
         });

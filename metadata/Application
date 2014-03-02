@@ -18,7 +18,8 @@
             "ToolsController",
             "HelpController",
             "DashBoardController",
-            "CustomerController"
+            "CustomerController",
+            "UserInfoController"
         ],
         "models": [
             "ExerciseModel",
@@ -49,7 +50,8 @@
             "StopWatch",
             "HelpPanel",
             "DashBoardPanel",
-            "CustomerPanel"
+            "CustomerPanel",
+            "UserInfoPanel"
         ]
     },
     "designerId": "application",

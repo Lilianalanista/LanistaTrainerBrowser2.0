@@ -1,5 +1,5 @@
 {
-    "type": "Ext.panel.Panel",
+    "type": "Ext.form.Panel",
     "reference": {
         "name": "items",
         "type": "array"
@@ -7,13 +7,13 @@
     "codeClass": null,
     "userConfig": {
         "border": false,
-        "designer|userAlias": "dashBoardPanel",
-        "designer|userClassName": "DashBoardPanel",
+        "designer|userAlias": "userInfoPanel",
+        "designer|userClassName": "UserInfoPanel",
         "header": false,
         "height": 250,
-        "id": "dashBoardPanel",
+        "id": "userInfoPanel",
         "title": "My Panel",
         "width": 400
     },
-    "designerId": "b9eb068c-5951-4785-bcf3-01af1d6813c0"
+    "designerId": "28c2c65d-74fd-41c4-92b9-9a7c196bd07b"
 }

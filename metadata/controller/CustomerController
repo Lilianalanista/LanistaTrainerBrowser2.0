@@ -73,9 +73,9 @@
             "codeClass": null,
             "userConfig": {
                 "autoCreate": true,
-                "ref": "CustomerPanel",
-                "selector": "#customerPanel",
-                "xtype": "customerpanel"
+                "ref": "CustomersPanel",
+                "selector": "#customersPanel",
+                "xtype": "customersPanel"
             },
             "designerId": "939e5abd-5a4c-4f7f-aeda-58c9d25dba2e"
         },
@@ -95,7 +95,7 @@
                     "Ext.getStore('CustomerStore').load();",
                     "",
                     "var controller = this,",
-                    "    customerPanel\t= controller.getCustomerPanel(),",
+                    "    customerPanel\t= controller.getCustomersPanel(),",
                     "    mainStage\t= controller.getMainStage();",
                     "",
                     "LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;",
@@ -120,7 +120,7 @@
                     "// *** 2 Show the panel",
                     "customerPanel.show();",
                     "",
-                    "//LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());",
+                    "LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');",
                     "LanistaTrainer.app.fireEvent('showStage');",
                     "",
                     "// *** 4 Callback",
@@ -157,7 +157,7 @@
                     "    controller.getLeftCommandPanel().items.each(function (item) {",
                     "        item.hide();",
                     "    });",
-                    "    controller.getCustomerPanel().hide();",
+                    "    controller.getCustomersPanel().hide();",
                     "    if (callback instanceof Function) callback();",
                     "});"
                 ],
@@ -333,6 +333,29 @@
                 "scope": "me"
             },
             "designerId": "fa8ca7fd-dc26-4c44-9a13-058bc4b9928f"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowCustomersHeaderUpdate",
+                "implHandler": [
+                    "var controller = this;",
+                    "if (this.getCustomersPanel() && !this.getCustomersPanel().isHidden()) {",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: '',",
+                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase()",
+                    "    });",
+                    "}"
+                ],
+                "name": "showCustomersHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "37f0a97a-7311-4c44-b31b-a10f82506dfd"
         }
     ]
 }

@@ -17,6 +17,7 @@ Ext.define('LanistaTrainer.view.TemplatesPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.templatesPanel',
 
+    border: false,
     height: 250,
     id: 'templatesPanel',
     width: 400,

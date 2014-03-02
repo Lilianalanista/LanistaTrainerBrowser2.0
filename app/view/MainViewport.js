@@ -36,14 +36,20 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                     height: 150,
                     id: 'header',
                     maxHeight: 100,
-                    style: 'z-index:1;',
+                    style: 'z-index:1; background-color: rgba(227,227,227,0.7)',
                     tpl: [
                         '<div class="header-logo">',
                         '	Lanista',
                         '</div>',
                         '<div class="header-title">{title}</div>',
                         '<div class="header-info">{info}</div>'
-                    ]
+                    ],
+                    listeners: {
+                        afterrender: {
+                            fn: me.onHeaderAfterRender,
+                            scope: me
+                        }
+                    }
                 },
                 {
                     xtype: 'container',
@@ -126,6 +132,49 @@ Ext.define('LanistaTrainer.view.MainViewport', {
         });
 
         me.callParent(arguments);
+    },
+
+    onHeaderAfterRender: function(component, eOpts) {
+
+
+        el = component.el;
+        el.on(
+            'click',
+            function(e,t) {
+                LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {
+                    el.addCls('item-not-clicked');
+                    LanistaTrainer.app.fireEvent('showUserInfoPanel');
+                });
+            },
+            this,
+            {
+                delegate: '.show-info-customer'
+            }
+        );
+
+        el.on(
+            'mouseover',
+            function(e,t) {
+                el.removeCls('item-not-clicked');
+                el.addCls('item-clicked');
+            },
+            this,
+            {
+                delegate: '.show-info-customer'
+            }
+        );
+
+        el.on(
+            'mouseout',
+            function(e,t) {
+                el.removeCls('item-clicked');
+                el.addCls('item-not-clicked');
+            },
+            this,
+            {
+                delegate: '.show-info-customer'
+            }
+        );
     }
 
 });

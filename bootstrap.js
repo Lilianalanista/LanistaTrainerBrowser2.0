@@ -833,9 +833,9 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "LanistaTrainer.Application": [],
   "LanistaTrainer.controller.AutheticationController": [],
+  "LanistaTrainer.controller.CustomerController": [],
   "LanistaTrainer.controller.DashBoardController": [],
   "LanistaTrainer.controller.ExerciseController": [],
-  "LanistaTrainer.controller.ExerciseController_old": [],
   "LanistaTrainer.controller.HelpController": [],
   "LanistaTrainer.controller.LanguagesController": [],
   "LanistaTrainer.controller.LoginController": [],
@@ -845,13 +845,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.controller.StopWatchController": [],
   "LanistaTrainer.controller.TemplatesController": [],
   "LanistaTrainer.controller.ToolsController": [],
+  "LanistaTrainer.controller.UserInfoController": [],
+  "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseFilterIIModel": [],
   "LanistaTrainer.model.ExerciseFilterModel": [],
   "LanistaTrainer.model.ExerciseModel": [],
+  "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseFilterII": [],
   "LanistaTrainer.store.ExerciseFilters": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.view.CustomerPanel": [],
   "LanistaTrainer.view.DashBoardPanel": [],
   "LanistaTrainer.view.ExercisesPanel": [],
   "LanistaTrainer.view.HelpPanel": [],
@@ -862,6 +866,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.RegistrationPanel": [],
   "LanistaTrainer.view.StopWatch": [],
   "LanistaTrainer.view.TemplatesPanel": [],
+  "LanistaTrainer.view.UserInfoPanel": [],
   "LanistaTrainer.view.Viewport": [],
   "LanistaTrainer.view.rightView": []
 });
@@ -1856,13 +1861,15 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.controller.AutheticationController": [
     "controller.autheticationController"
   ],
+  "LanistaTrainer.controller.CustomerController": [
+    "controller.customercontroller"
+  ],
   "LanistaTrainer.controller.DashBoardController": [
     "controller.dashBoardController"
   ],
   "LanistaTrainer.controller.ExerciseController": [
     "controller.exerciseController"
   ],
-  "LanistaTrainer.controller.ExerciseController_old": [],
   "LanistaTrainer.controller.HelpController": [
     "controller.helpController"
   ],
@@ -1886,13 +1893,21 @@ Ext.ClassManager.addNameAliasMappings({
     "controller.templatesController"
   ],
   "LanistaTrainer.controller.ToolsController": [],
+  "LanistaTrainer.controller.UserInfoController": [
+    "controller.userinfocontroller"
+  ],
+  "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseFilterIIModel": [],
   "LanistaTrainer.model.ExerciseFilterModel": [],
   "LanistaTrainer.model.ExerciseModel": [],
+  "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseFilterII": [],
   "LanistaTrainer.store.ExerciseFilters": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.view.CustomerPanel": [
+    "widget.customerpanel"
+  ],
   "LanistaTrainer.view.DashBoardPanel": [
     "widget.dashBoardPanel"
   ],
@@ -1920,6 +1935,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.TemplatesPanel": [
     "widget.templatesPanel"
+  ],
+  "LanistaTrainer.view.UserInfoPanel": [
+    "widget.Userinfopanel"
   ],
   "LanistaTrainer.view.Viewport": [],
   "LanistaTrainer.view.rightView": []

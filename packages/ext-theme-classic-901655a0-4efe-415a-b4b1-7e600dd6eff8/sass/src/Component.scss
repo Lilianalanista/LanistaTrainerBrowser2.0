@@ -63,15 +63,15 @@ $base-gradient: "none";
     letter-spacing: 1px;
 }
 
-.header-info  {
-	float: right;
-	padding-right: 25px;
-	//padding-top: 33px;
-	font-family: "Avenir LT Std";
-	font-size: 22px;
-	line-height: 21px;
-	text-align: right;
-	width: 70%;
+.header-info {
+    float: right;
+    padding-right: 25px;
+    padding-top: 0px!important;
+    font-family: "Avenir LT Std";
+    font-size: 22px;
+    line-height: 21px;
+    text-align: right;
+    width: 65%;
 }
 
 .header-title {
@@ -83,6 +83,39 @@ $base-gradient: "none";
 	line-height: 33px;
 	letter-spacing: -1px;
 	color: rgba(0,0,0,0.2);
+}
+
+.lansita-header-customer-image-not-found {
+	width: 100px;
+	height: 100px;
+	float: right;
+	border-radius: 50%;
+	border-style: solid!important;
+	border-width: 4px!important;
+	border-color: #34acfb;
+	margin-top: 20px;
+	margin-left: 10px;
+	background-color: #34acfb;
+}
+
+.lansita-header-customer-image-not-found:before {
+	font-family: "Lanista Icons";
+	content: "j";
+	text-align: center;
+	color: white;
+	font-size: 60px;
+	line-height: 92px;
+	display: block;
+}
+
+.lansita-header-customer-name {
+	margin-top: 35px;
+}
+
+.lansita-header-customer-name .last-name {
+	text-transform: uppercase;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 40px;
 }
 
 .lanista-guest #lanistaStage {
@@ -244,6 +277,10 @@ $base-gradient: "none";
 	top: 62px;
 }
 
+.lanista-guest #header {
+	background-color: transparent!important;
+}
+
 //Login Area
 .login-buttons-container .x-btn {
     background-image: none;
@@ -332,7 +369,13 @@ $base-gradient: "none";
     background-color: transparent;
 }
 
+.item-clicked {
+    cursor: pointer;
+}
 
+.item-not-clicked {
+    cursor: default;
+}
 
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

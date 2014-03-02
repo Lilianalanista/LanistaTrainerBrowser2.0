@@ -1,0 +1,280 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "userInfoController",
+        "designer|userClassName": "UserInfoController",
+        "id": "userInfoController"
+    },
+    "designerId": "bfb49d5c-515b-4f52-882a-8aa6398ca181",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "8aa47e56-b9b4-457d-a6cc-7d7799fc4e81"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "4d4a21cb-24e8-4e5d-adea-03f8831d9ed3"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "b9da4fe6-7c74-4f99-93ab-27e1787caaae"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "6c7def38-7258-46ca-80a4-e424fe598f65"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "userInfoPanel",
+                "selector": "#userInfoPanel",
+                "xtype": "userInfoPanel"
+            },
+            "designerId": "144a620d-b107-480c-93a8-6c951bda3e37"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowUserInfoPanel",
+                "implHandler": [
+                    "//Ext.getStore('UserInfoStore').load();",
+                    "",
+                    "var controller = this;",
+                    "var userInfoPanel\t= controller.getUserInfoPanel();",
+                    "var mainStage\t= controller.getMainStage();",
+                    "",
+                    "LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;",
+                    "LanistaTrainer.app.activePanel = \"userInfoPanel\";",
+                    "",
+                    "mainStage.add( userInfoPanel );",
+                    "",
+                    "userInfoPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons('closeUserInfoPanelButton');",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "userInfoPanel.show();",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showUserInfoHeaderUpdate');",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();",
+                    "",
+                    ""
+                ],
+                "name": "showUserInfoPanel",
+                "scope": "this"
+            },
+            "designerId": "5fcc4fca-0ca7-4036-b179-204af67cc374"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseUserInfoPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getUserInfoPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closeUserInfoPanel",
+                "scope": "this"
+            },
+            "designerId": "cb24653f-86d5-4f4d-9485-bcc639308b49"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "",
+                    "var controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "//Adding bottoms into RightPanel",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.LOGGOUT.toUpperCase(),",
+                    "        itemId: 'logoutButton',",
+                    "        userAlias: 'showUserInfoPanelButton',",
+                    "        glyph: '115@Lanista Icons' //s",
+                    "    })",
+                    ");",
+                    ""
+                ]
+            },
+            "designerId": "a832d82f-5c02-4254-bfce-8c53710d248d"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #showUserInfoPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onShowUserInfoPanelButton",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
+                    "    LanistaTrainer.app.fireEvent('showUserInfoPanel');",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "7e8770ae-dd04-447a-b62b-a0d7c64746ff"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeUserInfoPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseUserInfoPanelButton",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('closeUserInfoPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);",
+                    "});",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "b78279d6-29ac-4d04-97f9-ec2e45a490be"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "ab0dfe42-5361-4638-9066-6c398b1dafe4"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowUserInfoHeaderUpdate",
+                "implHandler": [
+                    "var controller = this;",
+                    "if (this.getUserInfoPanel() && !this.getUserInfoPanel().isHidden()) {",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: '',",
+                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()",
+                    "    });",
+                    "}"
+                ],
+                "name": "showUserInfoHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "712b4263-1c96-4059-8896-2a2528b100cc"
+        }
+    ]
+}

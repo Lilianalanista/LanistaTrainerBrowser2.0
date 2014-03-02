@@ -26,7 +26,7 @@
                 "height": 150,
                 "id": "header",
                 "maxHeight": 100,
-                "style": "z-index:1;"
+                "style": "z-index:1; background-color: rgba(227,227,227,0.7)"
             },
             "configAlternates": {
                 "style": "string"
@@ -51,6 +51,62 @@
                         ]
                     },
                     "designerId": "ac5cc1e4-41a4-4f10-a291-632bcc415a9e"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onHeaderAfterRender",
+                        "implHandler": [
+                            "",
+                            "",
+                            "el = component.el;",
+                            "el.on(",
+                            "    'click',",
+                            "    function(e,t) {",
+                            "        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
+                            "            el.addCls('item-not-clicked');",
+                            "            LanistaTrainer.app.fireEvent('showUserInfoPanel');",
+                            "        });",
+                            "    },",
+                            "    this,",
+                            "    {",
+                            "        delegate: '.show-info-customer'",
+                            "    }",
+                            ");",
+                            "",
+                            "el.on(",
+                            "    'mouseover',",
+                            "    function(e,t) {",
+                            "        el.removeCls('item-not-clicked');",
+                            "        el.addCls('item-clicked');",
+                            "    },",
+                            "    this,",
+                            "    {",
+                            "        delegate: '.show-info-customer'",
+                            "    }",
+                            ");",
+                            "",
+                            "el.on(",
+                            "    'mouseout',",
+                            "    function(e,t) {",
+                            "        el.removeCls('item-clicked');",
+                            "        el.addCls('item-not-clicked');",
+                            "    },",
+                            "    this,",
+                            "    {",
+                            "        delegate: '.show-info-customer'",
+                            "    }",
+                            ");"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "0b0260d4-27a4-459f-b652-a63953293b65"
                 }
             ]
         },

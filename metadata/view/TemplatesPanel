@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "border": false,
         "designer|userAlias": "templatesPanel",
         "designer|userClassName": "TemplatesPanel",
         "height": 250,
