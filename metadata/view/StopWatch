@@ -24,6 +24,19 @@
     "designerId": "f247031b-2e01-4366-bbd5-e45a9d3b58ad",
     "cn": [
         {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": "Label",
+                "id": "user_language1"
+            },
+            "designerId": "c4980a51-69ed-4be0-b90c-9a936173e277"
+        },
+        {
             "type": "Ext.toolbar.Toolbar",
             "reference": {
                 "name": "dockedItems",

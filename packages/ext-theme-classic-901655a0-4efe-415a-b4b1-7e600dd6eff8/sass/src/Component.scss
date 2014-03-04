@@ -377,6 +377,25 @@ $base-gradient: "none";
     cursor: default;
 }
 
+//User Settings
+.lanista-user-fieldset {
+    padding: 25px 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    width: 1020px!important;
+}
+
+.lanista-user-settings-field {
+    width: 900px!important;
+}
+
+.lanista-user-fieldset .x-fieldset-body {
+    width: 900px!important;
+    margin-left: 80px;
+}
+
+
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

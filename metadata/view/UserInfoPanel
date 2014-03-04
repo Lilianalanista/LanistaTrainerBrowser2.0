@@ -6,14 +6,278 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoScroll": true,
         "border": false,
+        "defaultAlign": "c-c",
         "designer|userAlias": "userInfoPanel",
         "designer|userClassName": "UserInfoPanel",
         "header": false,
         "height": 250,
         "id": "userInfoPanel",
+        "style": "top:120px",
         "title": "My Panel",
         "width": 400
     },
-    "designerId": "28c2c65d-74fd-41c4-92b9-9a7c196bd07b"
+    "configAlternates": {
+        "style": "string"
+    },
+    "designerId": "28c2c65d-74fd-41c4-92b9-9a7c196bd07b",
+    "cn": [
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": true,
+                "cls": "lanista-user-fieldset",
+                "defaultAlign": "c-c",
+                "id": "user_personalData",
+                "title": null
+            },
+            "designerId": "2274c207-a353-435c-a9c9-abfac131c6aa",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Email:",
+                        "hideEmptyLabel": false,
+                        "id": "user_email",
+                        "layout|anchor": "100%",
+                        "name": "user_email",
+                        "validateOnBlur": false,
+                        "validateOnChange": false,
+                        "width": null
+                    },
+                    "designerId": "118bb5bd-0589-44b4-b64c-db2226791b91"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Email:",
+                        "hideEmptyLabel": false,
+                        "id": "user_firstname",
+                        "layout|anchor": "100%",
+                        "name": "user_firstname",
+                        "validateOnBlur": false,
+                        "validateOnChange": false
+                    },
+                    "designerId": "dcf09911-b6a8-4ea6-be08-1b4b279736e4"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Email:",
+                        "hideEmptyLabel": false,
+                        "id": "user_lastname",
+                        "layout|anchor": "100%",
+                        "name": "user_lastname",
+                        "validateOnBlur": false,
+                        "validateOnChange": false
+                    },
+                    "designerId": "7ffe6554-b171-49df-b9e2-cf9f91e57b83"
+                },
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Label",
+                        "id": "user_language",
+                        "layout|anchor": "100%",
+                        "name": "user_language"
+                    },
+                    "designerId": "1045e33d-3b21-4c14-8fce-073b379e7081"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": true,
+                "cls": "lanista-user-fieldset",
+                "defaultAlign": "c-c",
+                "height": 627,
+                "id": "user_companyContacts",
+                "title": null
+            },
+            "designerId": "a29b3bd2-6c20-4df2-8fa2-84f358080d2e",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Label",
+                        "id": "user_companyName",
+                        "layout|anchor": "100%",
+                        "name": "user_companyName"
+                    },
+                    "designerId": "eaa4137d-5003-41b5-b57c-650b19fac77a"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Label",
+                        "id": "user_companyPhone",
+                        "layout|anchor": "100%",
+                        "name": "user_companyPhone"
+                    },
+                    "designerId": "2a0a8d16-8472-49f5-a9a2-91dc8a84e6f8"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Label",
+                        "id": "user_website",
+                        "layout|anchor": "100%",
+                        "name": "user_website"
+                    },
+                    "designerId": "caad46be-2d91-4c9b-b532-6211725d6fd0"
+                },
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Label",
+                        "id": "user_country",
+                        "layout|anchor": "100%",
+                        "name": "user_country"
+                    },
+                    "designerId": "6ac9aceb-c57d-4906-81bb-d1f2b8746d16"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Label",
+                        "id": "user_zipCode",
+                        "layout|anchor": "100%",
+                        "name": "user_zipCode"
+                    },
+                    "designerId": "d39f98fc-6776-4627-8377-72a13577be5c"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Label",
+                        "id": "user_street",
+                        "layout|anchor": "100%",
+                        "name": "user_zip"
+                    },
+                    "designerId": "89d0d10c-09b5-4bf4-a01e-aba36ae5d0c3"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Label",
+                        "id": "user_city",
+                        "layout|anchor": "100%",
+                        "name": "user_city"
+                    },
+                    "designerId": "583fe3bc-07e5-429b-b6b0-33964d9b6bf9"
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onUserInfoPanelAfterRender",
+                "implHandler": [
+                    "",
+                    "var fields = component.getForm().getFields();",
+                    "",
+                    "fields.getByKey('user_email').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_EMAIL);",
+                    "fields.getByKey('user_firstname').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_FIRSTNAME);",
+                    "fields.getByKey('user_lastname').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_LASTNAME);",
+                    "fields.getByKey('user_language').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_LANGUAGE);",
+                    "fields.getByKey('user_companyName').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.COMPANY_NAME);",
+                    "fields.getByKey('user_companyPhone').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.COMPANY_PHONE_NR);",
+                    "fields.getByKey('user_website').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.WEBSITE);",
+                    "fields.getByKey('user_country').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_CONTRY);",
+                    "fields.getByKey('user_zipCode').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_ZIP);",
+                    "fields.getByKey('user_street').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_STREET);",
+                    "fields.getByKey('user_city').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_CITY);",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "1c3c6a2c-7fdd-401c-aff0-f9ca90cd1ff2"
+        }
+    ]
 }

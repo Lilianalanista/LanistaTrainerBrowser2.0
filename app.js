@@ -49,8 +49,8 @@ Ext.application({
         'StopWatch',
         'HelpPanel',
         'DashBoardPanel',
-        'CustomersPanel',
-        'UserInfoPanel'
+        'UserInfoPanel',
+        'CustomersPanel'
     ],
     controllers: [
         'MainController',

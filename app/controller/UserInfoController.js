@@ -41,6 +41,14 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
             ref: 'userInfoPanel',
             selector: '#userInfoPanel',
             xtype: 'userInfoPanel'
+        },
+        {
+            ref: 'user_personalData',
+            selector: '#user_personalData'
+        },
+        {
+            ref: 'user_companyContacts',
+            selector: '#user_companyContacts'
         }
     ],
 
@@ -114,6 +122,12 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });
+
+        var fieldset = controller.getUser_personalData();
+        fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PERSON_DATA);
+        fieldset = controller.getUser_companyContacts();
+        fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.ADDRESS);
+
 
         //Adding bottoms into RightPanel
         this.getRightCommandPanel().add(

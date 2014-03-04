@@ -18,6 +18,7 @@ Ext.define('LanistaTrainer.view.StopWatch', {
     alias: 'widget.stopWatch',
 
     requires: [
+        'Ext.form.field.ComboBox',
         'Ext.toolbar.Toolbar',
         'Ext.button.Button'
     ],
@@ -34,6 +35,13 @@ Ext.define('LanistaTrainer.view.StopWatch', {
         var me = this;
 
         Ext.applyIf(me, {
+            items: [
+                {
+                    xtype: 'combobox',
+                    id: 'user_language1',
+                    fieldLabel: 'Label'
+                }
+            ],
             dockedItems: [
                 {
                     xtype: 'toolbar',

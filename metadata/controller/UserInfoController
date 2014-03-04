@@ -80,6 +80,32 @@
             "designerId": "144a620d-b107-480c-93a8-6c951bda3e37"
         },
         {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "user_personalData",
+                "selector": "#user_personalData"
+            },
+            "designerId": "b8619f69-02cf-464f-99c2-987d1aa5868e"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "user_companyContacts",
+                "selector": "#user_companyContacts"
+            },
+            "designerId": "53141497-3e3d-4eb0-851c-2cf454ace112"
+        },
+        {
             "type": "applicationaction",
             "reference": {
                 "name": "items",
@@ -180,6 +206,12 @@
                     "controller.getRightCommandPanel().items.each(function (item) {",
                     "    item.hide();",
                     "});",
+                    "",
+                    "var fieldset = controller.getUser_personalData();",
+                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PERSON_DATA);",
+                    "fieldset = controller.getUser_companyContacts();",
+                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.ADDRESS);",
+                    "",
                     "",
                     "//Adding bottoms into RightPanel",
                     "this.getRightCommandPanel().add(",

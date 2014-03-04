@@ -50,8 +50,8 @@
             "StopWatch",
             "HelpPanel",
             "DashBoardPanel",
-            "CustomerPanel",
-            "UserInfoPanel"
+            "UserInfoPanel",
+            "CustomersPanel"
         ]
     },
     "designerId": "application",

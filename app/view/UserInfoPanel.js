@@ -17,17 +17,172 @@ Ext.define('LanistaTrainer.view.UserInfoPanel', {
     extend: 'Ext.form.Panel',
     alias: 'widget.userInfoPanel',
 
+    requires: [
+        'Ext.form.FieldSet',
+        'Ext.form.field.ComboBox'
+    ],
+
     border: false,
     height: 250,
     id: 'userInfoPanel',
+    style: 'top:120px',
     width: 400,
+    autoScroll: true,
+    defaultAlign: 'c-c',
     header: false,
     title: 'My Panel',
 
     initComponent: function() {
         var me = this;
 
+        Ext.applyIf(me, {
+            items: [
+                {
+                    xtype: 'fieldset',
+                    border: true,
+                    cls: 'lanista-user-fieldset',
+                    id: 'user_personalData',
+                    defaultAlign: 'c-c',
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_email',
+                            fieldLabel: 'Email:',
+                            hideEmptyLabel: false,
+                            name: 'user_email',
+                            validateOnChange: false,
+                            validateOnBlur: false
+                        },
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_firstname',
+                            fieldLabel: 'Email:',
+                            hideEmptyLabel: false,
+                            name: 'user_firstname',
+                            validateOnChange: false,
+                            validateOnBlur: false
+                        },
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_lastname',
+                            fieldLabel: 'Email:',
+                            hideEmptyLabel: false,
+                            name: 'user_lastname',
+                            validateOnChange: false,
+                            validateOnBlur: false
+                        },
+                        {
+                            xtype: 'combobox',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_language',
+                            fieldLabel: 'Label',
+                            name: 'user_language'
+                        }
+                    ]
+                },
+                {
+                    xtype: 'fieldset',
+                    border: true,
+                    cls: 'lanista-user-fieldset',
+                    height: 627,
+                    id: 'user_companyContacts',
+                    defaultAlign: 'c-c',
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_companyName',
+                            fieldLabel: 'Label',
+                            name: 'user_companyName'
+                        },
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_companyPhone',
+                            fieldLabel: 'Label',
+                            name: 'user_companyPhone'
+                        },
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_website',
+                            fieldLabel: 'Label',
+                            name: 'user_website'
+                        },
+                        {
+                            xtype: 'combobox',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_country',
+                            fieldLabel: 'Label',
+                            name: 'user_country'
+                        },
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_zipCode',
+                            fieldLabel: 'Label',
+                            name: 'user_zipCode'
+                        },
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_street',
+                            fieldLabel: 'Label',
+                            name: 'user_zip'
+                        },
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'user_city',
+                            fieldLabel: 'Label',
+                            name: 'user_city'
+                        }
+                    ]
+                }
+            ],
+            listeners: {
+                afterrender: {
+                    fn: me.onUserInfoPanelAfterRender,
+                    scope: me
+                }
+            }
+        });
+
         me.callParent(arguments);
+    },
+
+    onUserInfoPanelAfterRender: function(component, eOpts) {
+
+        var fields = component.getForm().getFields();
+
+        fields.getByKey('user_email').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_EMAIL);
+        fields.getByKey('user_firstname').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_FIRSTNAME);
+        fields.getByKey('user_lastname').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_LASTNAME);
+        fields.getByKey('user_language').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_LANGUAGE);
+        fields.getByKey('user_companyName').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.COMPANY_NAME);
+        fields.getByKey('user_companyPhone').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.COMPANY_PHONE_NR);
+        fields.getByKey('user_website').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.WEBSITE);
+        fields.getByKey('user_country').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_CONTRY);
+        fields.getByKey('user_zipCode').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_ZIP);
+        fields.getByKey('user_street').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_STREET);
+        fields.getByKey('user_city').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_CITY);
+
+
+
     }
 
 });
