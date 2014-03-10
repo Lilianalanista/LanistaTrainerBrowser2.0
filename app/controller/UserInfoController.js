@@ -49,6 +49,10 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
         {
             ref: 'user_companyContacts',
             selector: '#user_companyContacts'
+        },
+        {
+            ref: 'user_LicenseData',
+            selector: '#user_LicenseData'
         }
     ],
 
@@ -65,9 +69,92 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
 
     },
 
-    onShowUserInfoPanel: function(callback) {
-        //Ext.getStore('UserInfoStore').load();
+    onCancelSettingsButtonClick: function(button, e, eOpts) {
+        var controller = this;
 
+        controller.loadCurrentUser();
+        controller.showCommands();
+    },
+
+    onSaveSettingsButtonClick: function(button, e, eOpts) {
+        var controller = this,
+            server = 'http://' + window.location.host,
+            root = '/~lilianadiaz/tpmanager/',
+            form_data = controller.getUserInfoPanel().getValues(),
+            email = form_data.email;
+
+        if (email === '')
+        {
+                Ext.Msg.alert('Email waren leer', 'Versuche es noch mal !', function() {
+                    controller.getUserInfoPanel().getForm().findField('email').focus();
+                });
+        } else
+        {
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if(reg.test(email) === false)
+            {
+                Ext.Msg.alert('Falsche Emailadresse', 'Versuche es noch mal !', function() {
+                    controller.getUserInfoPanel().getForm().findField('email').focus();
+                });
+            } else
+            {
+                Ext.Ajax.request({
+                    url : server + root + 'user/save' ,
+                    params : this.getUserInfoPanel().getValues(true, false),
+                    method: 'post',
+                    headers: {
+                        user_id: localStorage.getItem("user_id")
+                    },
+                    success: function ( result, request ) {
+                        var data = Ext.decode(result.responseText);
+                        if (data.success) {
+                            var user_data = data.entries[0];
+
+                            localStorage.setItem("email", user_data.email ? user_data.email : '');
+                            localStorage.setItem("language", user_data.language ? user_data.language : '');
+                            localStorage.setItem("first_name", user_data.first_name ? user_data.first_name : '');
+                            localStorage.setItem("last_name", user_data.last_name ? user_data.last_name : '');
+                            localStorage.setItem("country", user_data.country ? user_data.country : '');
+                            localStorage.setItem("zipcode", user_data.zipcode ? user_data.zipcode : '');
+                            localStorage.setItem("city", user_data.city ? user_data.city : '');
+                            localStorage.setItem("street", user_data.street ? user_data.street : '');
+                            localStorage.setItem("company_name", user_data.company_name ? user_data.company_name : '');
+                            localStorage.setItem("phone_nr", user_data.phone_nr ? user_data.phone_nr : '');
+                            localStorage.setItem("website", user_data.website ? user_data.website : '');
+
+                            Ext.ux.SessionManager.loadLastUser();
+
+                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);
+
+                            if (user_data.language != Ext.ux.LanguageManager.lang) {
+                                Ext.Msg.alert ('', Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE,  function() {
+                                    //LanistaTrainer.app.fireEvent('changeLanguage', (user_data.language == 'DE' ? 0 : user_data.language == 'EN' ? 1 : 2));
+                                    LanistaTrainer.app.fireEvent('changeLanguage', user_data.language );
+                                });
+                            }
+                        } else {
+                            if (data.error == 510) {
+                                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, function () {
+                                    controller.getUserInfoPanel().down( 'field[name=email]' ).reset();
+                                    controller.getUserInfoPanel().down( 'field[name=email]' ).focus();
+                                });
+                            } else {
+                                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, Ext.emptyFn);
+                            }
+                        }
+                        controller.showCommands();
+                    },
+                    failure: function (result, request) {
+                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
+                        controller.showCommands();
+                    }
+                });
+            }
+        }
+
+    },
+
+    onShowUserInfoPanel: function(callback) {
         var controller = this;
         var userInfoPanel	= controller.getUserInfoPanel();
         var mainStage	= controller.getMainStage();
@@ -115,36 +202,6 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
         });
     },
 
-    showCommands: function(callback) {
-
-        var controller = this;
-
-        controller.getRightCommandPanel().items.each(function (item) {
-            item.hide();
-        });
-
-        var fieldset = controller.getUser_personalData();
-        fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PERSON_DATA);
-        fieldset = controller.getUser_companyContacts();
-        fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.ADDRESS);
-
-
-        //Adding bottoms into RightPanel
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.LOGGOUT.toUpperCase(),
-                itemId: 'logoutButton',
-                userAlias: 'showUserInfoPanelButton',
-                glyph: '115@Lanista Icons' //s
-            })
-        );
-
-    },
-
-    loadData: function() {
-
-    },
-
     onShowUserInfoHeaderUpdate: function() {
         var controller = this;
         if (this.getUserInfoPanel() && !this.getUserInfoPanel().isHidden()) {
@@ -155,6 +212,78 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
         }
     },
 
+    showCommands: function(callback) {
+
+        var controller = this;
+
+        controller.getRightCommandPanel().items.each(function (item) {
+            item.hide();
+        });
+
+        //Adding bottoms into RightPanel
+        this.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.LOGGOUT.toUpperCase(),
+                itemId: 'logoutButton',
+                userAlias: 'logoutButton',
+                glyph: '115@Lanista Icons' //s
+            })
+        );
+
+        this.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.LICENSE.toUpperCase(),
+                itemId: 'licenseButton',
+                userAlias: 'licenseButton',
+                glyph: '65@Lanista Icons' //A
+            })
+        );
+
+    },
+
+    loadData: function() {
+        var controller = this,
+            fieldset = controller.getUser_personalData();
+
+        fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PERSON_DATA);
+        fieldset = controller.getUser_companyContacts();
+        fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.ADDRESS);
+        fieldset = controller.getUser_LicenseData();
+        fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.LICENSE_DATA);
+
+        controller.getUserInfoPanel().getForm().findField('email').focus();
+    },
+
+    loadCurrentUser: function(callBack) {
+        Ext.ux.SessionManager.loadLastUser();
+
+        var user = Ext.ux.SessionManager.getUser(),
+            controller = this;
+
+        if (user)
+        {
+            controller.getUserInfoPanel().getForm().setValues(
+                {
+                    email:					user.email,
+                    first_name:				user.first_name,
+                    last_name:				user.last_name,
+                    language:				user.language,
+                    company_name:			user.company_name,
+                    phone_nr:				user.phone_nr,
+                    website:				user.website,
+                    country:				user.country,
+                    zipcode:				user.zipcode,
+                    street:					user.street,
+                    city:					user.city,
+                    user_licenseStatus:		(user.status == 1 ? Ext.ux.LanguageManager.TranslationArray.ACTIVE : Ext.ux.LanguageManager.TranslationArray.INACTIVE),
+                    user_licenseValidity:	user.expiration_date,
+                    id:						user.id
+                }
+            );
+        }
+        if (callBack instanceof Function) callBack();
+    },
+
     init: function(application) {
         this.control({
             "viewport #showUserInfoPanelButton": {
@@ -162,6 +291,12 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
             },
             "viewport #closeUserInfoPanelButton": {
                 click: this.onCloseUserInfoPanelButton
+            },
+            "viewport #cancelSettingsButton": {
+                click: this.onCancelSettingsButtonClick
+            },
+            "viewport #saveSettingsButton": {
+                click: this.onSaveSettingsButtonClick
             }
         });
 

@@ -73,6 +73,43 @@ Ext.define('LanistaTrainer.controller.MainController', {
         }, 1000);
     },
 
+    onShowSavePanel: function(saveButtonId, cancelButtonId) {
+        var controller = this;
+        if ( !this.getMainStage().down ( '#' + saveButtonId ) ) {
+            controller.getRightCommandPanel().items.each(function (item) {
+                item.hide();
+            });
+
+            var saveButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+                //iconCls: 'lanista-sync',
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE,
+                itemId: saveButtonId,
+                glyph: '100@Lanista Icons' //d
+            });
+            var cancelButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+                //iconCls: 'lanista-remove',
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_CANCEL,
+                itemId: cancelButtonId,
+                glyph: '65@Lanista Icons' //A
+            });
+
+            controller.getRightCommandPanel().add(
+                saveButton
+            );
+            controller.getRightCommandPanel().add(
+                cancelButton
+            );
+        }
+
+        /*
+        cls: [
+                    'lanista-command-buton',
+                    'lanista-command-buton-green'
+                ],
+
+        */
+    },
+
     init: function(application) {
         application.on({
             hideStage: {
@@ -81,6 +118,10 @@ Ext.define('LanistaTrainer.controller.MainController', {
             },
             showStage: {
                 fn: this.onShowStage,
+                scope: this
+            },
+            showSavePanel: {
+                fn: this.onShowSavePanel,
                 scope: this
             }
         });

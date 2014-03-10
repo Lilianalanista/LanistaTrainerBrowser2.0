@@ -92,8 +92,8 @@ Ext.define('LanistaTrainer.view.LoginPanel', {
                                         {
                                             xtype: 'textfield',
                                             anchor: '100%',
-                                            id: 'email',
-                                            name: 'email',
+                                            id: 'user_email',
+                                            name: 'user_email',
                                             tabIndex: 1,
                                             enableKeyEvents: true,
                                             listeners: {
@@ -138,12 +138,12 @@ Ext.define('LanistaTrainer.view.LoginPanel', {
 
     onLoginPanelAfterRender: function(component, eOpts) {
 
-        document.getElementsByName("email")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_EMAIL;
+        document.getElementsByName("user_email")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_EMAIL;
         document.getElementsByName("password")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD;
         component.down("#loginTitle").setText(Ext.ux.LanguageManager.TranslationArray.FORM_TITLE_LOGIN, false);
         component.down("#infologinButton").setText(Ext.ux.LanguageManager.TranslationArray.BUTTON_PASSWORD_QUESTION, false);
 
-        document.getElementsByName("email")[0].focus();
+        document.getElementsByName("user_email")[0].focus();
 
 
 

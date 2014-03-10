@@ -383,19 +383,35 @@ $base-gradient: "none";
     margin-left: auto;
     margin-right: auto;
     margin-top: 25px;
-    width: 1020px!important;
+    width: 800px!important;
 }
 
 .lanista-user-settings-field {
-    width: 900px!important;
+    width: 800px!important;
 }
 
 .lanista-user-fieldset .x-fieldset-body {
-    width: 900px!important;
-    margin-left: 80px;
+    width: 820px!important;
+    margin-left: 40px;
 }
 
+.lanista-user-info-panel .x-fit-panel .x-panel-default {
+    padding-top: 120px!important;
+    top:0px!important;
+} 
 
+.lanista-user-info-panel .x-panel-body-default {
+    overflow: auto!important;
+    width: 880px!important;
+    height: 418px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+}
+
+.x-boundlist-item img {
+    padding-left: 10px;
+    padding-right: 20px;
+}
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

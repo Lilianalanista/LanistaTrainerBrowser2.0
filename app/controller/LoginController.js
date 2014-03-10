@@ -101,9 +101,9 @@ Ext.define('LanistaTrainer.controller.LoginController', {
                 form.getForm().findField(fieldfocus).focus();
             else
             {
-                form.getForm().findField('email').reset();
+                form.getForm().findField('user_email').reset();
                 form.getForm().findField('password').reset();
-                form.getForm().findField('email').focus();
+                form.getForm().findField('user_email').focus();
             }
 
 

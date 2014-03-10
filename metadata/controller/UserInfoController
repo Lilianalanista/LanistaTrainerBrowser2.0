@@ -106,6 +106,19 @@
             "designerId": "53141497-3e3d-4eb0-851c-2cf454ace112"
         },
         {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "user_LicenseData",
+                "selector": "#user_LicenseData"
+            },
+            "designerId": "3e541cfb-0fb5-45cd-afc8-37260e1e1459"
+        },
+        {
             "type": "applicationaction",
             "reference": {
                 "name": "items",
@@ -118,8 +131,6 @@
                 ],
                 "fn": "onShowUserInfoPanel",
                 "implHandler": [
-                    "//Ext.getStore('UserInfoStore').load();",
-                    "",
                     "var controller = this;",
                     "var userInfoPanel\t= controller.getUserInfoPanel();",
                     "var mainStage\t= controller.getMainStage();",
@@ -188,6 +199,29 @@
             "designerId": "cb24653f-86d5-4f4d-9485-bcc639308b49"
         },
         {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowUserInfoHeaderUpdate",
+                "implHandler": [
+                    "var controller = this;",
+                    "if (this.getUserInfoPanel() && !this.getUserInfoPanel().isHidden()) {",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: '',",
+                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()",
+                    "    });",
+                    "}"
+                ],
+                "name": "showUserInfoHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "712b4263-1c96-4059-8896-2a2528b100cc"
+        },
+        {
             "type": "basicfunction",
             "reference": {
                 "name": "items",
@@ -207,19 +241,22 @@
                     "    item.hide();",
                     "});",
                     "",
-                    "var fieldset = controller.getUser_personalData();",
-                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PERSON_DATA);",
-                    "fieldset = controller.getUser_companyContacts();",
-                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.ADDRESS);",
-                    "",
-                    "",
                     "//Adding bottoms into RightPanel",
                     "this.getRightCommandPanel().add(",
                     "    Ext.create('LanistaTrainer.view.LanistaButton', {",
                     "        text: Ext.ux.LanguageManager.TranslationArray.LOGGOUT.toUpperCase(),",
                     "        itemId: 'logoutButton',",
-                    "        userAlias: 'showUserInfoPanelButton',",
+                    "        userAlias: 'logoutButton',",
                     "        glyph: '115@Lanista Icons' //s",
+                    "    })",
+                    ");",
+                    "",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.LICENSE.toUpperCase(),",
+                    "        itemId: 'licenseButton',",
+                    "        userAlias: 'licenseButton',",
+                    "        glyph: '65@Lanista Icons' //A",
                     "    })",
                     ");",
                     ""
@@ -280,33 +317,178 @@
             "userConfig": {
                 "fn": "loadData",
                 "implHandler": [
-                    ""
+                    "var controller = this,",
+                    "    fieldset = controller.getUser_personalData();",
+                    "",
+                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PERSON_DATA);",
+                    "fieldset = controller.getUser_companyContacts();",
+                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.ADDRESS);",
+                    "fieldset = controller.getUser_LicenseData();",
+                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.LICENSE_DATA);",
+                    "",
+                    "controller.getUserInfoPanel().getForm().findField('email').focus();"
                 ]
             },
             "designerId": "ab0dfe42-5361-4638-9066-6c398b1dafe4"
         },
         {
-            "type": "applicationaction",
+            "type": "basicfunction",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onShowUserInfoHeaderUpdate",
+                "designer|params": [
+                    "callBack"
+                ],
+                "fn": "loadCurrentUser",
+                "implHandler": [
+                    "Ext.ux.SessionManager.loadLastUser();",
+                    "",
+                    "var user = Ext.ux.SessionManager.getUser(),",
+                    "    controller = this;",
+                    "",
+                    "if (user)",
+                    "{",
+                    "    controller.getUserInfoPanel().getForm().setValues(",
+                    "        {",
+                    "            email:\t\t\t\t\tuser.email,",
+                    "            first_name:\t\t\t\tuser.first_name,",
+                    "            last_name:\t\t\t\tuser.last_name,",
+                    "            language:\t\t\t\tuser.language,",
+                    "            company_name:\t\t\tuser.company_name,",
+                    "            phone_nr:\t\t\t\tuser.phone_nr,",
+                    "            website:\t\t\t\tuser.website,",
+                    "            country:\t\t\t\tuser.country,",
+                    "            zipcode:\t\t\t\tuser.zipcode,",
+                    "            street:\t\t\t\t\tuser.street,",
+                    "            city:\t\t\t\t\tuser.city,",
+                    "            user_licenseStatus:\t\t(user.status == 1 ? Ext.ux.LanguageManager.TranslationArray.ACTIVE : Ext.ux.LanguageManager.TranslationArray.INACTIVE),",
+                    "            user_licenseValidity:\tuser.expiration_date,",
+                    "            id:\t\t\t\t\t\tuser.id",
+                    "        }",
+                    "    );",
+                    "}",
+                    "if (callBack instanceof Function) callBack();"
+                ]
+            },
+            "designerId": "e7a6f91d-a73f-4596-84b8-86942c0d3fdd"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #cancelSettingsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCancelSettingsButtonClick",
                 "implHandler": [
                     "var controller = this;",
-                    "if (this.getUserInfoPanel() && !this.getUserInfoPanel().isHidden()) {",
-                    "    controller.getMainViewport().down(\"#header\").update({",
-                    "       info: '',",
-                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()",
-                    "    });",
-                    "}"
+                    "",
+                    "controller.loadCurrentUser();",
+                    "controller.showCommands();"
                 ],
-                "name": "showUserInfoHeaderUpdate",
-                "scope": "this"
+                "name": "click",
+                "scope": "me"
             },
-            "designerId": "712b4263-1c96-4059-8896-2a2528b100cc"
+            "designerId": "527c11a9-2411-43a5-a29e-26330a5a36c7"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #saveSettingsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onSaveSettingsButtonClick",
+                "implHandler": [
+                    "var controller = this,",
+                    "    server = 'http://' + window.location.host,",
+                    "    root = '/~lilianadiaz/tpmanager/',",
+                    "    form_data = controller.getUserInfoPanel().getValues(),",
+                    "    email = form_data.email;",
+                    "",
+                    "if (email === '') ",
+                    "{",
+                    "        Ext.Msg.alert('Email waren leer', 'Versuche es noch mal !', function() {",
+                    "            controller.getUserInfoPanel().getForm().findField('email').focus();",
+                    "        });",
+                    "} else ",
+                    "{",
+                    "    var reg = /^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$/;",
+                    "    if(reg.test(email) === false) ",
+                    "    {",
+                    "        Ext.Msg.alert('Falsche Emailadresse', 'Versuche es noch mal !', function() {",
+                    "            controller.getUserInfoPanel().getForm().findField('email').focus();",
+                    "        });",
+                    "    } else ",
+                    "    {",
+                    "        Ext.Ajax.request({",
+                    "            url : server + root + 'user/save' ,",
+                    "            params : this.getUserInfoPanel().getValues(true, false),",
+                    "            method: 'post',",
+                    "            headers: {",
+                    "                user_id: localStorage.getItem(\"user_id\")",
+                    "            },",
+                    "            success: function ( result, request ) {",
+                    "                var data = Ext.decode(result.responseText);",
+                    "                if (data.success) {",
+                    "                    var user_data = data.entries[0];",
+                    "                    ",
+                    "                    localStorage.setItem(\"email\", user_data.email ? user_data.email : '');",
+                    "                    localStorage.setItem(\"language\", user_data.language ? user_data.language : '');",
+                    "                    localStorage.setItem(\"first_name\", user_data.first_name ? user_data.first_name : '');",
+                    "                    localStorage.setItem(\"last_name\", user_data.last_name ? user_data.last_name : '');",
+                    "                    localStorage.setItem(\"country\", user_data.country ? user_data.country : '');",
+                    "                    localStorage.setItem(\"zipcode\", user_data.zipcode ? user_data.zipcode : '');",
+                    "                    localStorage.setItem(\"city\", user_data.city ? user_data.city : '');",
+                    "                    localStorage.setItem(\"street\", user_data.street ? user_data.street : '');",
+                    "                    localStorage.setItem(\"company_name\", user_data.company_name ? user_data.company_name : '');",
+                    "                    localStorage.setItem(\"phone_nr\", user_data.phone_nr ? user_data.phone_nr : '');",
+                    "                    localStorage.setItem(\"website\", user_data.website ? user_data.website : '');",
+                    "                    ",
+                    "                    Ext.ux.SessionManager.loadLastUser();",
+                    "                    ",
+                    "                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);",
+                    "                    ",
+                    "                    if (user_data.language != Ext.ux.LanguageManager.lang) {",
+                    "                        Ext.Msg.alert ('', Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE,  function() {",
+                    "                            //LanistaTrainer.app.fireEvent('changeLanguage', (user_data.language == 'DE' ? 0 : user_data.language == 'EN' ? 1 : 2));",
+                    "                            LanistaTrainer.app.fireEvent('changeLanguage', user_data.language );",
+                    "                        });",
+                    "                    }",
+                    "                } else {",
+                    "                    if (data.error == 510) {",
+                    "                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, function () {",
+                    "                            controller.getUserInfoPanel().down( 'field[name=email]' ).reset();",
+                    "                            controller.getUserInfoPanel().down( 'field[name=email]' ).focus();",
+                    "                        });",
+                    "                    } else {",
+                    "                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, Ext.emptyFn);",
+                    "                    }",
+                    "                }",
+                    "                controller.showCommands();",
+                    "            },",
+                    "            failure: function (result, request) {",
+                    "                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);",
+                    "                controller.showCommands();",
+                    "            }",
+                    "        });",
+                    "    }",
+                    "}",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "e139a946-e748-4fd4-8493-7e891f8a9bb9"
         }
     ]
 }
