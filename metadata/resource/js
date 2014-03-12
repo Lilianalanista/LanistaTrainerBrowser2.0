@@ -7,7 +7,7 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "js",
-        "url": "resources/js/Stopwatch.js"
+        "url": "resources/js/stopwatch.js"
     },
     "designerId": "16fb325b-0587-48a9-a9a1-6acfc7392039"
 }

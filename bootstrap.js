@@ -8,6 +8,7 @@ Ext.Loader.addClassPathMappings({
   "Ext": "ext/src",
   "Ext.Msg": "ext/src/window/MessageBox.js",
   "Ext.rtl.EventObjectImpl": "ext/src/rtl/EventObject.js",
+  "Ext.ux.ConfigManager": "lib/ConfigManager.js",
   "Ext.ux.LanguageManager": "lib/LanguageManager.js",
   "Ext.ux.SessionManager": "lib/SessionManager.js",
   "LanistaTrainer": "app"
@@ -752,6 +753,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.TextMetrics": [],
   "Ext.ux.BoxReorderer": [],
   "Ext.ux.CellDragDrop": [],
+  "Ext.ux.ConfigManager": [],
   "Ext.ux.DataTip": [],
   "Ext.ux.DataView.Animated": [],
   "Ext.ux.DataView.DragSelector": [],
@@ -837,6 +839,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.controller.DashBoardController": [],
   "LanistaTrainer.controller.ExerciseController": [],
   "LanistaTrainer.controller.HelpController": [],
+  "LanistaTrainer.controller.ImageController": [],
   "LanistaTrainer.controller.LanguagesController": [],
   "LanistaTrainer.controller.LoginController": [],
   "LanistaTrainer.controller.Main": [],
@@ -847,18 +850,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.controller.ToolsController": [],
   "LanistaTrainer.controller.UserInfoController": [],
   "LanistaTrainer.model.Customer": [],
-  "LanistaTrainer.model.ExerciseFilterIIModel": [],
-  "LanistaTrainer.model.ExerciseFilterModel": [],
   "LanistaTrainer.model.ExerciseModel": [],
   "LanistaTrainer.store.CustomerStore": [],
-  "LanistaTrainer.store.ExerciseFilterII": [],
-  "LanistaTrainer.store.ExerciseFilters": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
-  "LanistaTrainer.view.CustomerPanel": [],
+  "LanistaTrainer.view.CustomersPanel": [],
   "LanistaTrainer.view.DashBoardPanel": [],
   "LanistaTrainer.view.ExercisesPanel": [],
   "LanistaTrainer.view.HelpPanel": [],
+  "LanistaTrainer.view.ImagePanel": [],
   "LanistaTrainer.view.LanistaButton": [],
   "LanistaTrainer.view.LoginPanel": [],
   "LanistaTrainer.view.Main": [],
@@ -1726,6 +1726,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.CellDragDrop": [
     "plugin.celldragdrop"
   ],
+  "Ext.ux.ConfigManager": [],
   "Ext.ux.DataTip": [
     "plugin.datatip"
   ],
@@ -1873,6 +1874,9 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.controller.HelpController": [
     "controller.helpController"
   ],
+  "LanistaTrainer.controller.ImageController": [
+    "controller.imageController"
+  ],
   "LanistaTrainer.controller.LanguagesController": [
     "controller.languagesController"
   ],
@@ -1894,19 +1898,15 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.controller.ToolsController": [],
   "LanistaTrainer.controller.UserInfoController": [
-    "controller.userinfocontroller"
+    "controller.userInfoController"
   ],
   "LanistaTrainer.model.Customer": [],
-  "LanistaTrainer.model.ExerciseFilterIIModel": [],
-  "LanistaTrainer.model.ExerciseFilterModel": [],
   "LanistaTrainer.model.ExerciseModel": [],
   "LanistaTrainer.store.CustomerStore": [],
-  "LanistaTrainer.store.ExerciseFilterII": [],
-  "LanistaTrainer.store.ExerciseFilters": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
-  "LanistaTrainer.view.CustomerPanel": [
-    "widget.customerpanel"
+  "LanistaTrainer.view.CustomersPanel": [
+    "widget.customersPanel"
   ],
   "LanistaTrainer.view.DashBoardPanel": [
     "widget.dashBoardPanel"
@@ -1916,6 +1916,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.HelpPanel": [
     "widget.helpPanel"
+  ],
+  "LanistaTrainer.view.ImagePanel": [
+    "widget.imagePanel"
   ],
   "LanistaTrainer.view.LanistaButton": [],
   "LanistaTrainer.view.LoginPanel": [
@@ -1937,7 +1940,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.templatesPanel"
   ],
   "LanistaTrainer.view.UserInfoPanel": [
-    "widget.Userinfopanel"
+    "widget.userInfoPanel"
   ],
   "LanistaTrainer.view.Viewport": [],
   "LanistaTrainer.view.rightView": []

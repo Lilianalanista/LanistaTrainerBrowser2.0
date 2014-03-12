@@ -19,24 +19,22 @@
             "HelpController",
             "DashBoardController",
             "CustomerController",
-            "UserInfoController"
+            "UserInfoController",
+            "ImageController"
         ],
         "models": [
             "ExerciseModel",
-            "ExerciseFilterModel",
-            "ExerciseFilterIIModel",
             "Customer"
         ],
         "name": "LanistaTrainer",
         "requires": [
             "Ext.ux.LanguageManager",
-            "Ext.ux.SessionManager"
+            "Ext.ux.SessionManager",
+            "Ext.ux.ConfigManager"
         ],
         "stores": [
             "ExerciseInitialStore",
             "ExerciseStore",
-            "ExerciseFilters",
-            "ExerciseFilterII",
             "CustomerStore"
         ],
         "views": [
@@ -51,7 +49,8 @@
             "HelpPanel",
             "DashBoardPanel",
             "UserInfoPanel",
-            "CustomersPanel"
+            "CustomersPanel",
+            "ImagePanel"
         ]
     },
     "designerId": "application",
@@ -192,7 +191,7 @@
                     "if (userId)",
                     "{",
                     "    Ext.getStore('CustomerStore').setProxy(new Ext.data.proxy.Ajax({",
-                    "        url: '/~lilianadiaz/tpmanager/user/json',",
+                    "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/json',",
                     "        model: 'Customer',",
                     "        noCache: false,",
                     "        reader: {",

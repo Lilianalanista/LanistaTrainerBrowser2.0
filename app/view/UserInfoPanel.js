@@ -228,10 +228,10 @@ Ext.define('LanistaTrainer.view.UserInfoPanel', {
 
     processLanguage: function(config) {
         var server =	'http://' + window.location.host,
-            root =		'/~lilianadiaz/LanistaTrainerBrowser2.0/';
+            root =		Ext.ux.ConfigManager.getRoot() + '/LanistaTrainerBrowser2.0/';
 
         config.tpl = Ext.create("Ext.XTemplate",
-                                '<tpl for="."><div class="x-boundlist-item"><img src=' + server + root + 'resources/images/{image} /> {LanguageName}</div></tpl>');
+                                '<tpl for="."><div class="x-boundlist-item"><img src=' + server + root + 'resources/images/flags/{image} /> {LanguageName}</div></tpl>');
 
         config.displayTpl = Ext.create("Ext.XTemplate",
                                        '<tpl for=".">{LanguageName}</tpl>');
@@ -243,7 +243,7 @@ Ext.define('LanistaTrainer.view.UserInfoPanel', {
 
     processCountry: function(config) {
         var server =	'http://' + window.location.host,
-            root =		'/~lilianadiaz/LanistaTrainerBrowser2.0/';
+            root =		Ext.ux.ConfigManager.getRoot() + '/LanistaTrainerBrowser2.0/';
 
         config.tpl = Ext.create("Ext.XTemplate",
                                 '<tpl for="."><div class="x-boundlist-item"><img src=' + server + root + 'resources/images/flags/{value}.png />{text}</div></tpl>');
@@ -269,7 +269,7 @@ Ext.define('LanistaTrainer.view.UserInfoPanel', {
                              data : [
                                         {"image": "es.png", "LanguageName":"Español", "IdLanguage":"ES"},
                                         {"image": "de.png", "LanguageName":"Deutsch", "IdLanguage":"DE"},
-                                        {"image": "en.png", "LanguageName":"English", "IdLanguage":"EN"}
+                                        {"image": "gb.png", "LanguageName":"English", "IdLanguage":"EN"}
                                      ]
              }),
 

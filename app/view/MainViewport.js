@@ -139,42 +139,104 @@ Ext.define('LanistaTrainer.view.MainViewport', {
 
         el = component.el;
         el.on(
-            'click',
-            function(e,t) {
-                LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {
-                    el.addCls('item-not-clicked');
-                    LanistaTrainer.app.fireEvent('showUserInfoPanel');
-                });
+            'click', function(e,t) {
+                                LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {
+                                    if ( t.id === 'showPersonalDataButton' )
+                                    {
+                                        el.addCls('item-not-clicked');
+                                        LanistaTrainer.app.fireEvent('showUserInfoPanel');
+                                    }
+                                });
             },
-            this,
-            {
-                delegate: '.show-info-customer'
-            }
-        );
-
+            this, {delegate: '.show-info-customer'});
         el.on(
-            'mouseover',
-            function(e,t) {
-                el.removeCls('item-not-clicked');
-                el.addCls('item-clicked');
-            },
-            this,
-            {
-                delegate: '.show-info-customer'
-            }
-        );
-
+            'mouseover', function(e,t) {
+                                if ( t.id === 'showPersonalDataButton' )
+                                {
+                                    el.removeCls('item-not-clicked');
+                                    el.addCls('item-clicked');
+                                }
+                            },
+            this,{ delegate: '.show-info-customer'});
         el.on(
-            'mouseout',
-            function(e,t) {
-                el.removeCls('item-clicked');
-                el.addCls('item-not-clicked');
-            },
-            this,
-            {
-                delegate: '.show-info-customer'
-            }
-        );
+            'mouseout', function(e,t) {
+                                if ( t.id === 'showPersonalDataButton' )
+                                {
+                                    el.removeCls('item-clicked');
+                                    el.addCls('item-not-clicked');
+                                }
+                            },
+            this,{delegate: '.show-info-customer'});
+
+        //***************************************************************
+
+        el.on('click',function(e,t) {
+                                if ( t.id === 'changeUserPhoto' )
+                                {
+                                    var image = Ext.create('Ext.Img', {
+                                                    src: Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_photo.jpg',
+                                                    renderTo: Ext.getBody(),
+                                                    hidden: true
+                                                });
+
+                                    LanistaTrainer.app.fireEvent('showImagePanel', image, LanistaTrainer.app.activePanel,'/tpmanager/user/uploadphoto',  {type: 'photo'}, function() {
+                                    //LanistaTrainer.app.fireEvent('showImagePanel', image, 'UserInfoController','/tpmanager/user/uploadphoto',  {type: 'photo'}, function() {
+
+                                    });
+                                }
+        },this,{delegate: '.lansita-header-customer-photo'});
+        el.on(
+            'mouseover', function(e,t) {
+                                if ( t.id === 'changeUserPhoto' )
+                                {
+                                    el.removeCls('item-not-clicked');
+                                    el.addCls('item-clicked');
+                                }
+                            },
+            this,{ delegate: '.lansita-header-customer-photo'});
+        el.on(
+            'mouseout', function(e,t) {
+                                if ( t.id === 'changeUserPhoto' )
+                                {
+                                    el.removeCls('item-clicked');
+                                    el.addCls('item-not-clicked');
+                                }
+                            },
+            this,{delegate: '.lansita-header-customer-photo'});
+
+        //***************************************************************
+
+        el.on('click',function(e,t) {
+                                if ( t.id === 'changeUserLogo' )
+                                {
+                                    var image = Ext.create('Ext.Img', {
+                                                    src: Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg'
+                                                });
+                                    LanistaTrainer.app.fireEvent('showImagePanel', image, LanistaTrainer.app.previousPanel,'/tpmanager/user/uploadphoto',  {type: 'logo'}, function() {
+
+                                    });
+                                }
+        },this,{delegate: '.lansita-header-customer-logo'});
+        el.on(
+            'mouseover', function(e,t) {
+                                if ( t.id === 'changeUserLogo' )
+                                {
+                                    el.removeCls('item-not-clicked');
+                                    el.addCls('item-clicked');
+                                }
+                            },
+            this,{ delegate: '.lansita-header-customer-logo'});
+        el.on(
+            'mouseout', function(e,t) {
+                                if ( t.id === 'changeUserLogo' )
+                                {
+                                    el.removeCls('item-clicked');
+                                    el.addCls('item-not-clicked');
+                                }
+                            },
+            this,{delegate: '.lansita-header-customer-logo'});
+
+
     }
 
 });

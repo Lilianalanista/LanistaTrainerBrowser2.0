@@ -11,7 +11,7 @@
         "id": "rightView",
         "itemId": "rightView",
         "itemSelector": "div",
-        "store": "ExerciseFilterII",
+        "store": null,
         "width": 400
     },
     "designerId": "cb771e34-01f3-4053-9728-66bbe12ab562",

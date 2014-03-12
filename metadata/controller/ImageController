@@ -1,0 +1,690 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "imageController",
+        "designer|userClassName": "ImageController",
+        "id": "imageController"
+    },
+    "designerId": "fff9d013-1879-46af-8956-13d275ab0284",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "8442db92-164d-42e9-84b5-a996bedcaec6"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "9b986e37-5624-4250-985f-9b483fb4e2ba"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "c20c11a3-37e2-4903-bed4-fd18b7b39eb5"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "47d6b06c-cc28-4f25-96a7-924b255949f5"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "imagePanel",
+                "selector": "#imagePanel",
+                "xtype": "imagePanel"
+            },
+            "designerId": "4fb5f8e4-1c39-42f9-9737-8db51f3a7582"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "imageField",
+                    "caller",
+                    "url",
+                    "url_params",
+                    "callback"
+                ],
+                "fn": "onShowImagePanel",
+                "implHandler": [
+                    "",
+                    "var controller = this,",
+                    "    mainStage\t= controller.getMainStage();",
+                    "",
+                    "LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;",
+                    "LanistaTrainer.app.activePanel = \"imagePanel\";",
+                    "",
+                    "this.image\t\t\t\t= imageField;",
+                    "this.callerController\t= caller;",
+                    "this.url\t\t\t\t= url;",
+                    "this.url_params\t\t\t= url_params;",
+                    "",
+                    "var width\t= imageField.getWidth(),",
+                    "    height\t= imageField.getHeight(),",
+                    "    src\t\t= imageField.src;",
+                    "",
+                    "LanistaTrainer.app.fireEvent('close' + caller, function() {",
+                    "        mainStage.add(controller.getImagePanel());",
+                    "        LanistaTrainer.app.setStandardButtons('closeImagePanelButton');",
+                    "",
+                    "        var img = null;",
+                    "",
+                    "        console.log(\"IMAGE WIDTH: \" + width);",
+                    "        console.log(\"IMAGE HEIGHT: \" + height);",
+                    "",
+                    "        img = controller.setImage(src, height, width);",
+                    "",
+                    "    /*",
+                    "        var newButton = Ext.create('Ext.field.File', {",
+                    "            iconCls: 'lanista-upload',",
+                    "            label: Ext.ux.LanguageManager.TranslationArray.BUTTON_UPLOAD,",
+                    "            itemId: 'newImageButton',",
+                    "            lable: Ext.ux.LanguageManager.TranslationArray.BUTTON_UPLOAD,",
+                    "            accept: 'image',",
+                    "            cls: [",
+                    "                'image-upload-button',",
+                    "                'lanista-command-buton'",
+                    "            ]",
+                    "        });",
+                    "    */",
+                    "        var newButton = Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "            //iconCls: 'lanista-upload',",
+                    "            glyph: '67@Lanista Icons', //C",
+                    "            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_UPLOAD,",
+                    "            itemId: 'uploadImageButton'",
+                    "        });",
+                    "        var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "            //iconCls: 'lanista-crop',",
+                    "            glyph: '69@Lanista Icons', //E",
+                    "            text: Ext.ux.LanguageManager.TranslationArray.CHANGE,",
+                    "            itemId: 'cropImageButton'",
+                    "        });",
+                    "        var rotateButton = Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "            //iconCls: 'lanista-undo',",
+                    "            glyph: '70@Lanista Icons', //F",
+                    "            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ROTATE,",
+                    "            itemId: 'rotateImageButton'",
+                    "        });",
+                    "        var removeButton = Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "            //iconCls: 'lanista-trash',",
+                    "            glyph: '117@Lanista Icons', //u",
+                    "            text: Ext.ux.LanguageManager.TranslationArray.DELETE,",
+                    "            itemId: 'deleteImageButton'",
+                    "        });",
+                    "",
+                    "",
+                    "  /*  cls: [",
+                    "                //'lanista-command-buton',",
+                    "                //'lanista-command-buton-red'",
+                    "            ]",
+                    "",
+                    "  */",
+                    "",
+                    "        controller.getRightCommandPanel().add(",
+                    "            newButton",
+                    "        );",
+                    "        controller.getRightCommandPanel().add(",
+                    "            changeButton",
+                    "        );",
+                    "        controller.getRightCommandPanel().add(",
+                    "            rotateButton",
+                    "        );",
+                    "        controller.getRightCommandPanel().add(",
+                    "            removeButton",
+                    "        );",
+                    "",
+                    "        newButton.show();",
+                    "        changeButton.show();",
+                    "        rotateButton.show();",
+                    "        removeButton.show();",
+                    "",
+                    "",
+                    "    console.log('BOTON....');",
+                    "    console.log(newButton);",
+                    "",
+                    "",
+                    "",
+                    "        newButton.el.dom.onchange = function(e) {",
+                    "            if (e.target.files.length > 0) {",
+                    "                Lanista.app.fireEvent(\"uploadFile\", newButton);",
+                    "            }  else {",
+                    "                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_FILE_ERROR_1, Ext.ux.LanguageManager.TranslationArray.MSG_FILE_ERROR_2, Ext.emptyFn);",
+                    "            }",
+                    "        };",
+                    "",
+                    "        LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');",
+                    "        LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "        controller.uploader = new plupload.Uploader({",
+                    "                browse_button: 'uploadImageButton', // this can be an id of a DOM element or the DOM element itself",
+                    "                url: controller.url,",
+                    "                headers: {",
+                    "                    user_id: localStorage.getItem(\"user_id\"),",
+                    "                    exercise_id: controller.url_params.exercise_id,",
+                    "                    order: controller.url_params.order,",
+                    "                    type: controller.url_params.type,",
+                    "                    customer_id: controller.url_params.customer_id",
+                    "                },",
+                    "                resize: {",
+                    "                    width: 400,",
+                    "                    height: 400",
+                    "                },",
+                    "                file_data_name: 'userfile'",
+                    "            });",
+                    "            controller.uploader.init();",
+                    "            controller.uploader.bind('FilesAdded', function(up, files) {",
+                    "                controller.uploader.start();",
+                    "            });",
+                    "            controller.uploader.bind('UploadComplete', function(up, files) {",
+                    "                var src\t\t= imageField.src;",
+                    "                console.log (imageField.src);",
+                    "                controller.getImagePanel().down('#change-image-panel').hide();",
+                    "                controller.getImagePanel().down('#change-image-panel').destroy(true);",
+                    "                $('.jcrop-holder').remove();",
+                    "                controller.setImage(src);",
+                    "            });",
+                    "});",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "showImagePanel",
+                "scope": "this"
+            },
+            "designerId": "9e8304a2-a920-4c5f-87f1-25864312ef95"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseImagePanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "var imagePanel = controller.getImagePanel();",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    imagePanel.hide();",
+                    "    imagePanel.destroy(true);",
+                    "    if (callback instanceof Function) callback();",
+                    "});",
+                    ""
+                ],
+                "name": "closeImagePanel",
+                "scope": "this"
+            },
+            "designerId": "fa965aea-1fc7-4356-b5ed-4b0ea816c830"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowCustomersHeaderUpdate",
+                "implHandler": [
+                    "var controller = this;",
+                    "if (this.getImagePanel() && !this.getImagePanel().isHidden()) {",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: '',",
+                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()",
+                    "    });",
+                    "}"
+                ],
+                "name": "showCustomersHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "4f7d54d7-94d1-4db5-8e2e-247c97da9a84"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "imageField"
+                ],
+                "fn": "onUploadFile",
+                "implHandler": [
+                    "var file = imageField.getFiles()[0],",
+                    "    controller = this;",
+                    "",
+                    "",
+                    "// Create FormData object",
+                    "var http = new XMLHttpRequest();",
+                    "if (http.upload && http.upload.addEventListener) {",
+                    "    // Uploading progress handler",
+                    "    http.upload.onprogress = function(e) {",
+                    "        if (e.lengthComputable) {",
+                    "            var percentComplete = (e.loaded / e.total) * 100;",
+                    "            console.log( percentComplete.toFixed(0) + '%' );",
+                    "        }",
+                    "    };",
+                    "    // Response handler",
+                    "    http.onreadystatechange = function (e) {",
+                    "        if (this.readyState == 4) {",
+                    "            if(this.status == 200) {",
+                    "                var response = Ext.decode(this.responseText, true);",
+                    "                if (response && response.success) {",
+                    "                    // Success",
+                    "                    console.log(\"DOWNLOAD OK\");",
+                    "                } else if (response && response.message) {",
+                    "                    // Failure",
+                    "                    console.log('FAILURE ' + response.message);",
+                    "                } else {",
+                    "                    // Failure",
+                    "                    console.log('FAILURE Unknown error');",
+                    "                }",
+                    "            } else {",
+                    "                // Failure",
+                    "                console.log('FAILURE ' + this.status + ' ' + this.statusText);",
+                    "            }",
+                    "            LanistaTrainer.app.fireEvent(\"imageLoadingCompleted\", controller.image);",
+                    "        }",
+                    "    };",
+                    "",
+                    "    // Error handler",
+                    "    http.upload.onerror = function(e) {",
+                    "        console.log('FAILURE ' + this.status + ' ' + this.statusText);",
+                    "        LanistaTrainer.app.fireEvent(\"imageLoadingCompleted\", imageField);",
+                    "    };",
+                    "}",
+                    "",
+                    "var form = new FormData();",
+                    "// Add selected file to form",
+                    "form.append('userfile', file);",
+                    "// Send form with file using XMLHttpRequest POST request",
+                    "",
+                    "",
+                    "http.open('POST', controller.url);",
+                    "http.setRequestHeader('user_id', localStorage.getItem(\"user_id\"));",
+                    "",
+                    "for(var prop in controller.url_params) {",
+                    "    if(controller.url_params.hasOwnProperty(prop))",
+                    "        http.setRequestHeader(prop, controller.url_params[prop]);",
+                    "}",
+                    "http.send(form);",
+                    ""
+                ],
+                "name": "uploadFile",
+                "scope": "this"
+            },
+            "designerId": "75e23db3-622c-4a0d-83b7-dc9b81edb90b"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "image"
+                ],
+                "fn": "onImageLoadingComplete",
+                "implHandler": [
+                    "var src\t= image.getSrc();",
+                    "this.getImagePanel().down('#change-image-panel').hide();",
+                    "this.getImagePanel().down('#change-image-panel').destroy(true);",
+                    "$('.jcrop-holder').remove();",
+                    "this.setImage(src);"
+                ],
+                "name": "imageLoadingComplete",
+                "scope": "this"
+            },
+            "designerId": "58b9c8a0-371f-4db0-9068-98ab690c3758"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "",
+                    "var controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "58872082-f233-4f26-b5af-459c614e94b9"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "src",
+                    "width"
+                ],
+                "fn": "setImage",
+                "implHandler": [
+                    "var controller = this,",
+                    "    img = null,",
+                    "    height = 0,",
+                    "    width = 0;",
+                    "",
+                    "console.log(\"CREATING NEW IMG PANEL\");",
+                    "var newImage = new Image();",
+                    "newImage.src = src;",
+                    "",
+                    "$(newImage).load(function () {",
+                    "    width = newImage.width;",
+                    "    height = newImage.height;",
+                    "",
+                    "    if (parseFloat(width) > parseFloat(height)) {",
+                    "        img = Ext.create('Ext.Img',",
+                    "                         {",
+                    "                             src: src,",
+                    "                             height: 500/width*height,",
+                    "                             width: 500,",
+                    "                             centered: true,",
+                    "                             cls: 'lanista-max-with',",
+                    "                             id: 'change-image-panel'",
+                    "                         });",
+                    "        img.scale = 500/width;",
+                    "    } else {",
+                    "        img = Ext.create('Ext.Img',",
+                    "                         {",
+                    "                             src: src,",
+                    "                             height: 500,",
+                    "                             width: 500/height*width,",
+                    "                             centered: true,",
+                    "                             cls: 'lanista-max-height',",
+                    "                             id: 'change-image-panel'",
+                    "                         });",
+                    "        img.scale = 500/height;",
+                    "    }",
+                    "    controller.image = img;",
+                    "    controller.getImagePanel().add( img );",
+                    "",
+                    "    selectionPoint_x = (img.getWidth()/2)-100;",
+                    "    selectionPoint_y = (img.getHeight()/2)-100;",
+                    "",
+                    "    jcrop = $('#change-image-panel').Jcrop(",
+                    "        {",
+                    "            aspectRatio: 1,",
+                    "            setSelect: [ selectionPoint_x, selectionPoint_y , selectionPoint_x + 200, selectionPoint_y + 200],",
+                    "            bgColor: 'white',",
+                    "            onSelect: function updateCoords(c)",
+                    "            {",
+                    "                console.log(\"UPDATE COORDINATES\");",
+                    "                img.x = c.x;",
+                    "                img.y = c.y;",
+                    "                img.w = c.w;",
+                    "                img.h = c.h;",
+                    "            },",
+                    "            onRelease: function updateCoords(c)",
+                    "            {",
+                    "                console.log(\"RELEASE COORDINATES\");",
+                    "                img.x = 0;",
+                    "                img.y = 0;",
+                    "                img.w = 0;",
+                    "                img.h = 0;",
+                    "            }",
+                    "        });",
+                    "    return img;",
+                    "}).error(function() {",
+                    "    width\t= 500;",
+                    "    height\t= 500;",
+                    "",
+                    "    img = Ext.create('Ext.Img',",
+                    "                     {",
+                    "                         src: src,",
+                    "                         height: height,",
+                    "                         width: width,",
+                    "                         centered: true,",
+                    "                         cls: 'lanista-max-with blue-glow',",
+                    "                         id: 'change-image-panel'",
+                    "                     });",
+                    "    img.scale = 1;",
+                    "    controller.image = img;",
+                    "    controller.getImagePanel().add( img );",
+                    "",
+                    "    return img;",
+                    "});",
+                    ""
+                ]
+            },
+            "designerId": "b7504715-673f-412a-af04-9968087a4111"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #rotateImageButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onRotateImageButtonClick",
+                "implHandler": [
+                    "var controller = this;",
+                    "Ext.Ajax.request({",
+                    "    url: controller.url_params.type ? (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \"/tpmanager/user/rotateimage\") : Ext.ux.ConfigManager.getRoot() + \"/tpmanager/exercise/rotateimage\",",
+                    "    method: 'post',",
+                    "    params: {",
+                    "        user_id: LanistaTrainer.app.currentCustomer ? LanistaTrainer.app.currentCustomer.data.remote_id : localStorage.getItem(\"user_id\"),",
+                    "        type: controller.url_params.type,",
+                    "        exercise_id: controller.url_params.exercise_id,",
+                    "        order: controller.url_params.order",
+                    "    },",
+                    "    headers: {",
+                    "        user_id: localStorage.getItem(\"user_id\")",
+                    "",
+                    "    },",
+                    "    failure : function(response){",
+                    "        var data = Ext.decode(response.responseText);",
+                    "        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_ERROR_1, Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_ERROR_2, Ext.emptyFn);",
+                    "        console.log(\"ERROR CROPPING IMAGE\");",
+                    "        console.log(data);",
+                    "    },",
+                    "    success: function(response, opts) {",
+                    "        var data = Ext.decode(response.responseText);",
+                    "        console.log(\"ROTATE SUCCESSFULL\");",
+                    "        var src\t\t= controller.image.src;",
+                    "        controller.getImagePanel().down('#change-image-panel').hide();",
+                    "        controller.getImagePanel().down('#change-image-panel').destroy(true);",
+                    "        $('.jcrop-holder').remove();",
+                    "        controller.setImage(src);",
+                    "    }",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "c60c8bed-de34-4a5f-801a-24b9b167d58f"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeImagePanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseImagePanelButtonClick",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('closeImagePanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "3298e332-3580-47be-9124-ffefaa80fdcc"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #cropImageButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCropImageButtonClick",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent(\"cropImage\");",
+                    "",
+                    "console.log( controller );",
+                    "",
+                    "var params = {",
+                    "    h: controller.image.h,",
+                    "    w: controller.image.w,",
+                    "    x: controller.image.x,",
+                    "    y: controller.image.y,",
+                    "    scale: controller.image.scale,",
+                    "    type: controller.url_params.type",
+                    "};",
+                    "if (params.h === 0 || params.w === 0) {",
+                    "    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_CROP_ERROR_1, Ext.ux.LanguageManager.TranslationArray.MSG_CROP_ERROR_2, Ext.emptyFn);",
+                    "}",
+                    "",
+                    "console.log ( controller.url_params.type );",
+                    "",
+                    "Ext.Ajax.request({",
+                    "    url: controller.url_params.type ? (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \"/tpmanager/user/cropphoto\") : Ext.ux.ConfigManager.getRoot() + \"/tpmanager/exercise/cropphoto\",",
+                    "    method: 'post',",
+                    "    params: {",
+                    "        user_id: LanistaTrainer.app.currentCustomer ? LanistaTrainer.app.currentCustomer.data.remote_id : localStorage.getItem(\"user_id\"),",
+                    "        exercise_id: controller.url_params.exercise_id,",
+                    "        order: controller.url_params.order,",
+                    "        x: (params.x/params.scale),",
+                    "        y: (params.y/params.scale),",
+                    "        h: (params.h/params.scale),",
+                    "        w: (params.w/params.scale),",
+                    "        type: params.type",
+                    "    },",
+                    "    headers: {",
+                    "        user_id: localStorage.getItem(\"user_id\")",
+                    "    },",
+                    "    failure : function(response){",
+                    "        var data = Ext.decode(response.responseText);",
+                    "        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_ERROR_1, Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_ERROR_2, Ext.emptyFn);",
+                    "        console.log(\"ERROR CROPPING IMAGE\");",
+                    "        console.log(data);",
+                    "    },",
+                    "    success: function(response, opts) {",
+                    "        var data = Ext.decode(response.responseText);",
+                    "        console.log(\"CROP SUCCESSFULL\");",
+                    "        var src\t\t= controller.image.src;",
+                    "        controller.getImagePanel().down('#change-image-panel').hide();",
+                    "        controller.getImagePanel().down('#change-image-panel').destroy(true);",
+                    "        $('.jcrop-holder').remove();",
+                    "        controller.setImage(src);",
+                    "    }",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "51d635a9-191b-4e1d-8b4f-49de67afd348"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "8f986184-f8e2-40a5-b636-781fd676275e"
+        }
+    ]
+}

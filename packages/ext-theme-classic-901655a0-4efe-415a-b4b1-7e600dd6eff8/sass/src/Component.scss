@@ -85,6 +85,29 @@ $base-gradient: "none";
 	color: rgba(0,0,0,0.2);
 }
 
+.lansita-header-customer-logo-not-found {
+	width: 100px;
+	height: 100px;
+	float: right;
+	border-radius: 50%;
+	border-style: solid!important;
+	border-width: 4px!important;
+	border-color: #34acfb;
+	margin-top: 20px;
+	margin-left: 10px;
+	background-color: #34acfb;
+}
+
+.lansita-header-customer-logo-not-found:before {
+	font-family: "Lanista Icons";
+	content: "o";
+	text-align: center;
+	color: white;
+	font-size: 60px;
+	line-height: 92px;
+	display: block;
+}
+
 .lansita-header-customer-image-not-found {
 	width: 100px;
 	height: 100px;
@@ -398,7 +421,7 @@ $base-gradient: "none";
 .lanista-user-info-panel .x-fit-panel .x-panel-default {
     padding-top: 120px!important;
     top:0px!important;
-} 
+}
 
 .lanista-user-info-panel .x-panel-body-default {
     overflow: auto!important;
@@ -412,6 +435,41 @@ $base-gradient: "none";
     padding-left: 10px;
     padding-right: 20px;
 }
+
+//Trainer Settings Header
+.trainer-foto-header, .trainer-logo-header {
+    top: 120px!important;
+    position: relative!important;
+    width: 100px!important;
+    float: right!important;
+    font-size: 19px!important;
+    width: 100px!important;
+    text-align: center!important;
+    color: #34acfb!important;
+    font-family: 'Roboto Black'!important;
+    letter-spacing: -1px!important;
+    text-transform: uppercase!important;
+}
+
+.lanista-user-setup.trainer-logo-header {
+    right: -108px!important;
+}
+
+.lanista-user-setup.trainer-foto-header {
+    right: -200px!important;
+}
+
+.lanista-user-setup.lansita-header-customer-image-not-found {
+    position: relative;
+    right: -90px!important;
+}
+
+//Image Panel
+.lanista-image-panel-settings {
+    padding-left: 320px;
+    padding-top: 180px;
+}
+
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

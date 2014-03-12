@@ -1,0 +1,19 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": false,
+        "cls": "lanista-image-panel-settings",
+        "designer|userAlias": "imagePanel",
+        "designer|userClassName": "ImagePanel",
+        "height": 250,
+        "id": "imagePanel",
+        "title": null,
+        "width": 400
+    },
+    "designerId": "975aa94b-a3ff-4b2c-ba02-e0519374848e"
+}

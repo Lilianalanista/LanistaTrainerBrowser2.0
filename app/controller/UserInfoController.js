@@ -78,8 +78,8 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
 
     onSaveSettingsButtonClick: function(button, e, eOpts) {
         var controller = this,
-            server = 'http://' + window.location.host,
-            root = '/~lilianadiaz/tpmanager/',
+            server = Ext.ux.ConfigManager.getServer(),
+            root = Ext.ux.ConfigManager.getRoot() + '/tpmanager/',
             form_data = controller.getUserInfoPanel().getValues(),
             email = form_data.email;
 
@@ -177,6 +177,38 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
         userInfoPanel.show();
 
         LanistaTrainer.app.fireEvent('showUserInfoHeaderUpdate');
+
+        /*
+        $( "#changeUserPhoto" ).click(function( event ) {
+            console.log (event);
+            var image = Ext.create('Ext.Img', {
+                src: '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_photo.jpg'
+            });
+            Lanista.app.fireEvent('showImagePanel', image, 'SetupController','/tpmanager/user/uploadphoto',  {type: 'photo'}, function() {
+
+            });
+            console.log ("MARK");
+            self.getMainView().down("#header").setData({
+                info: '',
+                title: ''
+            });
+        });
+        $( "#changeUserLogo" ).click(function( event ) {
+            console.log (event);
+            var image = Ext.create('Ext.Img', {
+                src: '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg'
+            });
+            Lanista.app.fireEvent('showImagePanel', image, 'SetupController','/tpmanager/user/uploadphoto',  {type: 'logo'}, function() {
+
+            });
+            console.log ("MARK");
+            self.getMainView().down("#header").setData({
+                info: '',
+                title: ''
+            });
+        });
+        */
+
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
@@ -204,9 +236,15 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
 
     onShowUserInfoHeaderUpdate: function() {
         var controller = this;
+            //info = '<div class="lanista-user-setup lansita-header-customer-logo-not-found"><div class="lansita-header-customer-logo" id="changeUserLogo" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-logo-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_LOGO + '</div>  <div class="lanista-user-setup  lansita-header-customer-image-not-found"><div class="lansita-header-customer-logo" id="changeUserPhoto" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_photo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-foto-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_PHOTO + '</div>';
+
+            info = '<div class="lanista-user-setup lansita-header-customer-logo lansita-header-customer-logo-not-found" id="changeUserLogo"><div class="lansita-header-customer-logo lansita-header-customer-logo" id="changeUserLogo" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-logo-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_LOGO + '</div>';
+            info = info + '<div class="lanista-user-setup lansita-header-customer-photo lansita-header-customer-image-not-found" id="changeUserPhoto"><div class="lansita-header-customer-photo lansita-header-customer-logo" id="changeUserPhoto" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_photo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-foto-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_PHOTO + '</div>';
+
+
         if (this.getUserInfoPanel() && !this.getUserInfoPanel().isHidden()) {
             controller.getMainViewport().down("#header").update({
-               info: '',
+               info: info,
                title: '-' + Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()
             });
         }

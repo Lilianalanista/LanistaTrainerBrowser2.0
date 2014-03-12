@@ -25,7 +25,6 @@ Ext.define('LanistaTrainer.view.rightView', {
     itemId: 'rightView',
     width: 400,
     itemSelector: 'div',
-    store: 'ExerciseFilterII',
 
     initComponent: function() {
         var me = this;

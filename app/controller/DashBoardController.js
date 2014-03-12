@@ -157,7 +157,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
 
         var controller = this,
             user = Ext.ux.SessionManager.getUser(),
-            divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer" id="showPersonalDataButton"><div class="lansita-header-customer-logo show-info-customer" id="showPersonalDataButton" > </div></div> ',
+            divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer" id="showPersonalDataButton" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem( "user_id" ) + '_photo.jpg);><div class="lansita-header-customer-logo show-info-customer" id="showPersonalDataButton" > </div></div> ',
             divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + user.last_name + '</span><br> <span class="first-name">' + user.first_name +'</span></div>';
 
         controller.getMainViewport().down("#header").update({
