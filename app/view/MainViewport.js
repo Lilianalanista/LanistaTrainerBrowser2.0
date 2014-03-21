@@ -135,23 +135,36 @@ Ext.define('LanistaTrainer.view.MainViewport', {
     },
 
     onHeaderAfterRender: function(component, eOpts) {
+        var server = Ext.ux.ConfigManager.getServer(),
+            root = Ext.ux.ConfigManager.getRoot(),
+            el = component.el;
 
-
-        el = component.el;
+        //***************************************************************
+        //Managing of Trainer's and Customer's Information
+        //***************************************************************
         el.on(
             'click', function(e,t) {
-                                LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {
-                                    if ( t.id === 'showPersonalDataButton' )
+                                    if ( t.id === 'showPersonalDataButton' ) //Trainer
                                     {
-                                        el.addCls('item-not-clicked');
-                                        LanistaTrainer.app.fireEvent('showUserInfoPanel');
+                                        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                            el.addCls('item-not-clicked');
+                                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'UserInfoPanel';
+                                            LanistaTrainer.app.fireEvent('showUserInfoPanel');
+                                        });
                                     }
-                                });
+                                    if ( t.id === 'showCustomerDataButton' ) //Customer
+                                    {
+                                        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                            el.addCls('item-not-clicked');
+                                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerInfoPanel';
+                                            LanistaTrainer.app.fireEvent('showCustomerInfoPanel');
+                                        });
+                                    }
             },
             this, {delegate: '.show-info-customer'});
         el.on(
             'mouseover', function(e,t) {
-                                if ( t.id === 'showPersonalDataButton' )
+                                if ( t.id === 'showPersonalDataButton' || t.id === 'showCustomerDataButton' )
                                 {
                                     el.removeCls('item-not-clicked');
                                     el.addCls('item-clicked');
@@ -160,7 +173,7 @@ Ext.define('LanistaTrainer.view.MainViewport', {
             this,{ delegate: '.show-info-customer'});
         el.on(
             'mouseout', function(e,t) {
-                                if ( t.id === 'showPersonalDataButton' )
+                                if ( t.id === 'showPersonalDataButton' || t.id === 'showCustomerDataButton' )
                                 {
                                     el.removeCls('item-clicked');
                                     el.addCls('item-not-clicked');
@@ -168,26 +181,36 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                             },
             this,{delegate: '.show-info-customer'});
 
+
+        //***************************************************************
+        //Managing of Trainer's and Customer's Photo
         //***************************************************************
 
         el.on('click',function(e,t) {
-                                if ( t.id === 'changeUserPhoto' )
-                                {
-                                    var image = Ext.create('Ext.Img', {
-                                                    src: Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_photo.jpg',
-                                                    renderTo: Ext.getBody(),
-                                                    hidden: true
-                                                });
+            var idImage;
+            if ( t.id === 'changeUserPhoto' || t.id === 'changeCustomerPhoto' )
+            {
+                if ( t.id === 'changeCustomerPhoto')
+                    idImage = LanistaTrainer.app.currentCustomer.data.id;
+                if ( t.id === 'changeUserPhoto' )
+                    idImage = localStorage.getItem("user_id");
 
-                                    LanistaTrainer.app.fireEvent('showImagePanel', image, LanistaTrainer.app.activePanel,'/tpmanager/user/uploadphoto',  {type: 'photo'}, function() {
-                                    //LanistaTrainer.app.fireEvent('showImagePanel', image, 'UserInfoController','/tpmanager/user/uploadphoto',  {type: 'photo'}, function() {
-
-                                    });
-                                }
+                el.addCls('item-not-clicked');
+                var image = Ext.create('Ext.Img', {
+                    src: server + root + '/tpmanager/img/p/'+ idImage + '_photo.jpg',
+                    renderTo: Ext.getBody(),
+                    hidden: true,
+                    width: 0,
+                    height: 0
+                });
+                var lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];
+                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';
+                LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/user/uploadphoto',  {type: 'photo', customer_id: LanistaTrainer.app.currentCustomer.data.id}, function() {});
+            }
         },this,{delegate: '.lansita-header-customer-photo'});
         el.on(
             'mouseover', function(e,t) {
-                                if ( t.id === 'changeUserPhoto' )
+                                if ( t.id === 'changeUserPhoto' || t.id === 'changeCustomerPhoto')
                                 {
                                     el.removeCls('item-not-clicked');
                                     el.addCls('item-clicked');
@@ -196,7 +219,7 @@ Ext.define('LanistaTrainer.view.MainViewport', {
             this,{ delegate: '.lansita-header-customer-photo'});
         el.on(
             'mouseout', function(e,t) {
-                                if ( t.id === 'changeUserPhoto' )
+                                if ( t.id === 'changeUserPhoto' || t.id === 'changeCustomerPhoto')
                                 {
                                     el.removeCls('item-clicked');
                                     el.addCls('item-not-clicked');
@@ -204,17 +227,25 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                             },
             this,{delegate: '.lansita-header-customer-photo'});
 
+
+        //***************************************************************
+        //Managing of Trainer's Logo
         //***************************************************************
 
         el.on('click',function(e,t) {
                                 if ( t.id === 'changeUserLogo' )
                                 {
+                                    el.addCls('item-not-clicked');
                                     var image = Ext.create('Ext.Img', {
-                                                    src: Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg'
+                                                    src: server + root + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg',
+                                                    renderTo: Ext.getBody(),
+                                                    hidden: true,
+                                                    width: 0,
+                                                    height: 0
                                                 });
-                                    LanistaTrainer.app.fireEvent('showImagePanel', image, LanistaTrainer.app.previousPanel,'/tpmanager/user/uploadphoto',  {type: 'logo'}, function() {
-
-                                    });
+                                    lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];
+                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';
+                                    LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/user/uploadphoto',  {type: 'logo'}, function() {});
                                 }
         },this,{delegate: '.lansita-header-customer-logo'});
         el.on(

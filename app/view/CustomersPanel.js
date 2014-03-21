@@ -57,23 +57,34 @@ Ext.define('LanistaTrainer.view.CustomersPanel', {
             items: [
                 {
                     xtype: 'dataview',
+                    cls: 'tpl-gpclg44s',
                     height: 250,
                     id: 'viewCustomers',
                     tpl: [
                         '<tpl for=".">',
-                        '	<div class="exercise-item">',
-                        '        <div class="exercise-list-img exercise-list-img-right" style="background-image: url(resources/images/previews/{ext_id}_2.jpg);"></div>',
-                        '    	<div class="exercise-list-img exercise-list-img-left" style="background-image: url(resources/images/previews/{ext_id}_1.jpg);"></div>',
-                        '        <div class="exercise-list-text"/>{[values[\'first_name\']]}</div>',
+                        '    <div class="customer-item">',
+                        '        <div class="customer-list-image customer-info-item" id="customerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + \'/tpmanager/img/p/\' + values[\'id\'] + \'_photo.jpg\']});"></div>',
+                        '        <div class="customer-list-background customer-info-item" id="customerItemInfo" style="customer-image">j</div>',
+                        '        <div class="customer-list-firstname">{[values[\'first_name\']]}</div>        		',
+                        '        <div class="customer-list-lastname">{[values[\'last_name\']]}</div>',
                         '    </div>',
-                        '</tpl>'
+                        '</tpl>  ',
+                        ''
                     ],
                     width: 400,
-                    itemSelector: 'div.exercise-item',
+                    itemSelector: 'div.customer-item',
                     store: 'CustomerStore',
                     listeners: {
                         hide: {
                             fn: me.onDataviewHide,
+                            scope: me
+                        },
+                        afterrender: {
+                            fn: me.onViewCustomersAfterRender,
+                            scope: me
+                        },
+                        itemclick: {
+                            fn: me.onViewCustomersItemClick,
                             scope: me
                         }
                     }
@@ -98,6 +109,46 @@ Ext.define('LanistaTrainer.view.CustomersPanel', {
 
     onDataviewHide: function(component, eOpts) {
         component.destroy();
+    },
+
+    onViewCustomersAfterRender: function(component, eOpts) {
+
+        var el = component.el;
+        el.on(
+            'click', function(e,t) {
+                                    if ( t.id === 'customerItemInfo' )
+                                            el.addCls('item-not-clicked');
+            },
+            this, {delegate: '.customer-info-item'});
+        el.on(
+            'mouseover', function(e,t) {
+                                if ( t.id === 'customerItemInfo' )
+                                {
+                                    el.removeCls('item-not-clicked');
+                                    el.addCls('item-clicked');
+                                }
+                            },
+            this,{ delegate: '.customer-info-item'});
+        el.on(
+            'mouseout', function(e,t) {
+                                if ( t.id === 'customerItemInfo' )
+                                {
+                                    el.removeCls('item-clicked');
+                                    el.addCls('item-not-clicked');
+                                }
+                            },
+            this,{delegate: '.customer-info-item'});
+
+
+    },
+
+    onViewCustomersItemClick: function(dataview, record, item, index, e, eOpts) {
+
+        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+            LanistaTrainer.app.currentCustomer = record;
+            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
+            LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
+        });
     }
 
 });

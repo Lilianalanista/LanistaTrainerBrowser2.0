@@ -6,9 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "customercontroller",
-        "designer|userClassName": "CustomerController",
-        "id": "customerController"
+        "designer|userAlias": "customerscontroller",
+        "designer|userClassName": "CustomersController",
+        "id": "customersController"
     },
     "designerId": "260d0b7c-3d84-46d4-908d-3196335a55ba",
     "cn": [
@@ -90,16 +90,13 @@
                 "designer|params": [
                     "callback"
                 ],
-                "fn": "onShowCustomerPanel",
+                "fn": "onShowCustomersPanel",
                 "implHandler": [
                     "Ext.getStore('CustomerStore').load();",
                     "",
                     "var controller = this,",
                     "    customerPanel\t= controller.getCustomersPanel(),",
                     "    mainStage\t= controller.getMainStage();",
-                    "",
-                    "LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;",
-                    "LanistaTrainer.app.activePanel = \"customerPanel\";",
                     "",
                     "mainStage.add( customerPanel );",
                     "",
@@ -114,7 +111,7 @@
                     "console.log(\"Total: \" + store.proxy.totalCount);*/",
                     "",
                     "// **** 1 create the commands",
-                    "LanistaTrainer.app.setStandardButtons('closeCustomerPanelButton');",
+                    "LanistaTrainer.app.setStandardButtons('closeCustomersPanelButton');",
                     "this.showCommands();",
                     "",
                     "// *** 2 Show the panel",
@@ -131,7 +128,7 @@
                     "",
                     ""
                 ],
-                "name": "showCustomerPanel",
+                "name": "showCustomersPanel",
                 "scope": "this"
             },
             "designerId": "89b316fc-0076-4148-b595-50fa81575e90"
@@ -147,7 +144,7 @@
                 "designer|params": [
                     "callback"
                 ],
-                "fn": "onCloseCustomerPanel",
+                "fn": "onCloseCustomersPanel",
                 "implHandler": [
                     "var controller = this;",
                     "LanistaTrainer.app.fireEvent('hideStage', function () {",
@@ -161,10 +158,104 @@
                     "    if (callback instanceof Function) callback();",
                     "});"
                 ],
-                "name": "closeCustomerPanel",
+                "name": "closeCustomersPanel",
                 "scope": "this"
             },
             "designerId": "3384dfc6-f806-45fb-a506-ef140a59272a"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowCustomersHeaderUpdate",
+                "implHandler": [
+                    "var controller = this;",
+                    "if (this.getCustomersPanel() && !this.getCustomersPanel().isHidden()) {",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: '',",
+                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase()",
+                    "    });",
+                    "}"
+                ],
+                "name": "showCustomersHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "37f0a97a-7311-4c44-b31b-a10f82506dfd"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "title",
+                    "message"
+                ],
+                "fn": "onPromtEmailRequest",
+                "implHandler": [
+                    "var controller = this;",
+                    "Ext.Msg.prompt (title, message, function (response, email) {",
+                    "    if ( response == 'ok' ) {",
+                    "        var reg = /^([A-Za-z0-9_\\-\\.])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]{2,4})$/;",
+                    "        if (reg.test(email) === false) {",
+                    "            LanistaTrainer.app.fireEvent(\"promtEmailRequest\", Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_INVALID_1, Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_INVALID_2 );",
+                    "        } else {",
+                    "                var userId = localStorage.getItem(\"user_id\"),",
+                    "                    customerModel = Ext.create('LanistaTrainer.model.Customer', {",
+                    "                        email   : email,",
+                    "                        language: 'EN',",
+                    "                        birthday: '01/01/1980'",
+                    "                    });",
+                    "                customerModel.setProxy(new Ext.data.proxy.Ajax({",
+                    "                    url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/json',",
+                    "                    noCache: false,",
+                    "                    reader: {",
+                    "                        type: 'json',",
+                    "                        root: 'entries'",
+                    "                    },",
+                    "                    writer: {",
+                    "                        type: 'json',",
+                    "                        root: 'records',",
+                    "                        allowSingle: false",
+                    "                    },",
+                    "                    headers: {",
+                    "                        user_id: userId",
+                    "                    }",
+                    "                }));",
+                    "                customerModel.save({",
+                    "                    callback: function(record,event,success) {",
+                    "                        if (success)",
+                    "                        {",
+                    "                            LanistaTrainer.app.currentCustomer = record;",
+                    "                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerInfoPanel';",
+                    "                            LanistaTrainer.app.fireEvent('showCustomerInfoPanel');",
+                    "                        }",
+                    "                        else",
+                    "                        {",
+                    "                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, \"Possible problem:  \" + Ext.ux.LanguageManager.TranslationArray.MSG_CUST_EXISTS_1, function () {",
+                    "                                LanistaTrainer.app.fireEvent('showCustomersPanel');",
+                    "                            });",
+                    "                        }",
+                    "                    }",
+                    "                });",
+                    "        }",
+                    "    } else",
+                    "        LanistaTrainer.app.fireEvent('showCustomersPanel');",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "promtEmailRequest",
+                "scope": "this"
+            },
+            "designerId": "7d7d9690-c073-498d-b35e-763de2142bcc"
         },
         {
             "type": "basicfunction",
@@ -186,35 +277,43 @@
                     "    item.hide();",
                     "});",
                     "",
+                    "//Adding bottoms into RightPanel",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.SEARCH,",
+                    "        itemId: 'searchCustomerButton',",
+                    "        userAlias: 'searchCustomerButton',",
+                    "        glyph: '75@Lanista Icons' //K",
+                    "    })",
+                    ");",
                     "",
-                    "/*",
-                    "var privacySettingsButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
-                    "    iconCls: 'lanista-privacy',",
-                    "    text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_PRIVACY,",
-                    "    itemId: 'privacySettingsButton'",
-                    "});",
-                    "var passwordResetButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
-                    "    iconCls: 'lanista-question',",
-                    "    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PASSWORD_RESET,",
-                    "    itemId: 'forgotPasswordButton'",
-                    "});",
-                    "var licenceButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
-                    "    iconCls: localStorage.getItem(\"status\") == '1' ? 'lanista-checkmark' : 'lanista-cart',",
-                    "    text: Ext.ux.LanguageManager.TranslationArray.LICENSE,",
-                    "    itemId: 'licenseButton',",
-                    "    cls: localStorage.getItem(\"status\") == '1' ? ['lanista-command-buton'] : ['lanista-command-buton','lanista-command-buton-red']",
-                    "});",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.NEW,",
+                    "        itemId: 'newCustomerButton',",
+                    "        userAlias: 'newCustomerButton',",
+                    "        glyph: '107@Lanista Icons' //k",
+                    "    })",
+                    ");",
                     "",
-                    "controller.getRightCommandPanel().add(",
-                    "    passwordResetButton",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_FAVORITES,",
+                    "        itemId: 'favoritesCustomersButton',",
+                    "        userAlias: 'favoritesCustomersButton',",
+                    "        glyph: '122@Lanista Icons' //z",
+                    "    })",
                     ");",
-                    "controller.getRightCommandPanel().add(",
-                    "    privacySettingsButton",
+                    "",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_RECENTLY,",
+                    "        itemId: 'recentCustomersButton',",
+                    "        userAlias: 'recentCustomersButton',",
+                    "        glyph: '121@Lanista Icons' //y",
+                    "    })",
                     ");",
-                    "controller.getRightCommandPanel().add(",
-                    "    licenceButton",
-                    ");",
-                    "*/",
+                    "",
                     "",
                     ""
                 ]
@@ -229,12 +328,13 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|controlQuery": "viewport #showCustomerPanelButton",
+                "designer|controlQuery": "viewport #showCustomersPanelButton",
                 "designer|targetType": "LanistaButton",
-                "fn": "onShowCustomerPanelButtonClick",
+                "fn": "onShowCustomersPanelButtonClick",
                 "implHandler": [
-                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
-                    "    LanistaTrainer.app.fireEvent('showCustomerPanel');",
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomersPanel';",
+                    "    LanistaTrainer.app.fireEvent('showCustomersPanel');",
                     "});"
                 ],
                 "name": "click",
@@ -250,12 +350,13 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|controlQuery": "viewport #closeCustomerPanelButton",
+                "designer|controlQuery": "viewport #closeCustomersPanelButton",
                 "designer|targetType": "LanistaButton",
-                "fn": "onCloseCustomerPanelButtonClick",
+                "fn": "onCloseCustomersPanelButtonClick",
                 "implHandler": [
-                    "LanistaTrainer.app.fireEvent('closeCustomerPanel', function() {",
-                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);",
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "LanistaTrainer.app.fireEvent('closeCustomersPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
                     "});",
                     ""
                 ],
@@ -294,13 +395,16 @@
                     "console.log(\"SHOW NEXT CUSTOMERS\");",
                     "",
                     "var store = Ext.getStore(\"CustomerStore\");",
-                    "//var totalPages = Math.ceil(store.proxy.totalCount/store.pageSize);",
+                    "var totalPages = Math.ceil(store.getTotalCount()/store.pageSize);",
                     "",
-                    "//console.log('totalPages: ' + totalPages);",
+                    "console.log('totalPages: ' + totalPages);",
                     "",
                     "//if (Ext.getStore(\"CustomerStore\").currentPage < totalPages)",
                     "//{",
-                    "    store.nextPage();",
+                    "",
+                    "if (store.getTotalCount() >= store.pageSize)",
+                    "",
+                    "       store.nextPage();",
                     "    //LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());",
                     "//}"
                 ],
@@ -335,27 +439,25 @@
             "designerId": "fa8ca7fd-dc26-4c44-9a13-058bc4b9928f"
         },
         {
-            "type": "applicationaction",
+            "type": "controlleraction",
             "reference": {
-                "name": "items",
+                "name": "listeners",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onShowCustomersHeaderUpdate",
+                "designer|controlQuery": "viewport #newCustomerButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onNewCustomerButtonClick",
                 "implHandler": [
-                    "var controller = this;",
-                    "if (this.getCustomersPanel() && !this.getCustomersPanel().isHidden()) {",
-                    "    controller.getMainViewport().down(\"#header\").update({",
-                    "       info: '',",
-                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase()",
-                    "    });",
-                    "}"
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "    LanistaTrainer.app.fireEvent(\"promtEmailRequest\", \"New customer\", \"Enter the email of your new customer\" );",
+                    "});"
                 ],
-                "name": "showCustomersHeaderUpdate",
-                "scope": "this"
+                "name": "click",
+                "scope": "me"
             },
-            "designerId": "37f0a97a-7311-4c44-b31b-a10f82506dfd"
+            "designerId": "17e281df-3088-4d00-a334-23dbe579efa1"
         }
     ]
 }

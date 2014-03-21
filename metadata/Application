@@ -18,15 +18,20 @@
             "ToolsController",
             "HelpController",
             "DashBoardController",
-            "CustomerController",
+            "CustomersController",
             "UserInfoController",
-            "ImageController"
+            "ImageController",
+            "CustomerInfoController",
+            "CustomerExercisesController"
         ],
         "models": [
             "ExerciseModel",
             "Customer"
         ],
         "name": "LanistaTrainer",
+        "panels": [
+            "[]"
+        ],
         "requires": [
             "Ext.ux.LanguageManager",
             "Ext.ux.SessionManager",
@@ -50,19 +55,25 @@
             "DashBoardPanel",
             "UserInfoPanel",
             "CustomersPanel",
-            "ImagePanel"
+            "ImagePanel",
+            "CustomerInfoPanel",
+            "CustomerExercisesPanel"
         ]
+    },
+    "configAlternates": {
+        "panels": "array",
+        "currentCustomer": "object"
     },
     "designerId": "application",
     "customConfigs": [
         {
             "group": "(Custom Properties)",
-            "name": "activePanel",
+            "name": "panels",
             "type": "string"
         },
         {
             "group": "(Custom Properties)",
-            "name": "previuosPanel",
+            "name": "currentCustomer",
             "type": "string"
         }
     ],
@@ -78,6 +89,7 @@
                 "fn": "launch",
                 "implHandler": [
                     "console.log(\"START\");",
+                    "",
                     "LanistaTrainer.app.fireEvent('loadExercises', function() {",
                     "    console.log(\"EXERCISES LOADED\");",
                     "",
@@ -86,6 +98,23 @@
                     "        LanistaTrainer.app.fireEvent('showLoginPanel');",
                     "    else",
                     "    {",
+                    "        var user = Ext.ux.SessionManager.getUser(),",
+                    "        url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';",
+                    "",
+                    "        if (user.language != Ext.ux.LanguageManager.lang)",
+                    "            LanistaTrainer.app.fireEvent('changeLanguage', user.language, false);",
+                    "",
+                    "        Ext.Ajax.request({",
+                    "            url: url,",
+                    "            success: function(response) {",
+                    "                eval(response.responseText);",
+                    "                console.log(\"Language was changed\");",
+                    "                },",
+                    "            failure: function(response) {",
+                    "                    console.log(\"Language couldn't be changed\");",
+                    "                },",
+                    "                scope: this",
+                    "        });",
                     "        LanistaTrainer.app.setProxies();",
                     "        LanistaTrainer.app.fireEvent('showDashboardPanel');",
                     "    }",
@@ -187,7 +216,6 @@
                     "console.log('Setting Proxys....');",
                     "",
                     "var userId = localStorage.getItem(\"user_id\");",
-                    "",
                     "if (userId)",
                     "{",
                     "    Ext.getStore('CustomerStore').setProxy(new Ext.data.proxy.Ajax({",

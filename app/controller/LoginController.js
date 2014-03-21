@@ -51,7 +51,7 @@ Ext.define('LanistaTrainer.controller.LoginController', {
 
         controller.getMainViewport().addCls("lanista-guest");
 
-        LanistaTrainer.app.activePanel = "loginPanel";
+        LanistaTrainer.app.panels[0] = 'LoginPanel';
         mainStage.add( loginPanel );
 
         loginPanel.on('hide', function(component) {
@@ -186,14 +186,14 @@ Ext.define('LanistaTrainer.controller.LoginController', {
         	{
         		text:'ENGLISH',
                 handler: function () {
-                                         LanistaTrainer.app.fireEvent('changeLanguage', 'EN');
+                                         LanistaTrainer.app.fireEvent('changeLanguage', 'EN', true);
                                      }
         	});
             menuItems.push(
             {
         		text:'ESPAÑOL',
                 handler: function () {
-                                         LanistaTrainer.app.fireEvent('changeLanguage', 'ES');
+                                         LanistaTrainer.app.fireEvent('changeLanguage', 'ES', true);
                                      }
         	});
         } else if (currLanguage == 'EN') {
@@ -201,14 +201,14 @@ Ext.define('LanistaTrainer.controller.LoginController', {
         	{
         		text:'DEUTSCH',
                 handler: function () {
-                                         LanistaTrainer.app.fireEvent('changeLanguage', 'DE');
+                                         LanistaTrainer.app.fireEvent('changeLanguage', 'DE', true);
                                      }
         	});
             menuItems.push(
             {
         		text:'ESPAÑOL',
                 handler: function () {
-                                         LanistaTrainer.app.fireEvent('changeLanguage', 'ES');
+                                         LanistaTrainer.app.fireEvent('changeLanguage', 'ES', true);
                                      }
         	});
         } else {
@@ -216,14 +216,14 @@ Ext.define('LanistaTrainer.controller.LoginController', {
         	{
         		text:'DEUTSCH',
                 handler: function () {
-                                         LanistaTrainer.app.fireEvent('changeLanguage', 'DE');
+                                         LanistaTrainer.app.fireEvent('changeLanguage', 'DE', true);
                                      }
         	});
             menuItems.push(
             {
         		text:'ENGLISH',
                 handler: function () {
-                                         LanistaTrainer.app.fireEvent('changeLanguage', 'EN');
+                                         LanistaTrainer.app.fireEvent('changeLanguage', 'EN', true);
                                      }
         	});
         }

@@ -55,6 +55,25 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
 
                         alert("Anmeldung war erfolgreich. <br> Herzlich willkommen " + data.first_name+ '<br>Lanista wird vorbereitet...');
                             Ext.ux.SessionManager.loadLastUser();
+
+                            var user = Ext.ux.SessionManager.getUser(),
+                                url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
+
+                            if (user.language != Ext.ux.LanguageManager.lang)
+                                LanistaTrainer.app.fireEvent('changeLanguage', user.language, false);
+
+                            Ext.Ajax.request({
+                                url: url,
+                                success: function(response) {
+                                    eval(response.responseText);
+                                    console.log("Language was changed");
+                                },
+                                failure: function(response) {
+                                    console.log("Language couldn't be changed");
+                                },
+                                scope: this
+                            });
+
                             LanistaTrainer.app.setProxies();
                             LanistaTrainer.app.fireEvent('showDashboardPanel');
                     },
@@ -118,6 +137,12 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                     localStorage.removeItem("recognition");
                     localStorage.removeItem("privacy");
                     localStorage.removeItem("website");
+
+                    var len = LanistaTrainer.app.panels.length;
+                    for(var i = 0; i < len; i++) {
+                        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+                    }
+
                     LanistaTrainer.app.fireEvent('showLoginPanel');
                });
             });

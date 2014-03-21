@@ -25,14 +25,19 @@ Ext.define('LanistaTrainer.controller.LanguagesController', {
 
     },
 
-    onChangeLanguage: function(language) {
+    onChangeLanguage: function(language, doQuestion) {
         Ext.ux.LanguageManager.setLanguage(language, function () {
-            Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_1, Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_2, function(button) {
+            if (doQuestion)
+            {
+                Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_1, Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_2, function(button) {
+                    self.lang = language;
+                    if (button == 'yes') {
+                        location.reload();
+                    }
+                });
+            }
+            else
                 self.lang = language;
-                if (button == 'yes') {
-                    location.reload();
-                }
-            });
         });
     },
 

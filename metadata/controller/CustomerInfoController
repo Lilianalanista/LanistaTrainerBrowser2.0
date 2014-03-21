@@ -6,11 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "userInfoController",
-        "designer|userClassName": "UserInfoController",
-        "id": "userInfoController"
+        "designer|userAlias": "customerInfoController",
+        "designer|userClassName": "CustomerInfoController",
+        "id": "customerInfoController"
     },
-    "designerId": "bfb49d5c-515b-4f52-882a-8aa6398ca181",
+    "designerId": "9e5b3185-2e11-4b92-ba1e-d80c04f194cd",
     "cn": [
         {
             "type": "controllerref",
@@ -23,7 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
-            "designerId": "8aa47e56-b9b4-457d-a6cc-7d7799fc4e81"
+            "designerId": "a91a7bac-f86b-490e-b228-69c2d10b95bd"
         },
         {
             "type": "controllerref",
@@ -36,7 +36,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
-            "designerId": "b9da4fe6-7c74-4f99-93ab-27e1787caaae"
+            "designerId": "a94b393e-0768-40e3-a7b7-39b6e110f038"
         },
         {
             "type": "controllerref",
@@ -49,7 +49,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
-            "designerId": "4d4a21cb-24e8-4e5d-adea-03f8831d9ed3"
+            "designerId": "ad17d11a-b9b7-4c5a-b68c-01d461d1a9a9"
         },
         {
             "type": "controllerref",
@@ -62,7 +62,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
-            "designerId": "6c7def38-7258-46ca-80a4-e424fe598f65"
+            "designerId": "27777be5-f439-4494-81ca-23f6c626d142"
         },
         {
             "type": "controllerref",
@@ -73,11 +73,11 @@
             "codeClass": null,
             "userConfig": {
                 "autoCreate": true,
-                "ref": "userInfoPanel",
-                "selector": "#userInfoPanel",
-                "xtype": "userInfoPanel"
+                "ref": "customerInfoPanel",
+                "selector": "#customerInfoPanel",
+                "xtype": "customerInfoPanel"
             },
-            "designerId": "144a620d-b107-480c-93a8-6c951bda3e37"
+            "designerId": "781a71bc-5792-48c7-8a78-9ea05e66871c"
         },
         {
             "type": "controllerref",
@@ -87,10 +87,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "ref": "user_personalData",
-                "selector": "#user_personalData"
+                "ref": "customer_personalData",
+                "selector": "#customer_personalData"
             },
-            "designerId": "b8619f69-02cf-464f-99c2-987d1aa5868e"
+            "designerId": "fdb954db-b18a-43e4-a449-8dbf0c14eeb8"
         },
         {
             "type": "controllerref",
@@ -100,23 +100,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "ref": "user_companyContacts",
-                "selector": "#user_companyContacts"
+                "ref": "customer_companyContacts",
+                "selector": "#customer_companyContacts"
             },
-            "designerId": "53141497-3e3d-4eb0-851c-2cf454ace112"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "user_LicenseData",
-                "selector": "#user_LicenseData"
-            },
-            "designerId": "3e541cfb-0fb5-45cd-afc8-37260e1e1459"
+            "designerId": "afa42826-c0aa-437c-84d6-4969e8343d70"
         },
         {
             "type": "applicationaction",
@@ -129,27 +116,30 @@
                 "designer|params": [
                     "callback"
                 ],
-                "fn": "onShowUserInfoPanel",
+                "fn": "onShowCustomerInfoPanel",
                 "implHandler": [
+                    "",
                     "var controller = this;",
-                    "var userInfoPanel\t= controller.getUserInfoPanel();",
+                    "var customerInfoPanel\t= controller.getCustomerInfoPanel();",
                     "var mainStage\t= controller.getMainStage();",
                     "",
-                    "mainStage.add( userInfoPanel );",
+                    "mainStage.add( customerInfoPanel );",
                     "",
-                    "userInfoPanel.on('hide', function(component) {",
+                    "customerInfoPanel.on('hide', function(component) {",
                     "    component.destroy();",
                     "}, controller);",
                     "",
                     "",
                     "// **** 1 create the commands",
-                    "LanistaTrainer.app.setStandardButtons('closeUserInfoPanelButton');",
-                    "this.showCommands();",
+                    "LanistaTrainer.app.setStandardButtons('closeCustomerInfoPanelButton');",
                     "",
                     "// *** 2 Show the panel",
-                    "userInfoPanel.show();",
-                    "LanistaTrainer.app.fireEvent('showUserInfoHeaderUpdate');",
+                    "customerInfoPanel.loadRecord(LanistaTrainer.app.currentCustomer);",
+                    "customerInfoPanel.show();",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showCustomerInfoHeaderUpdate');",
                     "LanistaTrainer.app.fireEvent('showStage');",
+                    "this.showCommands();",
                     "",
                     "// *** 4 Callback",
                     "if (callback instanceof Function) callback();",
@@ -159,10 +149,10 @@
                     "",
                     ""
                 ],
-                "name": "showUserInfoPanel",
+                "name": "showCustomerInfoPanel",
                 "scope": "this"
             },
-            "designerId": "5fcc4fca-0ca7-4036-b179-204af67cc374"
+            "designerId": "36c47d0f-66dc-4098-81f6-d82fa831df04"
         },
         {
             "type": "applicationaction",
@@ -175,7 +165,7 @@
                 "designer|params": [
                     "callback"
                 ],
-                "fn": "onCloseUserInfoPanel",
+                "fn": "onCloseCustomerInfoPanel",
                 "implHandler": [
                     "var controller = this;",
                     "LanistaTrainer.app.fireEvent('hideStage', function () {",
@@ -185,14 +175,14 @@
                     "    controller.getLeftCommandPanel().items.each(function (item) {",
                     "        item.hide();",
                     "    });",
-                    "    controller.getUserInfoPanel().hide();",
+                    "    controller.getCustomerInfoPanel().hide();",
                     "    if (callback instanceof Function) callback();",
                     "});"
                 ],
-                "name": "closeUserInfoPanel",
+                "name": "closeCustomerInfoPanel",
                 "scope": "this"
             },
-            "designerId": "cb24653f-86d5-4f4d-9485-bcc639308b49"
+            "designerId": "ee4e7c53-4ac1-4ebe-934a-f380508bdf16"
         },
         {
             "type": "applicationaction",
@@ -202,24 +192,25 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onShowUserInfoHeaderUpdate",
+                "fn": "onShowCustomerInfoHeaderUpdate",
                 "implHandler": [
-                    "var controller = this;",
-                    "    info = '<div class=\"lanista-user-setup lansita-header-customer-logo-not-found show-info-customer\" id=userLogoNotFound\"><div class=\"lansita-header-customer-logo\" id=\"changeUserLogo\" style=\"background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem(\"user_id\") + '_logo.jpg);\"></div></div>' + '<div class=\"lanista-user-setup trainer-logo-header\">' + Ext.ux.LanguageManager.TranslationArray.YOUR_LOGO + '</div>';",
-                    "    info = info + '<div class=\"lanista-user-setup lansita-header-customer-image-not-found\" id=\"userPhotoNotFound\"><div class=\"lansita-header-customer-photo\" id=\"changeUserPhoto\" style=\"background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem(\"user_id\") + '_photo.jpg);\"></div></div>' + '<div class=\"lanista-user-setup trainer-foto-header\">' + Ext.ux.LanguageManager.TranslationArray.YOUR_PHOTO + '</div>';",
+                    "var controller = this,",
+                    "    record = LanistaTrainer.app.currentCustomer;",
                     "",
+                    "    info = '<div class=\"lansita-header-customer-image-not-found\"><div class=\"lansita-header-customer-photo\" id=\"changeCustomerPhoto\" style=\"background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);\"></div></div>';",
                     "",
-                    "if (this.getUserInfoPanel() && !this.getUserInfoPanel().isHidden()) {",
+                    "if (this.getCustomerInfoPanel() && !this.getCustomerInfoPanel().isHidden()) {",
                     "    controller.getMainViewport().down(\"#header\").update({",
                     "       info: info,",
-                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()",
+                    "       //title: '-' + Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()",
+                    "       title: ''",
                     "    });",
                     "}"
                 ],
-                "name": "showUserInfoHeaderUpdate",
+                "name": "showCustomerInfoHeaderUpdate",
                 "scope": "this"
             },
-            "designerId": "712b4263-1c96-4059-8896-2a2528b100cc"
+            "designerId": "93985d27-b803-43ba-830c-93c5f645a1ac"
         },
         {
             "type": "basicfunction",
@@ -242,27 +233,11 @@
                     "});",
                     "",
                     "//Adding bottoms into RightPanel",
-                    "this.getRightCommandPanel().add(",
-                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
-                    "        text: Ext.ux.LanguageManager.TranslationArray.LOGGOUT,",
-                    "        itemId: 'logoutButton',",
-                    "        userAlias: 'logoutButton',",
-                    "        glyph: '115@Lanista Icons' //s",
-                    "    })",
-                    ");",
                     "",
-                    "this.getRightCommandPanel().add(",
-                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
-                    "        text: Ext.ux.LanguageManager.TranslationArray.LICENSE,",
-                    "        itemId: 'licenseButton',",
-                    "        userAlias: 'licenseButton',",
-                    "        glyph: '65@Lanista Icons' //A",
-                    "    })",
-                    ");",
                     ""
                 ]
             },
-            "designerId": "a832d82f-5c02-4254-bfce-8c53710d248d"
+            "designerId": "2d945cd3-8280-4d99-9d12-f7fa0c757fa7"
         },
         {
             "type": "controlleraction",
@@ -272,19 +247,19 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|controlQuery": "viewport #showUserInfoPanelButton",
+                "designer|controlQuery": "viewport #showCustomerInfoPanelButton",
                 "designer|targetType": "LanistaButton",
-                "fn": "onShowUserInfoPanelButton",
+                "fn": "onShowCustomerInfoPanelButton",
                 "implHandler": [
                     "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
                     "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'UserInfoPanel';",
-                    "    LanistaTrainer.app.fireEvent('showUserInfoPanel');",
+                    "    LanistaTrainer.app.fireEvent('showCustomerInfoPanel');",
                     "});"
                 ],
                 "name": "click",
                 "scope": "me"
             },
-            "designerId": "7e8770ae-dd04-447a-b62b-a0d7c64746ff"
+            "designerId": "e21eebb0-5b0c-4b21-8a89-bcfb45f8ebfe"
         },
         {
             "type": "controlleraction",
@@ -294,12 +269,12 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|controlQuery": "viewport #closeUserInfoPanelButton",
+                "designer|controlQuery": "viewport #closeCustomerInfoPanelButton",
                 "designer|targetType": "LanistaButton",
-                "fn": "onCloseUserInfoPanelButton",
+                "fn": "onCloseCustomerInfoPanelButton",
                 "implHandler": [
                     "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
-                    "LanistaTrainer.app.fireEvent('closeUserInfoPanel', function() {",
+                    "LanistaTrainer.app.fireEvent('closeCustomerInfoPanel', function() {",
                     "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
                     "});",
                     ""
@@ -307,7 +282,7 @@
                 "name": "click",
                 "scope": "me"
             },
-            "designerId": "b78279d6-29ac-4d04-97f9-ec2e45a490be"
+            "designerId": "13a392d0-73fc-4b63-b809-a89c995d46b4"
         },
         {
             "type": "basicfunction",
@@ -320,18 +295,16 @@
                 "fn": "loadData",
                 "implHandler": [
                     "var controller = this,",
-                    "    fieldset = controller.getUser_personalData();",
+                    "    fieldset = controller.getCustomer_personalData();",
                     "",
                     "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PERSON_DATA);",
-                    "fieldset = controller.getUser_companyContacts();",
+                    "fieldset = controller.getCustomer_companyContacts();",
                     "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.ADDRESS);",
-                    "fieldset = controller.getUser_LicenseData();",
-                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.LICENSE_DATA);",
                     "",
-                    "controller.getUserInfoPanel().getForm().findField('email').focus();"
+                    "controller.getCustomerInfoPanel().getForm().findField('customer_email').focus();"
                 ]
             },
-            "designerId": "ab0dfe42-5361-4638-9066-6c398b1dafe4"
+            "designerId": "847f981c-3427-4c98-9ca0-fb46c314bd6e"
         },
         {
             "type": "basicfunction",
@@ -375,7 +348,7 @@
                     "if (callBack instanceof Function) callBack();"
                 ]
             },
-            "designerId": "e7a6f91d-a73f-4596-84b8-86942c0d3fdd"
+            "designerId": "d0bd4c8e-ed9a-4b91-94a9-f6f4ade5e489"
         },
         {
             "type": "controlleraction",
@@ -385,19 +358,19 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|controlQuery": "viewport #cancelSettingsButton",
+                "designer|controlQuery": "viewport #cancelSettingsCustomerButton",
                 "designer|targetType": "LanistaButton",
                 "fn": "onCancelSettingsButtonClick",
                 "implHandler": [
                     "var controller = this;",
                     "",
-                    "controller.loadCurrentUser();",
+                    "//controller.loadCurrentUser();",
                     "controller.showCommands();"
                 ],
                 "name": "click",
                 "scope": "me"
             },
-            "designerId": "527c11a9-2411-43a5-a29e-26330a5a36c7"
+            "designerId": "56a6d7eb-fb32-4a6a-a2e5-a8be3121f59c"
         },
         {
             "type": "controlleraction",
@@ -407,20 +380,20 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|controlQuery": "viewport #saveSettingsButton",
+                "designer|controlQuery": "viewport #saveSettingsCustomerButton",
                 "designer|targetType": "LanistaButton",
                 "fn": "onSaveSettingsButtonClick",
                 "implHandler": [
                     "var controller = this,",
                     "    server = Ext.ux.ConfigManager.getServer(),",
                     "    root = Ext.ux.ConfigManager.getRoot() + '/tpmanager/',",
-                    "    form_data = controller.getUserInfoPanel().getValues(),",
+                    "    form_data = controller.getCustomerInfoPanel().getValues(),",
                     "    email = form_data.email;",
                     "",
                     "if (email === '')",
                     "{",
                     "        Ext.Msg.alert('Email waren leer', 'Versuche es noch mal !', function() {",
-                    "            controller.getUserInfoPanel().getForm().findField('email').focus();",
+                    "            controller.getCustomerInfoPanel().getForm().findField('email').focus();",
                     "        });",
                     "} else",
                     "{",
@@ -428,58 +401,47 @@
                     "    if(reg.test(email) === false)",
                     "    {",
                     "        Ext.Msg.alert('Falsche Emailadresse', 'Versuche es noch mal !', function() {",
-                    "            controller.getUserInfoPanel().getForm().findField('email').focus();",
+                    "            controller.getCustomerInfoPanel().getForm().findField('email').focus();",
                     "        });",
                     "    } else",
                     "    {",
-                    "        Ext.Ajax.request({",
-                    "            url : server + root + 'user/save' ,",
-                    "            params : this.getUserInfoPanel().getValues(true, false),",
-                    "            method: 'post',",
+                    "        controller.getCustomerInfoPanel().updateRecord();",
+                    "        controller.getCustomerInfoPanel().getRecord().setProxy(new Ext.data.proxy.Ajax({",
+                    "            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/json',",
+                    "            noCache: false,",
+                    "            reader: {",
+                    "                type: 'json',",
+                    "                root: 'entries'",
+                    "            },",
+                    "            writer: {",
+                    "                type: 'json',",
+                    "                root: 'records',",
+                    "                allowSingle: false",
+                    "            },",
                     "            headers: {",
                     "                user_id: localStorage.getItem(\"user_id\")",
-                    "            },",
-                    "            success: function ( result, request ) {",
-                    "                var data = Ext.decode(result.responseText);",
-                    "                if (data.success) {",
-                    "                    var user_data = data.entries[0];",
+                    "            }",
+                    "        }));",
+                    "        ",
+                    "        controller.getCustomerInfoPanel().getRecord().save({",
+                    "            callback: function(record,event,success) {",
+                    "                if (success)",
+                    "                {",
+                    "                    var oldDate = record.data.birthday.split('-'),",
+                    "                        newDate;",
+                    "                    if (Ext.ux.LanguageManager.lang === 'EN')",
+                    "                        newDate = oldDate[1] + oldDate[0] + oldDate[2];",
+                    "                    else",
+                    "                        newDate = oldDate[0] + oldDate[1] + oldDate[2];",
                     "",
-                    "                    localStorage.setItem(\"email\", user_data.email ? user_data.email : '');",
-                    "                    localStorage.setItem(\"language\", user_data.language ? user_data.language : '');",
-                    "                    localStorage.setItem(\"first_name\", user_data.first_name ? user_data.first_name : '');",
-                    "                    localStorage.setItem(\"last_name\", user_data.last_name ? user_data.last_name : '');",
-                    "                    localStorage.setItem(\"country\", user_data.country ? user_data.country : '');",
-                    "                    localStorage.setItem(\"zipcode\", user_data.zipcode ? user_data.zipcode : '');",
-                    "                    localStorage.setItem(\"city\", user_data.city ? user_data.city : '');",
-                    "                    localStorage.setItem(\"street\", user_data.street ? user_data.street : '');",
-                    "                    localStorage.setItem(\"company_name\", user_data.company_name ? user_data.company_name : '');",
-                    "                    localStorage.setItem(\"phone_nr\", user_data.phone_nr ? user_data.phone_nr : '');",
-                    "                    localStorage.setItem(\"website\", user_data.website ? user_data.website : '');",
+                    "                    record.data.birthday = newDate;",
                     "",
-                    "                    Ext.ux.SessionManager.loadLastUser();",
-                    "                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);",
-                    "",
-                    "                    if (user_data.language != Ext.ux.LanguageManager.lang) {",
-                    "                        Ext.Msg.alert ('', Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE,  function() {",
-                    "                            //LanistaTrainer.app.fireEvent('changeLanguage', (user_data.language == 'DE' ? 0 : user_data.language == 'EN' ? 1 : 2));",
-                    "                            LanistaTrainer.app.fireEvent('changeLanguage', user_data.language, true);",
-                    "                        });",
-                    "                    }",
-                    "                } else {",
-                    "                    if (data.error == 510) {",
-                    "                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, function () {",
-                    "                            controller.getUserInfoPanel().down( 'field[name=email]' ).reset();",
-                    "                            controller.getUserInfoPanel().down( 'field[name=email]' ).focus();",
-                    "                        });",
-                    "                    } else {",
-                    "                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, Ext.emptyFn);",
-                    "                    }",
+                    "                    controller.getCustomerInfoPanel().loadRecord(record);",
+                    "                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);",
+                    "                    controller.showCommands();",
                     "                }",
-                    "                controller.showCommands();",
-                    "            },",
-                    "            failure: function (result, request) {",
-                    "                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);",
-                    "                controller.showCommands();",
+                    "                else",
+                    "                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);",
                     "            }",
                     "        });",
                     "    }",
@@ -489,7 +451,7 @@
                 "name": "click",
                 "scope": "me"
             },
-            "designerId": "e139a946-e748-4fd4-8493-7e891f8a9bb9"
+            "designerId": "9e7eaf74-bcc7-486a-8919-1a21bc7d398a"
         }
     ]
 }

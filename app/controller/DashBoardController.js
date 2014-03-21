@@ -45,27 +45,33 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
     ],
 
     onShowDashBoardButtonPanelClick: function(button, e, eOpts) {
-        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {
+        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'DashBoardPanel';
             LanistaTrainer.app.fireEvent('showDashBoardPanel');
         });
     },
 
     onCloseDashBoardButtonPanelClick: function(button, e, eOpts) {
+        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeDashBoardPanel', function() {
-            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);
+            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
         });
 
     },
 
     onShowDashBoardPanel: function(callback) {
-        if (LanistaTrainer.app.activePanel)
+        if (LanistaTrainer.app.panels[0])
         {
-            LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {
-                LanistaTrainer.app.fireEvent('displayDashBoard');
+            LanistaTrainer.app.fireEvent('closeLoginPanel', function() {
+                   LanistaTrainer.app.panels[0] = 'DashboardPanel';
+                   LanistaTrainer.app.fireEvent('displayDashBoard');
             });
         }
         else
+        {
+            LanistaTrainer.app.panels[0] = 'DashboardPanel';
             LanistaTrainer.app.fireEvent('displayDashBoard');
+        }
     },
 
     onCloseDashBoardPanel: function(callback) {
@@ -97,8 +103,6 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         LanistaTrainer.app.setStandardButtons();
         this.showCommands();
 
-        LanistaTrainer.app.activePanel = "dashBoardPanel";
-
         // *** 2 Show the panel
         LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
@@ -108,6 +112,21 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
 
         // *** 5 Load data
         controller.loadData();
+    },
+
+    onShowDashBoardHeaderUpdate: function() {
+
+        var controller = this,
+            user = Ext.ux.SessionManager.getUser(),
+            divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer" id="showPersonalDataButton"><div class="lansita-header-customer-logo show-info-customer" id="showPersonalDataButton" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem( "user_id" ) + '_photo.jpg);"></div></div>';
+            divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + user.last_name + '</span><br> <span class="first-name">' + user.first_name +'</span></div>';
+
+        controller.getMainViewport().down("#header").update({
+            info: divLogo + divInfoCustomer,
+            title: '-' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD.toUpperCase()
+        });
+
+
     },
 
     showCommands: function(callback) {
@@ -121,7 +140,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST,
-                itemId: 'showCustomerPanelButton',
+                itemId: 'showCustomersPanelButton',
                 userAlias: 'customerButton',
                 glyph: '113@Lanista Icons' //q
             })
@@ -150,21 +169,6 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
     },
 
     loadData: function() {
-
-    },
-
-    onShowDashBoardHeaderUpdate: function() {
-
-        var controller = this,
-            user = Ext.ux.SessionManager.getUser(),
-            divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer" id="showPersonalDataButton" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem( "user_id" ) + '_photo.jpg);><div class="lansita-header-customer-logo show-info-customer" id="showPersonalDataButton" > </div></div> ',
-            divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + user.last_name + '</span><br> <span class="first-name">' + user.first_name +'</span></div>';
-
-        controller.getMainViewport().down("#header").update({
-            info: divLogo + divInfoCustomer,
-            title: '-' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD.toUpperCase()
-        });
-
 
     },
 

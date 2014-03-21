@@ -46,15 +46,16 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
     onShowExercisesPanelButtonClick: function(button, e, eOpts) {
 
-        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {
+        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisesPanel';
             LanistaTrainer.app.fireEvent('showExercisesPanel');
         });
     },
 
     onCloseExercisesPanelButtonClick: function(button, e, eOpts) {
-
+        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeExercisesPanel', function() {
-            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);
+            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
         });
 
 
@@ -90,9 +91,6 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         var controller = this,
             exercisesPanel	= controller.getExercisesPanel(),
             mainStage	= controller.getMainStage();
-
-        LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;
-        LanistaTrainer.app.activePanel = "exercisesPanel";
 
         mainStage.add( exercisesPanel );
 

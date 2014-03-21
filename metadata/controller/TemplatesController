@@ -29,9 +29,6 @@
                     "    templatesPanel\t= controller.getTemplatesPanel(),",
                     "    mainStage\t= controller.getMainStage();",
                     "",
-                    "LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;",
-                    "LanistaTrainer.app.activePanel = \"templatesPanel\";",
-                    "",
                     "mainStage.add( templatesPanel );",
                     "",
                     "templatesPanel.on('hide', function(component) {",
@@ -160,7 +157,8 @@
                 "designer|targetType": "LanistaButton",
                 "fn": "onShowTemplatesPanelButtonClick",
                 "implHandler": [
-                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'TemplatesPanel';",
                     "    LanistaTrainer.app.fireEvent('showTemplatesPanel');",
                     "});",
                     "",
@@ -183,8 +181,9 @@
                 "designer|targetType": "LanistaButton",
                 "fn": "onCloseTemplatesPanelButtonClick",
                 "implHandler": [
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
                     "LanistaTrainer.app.fireEvent('closeTemplatesPanel', function() {",
-                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
                     "});",
                     "",
                     ""

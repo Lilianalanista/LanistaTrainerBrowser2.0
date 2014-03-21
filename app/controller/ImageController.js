@@ -78,8 +78,9 @@ Ext.define('LanistaTrainer.controller.ImageController', {
     },
 
     onCloseImagePanelButtonClick: function(button, e, eOpts) {
+        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeImagePanel', function() {
-            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);
+            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
         });
     },
 
@@ -107,7 +108,7 @@ Ext.define('LanistaTrainer.controller.ImageController', {
             url: controller.url_params.type ? (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/user/cropphoto") : Ext.ux.ConfigManager.getRoot() + "/tpmanager/exercise/cropphoto",
             method: 'post',
             params: {
-                user_id: LanistaTrainer.app.currentCustomer ? LanistaTrainer.app.currentCustomer.data.remote_id : localStorage.getItem("user_id"),
+                user_id: LanistaTrainer.app.currentCustomer ? LanistaTrainer.app.currentCustomer.data.id : localStorage.getItem("user_id"),
                 exercise_id: controller.url_params.exercise_id,
                 order: controller.url_params.order,
                 x: (params.x/params.scale),
@@ -143,9 +144,6 @@ Ext.define('LanistaTrainer.controller.ImageController', {
 
         var controller = this,
             mainStage	= controller.getMainStage();
-
-        LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;
-        LanistaTrainer.app.activePanel = "imagePanel";
 
         this.image				= imageField;
         this.callerController	= caller;
@@ -184,8 +182,14 @@ Ext.define('LanistaTrainer.controller.ImageController', {
                     //iconCls: 'lanista-upload',
                     glyph: '67@Lanista Icons', //C
                     text: Ext.ux.LanguageManager.TranslationArray.BUTTON_UPLOAD,
-                    itemId: 'uploadImageButton'
+                    itemId: 'uploadImageButton',
+                    id: 'uploadImageButton'
+
                 });
+                newButton.on ('hide', function(component){
+                                                            component.destroy(true);
+                                                         });
+
                 var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {
                     //iconCls: 'lanista-crop',
                     glyph: '69@Lanista Icons', //E
@@ -245,7 +249,7 @@ Ext.define('LanistaTrainer.controller.ImageController', {
                     }
                 };
 
-                LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');
+                LanistaTrainer.app.fireEvent('showImageHeaderUpdate');
                 LanistaTrainer.app.fireEvent('showStage');
 
                 controller.uploader = new plupload.Uploader({
@@ -299,7 +303,7 @@ Ext.define('LanistaTrainer.controller.ImageController', {
 
     },
 
-    onShowCustomersHeaderUpdate: function() {
+    onShowImageHeaderUpdate: function() {
         var controller = this;
         if (this.getImagePanel() && !this.getImagePanel().isHidden()) {
             controller.getMainViewport().down("#header").update({
@@ -507,8 +511,8 @@ Ext.define('LanistaTrainer.controller.ImageController', {
                 fn: this.onCloseImagePanel,
                 scope: this
             },
-            showCustomersHeaderUpdate: {
-                fn: this.onShowCustomersHeaderUpdate,
+            showImageHeaderUpdate: {
+                fn: this.onShowImageHeaderUpdate,
                 scope: this
             },
             uploadFile: {

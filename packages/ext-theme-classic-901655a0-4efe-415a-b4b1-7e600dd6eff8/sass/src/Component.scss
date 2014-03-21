@@ -85,6 +85,15 @@ $base-gradient: "none";
 	color: rgba(0,0,0,0.2);
 }
 
+.lansita-header-customer-logo, .lansita-header-customer-photo {
+    width: 100%!important;
+    height: 100%!important;
+    border-radius: 50%!important;
+    background-size: cover!important;
+    position: relative!important;
+    top: -92px!important;
+}
+
 .lansita-header-customer-logo-not-found {
 	width: 100px;
 	height: 100px;
@@ -469,6 +478,57 @@ $base-gradient: "none";
     padding-left: 320px;
     padding-top: 180px;
 }
+
+//Customer List
+.customer-list-background {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	font-family: "Lanista Icons";
+	text-align: center;
+	font-size: 60px;
+	line-height: 92px;
+	background-color: #34acfb;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -100px;
+}
+
+.customer-list-image {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	margin-right: auto;
+	margin-left: auto;
+	z-index: 1;
+	position: relative;
+	background-size: cover;
+	border-style: solid!important;
+	border-width: 4px!important;
+	border-color: #34acfb;
+}
+
+.customer-item {
+	text-align: center;
+    float: left;
+    width: 207px;
+    height: 190px;
+}
+
+.customer-list-lastname {
+	font-family: "Avenir LT Std";
+	text-transform: uppercase;
+	font-weight: bold;
+    font-size:130%;
+}
+
+.customer-list-firstname {
+    font-size:130%;
+}
+
+
+
 
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

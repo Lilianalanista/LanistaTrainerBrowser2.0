@@ -42,17 +42,23 @@
             "codeClass": null,
             "userConfig": {
                 "designer|params": [
-                    "language"
+                    "language",
+                    "doQuestion"
                 ],
                 "fn": "onChangeLanguage",
                 "implHandler": [
                     "Ext.ux.LanguageManager.setLanguage(language, function () {",
-                    "    Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_1, Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_2, function(button) {",
+                    "    if (doQuestion)",
+                    "    {",
+                    "        Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_1, Ext.ux.LanguageManager.TranslationArray.MSG_LANGUAGE_RESTART_2, function(button) {",
+                    "            self.lang = language;",
+                    "            if (button == 'yes') {",
+                    "                location.reload();",
+                    "            }",
+                    "        });",
+                    "    }",
+                    "    else",
                     "        self.lang = language;",
-                    "        if (button == 'yes') {",
-                    "            location.reload();",
-                    "        }",
-                    "    });",
                     "});"
                 ],
                 "name": "changeLanguage",

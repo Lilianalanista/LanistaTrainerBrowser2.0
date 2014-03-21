@@ -1,0 +1,273 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "customerExercisesController",
+        "designer|userClassName": "CustomerExercisesController",
+        "id": "customerExercisesController"
+    },
+    "designerId": "5a730e34-4f69-481d-8544-8c9947de6064",
+    "cn": [
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowCustomerExercisesPanel",
+                "implHandler": [
+                    "",
+                    "var controller = this,",
+                    "    customerExercisesPanel\t= controller.getCustomerExercisesPanel(),",
+                    "    mainStage\t= controller.getMainStage();",
+                    "",
+                    "mainStage.add( customerExercisesPanel );",
+                    "",
+                    "customerExercisesPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons('closeCustomerExercisesPanelButton');",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "customerExercisesPanel.show();",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();"
+                ],
+                "name": "showCustomerExercisesPanel",
+                "scope": "this"
+            },
+            "designerId": "83a91829-dc3b-4aca-8988-33ccb305c8f0"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseCustomerExercisesPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getCustomerExercisesPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closeCustomerExercisesPanel",
+                "scope": "this"
+            },
+            "designerId": "e7f6fa02-926a-4e17-94a3-b0ffacb92f23"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowCustomerExercisesHeaderUpdate",
+                "implHandler": [
+                    "var controller = this,",
+                    "    record = LanistaTrainer.app.currentCustomer;",
+                    "    divLogo = '<div class=\"lansita-header-customer-image-not-found show-info-customer\" id=\"showCustomerDataButton\"><div class=\"lansita-header-customer-logo show-info-customer\" id=\"showCustomerDataButton\" style=\"background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);\"></div></div>';",
+                    "    divInfoCustomer = '<div class=\"lansita-header-customer-name\"> <span class=\"last-name\">' + record.data.last_name + '</span><br> <span class=\"first-name\">' + record.data.first_name +'</span></div>';",
+                    "",
+                    "controller.getMainViewport().down(\"#header\").update({",
+                    "    info: divLogo + divInfoCustomer,",
+                    "    title: '-' + Ext.ux.LanguageManager.TranslationArray.CUSTOMER.toUpperCase()",
+                    "});",
+                    ""
+                ],
+                "name": "showCustomerExercisesHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "8fb5381f-fe6c-4b1b-a66b-203c1dea5548"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "customerExercisesPanel",
+                "selector": "customerExercisesPanel",
+                "xtype": "customerExercisesPanel"
+            },
+            "designerId": "48ebc517-2e1c-49e1-9953-2248e9b74335"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "948421b8-5103-48fd-8292-fe7d2dc48680"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "b1afd817-0401-4a3f-87d3-485053f6bb45"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "e15d0c16-f326-4c8a-aba5-391a7caa6cb2"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "43c305d3-75b0-4833-b9a7-cf53de923838"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "",
+                    "var controller = this;",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "//Adding bottoms into RightPanel",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "aadf43a1-580a-4c4f-8328-66a96ac8122d"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #showCustomerExercisesPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onShowCustomerExercisesPanelButtonClick",
+                "implHandler": [
+                    "",
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';",
+                    "    LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "088453fd-3350-4364-8a19-86727658430a"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeCustomerExercisesPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseCustomerExercisesPanelButtonClick",
+                "implHandler": [
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "LanistaTrainer.app.fireEvent('closeCustomerExercisesPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "3acdee6f-a2de-4ed2-b3ee-b8b44cd9dea3"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "e5358008-192e-4deb-bbd2-4ffc5da9bfce"
+        }
+    ]
+}

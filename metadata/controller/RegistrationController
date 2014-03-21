@@ -29,9 +29,6 @@
                     "    registrationPanel\t= controller.getRegistrationPanel(),",
                     "    mainStage\t= controller.getMainStage();",
                     "",
-                    "LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;",
-                    "LanistaTrainer.app.activePanel = \"registrationPanel\";",
-                    "",
                     "mainStage.add( registrationPanel );",
                     "",
                     "registrationPanel.on('hide', function(component) {",
@@ -170,7 +167,8 @@
                 "designer|targetType": "LanistaButton",
                 "fn": "onShowRegistrationPanelButtonClick",
                 "implHandler": [
-                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'RegistrationPanel';",
                     "    LanistaTrainer.app.fireEvent('showRegistrationPanel');",
                     "});",
                     "",
@@ -193,8 +191,9 @@
                 "designer|targetType": "LanistaButton",
                 "fn": "onCloseRegistrationPanelButtonClick",
                 "implHandler": [
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
                     "LanistaTrainer.app.fireEvent('closeRegistrationPanel', function() {",
-                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
                     "});",
                     "",
                     ""

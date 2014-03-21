@@ -30,9 +30,6 @@
                     "    exercisesPanel\t= controller.getExercisesPanel(),",
                     "    mainStage\t= controller.getMainStage();",
                     "",
-                    "LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;",
-                    "LanistaTrainer.app.activePanel = \"exercisesPanel\";",
-                    "",
                     "mainStage.add( exercisesPanel );",
                     "",
                     "exercisesPanel.on('hide', function(component) {",
@@ -337,7 +334,8 @@
                 "fn": "onShowExercisesPanelButtonClick",
                 "implHandler": [
                     "",
-                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {",
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisesPanel';",
                     "    LanistaTrainer.app.fireEvent('showExercisesPanel');",
                     "});"
                 ],
@@ -358,9 +356,9 @@
                 "designer|targetType": "LanistaButton",
                 "fn": "onCloseExercisesPanelButtonClick",
                 "implHandler": [
-                    "",
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
                     "LanistaTrainer.app.fireEvent('closeExercisesPanel', function() {",
-                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
                     "});",
                     "",
                     ""

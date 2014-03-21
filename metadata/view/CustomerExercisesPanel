@@ -1,0 +1,19 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": false,
+        "designer|userAlias": "customerExercisesPanel",
+        "designer|userClassName": "CustomerExercisesPanel",
+        "header": false,
+        "height": 250,
+        "id": "customerExercisesPanel",
+        "title": null,
+        "width": 400
+    },
+    "designerId": "5d37b0c7-cd7b-47a4-ba76-021716e9e6ee"
+}

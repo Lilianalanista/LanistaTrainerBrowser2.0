@@ -26,6 +26,9 @@ Ext.application({
         'Ext.ux.SessionManager',
         'Ext.ux.ConfigManager'
     ],
+    panels: [
+        
+    ],
     models: [
         'ExerciseModel',
         'Customer'
@@ -48,7 +51,9 @@ Ext.application({
         'DashBoardPanel',
         'UserInfoPanel',
         'CustomersPanel',
-        'ImagePanel'
+        'ImagePanel',
+        'CustomerInfoPanel',
+        'CustomerExercisesPanel'
     ],
     controllers: [
         'MainController',
@@ -62,15 +67,18 @@ Ext.application({
         'ToolsController',
         'HelpController',
         'DashBoardController',
-        'CustomerController',
+        'CustomersController',
         'UserInfoController',
-        'ImageController'
+        'ImageController',
+        'CustomerInfoController',
+        'CustomerExercisesController'
     ],
     name: 'LanistaTrainer',
 
     launch: function() {
         Ext.create('LanistaTrainer.view.MainViewport');
         console.log("START");
+
         LanistaTrainer.app.fireEvent('loadExercises', function() {
             console.log("EXERCISES LOADED");
 
@@ -79,6 +87,23 @@ Ext.application({
                 LanistaTrainer.app.fireEvent('showLoginPanel');
             else
             {
+                var user = Ext.ux.SessionManager.getUser(),
+                url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
+
+                if (user.language != Ext.ux.LanguageManager.lang)
+                    LanistaTrainer.app.fireEvent('changeLanguage', user.language, false);
+
+                Ext.Ajax.request({
+                    url: url,
+                    success: function(response) {
+                        eval(response.responseText);
+                        console.log("Language was changed");
+                        },
+                    failure: function(response) {
+                            console.log("Language couldn't be changed");
+                        },
+                        scope: this
+                });
                 LanistaTrainer.app.setProxies();
                 LanistaTrainer.app.fireEvent('showDashboardPanel');
             }
@@ -155,7 +180,6 @@ Ext.application({
         console.log('Setting Proxys....');
 
         var userId = localStorage.getItem("user_id");
-
         if (userId)
         {
             Ext.getStore('CustomerStore').setProxy(new Ext.data.proxy.Ajax({

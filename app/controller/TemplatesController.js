@@ -45,7 +45,8 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
     ],
 
     onShowTemplatesPanelButtonClick: function(button, e, eOpts) {
-        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {
+        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'TemplatesPanel';
             LanistaTrainer.app.fireEvent('showTemplatesPanel');
         });
 
@@ -53,8 +54,9 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
     },
 
     onCloseTemplatesPanelButtonClick: function(button, e, eOpts) {
+        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeTemplatesPanel', function() {
-            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);
+            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
         });
 
 
@@ -64,9 +66,6 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
         var controller = this,
             templatesPanel	= controller.getTemplatesPanel(),
             mainStage	= controller.getMainStage();
-
-        LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;
-        LanistaTrainer.app.activePanel = "templatesPanel";
 
         mainStage.add( templatesPanel );
 

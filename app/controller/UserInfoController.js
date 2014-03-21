@@ -25,12 +25,12 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
             selector: '#mainStage'
         },
         {
-            ref: 'rightCommandPanel',
-            selector: '#rightCommandPanel'
-        },
-        {
             ref: 'leftCommandPanel',
             selector: '#leftCommandPanel'
+        },
+        {
+            ref: 'rightCommandPanel',
+            selector: '#rightCommandPanel'
         },
         {
             ref: 'mainViewport',
@@ -57,14 +57,16 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
     ],
 
     onShowUserInfoPanelButton: function(button, e, eOpts) {
-        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.activePanel, function() {
+        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'UserInfoPanel';
             LanistaTrainer.app.fireEvent('showUserInfoPanel');
         });
     },
 
     onCloseUserInfoPanelButton: function(button, e, eOpts) {
+        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeUserInfoPanel', function() {
-            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.previousPanel);
+            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
         });
 
     },
@@ -123,13 +125,12 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
                             localStorage.setItem("website", user_data.website ? user_data.website : '');
 
                             Ext.ux.SessionManager.loadLastUser();
-
                             Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);
 
                             if (user_data.language != Ext.ux.LanguageManager.lang) {
                                 Ext.Msg.alert ('', Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE,  function() {
                                     //LanistaTrainer.app.fireEvent('changeLanguage', (user_data.language == 'DE' ? 0 : user_data.language == 'EN' ? 1 : 2));
-                                    LanistaTrainer.app.fireEvent('changeLanguage', user_data.language );
+                                    LanistaTrainer.app.fireEvent('changeLanguage', user_data.language, true);
                                 });
                             }
                         } else {
@@ -159,9 +160,6 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
         var userInfoPanel	= controller.getUserInfoPanel();
         var mainStage	= controller.getMainStage();
 
-        LanistaTrainer.app.previousPanel = LanistaTrainer.app.activePanel;
-        LanistaTrainer.app.activePanel = "userInfoPanel";
-
         mainStage.add( userInfoPanel );
 
         userInfoPanel.on('hide', function(component) {
@@ -175,40 +173,7 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
 
         // *** 2 Show the panel
         userInfoPanel.show();
-
         LanistaTrainer.app.fireEvent('showUserInfoHeaderUpdate');
-
-        /*
-        $( "#changeUserPhoto" ).click(function( event ) {
-            console.log (event);
-            var image = Ext.create('Ext.Img', {
-                src: '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_photo.jpg'
-            });
-            Lanista.app.fireEvent('showImagePanel', image, 'SetupController','/tpmanager/user/uploadphoto',  {type: 'photo'}, function() {
-
-            });
-            console.log ("MARK");
-            self.getMainView().down("#header").setData({
-                info: '',
-                title: ''
-            });
-        });
-        $( "#changeUserLogo" ).click(function( event ) {
-            console.log (event);
-            var image = Ext.create('Ext.Img', {
-                src: '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg'
-            });
-            Lanista.app.fireEvent('showImagePanel', image, 'SetupController','/tpmanager/user/uploadphoto',  {type: 'logo'}, function() {
-
-            });
-            console.log ("MARK");
-            self.getMainView().down("#header").setData({
-                info: '',
-                title: ''
-            });
-        });
-        */
-
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
@@ -236,10 +201,8 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
 
     onShowUserInfoHeaderUpdate: function() {
         var controller = this;
-            //info = '<div class="lanista-user-setup lansita-header-customer-logo-not-found"><div class="lansita-header-customer-logo" id="changeUserLogo" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-logo-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_LOGO + '</div>  <div class="lanista-user-setup  lansita-header-customer-image-not-found"><div class="lansita-header-customer-logo" id="changeUserPhoto" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_photo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-foto-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_PHOTO + '</div>';
-
-            info = '<div class="lanista-user-setup lansita-header-customer-logo lansita-header-customer-logo-not-found" id="changeUserLogo"><div class="lansita-header-customer-logo lansita-header-customer-logo" id="changeUserLogo" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-logo-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_LOGO + '</div>';
-            info = info + '<div class="lanista-user-setup lansita-header-customer-photo lansita-header-customer-image-not-found" id="changeUserPhoto"><div class="lansita-header-customer-photo lansita-header-customer-logo" id="changeUserPhoto" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_photo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-foto-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_PHOTO + '</div>';
+            info = '<div class="lanista-user-setup lansita-header-customer-logo-not-found show-info-customer" id=userLogoNotFound"><div class="lansita-header-customer-logo" id="changeUserLogo" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-logo-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_LOGO + '</div>';
+            info = info + '<div class="lanista-user-setup lansita-header-customer-image-not-found" id="userPhotoNotFound"><div class="lansita-header-customer-photo" id="changeUserPhoto" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_photo.jpg);"></div></div>' + '<div class="lanista-user-setup trainer-foto-header">' + Ext.ux.LanguageManager.TranslationArray.YOUR_PHOTO + '</div>';
 
 
         if (this.getUserInfoPanel() && !this.getUserInfoPanel().isHidden()) {
@@ -261,7 +224,7 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
         //Adding bottoms into RightPanel
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.LOGGOUT.toUpperCase(),
+                text: Ext.ux.LanguageManager.TranslationArray.LOGGOUT,
                 itemId: 'logoutButton',
                 userAlias: 'logoutButton',
                 glyph: '115@Lanista Icons' //s
@@ -270,7 +233,7 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
 
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.LICENSE.toUpperCase(),
+                text: Ext.ux.LanguageManager.TranslationArray.LICENSE,
                 itemId: 'licenseButton',
                 userAlias: 'licenseButton',
                 glyph: '65@Lanista Icons' //A
