@@ -6,7 +6,6 @@
     },
     "codeClass": null,
     "userConfig": {
-        "autoScroll": true,
         "border": false,
         "cls": "lanista-user-info-panel",
         "defaultAlign": "c-c",

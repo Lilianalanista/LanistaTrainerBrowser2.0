@@ -90,7 +90,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
         var controller = this,
             exercisesPanel	= controller.getExercisesPanel(),
-            mainStage	= controller.getMainStage();
+            mainStage	= controller.getMainStage(),
+            store = Ext.getStore('ExerciseStore');
 
         mainStage.add( exercisesPanel );
 
@@ -98,11 +99,24 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             component.destroy();
         }, controller);
 
-        var viewExercises = exercisesPanel.down('#viewExercises');
-        store = viewExercises.store;
+        var viewportXCapacity	= Math.floor(mainStage.getEl().getWidth(true)/187);
+        var viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/177) * viewportXCapacity;
+
+        //var viewExercises = exercisesPanel.down('#viewExercises');
+        //store = viewExercises.store;
+        store.pageSize = viewportCapacity;
         store.clearFilter(true);
         store.sort('name_' + Ext.ux.LanguageManager.lang, 'ASC');
         console.log("Total: " + store.proxy.totalCount);
+        store.load();
+
+
+
+        console.log('store.pagesize from show exercise.....');
+        console.log(store.pagesize);
+
+
+
 
         // **** 1 create the commands
         LanistaTrainer.app.setStandardButtons('closeExercisesPanelButton');
@@ -136,10 +150,6 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     },
 
     onShowExercisesFiltered: function(value, type) {
-        console.log(value);
-        console.log(type);
-
-        //Ext.getStore('ExerciseStore')
 
     },
 
@@ -155,7 +165,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         					var data = records;
         					var record = null;
         					for (var i = 0; i < records.length; i++) {
-        						record = records[i].copy();
+        						record = records[i].copy(records[i].data.id);
+                                record.setDirty();
         						Ext.getStore('ExerciseStore').add(record);
         					}
         					Ext.getStore('ExerciseStore').sync();
@@ -184,6 +195,14 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
              controller = this,
              numOfExercises = store.proxy.totalCount,
              totalPages = Math.ceil(numOfExercises/store.pageSize);
+
+
+
+        console.log('store.pageSize from show header');
+        console.log(store.pageSize);
+
+
+
 
         if (store.filters.items.length !== 0)
            filter = (store.filters.items[1].textOptSel ? 'Musclegruppe: '+store.filters.items[1].textOptSel+'<br>' : '') + (store.filters.items[0].textOptSel ? ' Übungstyp: '+store.filters.items[0].textOptSel+'<br>' : '') + (store.filters.items[2].textOptSel ? ' Zusätze: '+store.filters.items[2].textOptSel+'<br>' : '');

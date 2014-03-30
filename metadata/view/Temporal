@@ -1,0 +1,175 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoScroll": true,
+        "border": false,
+        "cls": "lanista-customerexercises-panel",
+        "container|align": "stretch",
+        "designer|userClassName": "Temporal",
+        "header": false,
+        "height": 580,
+        "id": "customerExercisesPanel1",
+        "layout": "hbox",
+        "title": null,
+        "width": 809
+    },
+    "designerId": "e2eddc02-1489-4aec-a402-f7c5ddbbcfd4",
+    "cn": [
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoScroll": true,
+                "border": false,
+                "cls": "grid-customer-exercise",
+                "id": "grid2",
+                "maxWidth": null,
+                "scroll": null,
+                "store": "ProtocollStore",
+                "title": null,
+                "width": 300
+            },
+            "designerId": "4c9c5629-87dc-484d-87ca-4a69e0ac18b7",
+            "cn": [
+                {
+                    "type": "Ext.grid.column.Template",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "border": false,
+                        "dataIndex": "string",
+                        "draggable": false,
+                        "enableColumnHide": false,
+                        "hideable": false,
+                        "maxWidth": null,
+                        "menuDisabled": true,
+                        "resizable": false,
+                        "text": "Titulo",
+                        "toFrontOnShow": false,
+                        "width": 285
+                    },
+                    "designerId": "d56fa688-4825-4294-9861-b9b7e574ef90",
+                    "cn": [
+                        {
+                            "type": "Ext.XTemplate",
+                            "reference": {
+                                "name": "tpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tpl",
+                                "implHandler": [
+                                    "<div class=\"lansita-header-customer-name\"> ",
+                                    "    <span class=\"weight\"> {weight} Kgs. / {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span> ",
+                                    "</div>",
+                                    ""
+                                ]
+                            },
+                            "designerId": "6448e5b9-f65c-4406-9bc1-54c0e37e3193"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "gv1",
+                        "maxWidth": null,
+                        "stripeRows": false,
+                        "width": 285
+                    },
+                    "designerId": "c0c45457-3f63-4fda-83c2-f8090113fcfe",
+                    "cn": [
+                        {
+                            "type": "processcfgfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "config"
+                                ],
+                                "fn": "processGv1",
+                                "implHandler": [
+                                    "",
+                                    "config.plugins = [ Ext.create('Ext.ux.PreviewPlugin',",
+                                    "                       {",
+                                    "                            ptype: 'preview',",
+                                    "                            bodyField: 'coatchingnotes_' + Ext.ux.LanguageManager.lang,",
+                                    "                            expanded: true,",
+                                    "                            pluginId: 'preview'",
+                                    "                       })",
+                                    "                 ];",
+                                    "",
+                                    "return config;"
+                                ]
+                            },
+                            "designerId": "abdcfc67-a9d5-45e9-a6d2-537ac7071116"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.feature.Grouping",
+                    "reference": {
+                        "name": "features",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "designerId": "6f34fa54-98e1-443f-aab7-84ce64761ba7",
+                    "cn": [
+                        {
+                            "type": "Ext.XTemplate",
+                            "reference": {
+                                "name": "groupHeaderTpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "groupHeaderTpl",
+                                "implHandler": [
+                                    "<tpl for=\".\">",
+                                    "    <input type=\"image\" src=\"{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + /LanistaTrainerBrowser2.0/]}resources/images/previews/{[Ext.getStore(\"ExerciseStore\").getProxy().getRecord(values[\"name\"]).ext_id]}_1.jpg\" >",
+                                    "    <input type=\"image\" src=\"{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + /LanistaTrainerBrowser2.0/]}resources/images/previews/{[Ext.getStore(\"ExerciseStore\").getProxy().getRecord(values[\"name\"]).ext_id]}_2.jpg\" ></div>",
+                                    "</tpl>",
+                                    ""
+                                ]
+                            },
+                            "designerId": "3f395b75-a731-41f2-8c44-3f1e2950c960"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "text": "MyColumn9"
+                    },
+                    "designerId": "8e62cb5b-69f0-4826-8aff-1a0dffa198cd"
+                }
+            ]
+        }
+    ]
+}

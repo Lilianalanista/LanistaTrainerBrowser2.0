@@ -17,14 +17,70 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.customerExercisesPanel',
 
+    requires: [
+        'Ext.view.View',
+        'Ext.XTemplate',
+        'Ext.container.Container'
+    ],
+
     border: false,
-    height: 250,
+    cls: 'lanista-customerexercises-panel',
+    height: 580,
     id: 'customerExercisesPanel',
-    width: 400,
+    width: 809,
+    autoScroll: true,
     header: false,
+
+    layout: {
+        type: 'hbox',
+        align: 'stretch'
+    },
 
     initComponent: function() {
         var me = this;
+
+        Ext.applyIf(me, {
+            items: [
+                {
+                    xtype: 'dataview',
+                    flex: 1,
+                    itemId: 'plans',
+                    itemSelector: 'div',
+                    itemTpl: [
+                        '<div>Plan {name}</div>'
+                    ]
+                },
+                {
+                    xtype: 'dataview',
+                    flex: 1,
+                    itemId: 'warnings',
+                    itemSelector: 'div',
+                    itemTpl: [
+                        '<div>{title} {creation_date}</div>'
+                    ]
+                },
+                {
+                    xtype: 'component',
+                    flex: 1,
+                    itemId: 'customerCurrentData'
+                }
+            ],
+            dockedItems: [
+                {
+                    xtype: 'container',
+                    flex: 1,
+                    dock: 'bottom',
+                    cls: 'protocolls-panel',
+                    height: 450,
+                    itemId: 'customerProtocolls',
+                    overflowX: 'auto',
+                    layout: {
+                        type: 'hbox',
+                        align: 'stretch'
+                    }
+                }
+            ]
+        });
 
         me.callParent(arguments);
     }

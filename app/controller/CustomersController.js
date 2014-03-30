@@ -94,23 +94,22 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
     },
 
     onShowCustomersPanel: function(callback) {
-        Ext.getStore('CustomerStore').load();
 
         var controller = this,
             customerPanel	= controller.getCustomersPanel(),
-            mainStage	= controller.getMainStage();
+            mainStage	= controller.getMainStage(),
+            storeCustomers = Ext.getStore('CustomerStore'),
+            viewportXCapacity	= Math.floor(mainStage.getEl().getWidth(true)/207),
+            viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/190) * viewportXCapacity;
+
+        storeCustomers.pageSize = viewportCapacity;
+        Ext.getStore('CustomerStore').load();
 
         mainStage.add( customerPanel );
 
         customerPanel.on('hide', function(component) {
             component.destroy();
         }, controller);
-
-        /*var viewExercises = exercisesPanel.down('#viewExercises');
-        store = viewExercises.store;
-        store.clearFilter(true);
-        store.sort('name_' + Ext.ux.LanguageManager.lang, 'ASC');
-        console.log("Total: " + store.proxy.totalCount);*/
 
         // **** 1 create the commands
         LanistaTrainer.app.setStandardButtons('closeCustomersPanelButton');

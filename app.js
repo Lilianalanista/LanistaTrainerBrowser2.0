@@ -24,19 +24,22 @@ Ext.application({
     requires: [
         'Ext.ux.LanguageManager',
         'Ext.ux.SessionManager',
-        'Ext.ux.ConfigManager'
+        'Ext.ux.ConfigManager',
+        'Ext.ux.PreviewPlugin'
     ],
     panels: [
         
     ],
     models: [
         'ExerciseModel',
-        'Customer'
+        'Customer',
+        'Protocoll'
     ],
     stores: [
         'ExerciseInitialStore',
         'ExerciseStore',
-        'CustomerStore'
+        'CustomerStore',
+        'ProtocollStore'
     ],
     views: [
         'MainViewport',
@@ -53,7 +56,8 @@ Ext.application({
         'CustomersPanel',
         'ImagePanel',
         'CustomerInfoPanel',
-        'CustomerExercisesPanel'
+        'CustomerExercisesPanel',
+        'Temporal'
     ],
     controllers: [
         'MainController',
@@ -189,6 +193,23 @@ Ext.application({
                 reader: {
                     type: 'json',
                     root: 'entries'
+                },
+                headers: {
+                    user_id: userId
+                }
+            }));
+
+            Ext.getStore('ProtocollStore').setProxy(new Ext.data.proxy.Ajax({
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/exerciseprotocoll/json',
+                model: 'Protocoll',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    root: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    root: 'results'
                 },
                 headers: {
                     user_id: userId

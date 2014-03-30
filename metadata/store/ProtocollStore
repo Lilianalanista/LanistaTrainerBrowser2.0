@@ -1,0 +1,67 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ProtocollStore",
+        "groupField": null,
+        "model": "Protocoll",
+        "pageSize": null,
+        "remoteFilter": true,
+        "remoteSort": true,
+        "requires": [
+            "Ext.data.proxy.Ajax",
+            "Ext.data.reader.Json"
+        ],
+        "storeId": "ProtocollStore"
+    },
+    "designerId": "bdf676fb-5fe0-4bc8-a711-66fb242709ed",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "headers": [
+                    "{ ",
+                    "    user_id: 5",
+                    "}"
+                ],
+                "url": "/tpmanager/exerciseprotocoll/json"
+            },
+            "designerId": "2c593acd-71f0-40ca-9326-91cbf5377476",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "entries"
+                    },
+                    "designerId": "b8274e5a-9536-4ddd-b625-bf0f690c3639"
+                },
+                {
+                    "type": "Ext.data.writer.Json",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "results"
+                    },
+                    "designerId": "85315dde-f5f1-4594-86a6-b2af57bd8398"
+                }
+            ]
+        }
+    ]
+}

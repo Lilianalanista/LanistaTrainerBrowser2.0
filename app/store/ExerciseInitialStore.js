@@ -30,6 +30,7 @@ Ext.define('LanistaTrainer.store.ExerciseInitialStore', {
             storeId: 'ExerciseInitialStore',
             proxy: {
                 type: 'ajax',
+                idParam: '',
                 noCache: false,
                 url: 'app/model/data/exercises.json'
             }

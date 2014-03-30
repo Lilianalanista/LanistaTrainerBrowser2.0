@@ -85,6 +85,7 @@ $base-gradient: "none";
 	color: rgba(0,0,0,0.2);
 }
 
+
 .lansita-header-customer-logo, .lansita-header-customer-photo {
     width: 100%!important;
     height: 100%!important;
@@ -527,8 +528,61 @@ $base-gradient: "none";
     font-size:130%;
 }
 
+.exercises-header {
+	margin-top: 30px;
+}
 
+//Grid Customer Exercises
+.lanista-customerexercises-panel .x-panel-default {
+    width: 230px!important;
+}
 
+.exercise-list-img-right {
+    margin-right: -1px;
+}
+
+.exercise-list-img-left {
+    margin-left: 1px;
+}
+
+.x-grid-view {
+    width:  230px!important;
+}
+
+.x-grid-body {
+    width:  230px!important;
+}
+
+.x-column-header {
+    text-align: center;
+    font-size: 18px;
+    width:  220px!important;
+}
+
+.protocolls-panel .x-box-target {
+    height:  0px;
+}
+
+.protocolls-panel .x-box-target {
+    width:  220px!important;
+}
+
+.x-grid-with-row-lines .x-grid-table {
+    width:  215px!important;
+}
+
+.x-grid-group-hd {
+    border-color: transparent!important;
+}
+
+.x-grid-with-row-lines .x-grid-td {
+    font-size: 18px;
+}
+
+.lanista-row-cell {
+    height: 20px;
+    line-height: 16px;
+}
 
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

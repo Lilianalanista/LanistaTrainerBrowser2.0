@@ -6,7 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "ExerciseModel"
+        "clientIdProperty": null,
+        "designer|userClassName": "ExerciseModel",
+        "idProperty": null
     },
     "designerId": "66a8eaf7-a566-40b9-8b53-cc931f03fe3f",
     "cn": [
@@ -18,7 +20,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "id"
+                "name": "id",
+                "type": null
             },
             "designerId": "9fb7256d-f2b6-4faf-b388-bab2a662d3a8"
         },

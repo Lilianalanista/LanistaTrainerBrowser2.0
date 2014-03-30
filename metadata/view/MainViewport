@@ -121,7 +121,7 @@
                             "            idImage = LanistaTrainer.app.currentCustomer.data.id;",
                             "        if ( t.id === 'changeUserPhoto' )",
                             "            idImage = localStorage.getItem(\"user_id\");",
-                            "        ",
+                            "",
                             "        el.addCls('item-not-clicked');",
                             "        var image = Ext.create('Ext.Img', {",
                             "            src: server + root + '/tpmanager/img/p/'+ idImage + '_photo.jpg',",

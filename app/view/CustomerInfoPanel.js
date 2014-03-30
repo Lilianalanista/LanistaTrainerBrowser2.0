@@ -30,7 +30,6 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
     id: 'customerInfoPanel',
     style: 'padding-top: 100px; height: 500px;',
     width: 400,
-    autoScroll: true,
     defaultAlign: 'c-c',
     layout: 'auto',
     header: false,

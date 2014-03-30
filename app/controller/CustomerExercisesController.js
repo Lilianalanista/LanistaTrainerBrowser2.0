@@ -80,6 +80,38 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
         // *** 2 Show the panel
         customerExercisesPanel.show();
 
+
+        // PLANS
+
+        // WARNINGS
+
+
+
+        // HEADER
+
+
+
+        // PROTOCOLLS
+        controller.loadProtocolls();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
 
@@ -132,6 +164,103 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
     loadData: function() {
 
+    },
+
+    loadProtocolls: function() {
+        var controller = this,
+            protocollsStore = Ext.getStore( "ProtocollStore" ),
+            protocollsPanel = controller.getMainStage().down ( '#customerProtocolls' ),
+            userId = localStorage.getItem ( 'user_id' ),
+            currentCustomer = LanistaTrainer.app.currentCustomer,
+            TplColums = new Ext.XTemplate(
+                '<div class="lansita-header-customer-name">',
+                '    <span class="weight"> {weight} Kgs. / {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span>',
+                '</div>'
+             );
+
+        /*
+        protocollsStore.clearFilter ();
+        protocollsStore.filter([
+          {property: 'user_id', value: currentCustomer.data.id},
+          {property: 'assign_to', value: userId}
+        ]);
+        */
+        protocollsStore.getProxy().setExtraParam( 'assign_to', currentCustomer.data.id );
+        protocollsStore.sort( {
+            direction: 'DESC',
+            property: 'execution_date_day'
+        });
+
+        protocollsStore.group( 'execution_date_day' );
+        protocollsStore.load(function (records) {
+                var groups = protocollsStore.getGroups (),
+                    dailyGrid = null,
+                    dataGridStore = null,
+                    gridStore = null;
+
+                //for ( var i = 0; i < groups.length && i < 7; i++ ) {
+                for ( var i = 0; i < groups.length; i++ ) {
+                        dataGridStore = groups[i].children;
+                        gridStore = null;
+                        gridStore = Ext.create('Ext.data.Store', {
+                            model: 'LanistaTrainer.model.Protocoll',
+                            data:	dataGridStore,
+                            groupField: 'exercise_id_forgroup',
+                            autoLoad: true
+                        });
+
+                        dailyGrid =  Ext.create('Ext.grid.Panel', {
+                                        border: false,
+                                        store: gridStore,
+                                        cls: 'lanista-customer-exercise',
+                                        width: 230,
+                                        autoScroll: true,
+                                        id: 'grid' + i,
+                                        columns: [
+                                                    {
+                                                        xtype: 'templatecolumn',
+                                                        border: false,
+                                                        draggable: false,
+                                                        //tpl: TplColums,
+                                                        tpl: '',
+                                                        cls: 'lanista-grid-customer-exercise-column',
+                                                        width: 180,
+                                                        resizable: false,
+                                                        toFrontOnShow: true,
+                                                        enableColumnHide: false,
+                                                        dataIndex: 'string',
+                                                        hideable: false,
+                                                        menuDisabled: true,
+                                                        text: groups[i].name
+                                                    }
+                                                 ],
+                                        viewConfig: {
+                                            stripeRows: false,
+                                            getRowClass: function (record, rowIndex, rp, store) {
+                                                return 'lanista-row-cell';
+                                            }
+                                        },
+                                        features: [
+                                                    {
+                                                        ftype: 'grouping',
+                                                        groupHeaderTpl: [
+                                                            '<tpl for=".">',
+                                                            '     <input type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + /LanistaTrainerBrowser2.0/]}resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_1.jpg" >',
+                                                            '     <input type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + /LanistaTrainerBrowser2.0/]}resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_2.jpg" ></div>',
+                                                            '     <tpl for="children">',
+                                                            '           <span class="weight"> {data.weight} Kgs. / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span>',
+                                                            '      </tpl>',
+                                                            '</tpl>'
+                                                        ],
+                                                        //startCollapsed: true
+                                                        collapsible: false
+                                                    }
+                                                ]
+                                        });
+                        protocollsPanel.insert ( i, dailyGrid );
+                }
+            }
+        );
     },
 
     init: function(application) {

@@ -6,14 +6,115 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoScroll": true,
         "border": false,
+        "cls": "lanista-customerexercises-panel",
+        "container|align": "stretch",
         "designer|userAlias": "customerExercisesPanel",
         "designer|userClassName": "CustomerExercisesPanel",
         "header": false,
-        "height": 250,
+        "headerPosition": null,
+        "height": 580,
         "id": "customerExercisesPanel",
+        "layout": "hbox",
         "title": null,
-        "width": 400
+        "width": 809
     },
-    "designerId": "5d37b0c7-cd7b-47a4-ba76-021716e9e6ee"
+    "designerId": "5d37b0c7-cd7b-47a4-ba76-021716e9e6ee",
+    "cn": [
+        {
+            "type": "Ext.view.View",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "plans",
+                "itemSelector": "div",
+                "layout|flex": 1
+            },
+            "designerId": "87acbd24-b762-4aa7-8204-ebbf6e1c4874",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "itemTpl",
+                        "implHandler": [
+                            "<div>Plan {name}</div>"
+                        ]
+                    },
+                    "designerId": "8571ceeb-95f5-447f-9d56-0d0e9686e5d9"
+                }
+            ]
+        },
+        {
+            "type": "Ext.view.View",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "warnings",
+                "itemSelector": "div",
+                "layout|flex": 1
+            },
+            "designerId": "ca9a7d1f-2e96-4de3-9eb6-b720dc3f2b45",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "itemTpl",
+                        "implHandler": [
+                            "<div>{title} {creation_date}</div>"
+                        ]
+                    },
+                    "designerId": "283341a8-45b7-4286-bfac-8bfd6524995f"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Component",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "customerCurrentData",
+                "layout|flex": 1
+            },
+            "designerId": "2462e0d3-7a28-4b28-ba89-a292bd2b1086"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "protocolls-panel",
+                "container|align": "stretch",
+                "dock": "bottom",
+                "height": 450,
+                "itemId": "customerProtocolls",
+                "layout": "hbox",
+                "layout|flex": 1,
+                "overflowX": "auto"
+            },
+            "designerId": "91a75130-cea1-4ebe-9ac4-bd639345ef74"
+        }
+    ]
 }

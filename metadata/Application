@@ -26,7 +26,8 @@
         ],
         "models": [
             "ExerciseModel",
-            "Customer"
+            "Customer",
+            "Protocoll"
         ],
         "name": "LanistaTrainer",
         "panels": [
@@ -35,12 +36,14 @@
         "requires": [
             "Ext.ux.LanguageManager",
             "Ext.ux.SessionManager",
-            "Ext.ux.ConfigManager"
+            "Ext.ux.ConfigManager",
+            "Ext.ux.PreviewPlugin"
         ],
         "stores": [
             "ExerciseInitialStore",
             "ExerciseStore",
-            "CustomerStore"
+            "CustomerStore",
+            "ProtocollStore"
         ],
         "views": [
             "MainViewport",
@@ -57,7 +60,8 @@
             "CustomersPanel",
             "ImagePanel",
             "CustomerInfoPanel",
-            "CustomerExercisesPanel"
+            "CustomerExercisesPanel",
+            "Temporal"
         ]
     },
     "configAlternates": {
@@ -121,7 +125,14 @@
                     "});"
                 ]
             },
-            "designerId": "540e0df4-6911-4642-bb43-5792b95099a5"
+            "designerId": "540e0df4-6911-4642-bb43-5792b95099a5",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "exercises",
+                    "type": "string"
+                }
+            ]
         },
         {
             "type": "basicfunction",
@@ -225,6 +236,23 @@
                     "        reader: {",
                     "            type: 'json',",
                     "            root: 'entries'",
+                    "        },",
+                    "        headers: {",
+                    "            user_id: userId",
+                    "        }",
+                    "    }));",
+                    "",
+                    "    Ext.getStore('ProtocollStore').setProxy(new Ext.data.proxy.Ajax({",
+                    "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/exerciseprotocoll/json',",
+                    "        model: 'Protocoll',",
+                    "        noCache: false,",
+                    "        reader: {",
+                    "            type: 'json',",
+                    "            root: 'entries'",
+                    "        },",
+                    "        writer: {",
+                    "            type: 'json',",
+                    "            root: 'results'",
                     "        },",
                     "        headers: {",
                     "            user_id: userId",
