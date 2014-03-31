@@ -57,7 +57,8 @@ Ext.application({
         'ImagePanel',
         'CustomerInfoPanel',
         'CustomerExercisesPanel',
-        'Temporal'
+        'Temporal',
+        'ExercisePanel'
     ],
     controllers: [
         'MainController',

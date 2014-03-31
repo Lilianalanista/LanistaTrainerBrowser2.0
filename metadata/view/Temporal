@@ -51,8 +51,6 @@
                         "border": false,
                         "dataIndex": "string",
                         "draggable": false,
-                        "enableColumnHide": false,
-                        "hideable": false,
                         "maxWidth": null,
                         "menuDisabled": true,
                         "resizable": false,
@@ -168,6 +166,23 @@
                         "text": "MyColumn9"
                     },
                     "designerId": "8e62cb5b-69f0-4826-8aff-1a0dffa198cd"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGrid2AfterRender",
+                        "implHandler": [
+                            "console.log('datos...');"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "408c3210-195b-4525-b0be-ca42ce70b91d"
                 }
             ]
         }

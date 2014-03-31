@@ -61,7 +61,8 @@
             "ImagePanel",
             "CustomerInfoPanel",
             "CustomerExercisesPanel",
-            "Temporal"
+            "Temporal",
+            "ExercisePanel"
         ]
     },
     "configAlternates": {

@@ -53,6 +53,11 @@ $font-family: 'Roboto Light';
 $list-active-gradient: "none";
 $base-gradient: "none";
 
+.hidden,
+{
+    display: none;
+}
+
 .header-logo {
 	float: left;
 	font-family: "Harabara Bold";
@@ -569,6 +574,7 @@ $base-gradient: "none";
 
 .x-grid-with-row-lines .x-grid-table {
     width:  215px!important;
+    height:  0px!important;
 }
 
 .x-grid-group-hd {
@@ -583,6 +589,26 @@ $base-gradient: "none";
     height: 20px;
     line-height: 16px;
 }
+
+.lanista-grid-row {
+    display: none;
+}
+
+.lanista-protocolls-weight {
+    font-size: 17px;
+    line-height: 10px;
+}
+
+.lanista-img-protocolls .img-right .x-border-box * {
+    margin-left: 15px!important;
+}
+
+.lanista-img-protocolls .img-left .x-border-box * {
+    margin-left: -4px!important;
+}
+
+
+
 
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

@@ -131,6 +131,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             controller.getLeftCommandPanel().items.each(function (item) {
                 item.hide();
             });
+            LanistaTrainer.app.currentCustomer = null;
             controller.getCustomerExercisesPanel().hide();
             if (callback instanceof Function) callback();
         });
@@ -176,7 +177,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                 '<div class="lansita-header-customer-name">',
                 '    <span class="weight"> {weight} Kgs. / {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span>',
                 '</div>'
-             );
+             ),
+            numRows;
 
         /*
         protocollsStore.clearFilter ();
@@ -221,43 +223,41 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                                         xtype: 'templatecolumn',
                                                         border: false,
                                                         draggable: false,
-                                                        //tpl: TplColums,
                                                         tpl: '',
                                                         cls: 'lanista-grid-customer-exercise-column',
                                                         width: 180,
                                                         resizable: false,
                                                         toFrontOnShow: true,
-                                                        enableColumnHide: false,
+                                                        //enableColumnHide: false,
                                                         dataIndex: 'string',
-                                                        hideable: false,
+                                                        //hideable: false,
                                                         menuDisabled: true,
                                                         text: groups[i].name
                                                     }
                                                  ],
                                         viewConfig: {
                                             stripeRows: false,
-                                            getRowClass: function (record, rowIndex, rp, store) {
-                                                return 'lanista-row-cell';
-                                            }
+                                            getRowClass: function(r) {
+                                                 return 'lanista-grid-row';
+                                           }
                                         },
                                         features: [
                                                     {
                                                         ftype: 'grouping',
                                                         groupHeaderTpl: [
                                                             '<tpl for=".">',
-                                                            '     <input type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + /LanistaTrainerBrowser2.0/]}resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_1.jpg" >',
-                                                            '     <input type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + /LanistaTrainerBrowser2.0/]}resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_2.jpg" ></div>',
+                                                            '     <input class="lanista-img-protocolls img-right" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + /LanistaTrainerBrowser2.0/]}resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_1.jpg" >',
+                                                            '     <input class="lanista-img-protocolls img-left" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + /LanistaTrainerBrowser2.0/]}resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_2.jpg" ></div>',
                                                             '     <tpl for="children">',
-                                                            '           <span class="weight"> {data.weight} Kgs. / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span>',
+                                                            '           <p align="center"><span class="lanista-protocolls-weight"> {data.weight} Kgs. / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
                                                             '      </tpl>',
                                                             '</tpl>'
                                                         ],
-                                                        //startCollapsed: true
                                                         collapsible: false
                                                     }
                                                 ]
-                                        });
-                        protocollsPanel.insert ( i, dailyGrid );
+                                   });
+                    protocollsPanel.insert ( i, dailyGrid );
                 }
             }
         );

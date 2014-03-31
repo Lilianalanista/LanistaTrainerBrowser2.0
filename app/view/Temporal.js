@@ -64,9 +64,7 @@ Ext.define('LanistaTrainer.view.Temporal', {
                             width: 285,
                             resizable: false,
                             toFrontOnShow: false,
-                            enableColumnHide: false,
                             dataIndex: 'string',
-                            hideable: false,
                             menuDisabled: true,
                             text: 'Titulo'
                         },
@@ -91,7 +89,13 @@ Ext.define('LanistaTrainer.view.Temporal', {
                                 ''
                             ]
                         }
-                    ]
+                    ],
+                    listeners: {
+                        afterrender: {
+                            fn: me.onGrid2AfterRender,
+                            scope: me
+                        }
+                    }
                 }
             ]
         });
@@ -111,6 +115,10 @@ Ext.define('LanistaTrainer.view.Temporal', {
                          ];
 
         return config;
+    },
+
+    onGrid2AfterRender: function(component, eOpts) {
+        console.log('datos...');
     }
 
 });

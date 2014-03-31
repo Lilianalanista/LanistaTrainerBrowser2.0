@@ -109,6 +109,7 @@
                 "container|align": "stretch",
                 "dock": "bottom",
                 "height": 450,
+                "id": null,
                 "itemId": "customerProtocolls",
                 "layout": "hbox",
                 "layout|flex": 1,
