@@ -63,7 +63,7 @@ Ext.application({
     controllers: [
         'MainController',
         'LoginController',
-        'ExerciseController',
+        'ExercisesController',
         'TemplatesController',
         'RegistrationController',
         'LanguagesController',
@@ -76,7 +76,8 @@ Ext.application({
         'UserInfoController',
         'ImageController',
         'CustomerInfoController',
-        'CustomerExercisesController'
+        'CustomerExercisesController',
+        'ExerciseController'
     ],
     name: 'LanistaTrainer',
 

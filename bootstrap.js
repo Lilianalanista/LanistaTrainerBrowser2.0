@@ -10,6 +10,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.rtl.EventObjectImpl": "ext/src/rtl/EventObject.js",
   "Ext.ux.ConfigManager": "lib/ConfigManager.js",
   "Ext.ux.LanguageManager": "lib/LanguageManager.js",
+  "Ext.ux.PreviewPlugin": "lib/PreviewPlugin.js",
   "Ext.ux.SessionManager": "lib/SessionManager.js",
   "LanistaTrainer": "app"
 });
@@ -835,9 +836,12 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "LanistaTrainer.Application": [],
   "LanistaTrainer.controller.AutheticationController": [],
-  "LanistaTrainer.controller.CustomerController": [],
+  "LanistaTrainer.controller.CustomerExercisesController": [],
+  "LanistaTrainer.controller.CustomerInfoController": [],
+  "LanistaTrainer.controller.CustomersController": [],
   "LanistaTrainer.controller.DashBoardController": [],
   "LanistaTrainer.controller.ExerciseController": [],
+  "LanistaTrainer.controller.ExercisesController": [],
   "LanistaTrainer.controller.HelpController": [],
   "LanistaTrainer.controller.ImageController": [],
   "LanistaTrainer.controller.LanguagesController": [],
@@ -851,11 +855,16 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.controller.UserInfoController": [],
   "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseModel": [],
+  "LanistaTrainer.model.Protocoll": [],
   "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.store.ProtocollStore": [],
+  "LanistaTrainer.view.CustomerExercisesPanel": [],
+  "LanistaTrainer.view.CustomerInfoPanel": [],
   "LanistaTrainer.view.CustomersPanel": [],
   "LanistaTrainer.view.DashBoardPanel": [],
+  "LanistaTrainer.view.ExercisePanel": [],
   "LanistaTrainer.view.ExercisesPanel": [],
   "LanistaTrainer.view.HelpPanel": [],
   "LanistaTrainer.view.ImagePanel": [],
@@ -866,6 +875,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.RegistrationPanel": [],
   "LanistaTrainer.view.StopWatch": [],
   "LanistaTrainer.view.TemplatesPanel": [],
+  "LanistaTrainer.view.Temporal": [],
   "LanistaTrainer.view.UserInfoPanel": [],
   "LanistaTrainer.view.Viewport": [],
   "LanistaTrainer.view.rightView": []
@@ -1862,14 +1872,23 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.controller.AutheticationController": [
     "controller.autheticationController"
   ],
-  "LanistaTrainer.controller.CustomerController": [
-    "controller.customercontroller"
+  "LanistaTrainer.controller.CustomerExercisesController": [
+    "controller.customerExercisesController"
+  ],
+  "LanistaTrainer.controller.CustomerInfoController": [
+    "controller.customerInfoController"
+  ],
+  "LanistaTrainer.controller.CustomersController": [
+    "controller.customerscontroller"
   ],
   "LanistaTrainer.controller.DashBoardController": [
     "controller.dashBoardController"
   ],
   "LanistaTrainer.controller.ExerciseController": [
     "controller.exerciseController"
+  ],
+  "LanistaTrainer.controller.ExercisesController": [
+    "controller.exercisesController"
   ],
   "LanistaTrainer.controller.HelpController": [
     "controller.helpController"
@@ -1902,14 +1921,25 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseModel": [],
+  "LanistaTrainer.model.Protocoll": [],
   "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.store.ProtocollStore": [],
+  "LanistaTrainer.view.CustomerExercisesPanel": [
+    "widget.customerExercisesPanel"
+  ],
+  "LanistaTrainer.view.CustomerInfoPanel": [
+    "widget.customerInfoPanel"
+  ],
   "LanistaTrainer.view.CustomersPanel": [
     "widget.customersPanel"
   ],
   "LanistaTrainer.view.DashBoardPanel": [
     "widget.dashBoardPanel"
+  ],
+  "LanistaTrainer.view.ExercisePanel": [
+    "widget.exercisePanel"
   ],
   "LanistaTrainer.view.ExercisesPanel": [
     "widget.exercisesPanel"
@@ -1939,6 +1969,7 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.view.TemplatesPanel": [
     "widget.templatesPanel"
   ],
+  "LanistaTrainer.view.Temporal": [],
   "LanistaTrainer.view.UserInfoPanel": [
     "widget.userInfoPanel"
   ],

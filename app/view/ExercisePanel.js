@@ -26,10 +26,9 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
         'Ext.form.field.TextArea'
     ],
 
-    cls: 'exercise-panel',
+    cls: 'lanista-exercise-panel',
     height: 250,
     id: 'exercisePanel',
-    width: 400,
 
     layout: {
         type: 'vbox',
@@ -44,6 +43,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                 {
                     xtype: 'panel',
                     flex: 1,
+                    cls: 'lanista-exercise-panel-header',
                     id: 'exercisePanelHeader',
                     tpl: [
                         '<div class="exercise">',
@@ -55,18 +55,20 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                         '</div>'
                     ]
                 },
-                {
+                me.processExercisePanelContent({
                     xtype: 'tabpanel',
                     flex: 1,
+                    cls: 'lanista-exercise-panel-content',
                     id: 'exercisePanelContent',
                     activeTab: 0,
+                    plain: true,
                     items: [
                         {
                             xtype: 'panel',
                             tpl: [
                                 '<div class="exercise-description">',
-                                '    <div class="exercise-coaching-key"><span>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</span><br>{[values["coatchingnotes_"+Ext.ux.LanguageManager.lang].replace(/,/g, \\'<br>\\')]}</div>',
-                                '    <div class="exercise-errors"><span>{[Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS]}</span><br>{[values["mistakes_"+Ext.ux.LanguageManager.lang].replace(/,/g, \\'<br>\\')]}</div>',
+                                '    <div class="exercise-coaching-key"><span><b>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</b></span><br>{[values["coatchingnotes_"+Ext.ux.LanguageManager.lang]]}</div>',
+                                '    <div class="exercise-errors"><span><b>{[Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS]}</b></span><br>{[values["mistakes_"+Ext.ux.LanguageManager.lang]]}</div>',
                                 '</div>',
                                 ''
                             ],
@@ -78,7 +80,6 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                         },
                         {
                             xtype: 'panel',
-                            hidden: true,
                             id: 'protocollsTabPanel',
                             layout: 'fit',
                             title: 'Protocolls',
@@ -144,11 +145,25 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                             ]
                         }
                     ]
-                }
+                })
             ]
         });
 
         me.callParent(arguments);
+    },
+
+    processExercisePanelContent: function(config) {
+
+        config.tabBar = {
+                            docked: 'top',
+                            layout: {
+                                type: 'hbox',
+                                pack: 'center'
+                            }
+                        };
+
+
+        return config;
     }
 
 });

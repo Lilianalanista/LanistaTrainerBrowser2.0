@@ -17,14 +17,12 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     extend: 'Ext.app.Controller',
     alias: 'controller.exerciseController',
 
-    id: 'exerciseController',
+    id: 'ExerciseController',
 
     refs: [
         {
-            autoCreate: true,
-            ref: 'exercisesPanel',
-            selector: 'exercisesPanel',
-            xtype: 'exercisesPanel'
+            ref: 'mainStage',
+            selector: '#mainStage'
         },
         {
             ref: 'rightCommandPanel',
@@ -39,93 +37,96 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             selector: 'mainViewport'
         },
         {
-            ref: 'mainStage',
-            selector: '#mainStage'
+            autoCreate: true,
+            ref: 'exercisePanel',
+            selector: '#exercisePanel',
+            xtype: 'exercisePanel'
         }
     ],
 
-    onShowExercisesPanelButtonClick: function(button, e, eOpts) {
+    onCloseExercisePanelButtonClick: function(button, e, eOpts) {
+        var controller = this;
 
-        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
-            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisesPanel';
-            LanistaTrainer.app.fireEvent('showExercisesPanel');
-        });
-    },
-
-    onCloseExercisesPanelButtonClick: function(button, e, eOpts) {
-        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
-        LanistaTrainer.app.fireEvent('closeExercisesPanel', function() {
-            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
+        LanistaTrainer.app.fireEvent('closeExercisePanel'  , function() {
+            controller.getMainStage().getLayout().getActiveItem().removeCls ('blured');
+            controller.getMainStage().getLayout().getActiveItem().controller.showCommands();
+            console.log ( controller.getMainStage().getLayout().getActiveItem().controller );
+            //controller.getMainStage().getActiveItem().controller.setHeader ();
         });
 
 
+
     },
 
-    onNextExercisesClick: function(tool, e, eOpts) {
-        console.log("SHOW NEXT EXERCISES");
-
-        var store = Ext.getStore("ExerciseStore");
-        var totalPages = Math.ceil(store.proxy.totalCount/store.pageSize);
-
-        console.log('totalPages: ' + totalPages);
-
-        if (Ext.getStore("ExerciseStore").currentPage < totalPages)
-        {
-            store.nextPage();
-            LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
-        }
-    },
-
-    onPreviousExercisesClick: function(tool, e, eOpts) {
-        console.log("SHOW PREVIOUS EXERCISES");
-        if (Ext.getStore("ExerciseStore").currentPage > 1)
-        {
-            var store = Ext.getStore("ExerciseStore");
-            store.previousPage();
-            LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
-        }
-    },
-
-    onShowExercisesPanel: function(callback) {
-
+    onShowExercisePanel: function(record, protocolls, callback) {
         var controller = this,
-            exercisesPanel	= controller.getExercisesPanel(),
-            mainStage	= controller.getMainStage(),
-            store = Ext.getStore('ExerciseStore');
+            exercisePanel	= controller.getExercisePanel(),
+            mainStage	= controller.getMainStage();
 
-        mainStage.add( exercisesPanel );
+        controller.record = record;
+        exercisePanel.down('#exercisePanelHeader').data = record.data;
+        exercisePanel.down('#exercisePanelContent').items.items[0].data = record.data;
 
-        exercisesPanel.on('hide', function(component) {
+        //var currentPlan = LanistaTrainer.app.getController ( 'PlanController' ).plan;
+        //if ( currentPlan ) {
+            //console.log ( controller.currentPlanExercise );
+            //controller.currentPlanExercise.set ( "training", controller.currentPlanExercise.get ( "training_min" ));
+            //controller.currentPlanExercise.set ( "weight", controller.currentPlanExercise.get ( "weight_min" ));
+            //exercisePanel.down('#exercisePanelContent').getTabBar().getAt (3).show();
+            //exercisePanel.down('#configurationPanel').setRecord ( controller.currentPlanExercise );
+        //}
+
+        if ( LanistaTrainer.app.currentCustomer ) {
+            exercisePanel.down('#exercisePanelContent').setActiveTab(0).show();
+
+
+            // get user protocolls
+         /*   var protocollsStore = Ext.getStore( "ProtocollStore" );
+            protocollsStore.clearGrouping();
+            protocollsStore.clearFilter();
+            if ( record.data.ext_id.indexOf ( 'CUST' ) == -1 )
+                protocollsStore.filter ( 'exercise_id', record.data.id );
+            else
+                protocollsStore.filter ( 'user_exercise_id', record.data.id );
+            protocollsStore.load (function (records) {
+         */
+
+
+                console.log ("OPENING RECORD...");
+                console.log ( protocolls.data.items[0] );
+                exercisePanel.down('#exerciseProtocolls').store = protocolls;
+                if ( protocolls.data.items.length > 0 ) {
+                    exercisePanel.down('#protocollPanel').data = protocolls.data.items[0];
+                    exercisePanel.down('#protocollsTabPanel')
+                } else {
+                    // USE THE EXERCISE CONFIGURATION
+                    console.log ( "USING EXERCISE CONFIGURATION");
+                    //console.log ( controller.currentPlanExercise );
+                    //exercisePanel.down('#protocollPanel').setRecord ( controller.currentPlanExercise );
+                }
+
+
+
+
+
+
+           // });
+        }
+
+        Ext.getCmp('mainViewport').add( exercisePanel );
+
+        exercisePanel.on('hide', function(component) {
             component.destroy();
         }, controller);
 
-        var viewportXCapacity	= Math.floor(mainStage.getEl().getWidth(true)/187);
-        var viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/177) * viewportXCapacity;
-
-        //var viewExercises = exercisesPanel.down('#viewExercises');
-        //store = viewExercises.store;
-        store.pageSize = viewportCapacity;
-        store.clearFilter(true);
-        store.sort('name_' + Ext.ux.LanguageManager.lang, 'ASC');
-        console.log("Total: " + store.proxy.totalCount);
-        store.load();
-
-
-
-        console.log('store.pagesize from show exercise.....');
-        console.log(store.pagesize);
-
-
-
-
         // **** 1 create the commands
-        LanistaTrainer.app.setStandardButtons('closeExercisesPanelButton');
+        LanistaTrainer.app.setStandardButtons('closeExercisePanelButton');
         this.showCommands();
 
         // *** 2 Show the panel
-        exercisesPanel.show();
+        exercisePanel.show();
 
-        LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
+        LanistaTrainer.app.fireEvent('showExerciseHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
@@ -135,100 +136,31 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         controller.loadData();
     },
 
-    onCloseExercisesPanel: function(callback) {
+    onCloseExercisePanel: function(callback) {
         var controller = this;
-        LanistaTrainer.app.fireEvent('hideStage', function () {
-            controller.getRightCommandPanel().items.each(function (item) {
-                item.hide();
-            });
-            controller.getLeftCommandPanel().items.each(function (item) {
-                item.hide();
-            });
-            controller.getExercisesPanel().hide();
-            if (callback instanceof Function) callback();
+
+        controller.getRightCommandPanel().items.each(function (item) {
+            item.hide();
         });
-    },
-
-    onShowExercisesFiltered: function(value, type) {
-
-    },
-
-    onLoadExercises: function(afterLoadCallback) {
-
-        var controller = this;
-        Ext.getStore('ExerciseStore').load({
-        	callback: function(records, operation, success) {
-                console.log("RECORDS " + records.length);
-        		if (records.length == 0) {
-        			Ext.getStore('ExerciseInitialStore').load({
-        				callback: function(records, operation, success) {
-        					var data = records;
-        					var record = null;
-        					for (var i = 0; i < records.length; i++) {
-        						record = records[i].copy(records[i].data.id);
-                                record.setDirty();
-        						Ext.getStore('ExerciseStore').add(record);
-        					}
-        					Ext.getStore('ExerciseStore').sync();
-                            Ext.getStore('ExerciseInitialStore').removeAll();
-                            Ext.getStore('ExerciseStore').loadPage(1);
-                            if (afterLoadCallback instanceof Function) {
-        						afterLoadCallback();
-        					}
-        				},
-        					scope: this
-        			});
-        		} else {
-                    Ext.getStore('ExerciseStore').loadPage(1);
-        			afterLoadCallback();
-        		}
-        	},
-        	scope: this
+        controller.getLeftCommandPanel().items.each(function (item) {
+            item.hide();
         });
+        controller.getExercisePanel().hide();
+        if (callback instanceof Function) callback();
+
     },
 
-    onShowSearchHeaderUpdate: function() {
-        var store = Ext.getStore('ExerciseStore'),
-             page = store.currentPage,
-             totalPages = "",
-             filter = "",
-             controller = this,
-             numOfExercises = store.proxy.totalCount,
-             totalPages = Math.ceil(numOfExercises/store.pageSize);
+    onShowExerciseHeaderUpdate: function() {
 
+        var controller = this,
+            user = Ext.ux.SessionManager.getUser(),
+            divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer" id="showPersonalDataButton"><div class="lansita-header-customer-logo show-info-customer" id="showPersonalDataButton" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem( "user_id" ) + '_photo.jpg);"></div></div>';
+            divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + user.last_name + '</span><br> <span class="first-name">' + user.first_name +'</span></div>';
 
-
-        console.log('store.pageSize from show header');
-        console.log(store.pageSize);
-
-
-
-
-        if (store.filters.items.length !== 0)
-           filter = (store.filters.items[1].textOptSel ? 'Musclegruppe: '+store.filters.items[1].textOptSel+'<br>' : '') + (store.filters.items[0].textOptSel ? ' Übungstyp: '+store.filters.items[0].textOptSel+'<br>' : '') + (store.filters.items[2].textOptSel ? ' Zusätze: '+store.filters.items[2].textOptSel+'<br>' : '');
-
-        if (Ext.getStore("ExerciseStore").currentPage > totalPages)
-            return false;
-
-        if (this.getExercisesPanel() && !this.getExercisesPanel().isHidden()) {
-            console.log("numOfExercises " + numOfExercises);
-            console.log("store.getCount() " + store.getCount());
-
-            controller.getMainViewport().down("#header").update({
-               info: '<div class="exercises-header"><div class="header-filter">' + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>',
-               title: '-' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
-            });
-        }
-
-        //var exercisesView = this.getExercisesView();
-        //var HeaderView = this.getHeaderView();
-        //var totalPages = Math.ceil(totalCounts/this.ViewPortCapacityGlb);
-        //var filter = (isNaN(this.filters[1]) ? 'Musclegruppe: '+ this.filters[1] + '<br>' : '') + (isNaN(this.filters[2]) ? ' Übungstyp: '+ this.filters[2] + '<br>' : '') + (isNaN(this.filters[3]) ? ' Zusätze: '+ this.filters[3] + '<br>' : '');
-
-
-        //*****************************************
-        //OJO:  BUSCAR TAMANIO DEL BROWSER!!!!!!  PARA SABER CUANTOS EJERCICIOS ENTRAN EN LA PAGINA!!!!!!!
-        //*****************************************
+        controller.getMainViewport().down("#header").update({
+            info: divLogo + divInfoCustomer,
+            title: '-' + Ext.ux.LanguageManager.TranslationArray.EXERCISE.toUpperCase()
+        });
 
 
     },
@@ -236,21 +168,13 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     showCommands: function(callback) {
 
         var controller = this;
+
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });
 
-        //Adding bottoms into RightPanel
-        var menuFilters = controller.showExercisesMenu();
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.SEARCH,
-                itemId: 'searchButton',
-                menu: menuFilters,
-                menuButtonAlign: 'right',
-                glyph: 72
-            })
-        );
+
+
 
 
     },
@@ -259,375 +183,24 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
     },
 
-    showExercisesMenu: function() {
-        container = this;
-        tools = new Ext.menu.Menu(
-            {
-                defaults: {
-                    height: '50px',
-                    width: '220px'
-                },
-                items:
-                [
-                    {text:	Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES.toUpperCase(),
-                     menuAlign: 'tr-tl?',
-                     rtl: true,
-                     menu:{
-                             defaults: {
-                                 height: '50px',
-                                 width: '220px'
-                             },
-                             items:
-                             [
-                                     {text:	Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_MUSCLES.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('', 1, this.text);
-                                          }
-                                     },
-                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_SHOULDER.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('3', 1, this.text);
-                                          }
-                                     },
-                                     {text:   Ext.ux.LanguageManager.TranslationArray.FILTER_ARMS.toUpperCase(),
-                                              menuAlign: 'tr-tl?',
-                                              rtl: true,
-                                              menu:{
-                                                      defaults: {
-                                                              height: '50px',
-                                                              width: '220px'
-                                                          },
-                                                      items:
-                                                      [
-                                                              {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BICEPS.toUpperCase(),
-                                                                   handler: function () {
-                                                                       container.showFilteredExercises('8', 1, this.text);
-                                                                   }
-                                                              },
-                                                              {text: Ext.ux.LanguageManager.TranslationArray.FILTER_TRICEPS.toUpperCase(),
-                                                                   handler: function () {
-                                                                       container.showFilteredExercises('9', 1, this.text);
-                                                                   }
-                                                              },
-                                                              {text: Ext.ux.LanguageManager.TranslationArray.FILTER_FOREARM.toUpperCase(),
-                                                                   handler: function () {
-                                                                       container.showFilteredExercises('10', 1, this.text);
-                                                                   }
-                                                              }
-                                                       ]
-                                                   }
-                                     },
-                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('1', 1, this.text);
-                                          }
-                                     },
-                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BACK.toUpperCase(),
-                                            menuAlign: 'tr-tl?',
-                                              rtl: true,
-                                              menu:{
-                                                      defaults: {
-                                                              height: '50px',
-                                                              width: '220px'
-                                                          },
-                                                      items:
-                                                      [
-                                                              {text: Ext.ux.LanguageManager.TranslationArray.FILTER_UPPERBACK.toUpperCase(),
-                                                                   handler: function () {
-                                                                       container.showFilteredExercises('2', 1, this.text);
-                                                                   }
-                                                              },
-                                                              {text: Ext.ux.LanguageManager.TranslationArray.FILTER_LOWERBACK.toUpperCase(),
-                                                                   handler: function () {
-                                                                       container.showFilteredExercises('5', 1, this.text);
-                                                                   }
-                                                              }
-                                                       ]
-                                                   }
-                                     },
-                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_AB.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('7', 1, this.text);
-                                          }
-                                     },
-                                     {text: Ext.ux.LanguageManager.TranslationArray.FILTER_WAISHIP.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('6', 1, this.text);
-                                          }
-                                     },
-                                     {text:   Ext.ux.LanguageManager.TranslationArray.FILTER_LEGS.toUpperCase(),
-                                              menuAlign: 'tr-tl?',
-                                              rtl: true,
-                                              menu:{
-                                                      defaults: {
-                                                          height: '50px',
-                                                          width: '220px'
-                                                      },
-                                                      items:
-                                                      [
-                                                          {text: Ext.ux.LanguageManager.TranslationArray.FILTER_FRONTTHIG.toUpperCase(),
-                                                           handler: function () {
-                                                               container.showFilteredExercises('4', 1, this.text);
-                                                           }
-                                                          },
-                                                          {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BACKTHIGH.toUpperCase(),
-                                                           handler: function () {
-                                                               container.showFilteredExercises('14', 1, this.text);
-                                                           }
-                                                          },
-                                                          {text: Ext.ux.LanguageManager.TranslationArray.FILTER_LOWERLEG.toUpperCase(),
-                                                           handler: function () {
-                                                               container.showFilteredExercises('11', 1, this.text);
-                                                           }
-                                                          }
-                                                       ]
-                                                   }
-                                     }
-                             ]
-                          }
-                    },
-                    {text:	 Ext.ux.LanguageManager.TranslationArray.FILTER_TYPE.toUpperCase(),
-                             menuAlign: 'tr-tl?',
-                             rtl: true,
-                             menu:{
-                                     defaults: {
-                                             height: '50px',
-                                             width: '220px'
-                                         },
-                                     items:
-                                     [
-                                         {text: Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_EXERCISES.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('', 2, this.text);
-                                          }
-                                         },
-                                         {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BODYWEIGHT.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('4', 2, this.text);
-                                          }
-                                         },
-                                         {text: Ext.ux.LanguageManager.TranslationArray.FILTER_MACHINE.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('1', 2, this.text);
-                                          }
-                                         },
-                                         {text: Ext.ux.LanguageManager.TranslationArray.FILTER_FREEWEIGHTS.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('2', 2, this.text);
-                                          }
-                                         },
-                                         {text: Ext.ux.LanguageManager.TranslationArray.FILTER_CABLE.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('3', 2, this.text);
-                                          }
-                                         },
-                                         {text: Ext.ux.LanguageManager.TranslationArray.FILTER_STRETCH.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('5', 2, this.text);
-                                          }
-                                         },
-                                         {text: Ext.ux.LanguageManager.TranslationArray.FILTER_CARDIO.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('7', 2, this.text);
-                                          }
-                                         },
-                                         {text: Ext.ux.LanguageManager.TranslationArray.FILTER_SPEC.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('8', 2, this.text);
-                                          }
-                                         },
-                                         {text: Ext.ux.LanguageManager.TranslationArray.FILTER_UNILATERAL.toUpperCase(),
-                                          handler: function () {
-                                              container.showFilteredExercises('9', 2, this.text);
-                                          }
-                                         }
-                                     ]
-                                 }
-                    },
-                    {text:   Ext.ux.LanguageManager.TranslationArray.FILTER_ADDITIVES.toUpperCase(),
-                             menuAlign: 'tr-tl?',
-                             rtl: true,
-                             menu:{
-                                     defaults: {
-                                             height: '50px',
-                                             width: '220px'
-                                         },
-                                     items:
-                                     [
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_MACHINES.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_DUMBBELLS.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('1', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BARBELL.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('3', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_KETT.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('2', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BANK.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('4', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_VARADD.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('5', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BALL.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('6', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_BLAST.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('7', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_JUMPER.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('8', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_FOAM.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('9', 3, this.text);
-                                                  }
-                                             },
-                                             {text: Ext.ux.LanguageManager.TranslationArray.FILTER_MINIBAND.toUpperCase(),
-                                                  handler: function () {
-                                                      container.showFilteredExercises('11', 3, this.text);
-                                                  }
-                                             }
-                                     ]
-                                  }
-                    }
-                ]
-            }
-        );
-
-
-        return tools;
-    },
-
-    showFilteredExercises: function(seekValue, type, text) {
-
-        var store = Ext.getStore('ExerciseStore'),
-            language = Ext.ux.LanguageManager.lang,
-            numOfFilters = store.filters.length,
-            varSearch = seekValue;
-
-        if (numOfFilters === 0)
-        {
-            store.filters.add(new Ext.util.Filter({
-                property: 'type',
-                value: new RegExp("^$|^(?:[0-9 ]+$)"),
-                root: 'data',
-                exactMatch: true
-            }));
-            store.filters.add(new Ext.util.Filter({
-                property: 'muscle',
-                value: new RegExp("^$|^(?:[0-9 ]+$)"),
-                root: 'data',
-                exactMatch: true
-            }));
-
-            var filterFunction = new Ext.util.Filter({
-                filterFn: function(item){
-                    if (Ext.isEmpty(this.serchValue)) return true;
-                    for (var i = 0; i < item.data.addition.length; i++) {
-                        if (item.data.addition[i] ==  this.serchValue)
-                            return true;
-                    }
-                    return false;
-                }
-            });
-
-            store.filters.add(filterFunction);
-        }
-
-        var seekValue1 = "";
-        if (type === 3)
-        {
-            if (seekValue !== "")
-                seekValue1 = parseInt(seekValue);
-        }
-        else
-            seekValue1 = (seekValue === "") ? new RegExp("^$|^(?:[0-9 ]+$)") : parseInt(seekValue);
-
-        switch(type)
-        {
-            case 1: //By Muscle
-                store.filters.items[1].textOptSel = text;
-                store.filters.items[1].setValue(seekValue1);
-              break;
-            case 2: //By Type
-                store.filters.items[0].textOptSel = text;
-                store.filters.items[0].setValue(seekValue1);
-              break;
-            case 3://By Addtion
-                store.filters.items[2].textOptSel = text;
-                store.filters.items[2].setValue(seekValue1);
-                store.filters.items[2].serchValue = seekValue1;
-              break;
-            default:
-              //
-        }
-
-        store.sort('name_' + language, 'ASC');
-        //store.load();
-
-        LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
-
-
-
-    },
-
     init: function(application) {
         this.control({
-            "viewport #showExercisesPanelButton": {
-                click: this.onShowExercisesPanelButtonClick
-            },
-            "viewport #closeExercisesPanelButton": {
-                click: this.onCloseExercisesPanelButtonClick
-            },
-            "viewport #nextExercises": {
-                click: this.onNextExercisesClick
-            },
-            "viewport #previousExercises": {
-                click: this.onPreviousExercisesClick
+            "viewport #closeExercisePanelButton": {
+                click: this.onCloseExercisePanelButtonClick
             }
         });
 
         application.on({
-            showExercisesPanel: {
-                fn: this.onShowExercisesPanel,
+            showExercisePanel: {
+                fn: this.onShowExercisePanel,
                 scope: this
             },
-            closeExercisesPanel: {
-                fn: this.onCloseExercisesPanel,
+            closeExercisePanel: {
+                fn: this.onCloseExercisePanel,
                 scope: this
             },
-            showExercisesFiltered: {
-                fn: this.onShowExercisesFiltered,
-                scope: this
-            },
-            loadExercises: {
-                fn: this.onLoadExercises,
-                scope: this
-            },
-            showSearchHeaderUpdate: {
-                fn: this.onShowSearchHeaderUpdate,
+            showExerciseHeaderUpdate: {
+                fn: this.onShowExerciseHeaderUpdate,
                 scope: this
             }
         });

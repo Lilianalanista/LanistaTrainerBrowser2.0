@@ -9,7 +9,7 @@
         "controllers": [
             "MainController",
             "LoginController",
-            "ExerciseController",
+            "ExercisesController",
             "TemplatesController",
             "RegistrationController",
             "LanguagesController",
@@ -22,7 +22,8 @@
             "UserInfoController",
             "ImageController",
             "CustomerInfoController",
-            "CustomerExercisesController"
+            "CustomerExercisesController",
+            "ExerciseController"
         ],
         "models": [
             "ExerciseModel",

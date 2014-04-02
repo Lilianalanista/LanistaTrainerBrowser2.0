@@ -93,12 +93,11 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                             collapsible: true
                         },
                         {
-                            xtype: 'panel',
+                            xtype: 'container',
                             flex: 1,
                             border: false,
                             id: 'mainStage',
-                            layout: 'fit',
-                            bodyBorder: false
+                            layout: 'card'
                         },
                         {
                             xtype: 'splitter',

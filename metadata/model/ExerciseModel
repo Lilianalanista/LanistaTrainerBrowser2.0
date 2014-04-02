@@ -192,6 +192,18 @@
                 "name": "addition"
             },
             "designerId": "26973591-bb0e-4933-91d7-cbf569bd09c6"
+        },
+        {
+            "type": "Ext.data.proxy.LocalStorage",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "1"
+            },
+            "designerId": "9bfad55f-bdcf-4888-afbf-98cc72cdd52a"
         }
     ]
 }

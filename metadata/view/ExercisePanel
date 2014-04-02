@@ -6,7 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": "exercise-panel",
+        "cls": "lanista-exercise-panel",
         "container|align": "stretch",
         "designer|userAlias": "exercisePanel",
         "designer|userClassName": "ExercisePanel",
@@ -14,7 +14,7 @@
         "id": "exercisePanel",
         "layout": "vbox",
         "title": null,
-        "width": 400
+        "width": null
     },
     "designerId": "760477f7-1a9e-486b-b65e-c999cd4ad142",
     "cn": [
@@ -26,6 +26,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "cls": "lanista-exercise-panel-header",
                 "id": "exercisePanelHeader",
                 "layout|flex": 1
             },
@@ -63,8 +64,11 @@
             "codeClass": null,
             "userConfig": {
                 "activeTab": 0,
+                "cls": "lanista-exercise-panel-content",
                 "id": "exercisePanelContent",
-                "layout|flex": 1
+                "layout|flex": 1,
+                "plain": true,
+                "width": null
             },
             "designerId": "73b9c0b4-8acc-4674-a848-be7a8f5a67f3",
             "cn": [
@@ -100,8 +104,8 @@
                                 "designer|displayName": "tpl",
                                 "implHandler": [
                                     "<div class=\"exercise-description\">",
-                                    "    <div class=\"exercise-coaching-key\"><span>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</span><br>{[values[\"coatchingnotes_\"+Ext.ux.LanguageManager.lang].replace(/,/g, \\'<br>\\')]}</div>",
-                                    "    <div class=\"exercise-errors\"><span>{[Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS]}</span><br>{[values[\"mistakes_\"+Ext.ux.LanguageManager.lang].replace(/,/g, \\'<br>\\')]}</div>",
+                                    "    <div class=\"exercise-coaching-key\"><span><b>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</b></span><br>{[values[\"coatchingnotes_\"+Ext.ux.LanguageManager.lang]]}</div>",
+                                    "    <div class=\"exercise-errors\"><span><b>{[Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS]}</b></span><br>{[values[\"mistakes_\"+Ext.ux.LanguageManager.lang]]}</div>",
                                     "</div>",
                                     ""
                                 ]
@@ -141,7 +145,6 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "hidden": true,
                         "id": "protocollsTabPanel",
                         "layout": "fit",
                         "title": "Protocolls"
@@ -313,6 +316,34 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "processcfgfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "config"
+                        ],
+                        "fn": "processExercisePanelContent",
+                        "implHandler": [
+                            "",
+                            "config.tabBar = {",
+                            "                    docked: 'top',",
+                            "                    layout: {",
+                            "                        type: 'hbox',",
+                            "                        pack: 'center'",
+                            "                    }",
+                            "                };",
+                            "",
+                            "",
+                            "return config;"
+                        ]
+                    },
+                    "designerId": "f8425521-de37-4cb2-bde9-b36ecf9a2f14"
                 }
             ]
         }

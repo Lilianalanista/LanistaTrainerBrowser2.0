@@ -275,17 +275,16 @@
                     "designerId": "b9f59694-4d64-4761-af84-3a5ae16f1ba8"
                 },
                 {
-                    "type": "Ext.panel.Panel",
+                    "type": "Ext.container.Container",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "bodyBorder": false,
                         "border": false,
                         "id": "mainStage",
-                        "layout": "fit",
+                        "layout": "card",
                         "layout|flex": 1
                     },
                     "designerId": "89ed8e73-3879-42f8-b569-573e21ad4a0f"

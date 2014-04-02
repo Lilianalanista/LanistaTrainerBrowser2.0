@@ -54,6 +54,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
     onCloseCustomerExercisesPanelButtonClick: function(button, e, eOpts) {
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+        LanistaTrainer.app.currentCustomer = null;
         LanistaTrainer.app.fireEvent('closeCustomerExercisesPanel', function() {
             LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
         });
@@ -131,7 +132,6 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             controller.getLeftCommandPanel().items.each(function (item) {
                 item.hide();
             });
-            LanistaTrainer.app.currentCustomer = null;
             controller.getCustomerExercisesPanel().hide();
             if (callback instanceof Function) callback();
         });
@@ -180,13 +180,6 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
              ),
             numRows;
 
-        /*
-        protocollsStore.clearFilter ();
-        protocollsStore.filter([
-          {property: 'user_id', value: currentCustomer.data.id},
-          {property: 'assign_to', value: userId}
-        ]);
-        */
         protocollsStore.getProxy().setExtraParam( 'assign_to', currentCustomer.data.id );
         protocollsStore.sort( {
             direction: 'DESC',
@@ -255,7 +248,44 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                                         ],
                                                         collapsible: false
                                                     }
-                                                ]
+                                                ],
+                                        listeners: {
+                                                        groupclick: function(view, node, group, e, eOpts) {
+                                                            var Exercise = Ext.ModelManager.getModel('LanistaTrainer.model.ExerciseModel'),
+                                                                protocolls = null,
+                                                                protocollsData = null;
+
+
+                                                            for ( var i = 0; i < view.store.groups.length; i++ ) {
+                                                                if (view.store.groups.items[i].key === parseInt(group)) {
+                                                                    protocollsData = view.store.groups.items[i];
+                                                                    break;
+                                                                }
+                                                            }
+                                                            protocolls = Ext.create('Ext.data.Store', {
+                                                                model: 'LanistaTrainer.model.Protocoll',
+                                                                data : protocollsData.records
+                                                            });
+
+                                                            Exercise.load(group, {
+                                                                success: function( exercise ) {
+                                                                    controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
+
+                                                                    /*
+                                                                    LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                                                        //LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomersPanel';
+                                                                        LanistaTrainer.app.fireEvent('showExercisePanel', exercise, protocolls);
+                                                                    });
+                                                                    */
+
+
+                                                                    LanistaTrainer.app.fireEvent('showExercisePanel', exercise, protocolls);
+                                                                }
+                                                            });
+
+
+                                                        }
+                                                    }
                                    });
                     protocollsPanel.insert ( i, dailyGrid );
                 }

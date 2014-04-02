@@ -594,6 +594,8 @@ $base-gradient: "none";
     display: none;
 }
 
+//Customer Protocolls 
+
 .lanista-protocolls-weight {
     font-size: 17px;
     line-height: 10px;
@@ -608,6 +610,81 @@ $base-gradient: "none";
 }
 
 
+//Exercise 
+
+.blured {
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+#exercisePanelContent {
+    margin-top: -47px;
+}
+
+.exercise_name {
+    margin-top: 10px;
+    font-family: Bebas Neue;
+    font-size: 31px;
+    text-transform: uppercase;
+    text-align: right;
+    -webkit-mask-image: -webkit-gradient(linear,left top,left bottom,from(#000),color-stop(50%,rgba(0,0,0,0.7)),to(rgba(0,0,0,0.4)));
+    width: 70%!important;
+    float: right!important;
+}
+
+.exercise-images {
+    height: 900px;
+    width: 250px;
+    position: absolute;
+    top: 10px;
+}
+
+.exercise-image {
+    height: 250px;
+    position: relative;
+    z-index: 1;
+}
+
+//.x-tab-bar-default-top {
+//    width: 0px!important;
+//}
+
+.lanista-exercise-panel .x-panel-default {
+    width: 1245px!important;
+    height: 398px!important;
+    left: 93px!important;
+}
+
+.lanista-exercise-panel-content, .lanista-exercise-panel-header, .lanista-exercise-panel-header .x-panel-body-default {
+   width: 1245px!important;
+}
+
+.lanista-exercise-panel-content {
+   top: 120px!important;
+}
+    
+.exercise-description  {
+   margin-left: 200px;
+   font-size: 18px;
+}
+
+.exercise-coaching-key, .exercise-errors {
+    margin-top: 40px;
+}
+
+.lanista-exercise-panel-content .x-horizontal-box-overflow-body {
+    left: 440px;
+}
+
+.exercise-coaching-key span, .exercise-errors span {
+    font-family: 'Roboto Medium';
+    font-size: 20px;
+}
 
 
 $arrow-height: $button-large-arrow-height;
