@@ -28,8 +28,8 @@
             "display": "Build web app"
         }
     },
-    "xdsVersion": "3.0.2",
-    "xdsBuild": 1375,
+    "xdsVersion": "3.0.3",
+    "xdsBuild": 1382,
     "schemaVersion": 1,
     "upgradeVersion": 300000000004,
     "framework": "ext42",

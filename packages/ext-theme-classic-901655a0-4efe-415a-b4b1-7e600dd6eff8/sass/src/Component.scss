@@ -594,7 +594,7 @@ $base-gradient: "none";
     display: none;
 }
 
-//Customer Protocolls 
+//Customer Protocolls
 
 .lanista-protocolls-weight {
     font-size: 17px;
@@ -610,7 +610,7 @@ $base-gradient: "none";
 }
 
 
-//Exercise 
+//Exercise
 
 .blured {
     -webkit-filter: blur(20px);
@@ -622,12 +622,15 @@ $base-gradient: "none";
     transition: all .3s ease-in-out;
 }
 
-#exercisePanelContent {
-    margin-top: -47px;
-}
+
+//#exercisePanelContent {
+//    margin-top: -47px;
+//}
+
+
 
 .exercise_name {
-    margin-top: 10px;
+    margin-top: 120px;
     font-family: Bebas Neue;
     font-size: 31px;
     text-transform: uppercase;
@@ -638,38 +641,41 @@ $base-gradient: "none";
 }
 
 .exercise-images {
-    height: 900px;
+    height: 600px;
     width: 250px;
     position: absolute;
-    top: 10px;
+    top: 130px!important;
 }
 
 .exercise-image {
-    height: 250px;
+    height: 40%;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
-//.x-tab-bar-default-top {
-//    width: 0px!important;
-//}
 
-.lanista-exercise-panel .x-panel-default {
-    width: 1245px!important;
-    height: 398px!important;
-    left: 93px!important;
+
+
+/*
+.lanista-exercise-panel {
+    background-color: transparent;
+}
+
+.lanista-exercise-panel-content {
+   width: 1245px!important;
 }
 
 .lanista-exercise-panel-content, .lanista-exercise-panel-header, .lanista-exercise-panel-header .x-panel-body-default {
    width: 1245px!important;
 }
+*/
 
 .lanista-exercise-panel-content {
-   top: 120px!important;
+   top: 220px!important;
 }
-    
+
 .exercise-description  {
-   margin-left: 200px;
+   margin-left: 270px;
    font-size: 18px;
 }
 
@@ -677,14 +683,37 @@ $base-gradient: "none";
     margin-top: 40px;
 }
 
-.lanista-exercise-panel-content .x-horizontal-box-overflow-body {
-    left: 440px;
-}
-
 .exercise-coaching-key span, .exercise-errors span {
     font-family: 'Roboto Medium';
     font-size: 20px;
 }
+
+.lanista-tbar-exercise .x-tab-bar-strip-default {
+    border-color: grey;
+    background-color: #34acfb;
+}
+
+.lanista-tbar-exercise .x-tab-default-top-active, .lanista-tbar-exercise .x-tab-default-top, .lanista-tbar-exercise .x-tab-default-top-over {
+    background-image: transparent;
+}
+
+.lanista-exercise-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    z-index: 2000;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+}
+
+.md-show {
+    visibility: visible;
+}
+
 
 
 $arrow-height: $button-large-arrow-height;

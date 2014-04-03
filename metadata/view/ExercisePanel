@@ -145,6 +145,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "cls": "lanista-protocolls-tab-panel",
                         "id": "protocollsTabPanel",
                         "layout": "fit",
                         "title": "Protocolls"
@@ -163,12 +164,12 @@
                         {
                             "type": "Ext.panel.Panel",
                             "reference": {
-                                "name": "dockedItems",
+                                "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "dock": "right",
+                                "dock": null,
                                 "height": 300,
                                 "id": "protocollPanel",
                                 "title": "My Panel",
@@ -332,10 +333,11 @@
                         "implHandler": [
                             "",
                             "config.tabBar = {",
+                            "                    cls:'lanista-tbar-exercise',",
                             "                    docked: 'top',",
                             "                    layout: {",
                             "                        type: 'hbox',",
-                            "                        pack: 'center'",
+                            "                        pack: 'end'",
                             "                    }",
                             "                };",
                             "",
