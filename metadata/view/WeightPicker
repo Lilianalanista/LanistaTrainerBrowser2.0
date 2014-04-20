@@ -1,0 +1,502 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "cls": "lanista-weightPicker",
+        "designer|userAlias": "weightPicker",
+        "designer|userClassName": "WeightPicker",
+        "height": null,
+        "id": "weightPicker",
+        "width": 400
+    },
+    "designerId": "923f62d3-fd6b-41bd-be3f-305e51fa0622",
+    "cn": [
+        {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": null,
+                "id": "protocollKgValue",
+                "readOnly": true
+            },
+            "designerId": "7fcdf50f-ea4a-4620-9820-1e7792df1d79"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "clearWeightEntryButton",
+                "text": null
+            },
+            "designerId": "80ad3723-1883-4f49-8441-1acb11786bf9",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onClearWeightEntryButtonClick",
+                        "implHandler": [
+                            "button.up().setValue('0,00');"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "designerId": "9d2707ec-1279-4891-9c83-e11cba2e152c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "numberpad",
+                "defaults": [
+                    "{ ",
+                    "    cls: 'numberpad-button'",
+                    "}",
+                    "",
+                    ""
+                ],
+                "height": null,
+                "id": "numberpad"
+            },
+            "designerId": "062bfc61-fdce-483b-bafd-a4435e73938f",
+            "cn": [
+                {
+                    "type": "processcfgfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "config"
+                        ],
+                        "fn": "processNumberpad",
+                        "implHandler": [
+                            "config.items = [",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">1</div>',",
+                            "                        value: 1,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">2</div>',",
+                            "                        value: 2,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">3</div>',",
+                            "                        value: 3,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">4</div>',",
+                            "                        value: 4,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">5</div>',",
+                            "                        value: 5,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">6</div>',",
+                            "                        value: 6,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">7</div>',",
+                            "                        value: 7,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">8</div>',",
+                            "                        value: 8,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">9</div>',",
+                            "                        value: 9,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\"><-</div>',",
+                            "                        value: -1,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">0</div>',",
+                            "                        value: 0,",
+                            "                        style: ''",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-weight-item\">,00</div>',",
+                            "                        value: 00",
+                            "                    }",
+                            "                ];",
+                            "",
+                            "",
+                            "return config;"
+                        ]
+                    },
+                    "designerId": "0635d817-d268-403e-af01-e76871d798be"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onNumberpadAfterRender",
+                        "implHandler": [
+                            "el = component.el;",
+                            "",
+                            "el.on(",
+                            "    'click', function(e,t) {",
+                            "            var currentEntry = this.getValue(),",
+                            "            currentValue = currentEntry.substring(0, currentEntry.indexOf('kg') -1);",
+                            "",
+                            "            if (t.innerHTML != '&lt;-')",
+                            "                value = currentValue + t.innerHTML;",
+                            "            else",
+                            "                value = currentValue.substring(0, currentValue.length-1);",
+                            "            this.setValue(value);",
+                            "",
+                            "    },",
+                            "    this, {delegate: '.lanista-weight-item'});",
+                            "el.on(",
+                            "    'mouseover', function(e,t) {",
+                            "",
+                            "                            el.removeCls('item-not-clicked');",
+                            "                            el.addCls('item-clicked');",
+                            "",
+                            "                    },",
+                            "    this,{ delegate: '.lanista-weight-item'});",
+                            "el.on(",
+                            "    'mouseout', function(e,t) {",
+                            "",
+                            "                            el.removeCls('item-clicked');",
+                            "                            el.addCls('item-not-clicked');",
+                            "",
+                            "                    },",
+                            "    this,{delegate: '.lanista-weight-item'});"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "1e6ad9cd-39a4-4934-b4cb-dc5fb302dec8"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "training-helpbuttons",
+                "defaults": [
+                    "{",
+                    "    cls: 'weight-option-button'",
+                    "}",
+                    "",
+                    ""
+                ],
+                "height": null,
+                "id": "trainingHelpbuttons"
+            },
+            "designerId": "25ba70a1-cc12-4aa0-98be-1123e91e286b",
+            "cn": [
+                {
+                    "type": "processcfgfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "config"
+                        ],
+                        "fn": "processTrainingHelpbuttons",
+                        "implHandler": [
+                            "config.items = [",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"-0.5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '1/2 kg'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"0.5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"-1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '1 kg'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"-2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '2 kg'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"-5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '5 kg'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"-10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '10 kg'",
+                            "                    },",
+                            "                    {",
+                            "                        html: '<div class=\"lanista-traininghelp-item\" value=\"10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'",
+                            "                    }",
+                            "                ];",
+                            "return config;"
+                        ]
+                    },
+                    "designerId": "c7092ced-6d8c-4f5e-a4a5-5c66c63b4479"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTrainingHelpbuttonsAfterRender",
+                        "implHandler": [
+                            "el = component.el;",
+                            "",
+                            "el.on(",
+                            "    'click', function(e,t) {",
+                            "        var currentValue = parseFloat(this.getValue().replace(',', '.')),",
+                            "            calculation = (currentValue + parseFloat(t.getAttribute('value'))).toFixed(2);",
+                            "            ",
+                            "        if ( calculation >= 0 )",
+                            "            this.setValue(calculation);",
+                            "        else",
+                            "            this.setValue(0);",
+                            "    },",
+                            "    this, {delegate: '.lanista-traininghelp-item'});",
+                            "el.on(",
+                            "    'mouseover', function(e,t) {",
+                            "",
+                            "                            el.removeCls('item-not-clicked');",
+                            "                            el.addCls('item-clicked');",
+                            "",
+                            "                    },",
+                            "    this,{ delegate: '.lanista-traininghelp-item'});",
+                            "el.on(",
+                            "    'mouseout', function(e,t) {",
+                            "",
+                            "                            el.removeCls('item-clicked');",
+                            "                            el.addCls('item-not-clicked');",
+                            "",
+                            "                    },",
+                            "    this,{delegate: '.lanista-traininghelp-item'});"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "0496c5dc-e283-477f-9a25-32a17698a067"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "value"
+                ],
+                "fn": "setValue",
+                "implHandler": [
+                    "if (value) {",
+                    "    this.down ( '#protocollKgValue' ).setValue(value);",
+                    "    this.mascara(this.down ( '#protocollKgValue' ));",
+                    "} else {",
+                    "    this.down ( '#protocollKgValue' ).setValue('0,00');",
+                    "    this.mascara(this.down ( '#protocollKgValue' ));",
+                    "}"
+                ]
+            },
+            "designerId": "fb8a02e3-506d-4547-98f3-34b1549f95b9"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getValue",
+                "implHandler": [
+                    "return this.down ( '#protocollKgValue' ).getValue();"
+                ]
+            },
+            "designerId": "9ad3ad2d-1176-42b7-961e-88f1ca4cf258"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "record"
+                ],
+                "fn": "setRecord",
+                "implHandler": [
+                    "this.record = record;",
+                    "this.setValue ( record.weight );",
+                    ""
+                ]
+            },
+            "designerId": "02f40e15-ebc9-4091-bca8-3a1217201e0b"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "d"
+                ],
+                "fn": "mascara",
+                "implHandler": [
+                    "var pat = new Array(2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3),",
+                    "    val2 = (d.getValue()+'').replace(\".\", \",\"),",
+                    "    decimalSeparator = ',';",
+                    "",
+                    "if (val2.indexOf(decimalSeparator) == -1) val2 += decimalSeparator + '00';",
+                    "for(var z=0; z<val2.length; z++){",
+                    "    if(isNaN(val2.charAt(z)) || val2.charAt(z) == \".\" || val2.charAt(z) == \",\"){",
+                    "        if (val2.charAt(z) == \".\") {",
+                    "            val2 = val2.replace(/\\./g, '');",
+                    "        }",
+                    "        else{",
+                    "            letra = new RegExp(val2.charAt(z),\"g\");",
+                    "            val2 = val2.replace(letra,\"\");",
+                    "        }",
+                    "    }",
+                    "}",
+                    "val = '';",
+                    "val4 = 0;",
+                    "val3 = new Array();",
+                    "for(var s=0; s<pat.length; s++) {",
+                    "    val4 = parseInt(val2.length) - parseInt(pat[s]);",
+                    "    if (val4<0) {",
+                    "        val3[s] = val2;",
+                    "    } else {",
+                    "        val3[s] = val2.substr(val4,pat[s]);",
+                    "    }",
+                    "    if(s ==0){",
+                    "        valx = val3[s];",
+                    "    } else{",
+                    "        if(s ==1){",
+                    "            valx = val3[s] + \",\" + valx;",
+                    "        } else {",
+                    "            if(val3[s] != \"\") {",
+                    "                valx = val3[s] + \".\" + valx;",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "    val2 = val2.substr(0, val4);",
+                    "}",
+                    "d.setValue(valx.replace(/^0+(?!\\,|$)/, '') + \" kg\");"
+                ]
+            },
+            "designerId": "0c59cb48-7665-47aa-ad31-a6c5e04f9536"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWeightPickerAfterRender",
+                "implHandler": [
+                    "",
+                    "//this.down ( '#abortWeightSelection' ).setText ( Ext.ux.LanguageManager.TranslationArray.CLOSE );",
+                    "this.down ( '#clearWeightEntryButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.BUTTON_RESET );",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "753923a1-248a-4148-9682-a4de5437d5ad"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWeightPickerHide",
+                "implHandler": [
+                    "component.destroy ( );"
+                ],
+                "name": "hide",
+                "scope": "me"
+            },
+            "designerId": "9918564b-bc32-44c9-8c8c-ad930c3bc0b6"
+        }
+    ]
+}

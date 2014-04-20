@@ -1,0 +1,87 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 10,
+        "designer|userAlias": "planEditPanel",
+        "designer|userClassName": "PlanEditPanel",
+        "height": 250,
+        "id": "planEditPanel",
+        "title": "My Form",
+        "width": 400
+    },
+    "designerId": "ec7e76b4-d4cd-425c-8615-94f32f3cf36f",
+    "cn": [
+        {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": "Label",
+                "layout|anchor": null,
+                "name": "name"
+            },
+            "designerId": "a1dd0e3e-d0f1-4ae6-99fd-a36272b6e5bb"
+        },
+        {
+            "type": "Ext.form.field.Text",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": "Label",
+                "layout|anchor": null,
+                "name": "duration"
+            },
+            "designerId": "741bf9f6-d865-4795-bbe8-f100d7aa01cf"
+        },
+        {
+            "type": "Ext.form.field.TextArea",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": "Label",
+                "layout|anchor": null,
+                "name": "description"
+            },
+            "designerId": "70650601-b205-4fd9-9d51-0a6332d5e1f8"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPlanEditPanelAfterRender",
+                "implHandler": [
+                    "this.down( 'field[name=name]' ).setLabel( Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_NAME );",
+                    "this.down( 'field[name=duration]' ).setLabel( Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME );",
+                    "",
+                    "this.down('field[name=name]').on('change', function(component) {",
+                    "    LanistaTrainer.app.fireEvent('showSavePanel', 'savePlanDataButton', 'cancelPlanDataButton');",
+                    "});",
+                    "this.down('field[name=duration]').on('change', function(component) {",
+                    "    LanistaTrainer.app.fireEvent('showSavePanel', 'savePlanDataButton', 'cancelPlanDataButton');",
+                    "});"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "4890893b-c1cd-40bf-b15e-206016bdb16f"
+        }
+    ]
+}

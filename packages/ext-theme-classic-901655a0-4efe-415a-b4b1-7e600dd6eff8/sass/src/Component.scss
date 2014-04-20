@@ -220,22 +220,35 @@ $base-gradient: "none";
     border: 0;
 }
 
-.lanista-command-button-red, .lanista-command-button-red .x-button-icon{
-	color: rgb(247, 59, 62);
-	border-color: rgb(247, 59, 62);
+//Red button
+.lanista-command-button-red .x-btn-inner, .lanista-command-button-red .x-btn-glyph {
+    color: rgb(247, 59, 62)!important;
 }
 
-.lanista-command-button-green, .lanista-command-button-green .x-button-icon{
-	color: rgb(89,215,110);
-	border-color: rgb(89,215,110);
+.lanista-command-button-red .x-btn-glyph {
+    border-color: rgb(247, 59, 62)!important;
 }
 
-.lanista-command-button-violet, .lanista-command-button-violet .x-button-icon{
-	color: #B180BE;
-	border-color: #B180BE;
+//Green button
+.lanista-command-button-green .x-btn-inner, .lanista-command-button-green .x-btn-glyph {
+    color: #59d76e!important;
 }
 
-.x-btn-button {
+.lanista-command-button-green .x-btn-glyph {
+    border-color: #59d76e!important;
+}
+
+
+//Violet button
+.lanista-command-button-violet .x-btn-inner, .lanista-command-button-violet .x-btn-glyph {
+    color: #B180BE!important;
+}
+
+.lanista-command-button-violet .x-btn-glyph {
+    border-color: #B180BE!important;
+}
+
+.lanista-command-button .x-btn-button {
     height: 100px!important;
     width: 70px!important;
 }
@@ -595,7 +608,6 @@ $base-gradient: "none";
 }
 
 //Customer Protocolls
-
 .lanista-protocolls-weight {
     font-size: 17px;
     line-height: 10px;
@@ -702,7 +714,7 @@ $base-gradient: "none";
     top: 50%;
     left: 50%;
     height: auto;
-    z-index: 2000;
+    z-index: 4;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -webkit-transform: translateX(-50%) translateY(-50%);
@@ -714,8 +726,254 @@ $base-gradient: "none";
     visibility: visible;
 }
 
+.lanista-protocoll {
+    width: 650px;
+    left: 370px;
+    font-size: 17px;
+}
+
+.protocoll-configuration {
+    font-family: "Roboto Medium";
+    font-size: 40px;
+    color: #5c93ce;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3),0px -1px 0 rgba(0,0,0,0.7);
+    margin-top: 50px;
+    text-align: right;
+    float: right!important;
+}
+
+.lanista-group-grid-exercise {
+    background-color: cornflowerblue;
+    height: 25px;
+    font-size: 14px;
+    padding-top: 7px;
+    color: white;
+}
+
+.lanista-exercises-protocolls-td {
+    //background-color: transparent;
+    font-size: 14px;
+}
+
+#rowProtocolls .x-column-header-inner {
+    background:transparent!important;
+}
+
+//WeightPicker
+.lanista-weightPicker {
+    left: 0px !important;
+    width: 320px !important;
+    top: 0px !important;
+    bottom: 0px !important;
+    z-index: 6 !important;
+    background-color: rgba(255,255,255,0.9);
+    position: absolute;
+}
+
+.numberpad-button {
+    float: left;
+    width: 55px;
+    //height: 55px!important;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.numberpad {
+    width: 260px;
+    height: 260px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.numberpad-button span {
+    border-style: solid;
+    border-radius: 50%;
+    border-color: #858585;
+    height: 55px!important;
+    line-height: 52px;
+    text-align: center;
+    font-size: 23px;
+    color: #4aacd8;
+    width: 100%;
+}
+
+.lanista-weightPicker .x-btn-default-small, .lanista-trainingPicker .x-btn-default-small {
+    margin-right: auto;
+    margin-left: auto;
+    background-image: none;
+    background-color: transparent;
+    border-width: 2px;
+    border-color: black;
+    margin-top: 7px;
+    width: 260px !important;
+    height: 40px;
+    border-radius: 9px!important;
+    left: 25px;
+    margin-top: 10px;
+}
+
+.lanista-weightPicker input, .lanista-trainingPicker input {
+    text-align: right;
+    font-size: 25px;
+    background-color: #729323;
+    color: #f3ffd5;
+    text-shadow: 0 0 10px #f3ffd5;
+    border-radius: 10px;
+    min-height: 0;
+    width: 100%;
+}
+
+.lanista-weightPicker .x-form-item-body, .lanista-trainingPicker .x-form-item-body {
+    width: 260px!important;
+    top: 5px;
+    left: 26px;
+}
+
+.lanista-font {
+    //font-family: 'Lanista Icons';
+    font-family: 'Lanista-2-0';
+    color: #4aacd8;
+    font-size: 32px;
+}
+
+.weight-option-button {
+    width: 33.33%;
+    height: 42px!important;
+    float: left;
+    text-align: center;
+}
+
+.weight-option-button .x-panel-body-default {
+    height: 42px!important;
+}
+
+.weight-option-button span {
+    font-size: 18px;
+    height: 42px;
+    width: 100%;
+}
+
+.training-helpbuttons {
+    margin-top: 10px;
+}
+
+.lanista-weightPicker .x-btn-wrap, .lanista-trainingPicker .x-btn-wrap {
+    height: 40px!important;
+}
+
+.lanista-weightPicker .x-btn-button {
+    height: 40px!important;
+    width: 250px!important;
+}
+
+.lanista-weightPicker .x-btn-default-small .x-btn-inner, .lanista-trainingPicker .x-btn-default-small .x-btn-inner {
+    height: 40px!important;
+    width: 250px!important;
+    font-size: 19px;
+    line-height: 31px;
+    font-weight: bold;
+}
+
+.weight-option-button .lanista-traininghelp-item {
+    width: 30px;
+    margin-left: 37px;
+}
 
 
+//TrainingPicker
+.lanista-trainingPicker {
+    left: auto!important;
+    right: 0px !important;
+    width: 320px !important;
+    top: 0px !important;
+    bottom: 0px !important;
+    z-index: 10 !important;
+    background-color: rgba(255,255,255,0.9);
+    position: absolute;
+}
+
+.lanista-trainingPicker .x-toolbar-default {
+     height: 53px!important;
+    border-color: transparent;
+    border-width: 1px;
+    background-image: none;
+    background-color: transparent;
+    //width: 260px!important;
+}
+
+.lanista-trainingPicker .lanista-buttongroup-traininghelp {
+     width: 200px!important;
+}
+
+.lanista-trainingPicker .x-box-target {
+     height: 49px!important;
+}
+
+.lanista-training-clear .x-btn-button {
+    height: 40px;
+}
+
+
+.lanista-trainingPicker .x-btn-group-default-framed {
+    border-color: black!important;
+}
+
+.lanista-trainingPicker .x-btn-group-default-framed-notitle {
+    border-radius: 11px!important;
+    background-color: transparent!important;
+    border-width: 2px!important;
+    width: 260px!important;
+    left: 22px!important;
+}
+
+.lanista-toolbar-training .x-btn-default-toolbar-small {
+    width: 87px!important;
+    height: 43px!important;
+    top: 0px!important;
+    left: -2px!important;
+}
+
+.lanista-toolbar-training .x-btn-default-toolbar-small .x-btn-inner {
+    font-size: 18px;
+    font-weight: bold;
+}    
+
+.button-selected-color { 
+    background-color: silver; 
+    border-color: black;
+}
+
+.button-unselected-color { 
+    background-color: transparent; 
+}
+
+.lanista-trainingPicker .lanista-closeProtocollButton { 
+    left: 230px!important;
+    width: 80px!important;
+}
+
+.lanista-trainingPicker .lanista-saveProtocollButton {
+    left: 140px!important;
+    width: 80px!important;
+    height: 60px!important;
+    width: 60px!important;
+    font-size: 21px;
+    line-height: 51px;
+}
+
+.lanista-closeProtocollButton .x-btn-glyph, .lanista-saveProtocollButton .x-btn-glyph {
+    height: 60px!important;
+    width: 60px!important;
+    font-size: 21px;
+    line-height: 51px;
+}
+
+.lanista-trainingPicker .x-fieldset {
+    border-color: transparent;
+}
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

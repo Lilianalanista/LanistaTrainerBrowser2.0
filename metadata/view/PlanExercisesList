@@ -1,0 +1,43 @@
+{
+    "type": "Ext.view.View",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "planExercisesList",
+        "designer|userClassName": "PlanExercisesList",
+        "height": 250,
+        "id": "planExercisesList",
+        "itemSelector": "div",
+        "width": 400
+    },
+    "designerId": "a0b0768f-a567-47c7-ae7b-4a38dd90a70b",
+    "cn": [
+        {
+            "type": "Ext.XTemplate",
+            "reference": {
+                "name": "itemTpl",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "itemTpl",
+                "implHandler": [
+                    "<div class=\"exercise-list-img exercise-list-img-right\" style=\"background-image: url({[(values.exercise_ext_id && values.exercise_ext_id.indexOf (\"CUST\") == -1) ? (\"resources/images/previews/\"+values.exercise_ext_id) : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \"/tpmanager/img/s/\"+values.exercise_ext_id)]}_2.jpg);\"/></div>",
+                    "<div class=\"exercise-list-img exercise-list-img-left\" style=\"background-image: url({[(values.exercise_ext_id && values.exercise_ext_id.indexOf (\"CUST\") == -1) ? (\"resources/images/previews/\"+values.exercise_ext_id) : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \"/tpmanager/img/s/\"+values.exercise_ext_id)]}_1.jpg);\"/></div>",
+                    "<div class=\"exercise-list-imges\"></div>",
+                    "<div class=\"lanista-exercices-title\">{name}</div>",
+                    "<div class=\"lanista-exercices-foter\">",
+                    "    <div class=\"lanista-exercices-weight\">{[values.weight_min > 0 ? \"<span>Kg.</span>\"+values.weight_min : '/']}</div>",
+                    "    <div class=\"lanista-exercices-training\"><span>{[Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS]}</span> {rounds_min} </div>",
+                    "    <div class=\"lanista-exercices-sets\"><span>{[values.training_unit == 2 ? Ext.ux.LanguageManager.TranslationArray.SEC : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.REP]} {training_min} </span></div>",
+                    "</div>",
+                    ""
+                ]
+            },
+            "designerId": "2d5dea2b-0af6-4089-b888-0c4bfcd45295"
+        }
+    ]
+}

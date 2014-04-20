@@ -6,17 +6,15 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "ProtocollStore",
-        "groupField": null,
-        "model": "Protocoll",
-        "pageSize": null,
+        "designer|userClassName": "PlanStore",
+        "model": "Plan",
         "remoteFilter": true,
         "remoteSort": true,
         "requires": [
             "Ext.data.proxy.Ajax",
             "Ext.data.reader.Json"
         ],
-        "storeId": "ProtocollStore"
+        "storeId": "PlanStore"
     },
-    "designerId": "bdf676fb-5fe0-4bc8-a711-66fb242709ed"
+    "designerId": "27f9e994-2dd6-4b6b-93f5-f06cd0f1bf1d"
 }

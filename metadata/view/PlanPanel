@@ -1,0 +1,110 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "planPanel",
+        "designer|userClassName": "PlanPanel",
+        "height": 250,
+        "id": "planPanel",
+        "requires": [
+            "LanistaTrainer.view.PlanExercisesList"
+        ],
+        "title": null,
+        "width": 400
+    },
+    "designerId": "a0646267-15df-4b81-8420-1c61b5811101",
+    "cn": [
+        {
+            "type": "processcfgfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "config"
+                ],
+                "fn": "processPlanPanel",
+                "implHandler": [
+                    "config.items = [",
+                    "    {",
+                    "        xtype: 'component',",
+                    "        flex: 1,",
+                    "        itemId: 'planHeader',",
+                    "        maxHeight: 100,",
+                    "        tpl: [",
+                    "            '<div class=\"plan-header-description\">{description}</div>',",
+                    "            '<div class=\"plan-header-info\">',",
+                    "            '    <div class=\"plan-header-attribute\">{[Ext.ux.LanguageManager.TranslationArray.CREATED_AT]}:</div><div class=\"plan-header-value\">{[Ext.Date.format ( values.creation_date, \\'d, M Y\\' )]}</div>',",
+                    "            '    <div class=\"plan-header-attribute\">{[Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME]}:</div><div class=\"plan-header-value\">{duration}</div>',",
+                    "            '</div>'",
+                    "        ]",
+                    "    },",
+                    "    {",
+                    "        xtype: 'tabpanel',",
+                    "        flex: 1,",
+                    "        cls: 'lanista-exercices-panel',",
+                    "        itemId: 'exercicesPanel',",
+                    "        items: [",
+                    "            {",
+                    "                xtype: 'planExercisesList',",
+                    "                id: 'd1'",
+                    "            },",
+                    "            {",
+                    "                xtype: 'container',",
+                    "                title: '+',",
+                    "                itemId: 'plus'",
+                    "            }",
+                    "        ],",
+                    "        tabBar: {",
+                    "            docked: 'top',",
+                    "            html: '<b class=\"caret\" style=\"-webkit-transform: translate3d(34px, 0px, 0px); \"><b class=\"caret_inner\" ></b></b>',",
+                    "            itemId: 'mytabbar'",
+                    "        }",
+                    "    }",
+                    "];"
+                ]
+            },
+            "designerId": "98da6111-f8c0-44c2-96a9-c33ab44d3f1e"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPlanPanelAfterRender",
+                "implHandler": [
+                    "this.controller = LanistaTrainer.app.getController( 'PlanController' );",
+                    "//this.down ('tabpanel').child('#d1').title = Ext.ux.LanguageManager.TranslationArray.DAY + ' 1';",
+                    "",
+                    "",
+                    "this.down ('tabpanel').items.items[0].el.update('New value');",
+                    "console.log(this.down ('tabpanel').items.items[0]);",
+                    "",
+                    "",
+                    "",
+                    "//this.down ('tabpanel').items[0].setHTML('Nuevo valor');",
+                    "",
+                    "",
+                    "//this.down ('#d1').setStore ( LanistaTrainer.app.getController ( 'PlanController').plan.planexercise().load () );",
+                    "",
+                    "if ( LanistaTrainer.app.getController ('PlanController').plan.data.public_template == 1 ) {",
+                    "    var panelSize = this.down ('tabpanel').getAt (1).getItems ().getCount();",
+                    "    this.down ('tabpanel').getAt (1).getAt (panelSize-1).hide();",
+                    "}"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "d755c6ca-6554-46b1-9943-83e056bddf31"
+        }
+    ]
+}

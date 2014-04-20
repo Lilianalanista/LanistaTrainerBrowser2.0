@@ -1,0 +1,199 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Plan"
+    },
+    "designerId": "9fa79ca2-1a5d-427c-8579-265c751fa65d",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id",
+                "type": "int"
+            },
+            "designerId": "17456f2c-3f5f-4310-be46-8fdf5554d74a"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "template",
+                "type": "int"
+            },
+            "designerId": "e7eb69f1-957d-4d99-8241-20919e28faf5"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name",
+                "type": "string"
+            },
+            "designerId": "6d063342-88f0-4eb0-8f74-f6c678548708"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "days",
+                "type": "int"
+            },
+            "designerId": "18c680c6-83e9-4a8f-b8e9-52e01910737e"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "duration",
+                "type": "int"
+            },
+            "designerId": "90afc55a-0de1-44cd-b195-555acf4cb3aa"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "description",
+                "type": "string"
+            },
+            "designerId": "1f61ce75-09ac-4906-ac8b-29c1bb8058bf"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "customer_id",
+                "type": "int"
+            },
+            "designerId": "c7d852df-0228-4df1-99f0-0a4b2c7420c0"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "trainer_id",
+                "type": "int"
+            },
+            "designerId": "7a2e19af-2bfa-4087-a308-487a3ae52296"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "creator_name",
+                "type": "string"
+            },
+            "designerId": "a9450808-fa3b-42e5-9637-8f1849a18ce4"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dateFormat": "Y-m-d H:i:s",
+                "name": "creation_date",
+                "type": "date"
+            },
+            "designerId": "e2f22227-2dbb-4619-835c-17767e542e7e"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "dateFormat": "Y-m-d H:i:s",
+                "name": "changed_date",
+                "type": "date"
+            },
+            "designerId": "221ed53e-0496-469b-8ea3-6de9b6ba3e05"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "category",
+                "type": "int"
+            },
+            "designerId": "9408334f-386c-40ed-af73-513ceb377c9e"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "public_template",
+                "type": "int"
+            },
+            "designerId": "33e5896a-5dc4-405c-bb66-720c2e3937b4"
+        },
+        {
+            "type": "Ext.data.association.HasMany",
+            "reference": {
+                "name": "hasMany",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "hasManyPlanExercise",
+                "model": "PlanExercise",
+                "name": "planexercise"
+            },
+            "designerId": "f4c06e5a-9b68-4c24-9a43-523ffd29212b"
+        }
+    ]
+}

@@ -28,8 +28,8 @@
             "display": "Build web app"
         }
     },
-    "xdsVersion": "3.0.3",
-    "xdsBuild": 1382,
+    "xdsVersion": "3.0.4",
+    "xdsBuild": 1386,
     "schemaVersion": 1,
     "upgradeVersion": 300000000004,
     "framework": "ext42",
@@ -51,13 +51,20 @@
             "975aa94b-a3ff-4b2c-ba02-e0519374848e",
             "1e317829-2f19-4cbf-896a-798df5232ab1",
             "cb771e34-01f3-4053-9728-66bbe12ab562",
-            "e2eddc02-1489-4aec-a402-f7c5ddbbcfd4"
+            "e2eddc02-1489-4aec-a402-f7c5ddbbcfd4",
+            "923f62d3-fd6b-41bd-be3f-305e51fa0622",
+            "402470eb-8156-4673-9eee-02155af1c70e",
+            "a0b0768f-a567-47c7-ae7b-4a38dd90a70b",
+            "a0646267-15df-4b81-8420-1c61b5811101",
+            "ec7e76b4-d4cd-425c-8615-94f32f3cf36f"
         ],
         "store": [
             "3c8af507-ba84-4600-a4d6-ac0712d01a25",
             "7a310724-974e-4711-a167-473c89ee2ce9",
             "044975f8-4682-4881-88e1-ec02d7e2b521",
-            "bdf676fb-5fe0-4bc8-a711-66fb242709ed"
+            "bdf676fb-5fe0-4bc8-a711-66fb242709ed",
+            "60c1dd36-0dfa-4c7a-9551-b7f1510b9507",
+            "27f9e994-2dd6-4b6b-93f5-f06cd0f1bf1d"
         ],
         "controller": [
             "23d09b6b-e2b7-4a99-beb8-bf61e6bfdda2",
@@ -65,6 +72,7 @@
             "508219c0-9471-4ec3-8aa1-a7a9402632fb",
             "273d92fa-f47b-404a-bea3-4ca170838bd7",
             "16630f1f-c099-4905-a757-af7f967204f8",
+            "3cebb1f9-1e3f-4ce1-a430-d2db18adcf91",
             "5276ac9b-8d40-4de3-b7e5-775fb50be203",
             "52ded827-c29d-4d9f-8209-c4791844ebf6",
             "bfb49d5c-515b-4f52-882a-8aa6398ca181",
@@ -81,7 +89,9 @@
         "model": [
             "66a8eaf7-a566-40b9-8b53-cc931f03fe3f",
             "b71d8ae4-205d-482d-83bb-0fec3cbba36f",
-            "76a5e666-17e1-4a73-8b21-8b5a41d5f880"
+            "76a5e666-17e1-4a73-8b21-8b5a41d5f880",
+            "c3695f17-1674-40a8-9859-96a9ff8677c9",
+            "9fa79ca2-1a5d-427c-8579-265c751fa65d"
         ],
         "resource": [
             "f0206f51-1d2e-4633-bbc5-fb00924663a5",
