@@ -270,7 +270,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
         controller.getMainViewport().down("#header").update({
             info: divLogo + divInfoCustomer,
-            title: '-' + Ext.ux.LanguageManager.TranslationArray.EXERCISE.toUpperCase()
+            title: Ext.ux.LanguageManager.TranslationArray.EXERCISE.toUpperCase()
         });
 
     },

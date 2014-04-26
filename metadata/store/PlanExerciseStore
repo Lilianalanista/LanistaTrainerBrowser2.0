@@ -9,45 +9,12 @@
         "designer|userClassName": "PlanExerciseStore",
         "model": "PlanExercise",
         "remoteFilter": true,
-        "remoteSort": true,
+        "remoteGroup": true,
         "requires": [
             "Ext.data.proxy.Ajax",
             "Ext.data.reader.Json"
         ],
         "storeId": "PlanExerciseStore"
     },
-    "designerId": "60c1dd36-0dfa-4c7a-9551-b7f1510b9507",
-    "cn": [
-        {
-            "type": "Ext.data.proxy.Ajax",
-            "reference": {
-                "name": "proxy",
-                "type": "object"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "headers": [
-                    "{",
-                    "    user_id: 5",
-                    "}"
-                ],
-                "url": "/tpmanager/plan/json"
-            },
-            "designerId": "c56b5586-25f3-4146-9645-eb4e4a3bad4f",
-            "cn": [
-                {
-                    "type": "Ext.data.reader.Json",
-                    "reference": {
-                        "name": "reader",
-                        "type": "object"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "root": "entries"
-                    },
-                    "designerId": "a02719e5-623f-4c82-a463-fac69185a6c5"
-                }
-            ]
-        }
-    ]
+    "designerId": "60c1dd36-0dfa-4c7a-9551-b7f1510b9507"
 }

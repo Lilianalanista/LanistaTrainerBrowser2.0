@@ -11,7 +11,6 @@
         "model": "Protocoll",
         "pageSize": null,
         "remoteFilter": true,
-        "remoteSort": true,
         "requires": [
             "Ext.data.proxy.Ajax",
             "Ext.data.reader.Json"

@@ -123,7 +123,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
 
         controller.getMainViewport().down("#header").update({
             info: divLogo + divInfoCustomer,
-            title: '-' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD.toUpperCase()
+            title: Ext.ux.LanguageManager.TranslationArray.DASHBOARD.toUpperCase()
         });
 
 

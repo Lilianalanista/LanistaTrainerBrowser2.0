@@ -191,7 +191,7 @@
             "userConfig": {
                 "designer|displayName": "hasManyPlanExercise",
                 "model": "PlanExercise",
-                "name": "planexercise"
+                "name": "planexercises"
             },
             "designerId": "f4c06e5a-9b68-4c24-9a43-523ffd29212b"
         }

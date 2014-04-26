@@ -28,7 +28,6 @@ Ext.define('LanistaTrainer.store.ProtocollStore', {
         me.callParent([Ext.apply({
             model: 'LanistaTrainer.model.Protocoll',
             remoteFilter: true,
-            remoteSort: true,
             storeId: 'ProtocollStore'
         }, cfg)]);
     }

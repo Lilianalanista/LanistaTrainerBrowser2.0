@@ -6,11 +6,15 @@
     },
     "codeClass": null,
     "userConfig": {
+        "cls": "lanista-exercise-planpanel",
         "designer|userAlias": "planExercisesList",
         "designer|userClassName": "PlanExercisesList",
         "height": 250,
         "id": "planExercisesList",
+        "itemCls": "lanista-plan-exercise",
         "itemSelector": "div",
+        "selectedItemCls": "lanista-plan-exercise-selected",
+        "store": "PlanExerciseStore",
         "width": 400
     },
     "designerId": "a0b0768f-a567-47c7-ae7b-4a38dd90a70b",
@@ -25,19 +29,68 @@
             "userConfig": {
                 "designer|displayName": "itemTpl",
                 "implHandler": [
-                    "<div class=\"exercise-list-img exercise-list-img-right\" style=\"background-image: url({[(values.exercise_ext_id && values.exercise_ext_id.indexOf (\"CUST\") == -1) ? (\"resources/images/previews/\"+values.exercise_ext_id) : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \"/tpmanager/img/s/\"+values.exercise_ext_id)]}_2.jpg);\"/></div>",
-                    "<div class=\"exercise-list-img exercise-list-img-left\" style=\"background-image: url({[(values.exercise_ext_id && values.exercise_ext_id.indexOf (\"CUST\") == -1) ? (\"resources/images/previews/\"+values.exercise_ext_id) : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \"/tpmanager/img/s/\"+values.exercise_ext_id)]}_1.jpg);\"/></div>",
-                    "<div class=\"exercise-list-imges\"></div>",
-                    "<div class=\"lanista-exercices-title\">{name}</div>",
-                    "<div class=\"lanista-exercices-foter\">",
-                    "    <div class=\"lanista-exercices-weight\">{[values.weight_min > 0 ? \"<span>Kg.</span>\"+values.weight_min : '/']}</div>",
-                    "    <div class=\"lanista-exercices-training\"><span>{[Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS]}</span> {rounds_min} </div>",
-                    "    <div class=\"lanista-exercices-sets\"><span>{[values.training_unit == 2 ? Ext.ux.LanguageManager.TranslationArray.SEC : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.REP]} {training_min} </span></div>",
+                    "<div class=\"exercise-list-delete\">u</div>",
+                    "<div class=\"exercise-list-fields\">",
+                    "    <div class=\"exercise-list-img exercise-list-img-right\" style=\"background-image: url({[(values['exercise_ext_id'] && values['exercise_ext_id'].indexOf ('CUST') == -1) ? ('resources/images/previews/'+values['exercise_ext_id']) : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/s/'+values['exercise_ext_id'])]}_2.jpg);\"></div>",
+                    "    <div class=\"exercise-list-img exercise-list-img-left\" style=\"background-image: url({[(values['exercise_ext_id'] && values['exercise_ext_id'].indexOf ('CUST') == -1) ? ('resources/images/previews/'+values['exercise_ext_id']) : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/s/'+values['exercise_ext_id'])]}_1.jpg);\"></div>",
+                    "    <div class=\"exercise-list-imges\"></div>",
+                    "    <div class=\"lanista-exercices-title\">{[values[\"exercise_name_\" + Ext.ux.LanguageManager.lang]]}</div>",
+                    "    <div class=\"lanista-exercices-foter\">",
+                    "        <div class=\"lanista-exercices-weight\">{[values[\"weight_min\"] > 0 ? \"<span>Kg.</span>\"+values[\"weight_min\"] : '/']}</div>",
+                    "        <div class=\"lanista-exercices-training\"><span>{[Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS]}</span> {rounds_min} </div>",
+                    "        <div class=\"lanista-exercices-sets\"><span>{[values[\"training_unit\"] == 2 ? Ext.ux.LanguageManager.TranslationArray.SEC : values[\"training_unit\"] == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.REP]} {training_min} </span></div>",
+                    "    </div>",
                     "</div>",
                     ""
                 ]
             },
             "designerId": "2d5dea2b-0af6-4089-b888-0c4bfcd45295"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPlanExercisesListAfterRender",
+                "implHandler": [
+                    "el = component.el;",
+                    "",
+                    "",
+                    "el.on(",
+                    "    'click', function(e,t) {",
+                    "          alert('click en resto...');",
+                    "        ",
+                    "    },",
+                    "    this, {delegate: '.exercise-list-fields'});",
+                    "",
+                    "el.on(",
+                    "    'click', function(e,t) {",
+                    "  ",
+                    "        alert('click en X...');",
+                    "    },",
+                    "    this, {delegate: '.exercise-list-delete'});",
+                    "el.on(",
+                    "    'mouseover', function(e,t) {",
+                    "        el.removeCls('item-not-clicked');",
+                    "        el.addCls('item-clicked');",
+                    "        Ext.get(t).addCls('exercise-apply-delete');",
+                    "    },",
+                    "    this,{ delegate: '.lanista-plan-exercise'});",
+                    "el.on(",
+                    "    'mouseout', function(e,t) {",
+                    "        el.removeCls('item-clicked');",
+                    "        el.addCls('item-not-clicked');",
+                    "        Ext.get(t).removeCls('exercise-apply-delete');",
+                    "    },",
+                    "    this,{delegate: '.lanista-plan-exercise'});"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "6815226b-cf34-44e7-8289-c2d47ff6746f"
         }
     ]
 }

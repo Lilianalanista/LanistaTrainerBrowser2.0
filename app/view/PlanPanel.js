@@ -21,9 +21,15 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
         'LanistaTrainer.view.PlanExercisesList'
     ],
 
+    cls: 'lanista-plan-panel',
     height: 250,
     id: 'planPanel',
     width: 400,
+
+    layout: {
+        type: 'vbox',
+        align: 'stretch'
+    },
 
     initComponent: function() {
         var me = this;
@@ -47,9 +53,10 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
                 xtype: 'component',
                 flex: 1,
                 itemId: 'planHeader',
+                cls: 'lanista-headerplan-panel',
                 maxHeight: 100,
                 tpl: [
-                    '<div class="plan-header-description">{description}</div>',
+                    '<div class="plan-header-description" id="planHeaderDescription">{description}</div>',
                     '<div class="plan-header-info">',
                     '    <div class="plan-header-attribute">{[Ext.ux.LanguageManager.TranslationArray.CREATED_AT]}:</div><div class="plan-header-value">{[Ext.Date.format ( values.creation_date, \'d, M Y\' )]}</div>',
                     '    <div class="plan-header-attribute">{[Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME]}:</div><div class="plan-header-value">{duration}</div>',
@@ -64,7 +71,8 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
                 items: [
                     {
                         xtype: 'planExercisesList',
-                        id: 'd1'
+                        id: 'd1',
+                        title: Ext.ux.LanguageManager.TranslationArray.DAY + ' 1'
                     },
                     {
                         xtype: 'container',
@@ -72,6 +80,25 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
                         itemId: 'plus'
                     }
                 ],
+                listeners: {
+                        tabchange: {
+                            fn: function(tabPanel, newCard, oldCard, eOpts){
+                                    var tapPanelSize = tabPanel.items.getCount(),
+                                        controller = LanistaTrainer.app.getController ('PlanController');
+                                        if (tabPanel.activeTab.title === '+') {
+                                            if ( tapPanelSize  < 9 ) {
+                                                tabPanel.insert( tapPanelSize -1 , {
+                                                    xtype: 'planExercisesList',
+                                                    id: 'd'+(tapPanelSize),
+                                                    title: Ext.ux.LanguageManager.TranslationArray.DAY + ' ' + (tapPanelSize),
+                                                    store: controller.plan.planexercises()
+                                            });
+                                            tabPanel.setActiveTab(tabPanel.items.items[tapPanelSize -1]);
+                                        }
+                                }
+                            }
+                        }
+                },
                 tabBar: {
                     docked: 'top',
                     html: '<b class="caret" style="-webkit-transform: translate3d(34px, 0px, 0px); "><b class="caret_inner" ></b></b>',
@@ -82,24 +109,14 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
     },
 
     onPlanPanelAfterRender: function(component, eOpts) {
-        this.controller = LanistaTrainer.app.getController( 'PlanController' );
-        //this.down ('tabpanel').child('#d1').title = Ext.ux.LanguageManager.TranslationArray.DAY + ' 1';
-
-
-        this.down ('tabpanel').items.items[0].el.update('New value');
-        console.log(this.down ('tabpanel').items.items[0]);
-
-
-
-        //this.down ('tabpanel').items[0].setHTML('Nuevo valor');
-
-
-        //this.down ('#d1').setStore ( LanistaTrainer.app.getController ( 'PlanController').plan.planexercise().load () );
 
         if ( LanistaTrainer.app.getController ('PlanController').plan.data.public_template == 1 ) {
             var panelSize = this.down ('tabpanel').getAt (1).getItems ().getCount();
             this.down ('tabpanel').getAt (1).getAt (panelSize-1).hide();
         }
+
+
+
     }
 
 });

@@ -208,7 +208,7 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
         if (this.getUserInfoPanel() && !this.getUserInfoPanel().isHidden()) {
             controller.getMainViewport().down("#header").update({
                info: info,
-               title: '-' + Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()
+               title: Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()
             });
         }
     },

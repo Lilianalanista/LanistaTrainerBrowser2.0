@@ -44,7 +44,7 @@
                         "designer|displayName": "tpl",
                         "implHandler": [
                             "<div class=\"header-logo\">",
-                            "\tLanista",
+                            "\tp",
                             "</div>",
                             "<div class=\"header-title\">{title}</div>",
                             "<div class=\"header-info\">{info}</div>"

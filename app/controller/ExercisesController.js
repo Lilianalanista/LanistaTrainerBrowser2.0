@@ -64,14 +64,29 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
     onNextExercisesClick: function(tool, e, eOpts) {
         console.log("SHOW NEXT EXERCISES");
 
-        var store = Ext.getStore("ExerciseStore");
-        var totalPages = Math.ceil(store.proxy.totalCount/store.pageSize);
+        var store = Ext.getStore("ExerciseStore"),
+            totalPages = Math.ceil(store.proxy.totalCount/store.pageSize),
+            itemNode;
 
         console.log('totalPages: ' + totalPages);
 
         if (Ext.getStore("ExerciseStore").currentPage < totalPages)
         {
-            store.nextPage();
+            store.nextPage({
+                scope: this,
+                callback: function(records, operation, success) {
+                    if (success){
+                        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
+                            for (var i = 0; i < records.length ; i++) {
+                                if (this.getExercisesPanel().selection.indexOf (records[i].data.id) != -1){
+                                    itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
+                                    Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                                }
+                            }
+                        }
+                    }
+                }
+            });
             LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
         }
     },
@@ -81,7 +96,21 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         if (Ext.getStore("ExerciseStore").currentPage > 1)
         {
             var store = Ext.getStore("ExerciseStore");
-            store.previousPage();
+            store.previousPage({
+                scope: this,
+                callback: function(records, operation, success) {
+                    if (success){
+                        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
+                            for (var i = 0; i < records.length ; i++) {
+                                if (this.getExercisesPanel().selection.indexOf (records[i].data.id) != -1){
+                                    itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
+                                    Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                                }
+                            }
+                        }
+                    }
+                }
+            });
             LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
         }
     },
@@ -186,13 +215,6 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
              totalPages = Math.ceil(numOfExercises/store.pageSize);
 
 
-
-        console.log('store.pageSize from show header');
-        console.log(store.pageSize);
-
-
-
-
         if (store.filters.items.length !== 0)
            filter = (store.filters.items[1].textOptSel ? 'Musclegruppe: '+store.filters.items[1].textOptSel+'<br>' : '') + (store.filters.items[0].textOptSel ? ' Übungstyp: '+store.filters.items[0].textOptSel+'<br>' : '') + (store.filters.items[2].textOptSel ? ' Zusätze: '+store.filters.items[2].textOptSel+'<br>' : '');
 
@@ -200,12 +222,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             return false;
 
         if (this.getExercisesPanel() && !this.getExercisesPanel().isHidden()) {
-            console.log("numOfExercises " + numOfExercises);
-            console.log("store.getCount() " + store.getCount());
-
+            var info = '<div class="exercises-header"><div class="header-filter">' + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>';
             controller.getMainViewport().down("#header").update({
-               info: '<div class="exercises-header"><div class="header-filter">' + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>',
-               title: '-' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
+               info:  this.getExercisesPanel().headerInfo ?  this.getExercisesPanel().headerInfo + info : info,
+               title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : '-' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
             });
         }
 
@@ -231,6 +251,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
         //Adding bottoms into RightPanel
         var menuFilters = controller.showExercisesMenu();
+
+        /*
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.SEARCH,
@@ -238,6 +260,16 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 menu: menuFilters,
                 menuButtonAlign: 'right',
                 glyph: 72
+            })
+        );
+        */
+        this.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.SEARCH,
+                itemId: 'searchButton',
+                menu: menuFilters,
+                menuButtonAlign: 'right',
+                glyph: '90@Lanista Icons' //Z
             })
         );
 

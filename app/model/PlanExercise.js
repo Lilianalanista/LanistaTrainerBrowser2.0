@@ -82,12 +82,20 @@ Ext.define('LanistaTrainer.model.PlanExercise', {
             type: 'string'
         },
         {
-            name: 'exercise_name',
+            name: 'exercise_name_DE',
+            type: 'string'
+        },
+        {
+            name: 'exercise_name_EN',
+            type: 'string'
+        },
+        {
+            name: 'exercise_name_ES',
             type: 'string'
         },
         {
             name: 'exercise_ext_id',
-            type: 'int'
+            type: 'string'
         },
         {
             name: 'day',

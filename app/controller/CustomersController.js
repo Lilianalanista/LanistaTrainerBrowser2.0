@@ -149,7 +149,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
         if (this.getCustomersPanel() && !this.getCustomersPanel().isHidden()) {
             controller.getMainViewport().down("#header").update({
                info: '',
-               title: '-' + Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase()
+               title: Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase()
             });
         }
     },

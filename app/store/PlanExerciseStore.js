@@ -28,19 +28,8 @@ Ext.define('LanistaTrainer.store.PlanExerciseStore', {
         me.callParent([Ext.apply({
             model: 'LanistaTrainer.model.PlanExercise',
             remoteFilter: true,
-            remoteSort: true,
             storeId: 'PlanExerciseStore',
-            proxy: {
-                type: 'ajax',
-                url: '/tpmanager/plan/json',
-                headers: {
-                    user_id: 5
-                },
-                reader: {
-                    type: 'json',
-                    root: 'entries'
-                }
-            }
+            remoteGroup: true
         }, cfg)]);
     }
 });

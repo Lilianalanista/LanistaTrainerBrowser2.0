@@ -56,6 +56,7 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
             items: [
                 {
                     xtype: 'dataview',
+                    cls: 'lanista-exercises-view',
                     height: 250,
                     id: 'viewExercises',
                     tpl: [
@@ -73,6 +74,10 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                     listeners: {
                         hide: {
                             fn: me.onDataviewHide,
+                            scope: me
+                        },
+                        afterrender: {
+                            fn: me.onViewExercisesAfterRender,
                             scope: me
                         }
                     }
@@ -97,6 +102,38 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
 
     onDataviewHide: function(component, eOpts) {
         component.destroy();
+    },
+
+    onViewExercisesAfterRender: function(component, eOpts) {
+        el = component.el;
+
+        el.on(
+            'click', function(e,t) {
+               if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
+                       itemId = component.getRecord(t).data.id;
+                       if ( this.selection.indexOf (itemId) == -1 ) {
+                            this.selection.push( itemId );
+                            Ext.get(t).addCls ( 'lanista-list-item-selected' );
+                       } else {
+                            this.selection.splice(this.selection.indexOf (itemId), 1);
+                            Ext.get(t).removeCls ( 'lanista-list-item-selected' );
+                       }
+                }
+            },
+            this, {delegate: '.exercise-item'});
+        el.on(
+            'mouseover', function(e,t) {
+                                            el.removeCls('item-not-clicked');
+                                            el.addCls('item-clicked');
+                                       },
+            this,{ delegate: '.exercise-item'});
+        el.on(
+            'mouseout', function(e,t) {
+
+                                            el.removeCls('item-clicked');
+                                            el.addCls('item-not-clicked');
+                                      },
+            this,{delegate: '.exercise-item'});
     }
 
 });

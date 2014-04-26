@@ -213,7 +213,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "exercise_name",
+                "name": "exercise_name_DE",
                 "type": "string"
             },
             "designerId": "974005b5-0a77-481a-a75c-6a89812ba0b6"
@@ -226,8 +226,34 @@
             },
             "codeClass": null,
             "userConfig": {
+                "name": "exercise_name_EN",
+                "type": "string"
+            },
+            "designerId": "be2bf42e-0fb0-4c72-b398-0ad52b088d87"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "exercise_name_ES",
+                "type": "string"
+            },
+            "designerId": "0abcc8d0-1df1-43ec-ab51-d811cd5013aa"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "name": "exercise_ext_id",
-                "type": "int"
+                "type": "string"
             },
             "designerId": "e98b2103-aaad-4d2c-b2bb-a7c757a29ffd"
         },

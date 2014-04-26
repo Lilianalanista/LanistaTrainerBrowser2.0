@@ -83,6 +83,6 @@ Ext.define('LanistaTrainer.model.Plan', {
 
     hasMany: {
         model: 'LanistaTrainer.model.PlanExercise',
-        name: 'planexercise'
+        name: 'planexercises'
     }
 });

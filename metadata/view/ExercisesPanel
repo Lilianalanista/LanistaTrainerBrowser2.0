@@ -33,6 +33,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "cls": "lanista-exercises-view",
                 "height": 250,
                 "id": "viewExercises",
                 "itemSelector": "div.exercise-item",
@@ -78,6 +79,51 @@
                         ]
                     },
                     "designerId": "b3fb943d-fed0-4f83-91dc-3b3ff9ea4253"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onViewExercisesAfterRender",
+                        "implHandler": [
+                            "el = component.el;",
+                            "",
+                            "el.on(",
+                            "    'click', function(e,t) {",
+                            "       if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {",
+                            "               itemId = component.getRecord(t).data.id;",
+                            "               if ( this.selection.indexOf (itemId) == -1 ) {",
+                            "                    this.selection.push( itemId );",
+                            "                    Ext.get(t).addCls ( 'lanista-list-item-selected' );",
+                            "               } else {",
+                            "                    this.selection.splice(this.selection.indexOf (itemId), 1);",
+                            "                    Ext.get(t).removeCls ( 'lanista-list-item-selected' );",
+                            "               }",
+                            "        }",
+                            "    },",
+                            "    this, {delegate: '.exercise-item'});",
+                            "el.on(",
+                            "    'mouseover', function(e,t) {",
+                            "                                    el.removeCls('item-not-clicked');",
+                            "                                    el.addCls('item-clicked');",
+                            "                               },",
+                            "    this,{ delegate: '.exercise-item'});",
+                            "el.on(",
+                            "    'mouseout', function(e,t) {",
+                            "",
+                            "                                    el.removeCls('item-clicked');",
+                            "                                    el.addCls('item-not-clicked');",
+                            "                              },",
+                            "    this,{delegate: '.exercise-item'});"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "988e0455-9993-491f-8c24-837d9d9a43e7"
                 }
             ]
         },
