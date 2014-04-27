@@ -431,16 +431,19 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             results = Ext.Array.filter(records, function(item) {
                 return item.data.day === i;
             });
+            tab = tabPanel.child('#d' + i);
             for ( var j = 0; j < results.length; j++ ) {
                 recordsArray.push(results[j].data);
             }
             if (recordsArray) {
-                tab = tabPanel.child('#d' + i);
                 if (tab)
                     tab.update(recordsArray);
             }
             recordsArray = [];
         }
+
+
+
 
     },
 

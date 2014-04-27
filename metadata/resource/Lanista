@@ -1502,7 +1502,10 @@
                     "}",
                     "",
                     ".exercise-apply-delete {",
-                    "    font-family: 'Lanista Icons'",
+                    "    font-family: 'Lanista Icons';",
+                    "    font-size: 18px;",
+                    "    color: red;",
+                    "    text-align: right;  ",
                     "}"
                 ]
             },

@@ -35,7 +35,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
 
         Ext.applyIf(me, {
             itemTpl: [
-                '<div class="exercise-list-delete">u</div>',
+                '<div class="exercise-list-delete"></div>',
                 '<div class="exercise-list-fields">',
                 '    <div class="exercise-list-img exercise-list-img-right" style="background-image: url({[(values[\'exercise_ext_id\'] && values[\'exercise_ext_id\'].indexOf (\'CUST\') == -1) ? (\'resources/images/previews/\'+values[\'exercise_ext_id\']) : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \'/tpmanager/img/s/\'+values[\'exercise_ext_id\'])]}_2.jpg);"></div>',
                 '    <div class="exercise-list-img exercise-list-img-left" style="background-image: url({[(values[\'exercise_ext_id\'] && values[\'exercise_ext_id\'].indexOf (\'CUST\') == -1) ? (\'resources/images/previews/\'+values[\'exercise_ext_id\']) : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \'/tpmanager/img/s/\'+values[\'exercise_ext_id\'])]}_1.jpg);"></div>',
@@ -53,6 +53,10 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                 afterrender: {
                     fn: me.onPlanExercisesListAfterRender,
                     scope: me
+                },
+                viewready: {
+                    fn: me.onPlanExercisesListViewReady,
+                    scope: me
                 }
             }
         });
@@ -63,7 +67,6 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
     onPlanExercisesListAfterRender: function(component, eOpts) {
         el = component.el;
 
-
         el.on(
             'click', function(e,t) {
                   alert('click en resto...');
@@ -73,14 +76,25 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
 
         el.on(
             'click', function(e,t) {
+                var internalItemId = Ext.get(t).dom.parentNode.internalId,
+                    controller = LanistaTrainer.app.getController ('PlanController'),
+                    ItemModel = controller.getPlanPanel().down('tabpanel').getActiveTab().data[internalItemId];
 
-                alert('click en X...');
+
+        //Crear un modelo con la data de ItemModel e invocar a destroy
+        //Se debe refrescar la vista....-> invocar el show de nuevo.....
+
+
+
+
+
             },
             this, {delegate: '.exercise-list-delete'});
         el.on(
             'mouseover', function(e,t) {
                 el.removeCls('item-not-clicked');
                 el.addCls('item-clicked');
+                Ext.get(t).down('.exercise-list-delete').setHTML('u');
                 Ext.get(t).addCls('exercise-apply-delete');
             },
             this,{ delegate: '.lanista-plan-exercise'});
@@ -88,9 +102,20 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
             'mouseout', function(e,t) {
                 el.removeCls('item-clicked');
                 el.addCls('item-not-clicked');
+                Ext.get(t).down('.exercise-list-delete').setHTML('');
                 Ext.get(t).removeCls('exercise-apply-delete');
             },
             this,{delegate: '.lanista-plan-exercise'});
+    },
+
+    onPlanExercisesListViewReady: function(dataview, eOpts) {
+        var el = dataview.el;
+
+        for (var i = 0; i < el.dom.childNodes.length; i++)
+        {
+            el.dom.childNodes[i].internalId = i;
+        }
+
     }
 
 });
