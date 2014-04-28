@@ -181,6 +181,21 @@
                                                 "scope": "me"
                                             },
                                             "designerId": "91bedf05-8538-4244-af49-5633bb8f8bff"
+                                        },
+                                        {
+                                            "type": "Ext.XTemplate",
+                                            "reference": {
+                                                "name": "inputAttrTpl",
+                                                "type": "object"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|displayName": "inputAttrTpl",
+                                                "implHandler": [
+                                                    "[ \"autocomplete=\\\"on\\\"\"]"
+                                                ]
+                                            },
+                                            "designerId": "61468549-06fd-40d2-99e9-572571e32e96"
                                         }
                                     ]
                                 },

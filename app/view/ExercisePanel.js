@@ -83,6 +83,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                         {
                             xtype: 'panel',
                             cls: 'lanista-protocolls-tab-panel',
+                            hidden: true,
                             id: 'protocollsTabPanel',
                             title: 'Protocolls',
                             layout: {

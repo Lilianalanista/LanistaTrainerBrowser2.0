@@ -314,7 +314,7 @@
                             "    'click', function(e,t) {",
                             "        var currentValue = parseFloat(this.getValue().replace(',', '.')),",
                             "            calculation = (currentValue + parseFloat(t.getAttribute('value'))).toFixed(2);",
-                            "            ",
+                            "",
                             "        if ( calculation >= 0 )",
                             "            this.setValue(calculation);",
                             "        else",

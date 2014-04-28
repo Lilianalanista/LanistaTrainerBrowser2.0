@@ -69,7 +69,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
 
         el.on(
             'click', function(e,t) {
-                  alert('click en resto...');
+                  //alert('click en resto...');
 
             },
             this, {delegate: '.exercise-list-fields'});
@@ -80,6 +80,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                     controller = LanistaTrainer.app.getController ('PlanController'),
                     ItemModel = controller.getPlanPanel().down('tabpanel').getActiveTab().data[internalItemId];
 
+                this.deleteItemView(ItemModel);
 
         //Crear un modelo con la data de ItemModel e invocar a destroy
         //Se debe refrescar la vista....-> invocar el show de nuevo.....
@@ -116,6 +117,51 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
             el.dom.childNodes[i].internalId = i;
         }
 
+    },
+
+    deleteItemView: function(data) {
+        /*var PlanExercise = Ext.create('LanistaTrainer.model.PlanExercise', {
+            id: data.id,
+            exercise_id: data.exercise_id,
+            user_exercise_id: data.user_exercise_id,
+            plan_id: data.plan_id,
+            position: data.position,
+            duration: data.duration,
+            description: data.description,
+            weight_min: data.weight_min,
+            weight_max: data.weight_max,
+            rounds_mix: data.rounds_mix,
+
+        });
+        */
+
+        var PlanExercise = Ext.create('LanistaTrainer.model.PlanExercise'),
+            userId = localStorage.getItem("user_id");
+
+        //PlanExercise.fields = data;
+        PlanExercise.data = data;
+        PlanExercise.phantom = false;
+        PlanExercise.setProxy(new Ext.data.proxy.Ajax({
+            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
+            model: 'PlanExercise',
+            noCache: false,
+            reader: {
+                type: 'json',
+                root: 'entries'
+            },
+            writer: {
+                type: 'json',
+                root: 'records',
+                allowSingle: false
+            },
+            headers: {
+                user_id: userId
+            }
+        }));
+
+        PlanExercise.destroy ({
+            action: 'destroy'
+        });
     }
 
 });

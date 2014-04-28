@@ -68,7 +68,7 @@
                     "        ],",
                     "        listeners: {",
                     "                tabchange: {",
-                    "                    fn: function(tabPanel, newCard, oldCard, eOpts){ ",
+                    "                    fn: function(tabPanel, newCard, oldCard, eOpts){",
                     "                            var tapPanelSize = tabPanel.items.getCount(),",
                     "                                controller = LanistaTrainer.app.getController ('PlanController');",
                     "                                if (tabPanel.activeTab.title === '+') {",

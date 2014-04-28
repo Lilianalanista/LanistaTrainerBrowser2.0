@@ -105,7 +105,8 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
     },
 
     onViewExercisesAfterRender: function(component, eOpts) {
-        el = component.el;
+        var itemRecord;
+            el = component.el;
 
         el.on(
             'click', function(e,t) {
@@ -118,6 +119,11 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                             this.selection.splice(this.selection.indexOf (itemId), 1);
                             Ext.get(t).removeCls ( 'lanista-list-item-selected' );
                        }
+                }
+                else {
+                    itemRecord = component.getRecord(t);
+                    LanistaTrainer.app.getController('ExercisesController').getExercisesPanel().addCls ('blured');
+                    LanistaTrainer.app.fireEvent('showExercisePanel', itemRecord, '');
                 }
             },
             this, {delegate: '.exercise-item'});

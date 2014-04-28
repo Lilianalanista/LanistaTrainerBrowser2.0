@@ -90,7 +90,8 @@
                     "userConfig": {
                         "fn": "onViewExercisesAfterRender",
                         "implHandler": [
-                            "el = component.el;",
+                            "var itemRecord;",
+                            "    el = component.el;",
                             "",
                             "el.on(",
                             "    'click', function(e,t) {",
@@ -103,6 +104,11 @@
                             "                    this.selection.splice(this.selection.indexOf (itemId), 1);",
                             "                    Ext.get(t).removeCls ( 'lanista-list-item-selected' );",
                             "               }",
+                            "        }",
+                            "        else {",
+                            "            itemRecord = component.getRecord(t);",
+                            "            LanistaTrainer.app.getController('ExercisesController').getExercisesPanel().addCls ('blured');",
+                            "            LanistaTrainer.app.fireEvent('showExercisePanel', itemRecord, '');",
                             "        }",
                             "    },",
                             "    this, {delegate: '.exercise-item'});",

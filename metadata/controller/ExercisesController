@@ -31,6 +31,7 @@
                     "    mainStage\t= controller.getMainStage(),",
                     "    store = Ext.getStore('ExerciseStore');",
                     "",
+                    "exercisesPanel.controller = controller;",
                     "mainStage.add( exercisesPanel );",
                     "",
                     "exercisesPanel.on('hide', function(component) {",
@@ -196,7 +197,7 @@
                     "    var info = '<div class=\"exercises-header\"><div class=\"header-filter\">' + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class=\"header-subtitle\">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>';",
                     "    controller.getMainViewport().down(\"#header\").update({",
                     "       info:  this.getExercisesPanel().headerInfo ?  this.getExercisesPanel().headerInfo + info : info,",
-                    "       title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : '-' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()",
+                    "       title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()",
                     "    });",
                     "}",
                     "",
@@ -838,6 +839,21 @@
                 ]
             },
             "designerId": "640971d2-2bcc-4982-8946-088ed20ae9a9"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "setHeader",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');"
+                ]
+            },
+            "designerId": "c8159756-7e1f-40a4-ab3e-91735fdb2f89"
         }
     ]
 }

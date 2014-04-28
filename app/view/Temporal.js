@@ -30,6 +30,7 @@ Ext.define('LanistaTrainer.view.Temporal', {
     border: false,
     cls: 'lanista-customerexercises-panel',
     height: 580,
+    hidden: true,
     id: 'customerExercisesPanel1',
     width: 809,
     autoScroll: true,

@@ -50,12 +50,8 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                     });
                 } else {
                     LanistaTrainer.app.fireEvent('loginUser', email, password, function (data) {
-
-                        //LanistaTrainer.app.fireEvent('showMessage', "Anmeldung war erfolgreich. <br> Herzlich willkommen " + data.first_name+ '<br>LanistaTrainer wird vorbereitet...', function () {
-
-                        alert("Anmeldung war erfolgreich. <br> Herzlich willkommen " + data.first_name+ '<br>Lanista wird vorbereitet...');
+                            LanistaTrainer.app.getController('LoginController').getMainViewport().down("#header").el.dom.children[0].innerHTML = '';
                             Ext.ux.SessionManager.loadLastUser();
-
                             var user = Ext.ux.SessionManager.getUser(),
                                 url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
 

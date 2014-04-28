@@ -191,7 +191,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         //}
 
         if ( LanistaTrainer.app.currentCustomer ) {
-            exercisePanel.down('#exercisePanelContent').setActiveTab(0).show();
+            exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.show();
 
             // get user protocolls
             var protocollsStore = Ext.getStore( "ProtocollStore" );
@@ -222,7 +222,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                 }
            });
         }
-
+        exercisePanel.down('#exercisePanelContent').setActiveTab(0).show();
         exercisePanel.addCls('md-show');
         mainStage.add( exercisePanel );
         mainStage.getLayout().setActiveItem("exercisePanel",'1');
@@ -264,10 +264,14 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
     onShowExerciseHeaderUpdate: function() {
         var controller = this,
-            record = LanistaTrainer.app.currentCustomer;
+            record = LanistaTrainer.app.currentCustomer,
+            divLogo,
+            divInfoCustomer;
+
+        if (record) {
             divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer" id="showCustomerDataButton"><div class="lansita-header-customer-logo show-info-customer" id="showCustomerDataButton" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);"></div></div>';
             divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + record.data.last_name + '</span><br> <span class="first-name">' + record.data.first_name +'</span></div>';
-
+        }
         controller.getMainViewport().down("#header").update({
             info: divLogo + divInfoCustomer,
             title: Ext.ux.LanguageManager.TranslationArray.EXERCISE.toUpperCase()

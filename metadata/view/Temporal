@@ -13,6 +13,7 @@
         "designer|userClassName": "Temporal",
         "header": false,
         "height": 580,
+        "hidden": true,
         "id": "customerExercisesPanel1",
         "layout": "hbox",
         "requires": [

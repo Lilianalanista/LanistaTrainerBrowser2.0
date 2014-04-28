@@ -122,6 +122,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             mainStage	= controller.getMainStage(),
             store = Ext.getStore('ExerciseStore');
 
+        exercisesPanel.controller = controller;
         mainStage.add( exercisesPanel );
 
         exercisesPanel.on('hide', function(component) {
@@ -225,7 +226,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             var info = '<div class="exercises-header"><div class="header-filter">' + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>';
             controller.getMainViewport().down("#header").update({
                info:  this.getExercisesPanel().headerInfo ?  this.getExercisesPanel().headerInfo + info : info,
-               title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : '-' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
+               title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
             });
         }
 
@@ -612,6 +613,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
 
 
+    },
+
+    setHeader: function() {
+        LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
     },
 
     init: function(application) {

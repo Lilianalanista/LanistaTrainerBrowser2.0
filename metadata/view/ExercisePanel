@@ -151,6 +151,7 @@
                     "userConfig": {
                         "cls": "lanista-protocolls-tab-panel",
                         "container|align": "stretch",
+                        "hidden": true,
                         "id": "protocollsTabPanel",
                         "layout": "hbox",
                         "title": "Protocolls"

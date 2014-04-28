@@ -69,6 +69,8 @@ Ext.define('LanistaTrainer.controller.LoginController', {
             info: '' }
         );
 
+        controller.getMainViewport().down("#header").el.dom.children[0].innerHTML = 'Lanista';
+
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
