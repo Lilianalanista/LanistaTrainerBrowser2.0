@@ -69,26 +69,41 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
 
         el.on(
             'click', function(e,t) {
-                  //alert('click en resto...');
+                for (var i = 0; i < el.dom.childNodes.length; i++)
+                {
+                    el.dom.childNodes[i].internalId = i;
+                }
+                var internalItemId = Ext.get(t).dom.parentNode.internalId,
+                    controller = LanistaTrainer.app.getController ('PlanController'),
+                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
+                    itemRecord = activeTab.recordsArray[internalItemId],
+                    Exercise = Ext.ModelManager.getModel('LanistaTrainer.model.ExerciseModel');
 
+                Exercise.load(itemRecord.exercise_id !== 0 ? itemRecord.exercise_id : itemRecord.user_exercise_id, {
+                    success: function( exercise ) {
+                        LanistaTrainer.app.getController('PlanController').getPlanPanel().addCls ('blured');
+                        LanistaTrainer.app.fireEvent('showExercisePanel', exercise, itemRecord);
+                    }
+                });
             },
             this, {delegate: '.exercise-list-fields'});
 
         el.on(
             'click', function(e,t) {
+                for (var i = 0; i < el.dom.childNodes.length; i++)
+                {
+                    el.dom.childNodes[i].internalId = i;
+                }
+
                 var internalItemId = Ext.get(t).dom.parentNode.internalId,
                     controller = LanistaTrainer.app.getController ('PlanController'),
-                    ItemModel = controller.getPlanPanel().down('tabpanel').getActiveTab().data[internalItemId];
+                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab();
+                    storeActiveTab = activeTab.getStore();
+                    ItemModel = activeTab.data[internalItemId];
 
                 this.deleteItemView(ItemModel);
-
-        //Crear un modelo con la data de ItemModel e invocar a destroy
-        //Se debe refrescar la vista....-> invocar el show de nuevo.....
-
-
-
-
-
+                activeTab.recordsArray.splice(internalItemId, 1);
+                storeActiveTab.reload();
             },
             this, {delegate: '.exercise-list-delete'});
         el.on(
@@ -116,43 +131,26 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
         {
             el.dom.childNodes[i].internalId = i;
         }
-
     },
 
     deleteItemView: function(data) {
-        /*var PlanExercise = Ext.create('LanistaTrainer.model.PlanExercise', {
-            id: data.id,
-            exercise_id: data.exercise_id,
-            user_exercise_id: data.user_exercise_id,
-            plan_id: data.plan_id,
-            position: data.position,
-            duration: data.duration,
-            description: data.description,
-            weight_min: data.weight_min,
-            weight_max: data.weight_max,
-            rounds_mix: data.rounds_mix,
-
-        });
-        */
-
         var PlanExercise = Ext.create('LanistaTrainer.model.PlanExercise'),
             userId = localStorage.getItem("user_id");
 
-        //PlanExercise.fields = data;
         PlanExercise.data = data;
         PlanExercise.phantom = false;
         PlanExercise.setProxy(new Ext.data.proxy.Ajax({
             url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
             model: 'PlanExercise',
             noCache: false,
-            reader: {
-                type: 'json',
-                root: 'entries'
+            api: {
+                create: undefined,
+                read: undefined,
+                update: undefined,
+                destroy: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/deleteexercise'
             },
-            writer: {
-                type: 'json',
-                root: 'records',
-                allowSingle: false
+            extraParams: {
+                exercise_id: PlanExercise.data.id
             },
             headers: {
                 user_id: userId

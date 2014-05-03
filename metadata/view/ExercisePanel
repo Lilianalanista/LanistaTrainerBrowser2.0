@@ -194,7 +194,7 @@
                                     "userConfig": {
                                         "designer|displayName": "tpl",
                                         "implHandler": [
-                                            "<div class=\"protocoll-configuration\">{weight} Kg. x {training} {unit_text} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>"
+                                            "<div class=\"protocoll-configuration\">{weight} Kg. x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>"
                                         ]
                                     },
                                     "designerId": "ea11d57d-96bb-4062-91cb-a9574db9ac1a"
@@ -329,10 +329,11 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "cls": "lanista-configuration-tabpanel",
                         "hidden": true,
                         "id": "configurationTabPanel",
                         "layout": "fit",
-                        "title": "Protocolls"
+                        "title": "Exercise Configuration"
                     },
                     "designerId": "cc605718-ca5a-4723-991d-96548da867cc",
                     "cn": [
@@ -355,10 +356,9 @@
                             "userConfig": {
                                 "dock": "right",
                                 "height": null,
-                                "hidden": true,
                                 "id": "configurationPanel",
                                 "title": null,
-                                "width": 500
+                                "width": 650
                             },
                             "designerId": "1842f008-9d78-4f16-9c7d-55184dc0be98",
                             "cn": [
@@ -372,7 +372,7 @@
                                     "userConfig": {
                                         "designer|displayName": "tpl",
                                         "implHandler": [
-                                            "<div class=\"protocoll-configuration\">{weight} Kg. x {training} {unit_text} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]} {rounds_min} {[values.rounds_min > 1 ? Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS : Ext.ux.LanguageManager.TranslationArray.SET]}</div>",
+                                            "<div class=\"protocoll-configuration\">{weight} Kg. x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]} {rounds_min} {[values.rounds_min > 1 ? Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS : Ext.ux.LanguageManager.TranslationArray.SET]}</div>",
                                             "<div class=\"protocoll-description\">{[values.description ? values.description : Ext.ux.LanguageManager.TranslationArray.NO_PLAN_EXERCISE_DESCRIPTION]}</div>",
                                             ""
                                         ]
@@ -387,7 +387,8 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "fieldLabel": "Label",
+                                        "fieldLabel": null,
+                                        "hidden": true,
                                         "id": "exerciseDescriptionInputPanel"
                                     },
                                     "designerId": "fca040a9-6841-4699-96cf-2a9add11445d"

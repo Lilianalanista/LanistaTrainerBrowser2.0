@@ -79,6 +79,10 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                         afterrender: {
                             fn: me.onViewExercisesAfterRender,
                             scope: me
+                        },
+                        viewready: {
+                            fn: me.onViewExercisesViewReady,
+                            scope: me
                         }
                     }
                 }
@@ -105,18 +109,30 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
     },
 
     onViewExercisesAfterRender: function(component, eOpts) {
-        var itemRecord;
-            el = component.el;
+        var itemRecord,
+            el = component.el,
+            itemId = [];
 
         el.on(
             'click', function(e,t) {
                if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
-                       itemId = component.getRecord(t).data.id;
-                       if ( this.selection.indexOf (itemId) == -1 ) {
+                       itemId = [];
+                       itemId[0] = component.getRecord(t).data.id;
+                       itemId[1] = component.getRecord(t).data.ext_id;
+
+                       for(var i = 0; i < this.selection.length; i++) {
+                           if(this.selection[i][0] === itemId[0]) {
+                             break;
+                           }
+                       }
+                       if (i === this.selection.length)
+                       {
                             this.selection.push( itemId );
                             Ext.get(t).addCls ( 'lanista-list-item-selected' );
-                       } else {
-                            this.selection.splice(this.selection.indexOf (itemId), 1);
+                       }
+                       else {
+                            //this.selection.splice(i, 1);
+                            itemId[2] = 'd';
                             Ext.get(t).removeCls ( 'lanista-list-item-selected' );
                        }
                 }
@@ -140,6 +156,16 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                                             el.addCls('item-not-clicked');
                                       },
             this,{delegate: '.exercise-item'});
+    },
+
+    onViewExercisesViewReady: function(dataview, eOpts) {
+        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
+            var nextButton = LanistaTrainer.app.getController ('ExercisesController').getNextExercises(),
+                previousButton = LanistaTrainer.app.getController ('ExercisesController').getPreviousExercises();
+
+            nextButton.fireEvent('click');
+            previousButton.fireEvent('click');
+        }
     }
 
 });

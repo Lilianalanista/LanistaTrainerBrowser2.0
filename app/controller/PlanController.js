@@ -57,6 +57,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
     ],
 
     onclosePlanPanelButtonClick: function(button, e, eOpts) {
+        this.currentDay = null;
+        this.currentExercisePosition = 0;
+        this.selectionsTab = [];
+
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closePlanPanel', function() {
             LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
@@ -69,6 +73,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
         this.currentDay = planDayPanel;
         this.currentExercisePosition = planDayPanel.getStore ().getCount();
+
+        if (!this.selectionsTab){
+            this.selectionsTab = [];
+            this.selectionsTab[1] = [];
+        }
+        if (!this.selectionsTab[planDayPanel.id.substring(1)])
+            this.selectionsTab[planDayPanel.id.substring(1)] = [];
 
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {
@@ -85,14 +96,17 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             currentDay = controller.currentDay.id.substring (1);
 
         // TODO: SAVE THE SELECTED EXERCISES
-        var selection = this.selection;
+        var selection = this.selectionsTab[this.currentDay.id.substring(1)];
         var isCustom = false;
         var storeExercises = Ext.getStore('ExerciseStore');
         for ( var i = 0; i < selection.length; i++ ) {
-            isCustom = isNaN (storeExercises.getById(selection[i]).data.ext_id.substring (0,1));
+            if (selection[i][2])
+                continue;
+
+            isCustom = isNaN (selection[i][1].substring (0,1));
             var newPlanExercise = Ext.create('LanistaTrainer.model.PlanExercise', {
-                exercise_id : isCustom ? 0 : selection [i],
-                user_exercise_id : isCustom ? selection [i] : 0,
+                exercise_id : isCustom ? 0 : selection [i][0],
+                user_exercise_id : isCustom ? selection [i][0] : 0,
                 plan_id: controller.plan.data.id,
                 day: currentDay,
                 position: (currentExercisePosition + i + 1)
@@ -117,6 +131,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             }));
 
             newPlanExercise.save ();
+            selection[i][2] = 1; // To mark that record as saved on server
         }
 
         if ( currentDay > controller.plan.data.days ) {
@@ -126,7 +141,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     console.log ( changedPlan );
                     LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
                     LanistaTrainer.app.fireEvent( 'closeExercisesSelectionView', function() {
-                        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'showPlanPanel';
+                        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
                         LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname, controller.backAction );
                     });
                 },
@@ -135,7 +150,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         } else {
             LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
             LanistaTrainer.app.fireEvent( 'closeExercisesSelectionView', function() {
-                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'showPlanPanel';
+                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
                 LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname, controller.backAction );
             });
         }
@@ -182,7 +197,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 }
             }));
 
-        this.selection = [];
         for (var i = 0; i < planExercisesStore.filters.length; i++)
         {
             if (planExercisesStore.filters.items[i].property  == 'day')
@@ -200,6 +214,12 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 recordsArray = [],
                 tabActiveId = controller.currentDay || controller.getPlanPanel ().down ('tabpanel').child('#d1');
 
+            if (tabActiveId.selection)
+                selecctionsTabActive = tabActiveId.selection;
+            else
+                selecctionsTabActive = [];
+
+            planPanel.controller = controller;
             controller.createDayPanels ( controller.plan.data.days );
 
             mainStage.add( planPanel );
@@ -214,13 +234,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             // *** 2 Show the panel
             planPanel.show();
 
-            planPanel.down ('#planHeader').update(controller.plan.data);
-            if (!controller.plan.data.description)
-                Ext.get('planHeaderDescription').setHTML('No description available');
             LanistaTrainer.app.fireEvent('showPlanHeaderUpdate');
-
             controller.populateTabsExercisesByDay(records);
-
             planPanel.down ('tabpanel').setActiveTab(tabActiveId);
             LanistaTrainer.app.fireEvent('showStage');
 
@@ -234,9 +249,14 @@ Ext.define('LanistaTrainer.controller.PlanController', {
     onShowPlanHeaderUpdate: function() {
 
         var controller = this,
-            record = LanistaTrainer.app.currentCustomer;
-            divLogo = '<div class="lansita-header-customer-image-not-found"><div class="lansita-header-customer-logo" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);"></div></div>';
-            divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + record.data.last_name + '</span><br> <span class="first-name">' + record.data.first_name +'</span></div>';
+            record = LanistaTrainer.app.currentCustomer,
+            divLogo = '<div class="lansita-header-customer-image-not-found"><div class="lansita-header-customer-logo" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);"></div></div>',
+            divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + record.data.last_name + '</span><br> <span class="first-name">' + record.data.first_name +'</span></div>',
+            planPanel	= controller.getPlanPanel();
+
+        planPanel.down ('#planHeader').update(controller.plan.data);
+        if (!controller.plan.data.description)
+            Ext.get('planHeaderDescription').setHTML('No description available');
 
         controller.getMainViewport().down("#header").update({
             info: divLogo + divInfoCustomer,
@@ -294,7 +314,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             })
         );
 
-        exercisesPanel.selection = this.selection;
+        exercisesPanel.selection = this.selectionsTab[this.currentDay.id.substring(1)];
         mainStage.add(exercisesPanel);
         LanistaTrainer.app.setStandardButtons('closeExercisesSelectionView');
         exercisesPanel.on('hide', function(component) {
@@ -352,7 +372,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         var controller = this,
             exercisesPanel = controller.getExercisesPanel();
 
-        this.selection = exercisesPanel.selection;
+        //this.currentDay.selection = exercisesPanel.selection;
+        this.selectionsTab[this.currentDay.id.substring(1)] = exercisesPanel.selection;
 
         LanistaTrainer.app.fireEvent('hideStage', function () {
             controller.getRightCommandPanel().items.each(function (item) {
@@ -436,8 +457,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 recordsArray.push(results[j].data);
             }
             if (recordsArray) {
-                if (tab)
+                if (tab){
                     tab.update(recordsArray);
+                    tab.recordsArray = recordsArray;
+                }
             }
             recordsArray = [];
         }
@@ -445,6 +468,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
 
 
+    },
+
+    setHeader: function() {
+        LanistaTrainer.app.fireEvent('showPlanHeaderUpdate');
     },
 
     init: function(application) {

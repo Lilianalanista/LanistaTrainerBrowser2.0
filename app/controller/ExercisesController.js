@@ -31,6 +31,16 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             selector: '#rightCommandPanel'
         },
         {
+            ref: 'nextExercises',
+            selector: '#nextExercises',
+            xtype: 'Ext.panel.Tool'
+        },
+        {
+            ref: 'previousExercises',
+            selector: '#previousExercises',
+            xtype: 'Ext.panel.Tool'
+        },
+        {
             ref: 'leftCommandPanel',
             selector: '#leftCommandPanel'
         },
@@ -78,7 +88,12 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                     if (success){
                         if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
                             for (var i = 0; i < records.length ; i++) {
-                                if (this.getExercisesPanel().selection.indexOf (records[i].data.id) != -1){
+                                for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
+                                    if(this.getExercisesPanel().selection[j][0] === records[i].data.id) {
+                                        break;
+                                    }
+                                }
+                                if (j !== this.getExercisesPanel().selection.length){
                                     itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
                                     Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                 }
@@ -102,7 +117,12 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                     if (success){
                         if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
                             for (var i = 0; i < records.length ; i++) {
-                                if (this.getExercisesPanel().selection.indexOf (records[i].data.id) != -1){
+                                for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
+                                    if(this.getExercisesPanel().selection[j][0] === records[i].data.id) {
+                                        break;
+                                    }
+                                }
+                                if (j !== this.getExercisesPanel().selection.length){
                                     itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
                                     Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                 }

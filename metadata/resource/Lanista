@@ -1498,7 +1498,18 @@
                     "    text-align: right;",
                     "    font-size: 13px;",
                     "    color: #5f7883;",
-                    "}"
+                    "}",
+                    "",
+                    "//Plan Panel - Exercise Panel - Configuration tab Panel",
+                    ".lanista-configuration-tabpanel .protocoll-configuration {",
+                    "    width: 100%;",
+                    "    text-align: left!important; ",
+                    "}",
+                    "",
+                    ".lanista-configuration-tabpanel .x-form-textarea {",
+                    "    width: 650px!important;",
+                    "}",
+                    ""
                 ]
             },
             "designerId": "eefb4d7e-74c5-4d9e-ae6f-2258aa8e8753"

@@ -67,40 +67,10 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     onTabpanelTabChange: function(tabPanel, newCard, oldCard, eOpts) {
         var controller = this;
         if ( newCard.id == 'protocollsTabPanel' ) {
-            console.log ( "SHOW PROTOCOLL COMMANDS" );
-            controller.getRightCommandPanel().items.each(function (item) {
-                item.hide();
-            });
-
-            var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {
-                text:  Ext.ux.LanguageManager.TranslationArray.CONFIGURE_PROTOCOLL,
-                itemId: 'changeProtollConfigurationButton',
-                glyph: '120@Lanista Icons' //x
-                //cls: [
-                //    'lanista-command-buton'
-                //    //'two-lines'
-                //]
-            });
-            var protocollButton = Ext.create('LanistaTrainer.view.LanistaButton', {
-                text:  Ext.ux.LanguageManager.TranslationArray.CREATE_PROTOCOLL,
-                itemId: 'sendProtocollButton',
-                glyph: '100@Lanista Icons', //d
-                cls: [
-                    'lanista-command-button',
-                    'lanista-command-button-green'
-                ]
-            });
-
-            controller.getRightCommandPanel().add(
-                changeButton
-            );
-
-            controller.getRightCommandPanel().add(
-                protocollButton
-            );
+            controller.showConfigTabCommands();
         } else if ( newCard.id == 'configurationTabPanel' ) {
             console.log ( "SHOW CONFIGURATION COMMANDS" );
-            //controller.showExerciseConfigurationCommands();
+            controller.showExerciseConfigurationsCommands();
         } else {
             console.log ( "HIDE PROTOCOLL COMMANDS" );
             controller.getRightCommandPanel().items.each(function (item) {
@@ -171,24 +141,24 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
     },
 
-    onShowExercisePanel: function(record, protocolls, callback) {
+    onShowExercisePanel: function(record, exerciseProtocoll, callback) {
         var controller = this,
             exercisePanel	= controller.getExercisePanel(),
             mainStage	= controller.getMainStage();
 
+        controller.currentPlanExercise = exerciseProtocoll;
         controller.record = record;
         exercisePanel.down('#exercisePanelHeader').data = record.data;
         exercisePanel.down('#exercisePanelContent').items.items[0].data = record.data;
         controller.setActiveItemNew();
 
-        //var currentPlan = LanistaTrainer.app.getController ( 'PlanController' ).plan;
-        //if ( currentPlan ) {
-            //console.log ( controller.currentPlanExercise );
-            //controller.currentPlanExercise.set ( "training", controller.currentPlanExercise.get ( "training_min" ));
-            //controller.currentPlanExercise.set ( "weight", controller.currentPlanExercise.get ( "weight_min" ));
-            //exercisePanel.down('#exercisePanelContent').getTabBar().getAt (3).show();
-            //exercisePanel.down('#configurationPanel').setRecord ( controller.currentPlanExercise );
-        //}
+        var currentPlan = LanistaTrainer.app.getController ( 'PlanController' ).plan;
+        if ( currentPlan ) {
+            controller.currentPlanExercise.training = controller.currentPlanExercise.training_min;
+            controller.currentPlanExercise.weight = controller.currentPlanExercise.weight_min;
+            exercisePanel.down('#exercisePanelContent').child('#configurationTabPanel').tab.show();
+            exercisePanel.down('#configurationPanel').update ( controller.currentPlanExercise );
+        }
 
         if ( LanistaTrainer.app.currentCustomer ) {
             exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.show();
@@ -211,16 +181,17 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
             protocollsStore.load (function (records) {
                 exercisePanel.down('#exerciseProtocolls').reconfigure(protocollsStore);
-                if ( protocolls.data.items.length > 0 ) {
-                    exercisePanel.down('#protocollPanel').protocollInformation = protocolls.data.items[0].data;
-                    exercisePanel.down('#protocollPanel').data = protocolls.data.items[0].data;
+                if ( protocollsStore.data && protocollsStore.data.items.length > 0 ) {
+                    exercisePanel.down('#protocollPanel').protocollInformation = protocollsStore.data.items[0].data;
+                    exercisePanel.down('#protocollPanel').update = protocollsStore.data.items[0].data;
                 } else {
                     // USE THE EXERCISE CONFIGURATION
                     console.log ( "USING EXERCISE CONFIGURATION");
-                    //console.log ( controller.currentPlanExercise );
-                    //exercisePanel.down('#protocollPanel').setRecord ( controller.currentPlanExercise );
+                    exercisePanel.down('#protocollPanel').protocollInformation = controller.currentPlanExercise;
+                    exercisePanel.down('#protocollPanel').update ( controller.currentPlanExercise );
                 }
            });
+
         }
         exercisePanel.down('#exercisePanelContent').setActiveTab(0).show();
         exercisePanel.addCls('md-show');
@@ -288,17 +259,12 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             currentPanel.down('#protocollPanel').update(currentPanel.down('#protocollPanel').protocollInformation);
         }
         else if ( currentPanel.id == 'configurationTabPanel' ) {
-            planExercise.set ( 'weight_min', planExercise.data.weight );
-            planExercise.set ( 'training_min', planExercise.data.training );
-            planExercise.save ({
-                callback: function( planExercise ) {
-                    console.log( 'Planexercise updated' );
-                    console.log( planExercise );
-                    Lanista.app.fireEvent ( 'sync' , function (){
-                        console.log ('SYNCHRONIZATION FINISHED');
-                    });
-                }
-            });
+            var currPlanExercise = controller.currentPlanExercise;
+            //currPlanExercise.set ( 'weight_min', planExercise.data.weight );
+            //currPlanExercise.set ( 'training_min', planExercise.data.training );
+            currPlanExercise.weight_min = currPlanExercise.weight;
+            currPlanExercise.training_min = currPlanExercise.training;
+            currPlanExercise.save ();
         }
     },
 
@@ -396,6 +362,77 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             return false;
             }
         });
+    },
+
+    showExerciseConfigurationsCommands: function() {
+        controller = this;
+
+        controller.getRightCommandPanel().items.each(function (item) {
+            item.hide();
+        });
+
+        var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+            text:  Ext.ux.LanguageManager.TranslationArray.CONFIGURE_PROTOCOLL,
+            itemId: 'changeProtollConfigurationButton',
+            glyph: '120@Lanista Icons' //x
+        });
+        var indicationsButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+            text:  Ext.ux.LanguageManager.TranslationArray.PLAN_EXERCISE_DESCRIPTION,
+            itemId: 'indicationsButton',
+            glyph: '73@Lanista Icons' //I
+
+        });
+        var changeSetsButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+            text:  Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS_CONFIG,
+            itemId: 'changeSetsButton',
+            glyph: '74@Lanista Icons' //J
+
+        });
+
+        controller.getRightCommandPanel().add(
+            changeButton
+        );
+
+        controller.getRightCommandPanel().add(
+            indicationsButton
+        );
+
+        controller.getRightCommandPanel().add(
+            changeSetsButton
+        );
+
+    },
+
+    showConfigTabCommands: function() {
+        controller = this;
+
+        controller.getRightCommandPanel().items.each(function (item) {
+            item.hide();
+        });
+
+        var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+            text:  Ext.ux.LanguageManager.TranslationArray.CONFIGURE_PROTOCOLL,
+            itemId: 'changeProtollConfigurationButton',
+            glyph: '120@Lanista Icons' //x
+
+        });
+        var protocollButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+            text:  Ext.ux.LanguageManager.TranslationArray.CREATE_PROTOCOLL,
+            itemId: 'sendProtocollButton',
+            glyph: '100@Lanista Icons', //d
+            cls: [
+                'lanista-command-button',
+                'lanista-command-button-green'
+            ]
+        });
+
+        controller.getRightCommandPanel().add(
+            changeButton
+        );
+
+        controller.getRightCommandPanel().add(
+            protocollButton
+        );
     },
 
     init: function(application) {

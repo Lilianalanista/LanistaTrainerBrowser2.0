@@ -254,6 +254,34 @@
             },
             "codeClass": null,
             "userConfig": {
+                "ref": "nextExercises",
+                "selector": "#nextExercises",
+                "xtype": "Ext.panel.Tool"
+            },
+            "designerId": "9bca4b31-af91-49fb-8115-947984c6b6dd"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "previousExercises",
+                "selector": "#previousExercises",
+                "xtype": "Ext.panel.Tool"
+            },
+            "designerId": "85b11ae8-4ee3-42af-8d19-0cd1f764e68c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
@@ -695,7 +723,12 @@
                     "            if (success){",
                     "                if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {",
                     "                    for (var i = 0; i < records.length ; i++) {",
-                    "                        if (this.getExercisesPanel().selection.indexOf (records[i].data.id) != -1){",
+                    "                        for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {",
+                    "                            if(this.getExercisesPanel().selection[j][0] === records[i].data.id) {",
+                    "                                break;",
+                    "                            }",
+                    "                        }",
+                    "                        if (j !== this.getExercisesPanel().selection.length){",
                     "                            itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);",
                     "                            Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );",
                     "                        }",
@@ -734,7 +767,12 @@
                     "            if (success){",
                     "                if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {",
                     "                    for (var i = 0; i < records.length ; i++) {",
-                    "                        if (this.getExercisesPanel().selection.indexOf (records[i].data.id) != -1){",
+                    "                        for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {",
+                    "                            if(this.getExercisesPanel().selection[j][0] === records[i].data.id) {",
+                    "                                break;",
+                    "                            }",
+                    "                        }",
+                    "                        if (j !== this.getExercisesPanel().selection.length){",
                     "                            itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);",
                     "                            Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );",
                     "                        }",

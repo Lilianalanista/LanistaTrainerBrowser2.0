@@ -848,6 +848,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.controller.LoginController": [],
   "LanistaTrainer.controller.Main": [],
   "LanistaTrainer.controller.MainController": [],
+  "LanistaTrainer.controller.PlanController": [],
   "LanistaTrainer.controller.RegistrationController": [],
   "LanistaTrainer.controller.StopWatchController": [],
   "LanistaTrainer.controller.TemplatesController": [],
@@ -855,10 +856,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.controller.UserInfoController": [],
   "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseModel": [],
+  "LanistaTrainer.model.Plan": [],
+  "LanistaTrainer.model.PlanExercise": [],
   "LanistaTrainer.model.Protocoll": [],
   "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.store.PlanExerciseStore": [],
+  "LanistaTrainer.store.PlanStore": [],
   "LanistaTrainer.store.ProtocollStore": [],
   "LanistaTrainer.view.CustomerExercisesPanel": [],
   "LanistaTrainer.view.CustomerInfoPanel": [],
@@ -872,12 +877,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.LoginPanel": [],
   "LanistaTrainer.view.Main": [],
   "LanistaTrainer.view.MainViewport": [],
+  "LanistaTrainer.view.PlanEditPanel": [],
+  "LanistaTrainer.view.PlanExercisesList": [],
+  "LanistaTrainer.view.PlanPanel": [],
   "LanistaTrainer.view.RegistrationPanel": [],
   "LanistaTrainer.view.StopWatch": [],
   "LanistaTrainer.view.TemplatesPanel": [],
   "LanistaTrainer.view.Temporal": [],
+  "LanistaTrainer.view.TrainingPicker": [],
   "LanistaTrainer.view.UserInfoPanel": [],
   "LanistaTrainer.view.Viewport": [],
+  "LanistaTrainer.view.WeightPicker": [],
   "LanistaTrainer.view.rightView": []
 });
 Ext.ClassManager.addNameAliasMappings({
@@ -1906,6 +1916,9 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.controller.MainController": [
     "controller.mainController"
   ],
+  "LanistaTrainer.controller.PlanController": [
+    "controller.planController"
+  ],
   "LanistaTrainer.controller.RegistrationController": [
     "controller.registrationController"
   ],
@@ -1921,10 +1934,14 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseModel": [],
+  "LanistaTrainer.model.Plan": [],
+  "LanistaTrainer.model.PlanExercise": [],
   "LanistaTrainer.model.Protocoll": [],
   "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.store.PlanExerciseStore": [],
+  "LanistaTrainer.store.PlanStore": [],
   "LanistaTrainer.store.ProtocollStore": [],
   "LanistaTrainer.view.CustomerExercisesPanel": [
     "widget.customerExercisesPanel"
@@ -1950,7 +1967,9 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.view.ImagePanel": [
     "widget.imagePanel"
   ],
-  "LanistaTrainer.view.LanistaButton": [],
+  "LanistaTrainer.view.LanistaButton": [
+    "widget.lanistaButton"
+  ],
   "LanistaTrainer.view.LoginPanel": [
     "widget.loginPanel"
   ],
@@ -1959,6 +1978,15 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.MainViewport": [
     "widget.mainViewport"
+  ],
+  "LanistaTrainer.view.PlanEditPanel": [
+    "widget.planEditPanel"
+  ],
+  "LanistaTrainer.view.PlanExercisesList": [
+    "widget.planExercisesList"
+  ],
+  "LanistaTrainer.view.PlanPanel": [
+    "widget.planPanel"
   ],
   "LanistaTrainer.view.RegistrationPanel": [
     "widget.registrationPanel"
@@ -1970,10 +1998,16 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.templatesPanel"
   ],
   "LanistaTrainer.view.Temporal": [],
+  "LanistaTrainer.view.TrainingPicker": [
+    "widget.trainingPicker"
+  ],
   "LanistaTrainer.view.UserInfoPanel": [
     "widget.userInfoPanel"
   ],
   "LanistaTrainer.view.Viewport": [],
+  "LanistaTrainer.view.WeightPicker": [
+    "widget.weightPicker"
+  ],
   "LanistaTrainer.view.rightView": []
 });
 Ext.setVersion("ext-theme-base", "4.2.1");

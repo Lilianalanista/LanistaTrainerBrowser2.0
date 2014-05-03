@@ -90,18 +90,30 @@
                     "userConfig": {
                         "fn": "onViewExercisesAfterRender",
                         "implHandler": [
-                            "var itemRecord;",
-                            "    el = component.el;",
+                            "var itemRecord,",
+                            "    el = component.el,",
+                            "    itemId = [];",
                             "",
                             "el.on(",
                             "    'click', function(e,t) {",
                             "       if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {",
-                            "               itemId = component.getRecord(t).data.id;",
-                            "               if ( this.selection.indexOf (itemId) == -1 ) {",
+                            "               itemId = [];",
+                            "               itemId[0] = component.getRecord(t).data.id;",
+                            "               itemId[1] = component.getRecord(t).data.ext_id;",
+                            "",
+                            "               for(var i = 0; i < this.selection.length; i++) {",
+                            "                   if(this.selection[i][0] === itemId[0]) {",
+                            "                     break;",
+                            "                   }",
+                            "               }",
+                            "               if (i === this.selection.length)",
+                            "               {",
                             "                    this.selection.push( itemId );",
                             "                    Ext.get(t).addCls ( 'lanista-list-item-selected' );",
-                            "               } else {",
-                            "                    this.selection.splice(this.selection.indexOf (itemId), 1);",
+                            "               }",
+                            "               else {",
+                            "                    //this.selection.splice(i, 1);",
+                            "                    itemId[2] = 'd';",
                             "                    Ext.get(t).removeCls ( 'lanista-list-item-selected' );",
                             "               }",
                             "        }",
@@ -130,6 +142,29 @@
                         "scope": "me"
                     },
                     "designerId": "988e0455-9993-491f-8c24-837d9d9a43e7"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onViewExercisesViewReady",
+                        "implHandler": [
+                            "if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {",
+                            "    var nextButton = LanistaTrainer.app.getController ('ExercisesController').getNextExercises(),",
+                            "        previousButton = LanistaTrainer.app.getController ('ExercisesController').getPreviousExercises();",
+                            "    ",
+                            "    nextButton.fireEvent('click');",
+                            "    previousButton.fireEvent('click');",
+                            "}"
+                        ],
+                        "name": "viewready",
+                        "scope": "me"
+                    },
+                    "designerId": "7b6f5240-f855-4a04-8d04-139fd18ce6e8"
                 }
             ]
         },
