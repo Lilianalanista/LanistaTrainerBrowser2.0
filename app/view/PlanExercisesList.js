@@ -97,11 +97,14 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
 
                 var internalItemId = Ext.get(t).dom.parentNode.internalId,
                     controller = LanistaTrainer.app.getController ('PlanController'),
-                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab();
-                    storeActiveTab = activeTab.getStore();
-                    ItemModel = activeTab.data[internalItemId];
+                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
+                    storeActiveTab = activeTab.getStore(),
+                    ItemModelData = activeTab.data || activeTab.recordsArray,
+                    selectionTab = controller.selectionsTab[controller.currentDay.id.substring(1)],
+                    ItemModel = ItemModelData[internalItemId];
 
                 this.deleteItemView(ItemModel);
+                selectionTab.splice(internalItemId,1);
                 activeTab.recordsArray.splice(internalItemId, 1);
                 storeActiveTab.reload();
             },
@@ -125,7 +128,28 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
     },
 
     onPlanExercisesListViewReady: function(dataview, eOpts) {
-        var el = dataview.el;
+        var el = dataview.el,
+            controller = LanistaTrainer.app.getController ('PlanController'),
+            activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
+            selectionTab = controller.selectionsTab[controller.currentDay.id.substring(1)];
+
+        if (activeTab.id === el.id){
+            //Looking for items that must be deleted and they are deleted
+            for (var j = 0; j < selectionTab.length; j++){
+                if (selectionTab[j][3] === 'd'){
+                    for (var k = 0; k < dataview.recordsArray.length; k++){
+                        if (dataview.recordsArray[k].exercise_id === selectionTab[j][0] || dataview.recordsArray[k].user_exercise_id === selectionTab[j][0])
+                            break;
+                    }
+                    this.deleteItemView(dataview.recordsArray[k]);
+                    selectionTab.splice(j,1);
+                    activeTab.recordsArray.splice(j, 1);
+                       dataview.getStore().load(function(records, operation, success) {
+                        controller.populateTabsExercisesByDay(records);
+                    });
+                }
+            }
+        }
 
         for (var i = 0; i < el.dom.childNodes.length; i++)
         {

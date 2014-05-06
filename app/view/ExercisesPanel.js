@@ -131,9 +131,21 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                             Ext.get(t).addCls ( 'lanista-list-item-selected' );
                        }
                        else {
-                            //this.selection.splice(i, 1);
-                            itemId[2] = 'd';
-                            Ext.get(t).removeCls ( 'lanista-list-item-selected' );
+                           if (this.selection[i][2] === 1 && !(this.selection[i][3])) {
+                               this.selection[i][3] = 'd';
+                               Ext.get(t).removeCls ( 'lanista-list-item-selected' );
+                           }
+                           else {
+                               if (this.selection[i][2] === 1 && this.selection[i][3] === 'd'){
+                                   this.selection[i][3] = '';
+                                   Ext.get(t).addCls ( 'lanista-list-item-selected' );
+                               }
+                               else{
+                                   this.selection.splice(i, 1);
+                                   Ext.get(t).removeCls ( 'lanista-list-item-selected' );
+                               }
+                           }
+
                        }
                 }
                 else {

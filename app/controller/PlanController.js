@@ -93,14 +93,18 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         var controller = this,
             userId = localStorage.getItem("user_id"),
             currentExercisePosition = controller.currentExercisePosition,
-            currentDay = controller.currentDay.id.substring (1);
+            currentDay = controller.currentDay.id.substring (1),
+            idExercisePlan,
+            planExercisesItems,
+            exercisesPanel = controller.getExercisesPanel();
 
-        // TODO: SAVE THE SELECTED EXERCISES
-        var selection = this.selectionsTab[this.currentDay.id.substring(1)];
-        var isCustom = false;
-        var storeExercises = Ext.getStore('ExerciseStore');
+        this.selectionsTab[this.currentDay.id.substring(1)] = exercisesPanel.selection;
+        var selection = this.selectionsTab[this.currentDay.id.substring(1)],
+            isCustom = false;
+            storeExercises = Ext.getStore('ExerciseStore');
+
         for ( var i = 0; i < selection.length; i++ ) {
-            if (selection[i][2])
+            if (selection[i][2] === 1) //Record has just saved in previous added
                 continue;
 
             isCustom = isNaN (selection[i][1].substring (0,1));
@@ -125,13 +129,22 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     root: 'records',
                     allowSingle: false
                 },
+                api: {
+                    create: undefined,
+                    read: undefined,
+                    update: undefined,
+                    destroy: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/deleteexercise'
+                },
                 headers: {
                     user_id: userId
                 }
             }));
 
-            newPlanExercise.save ();
-            selection[i][2] = 1; // To mark that record as saved on server
+            if (selection[i][3] !== 'd'){ //'d' indicates that the record must be deleted
+                newPlanExercise.save ();
+                selection[i][2] = 1; // To mark record as saved on server
+            }
+
         }
 
         if ( currentDay > controller.plan.data.days ) {
@@ -214,10 +227,11 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 recordsArray = [],
                 tabActiveId = controller.currentDay || controller.getPlanPanel ().down ('tabpanel').child('#d1');
 
-            if (tabActiveId.selection)
+            /*if (tabActiveId.selection)
                 selecctionsTabActive = tabActiveId.selection;
             else
                 selecctionsTabActive = [];
+            */
 
             planPanel.controller = controller;
             controller.createDayPanels ( controller.plan.data.days );
@@ -371,9 +385,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
     onCloseExercisesSelectionView: function(callback) {
         var controller = this,
             exercisesPanel = controller.getExercisesPanel();
-
-        //this.currentDay.selection = exercisesPanel.selection;
-        this.selectionsTab[this.currentDay.id.substring(1)] = exercisesPanel.selection;
 
         LanistaTrainer.app.fireEvent('hideStage', function () {
             controller.getRightCommandPanel().items.each(function (item) {
