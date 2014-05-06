@@ -60,6 +60,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         this.currentDay = null;
         this.currentExercisePosition = 0;
         this.selectionsTab = [];
+        this.plan = null;
+        this.planname = '';
 
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closePlanPanel', function() {
@@ -227,12 +229,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 recordsArray = [],
                 tabActiveId = controller.currentDay || controller.getPlanPanel ().down ('tabpanel').child('#d1');
 
-            /*if (tabActiveId.selection)
-                selecctionsTabActive = tabActiveId.selection;
-            else
-                selecctionsTabActive = [];
-            */
-
             planPanel.controller = controller;
             controller.createDayPanels ( controller.plan.data.days );
 
@@ -282,8 +278,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         var store = Ext.getStore( 'ExerciseStore' ),
             self = this,
             mainStage			= self.getMainStage(),
-            viewportXCapacity	= Math.floor(mainStage.getEl().getWidth(true)/207),
-            viewportCapacity    = Math.floor((mainStage.getEl().getHeight(true)-47)/190) * viewportXCapacity,
+            viewportXCapacity	= Math.floor(mainStage.getEl().getWidth(true)/187);
+            viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/177) * viewportXCapacity;
             exercisesPanel		= self.getExercisesPanel();
 
         store.clearFilter();
@@ -296,10 +292,14 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     anyMatch: true
                 }));
         }
+
+        store.pageSize = viewportCapacity;
+        store.clearFilter(true);
         if ( this.favorite )
         {
             store.filter( 'ext_id', '"' + this.favorite.data.objects.replace(/,/g,'","') + '"' );
         }
+        store.sort('name_' + Ext.ux.LanguageManager.lang, 'ASC');
 
         var menuFilters = LanistaTrainer.app.getController('ExercisesController').showExercisesMenu();
 

@@ -143,7 +143,7 @@
                     "            exercisePanel.down('#protocollPanel').update ( controller.currentPlanExercise );",
                     "        }",
                     "   });",
-                    "   ",
+                    "",
                     "}",
                     "exercisePanel.down('#exercisePanelContent').setActiveTab(0).show();",
                     "exercisePanel.addCls('md-show');",

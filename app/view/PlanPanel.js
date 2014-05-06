@@ -92,10 +92,12 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
                                                     id: 'd'+(tapPanelSize),
                                                     title: Ext.ux.LanguageManager.TranslationArray.DAY + ' ' + (tapPanelSize),
                                                     store: controller.plan.planexercises()
-                                            });
-                                            tabPanel.setActiveTab(tabPanel.items.items[tapPanelSize -1]);
+                                                });
+                                                tabPanel.setActiveTab(tabPanel.items.items[tapPanelSize -1]);
+                                            }
                                         }
-                                }
+                                        else
+                                            tabPanel.setActiveTab(newCard);
                             }
                         }
                 },

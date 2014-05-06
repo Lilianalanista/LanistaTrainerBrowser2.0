@@ -90,37 +90,39 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
 
         el.on(
             'click', function(e,t) {
-                for (var i = 0; i < el.dom.childNodes.length; i++)
+                var controller = LanistaTrainer.app.getController ('PlanController'),
+                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
+                    ItemModelData = activeTab.data || activeTab.recordsArray,
+                    selectionTab = controller.selectionsTab[activeTab.id.substring(1)];
+
+                for (var i = 0; i < activeTab.el.dom.childNodes.length; i++)
                 {
-                    el.dom.childNodes[i].internalId = i;
+                    activeTab.el.dom.childNodes[i].internalId = i;
                 }
 
                 var internalItemId = Ext.get(t).dom.parentNode.internalId,
-                    controller = LanistaTrainer.app.getController ('PlanController'),
-                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
-                    storeActiveTab = activeTab.getStore(),
-                    ItemModelData = activeTab.data || activeTab.recordsArray,
-                    selectionTab = controller.selectionsTab[controller.currentDay.id.substring(1)],
-                    ItemModel = ItemModelData[internalItemId];
+                     ItemModel = ItemModelData[internalItemId];
 
                 this.deleteItemView(ItemModel);
                 selectionTab.splice(internalItemId,1);
                 activeTab.recordsArray.splice(internalItemId, 1);
-                storeActiveTab.reload();
+                activeTab.getStore().load(function(records, operation, success) {
+                    controller.populateTabsExercisesByDay(records);
+                });
             },
             this, {delegate: '.exercise-list-delete'});
         el.on(
             'mouseover', function(e,t) {
-                el.removeCls('item-not-clicked');
-                el.addCls('item-clicked');
+                Ext.get(t).removeCls('item-not-clicked');
+                Ext.get(t).addCls('item-clicked');
                 Ext.get(t).down('.exercise-list-delete').setHTML('u');
                 Ext.get(t).addCls('exercise-apply-delete');
             },
             this,{ delegate: '.lanista-plan-exercise'});
         el.on(
             'mouseout', function(e,t) {
-                el.removeCls('item-clicked');
-                el.addCls('item-not-clicked');
+                Ext.get(t).removeCls('item-clicked');
+                Ext.get(t).addCls('item-not-clicked');
                 Ext.get(t).down('.exercise-list-delete').setHTML('');
                 Ext.get(t).removeCls('exercise-apply-delete');
             },
@@ -144,7 +146,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                     this.deleteItemView(dataview.recordsArray[k]);
                     selectionTab.splice(j,1);
                     activeTab.recordsArray.splice(j, 1);
-                       dataview.getStore().load(function(records, operation, success) {
+                    dataview.getStore().load(function(records, operation, success) {
                         controller.populateTabsExercisesByDay(records);
                     });
                 }

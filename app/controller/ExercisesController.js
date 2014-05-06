@@ -627,8 +627,6 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         }
 
         store.sort('name_' + language, 'ASC');
-        //store.load();
-
         LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
 
 
