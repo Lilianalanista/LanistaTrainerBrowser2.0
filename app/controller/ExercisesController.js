@@ -273,17 +273,6 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         //Adding bottoms into RightPanel
         var menuFilters = controller.showExercisesMenu();
 
-        /*
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.SEARCH,
-                itemId: 'searchButton',
-                menu: menuFilters,
-                menuButtonAlign: 'right',
-                glyph: 72
-            })
-        );
-        */
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.SEARCH,
@@ -567,7 +556,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         var store = Ext.getStore('ExerciseStore'),
             language = Ext.ux.LanguageManager.lang,
             numOfFilters = store.filters.length,
-            varSearch = seekValue;
+            varSearch = seekValue,
+            records;
 
         if (numOfFilters === 0)
         {
@@ -627,6 +617,21 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         }
 
         store.sort('name_' + language, 'ASC');
+        store.loadPage(1);
+        records = store.data.items;
+        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
+            for (var i = 0; i < records.length ; i++) {
+                for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
+                    if(this.getExercisesPanel().selection[j][0] === records[i].data.id) {
+                        break;
+                    }
+                }
+                if (j !== this.getExercisesPanel().selection.length){
+                    itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
+                    Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                }
+            }
+        }
         LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
 
 

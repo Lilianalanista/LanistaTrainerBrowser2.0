@@ -146,30 +146,31 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 newPlanExercise.save ();
                 selection[i][2] = 1; // To mark record as saved on server
             }
-
         }
 
-        if ( currentDay > controller.plan.data.days ) {
-            controller.plan.set ( 'days', currentDay );
-            controller.plan.save ({
-                callback: function( changedPlan, operation, success ) {
-                    console.log ( changedPlan );
+        setTimeout(function() {
+                if ( currentDay > controller.plan.data.days ) {
+                    controller.plan.set ( 'days', currentDay );
+                    controller.plan.save ({
+                        callback: function( changedPlan, operation, success ) {
+                            console.log ( changedPlan );
+                            LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+                            LanistaTrainer.app.fireEvent( 'closeExercisesSelectionView', function() {
+                                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                                LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname, controller.backAction );
+                            });
+                        },
+                        scope: this
+                    });
+                } else {
                     LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
                     LanistaTrainer.app.fireEvent( 'closeExercisesSelectionView', function() {
                         LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
                         LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname, controller.backAction );
                     });
-                },
-                scope: this
-            });
-        } else {
-            LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
-            LanistaTrainer.app.fireEvent( 'closeExercisesSelectionView', function() {
-                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
-                LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname, controller.backAction );
-            });
-        }
-        controller.favorite = undefined;
+                }
+                controller.favorite = undefined;
+        },2500);
 
     },
 

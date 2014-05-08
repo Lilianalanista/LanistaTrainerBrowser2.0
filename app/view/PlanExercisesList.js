@@ -25,6 +25,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
     height: 250,
     id: 'planExercisesList',
     width: 400,
+    autoScroll: true,
     itemCls: 'lanista-plan-exercise',
     itemSelector: 'div',
     selectedItemCls: 'lanista-plan-exercise-selected',

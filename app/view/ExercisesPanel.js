@@ -171,13 +171,23 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
     },
 
     onViewExercisesViewReady: function(dataview, eOpts) {
-        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
-            var nextButton = LanistaTrainer.app.getController ('ExercisesController').getNextExercises(),
-                previousButton = LanistaTrainer.app.getController ('ExercisesController').getPreviousExercises();
+        var records = dataview.store.data.items,
+            panel = LanistaTrainer.app.getController ('ExercisesController').getExercisesPanel();
 
-            nextButton.fireEvent('click');
-            previousButton.fireEvent('click');
+        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
+            for (var i = 0; i < records.length ; i++) {
+                for(var j = 0; j < panel.selection.length; j++) {
+                    if(panel.selection[j][0] === records[i].data.id) {
+                        break;
+                    }
+                }
+                if (j !== panel.selection.length){
+                    itemNode = panel.down('#viewExercises').getNode(records[i]);
+                    Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                }
+            }
         }
+
     }
 
 });
