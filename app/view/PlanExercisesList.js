@@ -80,6 +80,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                     itemRecord = activeTab.recordsArray[internalItemId],
                     Exercise = Ext.ModelManager.getModel('LanistaTrainer.model.ExerciseModel');
 
+                itemRecord.internalId = internalItemId;
                 Exercise.load(itemRecord.exercise_id !== 0 ? itemRecord.exercise_id : itemRecord.user_exercise_id, {
                     success: function( exercise ) {
                         LanistaTrainer.app.getController('PlanController').getPlanPanel().addCls ('blured');

@@ -58,6 +58,14 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             controller.getController(controller.getMainStage().getLayout().getActiveItem().controller.id).showCommands();
             controller.getController(controller.getMainStage().getLayout().getActiveItem().controller.id).setHeader();
             controller.getMainStage().getLayout().getActiveItem().removeCls ('blured');
+
+
+            if (controller.getMainStage().getLayout().getActiveItem().id === 'planPanel'){
+                var planController = LanistaTrainer.app.getController ('PlanController'),
+                    activeTabPlan = planController.getPlanPanel().down('tabpanel').getActiveTab();
+                activeTabPlan.store.reload();
+
+            }
         });
 
 
@@ -129,15 +137,23 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         var weightPicker = Ext.create('LanistaTrainer.view.WeightPicker', {}),
             trainingPicker = Ext.create('LanistaTrainer.view.TrainingPicker', {}),
             controller = this,
-            exercisePanel	= controller.getExercisePanel();
+            exercisePanel	= controller.getExercisePanel(),
+            activeTab = controller.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab ();
 
         controller.getMainViewport().add(weightPicker);
         controller.getMainViewport().add(trainingPicker);
 
         weightPicker.show ();
         trainingPicker.show ();
-        weightPicker.setRecord ( exercisePanel.down('#protocollPanel').protocollInformation);
-        trainingPicker.setRecord ( exercisePanel.down('#protocollPanel').protocollInformation);
+
+        if (activeTab.id === 'protocollsTabPanel'){
+            weightPicker.setRecord ( exercisePanel.down('#protocollPanel').protocollInformation);
+            trainingPicker.setRecord ( exercisePanel.down('#protocollPanel').protocollInformation);
+        }
+        else if (activeTab.id === 'configurationTabPanel'){
+            weightPicker.setRecord(controller.currentPlanExercise);
+            trainingPicker.setRecord (controller.currentPlanExercise);
+        }
 
     },
 
@@ -251,7 +267,13 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     },
 
     onPlanExerciseRecordChanged: function(WeightTrainingValues) {
-        var currentPanel = this.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab ();
+        var currentPanel = this.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab (),
+            userId = localStorage.getItem("user_id"),
+            controller = this,
+            planController = LanistaTrainer.app.getController ('PlanController'),
+            activeTabPlan = planController.getPlanPanel().down('tabpanel').getActiveTab(),
+            planExercise;
+
         if ( currentPanel.id == 'protocollsTabPanel' ) {
             currentPanel.down('#protocollPanel').protocollInformation.weight = WeightTrainingValues[0];
             currentPanel.down('#protocollPanel').protocollInformation.training = WeightTrainingValues[1];
@@ -260,11 +282,36 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         }
         else if ( currentPanel.id == 'configurationTabPanel' ) {
             var currPlanExercise = controller.currentPlanExercise;
-            //currPlanExercise.set ( 'weight_min', planExercise.data.weight );
-            //currPlanExercise.set ( 'training_min', planExercise.data.training );
-            currPlanExercise.weight_min = currPlanExercise.weight;
-            currPlanExercise.training_min = currPlanExercise.training;
-            currPlanExercise.save ();
+
+            currPlanExercise.weight_min = WeightTrainingValues[0];
+            currPlanExercise.training_min = WeightTrainingValues[1];
+            currPlanExercise.weight = currPlanExercise.weight_min;
+            currPlanExercise.training = currPlanExercise.training_min;
+            currPlanExercise.training_unit = WeightTrainingValues[2];
+
+            controller.currentPlanExercise = currPlanExercise;
+            currentPanel.down('#configurationPanel').update ( currPlanExercise );
+
+            planExercise = Ext.create('LanistaTrainer.model.PlanExercise');
+            planExercise.data = currPlanExercise;
+            planExercise.setProxy(new Ext.data.proxy.Ajax({
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
+                model: 'PlanExercise',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    root: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    root: 'records',
+                    allowSingle: false
+                },
+                headers: {
+                    user_id: userId
+                }
+            }));
+            planExercise.save ();
         }
     },
 

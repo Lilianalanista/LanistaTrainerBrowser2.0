@@ -449,7 +449,11 @@ Ext.define('LanistaTrainer.view.TrainingPicker', {
                                 infoProtocoll[2] = panelTraining.unit;
 
                                 LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll );
+
+                                panelWeight.removeAll();
                                 panelWeight.hide();
+
+                                panelTraining.removeAll();
                                 panelTraining.hide();
                             }
                         }
@@ -512,9 +516,9 @@ Ext.define('LanistaTrainer.view.TrainingPicker', {
         if ( this.unit === 0 )
             this.down ('#repButton').fireEvent( 'click' );
         else if ( this.unit == 1 )
+            this.down ('#secButton').fireEvent( 'click' );
+        else
             this.down ('#minButton').fireEvent( 'click' );
-            else
-                this.down ('#secButton').fireEvent( 'click' );
     },
 
     mascara: function(d) {

@@ -101,13 +101,6 @@ Ext.define('LanistaTrainer.controller.MainController', {
             );
         }
 
-        /*
-        cls: [
-                    'lanista-command-buton',
-                    'lanista-command-buton-green'
-                ],
-
-        */
     },
 
     init: function(application) {

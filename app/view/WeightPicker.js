@@ -281,7 +281,6 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
 
     onWeightPickerAfterRender: function(component, eOpts) {
 
-        //this.down ( '#abortWeightSelection' ).setText ( Ext.ux.LanguageManager.TranslationArray.CLOSE );
         this.down ( '#clearWeightEntryButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.BUTTON_RESET );
 
     },

@@ -171,14 +171,7 @@
                     "        cancelButton",
                     "    );",
                     "}",
-                    "",
-                    "/*",
-                    "cls: [",
-                    "            'lanista-command-buton',",
-                    "            'lanista-command-buton-green'",
-                    "        ],",
-                    "",
-                    "*/"
+                    ""
                 ],
                 "name": "showSavePanel",
                 "scope": "this"
