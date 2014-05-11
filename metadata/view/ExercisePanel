@@ -392,6 +392,20 @@
                                         "id": "exerciseDescriptionInputPanel"
                                     },
                                     "designerId": "fca040a9-6841-4699-96cf-2a9add11445d"
+                                },
+                                {
+                                    "type": "Ext.form.field.Number",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": null,
+                                        "hidden": true,
+                                        "id": "setInput"
+                                    },
+                                    "designerId": "43168ceb-acce-435a-828c-b426abf65ef8"
                                 }
                             ]
                         }

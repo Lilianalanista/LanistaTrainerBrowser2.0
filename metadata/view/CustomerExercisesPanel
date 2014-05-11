@@ -23,33 +23,56 @@
     "designerId": "5d37b0c7-cd7b-47a4-ba76-021716e9e6ee",
     "cn": [
         {
-            "type": "Ext.view.View",
+            "type": "Ext.grid.Panel",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "itemId": "plans",
-                "itemSelector": "div",
-                "layout|flex": 1
+                "autoScroll": true,
+                "cls": "lanista-grid-plans-customer",
+                "id": "gridPlans",
+                "layout|flex": 1,
+                "store": "PlanStore",
+                "title": null
             },
-            "designerId": "87acbd24-b762-4aa7-8204-ebbf6e1c4874",
+            "designerId": "5e08d8f9-6263-4cee-836e-0de2af8c252a",
             "cn": [
                 {
-                    "type": "Ext.XTemplate",
+                    "type": "Ext.grid.column.Template",
                     "reference": {
-                        "name": "itemTpl",
-                        "type": "object"
+                        "name": "columns",
+                        "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": "itemTpl",
-                        "implHandler": [
-                            "<div>Plan {name}</div>"
-                        ]
+                        "dataIndex": "string",
+                        "draggable": false,
+                        "menuDisabled": true,
+                        "resizable": false,
+                        "text": null,
+                        "width": 350
                     },
-                    "designerId": "8571ceeb-95f5-447f-9d56-0d0e9686e5d9"
+                    "designerId": "80e73ef9-5d76-4e47-8a28-cc0715a3874a",
+                    "cn": [
+                        {
+                            "type": "Ext.XTemplate",
+                            "reference": {
+                                "name": "tpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tpl",
+                                "implHandler": [
+                                    "<div>{name}</div>",
+                                    "<div>{creation_date:date(\"Y-m-d\")}</div>"
+                                ]
+                            },
+                            "designerId": "697ddcda-0629-481b-95c6-148cc2e6727d"
+                        }
+                    ]
                 }
             ]
         },

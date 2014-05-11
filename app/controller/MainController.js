@@ -84,13 +84,21 @@ Ext.define('LanistaTrainer.controller.MainController', {
                 //iconCls: 'lanista-sync',
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE,
                 itemId: saveButtonId,
-                glyph: '100@Lanista Icons' //d
+                glyph: '100@Lanista Icons', //d
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-green'
+                    ]
             });
             var cancelButton = Ext.create('LanistaTrainer.view.LanistaButton', {
                 //iconCls: 'lanista-remove',
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_CANCEL,
                 itemId: cancelButtonId,
-                glyph: '65@Lanista Icons' //A
+                glyph: '65@Lanista Icons', //A
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-red'
+                    ]
             });
 
             controller.getRightCommandPanel().add(

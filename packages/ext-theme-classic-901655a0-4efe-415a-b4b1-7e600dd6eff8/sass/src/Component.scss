@@ -1083,12 +1083,40 @@ $base-gradient: "none";
 //Plan Panel - Exercise Panel - Configuration tab Panel
 .lanista-configuration-tabpanel .protocoll-configuration {
     width: 100%;
-    text-align: left!important; 
+    text-align: left!important;
 }
 
 .lanista-configuration-tabpanel .x-form-textarea {
     width: 650px!important;
 }
+
+.lanista-customerexercises-panel .lanista-grid-plans-customer {
+    top: 100px!important;
+    width: 350px!important;
+}
+
+//.lanista-customerexercises-panel .lanista-grid-plans-customer .x-grid-header-ct, .lanista-customerexercises-panel .lanista-grid-plans-customer .x-grid-body, .lanista-customerexercises-panel .lanista-grid-plans-customer .x-grid-with-row-lines .x-grid-table {
+//    width: 350px!important;
+//}
+
+.lanista-customerexercises-panel .lanista-grid-plans-customer .x-grid-view {
+    width: 350px!important;
+}
+
+.lanista-customerexercises-panel .lanista-grid-plans-customer .x-grid-body {
+    width: 350px!important;
+}
+
+.lanista-customerexercises-panel .lanista-grid-plans-customer .x-column-header {
+    width: 350px!important;
+}
+
+.lanista-customerexercises-panel .lanista-grid-plans-customer .x-grid-with-row-lines .x-grid-table .x-box-target {
+    width: 350px!important;
+}
+
+
+
 
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

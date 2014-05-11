@@ -239,6 +239,23 @@ Ext.application({
                     user_id: userId
                 }
             }));
+
+            Ext.getStore('PlanStore').setProxy(new Ext.data.proxy.Ajax({
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
+                model: 'Plan',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    root: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    root: 'results'
+                },
+                headers: {
+                    user_id: userId
+                }
+            }));
         }
 
     }

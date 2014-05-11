@@ -157,6 +157,46 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
     },
 
+    onIndicationsButtonClick: function(button, e, eOpts) {
+        this.getExercisePanel().down('#exerciseDescriptionInputPanel').show();
+        LanistaTrainer.app.fireEvent('showSavePanel', 'saveIndicationsButton','cancelIndicationsButton');
+        this.getExercisePanel().down('#exerciseDescriptionInputPanel').focus();
+    },
+
+    onSaveIndicationsButtonClick: function(button, e, eOpts) {
+        var indications = this.getExercisePanel().down('#exerciseDescriptionInputPanel');
+
+        indications.hide();
+        this.showExerciseConfigurationsCommands();
+        LanistaTrainer.app.fireEvent('planExerciseRecordChanged', '',indications.getValue(),'');
+    },
+
+    onSaveSetInputButtonClick: function(button, e, eOpts) {
+        var setInput = this.getExercisePanel().down('#setInput');
+
+        setInput.hide();
+        this.showExerciseConfigurationsCommands();
+        LanistaTrainer.app.fireEvent('planExerciseRecordChanged', '', '', setInput.getValue());
+    },
+
+    onCancelIndicationsButtonClick: function(button, e, eOpts) {
+        var indications = this.getExercisePanel().down('#exerciseDescriptionInputPanel');
+        indications.hide();
+        this.showExerciseConfigurationsCommands();
+    },
+
+    onCancelSetInputButton: function(button, e, eOpts) {
+        var setInput = this.getExercisePanel().down('#setInput');
+        setInput.hide();
+        this.showExerciseConfigurationsCommands();
+    },
+
+    onChangeSetsButtonClick: function(button, e, eOpts) {
+        this.getExercisePanel().down('#setInput').show();
+        LanistaTrainer.app.fireEvent('showSavePanel', 'saveSetInputButton','cancelSetInputButton');
+        this.getExercisePanel().down('#setInput').focus();
+    },
+
     onShowExercisePanel: function(record, exerciseProtocoll, callback) {
         var controller = this,
             exercisePanel	= controller.getExercisePanel(),
@@ -192,14 +232,15 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             protocollsStore.group( 'execution_date_day','DESC');
             protocollsStore.sort( {
                 direction: 'DESC',
-                property: 'execution_date_day'
+                //property: 'execution_date_day'
+                property: 'id'
             });
 
             protocollsStore.load (function (records) {
                 exercisePanel.down('#exerciseProtocolls').reconfigure(protocollsStore);
                 if ( protocollsStore.data && protocollsStore.data.items.length > 0 ) {
                     exercisePanel.down('#protocollPanel').protocollInformation = protocollsStore.data.items[0].data;
-                    exercisePanel.down('#protocollPanel').update = protocollsStore.data.items[0].data;
+                    exercisePanel.down('#protocollPanel').update (protocollsStore.data.items[0].data);
                 } else {
                     // USE THE EXERCISE CONFIGURATION
                     console.log ( "USING EXERCISE CONFIGURATION");
@@ -266,7 +307,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
     },
 
-    onPlanExerciseRecordChanged: function(WeightTrainingValues) {
+    onPlanExerciseRecordChanged: function(weightTrainingValues, indications, sets) {
         var currentPanel = this.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab (),
             userId = localStorage.getItem("user_id"),
             controller = this,
@@ -275,19 +316,27 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             planExercise;
 
         if ( currentPanel.id == 'protocollsTabPanel' ) {
-            currentPanel.down('#protocollPanel').protocollInformation.weight = WeightTrainingValues[0];
-            currentPanel.down('#protocollPanel').protocollInformation.training = WeightTrainingValues[1];
-            currentPanel.down('#protocollPanel').protocollInformation.training_unit = WeightTrainingValues[2];
+            currentPanel.down('#protocollPanel').protocollInformation.weight = weightTrainingValues[0];
+            currentPanel.down('#protocollPanel').protocollInformation.training = weightTrainingValues[1];
+            currentPanel.down('#protocollPanel').protocollInformation.training_unit = weightTrainingValues[2];
             currentPanel.down('#protocollPanel').update(currentPanel.down('#protocollPanel').protocollInformation);
         }
         else if ( currentPanel.id == 'configurationTabPanel' ) {
             var currPlanExercise = controller.currentPlanExercise;
 
-            currPlanExercise.weight_min = WeightTrainingValues[0];
-            currPlanExercise.training_min = WeightTrainingValues[1];
-            currPlanExercise.weight = currPlanExercise.weight_min;
-            currPlanExercise.training = currPlanExercise.training_min;
-            currPlanExercise.training_unit = WeightTrainingValues[2];
+            if (weightTrainingValues){
+                currPlanExercise.weight_min = weightTrainingValues[0];
+                currPlanExercise.training_min = weightTrainingValues[1];
+                currPlanExercise.weight = currPlanExercise.weight_min;
+                currPlanExercise.training = currPlanExercise.training_min;
+                currPlanExercise.training_unit = weightTrainingValues[2];
+            }
+            if (indications){
+                currPlanExercise.description = indications;
+            }
+            if (sets){
+                currPlanExercise.rounds_min = sets;
+            }
 
             controller.currentPlanExercise = currPlanExercise;
             currentPanel.down('#configurationPanel').update ( currPlanExercise );
@@ -495,6 +544,24 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             },
             "viewport #changeProtollConfigurationButton": {
                 click: this.onchangeProtollConfigurationButtonClick
+            },
+            "viewport #indicationsButton": {
+                click: this.onIndicationsButtonClick
+            },
+            "viewport #saveIndicationsButton": {
+                click: this.onSaveIndicationsButtonClick
+            },
+            "viewport #saveSetInputButton": {
+                click: this.onSaveSetInputButtonClick
+            },
+            "viewport #cancelIndicationsButton": {
+                click: this.onCancelIndicationsButtonClick
+            },
+            "viewport #cancelSetInputButton": {
+                click: this.onCancelSetInputButton
+            },
+            "viewport #changeSetsButton": {
+                click: this.onChangeSetsButtonClick
             }
         });
 

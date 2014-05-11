@@ -44,16 +44,12 @@
                     "// *** 2 Show the panel",
                     "customerExercisesPanel.show();",
                     "",
-                    "",
                     "// PLANS",
+                    "controller.loadPlans();",
                     "",
                     "// WARNINGS",
                     "",
-                    "",
-                    "",
                     "// HEADER",
-                    "",
-                    "",
                     "",
                     "// PROTOCOLLS",
                     "controller.loadProtocolls();",
@@ -518,6 +514,34 @@
                 "scope": "me"
             },
             "designerId": "ffd9fab7-2d6c-4983-890e-92abb36c25a2"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "customerId"
+                ],
+                "fn": "loadPlans",
+                "implHandler": [
+                    "var store = Ext.getStore('PlanStore'),",
+                    "    currentCustomer = LanistaTrainer.app.currentCustomer;",
+                    "",
+                    "store.clearGrouping();",
+                    "store.clearFilter();",
+                    "store.filter ({property: 'customer_id', value: currentCustomer.data.id});",
+                    "store.sort( {",
+                    "    direction: 'DESC',",
+                    "    property: 'creation_date'",
+                    "});",
+                    "store.load();"
+                ]
+            },
+            "designerId": "1af6779b-2526-4944-b981-3c554a202405"
         }
     ]
 }

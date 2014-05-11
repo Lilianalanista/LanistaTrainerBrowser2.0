@@ -18,9 +18,10 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
     alias: 'widget.customerExercisesPanel',
 
     requires: [
-        'Ext.view.View',
+        'Ext.grid.Panel',
+        'Ext.grid.column.Template',
         'Ext.XTemplate',
-        'Ext.container.Container'
+        'Ext.view.View'
     ],
 
     border: false,
@@ -42,12 +43,25 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'dataview',
+                    xtype: 'gridpanel',
                     flex: 1,
-                    itemId: 'plans',
-                    itemSelector: 'div',
-                    itemTpl: [
-                        '<div>Plan {name}</div>'
+                    cls: 'lanista-grid-plans-customer',
+                    id: 'gridPlans',
+                    autoScroll: true,
+                    store: 'PlanStore',
+                    columns: [
+                        {
+                            xtype: 'templatecolumn',
+                            draggable: false,
+                            tpl: [
+                                '<div>{name}</div>',
+                                '<div>{creation_date:date("Y-m-d")}</div>'
+                            ],
+                            width: 350,
+                            resizable: false,
+                            dataIndex: 'string',
+                            menuDisabled: true
+                        }
                     ]
                 },
                 {

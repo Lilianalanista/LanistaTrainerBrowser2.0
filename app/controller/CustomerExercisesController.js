@@ -90,16 +90,12 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
         // *** 2 Show the panel
         customerExercisesPanel.show();
 
-
         // PLANS
+        controller.loadPlans();
 
         // WARNINGS
 
-
-
         // HEADER
-
-
 
         // PROTOCOLLS
         controller.loadProtocolls();
@@ -330,6 +326,20 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                 clearicon: true
             }
         );
+    },
+
+    loadPlans: function(customerId) {
+        var store = Ext.getStore('PlanStore'),
+            currentCustomer = LanistaTrainer.app.currentCustomer;
+
+        store.clearGrouping();
+        store.clearFilter();
+        store.filter ({property: 'customer_id', value: currentCustomer.data.id});
+        store.sort( {
+            direction: 'DESC',
+            property: 'creation_date'
+        });
+        store.load();
     },
 
     init: function(application) {

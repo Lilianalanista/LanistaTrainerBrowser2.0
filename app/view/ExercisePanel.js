@@ -24,7 +24,8 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
         'Ext.grid.Panel',
         'Ext.grid.column.Template',
         'Ext.grid.feature.Grouping',
-        'Ext.form.field.TextArea'
+        'Ext.form.field.TextArea',
+        'Ext.form.field.Number'
     ],
 
     cls: 'lanista-exercise-panel',
@@ -165,6 +166,11 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                             xtype: 'textareafield',
                                             hidden: true,
                                             id: 'exerciseDescriptionInputPanel'
+                                        },
+                                        {
+                                            xtype: 'numberfield',
+                                            hidden: true,
+                                            id: 'setInput'
                                         }
                                     ]
                                 }

@@ -448,7 +448,7 @@ Ext.define('LanistaTrainer.view.TrainingPicker', {
                                 infoProtocoll[1] = panelTraining.getValue();
                                 infoProtocoll[2] = panelTraining.unit;
 
-                                LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll );
+                                LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');
 
                                 panelWeight.removeAll();
                                 panelWeight.hide();

@@ -128,14 +128,15 @@
                     "    protocollsStore.group( 'execution_date_day','DESC');",
                     "    protocollsStore.sort( {",
                     "        direction: 'DESC',",
-                    "        property: 'execution_date_day'",
+                    "        //property: 'execution_date_day'",
+                    "        property: 'id'",
                     "    });",
                     "",
                     "    protocollsStore.load (function (records) {",
                     "        exercisePanel.down('#exerciseProtocolls').reconfigure(protocollsStore);",
                     "        if ( protocollsStore.data && protocollsStore.data.items.length > 0 ) {",
                     "            exercisePanel.down('#protocollPanel').protocollInformation = protocollsStore.data.items[0].data;",
-                    "            exercisePanel.down('#protocollPanel').update = protocollsStore.data.items[0].data;",
+                    "            exercisePanel.down('#protocollPanel').update (protocollsStore.data.items[0].data);",
                     "        } else {",
                     "            // USE THE EXERCISE CONFIGURATION",
                     "            console.log ( \"USING EXERCISE CONFIGURATION\");",
@@ -244,7 +245,9 @@
             "codeClass": null,
             "userConfig": {
                 "designer|params": [
-                    "WeightTrainingValues"
+                    "weightTrainingValues",
+                    "indications",
+                    "sets"
                 ],
                 "fn": "onPlanExerciseRecordChanged",
                 "implHandler": [
@@ -256,23 +259,31 @@
                     "    planExercise;",
                     "",
                     "if ( currentPanel.id == 'protocollsTabPanel' ) {",
-                    "    currentPanel.down('#protocollPanel').protocollInformation.weight = WeightTrainingValues[0];",
-                    "    currentPanel.down('#protocollPanel').protocollInformation.training = WeightTrainingValues[1];",
-                    "    currentPanel.down('#protocollPanel').protocollInformation.training_unit = WeightTrainingValues[2];",
+                    "    currentPanel.down('#protocollPanel').protocollInformation.weight = weightTrainingValues[0];",
+                    "    currentPanel.down('#protocollPanel').protocollInformation.training = weightTrainingValues[1];",
+                    "    currentPanel.down('#protocollPanel').protocollInformation.training_unit = weightTrainingValues[2];",
                     "    currentPanel.down('#protocollPanel').update(currentPanel.down('#protocollPanel').protocollInformation);",
                     "}",
                     "else if ( currentPanel.id == 'configurationTabPanel' ) {",
                     "    var currPlanExercise = controller.currentPlanExercise;",
                     "    ",
-                    "    currPlanExercise.weight_min = WeightTrainingValues[0];",
-                    "    currPlanExercise.training_min = WeightTrainingValues[1];",
-                    "    currPlanExercise.weight = currPlanExercise.weight_min;",
-                    "    currPlanExercise.training = currPlanExercise.training_min;",
-                    "    currPlanExercise.training_unit = WeightTrainingValues[2];",
+                    "    if (weightTrainingValues){",
+                    "        currPlanExercise.weight_min = weightTrainingValues[0];",
+                    "        currPlanExercise.training_min = weightTrainingValues[1];",
+                    "        currPlanExercise.weight = currPlanExercise.weight_min;",
+                    "        currPlanExercise.training = currPlanExercise.training_min;",
+                    "        currPlanExercise.training_unit = weightTrainingValues[2];",
+                    "    }",
+                    "    if (indications){",
+                    "        currPlanExercise.description = indications;",
+                    "    }",
+                    "    if (sets){",
+                    "        currPlanExercise.rounds_min = sets;",
+                    "    }",
                     "    ",
                     "    controller.currentPlanExercise = currPlanExercise;",
                     "    currentPanel.down('#configurationPanel').update ( currPlanExercise );",
-                    "    ",
+                    "",
                     "    planExercise = Ext.create('LanistaTrainer.model.PlanExercise');",
                     "    planExercise.data = currPlanExercise;",
                     "    planExercise.setProxy(new Ext.data.proxy.Ajax({",
@@ -372,13 +383,13 @@
                     "    controller.getController(controller.getMainStage().getLayout().getActiveItem().controller.id).showCommands();",
                     "    controller.getController(controller.getMainStage().getLayout().getActiveItem().controller.id).setHeader();",
                     "    controller.getMainStage().getLayout().getActiveItem().removeCls ('blured');",
-                    "    ",
-                    "    ",
+                    "",
+                    "",
                     "    if (controller.getMainStage().getLayout().getActiveItem().id === 'planPanel'){",
                     "        var planController = LanistaTrainer.app.getController ('PlanController'),",
                     "            activeTabPlan = planController.getPlanPanel().down('tabpanel').getActiveTab();",
                     "        activeTabPlan.store.reload();",
-                    "        ",
+                    "",
                     "    }",
                     "});",
                     "",
@@ -679,7 +690,7 @@
                     "    text:  Ext.ux.LanguageManager.TranslationArray.CONFIGURE_PROTOCOLL,",
                     "    itemId: 'changeProtollConfigurationButton',",
                     "    glyph: '120@Lanista Icons' //x",
-                    "    ",
+                    "",
                     "});",
                     "var protocollButton = Ext.create('LanistaTrainer.view.LanistaButton', {",
                     "    text:  Ext.ux.LanguageManager.TranslationArray.CREATE_PROTOCOLL,",
@@ -701,6 +712,136 @@
                 ]
             },
             "designerId": "4c6cfb18-faec-4674-b9b6-ae9b7c3d00a2"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #indicationsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onIndicationsButtonClick",
+                "implHandler": [
+                    "this.getExercisePanel().down('#exerciseDescriptionInputPanel').show();",
+                    "LanistaTrainer.app.fireEvent('showSavePanel', 'saveIndicationsButton','cancelIndicationsButton');",
+                    "this.getExercisePanel().down('#exerciseDescriptionInputPanel').focus();"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "27c3cfc1-51a3-40d7-98f5-5fedb69c768d"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #saveIndicationsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onSaveIndicationsButtonClick",
+                "implHandler": [
+                    "var indications = this.getExercisePanel().down('#exerciseDescriptionInputPanel');",
+                    "",
+                    "indications.hide();",
+                    "this.showExerciseConfigurationsCommands();",
+                    "LanistaTrainer.app.fireEvent('planExerciseRecordChanged', '',indications.getValue(),'');"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "9ff6c697-f455-4a18-827f-750da9e91a80"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #saveSetInputButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onSaveSetInputButtonClick",
+                "implHandler": [
+                    "var setInput = this.getExercisePanel().down('#setInput');",
+                    "",
+                    "setInput.hide();",
+                    "this.showExerciseConfigurationsCommands();",
+                    "LanistaTrainer.app.fireEvent('planExerciseRecordChanged', '', '', setInput.getValue());"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "2cf52dcc-8aff-4bbb-bd91-93ee669d7771"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #cancelIndicationsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCancelIndicationsButtonClick",
+                "implHandler": [
+                    "var indications = this.getExercisePanel().down('#exerciseDescriptionInputPanel');",
+                    "indications.hide();",
+                    "this.showExerciseConfigurationsCommands();"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "bc137c7c-96e7-4892-883b-1e99ec96db06"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #cancelSetInputButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCancelSetInputButton",
+                "implHandler": [
+                    "var setInput = this.getExercisePanel().down('#setInput');",
+                    "setInput.hide();",
+                    "this.showExerciseConfigurationsCommands();"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "ec8022b6-4afe-47ce-a0b3-02afefbdb128"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #changeSetsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onChangeSetsButtonClick",
+                "implHandler": [
+                    "this.getExercisePanel().down('#setInput').show();",
+                    "LanistaTrainer.app.fireEvent('showSavePanel', 'saveSetInputButton','cancelSetInputButton');",
+                    "this.getExercisePanel().down('#setInput').focus();"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "bccc70a4-76d0-40a2-b4c3-6cb5b36b569a"
         }
     ]
 }
