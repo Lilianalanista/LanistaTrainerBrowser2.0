@@ -98,7 +98,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             currentDay = controller.currentDay.id.substring (1),
             idExercisePlan,
             planExercisesItems,
-            exercisesPanel = controller.getExercisesPanel();
+            exercisesPanel = controller.getExercisesPanel(),
+            userId = localStorage.getItem("user_id");
 
         this.selectionsTab[this.currentDay.id.substring(1)] = exercisesPanel.selection;
         var selection = this.selectionsTab[this.currentDay.id.substring(1)],
@@ -151,6 +152,26 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         setTimeout(function() {
                 if ( currentDay > controller.plan.data.days ) {
                     controller.plan.set ( 'days', currentDay );
+
+                    controller.plan.setProxy(new Ext.data.proxy.Ajax({
+                        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
+                        model: 'Plan',
+                        noCache: false,
+                        reader: {
+                            type: 'json',
+                            root: 'entries'
+                        },
+                        writer: {
+                            type: 'json',
+                            root: 'records',
+                            allowSingle: false
+                        },
+                        headers: {
+                            user_id: userId
+                        }
+                    }));
+
+
                     controller.plan.save ({
                         callback: function( changedPlan, operation, success ) {
                             console.log ( changedPlan );

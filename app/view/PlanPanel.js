@@ -94,6 +94,7 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
                                                     store: controller.plan.planexercises()
                                                 });
                                                 tabPanel.setActiveTab(tabPanel.items.items[tapPanelSize -1]);
+
                                             }
                                         }
                                         else

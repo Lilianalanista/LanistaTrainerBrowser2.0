@@ -23,87 +23,130 @@
     "designerId": "5d37b0c7-cd7b-47a4-ba76-021716e9e6ee",
     "cn": [
         {
-            "type": "Ext.grid.Panel",
+            "type": "Ext.container.Container",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "autoScroll": true,
-                "cls": "lanista-grid-plans-customer",
-                "id": "gridPlans",
-                "layout|flex": 1,
-                "store": "PlanStore",
-                "title": null
+                "cls": "lanista-list-container",
+                "height": null,
+                "id": "listsContainer",
+                "layout": "fit",
+                "layout|flex": 1
             },
-            "designerId": "5e08d8f9-6263-4cee-836e-0de2af8c252a",
+            "designerId": "f4ae9db5-9e3f-430b-a842-bb05a28af975",
             "cn": [
                 {
-                    "type": "Ext.grid.column.Template",
+                    "type": "Ext.grid.Panel",
                     "reference": {
-                        "name": "columns",
+                        "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "dataIndex": "string",
-                        "draggable": false,
-                        "menuDisabled": true,
-                        "resizable": false,
-                        "text": null,
-                        "width": 350
+                        "autoScroll": true,
+                        "cls": "lanista-grid-plans-customer",
+                        "height": null,
+                        "id": "gridPlans",
+                        "minHeight": null,
+                        "renderTo": null,
+                        "rowLines": false,
+                        "store": "PlanStore",
+                        "title": null
                     },
-                    "designerId": "80e73ef9-5d76-4e47-8a28-cc0715a3874a",
+                    "designerId": "5e08d8f9-6263-4cee-836e-0de2af8c252a",
+                    "cn": [
+                        {
+                            "type": "Ext.grid.column.Template",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dataIndex": "string",
+                                "draggable": false,
+                                "menuDisabled": true,
+                                "resizable": false,
+                                "text": null,
+                                "width": 430
+                            },
+                            "designerId": "80e73ef9-5d76-4e47-8a28-cc0715a3874a",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "tpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "tpl",
+                                        "implHandler": [
+                                            "<div class='lanista-name-plan'>{name}</div>",
+                                            "<div class='lanista-createdate-plan'>{creation_date:date(\"Y-m-d\")}</div>"
+                                        ]
+                                    },
+                                    "designerId": "697ddcda-0629-481b-95c6-148cc2e6727d"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onGridPlansItemClick",
+                                "implHandler": [
+                                    "",
+                                    "LanistaTrainer.app.fireEvent('closeCustomerExercisesPanel', function() {",
+                                    "    LanistaTrainer.app.getController ( 'PlanController' ).plan = record;",
+                                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';",
+                                    "    LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name, 'showCustomerExercisePanel' );",
+                                    "});"
+                                ],
+                                "name": "itemclick",
+                                "scope": "me"
+                            },
+                            "designerId": "cd020bf8-488c-41f8-8b56-0b552977dfff"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.view.View",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "warnings",
+                        "itemSelector": "div",
+                        "minHeight": null
+                    },
+                    "designerId": "ca9a7d1f-2e96-4de3-9eb6-b720dc3f2b45",
                     "cn": [
                         {
                             "type": "Ext.XTemplate",
                             "reference": {
-                                "name": "tpl",
+                                "name": "itemTpl",
                                 "type": "object"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "designer|displayName": "tpl",
+                                "designer|displayName": "itemTpl",
                                 "implHandler": [
-                                    "<div>{name}</div>",
-                                    "<div>{creation_date:date(\"Y-m-d\")}</div>"
+                                    "<div>{title} {creation_date}</div>"
                                 ]
                             },
-                            "designerId": "697ddcda-0629-481b-95c6-148cc2e6727d"
+                            "designerId": "283341a8-45b7-4286-bfac-8bfd6524995f"
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "type": "Ext.view.View",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "itemId": "warnings",
-                "itemSelector": "div",
-                "layout|flex": 1
-            },
-            "designerId": "ca9a7d1f-2e96-4de3-9eb6-b720dc3f2b45",
-            "cn": [
-                {
-                    "type": "Ext.XTemplate",
-                    "reference": {
-                        "name": "itemTpl",
-                        "type": "object"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "itemTpl",
-                        "implHandler": [
-                            "<div>{title} {creation_date}</div>"
-                        ]
-                    },
-                    "designerId": "283341a8-45b7-4286-bfac-8bfd6524995f"
                 }
             ]
         },
@@ -115,6 +158,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dock": null,
                 "itemId": "customerCurrentData",
                 "layout|flex": 1
             },
@@ -131,7 +175,7 @@
                 "cls": "protocolls-panel",
                 "container|align": "stretch",
                 "dock": "bottom",
-                "height": 450,
+                "height": 400,
                 "id": null,
                 "itemId": "customerProtocolls",
                 "layout": "hbox",

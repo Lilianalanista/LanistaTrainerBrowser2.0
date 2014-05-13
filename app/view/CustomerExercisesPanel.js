@@ -43,34 +43,48 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'gridpanel',
+                    xtype: 'container',
                     flex: 1,
-                    cls: 'lanista-grid-plans-customer',
-                    id: 'gridPlans',
-                    autoScroll: true,
-                    store: 'PlanStore',
-                    columns: [
+                    cls: 'lanista-list-container',
+                    id: 'listsContainer',
+                    layout: 'fit',
+                    items: [
                         {
-                            xtype: 'templatecolumn',
-                            draggable: false,
-                            tpl: [
-                                '<div>{name}</div>',
-                                '<div>{creation_date:date("Y-m-d")}</div>'
+                            xtype: 'gridpanel',
+                            cls: 'lanista-grid-plans-customer',
+                            id: 'gridPlans',
+                            autoScroll: true,
+                            rowLines: false,
+                            store: 'PlanStore',
+                            columns: [
+                                {
+                                    xtype: 'templatecolumn',
+                                    draggable: false,
+                                    tpl: [
+                                        '<div class=\'lanista-name-plan\'>{name}</div>',
+                                        '<div class=\'lanista-createdate-plan\'>{creation_date:date("Y-m-d")}</div>'
+                                    ],
+                                    width: 430,
+                                    resizable: false,
+                                    dataIndex: 'string',
+                                    menuDisabled: true
+                                }
                             ],
-                            width: 350,
-                            resizable: false,
-                            dataIndex: 'string',
-                            menuDisabled: true
+                            listeners: {
+                                itemclick: {
+                                    fn: me.onGridPlansItemClick,
+                                    scope: me
+                                }
+                            }
+                        },
+                        {
+                            xtype: 'dataview',
+                            itemId: 'warnings',
+                            itemSelector: 'div',
+                            itemTpl: [
+                                '<div>{title} {creation_date}</div>'
+                            ]
                         }
-                    ]
-                },
-                {
-                    xtype: 'dataview',
-                    flex: 1,
-                    itemId: 'warnings',
-                    itemSelector: 'div',
-                    itemTpl: [
-                        '<div>{title} {creation_date}</div>'
                     ]
                 },
                 {
@@ -85,7 +99,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                     flex: 1,
                     dock: 'bottom',
                     cls: 'protocolls-panel',
-                    height: 450,
+                    height: 400,
                     itemId: 'customerProtocolls',
                     overflowX: 'auto',
                     layout: {
@@ -97,6 +111,15 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         });
 
         me.callParent(arguments);
+    },
+
+    onGridPlansItemClick: function(dataview, record, item, index, e, eOpts) {
+
+        LanistaTrainer.app.fireEvent('closeCustomerExercisesPanel', function() {
+            LanistaTrainer.app.getController ( 'PlanController' ).plan = record;
+            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+            LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name, 'showCustomerExercisePanel' );
+        });
     }
 
 });
