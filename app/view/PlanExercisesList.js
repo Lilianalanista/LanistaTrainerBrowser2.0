@@ -70,15 +70,17 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
 
         el.on(
             'click', function(e,t) {
-                for (var i = 0; i < el.dom.childNodes.length; i++)
-                {
-                    el.dom.childNodes[i].internalId = i;
-                }
-                var internalItemId = Ext.get(t).dom.parentNode.internalId,
-                    controller = LanistaTrainer.app.getController ('PlanController'),
+                var controller = LanistaTrainer.app.getController ('PlanController'),
                     activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
-                    itemRecord = activeTab.recordsArray[internalItemId],
                     Exercise = Ext.ModelManager.getModel('LanistaTrainer.model.ExerciseModel');
+
+                for (var i = 0; i < activeTab.el.dom.childNodes.length; i++)
+                {
+                    activeTab.el.dom.childNodes[i].internalId = i;
+                }
+
+                var internalItemId = Ext.get(t).dom.parentNode.internalId,
+                    itemRecord = activeTab.recordsArray[internalItemId];
 
                 itemRecord.internalId = internalItemId;
                 Exercise.load(itemRecord.exercise_id !== 0 ? itemRecord.exercise_id : itemRecord.user_exercise_id, {

@@ -465,6 +465,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
         for (from=2; from<=to; from++)
         {
+            if (tabPanel.items.getByKey('d'+from))
+                continue;
             tabPanel.insert(tabPanel.items.getCount() -1 , {
                             xtype: 'planExercisesList',
                             id: 'd'+from,
@@ -498,8 +500,29 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             recordsArray = [];
         }
 
+        //This is for plans records that has been charged from a plan saved previously
+        if (!LanistaTrainer.app.getController ( 'PlanController' ).selectionsTab) {
+            var selectionsTab = [],
+                itemTab = [];
 
-
+                selectionsTab[0] = [];
+                for ( i = 1; i < tabPanel.items.length; i++ ) {
+                    //selectionsTab[i] = [];
+                    tab = tabPanel.child('#d' + i);
+                    if (tab.recordsArray){
+                        selection = [];
+                        for ( j = 0; j < tab.recordsArray.length; j++ ) {
+                            itemTab = [];
+                            itemTab[0] = tab.recordsArray[j].exercise_id !== 0 ? tab.recordsArray[j].exercise_id : tab.recordsArray[j].user_exercise_id;
+                            itemTab[1] = tab.recordsArray[j].exercise_ext_id;
+                            itemTab[2] = 1;
+                            selection.push(itemTab);
+                        }
+                        selectionsTab.push(selection);
+                    }
+                }
+            LanistaTrainer.app.getController ( 'PlanController' ).selectionsTab = selectionsTab;
+        }
 
     },
 

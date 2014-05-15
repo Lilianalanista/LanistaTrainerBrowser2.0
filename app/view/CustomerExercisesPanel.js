@@ -18,6 +18,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
     alias: 'widget.customerExercisesPanel',
 
     requires: [
+        'Ext.button.Button',
         'Ext.grid.Panel',
         'Ext.grid.column.Template',
         'Ext.XTemplate',
@@ -45,28 +46,74 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                 {
                     xtype: 'container',
                     flex: 1,
+                    cls: 'option-buttons',
+                    id: 'planSelectorButtons',
+                    items: [
+                        {
+                            xtype: 'button',
+                            cls: 'option-active',
+                            id: 'showPlansOption',
+                            text: 'MyButton',
+                            listeners: {
+                                click: {
+                                    fn: me.onShowPlansOptionClick,
+                                    scope: me
+                                }
+                            }
+                        },
+                        {
+                            xtype: 'button',
+                            id: 'showWarningsOption',
+                            text: 'MyButton',
+                            listeners: {
+                                click: {
+                                    fn: me.onShowWarningsOptionClick,
+                                    scope: me
+                                }
+                            }
+                        }
+                    ],
+                    listeners: {
+                        afterrender: {
+                            fn: me.onPlanSelectorButtonsAfterRender,
+                            scope: me
+                        }
+                    }
+                },
+                {
+                    xtype: 'container',
+                    flex: 1,
                     cls: 'lanista-list-container',
                     id: 'listsContainer',
                     layout: 'fit',
                     items: [
                         {
                             xtype: 'gridpanel',
+                            border: false,
                             cls: 'lanista-grid-plans-customer',
                             id: 'gridPlans',
                             autoScroll: true,
+                            header: false,
+                            enableColumnHide: false,
+                            enableColumnMove: false,
+                            enableColumnResize: false,
+                            hideHeaders: true,
                             rowLines: false,
                             store: 'PlanStore',
                             columns: [
                                 {
                                     xtype: 'templatecolumn',
+                                    border: false,
                                     draggable: false,
                                     tpl: [
-                                        '<div class=\'lanista-name-plan\'>{name}</div>',
-                                        '<div class=\'lanista-createdate-plan\'>{creation_date:date("Y-m-d")}</div>'
+                                        '<div class="lanista-name-plan">{name}</div> <div class="lanista-delete-plan lanista-icon item-clicked">D</div>',
+                                        '<div class="lanista-createdate-plan">{creation_date:date("Y-m-d")}</div>',
+                                        ''
                                     ],
                                     width: 430,
                                     resizable: false,
                                     dataIndex: 'string',
+                                    hideable: false,
                                     menuDisabled: true
                                 }
                             ],
@@ -85,7 +132,13 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                                 '<div>{title} {creation_date}</div>'
                             ]
                         }
-                    ]
+                    ],
+                    listeners: {
+                        resize: {
+                            fn: me.onListsContainerResize,
+                            scope: me
+                        }
+                    }
                 },
                 {
                     xtype: 'component',
@@ -99,7 +152,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                     flex: 1,
                     dock: 'bottom',
                     cls: 'protocolls-panel',
-                    height: 400,
+                    height: 480,
                     itemId: 'customerProtocolls',
                     overflowX: 'auto',
                     layout: {
@@ -113,6 +166,49 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         me.callParent(arguments);
     },
 
+    onShowPlansOptionClick: function(button, e, eOpts) {
+        var listContainer = button.up().up().down( '#listsContainer' );
+
+        listContainer.items.items[1].hide();
+        listContainer.items.items[0].show();
+
+        button.el.dom.style.width = '100%';
+        button.el.dom.style.color = 'black!important;';
+        button.removeCls ( 'option-active' );
+        button.up ().down ( '#showWarningsOption' ).removeCls ( 'option-active' );
+        button.up ().down ( '#showWarningsOption' ).el.dom.style.width = '95%';
+        button.addCls ( 'option-active' );
+
+    },
+
+    onShowWarningsOptionClick: function(button, e, eOpts) {
+        var listContainer = button.up().up().down( '#listsContainer' );
+
+        listContainer.items.items[0].hide();
+        listContainer.items.items[1].show();
+
+        button.el.dom.style.width = '100%';
+        button.removeCls ( 'option-active' );
+        button.up ().down ( '#showPlansOption' ).removeCls ( 'option-active' );
+        button.up ().down ( '#showPlansOption' ).el.dom.style.width = '95%';
+        button.addCls ( 'option-active' );
+    },
+
+    onPlanSelectorButtonsAfterRender: function(component, eOpts) {
+        var XField = component.getX();
+            //YField = component.getY() + component.getHeight() - component.down('#showWarningsOption').getHeight();
+            //YField = component.getY() + 142 - 21;
+
+        component.down('#showPlansOption').setText(Ext.ux.LanguageManager.TranslationArray.PLANS);
+        component.down('#showWarningsOption').setText(Ext.ux.LanguageManager.TranslationArray.WARNINGS + ' ' + '<span class="lanista-icon">W</span>');
+        //component.down('#showWarningsOption').setX(XField);
+        //component.down('#showWarningsOption').setY(YField);
+
+        component.down('#showWarningsOption').anchorTo(component, 'bl-bl');
+
+
+    },
+
     onGridPlansItemClick: function(dataview, record, item, index, e, eOpts) {
 
         LanistaTrainer.app.fireEvent('closeCustomerExercisesPanel', function() {
@@ -120,6 +216,14 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
             LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name, 'showCustomerExercisePanel' );
         });
+    },
+
+    onListsContainerResize: function(component, width, height, oldWidth, oldHeight, eOpts) {
+        var left = component.el.dom.style.left ;
+
+        left = left.replace('px', '');
+        left = left - 1;
+        component.el.dom.style.left = left + 'px';
     }
 
 });

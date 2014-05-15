@@ -63,6 +63,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             if (controller.getMainStage().getLayout().getActiveItem().id === 'planPanel'){
                 var planController = LanistaTrainer.app.getController ('PlanController'),
                     activeTabPlan = planController.getPlanPanel().down('tabpanel').getActiveTab();
+
+                planController.currentDay = activeTabPlan;
                 activeTabPlan.store.reload();
 
             }

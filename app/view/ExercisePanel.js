@@ -111,6 +111,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                     header: false,
                                     disableSelection: true,
                                     emptyText: 'This exercise is not protocolled',
+                                    hideHeaders: true,
                                     columns: [
                                         {
                                             xtype: 'templatecolumn',

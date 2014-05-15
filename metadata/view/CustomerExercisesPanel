@@ -30,6 +30,137 @@
             },
             "codeClass": null,
             "userConfig": {
+                "cls": "option-buttons",
+                "id": "planSelectorButtons",
+                "layout": null,
+                "layout|flex": 1
+            },
+            "designerId": "ea230807-99a9-4ad2-8bb9-2b560934c010",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "option-active",
+                        "id": "showPlansOption",
+                        "text": "MyButton"
+                    },
+                    "designerId": "e7f53ebb-2faf-4e19-b2b7-586e55434638",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onShowPlansOptionClick",
+                                "implHandler": [
+                                    "var listContainer = button.up().up().down( '#listsContainer' );",
+                                    "",
+                                    "listContainer.items.items[1].hide();",
+                                    "listContainer.items.items[0].show();",
+                                    "",
+                                    "button.el.dom.style.width = '100%';",
+                                    "button.el.dom.style.color = 'black!important;';",
+                                    "button.removeCls ( 'option-active' );",
+                                    "button.up ().down ( '#showWarningsOption' ).removeCls ( 'option-active' );",
+                                    "button.up ().down ( '#showWarningsOption' ).el.dom.style.width = '95%';",
+                                    "button.addCls ( 'option-active' );",
+                                    ""
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "designerId": "f6a32ea2-0ef8-493c-903a-eac4ccd0b3d5"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": null,
+                        "id": "showWarningsOption",
+                        "text": "MyButton"
+                    },
+                    "designerId": "56e1f459-7768-4025-8ea6-4831194b2a03",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onShowWarningsOptionClick",
+                                "implHandler": [
+                                    "var listContainer = button.up().up().down( '#listsContainer' );",
+                                    "",
+                                    "listContainer.items.items[0].hide();",
+                                    "listContainer.items.items[1].show();",
+                                    "",
+                                    "button.el.dom.style.width = '100%';",
+                                    "button.removeCls ( 'option-active' );",
+                                    "button.up ().down ( '#showPlansOption' ).removeCls ( 'option-active' );",
+                                    "button.up ().down ( '#showPlansOption' ).el.dom.style.width = '95%';",
+                                    "button.addCls ( 'option-active' );"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "designerId": "7f78ddf1-c124-4030-b91d-915811d4bbe4"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onPlanSelectorButtonsAfterRender",
+                        "implHandler": [
+                            "var XField = component.getX();",
+                            "    //YField = component.getY() + component.getHeight() - component.down('#showWarningsOption').getHeight();",
+                            "    //YField = component.getY() + 142 - 21;",
+                            "",
+                            "component.down('#showPlansOption').setText(Ext.ux.LanguageManager.TranslationArray.PLANS);",
+                            "component.down('#showWarningsOption').setText(Ext.ux.LanguageManager.TranslationArray.WARNINGS + ' ' + '<span class=\"lanista-icon\">W</span>');",
+                            "//component.down('#showWarningsOption').setX(XField);",
+                            "//component.down('#showWarningsOption').setY(YField);",
+                            "",
+                            "component.down('#showWarningsOption').anchorTo(component, 'bl-bl');",
+                            "",
+                            ""
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "ec22e481-90d7-4a07-9cac-43db5554f1fd"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "cls": "lanista-list-container",
                 "height": null,
                 "id": "listsContainer",
@@ -47,8 +178,14 @@
                     "codeClass": null,
                     "userConfig": {
                         "autoScroll": true,
+                        "border": false,
                         "cls": "lanista-grid-plans-customer",
+                        "enableColumnHide": false,
+                        "enableColumnMove": false,
+                        "enableColumnResize": false,
+                        "header": false,
                         "height": null,
+                        "hideHeaders": true,
                         "id": "gridPlans",
                         "minHeight": null,
                         "renderTo": null,
@@ -66,8 +203,10 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "border": false,
                                 "dataIndex": "string",
                                 "draggable": false,
+                                "hideable": false,
                                 "menuDisabled": true,
                                 "resizable": false,
                                 "text": null,
@@ -85,8 +224,9 @@
                                     "userConfig": {
                                         "designer|displayName": "tpl",
                                         "implHandler": [
-                                            "<div class='lanista-name-plan'>{name}</div>",
-                                            "<div class='lanista-createdate-plan'>{creation_date:date(\"Y-m-d\")}</div>"
+                                            "<div class=\"lanista-name-plan\">{name}</div> <div class=\"lanista-delete-plan lanista-icon item-clicked\">D</div>",
+                                            "<div class=\"lanista-createdate-plan\">{creation_date:date(\"Y-m-d\")}</div>",
+                                            ""
                                         ]
                                     },
                                     "designerId": "697ddcda-0629-481b-95c6-148cc2e6727d"
@@ -147,6 +287,27 @@
                             "designerId": "283341a8-45b7-4286-bfac-8bfd6524995f"
                         }
                     ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onListsContainerResize",
+                        "implHandler": [
+                            "var left = component.el.dom.style.left ;",
+                            "",
+                            "left = left.replace('px', '');",
+                            "left = left - 1;",
+                            "component.el.dom.style.left = left + 'px';"
+                        ],
+                        "name": "resize",
+                        "scope": "me"
+                    },
+                    "designerId": "11fe14ea-03b1-4ed8-b9ad-9a97f5efe863"
                 }
             ]
         },
@@ -175,7 +336,7 @@
                 "cls": "protocolls-panel",
                 "container|align": "stretch",
                 "dock": "bottom",
-                "height": 400,
+                "height": 480,
                 "id": null,
                 "itemId": "customerProtocolls",
                 "layout": "hbox",

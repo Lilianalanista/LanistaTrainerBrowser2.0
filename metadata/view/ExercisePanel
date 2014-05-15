@@ -213,6 +213,7 @@
                                 "dock": "right",
                                 "emptyText": "This exercise is not protocolled",
                                 "header": false,
+                                "hideHeaders": true,
                                 "id": "exerciseProtocolls",
                                 "normalViewConfig": null,
                                 "title": null,
