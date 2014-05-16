@@ -94,6 +94,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                             id: 'gridPlans',
                             autoScroll: true,
                             header: false,
+                            syncRowHeight: false,
                             enableColumnHide: false,
                             enableColumnMove: false,
                             enableColumnResize: false,
@@ -106,8 +107,11 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                                     border: false,
                                     draggable: false,
                                     tpl: [
-                                        '<div class="lanista-name-plan">{name}</div> <div class="lanista-delete-plan lanista-icon item-clicked">D</div>',
-                                        '<div class="lanista-createdate-plan">{creation_date:date("Y-m-d")}</div>',
+                                        '<div class="lanista-item-plans">',
+                                        '    <div class="lanista-name-plan">{name}</div> ',
+                                        '    <div class="lanista-delete-plan lanista-icon"></div>',
+                                        '    <div class="lanista-createdate-plan">{creation_date:date("Y-m-d")}</div>',
+                                        '</div>',
                                         ''
                                     ],
                                     width: 430,
@@ -118,8 +122,8 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                                 }
                             ],
                             listeners: {
-                                itemclick: {
-                                    fn: me.onGridPlansItemClick,
+                                afterrender: {
+                                    fn: me.onGridPlansAfterRender,
                                     scope: me
                                 }
                             }
@@ -209,13 +213,72 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
 
     },
 
-    onGridPlansItemClick: function(dataview, record, item, index, e, eOpts) {
+    onGridPlansAfterRender: function(component, eOpts) {
+        var itemRecord,
+            el = component.el,
+            record,
+            customerExerPanel;
 
-        LanistaTrainer.app.fireEvent('closeCustomerExercisesPanel', function() {
-            LanistaTrainer.app.getController ( 'PlanController' ).plan = record;
-            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
-            LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name, 'showCustomerExercisePanel' );
-        });
+        el.on('click',function(e,t){
+            record = component.getView().getRecord(component.getView().getSelectedNodes()[0]);
+            LanistaTrainer.app.fireEvent('closeCustomerExercisesPanel', function() {
+                LanistaTrainer.app.getController ( 'PlanController' ).plan = record;
+                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name, 'showCustomerExercisePanel' );
+            });
+        },
+             this, {delegate: '.lanista-name-plan'});
+
+        el.on('mouseover',function(e,t){
+            Ext.get(t).removeCls('item-not-clicked');
+            Ext.get(t).addCls('item-clicked');
+            Ext.get(t).down('.lanista-delete-plan').setHTML('D');
+            Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
+            Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
+        },
+             this, {delegate: '.lanista-item-plans'});
+
+        el.on('mouseout',function(e,t){
+            Ext.get(t).down('.lanista-delete-plan').setHTML('');
+            Ext.get(t).down('.lanista-delete-plan').setHTML('');
+            Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
+            Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
+        },
+             this, {delegate: '.lanista-item-plans'});
+
+
+
+        el.on('click',function(e,t){
+            record = component.getView().getRecord(component.getView().getSelectedNodes()[0]);
+            Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_USER, record.data.name, function(button) {
+                    if (button == 'yes') {
+                        customerExerPanel = LanistaTrainer.app.getController ('CustomerExercisesController').getCustomerExercisesPanel();
+                        customerExerPanel.deletePlan(record.data);
+                        component.getStore().load();
+                    }
+            });
+        },
+             this, {delegate: '.lanista-delete-plan'});
+
+        el.on('mouseover',function(e,t){
+            Ext.get(t).removeCls('item-not-clicked');
+            Ext.get(t).addCls('item-clicked');
+            Ext.get(t).removeCls('lanista-color-plan-no-delete');
+            Ext.get(t).addCls('lanista-color-plan-delete');
+        },
+             this, {delegate: '.lanista-delete-plan'});
+
+        el.on('mouseout',function(e,t){
+            Ext.get(t).setHTML('');
+            Ext.get(t).removeCls('lanista-color-plan-delete');
+            Ext.get(t).addCls('lanista-color-plan-no-delete');
+
+        },
+             this, {delegate: '.lanista-delete-plan'});
+
+
+
+
     },
 
     onListsContainerResize: function(component, width, height, oldWidth, oldHeight, eOpts) {
@@ -224,6 +287,35 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         left = left.replace('px', '');
         left = left - 1;
         component.el.dom.style.left = left + 'px';
+    },
+
+    deletePlan: function(data) {
+        var Plan = Ext.create('LanistaTrainer.model.Plan'),
+            userId = localStorage.getItem("user_id");
+
+        Plan.data = data;
+        Plan.phantom = false;
+        Plan.setProxy(new Ext.data.proxy.Ajax({
+            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
+            model: 'Plan',
+            noCache: false,
+            api: {
+                create: undefined,
+                read: undefined,
+                update: undefined,
+                destroy: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/deleteplan'
+            },
+            extraParams: {
+                id: Plan.data.id
+            },
+            headers: {
+                user_id: userId
+            }
+        }));
+
+        Plan.destroy ({
+            action: 'destroy'
+        });
     }
 
 });

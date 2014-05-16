@@ -1122,13 +1122,20 @@ $base-gradient: "none";
 .lanista-name-plan {
     float: left;
     font-size: 15px;
-    width: 70%;
+    width: 65%;
+}
+
+.lanista-delete-plan {
+    //float: right;
+    width: 17%;
+    font-size: 15px!important;
+    text-align: center;
 }
 
 .lanista-createdate-plan {
     float: right;
-    text-align: right;
-    width: 30%;
+    text-align: center;
+    width: 18%;
     font-size: 12px;
     color: #4aacd8;
 }
@@ -1203,6 +1210,20 @@ $base-gradient: "none";
 .lanista-icon {
     font-family: 'Lanista Icons';
     font-size: 18px;
+}
+
+.lanista-color-plan-delete {
+    color: red;
+}
+
+.lanista-color-plan-no-delete {
+    color: silver!important;
+}
+
+.gridplans .x-grid-cell-inner {
+    overflow: hidden;
+    padding: 3px 6px;
+    white-space: nowrap;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
