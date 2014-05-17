@@ -87,7 +87,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                     id: 'listsContainer',
                     layout: 'fit',
                     items: [
-                        {
+                        me.processGridPlans({
                             xtype: 'gridpanel',
                             border: false,
                             cls: 'lanista-grid-plans-customer',
@@ -127,7 +127,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                                     scope: me
                                 }
                             }
-                        },
+                        }),
                         {
                             xtype: 'dataview',
                             itemId: 'warnings',
@@ -170,6 +170,17 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         me.callParent(arguments);
     },
 
+    processGridPlans: function(config) {
+
+        config.viewConfig = {
+                                getRowClass: function(r) {
+                                    return 'lanista-grid-plan-rowsize';
+                            }
+        };
+
+        return config;
+    },
+
     onShowPlansOptionClick: function(button, e, eOpts) {
         var listContainer = button.up().up().down( '#listsContainer' );
 
@@ -205,10 +216,6 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
 
         component.down('#showPlansOption').setText(Ext.ux.LanguageManager.TranslationArray.PLANS);
         component.down('#showWarningsOption').setText(Ext.ux.LanguageManager.TranslationArray.WARNINGS + ' ' + '<span class="lanista-icon">W</span>');
-        //component.down('#showWarningsOption').setX(XField);
-        //component.down('#showWarningsOption').setY(YField);
-
-        component.down('#showWarningsOption').anchorTo(component, 'bl-bl');
 
 
     },

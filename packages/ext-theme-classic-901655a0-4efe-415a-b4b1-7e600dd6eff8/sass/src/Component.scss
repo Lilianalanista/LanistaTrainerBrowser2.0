@@ -1214,17 +1214,19 @@ $base-gradient: "none";
 
 .lanista-color-plan-delete {
     color: red;
+    float: left!important;
 }
 
 .lanista-color-plan-no-delete {
     color: silver!important;
+    float: left!important;
 }
 
-.gridplans .x-grid-cell-inner {
-    overflow: hidden;
-    padding: 3px 6px;
-    white-space: nowrap;
+.lanista-grid-plan-rowsize {
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
+
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

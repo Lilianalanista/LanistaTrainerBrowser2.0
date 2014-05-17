@@ -1634,17 +1634,19 @@
                     "",
                     ".lanista-color-plan-delete {",
                     "    color: red;",
+                    "    float: left!important;",
                     "}",
                     "",
                     ".lanista-color-plan-no-delete {",
                     "    color: silver!important;",
+                    "    float: left!important;",
                     "}",
                     "",
-                    ".gridplans .x-grid-cell-inner {",
-                    "    overflow: hidden;",
-                    "    padding: 3px 6px;",
-                    "    white-space: nowrap;",
-                    "}"
+                    ".lanista-grid-plan-rowsize {",
+                    "    padding-top: 8px;",
+                    "    padding-bottom: 8px;",
+                    "}",
+                    ""
                 ]
             },
             "designerId": "eefb4d7e-74c5-4d9e-ae6f-2258aa8e8753"

@@ -300,6 +300,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                 }
             }
         );
+
+
     },
 
     setHeader: function() {

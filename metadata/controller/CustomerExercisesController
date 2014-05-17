@@ -435,7 +435,9 @@
                     "            protocollsPanel.insert ( i, dailyGrid );",
                     "        }",
                     "    }",
-                    ");"
+                    ");",
+                    "",
+                    ""
                 ]
             },
             "designerId": "dd3df9fe-60c1-48e8-a5fd-6d27d54fcb23"

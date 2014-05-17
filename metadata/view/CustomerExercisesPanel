@@ -139,10 +139,6 @@
                             "",
                             "component.down('#showPlansOption').setText(Ext.ux.LanguageManager.TranslationArray.PLANS);",
                             "component.down('#showWarningsOption').setText(Ext.ux.LanguageManager.TranslationArray.WARNINGS + ' ' + '<span class=\"lanista-icon\">W</span>');",
-                            "//component.down('#showWarningsOption').setX(XField);",
-                            "//component.down('#showWarningsOption').setY(YField);",
-                            "",
-                            "component.down('#showWarningsOption').anchorTo(component, 'bl-bl');",
                             "",
                             ""
                         ],
@@ -306,7 +302,7 @@
                                     "    Ext.get(t).setHTML('');",
                                     "    Ext.get(t).removeCls('lanista-color-plan-delete');",
                                     "    Ext.get(t).addCls('lanista-color-plan-no-delete');",
-                                    " ",
+                                    "",
                                     "},",
                                     "     this, {delegate: '.lanista-delete-plan'});",
                                     "",
@@ -318,6 +314,31 @@
                                 "scope": "me"
                             },
                             "designerId": "327b7c28-d399-47ac-9a9c-d98309f45741"
+                        },
+                        {
+                            "type": "processcfgfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "config"
+                                ],
+                                "fn": "processGridPlans",
+                                "implHandler": [
+                                    "",
+                                    "config.viewConfig = {",
+                                    "                        getRowClass: function(r) {",
+                                    "                            return 'lanista-grid-plan-rowsize';",
+                                    "                    }",
+                                    "};",
+                                    "",
+                                    "return config;"
+                                ]
+                            },
+                            "designerId": "041dd8e6-1246-4fca-9b4b-2b957e588706"
                         }
                     ]
                 },
