@@ -67,7 +67,7 @@ Ext.application({
         'TrainingPicker',
         'PlanExercisesList',
         'PlanPanel',
-        'PlanEditPanel'
+        'PlanOptionsPanel'
     ],
     controllers: [
         'MainController',

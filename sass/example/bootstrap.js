@@ -8,6 +8,10 @@ Ext.Loader.addClassPathMappings({
   "Ext": "../../ext/src",
   "Ext.Msg": "../../ext/src/window/MessageBox.js",
   "Ext.rtl.EventObjectImpl": "../../ext/src/rtl/EventObject.js",
+  "Ext.ux.ConfigManager": "../../lib/ConfigManager.js",
+  "Ext.ux.LanguageManager": "../../lib/LanguageManager.js",
+  "Ext.ux.PreviewPlugin": "../../lib/PreviewPlugin.js",
+  "Ext.ux.SessionManager": "../../lib/SessionManager.js",
   "LanistaTrainer": "../../app"
 });
 Ext.ClassManager.addNameAlternateMappings({
@@ -750,6 +754,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.TextMetrics": [],
   "Ext.ux.BoxReorderer": [],
   "Ext.ux.CellDragDrop": [],
+  "Ext.ux.ConfigManager": [],
   "Ext.ux.DataTip": [],
   "Ext.ux.DataView.Animated": [],
   "Ext.ux.DataView.DragSelector": [],
@@ -760,10 +765,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.GroupTabPanel": [],
   "Ext.ux.GroupTabRenderer": [],
   "Ext.ux.IFrame": [],
+  "Ext.ux.LanguageManager": [],
   "Ext.ux.LiveSearchGridPanel": [],
   "Ext.ux.PreviewPlugin": [],
   "Ext.ux.ProgressBarPager": [],
   "Ext.ux.RowExpander": [],
+  "Ext.ux.SessionManager": [],
   "Ext.ux.SlidingPager": [],
   "Ext.ux.Spotlight": [],
   "Ext.ux.TabCloseMenu": [],
@@ -828,20 +835,59 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.Window"
   ],
   "LanistaTrainer.Application": [],
+  "LanistaTrainer.controller.AutheticationController": [],
+  "LanistaTrainer.controller.CustomerExercisesController": [],
+  "LanistaTrainer.controller.CustomerInfoController": [],
+  "LanistaTrainer.controller.CustomersController": [],
+  "LanistaTrainer.controller.DashBoardController": [],
   "LanistaTrainer.controller.ExerciseController": [],
+  "LanistaTrainer.controller.ExercisesController": [],
+  "LanistaTrainer.controller.HelpController": [],
+  "LanistaTrainer.controller.ImageController": [],
+  "LanistaTrainer.controller.LanguagesController": [],
+  "LanistaTrainer.controller.LoginController": [],
   "LanistaTrainer.controller.Main": [],
-  "LanistaTrainer.model.ExerciseFilterIIModel": [],
-  "LanistaTrainer.model.ExerciseFilterModel": [],
+  "LanistaTrainer.controller.MainController": [],
+  "LanistaTrainer.controller.PlanController": [],
+  "LanistaTrainer.controller.RegistrationController": [],
+  "LanistaTrainer.controller.StopWatchController": [],
+  "LanistaTrainer.controller.TemplatesController": [],
+  "LanistaTrainer.controller.ToolsController": [],
+  "LanistaTrainer.controller.UserInfoController": [],
+  "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseModel": [],
-  "LanistaTrainer.store.ExerciseFilterII": [],
-  "LanistaTrainer.store.ExerciseFilters": [],
+  "LanistaTrainer.model.Plan": [],
+  "LanistaTrainer.model.PlanExercise": [],
+  "LanistaTrainer.model.Protocoll": [],
+  "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.store.PlanExerciseStore": [],
+  "LanistaTrainer.store.PlanStore": [],
+  "LanistaTrainer.store.ProtocollStore": [],
+  "LanistaTrainer.view.CustomerExercisesPanel": [],
+  "LanistaTrainer.view.CustomerInfoPanel": [],
+  "LanistaTrainer.view.CustomersPanel": [],
+  "LanistaTrainer.view.DashBoardPanel": [],
+  "LanistaTrainer.view.ExercisePanel": [],
   "LanistaTrainer.view.ExercisesPanel": [],
+  "LanistaTrainer.view.HelpPanel": [],
+  "LanistaTrainer.view.ImagePanel": [],
   "LanistaTrainer.view.LanistaButton": [],
+  "LanistaTrainer.view.LoginPanel": [],
   "LanistaTrainer.view.Main": [],
-  "LanistaTrainer.view.MyViewport": [],
+  "LanistaTrainer.view.MainViewport": [],
+  "LanistaTrainer.view.PlanEditPanel": [],
+  "LanistaTrainer.view.PlanExercisesList": [],
+  "LanistaTrainer.view.PlanPanel": [],
+  "LanistaTrainer.view.RegistrationPanel": [],
+  "LanistaTrainer.view.StopWatch": [],
+  "LanistaTrainer.view.TemplatesPanel": [],
+  "LanistaTrainer.view.Temporal": [],
+  "LanistaTrainer.view.TrainingPicker": [],
+  "LanistaTrainer.view.UserInfoPanel": [],
   "LanistaTrainer.view.Viewport": [],
+  "LanistaTrainer.view.WeightPicker": [],
   "LanistaTrainer.view.rightView": []
 });
 Ext.ClassManager.addNameAliasMappings({
@@ -1700,6 +1746,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.CellDragDrop": [
     "plugin.celldragdrop"
   ],
+  "Ext.ux.ConfigManager": [],
   "Ext.ux.DataTip": [
     "plugin.datatip"
   ],
@@ -1720,12 +1767,14 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.IFrame": [
     "widget.uxiframe"
   ],
+  "Ext.ux.LanguageManager": [],
   "Ext.ux.LiveSearchGridPanel": [],
   "Ext.ux.PreviewPlugin": [
     "plugin.preview"
   ],
   "Ext.ux.ProgressBarPager": [],
   "Ext.ux.RowExpander": [],
+  "Ext.ux.SessionManager": [],
   "Ext.ux.SlidingPager": [],
   "Ext.ux.Spotlight": [],
   "Ext.ux.TabCloseMenu": [
@@ -1830,24 +1879,135 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.window"
   ],
   "LanistaTrainer.Application": [],
-  "LanistaTrainer.controller.ExerciseController": [],
+  "LanistaTrainer.controller.AutheticationController": [
+    "controller.autheticationController"
+  ],
+  "LanistaTrainer.controller.CustomerExercisesController": [
+    "controller.customerExercisesController"
+  ],
+  "LanistaTrainer.controller.CustomerInfoController": [
+    "controller.customerInfoController"
+  ],
+  "LanistaTrainer.controller.CustomersController": [
+    "controller.customerscontroller"
+  ],
+  "LanistaTrainer.controller.DashBoardController": [
+    "controller.dashBoardController"
+  ],
+  "LanistaTrainer.controller.ExerciseController": [
+    "controller.exerciseController"
+  ],
+  "LanistaTrainer.controller.ExercisesController": [
+    "controller.exercisesController"
+  ],
+  "LanistaTrainer.controller.HelpController": [
+    "controller.helpController"
+  ],
+  "LanistaTrainer.controller.ImageController": [
+    "controller.imageController"
+  ],
+  "LanistaTrainer.controller.LanguagesController": [
+    "controller.languagesController"
+  ],
+  "LanistaTrainer.controller.LoginController": [
+    "controller.loginController"
+  ],
   "LanistaTrainer.controller.Main": [],
-  "LanistaTrainer.model.ExerciseFilterIIModel": [],
-  "LanistaTrainer.model.ExerciseFilterModel": [],
+  "LanistaTrainer.controller.MainController": [
+    "controller.mainController"
+  ],
+  "LanistaTrainer.controller.PlanController": [
+    "controller.planController"
+  ],
+  "LanistaTrainer.controller.RegistrationController": [
+    "controller.registrationController"
+  ],
+  "LanistaTrainer.controller.StopWatchController": [
+    "controller.stopWatchController"
+  ],
+  "LanistaTrainer.controller.TemplatesController": [
+    "controller.templatesController"
+  ],
+  "LanistaTrainer.controller.ToolsController": [],
+  "LanistaTrainer.controller.UserInfoController": [
+    "controller.userInfoController"
+  ],
+  "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseModel": [],
-  "LanistaTrainer.store.ExerciseFilterII": [],
-  "LanistaTrainer.store.ExerciseFilters": [],
+  "LanistaTrainer.model.Plan": [],
+  "LanistaTrainer.model.PlanExercise": [],
+  "LanistaTrainer.model.Protocoll": [],
+  "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.store.PlanExerciseStore": [],
+  "LanistaTrainer.store.PlanStore": [],
+  "LanistaTrainer.store.ProtocollStore": [],
+  "LanistaTrainer.view.CustomerExercisesPanel": [
+    "widget.customerExercisesPanel"
+  ],
+  "LanistaTrainer.view.CustomerInfoPanel": [
+    "widget.customerInfoPanel"
+  ],
+  "LanistaTrainer.view.CustomersPanel": [
+    "widget.customersPanel"
+  ],
+  "LanistaTrainer.view.DashBoardPanel": [
+    "widget.dashBoardPanel"
+  ],
+  "LanistaTrainer.view.ExercisePanel": [
+    "widget.exercisePanel"
+  ],
   "LanistaTrainer.view.ExercisesPanel": [
     "widget.exercisesPanel"
   ],
-  "LanistaTrainer.view.LanistaButton": [],
+  "LanistaTrainer.view.HelpPanel": [
+    "widget.helpPanel"
+  ],
+  "LanistaTrainer.view.ImagePanel": [
+    "widget.imagePanel"
+  ],
+  "LanistaTrainer.view.LanistaButton": [
+    "widget.lanistaButton"
+  ],
+  "LanistaTrainer.view.LoginPanel": [
+    "widget.loginPanel"
+  ],
   "LanistaTrainer.view.Main": [
     "widget.app-main"
   ],
-  "LanistaTrainer.view.MyViewport": [],
+  "LanistaTrainer.view.MainViewport": [
+    "widget.mainViewport"
+  ],
+  "LanistaTrainer.view.PlanEditPanel": [
+    "widget.planEditPanel"
+  ],
+  "LanistaTrainer.view.PlanExercisesList": [
+    "widget.planExercisesList"
+  ],
+  "LanistaTrainer.view.PlanPanel": [
+    "widget.planPanel"
+  ],
+  "LanistaTrainer.view.RegistrationPanel": [
+    "widget.registrationPanel"
+  ],
+  "LanistaTrainer.view.StopWatch": [
+    "widget.stopWatch"
+  ],
+  "LanistaTrainer.view.TemplatesPanel": [
+    "widget.templatesPanel"
+  ],
+  "LanistaTrainer.view.Temporal": [],
+  "LanistaTrainer.view.TrainingPicker": [
+    "widget.trainingPicker"
+  ],
+  "LanistaTrainer.view.UserInfoPanel": [
+    "widget.userInfoPanel"
+  ],
   "LanistaTrainer.view.Viewport": [],
+  "LanistaTrainer.view.WeightPicker": [
+    "widget.weightPicker"
+  ],
   "LanistaTrainer.view.rightView": []
 });
 Ext.setVersion("ext-theme-base", "4.2.1");

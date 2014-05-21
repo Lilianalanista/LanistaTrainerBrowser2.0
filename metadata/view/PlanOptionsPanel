@@ -1,0 +1,159 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": false,
+        "cls": "lanista-user-info-panel",
+        "defaultAlign": "c-c",
+        "designer|userAlias": "planOptionsPanel",
+        "designer|userClassName": "PlanOptionsPanel",
+        "header": false,
+        "height": 250,
+        "id": "planOptionsPanel",
+        "layout": "auto",
+        "style": "padding-top: 100px; height: 500px;",
+        "title": null,
+        "trackResetOnLoad": true,
+        "width": 400
+    },
+    "configAlternates": {
+        "style": "string"
+    },
+    "designerId": "64f9ea40-4158-43ef-bf20-d7470e626a56",
+    "cn": [
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": true,
+                "cls": "lanista-user-fieldset",
+                "defaultAlign": "c-c",
+                "height": 384,
+                "id": "trainingPlanOptions",
+                "title": null
+            },
+            "designerId": "f5a5db06-ffa5-487b-b6d5-abe1315f635f",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "enableKeyEvents": true,
+                        "fieldLabel": "Label",
+                        "id": "planName",
+                        "layout|anchor": "100%",
+                        "name": "name"
+                    },
+                    "designerId": "a14d9adc-543d-4cf8-b724-fc8d045d83e3"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "enableKeyEvents": true,
+                        "fieldLabel": "Label",
+                        "id": "planDuration",
+                        "layout|anchor": "100%",
+                        "name": "duration"
+                    },
+                    "designerId": "5c2639f2-f1ff-4803-b74c-df9ddab45af8"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "enableKeyEvents": true,
+                        "fieldLabel": "Label",
+                        "id": "planDescription",
+                        "layout|anchor": "100%",
+                        "name": "description"
+                    },
+                    "designerId": "85220ac1-83bb-4c9c-8afa-966cf04a1a7d"
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPlanOptionsPanelAfterRender",
+                "implHandler": [
+                    "var fields = component.getForm().getFields();",
+                    "",
+                    "//fields.getByKey('trainingPlanOptions').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.TRAINING_PLAN);",
+                    "fields.getByKey('planName').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_NAME);",
+                    "fields.getByKey('planDuration').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME);",
+                    "fields.getByKey('planDescription').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_DESC);",
+                    "",
+                    "document.getElementsByName(\"name\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_NAME;",
+                    "document.getElementsByName(\"duration\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME;",
+                    "document.getElementsByName(\"description\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_DESC;",
+                    "",
+                    "fields.each(function(field)",
+                    "            {field.on('change',function(f,n,o)",
+                    "                      {",
+                    "                          //f: field;  n: new value;  o: old value",
+                    "                          LanistaTrainer.app.fireEvent('showSavePanel', 'savePlanOptionsButton', 'cancelPlanOptionsButton');",
+                    "                      }",
+                    "                     );",
+                    "             field.on('keypress',function(f,e,opts)",
+                    "                      {",
+                    "                          //f: field;  e: key pressed;  o: options",
+                    "                          if(e.getKey() == e.ENTER){",
+                    "                              if ( !Ext.getCmp('rightCommandPanel').down('#savePlanOptionsButton').hidden )",
+                    "                                  Ext.getCmp('rightCommandPanel').down('#savePlanOptionsButton').fireEvent('click', function() {",
+                    "                                      f.focus();",
+                    "                                  });",
+                    "                          }",
+                    "                      }",
+                    "                     );",
+                    "            }",
+                    "         );",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "46f55843-f830-4253-8013-22045fc7485a"
+        }
+    ]
+}

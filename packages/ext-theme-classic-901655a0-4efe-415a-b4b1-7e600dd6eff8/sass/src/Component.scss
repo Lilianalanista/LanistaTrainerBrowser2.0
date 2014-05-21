@@ -48,7 +48,13 @@
 }
 
 $font-family: 'Roboto Light';
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:900);
+//@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:900);
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Source Sans Pro Black'), local('SourceSansPro-Black'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGC7eGk4PJkA83J1AXCmgUfc.woff) format('woff');
+}
 
 $list-active-gradient: "none";
 $base-gradient: "none";
@@ -153,8 +159,16 @@ $base-gradient: "none";
 
 .lansita-header-customer-name .last-name {
 	text-transform: uppercase;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 40px;
+    font-family: "Roboto Black";
+    letter-spacing: -1px;
+    font-size: 40px;
+    color: #4c4c4c!important;
+}
+
+.lansita-header-customer-name .first-name {
+    font-family: "Avenir LT Light";
+    font-size: 19px;
+    line-height: 20px;
 }
 
 .lanista-guest .header-logo {
@@ -1227,6 +1241,11 @@ $base-gradient: "none";
     padding-bottom: 8px;
 }
 
+.lanista-user-fieldset .x-fieldset-header-text {
+    font: 20px/22px normal Roboto Light;
+    color: #000;
+    padding: 1px 0;
+}
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

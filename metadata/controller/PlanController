@@ -103,11 +103,24 @@
             "codeClass": null,
             "userConfig": {
                 "autoCreate": true,
-                "ref": "planEditPanel",
-                "selector": "#planEditPanel",
-                "xtype": "planEditPanel"
+                "ref": "planOptionsPanel",
+                "selector": "#planOptionsPanel",
+                "xtype": "planOptionsPanel"
             },
             "designerId": "eb64cc1c-5404-45b6-ad78-2fff325a352c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "trainingPlanOptions",
+                "selector": "#trainingPlanOptions"
+            },
+            "designerId": "c83ef194-2bea-44e7-9722-613f6bf3ff19"
         },
         {
             "type": "applicationaction",
@@ -353,6 +366,54 @@
             "codeClass": null,
             "userConfig": {
                 "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowPlanOptionsPanel",
+                "implHandler": [
+                    "var controller = this,",
+                    "    mainStage\t\t\t= controller.getMainStage(),",
+                    "    planOptionsPanel\t= controller.getPlanOptionsPanel(),",
+                    "    plan\t\t\t\t= controller.plan,",
+                    "    record\t\t\t\t= LanistaTrainer.app.currentCustomer,",
+                    "    fieldset\t\t\t= controller.getTrainingPlanOptions();",
+                    "",
+                    "mainStage.add(planOptionsPanel);",
+                    "LanistaTrainer.app.setStandardButtons('closePlanOptionsPanel');",
+                    "planOptionsPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, self);",
+                    "",
+                    "planOptionsPanel.headerInfo = '<div class=\"lansita-header-customer-image-not-found\"><div class=\"lansita-header-customer-photo\" id=\"changeCustomerPhoto\" style=\"background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);\"></div></div>';",
+                    "planOptionsPanel.headerTitle = plan.data.name;",
+                    "planOptionsPanel.show();",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "if ( callback instanceof Function ) callback();",
+                    "",
+                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.TRAINING_PLAN);",
+                    "planOptionsPanel.getForm().setValues(",
+                    "    {",
+                    "        name:\t\t\t\t\tplan.data.name,",
+                    "        duration:\t\t\t\tplan.data.duration,",
+                    "        description:\t\t\tplan.data.description",
+                    "    }",
+                    ");"
+                ],
+                "name": "showPlanOptionsPanel",
+                "scope": "this"
+            },
+            "designerId": "deea0c7d-9e85-40a2-9ad8-fa1baaa829a9"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
                     "planname"
                 ],
                 "fn": "onCreatePlan",
@@ -430,6 +491,38 @@
             "designerId": "8e91b87d-c320-44a6-9cda-2d3caa3ee88b"
         },
         {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onClosePlanOptionsPanel",
+                "implHandler": [
+                    "var controller = this,",
+                    "    planOptionsPanel = controller.getPlanOptionsPanel();",
+                    "",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    planOptionsPanel.hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closePlanOptionsPanel",
+                "scope": "this"
+            },
+            "designerId": "e3e5084a-0664-4318-bb53-0c9b1bf798ca"
+        },
+        {
             "type": "basicfunction",
             "reference": {
                 "name": "items",
@@ -444,6 +537,7 @@
                 "implHandler": [
                     "",
                     "var controller = this;",
+                    "    planOptionsMenu = controller.setPlanOptions();",
                     "",
                     "controller.getRightCommandPanel().items.each(function (item) {",
                     "    item.hide();",
@@ -462,6 +556,8 @@
                     "    Ext.create('LanistaTrainer.view.LanistaButton', {",
                     "        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PLAN_OPTIONS,",
                     "        itemId: 'showPlanOptionsButton',",
+                    "        menu: planOptionsMenu,",
+                    "        menuButtonAlign: 'right',",
                     "        style: 'float: left;',",
                     "        glyph: '120@Lanista Icons' //x",
                     "    })",
@@ -561,11 +657,11 @@
                     "    recordsArray = [];",
                     "}",
                     "",
-                    "//This is for plans records that has been charged from a plan saved previously",
-                    "if (!LanistaTrainer.app.getController ( 'PlanController' ).selectionsTab) {",
+                    "//This is for plans records that has been charged from a previously plan saved ",
+                    "if (records.length > 0 && ( (!LanistaTrainer.app.getController ( 'PlanController' ).selectionsTab) || (LanistaTrainer.app.getController ( 'PlanController' ).selectionsTab.length === 0))) {",
                     "    var selectionsTab = [],",
                     "        itemTab = [];",
-                    "        ",
+                    "",
                     "        selectionsTab[0] = [];",
                     "        for ( i = 1; i < tabPanel.items.length; i++ ) {",
                     "            //selectionsTab[i] = [];",
@@ -582,7 +678,8 @@
                     "                selectionsTab.push(selection);",
                     "            }",
                     "        }",
-                    "    LanistaTrainer.app.getController ( 'PlanController' ).selectionsTab = selectionsTab;",
+                    "    controller.selectionsTab = selectionsTab;",
+                    "    controller.currentDay = controller.getPlanPanel ().down ('tabpanel').getActiveTab();",
                     "}",
                     ""
                 ]
@@ -787,6 +884,128 @@
                 ]
             },
             "designerId": "0eabe6d6-cb36-4886-bf2a-290cd77e0000"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "setPlanOptions",
+                "implHandler": [
+                    "container = this;",
+                    "planOptions = new Ext.menu.Menu(",
+                    "    {",
+                    "        defaults: {",
+                    "            height: '50px',",
+                    "            width: '220px'",
+                    "        },",
+                    "        items:",
+                    "        [",
+                    "            {text:\tExt.ux.LanguageManager.TranslationArray.CHANGE_PLAN.toUpperCase(),",
+                    "                    handler: function () {",
+                    "                                LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "                                LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {",
+                    "                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanOptionsPanel';",
+                    "                                    LanistaTrainer.app.fireEvent( 'showPlanOptionsPanel' );",
+                    "                                });",
+                    "                             }},",
+                    "            {text:\tExt.ux.LanguageManager.TranslationArray.BUTTON_ASSIGN_PLAN.toUpperCase()},",
+                    "            {text:  Ext.ux.LanguageManager.TranslationArray.GENERATE_PDF.toUpperCase()},",
+                    "            {text:  Ext.ux.LanguageManager.TranslationArray.SEND_EMAIL.toUpperCase()}",
+                    "        ]",
+                    "    }",
+                    ");",
+                    "",
+                    "",
+                    "return planOptions;"
+                ]
+            },
+            "designerId": "a872ee23-5dc8-46ec-9f8f-2e4fbf02d5ef"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #savePlanOptionsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onSavePlanOptionsButtonClick",
+                "implHandler": [
+                    "var controller = this,",
+                    "    planOptionsPanel = controller.getPlanOptionsPanel(),",
+                    "    fields = planOptionsPanel.getForm().getFields();",
+                    "    ",
+                    "",
+                    "controller.plan.set ( 'name', fields.getByKey('name').getValue() );",
+                    "controller.plan.set ( 'duration', fields.getByKey('duration').getValue() );",
+                    "controller.plan.set ( 'description', fields.getByKey('description').getValue() );",
+                    "",
+                    "controller.plan.setProxy(new Ext.data.proxy.Ajax({",
+                    "    url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',",
+                    "    model: 'Plan',",
+                    "    noCache: false,",
+                    "    reader: {",
+                    "        type: 'json',",
+                    "        root: 'entries'",
+                    "    },",
+                    "    writer: {",
+                    "        type: 'json',",
+                    "        root: 'records',",
+                    "        allowSingle: false",
+                    "    },",
+                    "    headers: {",
+                    "        user_id: userId",
+                    "    }",
+                    "}));",
+                    "",
+                    "",
+                    "controller.plan.save ({",
+                    "    callback: function( changedPlan, operation, success ) {",
+                    "        console.log ( changedPlan );",
+                    "        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "        LanistaTrainer.app.fireEvent( 'closePlanOptionsPanel', function() {",
+                    "            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';",
+                    "            LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname, controller.backAction );",
+                    "        });",
+                    "    },",
+                    "    scope: this",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "76e25979-dd16-4798-9720-7b91e18e1500"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closePlanOptionsPanel",
+                "designer|targetType": "LanistaButton",
+                "fn": "onclosePlanOptionsPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "",
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "LanistaTrainer.app.fireEvent( 'closePlanOptionsPanel', function() {",
+                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';",
+                    "    LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname, controller.backAction );",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "074fbf8b-51ea-449a-8ec0-6639ba5392ee"
         }
     ]
 }
