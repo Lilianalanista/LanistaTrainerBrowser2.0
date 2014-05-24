@@ -231,7 +231,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
             LanistaTrainer.app.fireEvent('closeCustomerExercisesPanel', function() {
                 LanistaTrainer.app.getController ( 'PlanController' ).plan = record;
                 LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
-                LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name, 'showCustomerExercisePanel' );
+                LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name );
             });
         },
              this, {delegate: '.lanista-name-plan'});

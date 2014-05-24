@@ -51,6 +51,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "cls": "lanista-user-settings-field",
+                        "emptyText": null,
                         "enableKeyEvents": true,
                         "fieldLabel": "Email:",
                         "hideEmptyLabel": false,

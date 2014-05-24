@@ -129,7 +129,6 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
 
                             if (user_data.language != Ext.ux.LanguageManager.lang) {
                                 Ext.Msg.alert ('', Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE,  function() {
-                                    //LanistaTrainer.app.fireEvent('changeLanguage', (user_data.language == 'DE' ? 0 : user_data.language == 'EN' ? 1 : 2));
                                     LanistaTrainer.app.fireEvent('changeLanguage', user_data.language, true);
                                 });
                             }

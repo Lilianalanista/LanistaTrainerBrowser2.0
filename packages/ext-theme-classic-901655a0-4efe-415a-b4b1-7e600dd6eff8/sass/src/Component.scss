@@ -467,7 +467,7 @@ $base-gradient: "none";
 
 .lanista-user-fieldset .x-fieldset-body {
     width: 820px!important;
-    margin-left: 40px;
+    margin-left: 23px;
 }
 
 .lanista-user-info-panel .x-fit-panel .x-panel-default {
@@ -647,7 +647,6 @@ $base-gradient: "none";
 
 
 //Exercise
-
 .blured {
     -webkit-filter: blur(20px);
     filter: blur(20px);
@@ -751,7 +750,6 @@ $base-gradient: "none";
 }
 
 .lanista-exercises-protocolls-td {
-    //background-color: transparent;
     font-size: 14px;
 }
 
@@ -833,7 +831,6 @@ $base-gradient: "none";
 }
 
 .lanista-font {
-    //font-family: 'Lanista Icons';
     font-family: 'Lanista-2-0';
     color: #4aacd8;
     font-size: 32px;
@@ -901,7 +898,6 @@ $base-gradient: "none";
     border-width: 1px;
     background-image: none;
     background-color: transparent;
-    //width: 260px!important;
 }
 
 .lanista-trainingPicker .lanista-buttongroup-traininghelp {
@@ -1105,7 +1101,6 @@ $base-gradient: "none";
 }
 
 .lanista-customerexercises-panel .lanista-grid-plans-customer {
-    //top: 100px!important;
     width: 450px!important;
 }
 
@@ -1129,10 +1124,6 @@ $base-gradient: "none";
     width: 450px!important;
 }
 
-.lanista-grid-plans-customer {
-    //height: 100%;
-}
-
 .lanista-name-plan {
     float: left;
     font-size: 15px;
@@ -1140,7 +1131,6 @@ $base-gradient: "none";
 }
 
 .lanista-delete-plan {
-    //float: right;
     width: 17%;
     font-size: 15px!important;
     text-align: center;
@@ -1160,10 +1150,7 @@ $base-gradient: "none";
     border: 1px solid #999;
     margin: 10px;
     margin-left: 0;
-    //left: -1px!important;
-    //left: 257px!important;
     width: 455px!important;
-    //top: 100px;
     margin-top: 110px;
     margin-bottom: 10px;
 }
@@ -1242,9 +1229,19 @@ $base-gradient: "none";
 }
 
 .lanista-user-fieldset .x-fieldset-header-text {
-    font: 20px/22px normal Roboto Light;
+    font: 20px/22px Roboto Light;
     color: #000;
     padding: 1px 0;
+}
+
+#planDescription .x-form-text {
+    height: 100px;
+}
+
+#trainingPlanOptions .x-fieldset-body {
+    width: 820px!important;
+    margin-left: 23px;
+    margin-top: 25px;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

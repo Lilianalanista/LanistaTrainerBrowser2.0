@@ -300,6 +300,17 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 },
                 items:
                 [
+                    {xtype: 'textfield',
+                     id: 'searchText',
+                     hideLabel: true,
+                     hideEmptyLabel: false,
+                     name: 'searchText',
+                     validateOnChange: false,
+                     validateOnBlur: false,
+                     enableKeyEvents: true,
+                     selectOnFocus: true,
+                     emptyText: Ext.ux.LanguageManager.TranslationArray.TEXT_SEARCH_UC + '...'
+                    },
                     {text:	Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES.toUpperCase(),
                      menuAlign: 'tr-tl?',
                      rtl: true,
@@ -546,7 +557,6 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 ]
             }
         );
-
 
         return tools;
     },

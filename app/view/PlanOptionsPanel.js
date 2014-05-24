@@ -19,7 +19,7 @@ Ext.define('LanistaTrainer.view.PlanOptionsPanel', {
 
     requires: [
         'Ext.form.FieldSet',
-        'Ext.form.field.Text'
+        'Ext.form.field.TextArea'
     ],
 
     border: false,
@@ -57,7 +57,8 @@ Ext.define('LanistaTrainer.view.PlanOptionsPanel', {
                             id: 'planName',
                             fieldLabel: 'Label',
                             name: 'name',
-                            enableKeyEvents: true
+                            enableKeyEvents: true,
+                            selectOnFocus: true
                         },
                         {
                             xtype: 'textfield',
@@ -69,7 +70,7 @@ Ext.define('LanistaTrainer.view.PlanOptionsPanel', {
                             enableKeyEvents: true
                         },
                         {
-                            xtype: 'textfield',
+                            xtype: 'textareafield',
                             anchor: '100%',
                             cls: 'lanista-user-settings-field',
                             id: 'planDescription',
@@ -94,7 +95,6 @@ Ext.define('LanistaTrainer.view.PlanOptionsPanel', {
     onPlanOptionsPanelAfterRender: function(component, eOpts) {
         var fields = component.getForm().getFields();
 
-        //fields.getByKey('trainingPlanOptions').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.TRAINING_PLAN);
         fields.getByKey('planName').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_NAME);
         fields.getByKey('planDuration').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME);
         fields.getByKey('planDescription').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_DESC);
@@ -122,7 +122,7 @@ Ext.define('LanistaTrainer.view.PlanOptionsPanel', {
                               }
                              );
                     }
-                 );
+                   );
 
 
 

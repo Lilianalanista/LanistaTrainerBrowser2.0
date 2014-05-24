@@ -55,7 +55,8 @@
                         "fieldLabel": "Label",
                         "id": "planName",
                         "layout|anchor": "100%",
-                        "name": "name"
+                        "name": "name",
+                        "selectOnFocus": true
                     },
                     "designerId": "a14d9adc-543d-4cf8-b724-fc8d045d83e3"
                 },
@@ -77,7 +78,7 @@
                     "designerId": "5c2639f2-f1ff-4803-b74c-df9ddab45af8"
                 },
                 {
-                    "type": "Ext.form.field.Text",
+                    "type": "Ext.form.field.TextArea",
                     "reference": {
                         "name": "items",
                         "type": "array"
@@ -107,7 +108,6 @@
                 "implHandler": [
                     "var fields = component.getForm().getFields();",
                     "",
-                    "//fields.getByKey('trainingPlanOptions').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.TRAINING_PLAN);",
                     "fields.getByKey('planName').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_NAME);",
                     "fields.getByKey('planDuration').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME);",
                     "fields.getByKey('planDescription').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_DESC);",
@@ -135,7 +135,7 @@
                     "                      }",
                     "                     );",
                     "            }",
-                    "         );",
+                    "           );",
                     "",
                     "",
                     "",

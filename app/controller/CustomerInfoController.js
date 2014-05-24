@@ -70,7 +70,6 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
     onCancelSettingsButtonClick: function(button, e, eOpts) {
         var controller = this;
 
-        //controller.loadCurrentUser();
         controller.showCommands();
     },
 

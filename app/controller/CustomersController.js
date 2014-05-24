@@ -54,7 +54,12 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
     onCloseCustomersPanelButtonClick: function(button, e, eOpts) {
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeCustomersPanel', function() {
-            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
+            if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DashboardPanel')
+                LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
+            else {
+                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController('PlanController').planname);
+            }
         });
 
     },

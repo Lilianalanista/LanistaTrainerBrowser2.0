@@ -364,7 +364,6 @@
                 "implHandler": [
                     "var controller = this;",
                     "",
-                    "//controller.loadCurrentUser();",
                     "controller.showCommands();"
                 ],
                 "name": "click",
