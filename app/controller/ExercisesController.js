@@ -309,7 +309,16 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                      validateOnBlur: false,
                      enableKeyEvents: true,
                      selectOnFocus: true,
-                     emptyText: Ext.ux.LanguageManager.TranslationArray.TEXT_SEARCH_UC + '...'
+                     emptyText: Ext.ux.LanguageManager.TranslationArray.TEXT_SEARCH_UC + '...',
+                     listeners: {
+                                keypress: {
+                                    element: 'el',
+                                    fn: function(e, textfield, eOpts){
+                                        if(e.getKey() == e.ENTER)
+                                            container.searchWordExercisesByText();
+                                    }
+                                }
+                            }
                     },
                     {text:	Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES.toUpperCase(),
                      menuAlign: 'tr-tl?',
@@ -650,6 +659,40 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
     setHeader: function() {
         LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
+    },
+
+    searchWordExercisesByText: function() {
+        var textToSearch = Ext.ComponentManager.get('searchText').getValue(),
+            new_filters  = [],
+            lang = Ext.ux.LanguageManager.lang,
+            exerciseStoreFilter = Ext.getStore('ExerciseInitialStore'),
+            re = new RegExp("\\w*"+textToSearch+"\\w*", "i"),
+            result = [],
+            nameValue;
+
+
+        var filterFunction = new Ext.util.Filter({
+                filterFn: function(item){
+                    nameValue = lang === 'ES' ? item.data.name_ES : lang === 'EN' ? item.data.name_EN : item.data.name_DE;
+                    result = nameValue.match(re);
+
+
+                    console.log(result);
+
+
+                    return (result && result.length > 0);
+                }
+            });
+
+        if (textToSearch && textToSearch.length) {
+            exerciseStoreFilter.clearFilter();
+            exerciseStoreFilter.filters.add (filterFunction);
+        }
+        exerciseStoreFilter.load();
+
+        console.log(exerciseStoreFilter);
+
+
     },
 
     init: function(application) {

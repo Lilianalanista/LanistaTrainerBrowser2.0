@@ -430,7 +430,7 @@
                     "            width: '220px'",
                     "        },",
                     "        items:",
-                    "        [\t",
+                    "        [",
                     "            {xtype: 'textfield',",
                     "             id: 'searchText',",
                     "             hideLabel: true,",
@@ -440,7 +440,16 @@
                     "             validateOnBlur: false,",
                     "             enableKeyEvents: true,",
                     "             selectOnFocus: true,",
-                    "             emptyText: Ext.ux.LanguageManager.TranslationArray.TEXT_SEARCH_UC + '...'",
+                    "             emptyText: Ext.ux.LanguageManager.TranslationArray.TEXT_SEARCH_UC + '...',",
+                    "             listeners: {",
+                    "                        keypress: {",
+                    "                            element: 'el',",
+                    "                            fn: function(e, textfield, eOpts){",
+                    "                                if(e.getKey() == e.ENTER)",
+                    "                                    container.searchWordExercisesByText();",
+                    "                            }",
+                    "                        }",
+                    "                    }",
                     "            },",
                     "            {text:\tExt.ux.LanguageManager.TranslationArray.FILTER_MUSCLES.toUpperCase(),",
                     "             menuAlign: 'tr-tl?',",
@@ -905,6 +914,51 @@
                 ]
             },
             "designerId": "c8159756-7e1f-40a4-ab3e-91735fdb2f89"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "searchWordExercisesByText",
+                "implHandler": [
+                    "var textToSearch = Ext.ComponentManager.get('searchText').getValue(),",
+                    "    new_filters  = [],",
+                    "    lang = Ext.ux.LanguageManager.lang,",
+                    "    exerciseStoreFilter = Ext.getStore('ExerciseInitialStore'),",
+                    "    re = new RegExp(\"\\\\w*\"+textToSearch+\"\\\\w*\", \"i\"),",
+                    "    result = [],",
+                    "    nameValue;",
+                    "",
+                    "",
+                    "var filterFunction = new Ext.util.Filter({",
+                    "        filterFn: function(item){",
+                    "            nameValue = lang === 'ES' ? item.data.name_ES : lang === 'EN' ? item.data.name_EN : item.data.name_DE;",
+                    "            result = nameValue.match(re);",
+                    "            ",
+                    "            ",
+                    "            console.log(result);",
+                    "            ",
+                    "            ",
+                    "            return (result && result.length > 0);",
+                    "        }",
+                    "    });",
+                    "",
+                    "if (textToSearch && textToSearch.length) {",
+                    "    exerciseStoreFilter.clearFilter();",
+                    "    exerciseStoreFilter.filters.add (filterFunction);",
+                    "}",
+                    "exerciseStoreFilter.load();",
+                    "",
+                    "console.log(exerciseStoreFilter);",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "3cd9420b-1657-49d2-ad1c-5b86529fcb95"
         }
     ]
 }
