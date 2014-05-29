@@ -49,7 +49,8 @@
             "CustomerStore",
             "ProtocollStore",
             "PlanExerciseStore",
-            "PlanStore"
+            "PlanStore",
+            "SearchRecommendationStore"
         ],
         "views": [
             "MainViewport",
@@ -73,7 +74,8 @@
             "TrainingPicker",
             "PlanExercisesList",
             "PlanPanel",
-            "PlanOptionsPanel"
+            "PlanOptionsPanel",
+            "SearchRecommendationList"
         ]
     },
     "configAlternates": {

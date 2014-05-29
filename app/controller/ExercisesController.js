@@ -51,6 +51,12 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         {
             ref: 'mainStage',
             selector: '#mainStage'
+        },
+        {
+            autoCreate: true,
+            ref: 'searchRecommendationList',
+            selector: '#searchRecommendationList',
+            xtype: 'searchRecommendationList'
         }
     ],
 
@@ -294,6 +300,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         container = this;
         tools = new Ext.menu.Menu(
             {
+                id:'exercisesMenu',
                 defaults: {
                     height: '50px',
                     width: '220px'
@@ -666,20 +673,22 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             new_filters  = [],
             lang = Ext.ux.LanguageManager.lang,
             exerciseStoreFilter = Ext.getStore('ExerciseInitialStore'),
-            re = new RegExp("\\w*"+textToSearch+"\\w*", "i"),
+            re = new RegExp("\\w*"+textToSearch+"\\w*", "gi"),
             result = [],
-            nameValue;
-
+            searchList = [],
+            nameValue,
+            controller = this;
 
         var filterFunction = new Ext.util.Filter({
                 filterFn: function(item){
                     nameValue = lang === 'ES' ? item.data.name_ES : lang === 'EN' ? item.data.name_EN : item.data.name_DE;
                     result = nameValue.match(re);
-
-
-                    console.log(result);
-
-
+                    if ( result && result.length > 0 ) {
+                        for (var i = 0; i < result.length; i++){
+                            if (searchList.indexOf(result[i]) == -1)
+                                searchList.push(result[i]);
+                        }
+                    }
                     return (result && result.length > 0);
                 }
             });
@@ -687,10 +696,17 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         if (textToSearch && textToSearch.length) {
             exerciseStoreFilter.clearFilter();
             exerciseStoreFilter.filters.add (filterFunction);
+            exerciseStoreFilter.load({
+                callback: function(records, operation, success) {
+                    var list = controller.getSearchRecommendationList();
+                    var exercisesMenu = Ext.ComponentManager.get('exercisesMenu');
+                    //list.getStore().removeAll();
+                    list.getStore().add(searchList);
+                    list.showBy(exercisesMenu, 'r-tl');
+                }
+            });
         }
-        exerciseStoreFilter.load();
 
-        console.log(exerciseStoreFilter);
 
 
     },

@@ -1,0 +1,48 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "searchRecommendationStore",
+        "designer|userClassName": "SearchRecommendationStore",
+        "storeId": "searchRecommendationStore"
+    },
+    "designerId": "81b4d64c-d9cb-4244-a1f0-733db8aa8c33",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "designerId": "f4b5f302-a801-4848-b112-652afd061a7f",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Array",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "designerId": "459941da-289d-45ed-8486-454a800fd7ba"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "wordSearch"
+            },
+            "designerId": "127f81f3-d4e6-4e82-99b1-f745e0e5aa3f"
+        }
+    ]
+}
