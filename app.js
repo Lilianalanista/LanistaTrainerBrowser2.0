@@ -43,8 +43,7 @@ Ext.application({
         'CustomerStore',
         'ProtocollStore',
         'PlanExerciseStore',
-        'PlanStore',
-        'SearchRecommendationStore'
+        'PlanStore'
     ],
     views: [
         'MainViewport',
@@ -68,8 +67,7 @@ Ext.application({
         'TrainingPicker',
         'PlanExercisesList',
         'PlanPanel',
-        'PlanOptionsPanel',
-        'SearchRecommendationList'
+        'PlanOptionsPanel'
     ],
     controllers: [
         'MainController',

@@ -865,7 +865,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.store.PlanExerciseStore": [],
   "LanistaTrainer.store.PlanStore": [],
   "LanistaTrainer.store.ProtocollStore": [],
-  "LanistaTrainer.store.SearchRecommendationStore": [],
   "LanistaTrainer.view.CustomerExercisesPanel": [],
   "LanistaTrainer.view.CustomerInfoPanel": [],
   "LanistaTrainer.view.CustomersPanel": [],
@@ -882,7 +881,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.PlanOptionsPanel": [],
   "LanistaTrainer.view.PlanPanel": [],
   "LanistaTrainer.view.RegistrationPanel": [],
-  "LanistaTrainer.view.SearchRecommendationList": [],
   "LanistaTrainer.view.StopWatch": [],
   "LanistaTrainer.view.TemplatesPanel": [],
   "LanistaTrainer.view.Temporal": [],
@@ -1945,9 +1943,6 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.store.PlanExerciseStore": [],
   "LanistaTrainer.store.PlanStore": [],
   "LanistaTrainer.store.ProtocollStore": [],
-  "LanistaTrainer.store.SearchRecommendationStore": [
-    "store.searchRecommendationStore"
-  ],
   "LanistaTrainer.view.CustomerExercisesPanel": [
     "widget.customerExercisesPanel"
   ],
@@ -1995,9 +1990,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.RegistrationPanel": [
     "widget.registrationPanel"
-  ],
-  "LanistaTrainer.view.SearchRecommendationList": [
-    "widget.searchRecommendationList"
   ],
   "LanistaTrainer.view.StopWatch": [
     "widget.stopWatch"
