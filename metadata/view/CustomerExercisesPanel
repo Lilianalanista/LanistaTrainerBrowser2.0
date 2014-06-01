@@ -262,7 +262,7 @@
                                     "el.on('mouseover',function(e,t){",
                                     "    Ext.get(t).removeCls('item-not-clicked');",
                                     "    Ext.get(t).addCls('item-clicked');",
-                                    "    Ext.get(t).down('.lanista-delete-plan').setHTML('D');",
+                                    "    Ext.get(t).down('.lanista-delete-plan').setHTML('u');",
                                     "    Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');",
                                     "    Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');",
                                     "},",
