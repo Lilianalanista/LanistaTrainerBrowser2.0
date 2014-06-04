@@ -73,7 +73,8 @@
             "TrainingPicker",
             "PlanExercisesList",
             "PlanPanel",
-            "PlanOptionsPanel"
+            "PlanOptionsPanel",
+            "VideoPanel"
         ]
     },
     "configAlternates": {

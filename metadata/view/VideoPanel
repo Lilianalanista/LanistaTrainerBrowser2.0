@@ -1,0 +1,17 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "videoPanel",
+        "designer|userClassName": "VideoPanel",
+        "height": 250,
+        "html": null,
+        "id": "videoPanel",
+        "width": 400
+    },
+    "designerId": "25ef8c4b-8e3a-4c6b-bf7c-70b2aa4affed"
+}

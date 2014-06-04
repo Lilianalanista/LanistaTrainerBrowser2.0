@@ -50,8 +50,8 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                         '<div class="exercise">',
                         '    <div class="exercise_name">{[values["name_"+Ext.ux.LanguageManager.lang]]}</div>',
                         '    <div class="exercise-images">',
-                        '        <div id="image-start-position" class="exercise-image" style="-webkit-background-size: cover; background-image: url({[(values.ext_id && values.ext_id.indexOf("CUST") != -1) ? (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/b/"+values.ext_id) : "resources/images/exercises/"+values.ext_id]}_2.png);"/></div>',
-                        '        <div id="image-end-position"   class="exercise-image" style="-webkit-background-size: cover; background-image: url({[(values.ext_id && values.ext_id.indexOf("CUST") != -1) ? (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/b/"+values.ext_id) : "resources/images/exercises/"+values.ext_id]}_1.png);"/></div>',
+                        '        <div id="image-start-position" class="exercise-image" style="-webkit-background-size: cover; background-image: url({[(values.ext_id && values.ext_id.indexOf("CUST") != -1) ? (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/b/"+values.ext_id) : "resources/images/exercises/"+values.ext_id]}_2.png);"></div>',
+                        '        <div id="image-start-position" class="exercise-image" style="-webkit-background-size: cover; background-image: url({[(values.ext_id && values.ext_id.indexOf("CUST") != -1) ? (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/b/"+values.ext_id) : "resources/images/exercises/"+values.ext_id]}_1.png);"></div>',
                         '     </div>',
                         '</div>'
                     ]

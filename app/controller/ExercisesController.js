@@ -238,36 +238,24 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
              searchText = controller.textToSearch;
 
         if (store.filters.items.length > 1)
-            filter = (store.filters.items[1].textOptSel ? 'Musclegruppe: '+store.filters.items[1].textOptSel+'<br>' : '') + (store.filters.items[0].textOptSel ? ' Übungstyp: '+store.filters.items[0].textOptSel+'<br>' : '') + (store.filters.items[2].textOptSel ? ' Zusätze: '+store.filters.items[2].textOptSel+'<br>' : '');
+            filter = (store.filters.items[1].textOptSel ? '<div class="filterTitle"><span>Musclegruppe:  </span> <div class="filterText">' + store.filters.items[1].textOptSel+'</div></div>' : '') + (store.filters.items[0].textOptSel ? '<div class="filterTitle"><span> Übungstyp: </span><div class="filterText">'+store.filters.items[0].textOptSel+'</div></div>' : '') + (store.filters.items[2].textOptSel  ? '<div class="filterTitle"><span> Zusätze:  </span> <div class="filterText">' + store.filters.items[2].textOptSel+'</div></div>' : '');
 
         searchByTextObj = store.filters.findBy( function(item, key) {
                             return (key === 'filterByWord');
                           });
         if (searchByTextObj)
-            filter = filter ? filter + '<br>' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + ': ' + searchText : Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + ': ' + searchText;
+            filter = filter ? filter + '<div class="filterTitle">' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + ':  <div class="filterText">' + searchText.toUpperCase() + '</div></div>' : '<div class="filterTitle">' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + ':  <div class="filterText">' + searchText.toUpperCase() + '</div></div>';
 
         if (Ext.getStore("ExerciseStore").currentPage > totalPages)
             return false;
 
         if (this.getExercisesPanel() && !this.getExercisesPanel().isHidden()) {
-            //var info = '<div class="exercises-header"><div class="header-filter">' + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>';
             var info = '<div class="exercises-header"><div class="header-filter">' + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>';
             controller.getMainViewport().down("#header").update({
                info:  this.getExercisesPanel().headerInfo ?  this.getExercisesPanel().headerInfo + info : info,
                title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
             });
         }
-
-        //var exercisesView = this.getExercisesView();
-        //var HeaderView = this.getHeaderView();
-        //var totalPages = Math.ceil(totalCounts/this.ViewPortCapacityGlb);
-        //var filter = (isNaN(this.filters[1]) ? 'Musclegruppe: '+ this.filters[1] + '<br>' : '') + (isNaN(this.filters[2]) ? ' Übungstyp: '+ this.filters[2] + '<br>' : '') + (isNaN(this.filters[3]) ? ' Zusätze: '+ this.filters[3] + '<br>' : '');
-
-
-        //*****************************************
-        //OJO:  BUSCAR TAMANIO DEL BROWSER!!!!!!  PARA SABER CUANTOS EJERCICIOS ENTRAN EN LA PAGINA!!!!!!!
-        //*****************************************
-
 
     },
 

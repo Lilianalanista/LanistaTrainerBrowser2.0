@@ -80,6 +80,81 @@
             "designerId": "3766444b-ab43-4b2b-93e1-f9fb47bf0d8d"
         },
         {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "videoPanel",
+                "selector": "#videoPanel",
+                "xtype": "videoPanel"
+            },
+            "designerId": "3db90b85-831c-4641-b219-8477074637a8"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #sendProtocollButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onsendProtocollButtonClick",
+                "implHandler": [
+                    "var controller = this;",
+                    "var record = this.getExercisePanel ().down ( '#protocollPanel' ).protocollInformation;",
+                    "",
+                    "var dt = new Date();",
+                    "",
+                    "var newProtocoll = Ext.create('LanistaTrainer.model.Protocoll', {",
+                    "    exercise_id : record.exercise_id,",
+                    "    user_exercise_id : record.user_exercise_id,",
+                    "    weight: record.weight,",
+                    "    training: record.training,",
+                    "    training_unit: record.training_unit,",
+                    "    user_id: LanistaTrainer.app.currentCustomer.data.id,",
+                    "    execution_date  : Ext.Date.format (dt, 'Y-m-d h:i:s'),",
+                    "    creator_id: localStorage.getItem(\"user_id\")",
+                    "});",
+                    "",
+                    "newProtocoll.setProxy(new Ext.data.proxy.Ajax({",
+                    "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/exerciseprotocoll/json',",
+                    "        model: 'LanistaTrainer.model.Protocoll',",
+                    "        noCache: false,",
+                    "        reader: {",
+                    "            type: 'json',",
+                    "            root: 'entries'",
+                    "        },",
+                    "        writer: {",
+                    "            type: 'json',",
+                    "            root: 'records',",
+                    "            allowSingle: false",
+                    "        },",
+                    "        headers: {",
+                    "            user_id: localStorage.getItem(\"user_id\")",
+                    "        }",
+                    "    }));",
+                    "",
+                    "newProtocoll.save ({",
+                    "    callback: function( protocoll ) {",
+                    "        var storeProtocolls = controller.getExercisePanel ().down ('#exerciseProtocolls').getStore();",
+                    "        storeProtocolls.load ();",
+                    "    }",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "359d115f-c79b-427e-a2bf-445071b38ca6"
+        },
+        {
             "type": "applicationaction",
             "reference": {
                 "name": "items",
@@ -100,6 +175,7 @@
                     "",
                     "controller.currentPlanExercise = exerciseProtocoll;",
                     "controller.record = record;",
+                    "",
                     "exercisePanel.down('#exercisePanelHeader').data = record.data;",
                     "exercisePanel.down('#exercisePanelContent').items.items[0].data = record.data;",
                     "controller.setActiveItemNew();",
@@ -162,6 +238,7 @@
                     "// *** 2 Show the panel",
                     "exercisePanel.show();",
                     "",
+                    "exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(0));",
                     "LanistaTrainer.app.fireEvent('showExerciseHeaderUpdate');",
                     "LanistaTrainer.app.fireEvent('showStage');",
                     "",
@@ -218,8 +295,8 @@
                 "implHandler": [
                     "var controller = this,",
                     "    record = LanistaTrainer.app.currentCustomer,",
-                    "    divLogo,",
-                    "    divInfoCustomer;",
+                    "    divLogo = '',",
+                    "    divInfoCustomer = '';",
                     "",
                     "if (record) {",
                     "    divLogo = '<div class=\"lansita-header-customer-image-not-found show-info-customer\" id=\"showCustomerDataButton\"><div class=\"lansita-header-customer-logo show-info-customer\" id=\"showCustomerDataButton\" style=\"background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);\"></div></div>';",
@@ -266,7 +343,7 @@
                     "}",
                     "else if ( currentPanel.id == 'configurationTabPanel' ) {",
                     "    var currPlanExercise = controller.currentPlanExercise;",
-                    "    ",
+                    "",
                     "    if (weightTrainingValues){",
                     "        currPlanExercise.weight_min = weightTrainingValues[0];",
                     "        currPlanExercise.training_min = weightTrainingValues[1];",
@@ -280,7 +357,7 @@
                     "    if (sets){",
                     "        currPlanExercise.rounds_min = sets;",
                     "    }",
-                    "    ",
+                    "",
                     "    controller.currentPlanExercise = currPlanExercise;",
                     "    currentPanel.down('#configurationPanel').update ( currPlanExercise );",
                     "",
@@ -310,6 +387,39 @@
                 "scope": "this"
             },
             "designerId": "04b60a01-57a8-4246-81a1-b24750896683"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "exercisePanel #exercisePanelContent",
+                "designer|targetType": "Ext.tab.Panel",
+                "fn": "onTabpanelTabChange",
+                "implHandler": [
+                    "var controller = this;",
+                    "if ( newCard.id == 'info' ) {",
+                    "    controller.showInfoTabCommands();",
+                    "}",
+                    "else if ( newCard.id == 'protocollsTabPanel' ) {",
+                    "    controller.showConfigTabCommands();",
+                    "} else if ( newCard.id == 'configurationTabPanel' ) {",
+                    "    console.log ( \"SHOW CONFIGURATION COMMANDS\" );",
+                    "    controller.showExerciseConfigurationsCommands();",
+                    "} else {",
+                    "    console.log ( \"HIDE PROTOCOLL COMMANDS\" );",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "}"
+                ],
+                "name": "tabchange",
+                "scope": "me"
+            },
+            "designerId": "480210a6-8122-49b7-963c-46b9d09b3be4"
         },
         {
             "type": "basicfunction",
@@ -491,96 +601,6 @@
                 ]
             },
             "designerId": "b5b533c3-e5b1-4518-be66-32b9e514527f"
-        },
-        {
-            "type": "controlleraction",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|controlQuery": "exercisePanel #exercisePanelContent",
-                "designer|targetType": "Ext.tab.Panel",
-                "fn": "onTabpanelTabChange",
-                "implHandler": [
-                    "var controller = this;",
-                    "if ( newCard.id == 'protocollsTabPanel' ) {",
-                    "    controller.showConfigTabCommands();",
-                    "} else if ( newCard.id == 'configurationTabPanel' ) {",
-                    "    console.log ( \"SHOW CONFIGURATION COMMANDS\" );",
-                    "    controller.showExerciseConfigurationsCommands();",
-                    "} else {",
-                    "    console.log ( \"HIDE PROTOCOLL COMMANDS\" );",
-                    "    controller.getRightCommandPanel().items.each(function (item) {",
-                    "        item.hide();",
-                    "    });",
-                    "}"
-                ],
-                "name": "tabchange",
-                "scope": "me"
-            },
-            "designerId": "480210a6-8122-49b7-963c-46b9d09b3be4"
-        },
-        {
-            "type": "controlleraction",
-            "reference": {
-                "name": "listeners",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|controlQuery": "viewport #sendProtocollButton",
-                "designer|targetType": "LanistaButton",
-                "fn": "onsendProtocollButtonClick",
-                "implHandler": [
-                    "var controller = this;",
-                    "var record = this.getExercisePanel ().down ( '#protocollPanel' ).protocollInformation;",
-                    "",
-                    "var dt = new Date();",
-                    "",
-                    "var newProtocoll = Ext.create('LanistaTrainer.model.Protocoll', {",
-                    "    exercise_id : record.exercise_id,",
-                    "    user_exercise_id : record.user_exercise_id,",
-                    "    weight: record.weight,",
-                    "    training: record.training,",
-                    "    training_unit: record.training_unit,",
-                    "    user_id: LanistaTrainer.app.currentCustomer.data.id,",
-                    "    execution_date  : Ext.Date.format (dt, 'Y-m-d h:i:s'),",
-                    "    creator_id: localStorage.getItem(\"user_id\")",
-                    "});",
-                    "",
-                    "newProtocoll.setProxy(new Ext.data.proxy.Ajax({",
-                    "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/exerciseprotocoll/json',",
-                    "        model: 'LanistaTrainer.model.Protocoll',",
-                    "        noCache: false,",
-                    "        reader: {",
-                    "            type: 'json',",
-                    "            root: 'entries'",
-                    "        },",
-                    "        writer: {",
-                    "            type: 'json',",
-                    "            root: 'records',",
-                    "            allowSingle: false",
-                    "        },",
-                    "        headers: {",
-                    "            user_id: localStorage.getItem(\"user_id\")",
-                    "        }",
-                    "    }));",
-                    "",
-                    "newProtocoll.save ({",
-                    "    callback: function( protocoll ) {",
-                    "        var storeProtocolls = controller.getExercisePanel ().down ('#exerciseProtocolls').getStore();",
-                    "        storeProtocolls.load ();",
-                    "    }",
-                    "});",
-                    "",
-                    ""
-                ],
-                "name": "click",
-                "scope": "me"
-            },
-            "designerId": "359d115f-c79b-427e-a2bf-445071b38ca6"
         },
         {
             "type": "controlleraction",
@@ -832,6 +852,39 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|controlQuery": "viewport #videoButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onVideoButtonClick",
+                "implHandler": [
+                    "controller = this;",
+                    "videoPanel = controller.getVideoPanel();",
+                    "",
+                    "",
+                    "videoPanel.html = '<iframe class=\"lanista-video\" width=\"560\" height=\"315\" src=\"' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/video/video/' + this.record.data.ext_id + '.mp4\" frameborder=\"0\" allowfullscreen></iframe>';",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport').add( videoPanel );",
+                    "videoPanel.show ();",
+                    "videoPanel.on ( 'hide', function ( component ) {",
+                    "    component.destroy ();",
+                    "});",
+                    "//videoPanel.down ( '#video' ).play();"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "5639abae-b80b-4dd1-ad61-8d639784053c"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "designer|controlQuery": "viewport #changeSetsButton",
                 "designer|targetType": "LanistaButton",
                 "fn": "onChangeSetsButtonClick",
@@ -844,6 +897,36 @@
                 "scope": "me"
             },
             "designerId": "bccc70a4-76d0-40a2-b4c3-6cb5b36b569a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showInfoTabCommands",
+                "implHandler": [
+                    "controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "var videoButton = Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "    text:  'VIDEO',",
+                    "    itemId: 'videoButton',",
+                    "    glyph: '89@Lanista Icons' //Y",
+                    "",
+                    "});",
+                    "",
+                    "controller.getRightCommandPanel().add(",
+                    "    videoButton",
+                    ");"
+                ]
+            },
+            "designerId": "a2264994-03d9-4c87-b661-916b4c7a945b"
         }
     ]
 }
