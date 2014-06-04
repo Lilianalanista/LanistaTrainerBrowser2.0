@@ -203,12 +203,13 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     },
 
     onVideoButtonClick: function(button, e, eOpts) {
-        controller = this;
-        videoPanel = controller.getVideoPanel();
+        var controller = this,
+            videoPanel = controller.getVideoPanel(),
+            srcVideo = Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/video/video/' + controller.record.data.ext_id + '.mp4';
 
 
-        videoPanel.html = '<iframe class="lanista-video" width="560" height="315" src="' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/video/video/' + this.record.data.ext_id + '.mp4" frameborder="0" allowfullscreen></iframe>';
-
+        //videoPanel.html = '<iframe class="lanista-video" width="560" height="315" src="' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/video/video/' + this.record.data.ext_id + '.mp4" frameborder="0" allowfullscreen></iframe>';
+        videoPanel.html = '<div class="lanista-video" id="video"> <video class="x-media lanista-video-item" id="video_item"> <source src=' + srcVideo + '> </video></div>';
 
 
 
@@ -217,7 +218,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         videoPanel.on ( 'hide', function ( component ) {
             component.destroy ();
         });
-        //videoPanel.down ( '#video' ).play();
+        //videoPanel.down ( '#video_item' ).play();
     },
 
     onChangeSetsButtonClick: function(button, e, eOpts) {

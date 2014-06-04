@@ -67,13 +67,28 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                         {
                             xtype: 'panel',
                             id: 'info',
-                            tpl: [
+                            tpl: Ext.create('Ext.XTemplate', 
                                 '<div class="exercise-description">',
-                                '    <div class="exercise-coaching-key"><span><b>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</b></span><br>{[values["coatchingnotes_"+Ext.ux.LanguageManager.lang]]}</div>',
+                                '    <div class="exercise-coaching-key"><span><b>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</b></span><br>{[Ext.ux.LanguageManager.lang === "EN" ? values.coatchingnotes_EN : Ext.ux.LanguageManager.lang === "ES" ? this.strLines(values.coatchingnotes_ES) :  values.coatchingnotes_DE]}</div>',
                                 '    <div class="exercise-errors"><span><b>{[Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS]}</b></span><br>{[values["mistakes_"+Ext.ux.LanguageManager.lang]]}</div>',
                                 '</div>',
-                                ''
-                            ],
+                                '',
+                                {
+                                    strLines: function(value) {
+                                        var returnValue = '',
+                                            strSplit = [];
+
+                                        for (var i = 0; i < value.length; i++){
+                                            strSplit = value[i].split(",");
+                                            for (var j = 0; j < strSplit.length; j++) {
+                                                returnValue = returnValue + strSplit[j].trim().substr(0,1).toUpperCase() + strSplit[j].trim().substr(1) + '<br>';
+                                            }
+                                            strSplit = [];
+                                        }
+                                        return returnValue;
+                                    }
+                                }
+                            ),
                             title: 'Info'
                         },
                         {

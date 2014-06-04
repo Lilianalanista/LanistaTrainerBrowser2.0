@@ -713,7 +713,7 @@ $base-gradient: "none";
 }
 
 .exercise-description  {
-   margin-left: 270px;
+   margin-left: 325px;
    font-size: 18px;
 }
 
@@ -1275,10 +1275,20 @@ $base-gradient: "none";
 
 //Video Panel
 .lanista-video {
-    z-index: 5;
-    left: 200px
+    width: 100% !important;
+    height: 50% !important;
+    z-index: 6 !important;
 }
 
+.lanista-video-item {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.lanista-copyrights {
+    height: 20px!important;
+}
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

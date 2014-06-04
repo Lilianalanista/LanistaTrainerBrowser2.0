@@ -59,15 +59,17 @@ Ext.define('LanistaTrainer.controller.MainController', {
     },
 
     onShowStage: function(callback) {
-        var leftCommandPanel = this.getLeftCommandPanel();
+        var leftCommandPanel = this.getLeftCommandPanel(),
+            mainStage = this.getMainStage();
 
-        this.getMainStage().el.setStyle('opacity', '1');
+        mainStage.el.setStyle('opacity', '1');
 
         leftCommandPanel.el.setStyle('opacity', '1');
         leftCommandPanel.up().down('#splitterLeft').el.setStyle('opacity', '1');
         leftCommandPanel.up().down('#splitterRight').el.setStyle('opacity', '1');
 
         this.getRightCommandPanel().el.setStyle('opacity', '1');
+
         setTimeout(function(){
             if (callback instanceof Function) callback();
         }, 1000);

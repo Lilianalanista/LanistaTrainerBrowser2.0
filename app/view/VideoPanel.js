@@ -17,9 +17,11 @@ Ext.define('LanistaTrainer.view.VideoPanel', {
     extend: 'Ext.container.Container',
     alias: 'widget.videoPanel',
 
+    cls: 'lanista-video',
     height: 250,
     id: 'videoPanel',
     width: 400,
+    shadow: true,
 
     initComponent: function() {
         var me = this;
