@@ -194,6 +194,61 @@
                             "                    },",
                             "    this,{delegate: '.lansita-header-customer-logo'});",
                             "",
+                            "",
+                            "//***************************************************************",
+                            "//Managing of Searching Filters",
+                            "//***************************************************************",
+                            "",
+                            "el.on('click',function(e,t) {",
+                            "    if ( t.id === 'deleteSearchFilter' )",
+                            "    {",
+                            "        var exerciseStore = Ext.getStore('ExerciseStore');",
+                            "        switch(Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim()) {",
+                            "            case 'Musclegruppe':",
+                            "                ",
+                            "                break;",
+                            "            case 'Übungstyp':",
+                            "                ",
+                            "                break;",
+                            "            case 'Zusätze':",
+                            "                ",
+                            "                break;",
+                            "        }",
+                            "        ",
+                            "        ",
+                            "        ",
+                            "        ",
+                            "        ",
+                            "        ",
+                            "   exerciseStore.loadPage(1);     ",
+                            "   LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');     ",
+                            "   ",
+                            "    }",
+                            "    },",
+                            "      this,{delegate: '.lanista-delete-search'});",
+                            "el.on(",
+                            "    'mouseover', function(e,t) {",
+                            "        if ( t.id === 'deleteSearchFilter' )",
+                            "        {",
+                            "            el.removeCls('item-not-clicked');",
+                            "            el.addCls('item-clicked');",
+                            "            Ext.get(t).removeCls('lanista-color-no-delete');",
+                            "            Ext.get(t).addCls('lanista-color-delete');",
+                            "        }",
+                            "    },",
+                            "        this,{ delegate: '.lanista-delete-search'});",
+                            "el.on(",
+                            "    'mouseout', function(e,t) {",
+                            "        if ( t.id === 'deleteSearchFilter' )",
+                            "        {",
+                            "            el.removeCls('item-clicked');",
+                            "            el.addCls('item-not-clicked');",
+                            "            Ext.get(t).addCls('lanista-color-no-delete');",
+                            "            Ext.get(t).removeCls('lanista-color-delete');",
+                            "        }",
+                            "    },",
+                            "    this,{delegate: '.lanista-delete-search'});",
+                            "",
                             ""
                         ],
                         "name": "afterrender",
@@ -337,6 +392,54 @@
                     "designerId": "7a55967d-79bf-4330-ba90-1215fac38338"
                 }
             ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "lanista-copyright",
+                "id": "lanistaCopyRights"
+            },
+            "designerId": "1267684a-b539-4c35-95b1-a5fb59c82388",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-copyrights-text",
+                        "html": "<span>Lanista</span> Trainingssoftware &#169; 2012. All rights reserved.",
+                        "itemId": "strCopyRights",
+                        "text": null
+                    },
+                    "designerId": "edba9a1d-361f-4dd2-9533-38685bfd7889"
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onMainViewportResize",
+                "implHandler": [
+                    "component.down('#lanistaCopyRights').setY(component.el.dom.clientHeight - 40);",
+                    ""
+                ],
+                "name": "resize",
+                "scope": "me"
+            },
+            "designerId": "c8950e18-c1f1-4399-937a-6b7101fb43a2"
         }
     ]
 }

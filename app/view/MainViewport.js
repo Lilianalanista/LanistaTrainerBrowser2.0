@@ -20,7 +20,8 @@ Ext.define('LanistaTrainer.view.MainViewport', {
     requires: [
         'Ext.XTemplate',
         'Ext.panel.Panel',
-        'Ext.resizer.Splitter'
+        'Ext.resizer.Splitter',
+        'Ext.form.Label'
     ],
 
     id: 'mainViewport',
@@ -126,8 +127,27 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                             }
                         }
                     ]
+                },
+                {
+                    xtype: 'container',
+                    cls: 'lanista-copyright',
+                    id: 'lanistaCopyRights',
+                    items: [
+                        {
+                            xtype: 'label',
+                            cls: 'lanista-copyrights-text',
+                            html: '<span>Lanista</span> Trainingssoftware &#169; 2012. All rights reserved.',
+                            itemId: 'strCopyRights'
+                        }
+                    ]
                 }
-            ]
+            ],
+            listeners: {
+                resize: {
+                    fn: me.onMainViewportResize,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
@@ -266,6 +286,66 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                             },
             this,{delegate: '.lansita-header-customer-logo'});
 
+
+        //***************************************************************
+        //Managing of Searching Filters
+        //***************************************************************
+
+        el.on('click',function(e,t) {
+            if ( t.id === 'deleteSearchFilter' )
+            {
+                var exerciseStore = Ext.getStore('ExerciseStore');
+                switch(Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim()) {
+                    case 'Musclegruppe':
+
+                        break;
+                    case 'Übungstyp':
+
+                        break;
+                    case 'Zusätze':
+
+                        break;
+                }
+
+
+
+
+
+
+           exerciseStore.loadPage(1);
+           LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
+
+            }
+            },
+              this,{delegate: '.lanista-delete-search'});
+        el.on(
+            'mouseover', function(e,t) {
+                if ( t.id === 'deleteSearchFilter' )
+                {
+                    el.removeCls('item-not-clicked');
+                    el.addCls('item-clicked');
+                    Ext.get(t).removeCls('lanista-color-no-delete');
+                    Ext.get(t).addCls('lanista-color-delete');
+                }
+            },
+                this,{ delegate: '.lanista-delete-search'});
+        el.on(
+            'mouseout', function(e,t) {
+                if ( t.id === 'deleteSearchFilter' )
+                {
+                    el.removeCls('item-clicked');
+                    el.addCls('item-not-clicked');
+                    Ext.get(t).addCls('lanista-color-no-delete');
+                    Ext.get(t).removeCls('lanista-color-delete');
+                }
+            },
+            this,{delegate: '.lanista-delete-search'});
+
+
+    },
+
+    onMainViewportResize: function(component, width, height, oldWidth, oldHeight, eOpts) {
+        component.down('#lanistaCopyRights').setY(component.el.dom.clientHeight - 40);
 
     }
 

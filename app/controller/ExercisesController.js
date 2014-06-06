@@ -238,13 +238,13 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
              searchText = controller.textToSearch;
 
         if (store.filters.items.length > 1)
-            filter = (store.filters.items[1].textOptSel ? '<div class="filterTitle"><span>Musclegruppe:  </span> <div class="filterText">' + store.filters.items[1].textOptSel+'</div></div>' : '') + (store.filters.items[0].textOptSel ? '<div class="filterTitle"><span> Übungstyp: </span><div class="filterText">'+store.filters.items[0].textOptSel+'</div></div>' : '') + (store.filters.items[2].textOptSel  ? '<div class="filterTitle"><span> Zusätze:  </span> <div class="filterText">' + store.filters.items[2].textOptSel+'</div></div>' : '');
+            filter = (store.filters.items[1].textOptSel ? '<div class="filterTitle"><span>Musclegruppe  </span> </div> <div class="filterText">' + store.filters.items[1].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + (store.filters.items[0].textOptSel ? '<div class="filterTitle"><span> Übungstyp </span> </div> <div class="filterText">'+store.filters.items[0].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + (store.filters.items[2].textOptSel  ? '<div class="filterTitle"><span> Zusätze  </span> </div> <div class="filterText">' + store.filters.items[2].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '');
 
         searchByTextObj = store.filters.findBy( function(item, key) {
                             return (key === 'filterByWord');
                           });
         if (searchByTextObj)
-            filter = filter ? filter + '<div class="filterTitle">' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + ':  <div class="filterText">' + searchText.toUpperCase() + '</div></div>' : '<div class="filterTitle">' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + ':  <div class="filterText">' + searchText.toUpperCase() + '</div></div>';
+            filter = filter ? filter + '<div class="filterTitle"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + '</span></div>  <div class="filterText">' + searchText.toUpperCase() + '</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '<div class="filterTitle">' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + '</div>  <div class="filterText">' + searchText.toUpperCase() + '</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>';
 
         if (Ext.getStore("ExerciseStore").currentPage > totalPages)
             return false;
@@ -256,7 +256,6 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
             });
         }
-
     },
 
     showCommands: function(callback) {
@@ -601,12 +600,14 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         if (numOfFilters === 0 || numOfFilters === 1)
         {
             store.filters.insert(0,new Ext.util.Filter({
+                id: 'type',
                 property: 'type',
                 value: new RegExp("^$|^(?:[0-9 ]+$)"),
                 root: 'data',
                 exactMatch: true
             }));
             store.filters.insert(1,new Ext.util.Filter({
+                id: 'muscle',
                 property: 'muscle',
                 value: new RegExp("^$|^(?:[0-9 ]+$)"),
                 root: 'data',
@@ -614,6 +615,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             }));
 
             var filterFunction = new Ext.util.Filter({
+                id: 'machine',
                 filterFn: function(item){
                     if (Ext.isEmpty(this.serchValue)) return true;
                     for (var i = 0; i < item.data.addition.length; i++) {
