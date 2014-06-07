@@ -862,7 +862,7 @@
                     "",
                     "",
                     "//videoPanel.html = '<iframe class=\"lanista-video\" width=\"560\" height=\"315\" src=\"' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/video/video/' + this.record.data.ext_id + '.mp4\" frameborder=\"0\" allowfullscreen></iframe>';",
-                    "videoPanel.html = '<div class=\"lanista-video\" id=\"video\"> <video class=\"x-media lanista-video-item\" id=\"video_item\"> <source src=' + srcVideo + '> </video></div>';",
+                    "videoPanel.html = '<div class=\"lanista-video\" id=\"video\"> <video autoplay controls loop name=\"media\" class=\"x-media lanista-video-item\" id=\"video_item\"> <source src=' + srcVideo + '> \"Your browser does not support the video tag.\" </video></div>';",
                     "",
                     "",
                     "",

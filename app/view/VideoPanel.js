@@ -18,6 +18,7 @@ Ext.define('LanistaTrainer.view.VideoPanel', {
     alias: 'widget.videoPanel',
 
     cls: 'lanista-video',
+    floating: true,
     height: 250,
     id: 'videoPanel',
     width: 400,

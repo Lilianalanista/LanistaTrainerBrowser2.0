@@ -9,6 +9,7 @@
         "cls": "lanista-video",
         "designer|userAlias": "videoPanel",
         "designer|userClassName": "VideoPanel",
+        "floating": true,
         "height": 250,
         "html": null,
         "id": "videoPanel",

@@ -70,7 +70,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                             tpl: Ext.create('Ext.XTemplate', 
                                 '<div class="exercise-description">',
                                 '    <div class="exercise-coaching-key"><span><b>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</b></span><br>{[Ext.ux.LanguageManager.lang === "EN" ? values.coatchingnotes_EN : Ext.ux.LanguageManager.lang === "ES" ? this.strLines(values.coatchingnotes_ES) :  values.coatchingnotes_DE]}</div>',
-                                '    <div class="exercise-errors"><span><b>{[Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS]}</b></span><br>{[values["mistakes_"+Ext.ux.LanguageManager.lang]]}</div>',
+                                '    <div class="exercise-errors"><span><b>{[Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS]}</b></span><br>{[this.strLines(values["mistakes_"+Ext.ux.LanguageManager.lang])]}</div>',
                                 '</div>',
                                 '',
                                 {
