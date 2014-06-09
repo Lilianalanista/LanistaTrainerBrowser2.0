@@ -68,7 +68,7 @@ Ext.application({
         'PlanExercisesList',
         'PlanPanel',
         'PlanOptionsPanel',
-        'VideoPanel'
+        'VideoWindow'
     ],
     controllers: [
         'MainController',

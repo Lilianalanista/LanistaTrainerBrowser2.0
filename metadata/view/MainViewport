@@ -418,6 +418,7 @@
             "codeClass": null,
             "userConfig": {
                 "cls": "lanista-copyright",
+                "height": 20,
                 "id": "lanistaCopyRights"
             },
             "designerId": "1267684a-b539-4c35-95b1-a5fb59c82388",
@@ -456,6 +457,27 @@
                 "scope": "me"
             },
             "designerId": "c8950e18-c1f1-4399-937a-6b7101fb43a2"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onMainViewportAfterRender",
+                "implHandler": [
+                    "var el = component.el;",
+                    "el.on('click',function(e,t) {",
+                    "    if (component.down('#videoWindow'))",
+                    "        component.down('#videoWindow').hide();",
+                    "},this,{delegate: '.x-mask'});"
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "3a04ee6f-42b7-4edb-89f2-c20d2c115853"
         }
     ]
 }

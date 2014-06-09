@@ -1310,7 +1310,6 @@ $base-gradient: "none";
     height: 0!important;
 }
 
-
 .lanista-video {
     width: 100% !important;
     height: 75% !important;
@@ -1318,14 +1317,13 @@ $base-gradient: "none";
 }
 
 .lanista-video-item {
-    height: 100%;
     width: 100%;
     position: relative;
 }
 
 //CopyRights
 .lanista-copyright {
-    height: 20px;
+    height: 20px!important;
     left: -100px!important;
     margin: 0px;
     width: 1423px;
@@ -1341,6 +1339,11 @@ $base-gradient: "none";
 .lanista-copyrights-text span{
     font-family: 'Harabara Bold';
 }
+
+.lanista-copyright .x-fit-item {
+    position: absolute!important;
+}
+
 
 //Managing deleting searching exercises
 .lanista-delete-search {

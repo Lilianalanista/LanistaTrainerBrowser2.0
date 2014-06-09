@@ -1,0 +1,38 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": false,
+        "designer|userAlias": "videoWindow",
+        "designer|userClassName": "VideoWindow",
+        "height": 472,
+        "id": "videoWindow",
+        "modal": true,
+        "title": null,
+        "width": 800
+    },
+    "designerId": "000f2be1-80ed-41a1-9723-79c3c0b44412",
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onVideoWindowHide",
+                "implHandler": [
+                    "component.destroy();"
+                ],
+                "name": "hide",
+                "scope": "me"
+            },
+            "designerId": "8603caf3-deef-4fea-a27f-1df95ef50046"
+        }
+    ]
+}

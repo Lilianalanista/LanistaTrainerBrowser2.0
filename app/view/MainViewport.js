@@ -131,6 +131,7 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                 {
                     xtype: 'container',
                     cls: 'lanista-copyright',
+                    height: 20,
                     id: 'lanistaCopyRights',
                     items: [
                         {
@@ -145,6 +146,10 @@ Ext.define('LanistaTrainer.view.MainViewport', {
             listeners: {
                 resize: {
                     fn: me.onMainViewportResize,
+                    scope: me
+                },
+                afterrender: {
+                    fn: me.onMainViewportAfterRender,
                     scope: me
                 }
             }
@@ -363,6 +368,14 @@ Ext.define('LanistaTrainer.view.MainViewport', {
     onMainViewportResize: function(component, width, height, oldWidth, oldHeight, eOpts) {
         component.down('#lanistaCopyRights').setY(component.el.dom.clientHeight - 40);
 
+    },
+
+    onMainViewportAfterRender: function(component, eOpts) {
+        var el = component.el;
+        el.on('click',function(e,t) {
+            if (component.down('#videoWindow'))
+                component.down('#videoWindow').hide();
+        },this,{delegate: '.x-mask'});
     }
 
 });

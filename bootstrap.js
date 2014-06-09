@@ -886,6 +886,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.Temporal": [],
   "LanistaTrainer.view.TrainingPicker": [],
   "LanistaTrainer.view.UserInfoPanel": [],
+  "LanistaTrainer.view.VideoPanel": [],
+  "LanistaTrainer.view.VideoWindow": [],
   "LanistaTrainer.view.Viewport": [],
   "LanistaTrainer.view.WeightPicker": [],
   "LanistaTrainer.view.rightView": []
@@ -2003,6 +2005,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.UserInfoPanel": [
     "widget.userInfoPanel"
+  ],
+  "LanistaTrainer.view.VideoPanel": [
+    "widget.videoPanel"
+  ],
+  "LanistaTrainer.view.VideoWindow": [
+    "widget.videoWindow"
   ],
   "LanistaTrainer.view.Viewport": [],
   "LanistaTrainer.view.WeightPicker": [

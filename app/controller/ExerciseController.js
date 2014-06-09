@@ -44,9 +44,9 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         },
         {
             autoCreate: true,
-            ref: 'videoPanel',
-            selector: '#videoPanel',
-            xtype: 'videoPanel'
+            ref: 'videoWindow',
+            selector: '#videoWindow',
+            xtype: 'videoWindow'
         }
     ],
 
@@ -204,21 +204,18 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
     onVideoButtonClick: function(button, e, eOpts) {
         var controller = this,
-            videoPanel = controller.getVideoPanel(),
+            windowPanel = controller.getVideoWindow(),
+            viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport'),
             srcVideo = Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/video/video/' + controller.record.data.ext_id + '.mp4';
 
-
-        //videoPanel.html = '<iframe class="lanista-video" width="560" height="315" src="' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/video/video/' + this.record.data.ext_id + '.mp4" frameborder="0" allowfullscreen></iframe>';
-        videoPanel.html = '<div class="lanista-video" id="video"> <video autoplay controls loop name="media" class="x-media lanista-video-item" id="video_item"> <source src=' + srcVideo + '> "Your browser does not support the video tag." </video></div>';
-
-
-
-        LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport').add( videoPanel );
-        videoPanel.show ();
-        videoPanel.on ( 'hide', function ( component ) {
+        windowPanel.html = '<div class="lanista-video" id="video"> <video autoplay controls loop name="media" class="x-media lanista-video-item" id="video_item"> <source src=' + srcVideo + '> "Your browser does not support the video tag." </video></div>';
+        viewPort.add( windowPanel );
+        viewPort.down('#lanistaCopyRights').setY(viewPort.el.dom.clientHeight - 40);
+        windowPanel.show ();
+        windowPanel.on ( 'hide', function ( component ) {
             component.destroy ();
         });
-        //videoPanel.down ( '#video_item' ).play();
+
     },
 
     onChangeSetsButtonClick: function(button, e, eOpts) {
