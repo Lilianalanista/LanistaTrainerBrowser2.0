@@ -32,7 +32,7 @@ Ext.define('LanistaTrainer.store.ExerciseInitialStore', {
                 type: 'ajax',
                 idParam: '',
                 noCache: false,
-                url: 'app/model/data/exercises.json'
+                url: 'resources/data/exercises.json'
             }
         }, cfg)]);
     }

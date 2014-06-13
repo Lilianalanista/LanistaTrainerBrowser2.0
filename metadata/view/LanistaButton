@@ -147,6 +147,23 @@
                 "scope": "me"
             },
             "designerId": "dc94d7dc-b18e-4b9e-81c9-bc0f30850957"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonHide",
+                "implHandler": [
+                    "component.destroy();"
+                ],
+                "name": "hide",
+                "scope": "me"
+            },
+            "designerId": "f4224e90-2d16-4d12-88c3-cf40673621f9"
         }
     ]
 }

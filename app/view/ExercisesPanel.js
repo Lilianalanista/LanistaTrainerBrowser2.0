@@ -115,7 +115,7 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
 
         el.on(
             'click', function(e,t) {
-               if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
+               if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')) {
                        itemId = [];
                        itemId[0] = component.getRecord(t).data.id;
                        itemId[1] = component.getRecord(t).data.ext_id;
@@ -174,7 +174,7 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
         var records = dataview.store.data.items,
             panel = LanistaTrainer.app.getController ('ExercisesController').getExercisesPanel();
 
-        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
+        if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') {
             for (var i = 0; i < records.length ; i++) {
                 for(var j = 0; j < panel.selection.length; j++) {
                     if(panel.selection[j][0] === records[i].data.id) {

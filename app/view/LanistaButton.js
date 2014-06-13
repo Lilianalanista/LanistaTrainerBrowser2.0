@@ -40,6 +40,10 @@ Ext.define('LanistaTrainer.view.LanistaButton', {
                 click: {
                     fn: me.onButtonClick,
                     scope: me
+                },
+                hide: {
+                    fn: me.onButtonHide,
+                    scope: me
                 }
             }
         });
@@ -111,6 +115,10 @@ Ext.define('LanistaTrainer.view.LanistaButton', {
             }, 100);
 
         }
+    },
+
+    onButtonHide: function(component, eOpts) {
+        component.destroy();
     }
 
 });

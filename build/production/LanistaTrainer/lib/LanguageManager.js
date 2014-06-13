@@ -25,7 +25,7 @@ Ext.define('Ext.ux.LanguageManager', {
 			self.setLanguage(self.lang);
     	});
     	*/
-    },
+ 	},
  	
  	setLanguage: function( language, callback ) {
  		var self = this;
@@ -35,7 +35,12 @@ Ext.define('Ext.ux.LanguageManager', {
  		script.setAttribute( "type","text/javascript" );
  		script.onreadystatechange = script.onload = function () {
       		self.TranslationArray = Messages;
-            localStorage.setItem( 'lanista-lang', language );
+            
+            
+            console.log('ACTUALIZANDO ARCHIVO…..');
+            
+            
+    		localStorage.setItem( 'lanista-lang', language );
     		if ( callback instanceof Function ) callback();
     		
    		};

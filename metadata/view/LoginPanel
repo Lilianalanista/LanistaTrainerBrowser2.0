@@ -34,13 +34,13 @@
             "userConfig": {
                 "fn": "onLoginPanelAfterRender",
                 "implHandler": [
-                    "",
                     "document.getElementsByName(\"user_email\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_EMAIL;",
                     "document.getElementsByName(\"password\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD;",
                     "component.down(\"#loginTitle\").setText(Ext.ux.LanguageManager.TranslationArray.FORM_TITLE_LOGIN, false);",
                     "component.down(\"#infologinButton\").setText(Ext.ux.LanguageManager.TranslationArray.BUTTON_PASSWORD_QUESTION, false);",
                     "",
                     "document.getElementsByName(\"user_email\")[0].focus();",
+                    "",
                     "",
                     "",
                     ""

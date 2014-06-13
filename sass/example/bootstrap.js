@@ -8,10 +8,10 @@ Ext.Loader.addClassPathMappings({
   "Ext": "../../ext/src",
   "Ext.Msg": "../../ext/src/window/MessageBox.js",
   "Ext.rtl.EventObjectImpl": "../../ext/src/rtl/EventObject.js",
-  "Ext.ux.ConfigManager": "../../lib/ConfigManager.js",
+  "Ext.ux.ConfigManager": "../../lib/ConfigManager_Local.js",
   "Ext.ux.LanguageManager": "../../lib/LanguageManager.js",
   "Ext.ux.PreviewPlugin": "../../lib/PreviewPlugin.js",
-  "Ext.ux.SessionManager": "../../lib/SessionManager.js",
+  "Ext.ux.SessionManager": "../../lib/SessionManager_local.js",
   "LanistaTrainer": "../../app"
 });
 Ext.ClassManager.addNameAlternateMappings({
@@ -877,8 +877,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.LoginPanel": [],
   "LanistaTrainer.view.Main": [],
   "LanistaTrainer.view.MainViewport": [],
-  "LanistaTrainer.view.PlanEditPanel": [],
   "LanistaTrainer.view.PlanExercisesList": [],
+  "LanistaTrainer.view.PlanOptionsPanel": [],
   "LanistaTrainer.view.PlanPanel": [],
   "LanistaTrainer.view.RegistrationPanel": [],
   "LanistaTrainer.view.StopWatch": [],
@@ -886,6 +886,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.Temporal": [],
   "LanistaTrainer.view.TrainingPicker": [],
   "LanistaTrainer.view.UserInfoPanel": [],
+  "LanistaTrainer.view.VideoWindow": [],
   "LanistaTrainer.view.Viewport": [],
   "LanistaTrainer.view.WeightPicker": [],
   "LanistaTrainer.view.rightView": []
@@ -1979,11 +1980,11 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.view.MainViewport": [
     "widget.mainViewport"
   ],
-  "LanistaTrainer.view.PlanEditPanel": [
-    "widget.planEditPanel"
-  ],
   "LanistaTrainer.view.PlanExercisesList": [
     "widget.planExercisesList"
+  ],
+  "LanistaTrainer.view.PlanOptionsPanel": [
+    "widget.planOptionsPanel"
   ],
   "LanistaTrainer.view.PlanPanel": [
     "widget.planPanel"
@@ -2003,6 +2004,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.UserInfoPanel": [
     "widget.userInfoPanel"
+  ],
+  "LanistaTrainer.view.VideoWindow": [
+    "widget.videoWindow"
   ],
   "LanistaTrainer.view.Viewport": [],
   "LanistaTrainer.view.WeightPicker": [

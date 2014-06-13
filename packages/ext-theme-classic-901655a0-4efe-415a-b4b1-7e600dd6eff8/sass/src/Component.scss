@@ -591,8 +591,8 @@ $base-gradient: "none";
 }
 
 .lanista-exercise-filter-plan {
-    margin-left: -45px;
-    margin-top: -50px;
+    margin-left: -457px!important;
+    margin-top: -50px!important;
 }
 
 .filterTitle {
@@ -1357,6 +1357,16 @@ $base-gradient: "none";
 
 .lanista-color-no-delete {
     color: gainsboro!important;
+}
+
+//Recomendations context menu
+#recommendatiosContextMenu {
+    box-shadow: 6px 6px 10px #888888;
+}
+
+//Exercises Menu
+.lanista-exercises-button-menu {
+    box-shadow: 6px 6px 10px #888888;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

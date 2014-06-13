@@ -396,7 +396,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.SEARCH,
-                itemId: 'showExerciseFilterButton',
+                //itemId: 'showExerciseFilterButton',
+                itemId: 'searchButton',
                 menu: menuFilters,
                 menuButtonAlign: 'right',
                 glyph: '90@Lanista Icons' //Z

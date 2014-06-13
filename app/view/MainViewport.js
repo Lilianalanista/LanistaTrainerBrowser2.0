@@ -313,7 +313,7 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                             LanistaTrainer.app.getController ( 'ExercisesController' ).showFilteredExercises('', 3, this.text);
                             break;
                     }
-                    if ( Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim().toUpperCase().indexOf('TEXT') > 0 ) {
+                    if ( Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim().toUpperCase().indexOf('TEXT') !== -1 ) {
                         if (exerciseStore.filters.items.length > 1)
                             exerciseStore.filters.items.splice(3, 1);
                         else
@@ -322,7 +322,7 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                    exerciseStore.loadPage(1);
                    records = exerciseStore.data.items;
                    exercisesPanel = LanistaTrainer.app.getController('ExercisesController').getExercisesPanel();
-                   if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') {
+                   if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')) {
                         for (var i = 0; i < records.length ; i++) {
                             for(var j = 0; j < exercisesPanel.selection.length; j++) {
                                 if(exercisesPanel.selection[j][0] === records[i].data.id) {

@@ -8,10 +8,10 @@ Ext.Loader.addClassPathMappings({
   "Ext": "ext/src",
   "Ext.Msg": "ext/src/window/MessageBox.js",
   "Ext.rtl.EventObjectImpl": "ext/src/rtl/EventObject.js",
-  "Ext.ux.ConfigManager": "lib/ConfigManager.js",
+  "Ext.ux.ConfigManager": "lib/ConfigManager_Local.js",
   "Ext.ux.LanguageManager": "lib/LanguageManager.js",
   "Ext.ux.PreviewPlugin": "lib/PreviewPlugin.js",
-  "Ext.ux.SessionManager": "lib/SessionManager.js",
+  "Ext.ux.SessionManager": "lib/SessionManager_local.js",
   "LanistaTrainer": "app"
 });
 Ext.ClassManager.addNameAlternateMappings({
@@ -886,7 +886,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.Temporal": [],
   "LanistaTrainer.view.TrainingPicker": [],
   "LanistaTrainer.view.UserInfoPanel": [],
-  "LanistaTrainer.view.VideoPanel": [],
   "LanistaTrainer.view.VideoWindow": [],
   "LanistaTrainer.view.Viewport": [],
   "LanistaTrainer.view.WeightPicker": [],
@@ -2005,9 +2004,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.UserInfoPanel": [
     "widget.userInfoPanel"
-  ],
-  "LanistaTrainer.view.VideoPanel": [
-    "widget.videoPanel"
   ],
   "LanistaTrainer.view.VideoWindow": [
     "widget.videoWindow"
