@@ -1318,7 +1318,13 @@ $base-gradient: "none";
 
 .lanista-video-item {
     width: 100%;
+    height: 85%;
     position: relative;
+    background: black;
+}
+
+.lanista-video-window span {
+    background: black!important;
 }
 
 //CopyRights

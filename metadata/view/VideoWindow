@@ -7,13 +7,21 @@
     "codeClass": null,
     "userConfig": {
         "border": false,
+        "cls": "lanista-video-window",
         "designer|userAlias": "videoWindow",
         "designer|userClassName": "VideoWindow",
-        "height": 472,
+        "draggable": false,
+        "height": 510,
         "id": "videoWindow",
         "modal": true,
+        "resizable": false,
+        "style": "background: black;",
         "title": null,
         "width": 800
+    },
+    "configAlternates": {
+        "style": "string",
+        "resizable": "boolean"
     },
     "designerId": "000f2be1-80ed-41a1-9723-79c3c0b44412",
     "cn": [

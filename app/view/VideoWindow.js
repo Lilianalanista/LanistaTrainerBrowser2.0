@@ -18,9 +18,13 @@ Ext.define('LanistaTrainer.view.VideoWindow', {
     alias: 'widget.videoWindow',
 
     border: false,
-    height: 472,
+    cls: 'lanista-video-window',
+    draggable: false,
+    height: 510,
     id: 'videoWindow',
+    style: 'background: black;',
     width: 800,
+    resizable: false,
     modal: true,
 
     initComponent: function() {

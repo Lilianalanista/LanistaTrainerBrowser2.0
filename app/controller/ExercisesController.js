@@ -218,8 +218,12 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         					scope: this
         			});
         		} else {
-                    Ext.getStore('ExerciseStore').loadPage(1);
-        			afterLoadCallback();
+                    setTimeout(function()
+                    {
+                        console.log("EXERCISES JUST CHARGED ");
+                        Ext.getStore('ExerciseStore').loadPage(1);
+                        afterLoadCallback();
+                    }, 500);
         		}
         	},
         	scope: this
