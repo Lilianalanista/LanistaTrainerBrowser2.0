@@ -24,14 +24,16 @@
             "CustomerInfoController",
             "CustomerExercisesController",
             "ExerciseController",
-            "PlanController"
+            "PlanController",
+            "FavoritesController"
         ],
         "models": [
             "ExerciseModel",
             "Customer",
             "Protocoll",
             "PlanExercise",
-            "Plan"
+            "Plan",
+            "Favorites"
         ],
         "name": "LanistaTrainer",
         "panels": [
@@ -49,7 +51,8 @@
             "CustomerStore",
             "ProtocollStore",
             "PlanExerciseStore",
-            "PlanStore"
+            "PlanStore",
+            "FavoritesStore"
         ],
         "views": [
             "MainViewport",
@@ -74,7 +77,8 @@
             "PlanExercisesList",
             "PlanPanel",
             "PlanOptionsPanel",
-            "VideoWindow"
+            "VideoWindow",
+            "FavoritesPanel"
         ]
     },
     "configAlternates": {

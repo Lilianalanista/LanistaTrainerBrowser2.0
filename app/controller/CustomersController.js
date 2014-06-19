@@ -104,8 +104,13 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             customerPanel	= controller.getCustomersPanel(),
             mainStage	= controller.getMainStage(),
             storeCustomers = Ext.getStore('CustomerStore'),
-            viewportXCapacity	= Math.floor(mainStage.getEl().getWidth(true)/207),
+            viewportXCapacity	= Math.round(mainStage.getEl().getWidth(true)/207),
             viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/190) * viewportXCapacity;
+
+        console.log('Viewport Capacity');
+        console.log(viewportXCapacity);
+        console.log(viewportCapacity);
+
 
         storeCustomers.pageSize = viewportCapacity;
         Ext.getStore('CustomerStore').load();
@@ -245,6 +250,8 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_FAVORITES,
                 itemId: 'favoritesCustomersButton',
                 userAlias: 'favoritesCustomersButton',
+                menu: controller.showFavorites(),
+                menuButtonAlign: 'right',
                 glyph: '122@Lanista Icons' //z
             })
         );
@@ -263,6 +270,36 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
     },
 
     loadData: function() {
+
+    },
+
+    showFavorites: function() {
+        var container = this,
+            favoritesStore = Ext.getStore('FavoritesStore'),
+            menu = new Ext.menu.Menu(
+                {
+                    Itemid:'favoritesMenu',
+                    defaults: {
+                        height: '50px',
+                        width: '220px'
+                    },
+                    items:
+                    [
+                        {text: '<span class="lanista-icon">I&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.CREATE_FAVORIT,
+                         handler: function () {
+                                 LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                 LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'FavoritesPanel';
+                                 LanistaTrainer.app.fireEvent('showFavoritesPanel');
+                             });
+                         }
+                        }
+
+                    ]
+                }
+            );
+
+        return menu;
+
 
     },
 

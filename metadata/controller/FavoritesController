@@ -1,0 +1,256 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "favoritesController",
+        "designer|userClassName": "FavoritesController",
+        "id": "favoritesController"
+    },
+    "designerId": "f6908a66-d4db-4a4a-b526-7eac7c5633b7",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "e5fabfaa-21c7-4484-be53-42e0bfcc7aa7"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "f949e771-6530-4a0a-bdf9-22f183796b3f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "d5fb405b-e01b-478d-b378-73524bd84e75"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "e2b40389-3a32-43bf-beb9-06090118f62d"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "favoritesPanel",
+                "selector": "#favoritesPanel",
+                "xtype": "favoritesPanel"
+            },
+            "designerId": "86bdcd3b-1bc7-41b8-9e32-0e919097b0dd"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowFavoritesPanel",
+                "implHandler": [
+                    "var controller = this,",
+                    "    favoritesPanel\t= controller.getFavoritesPanel(),",
+                    "    mainStage\t= controller.getMainStage();",
+                    "",
+                    "mainStage.add( favoritesPanel );",
+                    "",
+                    "favoritesPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons();",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "LanistaTrainer.app.fireEvent('showFavoritesHeaderUpdate');",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();"
+                ],
+                "name": "showFavoritesPanel",
+                "scope": "this"
+            },
+            "designerId": "099fd757-b5be-4a55-beab-71cfc55a60a9"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseFavoritesPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getFavoritesPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closeFavoritesPanel",
+                "scope": "this"
+            },
+            "designerId": "e98dac40-0923-407b-98a2-ba781688ff44"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "favoriteName"
+                ],
+                "fn": "onShowFavoritesHeaderUpdate",
+                "implHandler": [
+                    "var controller = this;",
+                    "",
+                    "controller.getMainViewport().down(\"#header\").update({",
+                    "    info: '',",
+                    "    title: Ext.ux.LanguageManager.TranslationArray.BUTTON_FAVORITES.toUpperCase() + ' - ' + favoriteName",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "showFavoritesHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "c559cf73-5340-4c38-b6a4-6faa970f83f5"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "",
+                    "var controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_TO_FAVORITE,",
+                    "        itemId: 'showAddCustomersButton',",
+                    "        glyph: '108@Lanista Icons' //l",
+                    "    })",
+                    ");",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "f89762e9-f4d3-404a-8498-0deea0ef9b0a"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeFavoritesPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseFavoritesPanelButtonClick",
+                "implHandler": [
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "LanistaTrainer.app.fireEvent('closeFavoritesPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
+                    "});",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "631cad90-3821-4496-aec0-ed7d08cfd847"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "c7b88aa1-c189-49f7-90ab-d5f4618b24be"
+        }
+    ]
+}

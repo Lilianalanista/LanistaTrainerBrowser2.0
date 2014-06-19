@@ -97,8 +97,13 @@
                     "    customerPanel\t= controller.getCustomersPanel(),",
                     "    mainStage\t= controller.getMainStage(),",
                     "    storeCustomers = Ext.getStore('CustomerStore'),",
-                    "    viewportXCapacity\t= Math.floor(mainStage.getEl().getWidth(true)/207),",
+                    "    viewportXCapacity\t= Math.round(mainStage.getEl().getWidth(true)/207),",
                     "    viewportCapacity\t= Math.floor((mainStage.getEl().getHeight(true)-47)/190) * viewportXCapacity;",
+                    "",
+                    "console.log('Viewport Capacity');",
+                    "console.log(viewportXCapacity);",
+                    "console.log(viewportCapacity);",
+                    "",
                     "",
                     "storeCustomers.pageSize = viewportCapacity;",
                     "Ext.getStore('CustomerStore').load();",
@@ -300,6 +305,8 @@
                     "        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_FAVORITES,",
                     "        itemId: 'favoritesCustomersButton',",
                     "        userAlias: 'favoritesCustomersButton',",
+                    "        menu: controller.showFavorites(),",
+                    "        menuButtonAlign: 'right',",
                     "        glyph: '122@Lanista Icons' //z",
                     "    })",
                     ");",
@@ -462,6 +469,47 @@
                 "scope": "me"
             },
             "designerId": "17e281df-3088-4d00-a334-23dbe579efa1"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showFavorites",
+                "implHandler": [
+                    "var container = this,",
+                    "    favoritesStore = Ext.getStore('FavoritesStore'),",
+                    "    menu = new Ext.menu.Menu(",
+                    "        {",
+                    "            Itemid:'favoritesMenu',",
+                    "            defaults: {",
+                    "                height: '50px',",
+                    "                width: '220px'",
+                    "            },",
+                    "            items:",
+                    "            [",
+                    "                {text: '<span class=\"lanista-icon\">I&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.CREATE_FAVORIT,",
+                    "                 handler: function () {",
+                    "                         LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "                         LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'FavoritesPanel';",
+                    "                         LanistaTrainer.app.fireEvent('showFavoritesPanel');",
+                    "                     });",
+                    "                 }",
+                    "                }",
+                    "                ",
+                    "            ]",
+                    "        }",
+                    "    );",
+                    "",
+                    "return menu;",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "690b7364-df52-471c-b49c-3059165838ba"
         }
     ]
 }

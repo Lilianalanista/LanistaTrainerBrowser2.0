@@ -1,0 +1,59 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "FavoritesStore",
+        "model": "Favorites",
+        "storeId": "FavoritesStore"
+    },
+    "designerId": "10c42348-c2c6-47db-9fa0-351fe749d6a8",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "headers": [
+                    "{ ",
+                    "    user_id: localStorage.getItem(\"user_id\")",
+                    "}"
+                ],
+                "url": "/tpmanager/favorites/json"
+            },
+            "designerId": "e7db49ca-7a8c-4850-bab8-22f67280c392",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "entries"
+                    },
+                    "designerId": "4f39d1e0-efba-40a6-a7cd-05c07eaa5ef8"
+                },
+                {
+                    "type": "Ext.data.writer.Json",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "results"
+                    },
+                    "designerId": "f9f66231-f2f4-441f-a428-7691bfbf87c9"
+                }
+            ]
+        }
+    ]
+}

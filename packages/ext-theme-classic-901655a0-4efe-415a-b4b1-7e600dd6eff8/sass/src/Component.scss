@@ -321,6 +321,7 @@ $base-gradient: "none";
 
 .menu-lanista-button {
     text-transform: uppercase;
+    box-shadow: 6px 6px 10px #888888;
 }
 
 .x-menu .x-menu-icon-separator {
@@ -1366,14 +1367,11 @@ $base-gradient: "none";
 }
 
 //Recomendations context menu
-#recommendatiosContextMenu {
-    box-shadow: 6px 6px 10px #888888;
-}
+//#recommendatiosContextMenu {
+//    box-shadow: 6px 6px 10px #888888;
+//}
 
-//Exercises Menu
-.lanista-exercises-button-menu {
-    box-shadow: 6px 6px 10px #888888;
-}
+
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

@@ -1,0 +1,19 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "border": false,
+        "designer|userAlias": "favoritesPanel",
+        "designer|userClassName": "FavoritesPanel",
+        "header": false,
+        "height": 250,
+        "id": "favoritesPanel",
+        "title": null,
+        "width": 400
+    },
+    "designerId": "53867acf-58a7-45dd-8151-07bb4b75c49e"
+}

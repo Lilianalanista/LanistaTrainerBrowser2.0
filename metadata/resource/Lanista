@@ -10,7 +10,7 @@
     },
     "designerId": "901655a0-4efe-415a-b4b1-7e600dd6eff8",
     "storage": {
-        "needsCompile": true,
+        "needsCompile": false,
         "simple": {
             "pkgVersion": 1,
             "pkgPath": "packages"
@@ -741,6 +741,7 @@
                     "",
                     ".menu-lanista-button {",
                     "    text-transform: uppercase;",
+                    "    box-shadow: 6px 6px 10px #888888;",
                     "}",
                     "",
                     ".x-menu .x-menu-icon-separator {",
@@ -1786,14 +1787,11 @@
                     "}",
                     "",
                     "//Recomendations context menu",
-                    "#recommendatiosContextMenu {",
-                    "    box-shadow: 6px 6px 10px #888888;",
-                    "}",
+                    "//#recommendatiosContextMenu {",
+                    "//    box-shadow: 6px 6px 10px #888888;",
+                    "//}",
                     "",
-                    "//Exercises Menu",
-                    ".lanista-exercises-button-menu {",
-                    "    box-shadow: 6px 6px 10px #888888;",
-                    "}"
+                    ""
                 ]
             },
             "designerId": "eefb4d7e-74c5-4d9e-ae6f-2258aa8e8753"

@@ -25,6 +25,7 @@ Ext.define('LanistaTrainer.view.VideoWindow', {
     style: 'background: black;',
     width: 800,
     resizable: false,
+    closable: false,
     modal: true,
 
     initComponent: function() {

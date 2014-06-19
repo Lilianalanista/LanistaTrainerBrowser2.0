@@ -298,7 +298,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         tools = new Ext.menu.Menu(
             {
                 Itemid:'exercisesMenu',
-                cls:'lanista-exercises-button-menu',
+                cls:'lanista-button-menu',
                 defaults: {
                     height: '50px',
                     width: '220px'
@@ -321,15 +321,12 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                         if (textfield.value.length > 1)
                                             container.searchWordExercisesByText(textfield.value);
                                         else{
-                                            if (Ext.ComponentManager.get('recommendatiosContextMenu')){
-                                                Ext.ComponentManager.get('recommendatiosContextMenu').removeAll();
-                                                Ext.ComponentManager.get('recommendatiosContextMenu').hide();
-                                            }
-                                            //if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel'))
+                                                if (Ext.ComponentManager.get('recommendatiosContextMenu')){
+                                                    Ext.ComponentManager.get('recommendatiosContextMenu').removeAll();
+                                                    Ext.ComponentManager.get('recommendatiosContextMenu').hide();
+                                                }
                                                 container.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
-                                            //else
-                                            //    container.getRightCommandPanel().getComponent('showExerciseFilterButton').menu.getComponent('searchText').focus();
-                                        }
+                                            }
                                     },
                                     delay:100
                                  },
@@ -743,6 +740,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                 width: 100,
                                 height: (searchList.length * 20) < 200 ? searchList.length * 20 : 200,
                                 autoscroll: true,
+                                cls: 'menu-lanista-button',
                                 id: 'recommendatiosContextMenu'
                             });
                             contextMenu.on('hide', function(component) {
