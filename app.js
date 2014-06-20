@@ -263,6 +263,23 @@ Ext.application({
                     user_id: userId
                 }
             }));
+
+            Ext.getStore('FavoritesStore').setProxy(new Ext.data.proxy.Ajax({
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/favorites/json',
+                model: 'Favorites',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    root: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    root: 'results'
+                },
+                headers: {
+                    user_id: userId
+                }
+            }));
         }
 
     }

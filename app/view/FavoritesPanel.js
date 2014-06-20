@@ -17,6 +17,12 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.favoritesPanel',
 
+    requires: [
+        'Ext.view.View',
+        'Ext.XTemplate',
+        'Ext.panel.Tool'
+    ],
+
     border: false,
     height: 250,
     id: 'favoritesPanel',
@@ -26,7 +32,134 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
     initComponent: function() {
         var me = this;
 
+        Ext.applyIf(me, {
+            items: [
+                {
+                    xtype: 'dataview',
+                    cls: 'tpl-gpclg44s',
+                    height: 250,
+                    id: 'viewCustomersFavorites',
+                    tpl: [
+                        '<tpl for=".">',
+                        '    <div class="customer-item">',
+                        '        <div class="customer-list-image customer-info-item" id="customerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + \'/tpmanager/img/p/\' + values[\'id\'] + \'_photo.jpg\']});"></div>',
+                        '        <div class="customer-list-background customer-info-item" id="customerItemInfo" style="customer-image">j</div>',
+                        '        <div class="customer-list-firstname">{[values[\'first_name\']]}</div>        		',
+                        '        <div class="customer-list-lastname">{[values[\'last_name\']]}</div>',
+                        '    </div>',
+                        '</tpl>  ',
+                        ''
+                    ],
+                    width: 400,
+                    itemSelector: 'div.customer-item',
+                    listeners: {
+                        hide: {
+                            fn: me.onDataviewHide1,
+                            scope: me
+                        },
+                        afterrender: {
+                            fn: me.onViewCustomersAfterRender1,
+                            scope: me
+                        },
+                        itemclick: {
+                            fn: me.onViewCustomersItemClick1,
+                            scope: me
+                        }
+                    }
+                }
+            ],
+            tools: [
+                {
+                    xtype: 'tool',
+                    id: 'previousCustomers1',
+                    type: 'left'
+                },
+                {
+                    xtype: 'tool',
+                    id: 'nextCustomers1',
+                    type: 'right'
+                }
+            ]
+        });
+
         me.callParent(arguments);
+    },
+
+    onDataviewHide1: function(component, eOpts) {
+        component.destroy();
+    },
+
+    onViewCustomersAfterRender1: function(component, eOpts) {
+
+        var el = component.el;
+        el.on(
+            'click', function(e,t) {
+                                    if ( t.id === 'customerItemInfo' )
+                                            el.addCls('item-not-clicked');
+            },
+            this, {delegate: '.customer-info-item'});
+        el.on(
+            'mouseover', function(e,t) {
+                                if ( t.id === 'customerItemInfo' )
+                                {
+                                    el.removeCls('item-not-clicked');
+                                    el.addCls('item-clicked');
+                                }
+                            },
+            this,{ delegate: '.customer-info-item'});
+        el.on(
+            'mouseout', function(e,t) {
+                                if ( t.id === 'customerItemInfo' )
+                                {
+                                    el.removeCls('item-clicked');
+                                    el.addCls('item-not-clicked');
+                                }
+                            },
+            this,{delegate: '.customer-info-item'});
+
+
+    },
+
+    onViewCustomersItemClick1: function(dataview, record, item, index, e, eOpts) {
+
+        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'DashboardPanel'){
+            LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                LanistaTrainer.app.currentCustomer = record;
+                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
+                LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
+            });
+        }
+        else{
+            Ext.Ajax.request({
+                url: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/plan/clone",
+                method: 'post',
+                params: { plan_id: LanistaTrainer.app.getController('PlanController').plan.data.id,
+                         user_id: record.data.id},
+                headers: { user_id: localStorage.getItem("user_id") },
+                failure : function(response){
+                    data = Ext.decode(response.responseText);
+                    console.log ( data );
+                    Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, '', Ext.emptyFn );
+                },
+                success: function(response, opts) {
+                    data = Ext.decode ( response.responseText);
+                    if (data.success === true)
+                    {
+                        Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message,
+                                      function(){
+                                          LanistaTrainer.app.currentCustomer = record;
+                                          LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+                                          LanistaTrainer.app.fireEvent("closeCustomersPanel", function() {
+                                              LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                                              LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController('PlanController').planname);
+                                          });
+                                      });
+                    } else {
+                        Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, data.message, Ext.emptyFn);
+                    }
+                }
+            });
+        }
     }
 
 });

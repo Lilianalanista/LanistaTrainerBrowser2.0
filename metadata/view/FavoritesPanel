@@ -15,5 +15,195 @@
         "title": null,
         "width": 400
     },
-    "designerId": "53867acf-58a7-45dd-8151-07bb4b75c49e"
+    "designerId": "53867acf-58a7-45dd-8151-07bb4b75c49e",
+    "cn": [
+        {
+            "type": "Ext.view.View",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "tpl-gpclg44s",
+                "height": 250,
+                "id": "viewCustomersFavorites",
+                "itemSelector": "div.customer-item",
+                "store": null,
+                "width": 400
+            },
+            "designerId": "70473733-6c32-44da-bcb5-2d8018b1d026",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onDataviewHide1",
+                        "implHandler": [
+                            "component.destroy();"
+                        ],
+                        "name": "hide",
+                        "scope": "me"
+                    },
+                    "designerId": "1e459bb3-ded8-482e-b0aa-bf7dd8bb5017"
+                },
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "tpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tpl",
+                        "implHandler": [
+                            "<tpl for=\".\">",
+                            "    <div class=\"customer-item\">",
+                            "        <div class=\"customer-list-image customer-info-item\" id=\"customerItemInfo\" style=\"background-image: url({[Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/' + values['id'] + '_photo.jpg']});\"></div>",
+                            "        <div class=\"customer-list-background customer-info-item\" id=\"customerItemInfo\" style=\"customer-image\">j</div>",
+                            "        <div class=\"customer-list-firstname\">{[values['first_name']]}</div>        \t\t",
+                            "        <div class=\"customer-list-lastname\">{[values['last_name']]}</div>",
+                            "    </div>",
+                            "</tpl>  ",
+                            ""
+                        ]
+                    },
+                    "designerId": "c6271d74-916f-4b2a-bf38-3062dca4c1ce"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onViewCustomersAfterRender1",
+                        "implHandler": [
+                            "",
+                            "var el = component.el;",
+                            "el.on(",
+                            "    'click', function(e,t) {",
+                            "                            if ( t.id === 'customerItemInfo' )",
+                            "                                    el.addCls('item-not-clicked');",
+                            "    },",
+                            "    this, {delegate: '.customer-info-item'});",
+                            "el.on(",
+                            "    'mouseover', function(e,t) {",
+                            "                        if ( t.id === 'customerItemInfo' )",
+                            "                        {",
+                            "                            el.removeCls('item-not-clicked');",
+                            "                            el.addCls('item-clicked');",
+                            "                        }",
+                            "                    },",
+                            "    this,{ delegate: '.customer-info-item'});",
+                            "el.on(",
+                            "    'mouseout', function(e,t) {",
+                            "                        if ( t.id === 'customerItemInfo' )",
+                            "                        {",
+                            "                            el.removeCls('item-clicked');",
+                            "                            el.addCls('item-not-clicked');",
+                            "                        }",
+                            "                    },",
+                            "    this,{delegate: '.customer-info-item'});",
+                            "",
+                            ""
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "85d288e6-e782-4ac3-a869-fdfee4d8c42f"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onViewCustomersItemClick1",
+                        "implHandler": [
+                            "",
+                            "if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'DashboardPanel'){",
+                            "    LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                            "        LanistaTrainer.app.currentCustomer = record;",
+                            "        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';",
+                            "        LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');",
+                            "    });",
+                            "}",
+                            "else{",
+                            "    Ext.Ajax.request({",
+                            "        url: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \"/tpmanager/plan/clone\",",
+                            "        method: 'post',",
+                            "        params: { plan_id: LanistaTrainer.app.getController('PlanController').plan.data.id,",
+                            "                 user_id: record.data.id},",
+                            "        headers: { user_id: localStorage.getItem(\"user_id\") },",
+                            "        failure : function(response){",
+                            "            data = Ext.decode(response.responseText);",
+                            "            console.log ( data );",
+                            "            Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, '', Ext.emptyFn );",
+                            "        },",
+                            "        success: function(response, opts) {",
+                            "            data = Ext.decode ( response.responseText);",
+                            "            if (data.success === true)",
+                            "            {",
+                            "                Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message,",
+                            "                              function(){",
+                            "                                  LanistaTrainer.app.currentCustomer = record;",
+                            "                                  LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                            "                                  LanistaTrainer.app.fireEvent(\"closeCustomersPanel\", function() {",
+                            "                                      LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';",
+                            "                                      LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController('PlanController').planname);",
+                            "                                  });",
+                            "                              });",
+                            "            } else {",
+                            "                Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, data.message, Ext.emptyFn);",
+                            "            }",
+                            "        }",
+                            "    });",
+                            "}"
+                        ],
+                        "name": "itemclick",
+                        "scope": "me"
+                    },
+                    "designerId": "fe7a93ce-f847-4f6b-831e-40dc8db3341d"
+                }
+            ]
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|createAlias": "",
+                "designer|displayName": "previousCustomers",
+                "id": "previousCustomers1",
+                "type": "left"
+            },
+            "designerId": "c2924540-408d-4b06-8de5-58b19c242551"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|createAlias": "",
+                "designer|displayName": "",
+                "id": "nextCustomers1",
+                "type": "right"
+            },
+            "designerId": "e2b780d5-2817-40f4-94a7-5c4399cf0833"
+        }
+    ]
 }

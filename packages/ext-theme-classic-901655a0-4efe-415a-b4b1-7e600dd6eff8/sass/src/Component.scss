@@ -1366,11 +1366,14 @@ $base-gradient: "none";
     color: gainsboro!important;
 }
 
-//Recomendations context menu
-//#recommendatiosContextMenu {
-//    box-shadow: 6px 6px 10px #888888;
-//}
+//Color for Header for Customers Favorites
+.lanista-header-color-favorites {
+    background-color: rgba(52,172,251,0.2)!important;
+}
 
+.lanista-header-color-favorites .header-title {
+    color: #34acfb!important;
+}
 
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

@@ -52,7 +52,56 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
     },
 
-    onShowFavoritesPanel: function(callback) {
+    onPromtNewFavorite: function(title, message) {
+        var controller = this;
+        Ext.Msg.prompt (title, message, function (response, favoriteName) {
+            if ( response == 'ok' ) {
+                var userId = localStorage.getItem("user_id"),
+                    favoriteModel = Ext.create('LanistaTrainer.model.Favorites', {
+                        name   : favoriteName,
+                        change_date: Date.now(),
+                        type: 1,
+                        creator_id: userId
+                    });
+                favoriteModel.setProxy(new Ext.data.proxy.Ajax({
+                    url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/favorites/json',
+                    noCache: false,
+                    reader: {
+                        type: 'json',
+                        root: 'entries'
+                    },
+                    writer: {
+                        type: 'json',
+                        root: 'records',
+                        allowSingle: false
+                    },
+                    headers: {
+                        user_id: userId
+                    }
+                }));
+                favoriteModel.save({
+                    callback: function(record,event,success) {
+                        if (success)
+                        {
+                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'FavoritesPanel';
+                            LanistaTrainer.app.fireEvent('showFavoritesPanel', record);
+                        }
+                        else
+                        {
+                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_CONFIRMATION_ERROR_1, function () {
+                                LanistaTrainer.app.fireEvent('showCustomersPanel');
+                            });
+                        }
+                    }
+                });
+            } else
+                LanistaTrainer.app.fireEvent('showCustomersPanel');
+        });
+
+
+    },
+
+    onShowFavoritesPanel: function(favoriteRecord, callback) {
         var controller = this,
             favoritesPanel	= controller.getFavoritesPanel(),
             mainStage	= controller.getMainStage();
@@ -64,11 +113,12 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
         }, controller);
 
         // **** 1 create the commands
-        LanistaTrainer.app.setStandardButtons();
+        LanistaTrainer.app.setStandardButtons('closeFavoritesPanelButton');
         this.showCommands();
 
         // *** 2 Show the panel
-        LanistaTrainer.app.fireEvent('showFavoritesHeaderUpdate');
+        controller.getMainViewport().down("#header").addCls('lanista-header-color-favorites');
+        LanistaTrainer.app.fireEvent('showFavoritesHeaderUpdate', favoriteRecord.name);
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
@@ -87,6 +137,8 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
             controller.getLeftCommandPanel().items.each(function (item) {
                 item.hide();
             });
+
+            controller.getMainViewport().down("#header").removeCls('lanista-header-color-favorites');
             controller.getFavoritesPanel().hide();
             if (callback instanceof Function) callback();
         });
@@ -115,6 +167,8 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_TO_FAVORITE,
                 itemId: 'showAddCustomersButton',
+                menu: controller.menuFavorites(),
+                menuButtonAlign: 'right',
                 glyph: '108@Lanista Icons' //l
             })
         );
@@ -129,6 +183,70 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
     },
 
+    filterCustomers: function() {
+
+
+        var filterFunction = new Ext.util.Filter({
+                id: 'machine',
+                filterFn: function(item){
+                    if (Ext.isEmpty(this.serchValue)) return true;
+                    for (var i = 0; i < item.data.addition.length; i++) {
+                        if (item.data.addition[i] ==  this.serchValue)
+                            return true;
+                    }
+                    return false;
+                }
+            });
+
+            store.filters.insert(2,filterFunction);
+    },
+
+    menuFavorites: function() {
+        var menu = new Ext.menu.Menu(
+            {
+                Itemid:'favoritesMenu',
+                defaults: {
+                    height: '50px',
+                    width: '220px'
+                },
+                items:
+                [
+                    {text: '<span class="lanista-icon">L&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_TO_FAVORITE,
+                     handler: function () {
+
+                         console.log('Paneles.....');
+                         console.log(LanistaTrainer.app.panels);
+
+
+
+                         LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomersPanel';
+                             LanistaTrainer.app.fireEvent('showCustomersPanel', favoriteRecord);
+                         });
+                     }
+                    },
+                    {text: '<span class="lanista-icon">H&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_REMOVE_FROM_FAVORITE,
+                     handler: function () {
+
+                     }
+                    },
+                    {text: '<span class="lanista-icon">I&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_CHANGE_FAVORITE_NAME,
+                     handler: function () {
+
+                     }
+                    },
+                    {text: '<span class="lanista-icon">u&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_REMOVE_VAFORITE,
+                     handler: function () {
+
+                     }
+                    }
+                ]
+            }
+        );
+
+        return menu;
+    },
+
     init: function(application) {
         this.control({
             "viewport #closeFavoritesPanelButton": {
@@ -137,6 +255,10 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
         });
 
         application.on({
+            promtNewFavorite: {
+                fn: this.onPromtNewFavorite,
+                scope: this
+            },
             showFavoritesPanel: {
                 fn: this.onShowFavoritesPanel,
                 scope: this

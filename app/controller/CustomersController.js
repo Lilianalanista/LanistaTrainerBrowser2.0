@@ -276,6 +276,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
     showFavorites: function() {
         var container = this,
             favoritesStore = Ext.getStore('FavoritesStore'),
+            favoriteName,
             menu = new Ext.menu.Menu(
                 {
                     Itemid:'favoritesMenu',
@@ -287,16 +288,37 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                     [
                         {text: '<span class="lanista-icon">I&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.CREATE_FAVORIT,
                          handler: function () {
-                                 LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
-                                 LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'FavoritesPanel';
-                                 LanistaTrainer.app.fireEvent('showFavoritesPanel');
-                             });
-                         }
+                                     LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                             LanistaTrainer.app.fireEvent("promtNewFavorite", Ext.ux.LanguageManager.TranslationArray.MSG_FAVORIT_NAME_1, Ext.ux.LanguageManager.TranslationArray.MSG_FAVORIT_NAME_2 );
+                                     });
+                                  }
                         }
-
                     ]
                 }
             );
+
+        favoritesStore.getProxy().url = Ext.ux.ConfigManager.getRoot() + '/tpmanager/favorites/json';
+        favoritesStore.load({
+            callback: function(records, operation, success) {
+                for (var i = 0; i<records.length; i++){
+                    favoriteName = records[i].data.name;
+                    menu.add([
+                        {
+                            text: records[i].data.name,
+                            handler: function () {
+                                favoriteName = this.text;
+                                favoriteRecord = this.record;
+                                LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'FavoritesPanel';
+                                    LanistaTrainer.app.fireEvent('showFavoritesPanel', favoriteRecord);
+                                });
+                            },
+                            record: records[i].data
+                        }
+                    ]);
+                }
+            }
+        });
 
         return menu;
 
