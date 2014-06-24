@@ -27,7 +27,6 @@ Ext.define('LanistaTrainer.store.CustomerStore', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             model: 'LanistaTrainer.model.Customer',
-            remoteFilter: true,
             remoteSort: true,
             storeId: 'CustomerStore',
             proxy: {

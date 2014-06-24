@@ -54,11 +54,19 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
     onCloseCustomersPanelButtonClick: function(button, e, eOpts) {
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeCustomersPanel', function() {
-            if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DashboardPanel')
+            if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DashboardPanel')
                 LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
             else {
-                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
-                LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController('PlanController').planname);
+                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'FavoritesPanel'){
+                    LanistaTrainer.app.getController('FavoritesController').saveFavorite(function(){
+                        LanistaTrainer.app.fireEvent('showFavoritesPanel', LanistaTrainer.app.getController('FavoritesController').favorites);
+                    });
+                }
+                else{
+
+                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                    LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController('PlanController').planname);
+                }
             }
         });
 
@@ -107,12 +115,9 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             viewportXCapacity	= Math.round(mainStage.getEl().getWidth(true)/207),
             viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/190) * viewportXCapacity;
 
-        console.log('Viewport Capacity');
-        console.log(viewportXCapacity);
-        console.log(viewportCapacity);
-
-
         storeCustomers.pageSize = viewportCapacity;
+
+        Ext.getStore('CustomerStore').clearFilter();
         Ext.getStore('CustomerStore').load();
 
         mainStage.add( customerPanel );
@@ -136,7 +141,6 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
 
         // *** 5 Load data
         controller.loadData();
-
 
     },
 
@@ -236,36 +240,36 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             })
         );
 
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.NEW,
-                itemId: 'newCustomerButton',
-                userAlias: 'newCustomerButton',
-                glyph: '107@Lanista Icons' //k
-            })
-        );
+        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'FavoritesPanel'){
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.NEW,
+                    itemId: 'newCustomerButton',
+                    userAlias: 'newCustomerButton',
+                    glyph: '107@Lanista Icons' //k
+                })
+            );
 
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_FAVORITES,
-                itemId: 'favoritesCustomersButton',
-                userAlias: 'favoritesCustomersButton',
-                menu: controller.showFavorites(),
-                menuButtonAlign: 'right',
-                glyph: '122@Lanista Icons' //z
-            })
-        );
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.FOLDER_CREATE,
+                    itemId: 'favoritesCustomersButton',
+                    userAlias: 'favoritesCustomersButton',
+                    menu: controller.showFavorites(),
+                    menuButtonAlign: 'right',
+                    glyph: '122@Lanista Icons' //z
+                })
+            );
 
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_RECENTLY,
-                itemId: 'recentCustomersButton',
-                userAlias: 'recentCustomersButton',
-                glyph: '121@Lanista Icons' //y
-            })
-        );
-
-
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_RECENTLY,
+                    itemId: 'recentCustomersButton',
+                    userAlias: 'recentCustomersButton',
+                    glyph: '121@Lanista Icons' //y
+                })
+            );
+        }
 
     },
 
@@ -313,7 +317,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                                     LanistaTrainer.app.fireEvent('showFavoritesPanel', favoriteRecord);
                                 });
                             },
-                            record: records[i].data
+                            record: records[i]
                         }
                     ]);
                 }

@@ -239,13 +239,16 @@ $base-gradient: "none";
 
 .lanista-command-button {
 	height: 100px!important;
-	//width: 80px!important;
 	margin-left: 7px;
 	padding: 0px!important;
 	color: rgb(74,172,216);
     background-image: none;
     background-color: transparent;
     border: 0;
+}
+
+.lanista-command-button .x-btn-inner{
+    white-space: inherit;
 }
 
 //Red button
@@ -320,8 +323,12 @@ $base-gradient: "none";
 
 
 .menu-lanista-button {
-    text-transform: uppercase;
+    //text-transform: uppercase;
     box-shadow: 6px 6px 10px #888888;
+}
+
+.menu-lanista-button .x-menu-item-text{
+    font-size: 12px;
 }
 
 .x-menu .x-menu-icon-separator {
@@ -1374,6 +1381,16 @@ $base-gradient: "none";
 .lanista-header-color-favorites .header-title {
     color: #34acfb!important;
 }
+
+//Color for favorites items selected
+.lanista-list-itemrounded-selected .customer-list-background {
+    box-shadow: 0 0 20px #59d76e;
+}
+
+#viewCustomers, #viewCustomersFavorites {
+    top: 10px;
+}
+
 
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

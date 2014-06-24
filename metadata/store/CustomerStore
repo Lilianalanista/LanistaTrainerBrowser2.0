@@ -9,7 +9,6 @@
         "designer|userClassName": "CustomerStore",
         "model": "Customer",
         "pageSize": null,
-        "remoteFilter": true,
         "remoteSort": true,
         "requires": [
             "Ext.data.proxy.Ajax",

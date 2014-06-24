@@ -86,6 +86,10 @@ Ext.define('LanistaTrainer.view.CustomersPanel', {
                         itemclick: {
                             fn: me.onViewCustomersItemClick,
                             scope: me
+                        },
+                        viewready: {
+                            fn: me.onViewCustomersViewReady,
+                            scope: me
                         }
                     }
                 }
@@ -143,6 +147,9 @@ Ext.define('LanistaTrainer.view.CustomersPanel', {
     },
 
     onViewCustomersItemClick: function(dataview, record, item, index, e, eOpts) {
+        var favorites = "",
+            favoritesArray = [],
+            pos;
 
         if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'DashboardPanel'){
             LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
@@ -153,12 +160,32 @@ Ext.define('LanistaTrainer.view.CustomersPanel', {
         }
         else{
             if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel'){
+                favorites = new String(LanistaTrainer.app.getController('FavoritesController').favorites.data.objects);
 
+                if (favorites.valueOf()){
+                    if (favorites.indexOf(",") > 0)
+                        favoritesArray = favorites.split(",");
+                    else
+                        favoritesArray[0] = favorites.valueOf();
+                }
 
-
-                alert('Favoritos!!');
-
-
+                pos = favoritesArray.indexOf(record.data.id.toString());
+                if (pos >= 0){
+                    Ext.get(item).removeCls ( 'lanista-list-itemrounded-selected' );
+                    favoritesArray.splice(pos,1);
+                    favorites = "";
+                    if (favoritesArray.length > 0){
+                        favorites = favoritesArray[0];
+                        for (var i = 1; i < favoritesArray.length; i++){
+                            favorites = favorites + ',' + favoritesArray[i];
+                        }
+                    }
+                    LanistaTrainer.app.getController('FavoritesController').favorites.data.objects = favorites;
+                }
+                else{
+                    Ext.get(item).addCls ( 'lanista-list-itemrounded-selected' );
+                    LanistaTrainer.app.getController('FavoritesController').favorites.data.objects = favorites.valueOf() ? favorites + ',' + record.data.id : record.data.id;
+                 }
             }
             else{
                 Ext.Ajax.request({
@@ -190,6 +217,34 @@ Ext.define('LanistaTrainer.view.CustomersPanel', {
                         }
                     }
                 });
+            }
+        }
+    },
+
+    onViewCustomersViewReady: function(dataview, eOpts) {
+        var records,
+            favorites,
+            favoritesArray = [],
+            panel = LanistaTrainer.app.getController ('CustomersController').getCustomersPanel();
+
+        if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {
+            records = dataview.store.data.items;
+            favorites = LanistaTrainer.app.getController ('FavoritesController').favorites.data.objects;
+            favoritesArray = favorites !== "" ? favorites.split(',') : [];
+
+            if (favoritesArray.length > 0 ){
+                for (var i = 0; i < records.length ; i++) {
+                    for (var j = 0; j < favoritesArray.length; j++) {
+                        if (Number(favoritesArray[j]) === Number(records[i].data.id)) {
+                            break;
+                        }
+                    }
+
+                    if (j !== favoritesArray.length){
+                        itemNode = dataview.getNode(records[i]);
+                        Ext.get(itemNode).addCls ( 'lanista-list-itemrounded-selected' );
+                    }
+                }
             }
         }
     }

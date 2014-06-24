@@ -104,9 +104,25 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
     onShowFavoritesPanel: function(favoriteRecord, callback) {
         var controller = this,
             favoritesPanel	= controller.getFavoritesPanel(),
-            mainStage	= controller.getMainStage();
+            mainStage	= controller.getMainStage(),
+            storeCustomers = Ext.getStore('CustomerStore'),
+            filterFunction,
+            favoritesIds = [];
 
         mainStage.add( favoritesPanel );
+        controller.favorites = favoriteRecord;
+
+        filterFunction = new Ext.util.Filter({
+            filterFn: function(item){
+                favoritesIds = favoriteRecord.data.objects ? favoriteRecord.data.objects.split(',') : '';
+                for ( var i = 0; i < favoritesIds.length; i++ ){
+                    if (Number(item.data.id) === Number(favoritesIds[i]))
+                        return true;
+                }
+            }
+        });
+        storeCustomers.filters.add(filterFunction);
+        storeCustomers.load();
 
         favoritesPanel.on('hide', function(component) {
             component.destroy();
@@ -118,7 +134,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
         // *** 2 Show the panel
         controller.getMainViewport().down("#header").addCls('lanista-header-color-favorites');
-        LanistaTrainer.app.fireEvent('showFavoritesHeaderUpdate', favoriteRecord.name);
+        LanistaTrainer.app.fireEvent('showFavoritesHeaderUpdate', favoriteRecord.data.name);
         LanistaTrainer.app.fireEvent('showStage');
 
         // *** 4 Callback
@@ -165,7 +181,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_TO_FAVORITE,
+                text: Ext.ux.LanguageManager.TranslationArray.FOLDER_CHANGE,
                 itemId: 'showAddCustomersButton',
                 menu: controller.menuFavorites(),
                 menuButtonAlign: 'right',
@@ -211,31 +227,20 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                 },
                 items:
                 [
-                    {text: '<span class="lanista-icon">L&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_TO_FAVORITE,
+                    {text: '<span class="lanista-icon">l&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_TO_FAVORITE.toUpperCase(),
                      handler: function () {
-
-                         console.log('Paneles.....');
-                         console.log(LanistaTrainer.app.panels);
-
-
-
                          LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
                              LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomersPanel';
-                             LanistaTrainer.app.fireEvent('showCustomersPanel', favoriteRecord);
+                             LanistaTrainer.app.fireEvent('showCustomersPanel', this.favorites);
                          });
                      }
                     },
-                    {text: '<span class="lanista-icon">H&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_REMOVE_FROM_FAVORITE,
+                    {text: '<span class="lanista-icon">I&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.FOLDER_CHANGE_NAME.toUpperCase(),
                      handler: function () {
 
                      }
                     },
-                    {text: '<span class="lanista-icon">I&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_CHANGE_FAVORITE_NAME,
-                     handler: function () {
-
-                     }
-                    },
-                    {text: '<span class="lanista-icon">u&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_REMOVE_VAFORITE,
+                    {text: '<span class="lanista-icon">u&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.FOLDER_REMOVE.toUpperCase(),
                      handler: function () {
 
                      }
@@ -245,6 +250,44 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
         );
 
         return menu;
+    },
+
+    saveFavorite: function(callback) {
+        var controller = this,
+            userId = localStorage.getItem("user_id"),
+            favoritesModel;
+
+        favoritesModel = Ext.create('LanistaTrainer.model.Favorites');
+        controller.favorites.data.change_date = Date.now();
+        favoritesModel.data = controller.favorites.data;
+
+        favoritesModel.setProxy(new Ext.data.proxy.Ajax({
+            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/favorites/json',
+            model: 'Favorites',
+            noCache: false,
+            reader: {
+                type: 'json',
+                root: 'entries'
+            },
+            writer: {
+                type: 'json',
+                root: 'records',
+                allowSingle: false
+            },
+            headers: {
+                user_id: userId
+            }
+        }));
+
+        favoritesModel.save ({
+            callback: function( item, operation, success ) {
+                if (callback instanceof Function) callback();
+            }
+        });
+
+
+
+
     },
 
     init: function(application) {

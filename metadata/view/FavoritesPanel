@@ -9,11 +9,18 @@
         "border": false,
         "designer|userAlias": "favoritesPanel",
         "designer|userClassName": "FavoritesPanel",
+        "frameHeader": false,
         "header": false,
+        "headerPosition": "bottom",
         "height": 250,
         "id": "favoritesPanel",
+        "layout": "fit",
+        "style": "padding-top: 120px;",
         "title": null,
         "width": 400
+    },
+    "configAlternates": {
+        "style": "string"
     },
     "designerId": "53867acf-58a7-45dd-8151-07bb4b75c49e",
     "cn": [
@@ -29,7 +36,7 @@
                 "height": 250,
                 "id": "viewCustomersFavorites",
                 "itemSelector": "div.customer-item",
-                "store": null,
+                "store": "CustomerStore",
                 "width": 400
             },
             "designerId": "70473733-6c32-44da-bcb5-2d8018b1d026",
@@ -63,6 +70,7 @@
                         "implHandler": [
                             "<tpl for=\".\">",
                             "    <div class=\"customer-item\">",
+                            "        <div class=\"lanista-icon\">u</div>",
                             "        <div class=\"customer-list-image customer-info-item\" id=\"customerItemInfo\" style=\"background-image: url({[Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/' + values['id'] + '_photo.jpg']});\"></div>",
                             "        <div class=\"customer-list-background customer-info-item\" id=\"customerItemInfo\" style=\"customer-image\">j</div>",
                             "        <div class=\"customer-list-firstname\">{[values['first_name']]}</div>        \t\t",
