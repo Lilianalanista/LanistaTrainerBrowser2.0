@@ -1387,10 +1387,19 @@ $base-gradient: "none";
     box-shadow: 0 0 20px #59d76e;
 }
 
+//Color for favorites items selected
+.lanista-list-itemrounded-selected-delete .customer-list-background {
+    box-shadow: 0 0 20px #FC0536;
+}
+
 #viewCustomers, #viewCustomersFavorites {
     top: 10px;
 }
 
+.lanista-favorites-delete {
+    float: right;
+    margin-right: 25px;
+}
 
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

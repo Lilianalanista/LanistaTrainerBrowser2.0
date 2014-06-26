@@ -56,7 +56,10 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.currentCustomer = null;
         LanistaTrainer.app.fireEvent('closeCustomerExercisesPanel', function() {
-            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
+            if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'FavoritesPanel' )
+                LanistaTrainer.app.fireEvent('show' + 'FavoritesPanel', LanistaTrainer.app.getController('FavoritesController').favorites);
+            else
+                LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
         });
 
 

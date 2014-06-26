@@ -189,7 +189,18 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
             })
         );
 
-
+        this.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_REMOVE_FROM_FAVORITE,
+                itemId: 'removeCustomerFavoritesButton',
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-red'
+                ],
+                hidden: true,
+                glyph: '117@Lanista Icons' //u
+            })
+        );
 
 
 
