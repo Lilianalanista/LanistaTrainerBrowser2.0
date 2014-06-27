@@ -111,7 +111,7 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
             this, {delegate: '.customer-info-item'});
         el.on(
             'mouseover', function(e,t) {
-                                if ( t.id === 'customerItemInfo' )
+                                if ( t.id === 'customerItemInfo' && !t.parentNode.classList.contains('lanista-list-itemrounded-selected-delete'))
                                 {
                                     el.removeCls('item-not-clicked');
                                     el.addCls('item-clicked');
@@ -144,6 +144,7 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
                     else
                         favoritesToDeleteArray[0] = favoritesToDelete.valueOf();
                 }
+
                 pos = favoritesToDeleteArray.indexOf(component.getRecord(t.parentNode).data.id.toString());
                 if (pos >= 0){
                     classValue = t.parentNode.className;
@@ -159,12 +160,18 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
                         }
                     }
                     LanistaTrainer.app.getController('FavoritesController').favoritesToDelete = favoritesToDelete;
+                    console.log(favoritesToDeleteArray.length);
+                    if (favoritesToDeleteArray.length <= 0)
+                        LanistaTrainer.app.getController('FavoritesController').getRightCommandPanel().getComponent('removeCustomerFavoritesButton').hide();
+
                 }
                 else{
                     t.parentNode.className = t.parentNode.className + ' lanista-list-itemrounded-selected-delete';
                     LanistaTrainer.app.getController('FavoritesController').favoritesToDelete = favoritesToDelete.valueOf() ? favoritesToDelete + ',' + component.getRecord(t.parentNode).data.id : component.getRecord(t.parentNode).data.id;
-                    LanistaTrainer.app.getController('FavoritesController').getRightCommandPanel().items.items[1].show();
-                   }
+                    LanistaTrainer.app.getController('FavoritesController').showCommands();
+                    LanistaTrainer.app.getController('FavoritesController').getRightCommandPanel().getComponent('removeCustomerFavoritesButton').show();
+
+                }
            },
             this,{ delegate: '.lanista-favorites-delete'});
         el.on(

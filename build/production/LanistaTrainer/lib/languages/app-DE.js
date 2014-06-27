@@ -359,6 +359,7 @@ MSG_PASSWORD_FORGOT_ERROR_1: 'Deine Email-Adresse ist bereits in Lanista vorhand
 MSG_PASSWORD_FORGOT_ERROR_2: 'Willst du dich reigstrieren?',
 MSG_PASSWORD_FORGOT_SUCCESS_1: 'Deine Eimail würde erfolgreich empfangen',
 MSG_PASSWORD_FORGOT_SUCCESS_2: 'Du bekommst im kurzen eine Email um dein Password zurückzusetzen.',
+MSG_FAVORITES_REMOVE_CUSTOMER: 'Sind Sie sicher, dass Sie die ausgewählten Kunden löschen?',
 
 FORM_CUSTOMER_DATA_EMAIL: 'Email',
 FORM_CUSTOMER_DATA_FIRSTNAME: 'Vorname',
@@ -482,5 +483,11 @@ ERROR_LANGUAGE_CONTENT: 'Die angeforderte Sprache ist noch nicht verfügbar',
 MSG_ROLE_INFORMATION: 'Als Trainer kannst du deine Kunden verwalten und der Service ist nach 14 Tage Probezeit kostenpflichtig.<br><br>Als Sportler kannst deine eigene Trainingspläne und Protokolle verwalten.',
 DASHBOARD: 'KONTROLLPANEL',
 CUSTOMER_DATE_PICKER_TEXT: 'GEBURTSDATUM VOM KUNDE',
-USER_DATE_PICKER_TEXT: 'DEIN GEBURTSDATUM'
+USER_DATE_PICKER_TEXT: 'DEIN GEBURTSDATUM',
+
+FOLDER_CREATE: 'Ordner',
+FOLDER_CHANGE: 'Ordner wechseln',
+FOLDER_REMOVE: 'Ordner löschen',
+FOLDER_CHANGE_NAME: 'Ordner umbenennen'
+
 };

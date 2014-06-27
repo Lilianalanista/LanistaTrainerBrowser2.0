@@ -52,17 +52,42 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
     },
 
-    onPromtNewFavorite: function(title, message) {
-        var controller = this;
+    onRemoveCustomerFavoritesButtonClick: function(button, e, eOpts) {
+        var controller = this,
+            favoritesStore;
+
+        Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.BUTTON_REMOVE_FROM_FAVORITE.toUpperCase(), Ext.ux.LanguageManager.TranslationArray.MSG_FAVORITES_REMOVE_CUSTOMER, function(button) {
+            if (button == 'yes') {
+                controller.deleteFavorites();
+                controller.favoritesToDelete = '';
+                favoritesStoreName = controller.favoritesStoreName;
+                LanistaTrainer.app.getController('FavoritesController').getRightCommandPanel().getComponent('removeCustomerFavoritesButton').hide();
+                Ext.getStore(favoritesStoreName).load();
+            }
+        });
+
+    },
+
+    onPromtNewFavorite: function(title, message, favoriteRecord) {
+        var controller = this,
+            userId = localStorage.getItem("user_id"),
+            favoriteModel;
+
         Ext.Msg.prompt (title, message, function (response, favoriteName) {
             if ( response == 'ok' ) {
-                var userId = localStorage.getItem("user_id"),
+                if (favoriteRecord){
+                    favoriteModel = Ext.create('LanistaTrainer.model.Favorites');
+                    favoriteModel.data = favoriteRecord.data;
+                    favoriteModel.data.name = favoriteName;
+                }
+                else{
                     favoriteModel = Ext.create('LanistaTrainer.model.Favorites', {
                         name   : favoriteName,
                         change_date: Date.now(),
                         type: 1,
                         creator_id: userId
                     });
+                }
                 favoriteModel.setProxy(new Ext.data.proxy.Ajax({
                     url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/favorites/json',
                     noCache: false,
@@ -111,6 +136,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
         mainStage.add( favoritesPanel );
         controller.favorites = favoriteRecord;
+        controller.favoritesStoreName = 'CustomerStore';
 
         filterFunction = new Ext.util.Filter({
             filterFn: function(item){
@@ -154,6 +180,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                 item.hide();
             });
 
+            controller.favoritesToDelete = '';
             controller.getMainViewport().down("#header").removeCls('lanista-header-color-favorites');
             controller.getFavoritesPanel().hide();
             if (callback instanceof Function) callback();
@@ -229,7 +256,8 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
     },
 
     menuFavorites: function() {
-        var menu = new Ext.menu.Menu(
+        var controller = this,
+            menu = new Ext.menu.Menu(
             {
                 Itemid:'favoritesMenu',
                 defaults: {
@@ -248,7 +276,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                     },
                     {text: '<span class="lanista-icon">I&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.FOLDER_CHANGE_NAME.toUpperCase(),
                      handler: function () {
-
+                        controller.changeFavoriteName();
                      }
                     },
                     {text: '<span class="lanista-icon">u&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.FOLDER_REMOVE.toUpperCase(),
@@ -269,7 +297,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
             favoritesModel;
 
         favoritesModel = Ext.create('LanistaTrainer.model.Favorites');
-        controller.favorites.data.change_date = Date.now();
+        controller.favorites.data.change_date = Date();
         favoritesModel.data = controller.favorites.data;
 
         favoritesModel.setProxy(new Ext.data.proxy.Ajax({
@@ -301,10 +329,75 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
     },
 
+    deleteFavorites: function() {
+        var controller = this,
+            favoritesToDelete,
+            favoritesToDeleteArray = [],
+            favorites,
+            favoritesArray = [],
+            index;
+
+        favoritesToDelete = new String(controller.favoritesToDelete);
+        if (favoritesToDelete.valueOf()){
+            if (favoritesToDelete.indexOf(",") > 0)
+                favoritesToDeleteArray = favoritesToDelete.split(",");
+            else
+                favoritesToDeleteArray[0] = favoritesToDelete.valueOf();
+
+            favorites = new String(controller.favorites.data.objects);
+            if (favorites.valueOf()){
+                if (favorites.indexOf(",") > 0)
+                    favoritesArray = favorites.split(",");
+                else
+                    favoritesArray[0] = favorites.valueOf();
+            }
+
+            for (var i = 0; i < favoritesToDeleteArray.length; i++) {
+                for ( var j = 0; j < favoritesArray.length; j++){
+                    index = favoritesArray.indexOf(favoritesToDeleteArray[j]);
+                    if (index >= 0){
+                        favoritesArray.splice(index, 1);
+                        break;
+                    }
+                }
+            }
+
+            favorites = favoritesArray[0] ? favoritesArray[0] : '';
+            for (i = 1; i < favoritesArray.length; i++){
+                favorites = favorites + ',' + favoritesArray[i];
+            }
+
+            controller.favorites.data.objects = favorites;
+            controller.saveFavorite();
+        }
+
+
+
+
+
+
+
+
+    },
+
+    changeFavoriteName: function() {
+        var controller = this,
+            title = Ext.ux.LanguageManager.TranslationArray.MSG_CHANGE_FAVORIT_NAME_1;
+            msg = Ext.ux.LanguageManager.TranslationArray.MSG_CHANGE_FAVORIT_NAME_2;
+
+        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+            LanistaTrainer.app.fireEvent("promtNewFavorite", title, msg, controller.favorites );
+        });
+    },
+
     init: function(application) {
         this.control({
             "viewport #closeFavoritesPanelButton": {
                 click: this.onCloseFavoritesPanelButtonClick
+            },
+            "viewport #removeCustomerFavoritesButton": {
+                click: this.onRemoveCustomerFavoritesButtonClick
             }
         });
 

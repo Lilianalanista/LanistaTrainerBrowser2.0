@@ -365,6 +365,7 @@ MSG_PASSWORD_FORGOT_ERROR_1: 'You email is no existent in Lanista',
 MSG_PASSWORD_FORGOT_ERROR_2: 'Would you like to register now?',
 MSG_PASSWORD_FORGOT_SUCCESS_1: 'Email received successfully',
 MSG_PASSWORD_FORGOT_SUCCESS_2: 'We send you an email to reset your password.',
+MSG_FAVORITES_REMOVE_CUSTOMER: 'Are you sure you want to delete the customers selected?',
 BUTTON_PASSWORD_QUESTION: 'Forgot your password or your not registered?<span> Click here for further options !</span>',
 
 TMP_USER_INFORM_1: 'Birthdate: ',
@@ -478,5 +479,11 @@ ERROR_LANGUAGE_CONTENT: 'Language not availble at this moment',
 MSG_ROLE_INFORMATION: 'As trainer you can manage your clients. After 14 days this service will cost.<br><br>As sports you can create and manage your training programs and protocolls on your own.',
 DASHBOARD: 'DASHBOARD',
 CUSTOMER_DATE_PICKER_TEXT: 'CUSTOMERS BIRTHDAY',
-USER_DATE_PICKER_TEXT: 'YOUR BIRTHDAY'
+USER_DATE_PICKER_TEXT: 'YOUR BIRTHDAY',
+
+FOLDER_CREATE: 'Folders',
+FOLDER_CHANGE: 'Change folder',
+FOLDER_REMOVE: 'Remove folder',
+FOLDER_CHANGE_NAME: 'Change name folder'
+
 };

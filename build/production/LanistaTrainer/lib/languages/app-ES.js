@@ -220,9 +220,10 @@ BUTTON_CHANGE_FAVORITE: 'Editar favorito',
 BUTTON_ADD_TO_FAVORITE: 'Insertar clientes',
 BUTTON_ADD_EXERCISES: 'Insertar ejercicios',
 BUTTON_CHANGE_FAVORITE: 'Editar favorito',
+BUTTON_REMOVE_FROM_FAVORITE: 'Eliminar cliente',
 BUTTON_ADD_EXERCISE_TO_FAVORITE: 'Insertar ejercicio',
 BUTTON_REMOVE_EXERCISE_FROM_FAVORITE: 'Eliminar ejercicio',
-BUTTON_CHANGE_FAVORITE_NAME: 'Cambiar nombre de favorite',
+BUTTON_CHANGE_FAVORITE_NAME: 'Cambiar nombre de favorito',
 BUTTON_REMOVE_VAFORITE: 'Borrar favorito',
 BUTTON_RECENTLY: 'Recientes',
 BUTTON_OWN_EXERCISES: 'Tuyos',
@@ -360,6 +361,7 @@ MSG_PASSWORD_FORGOT_ERROR_1: 'Tu email no existe en Lanista',
 MSG_PASSWORD_FORGOT_ERROR_2: 'Deseas registrarte?',
 MSG_PASSWORD_FORGOT_SUCCESS_1: 'Email recibido exitosamente',
 MSG_PASSWORD_FORGOT_SUCCESS_2: 'Te hemos enviado un email para que puedas inicializar tu clave.',
+MSG_FAVORITES_REMOVE_CUSTOMER: '¿Esta seguro que quiere eliminar los clientes seleccionados?',
 
 TMP_USER_INFORM_1: 'Fecha de nacimiento: ',
 TMP_USER_INFORM_2: '% de grasa del ',
@@ -475,6 +477,12 @@ ERROR_LANGUAGE_CONTENT: 'El idioma requerido no está disponible',
 MSG_ROLE_INFORMATION: 'Como entrenador puedes supervisar a tus clientes. Este servicio dejará de ser gratuito tras el periodo de prueba de 14 días.<br><br>Como atleta puedes gestionar tus propios planes de entrenamiento y protocolos.',
 DASHBOARD: 'PANEL DE CONTROL',
 CUSTOMER_DATE_PICKER_TEXT: 'FECHA DE NACIMIENTO DEL CLIENTE',
-USER_DATE_PICKER_TEXT: 'TU FECHA DE NACIMIENTO'
+USER_DATE_PICKER_TEXT: 'TU FECHA DE NACIMIENTO',
+
+FOLDER_CREATE: 'Carpetas',
+FOLDER_CHANGE: 'Cambiar carpeta',
+FOLDER_REMOVE: 'Eliminar carpeta',
+FOLDER_CHANGE_NAME: 'Cambiar nombre de Carpeta'
+
 };
 
