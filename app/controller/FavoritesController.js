@@ -281,7 +281,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                     },
                     {text: '<span class="lanista-icon">u&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.FOLDER_REMOVE.toUpperCase(),
                      handler: function () {
-
+                        controller.deleteFavoriteFolder('favorites','delete','Favorites');
                      }
                     }
                 ]
@@ -389,6 +389,47 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
         LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
             LanistaTrainer.app.fireEvent("promtNewFavorite", title, msg, controller.favorites );
         });
+    },
+
+    deleteFavoriteFolder: function(controllerPhp, actionPhp, modelName) {
+        var controller = this,
+            favoriteModel,
+            userId,
+            favoriteProxy;
+
+        Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_FAVORIT_NAME_1.toUpperCase(), Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_FAVORIT_NAME_2, function(button) {
+            if (button == 'yes') {
+                favoriteModel = Ext.create('LanistaTrainer.model.' + modelName);
+                userId = localStorage.getItem("user_id");
+
+                favoriteModel.data = controller.favorites.data;
+                favoriteModel.phantom = false;
+                favoriteModel.setProxy(new Ext.data.proxy.Ajax({
+                    url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/' + controllerPhp + '/json',
+                    model: 'PlanExercise',
+                    noCache: false,
+                    api: {
+                        create: undefined,
+                        read: undefined,
+                        update: undefined,
+                        destroy: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/' + controllerPhp + '/' + actionPhp
+                    },
+                    extraParams: {
+                        id: favoriteModel.data.id
+                    },
+                    headers: {
+                        user_id: userId
+                    }
+                }));
+
+                favoriteModel.destroy ({
+                    action: 'destroy'
+                });
+
+                LanistaTrainer.app.getController('FavoritesController').getLeftCommandPanel().getComponent('closeFavoritesPanelButton').fireEvent('click');
+            }
+        });
+
     },
 
     init: function(application) {
