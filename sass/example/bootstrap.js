@@ -842,6 +842,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.controller.DashBoardController": [],
   "LanistaTrainer.controller.ExerciseController": [],
   "LanistaTrainer.controller.ExercisesController": [],
+  "LanistaTrainer.controller.FavoritesController": [],
   "LanistaTrainer.controller.HelpController": [],
   "LanistaTrainer.controller.ImageController": [],
   "LanistaTrainer.controller.LanguagesController": [],
@@ -856,12 +857,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.controller.UserInfoController": [],
   "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseModel": [],
+  "LanistaTrainer.model.Favorites": [],
   "LanistaTrainer.model.Plan": [],
   "LanistaTrainer.model.PlanExercise": [],
   "LanistaTrainer.model.Protocoll": [],
   "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.store.FavoritesStore": [],
   "LanistaTrainer.store.PlanExerciseStore": [],
   "LanistaTrainer.store.PlanStore": [],
   "LanistaTrainer.store.ProtocollStore": [],
@@ -871,6 +874,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.DashBoardPanel": [],
   "LanistaTrainer.view.ExercisePanel": [],
   "LanistaTrainer.view.ExercisesPanel": [],
+  "LanistaTrainer.view.FavoritesPanel": [],
   "LanistaTrainer.view.HelpPanel": [],
   "LanistaTrainer.view.ImagePanel": [],
   "LanistaTrainer.view.LanistaButton": [],
@@ -1901,6 +1905,9 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.controller.ExercisesController": [
     "controller.exercisesController"
   ],
+  "LanistaTrainer.controller.FavoritesController": [
+    "controller.favoritesController"
+  ],
   "LanistaTrainer.controller.HelpController": [
     "controller.helpController"
   ],
@@ -1935,12 +1942,14 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.model.Customer": [],
   "LanistaTrainer.model.ExerciseModel": [],
+  "LanistaTrainer.model.Favorites": [],
   "LanistaTrainer.model.Plan": [],
   "LanistaTrainer.model.PlanExercise": [],
   "LanistaTrainer.model.Protocoll": [],
   "LanistaTrainer.store.CustomerStore": [],
   "LanistaTrainer.store.ExerciseInitialStore": [],
   "LanistaTrainer.store.ExerciseStore": [],
+  "LanistaTrainer.store.FavoritesStore": [],
   "LanistaTrainer.store.PlanExerciseStore": [],
   "LanistaTrainer.store.PlanStore": [],
   "LanistaTrainer.store.ProtocollStore": [],
@@ -1961,6 +1970,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.ExercisesPanel": [
     "widget.exercisesPanel"
+  ],
+  "LanistaTrainer.view.FavoritesPanel": [
+    "widget.favoritesPanel"
   ],
   "LanistaTrainer.view.HelpPanel": [
     "widget.helpPanel"
