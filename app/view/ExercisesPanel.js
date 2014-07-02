@@ -25,6 +25,7 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
 
     border: false,
     height: 250,
+    id: 'ExercisesPanel',
     style: 'padding-top: 120px;',
     width: 400,
     layout: 'fit',
@@ -62,6 +63,7 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                     tpl: [
                         '<tpl for=".">',
                         '	<div class="exercise-item">',
+                        '        <div class="lanista-icon lanista-favorites-delete"></div>',
                         '        <div class="exercise-list-img exercise-list-img-right" style="background-image: url(resources/images/previews/{ext_id}_1.jpg);"></div>',
                         '    	<div class="exercise-list-img exercise-list-img-left" style="background-image: url(resources/images/previews/{ext_id}_2.jpg);"></div>',
                         '        <div class="exercise-list-text"/>{[values["name_" + Ext.ux.LanguageManager.lang]]}</div>',
@@ -82,6 +84,10 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                         },
                         viewready: {
                             fn: me.onViewExercisesViewReady,
+                            scope: me
+                        },
+                        itemclick: {
+                            fn: me.onViewExercisesItemClick,
                             scope: me
                         }
                     }
@@ -111,42 +117,46 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
     onViewExercisesAfterRender: function(component, eOpts) {
         var itemRecord,
             el = component.el,
-            itemId = [];
+            itemId = [],
+            favoritesArray = [];
 
         el.on(
             'click', function(e,t) {
-               if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')) {
-                       itemId = [];
-                       itemId[0] = component.getRecord(t).data.id;
-                       itemId[1] = component.getRecord(t).data.ext_id;
+                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel') return;
 
-                       for(var i = 0; i < this.selection.length; i++) {
-                           if(this.selection[i][0] === itemId[0]) {
-                             break;
-                           }
-                       }
-                       if (i === this.selection.length)
-                       {
-                            this.selection.push( itemId );
-                            Ext.get(t).addCls ( 'lanista-list-item-selected' );
-                       }
-                       else {
-                           if (this.selection[i][2] === 1 && !(this.selection[i][3])) {
-                               this.selection[i][3] = 'd';
-                               Ext.get(t).removeCls ( 'lanista-list-item-selected' );
-                           }
-                           else {
-                               if (this.selection[i][2] === 1 && this.selection[i][3] === 'd'){
-                                   this.selection[i][3] = '';
-                                   Ext.get(t).addCls ( 'lanista-list-item-selected' );
-                               }
-                               else{
-                                   this.selection.splice(i, 1);
-                                   Ext.get(t).removeCls ( 'lanista-list-item-selected' );
-                               }
-                           }
+                if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
+                    (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') )
+                {
+                    itemId = [];
+                    itemId[0] = component.getRecord(t).data.id;
+                    itemId[1] = component.getRecord(t).data.ext_id;
 
-                       }
+                    for(var i = 0; i < this.selection.length; i++) {
+                        if(this.selection[i][0] === itemId[0]) {
+                            break;
+                        }
+                    }
+                    if (i === this.selection.length)
+                    {
+                        this.selection.push( itemId );
+                        Ext.get(t).addCls ( 'lanista-list-item-selected' );
+                    }
+                    else {
+                        if (this.selection[i][2] === 1 && !(this.selection[i][3])) {
+                            this.selection[i][3] = 'd';
+                            Ext.get(t).removeCls ( 'lanista-list-item-selected' );
+                        }
+                        else {
+                            if (this.selection[i][2] === 1 && this.selection[i][3] === 'd'){
+                                this.selection[i][3] = '';
+                                Ext.get(t).addCls ( 'lanista-list-item-selected' );
+                            }
+                            else{
+                                this.selection.splice(i, 1);
+                                Ext.get(t).removeCls ( 'lanista-list-item-selected' );
+                            }
+                        }
+                    }
                 }
                 else {
                     itemRecord = component.getRecord(t);
@@ -172,19 +182,77 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
 
     onViewExercisesViewReady: function(dataview, eOpts) {
         var records = dataview.store.data.items,
-            panel = LanistaTrainer.app.getController ('ExercisesController').getExercisesPanel();
+            panel = LanistaTrainer.app.getController ('ExercisesController').getExercisesPanel(),
+            favorites,
+            favoritesArray = [];
 
         if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') {
-            for (var i = 0; i < records.length ; i++) {
-                for(var j = 0; j < panel.selection.length; j++) {
-                    if(panel.selection[j][0] === records[i].data.id) {
-                        break;
+            if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {
+                favorites = LanistaTrainer.app.getController ('FavoritesController').favorites.data.objects;
+                favoritesArray = favorites !== "" ? favorites.split(',') : [];
+
+                if (favoritesArray.length > 0 ){
+                    for (var i = 0; i < records.length ; i++) {
+                        for (var j = 0; j < favoritesArray.length; j++) {
+                            if (Number(favoritesArray[j]) === Number(records[i].data.id)) {
+                                break;
+                            }
+                        }
+
+                        if (j !== favoritesArray.length){
+                            itemNode = dataview.getNode(records[i]);
+                            Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                        }
                     }
                 }
-                if (j !== panel.selection.length){
-                    itemNode = panel.down('#viewExercises').getNode(records[i]);
-                    Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+            }
+            else{
+                for (var i = 0; i < records.length ; i++) {
+                    for(var j = 0; j < panel.selection.length; j++) {
+                        if(panel.selection[j][0] === records[i].data.id) {
+                            break;
+                        }
+                    }
+                    if (j !== panel.selection.length){
+                        itemNode = panel.down('#viewExercises').getNode(records[i]);
+                        Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                    }
                 }
+            }
+        }
+
+    },
+
+    onViewExercisesItemClick: function(dataview, record, item, index, e, eOpts) {
+        var favorites = "",
+            favoritesArray = [],
+            pos;
+
+        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel'){
+            favorites = new String(LanistaTrainer.app.getController('FavoritesController').favorites.data.objects);
+            if (favorites.valueOf()){
+                if (favorites.indexOf(",") > 0)
+                    favoritesArray = favorites.split(",");
+                else
+                    favoritesArray[0] = favorites.valueOf();
+            }
+
+            pos = favoritesArray.indexOf(record.data.id.toString());
+            if (pos >= 0){
+                Ext.get(item).removeCls ( 'lanista-list-item-selected' );
+                favoritesArray.splice(pos,1);
+                favorites = "";
+                if (favoritesArray.length > 0){
+                    favorites = favoritesArray[0];
+                    for (var i = 1; i < favoritesArray.length; i++){
+                        favorites = favorites + ',' + favoritesArray[i];
+                    }
+                }
+                LanistaTrainer.app.getController('FavoritesController').favorites.data.objects = favorites;
+            }
+            else{
+                Ext.get(item).addCls ( 'lanista-list-item-selected' );
+                LanistaTrainer.app.getController('FavoritesController').favorites.data.objects = favorites.valueOf() ? favorites + ',' + record.data.id : record.data.id;
             }
         }
 

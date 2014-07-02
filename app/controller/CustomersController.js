@@ -59,7 +59,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             else {
                 if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'FavoritesPanel'){
                     LanistaTrainer.app.getController('FavoritesController').saveFavorite(function(){
-                        LanistaTrainer.app.fireEvent('showFavoritesPanel', LanistaTrainer.app.getController('FavoritesController').favorites, 'CustomersPanel', 'CustomerStore');
+                        LanistaTrainer.app.fireEvent('showFavoritesPanel', LanistaTrainer.app.getController('FavoritesController').favorites, 'CustomersPanel', 'CustomerStore', 'CustomersController', 'viewCustomers');
                     });
                 }
                 else{
@@ -107,7 +107,6 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
     },
 
     onShowCustomersPanel: function(callback) {
-
         var controller = this,
             customerPanel	= controller.getCustomersPanel(),
             mainStage	= controller.getMainStage(),
@@ -226,6 +225,20 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
 
         var controller = this;
 
+        controller.tpl = controller.getCustomersPanel().down('#viewCustomers').tpl;
+
+
+
+
+        console.log('tpls....');
+        console.log(controller.getCustomersPanel().down('#viewCustomers').tpl);
+        console.log(controller.tpl);
+
+
+
+
+
+
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });
@@ -255,7 +268,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                     text: Ext.ux.LanguageManager.TranslationArray.FOLDER_CREATE,
                     itemId: 'favoritesCustomersButton',
                     userAlias: 'favoritesCustomersButton',
-                    menu: LanistaTrainer.app.getController('FavoritesController').showFavorites(1, 'CustomersPanel', 'CustomerStore'),
+                    menu: LanistaTrainer.app.getController('FavoritesController').showFavorites(1, 'CustomersPanel', 'CustomerStore', 'CustomersController', 'viewCustomers'),
                     menuButtonAlign: 'right',
                     glyph: '122@Lanista Icons' //z
                 })

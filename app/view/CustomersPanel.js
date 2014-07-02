@@ -25,7 +25,7 @@ Ext.define('LanistaTrainer.view.CustomersPanel', {
 
     border: false,
     height: 250,
-    id: 'customersPanel',
+    id: 'CustomersPanel',
     style: 'padding-top: 120px;',
     width: 400,
     layout: 'fit',
@@ -63,6 +63,7 @@ Ext.define('LanistaTrainer.view.CustomersPanel', {
                     tpl: [
                         '<tpl for=".">',
                         '    <div class="customer-item">',
+                        '        <div class="lanista-icon lanista-favorites-delete"></div>',
                         '        <div class="customer-list-image customer-info-item" id="customerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + \'/tpmanager/img/p/\' + values[\'id\'] + \'_photo.jpg\']});"></div>',
                         '        <div class="customer-list-background customer-info-item" id="customerItemInfo" style="customer-image">j</div>',
                         '        <div class="customer-list-firstname">{[values[\'first_name\']]}</div>        		',

@@ -68,7 +68,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
     },
 
-    onPromtNewFavorite: function(title, message, favoriteRecord, type, panel, store) {
+    onPromtNewFavorite: function(title, message, favoriteRecord, type, panel, store, favoriteController, view) {
         var controller = this,
             userId = localStorage.getItem("user_id"),
             favoriteModel;
@@ -109,7 +109,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                         if (success)
                         {
                             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'FavoritesPanel';
-                            LanistaTrainer.app.fireEvent('showFavoritesPanel', record, panel, store);
+                            LanistaTrainer.app.fireEvent('showFavoritesPanel', record, panel, store, favoriteController, view);
                         }
                         else
                         {
@@ -126,11 +126,11 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
     },
 
-    onShowFavoritesPanel: function(favoriteRecord, panel, store, callback) {
+    onShowFavoritesPanel: function(favoriteRecord, panel, store, favoriteController, view, callback) {
         var controller = this,
             favoritesPanel	= controller.getFavoritesPanel(),
             mainStage	= controller.getMainStage(),
-            storeCustomers = Ext.getStore(store),
+            favoriteStore = Ext.getStore(store),
             filterFunction,
             favoritesIds = [];
 
@@ -138,6 +138,9 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
         controller.favorites = favoriteRecord;
         controller.favoritesStoreName = store;
 
+        favoritesPanel.down('#viewFavorites').tpl = LanistaTrainer.app.getController(favoriteController).tpl;
+
+        favoritesPanel.down('#viewFavorites').bindStore(favoriteStore);
         filterFunction = new Ext.util.Filter({
             filterFn: function(item){
                 favoritesIds = favoriteRecord.data.objects ? favoriteRecord.data.objects.split(',') : '';
@@ -147,8 +150,12 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                 }
             }
         });
-        storeCustomers.filters.add(filterFunction);
-        storeCustomers.load();
+        favoriteStore.filters.add(filterFunction);
+        favoriteStore.load({
+            callback: function(records, operation, success) {
+                favoritesPanel.down('#viewFavorites').refresh();
+            }
+        });
 
         favoritesPanel.on('hide', function(component) {
             component.destroy();
@@ -185,6 +192,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
             controller.getFavoritesPanel().hide();
             if (callback instanceof Function) callback();
         });
+
     },
 
     onShowFavoritesHeaderUpdate: function(favoriteName) {
@@ -266,11 +274,11 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                 },
                 items:
                 [
-                    {text: '<span class="lanista-icon">l&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_TO_FAVORITE.toUpperCase(),
+                    {text: '<span class="lanista-icon">l&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_FAVORITE.toUpperCase(),
                      handler: function () {
-                         LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
-                             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = panel;
-                             LanistaTrainer.app.fireEvent('show' + panel, this.favorites);
+                          LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = panel;
+                            LanistaTrainer.app.fireEvent('show' + panel);
                          });
                      }
                     },
@@ -432,7 +440,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
     },
 
-    showFavorites: function(filterType, panel, store) {
+    showFavorites: function(filterType, panel, store, controller, viewName) {
         var container = this,
             favoritesStore = Ext.getStore('FavoritesStore'),
             favoriteName,
@@ -448,7 +456,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                         {text: '<span class="lanista-icon">I&nbsp</span>' + Ext.ux.LanguageManager.TranslationArray.CREATE_FAVORIT,
                          handler: function () {
                                      LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
-                                             LanistaTrainer.app.fireEvent("promtNewFavorite", Ext.ux.LanguageManager.TranslationArray.MSG_FAVORIT_NAME_1, Ext.ux.LanguageManager.TranslationArray.MSG_FAVORIT_NAME_2, '', filterType, panel, store);
+                                             LanistaTrainer.app.fireEvent("promtNewFavorite", Ext.ux.LanguageManager.TranslationArray.MSG_FAVORIT_NAME_1, Ext.ux.LanguageManager.TranslationArray.MSG_FAVORIT_NAME_2, '', filterType, panel, store, controller, viewName);
                                      });
                                   }
                         }
@@ -457,25 +465,26 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
             );
 
         favoritesStore.getProxy().url = Ext.ux.ConfigManager.getRoot() + '/tpmanager/favorites/json';
-        favoritesStore.filter ({property: 'type', value: Number(filterType)});
         favoritesStore.load({
             callback: function(records, operation, success) {
                 for (var i = 0; i<records.length; i++){
-                    favoriteName = records[i].data.name;
-                    menu.add([
-                        {
-                            text: records[i].data.name,
-                            handler: function () {
-                                favoriteName = this.text;
-                                favoriteRecord = this.record;
-                                LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
-                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'FavoritesPanel';
-                                    LanistaTrainer.app.fireEvent('showFavoritesPanel', favoriteRecord, panel, store);
-                                });
-                            },
-                            record: records[i]
-                        }
-                    ]);
+                    if (Number(records[i].data.type) === Number(filterType)){
+                        favoriteName = records[i].data.name;
+                        menu.add([
+                            {
+                                text: records[i].data.name,
+                                handler: function () {
+                                    favoriteName = this.text;
+                                    favoriteRecord = this.record;
+                                    LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'FavoritesPanel';
+                                        LanistaTrainer.app.fireEvent('showFavoritesPanel', favoriteRecord, panel, store, controller, viewName);
+                                    });
+                                },
+                                record: records[i]
+                            }
+                        ]);
+                    }
                 }
             }
         });

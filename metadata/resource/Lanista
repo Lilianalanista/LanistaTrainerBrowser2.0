@@ -1807,7 +1807,7 @@
                     "    box-shadow: 0 0 20px #59d76e;",
                     "}",
                     "",
-                    "//Color for favorites items selected",
+                    "//Color for favorites items selected for delete",
                     ".lanista-list-itemrounded-selected-delete .customer-list-background {",
                     "    box-shadow: 0 0 20px #FC0536;",
                     "}",

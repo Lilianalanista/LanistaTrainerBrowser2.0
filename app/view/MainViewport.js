@@ -323,17 +323,38 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                    records = exerciseStore.data.items;
                    exercisesPanel = LanistaTrainer.app.getController('ExercisesController').getExercisesPanel();
                    if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')) {
-                        for (var i = 0; i < records.length ; i++) {
-                            for(var j = 0; j < exercisesPanel.selection.length; j++) {
-                                if(exercisesPanel.selection[j][0] === records[i].data.id) {
-                                    break;
+                       if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {
+                           favorites = LanistaTrainer.app.getController ('FavoritesController').favorites.data.objects;
+                           favoritesArray = favorites !== "" ? favorites.split(',') : [];
+
+                           if (favoritesArray.length > 0 ){
+                               for (var i = 0; i < records.length ; i++) {
+                                   for (var j = 0; j < favoritesArray.length; j++) {
+                                       if (Number(favoritesArray[j]) === Number(records[i].data.id)) {
+                                           break;
+                                       }
+                                   }
+
+                                   if (j !== favoritesArray.length){
+                                       itemNode = exercisesPanel.down('#viewExercises').getNode(records[i]);
+                                       Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                                   }
+                               }
+                           }
+                       }
+                       else{
+                            for (var i = 0; i < records.length ; i++) {
+                                for(var j = 0; j < exercisesPanel.selection.length; j++) {
+                                    if(exercisesPanel.selection[j][0] === records[i].data.id) {
+                                        break;
+                                    }
+                                }
+                                if (j !== exercisesPanel.selection.length){
+                                    itemNode = exercisesPanel.down('#viewExercises').getNode(records[i]);
+                                    Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                 }
                             }
-                            if (j !== exercisesPanel.selection.length){
-                                itemNode = exercisesPanel.down('#viewExercises').getNode(records[i]);
-                                Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
-                            }
-                        }
+                       }
                    }
                    LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
                 }

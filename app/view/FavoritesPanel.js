@@ -42,7 +42,7 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
                     xtype: 'dataview',
                     cls: 'tpl-gpclg44s',
                     height: 250,
-                    id: 'viewCustomersFavorites',
+                    id: 'viewFavorites',
                     tpl: [
                         '<tpl for=".">',
                         '    <div class="customer-item">',
@@ -57,18 +57,17 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
                     ],
                     width: 400,
                     itemSelector: 'div.customer-item',
-                    store: 'CustomerStore',
                     listeners: {
                         hide: {
                             fn: me.onDataviewHide1,
                             scope: me
                         },
                         afterrender: {
-                            fn: me.onViewCustomersAfterRender1,
+                            fn: me.onViewFavoritesAfterRender1,
                             scope: me
                         },
                         itemclick: {
-                            fn: me.onViewCustomersItemClick1,
+                            fn: me.onViewFavoritesItemClick1,
                             scope: me
                         }
                     }
@@ -77,12 +76,12 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
             tools: [
                 {
                     xtype: 'tool',
-                    id: 'previousCustomers1',
+                    id: 'previousFavorites',
                     type: 'left'
                 },
                 {
                     xtype: 'tool',
-                    id: 'nextCustomers1',
+                    id: 'nextFavorites',
                     type: 'right'
                 }
             ]
@@ -95,7 +94,7 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
         component.destroy();
     },
 
-    onViewCustomersAfterRender1: function(component, eOpts) {
+    onViewFavoritesAfterRender1: function(component, eOpts) {
 
         var el = component.el,
             classValue,
@@ -103,10 +102,16 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
             favoritesToDeleteArray = [],
             pos;
 
+        //--------------------------------------------
         el.on(
             'click', function(e,t) {
-                                    if ( t.id === 'customerItemInfo' )
-                                            el.addCls('item-not-clicked');
+                if ( t.id === 'customerItemInfo' )
+                    el.addCls('item-not-clicked');
+                if (!t.parentNode.classList.contains('lanista-list-itemrounded-selected-delete')){
+                    classValue = t.parentNode.className;
+                    classValue = classValue.replace('lanista-list-itemrounded-deleting','', 'g');
+                    t.parentNode.className = classValue;
+                }
             },
             this, {delegate: '.customer-info-item'});
         el.on(
@@ -128,7 +133,7 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
                             },
             this,{delegate: '.customer-info-item'});
 
-
+        //--------------------------------------------
 
         el.on(
             'click', function(e,t) {
@@ -175,6 +180,26 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
            },
             this,{ delegate: '.lanista-favorites-delete'});
         el.on(
+            'mouseover', function(e,t) {
+                classValue = Ext.get(t).dom.className;
+                classValue = classValue.replace('item-not-clicked','','g');
+                classValue = classValue.replace('lanista-color-no-delete','','g');
+                classValue = classValue.replace('lanista-color-no-delete','','g');
+                Ext.get(t).dom.className = classValue + ' item-clicked lanista-color-delete';
+             },
+            this,{ delegate: '.lanista-favorites-delete'});
+        el.on(
+            'mouseout', function(e,t) {
+                classValue = Ext.get(t).dom.className;
+                classValue = classValue.replace('item-clicked','','g');
+                classValue = classValue.replace('lanista-color-delete','','g');
+                Ext.get(t).dom.className = classValue + ' item-not-clicked lanista-color-no-delete';
+           },
+            this,{ delegate: '.lanista-favorites-delete'});
+
+        //--------------------------------------------
+
+        /*el.on(
             'click', function(e,t) {
                 if (!t.parentNode.classList.contains('lanista-list-itemrounded-selected-delete')){
                     classValue = t.parentNode.className;
@@ -183,6 +208,8 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
                 }
            },
             this,{ delegate: '.customer-info-item'});
+        */
+
 
         el.on(
             'mouseover', function(e,t) {
@@ -201,28 +228,14 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
                 Ext.get(t).dom.children[0].className = classValue;
             },
             this,{ delegate: '.customer-item'});
-        el.on(
-            'mouseover', function(e,t) {
-                classValue = Ext.get(t).dom.className;
-                classValue = classValue.replace('item-not-clicked','','g');
-                classValue = classValue.replace('lanista-color-no-delete','','g');
-                classValue = classValue.replace('lanista-color-no-delete','','g');
-                Ext.get(t).dom.className = classValue + ' item-clicked lanista-color-delete';
-             },
-            this,{ delegate: '.lanista-favorites-delete'});
-        el.on(
-            'mouseout', function(e,t) {
-                classValue = Ext.get(t).dom.className;
-                classValue = classValue.replace('item-clicked','','g');
-                classValue = classValue.replace('lanista-color-delete','','g');
-                Ext.get(t).dom.className = classValue + ' item-not-clicked lanista-color-no-delete';
-           },
-            this,{ delegate: '.lanista-favorites-delete'});
+
+
+
 
 
     },
 
-    onViewCustomersItemClick1: function(dataview, record, item, index, e, eOpts) {
+    onViewFavoritesItemClick1: function(dataview, record, item, index, e, eOpts) {
         if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'CustomersPanel'){
             setTimeout(function() {
                 if (!Ext.get(item).dom.classList.contains('lanista-list-itemrounded-deleting')) {
