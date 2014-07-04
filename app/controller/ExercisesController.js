@@ -70,7 +70,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 Ext.getStore('ExerciseStore').clearFilter();
                 Ext.getStore('ExerciseStore').loadPage(1);
                 LanistaTrainer.app.getController('FavoritesController').saveFavorite(function(){
-                    LanistaTrainer.app.fireEvent('showFavoritesPanel', LanistaTrainer.app.getController('FavoritesController').favorites, 'ExercisesPanel', 'ExerciseStore', 'ExercisesController',  'viewExercises');
+                    LanistaTrainer.app.fireEvent('showFavoritesPanel', LanistaTrainer.app.getController('FavoritesController').favorites, 'ExercisesPanel', 'ExerciseStore', 'ExercisesController');
                 });
             }
             else{
@@ -326,6 +326,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         var controller = this;
 
         controller.tpl = controller.getExercisesPanel().down('#viewExercises').tpl;
+        controller.itemSelector = controller.getExercisesPanel().down('#viewExercises').itemSelector;
+
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });

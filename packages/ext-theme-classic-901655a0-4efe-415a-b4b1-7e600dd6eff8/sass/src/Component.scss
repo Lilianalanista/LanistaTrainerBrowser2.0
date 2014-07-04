@@ -1366,11 +1366,11 @@ $base-gradient: "none";
 }
 
 .lanista-color-delete {
-    color: red;
+    color: red!important;
 }
 
 .lanista-color-no-delete {
-    color: gainsboro!important;
+    color: gainsboro;
 }
 
 //Color for Header for Customers Favorites
@@ -1388,7 +1388,7 @@ $base-gradient: "none";
 }
 
 //Color for favorites items selected for delete
-.lanista-list-itemrounded-selected-delete .customer-list-background {
+.lanista-list-itemrounded-selected-delete .customer-list-background, .lanista-view-favorites .lanista-list-itemrounded-selected-delete{
     box-shadow: 0 0 20px #FC0536;
 }
 
@@ -1399,6 +1399,10 @@ $base-gradient: "none";
 .lanista-favorites-delete {
     float: right;
     margin-right: 25px;
+}
+
+.lanista-item-delete {
+    text-align: right;
 }
 
 $arrow-height: $button-large-arrow-height;

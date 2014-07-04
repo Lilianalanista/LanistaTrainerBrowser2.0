@@ -59,7 +59,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             else {
                 if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'FavoritesPanel'){
                     LanistaTrainer.app.getController('FavoritesController').saveFavorite(function(){
-                        LanistaTrainer.app.fireEvent('showFavoritesPanel', LanistaTrainer.app.getController('FavoritesController').favorites, 'CustomersPanel', 'CustomerStore', 'CustomersController', 'viewCustomers');
+                        LanistaTrainer.app.fireEvent('showFavoritesPanel', LanistaTrainer.app.getController('FavoritesController').favorites, 'CustomersPanel', 'CustomerStore', 'CustomersController');
                     });
                 }
                 else{
@@ -226,18 +226,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
         var controller = this;
 
         controller.tpl = controller.getCustomersPanel().down('#viewCustomers').tpl;
-
-
-
-
-        console.log('tpls....');
-        console.log(controller.getCustomersPanel().down('#viewCustomers').tpl);
-        console.log(controller.tpl);
-
-
-
-
-
+        controller.itemSelector = controller.getCustomersPanel().down('#viewCustomers').itemSelector;
 
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
