@@ -52,6 +52,9 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
     },
 
     onCloseCustomersPanelButtonClick: function(button, e, eOpts) {
+        var controller = this,
+            customersStore;
+
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeCustomersPanel', function() {
             if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DashboardPanel')
@@ -63,7 +66,6 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                     });
                 }
                 else{
-
                     LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
                     LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController('PlanController').planname);
                 }
@@ -73,30 +75,20 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
     },
 
     onNextCustomers: function(tool, e, eOpts) {
-        console.log("SHOW NEXT CUSTOMERS");
-
         var store = Ext.getStore("CustomerStore");
-        var totalPages = Math.ceil(store.getTotalCount()/store.pageSize);
 
-        console.log('totalPages: ' + totalPages);
-
-        //if (Ext.getStore("CustomerStore").currentPage < totalPages)
-        //{
-
-        if (store.getTotalCount() >= store.pageSize)
-
-               store.nextPage();
-            //LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
-        //}
+        if (store.getTotalCount() >= store.pageSize){
+            store.nextPage();
+            LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');
+        }
     },
 
     onPreviousCustomers: function(tool, e, eOpts) {
-        console.log("SHOW PREVIOUS CUSTOMERS");
         if (Ext.getStore("CustomerStore").currentPage > 1)
         {
             var store = Ext.getStore("CustomerStore");
             store.previousPage();
-            //LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
+            LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');
         }
     },
 
@@ -104,6 +96,10 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
         LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
             LanistaTrainer.app.fireEvent("promtEmailRequest", "New customer", "Enter the email of your new customer" );
         });
+    },
+
+    onRecentCustomersButtonClick: function(button, e, eOpts) {
+        this.searchRecently();
     },
 
     onShowCustomersPanel: function(callback) {
@@ -115,9 +111,8 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/190) * viewportXCapacity;
 
         storeCustomers.pageSize = viewportCapacity;
-
-        Ext.getStore('CustomerStore').clearFilter();
-        Ext.getStore('CustomerStore').load();
+        storeCustomers.clearFilter();
+        storeCustomers.loadPage(1);
 
         mainStage.add( customerPanel );
 
@@ -131,6 +126,9 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
 
         // *** 2 Show the panel
         customerPanel.show();
+
+        if (Object.getOwnPropertyNames(storeCustomers.getProxy().extraParams)[0])
+            this.getRightCommandPanel().down('#recentCustomersButton').addCls('lanista-active');
 
         LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
@@ -158,12 +156,27 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
     },
 
     onShowCustomersHeaderUpdate: function() {
-        var controller = this;
+        var controller = this,
+            info,
+            customersStore,
+            numOfCustomers,
+            page,
+            totalPages;
+
         if (this.getCustomersPanel() && !this.getCustomersPanel().isHidden()) {
-            controller.getMainViewport().down("#header").update({
-               info: '',
-               title: Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase()
-            });
+            setTimeout(function()
+            {
+                customersStore= Ext.getStore('CustomerStore');
+                page = customersStore.currentPage;
+                numOfCustomers = customersStore.totalCount;
+                totalPages = Math.ceil(numOfCustomers/customersStore.pageSize);
+
+                info = '<div class="customer-header">' + numOfCustomers + ' ' + Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>';
+                controller.getMainViewport().down("#header").update({
+                   info: info,
+                   title: Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase()
+                });
+            }, 100);
         }
     },
 
@@ -279,6 +292,30 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
 
     },
 
+    searchRecently: function() {
+        var controller = this,
+            proxy,
+            customersStore= Ext.getStore('CustomerStore'),
+            mainStage	= controller.getMainStage(),
+            viewportXCapacity	= Math.round(mainStage.getEl().getWidth(true)/207),
+            viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/190) * viewportXCapacity;
+
+        customersStore.pageSize = viewportCapacity;
+        proxy = customersStore.getProxy();
+        if (this.getRightCommandPanel().down('#recentCustomersButton').el.dom.classList.contains('lanista-active')){
+            this.getRightCommandPanel().down('#recentCustomersButton').removeCls('lanista-active');
+            proxy.extraParams = {};
+        }
+        else{
+            this.getRightCommandPanel().down('#recentCustomersButton').addCls('lanista-active');
+            proxy.extraParams = {'recently': 'true'};
+        }
+
+        customersStore.loadPage(1);
+        LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');
+
+    },
+
     init: function(application) {
         this.control({
             "viewport #showCustomersPanelButton": {
@@ -295,6 +332,9 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             },
             "viewport #newCustomerButton": {
                 click: this.onNewCustomerButtonClick
+            },
+            "viewport #recentCustomersButton": {
+                click: this.onRecentCustomersButtonClick
             }
         });
 

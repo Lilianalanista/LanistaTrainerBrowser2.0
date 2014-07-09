@@ -62,11 +62,13 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                     id: 'viewExercises',
                     tpl: [
                         '<tpl for=".">',
+                        '  <div class="lanista-x-exercise">',
                         '  <div class="exercise-item">',
                         '	  <div class="lanista-icon lanista-item-delete"></div>',
                         '      <div class="exercise-list-img exercise-list-img-right" style="background-image: url(resources/images/previews/{ext_id}_1.jpg);"></div>',
                         '      <div class="exercise-list-img exercise-list-img-left" style="background-image: url(resources/images/previews/{ext_id}_2.jpg);"></div>',
                         '      <div class="exercise-list-text">{[values["name_" + Ext.ux.LanguageManager.lang]]}</div>',
+                        '  </div>',
                         '  </div>',
                         '</tpl>'
                     ],

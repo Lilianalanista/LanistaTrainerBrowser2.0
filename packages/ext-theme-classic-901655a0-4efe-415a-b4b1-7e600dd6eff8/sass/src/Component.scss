@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Harabara Bold";
   src:  url('fonts/lanista/Harabara.ttf') format('truetype'),
-        url('fonts/lanista/Harabara.otf') format('opentype'),
+        url('fonts/lanista/Harabara.otf') format('opentype'),f
         url('fonts/lanista/Harabara.woff') format('woff'),
         url('fonts/lanista/Harabara.eot') format('embedded-opentype');
 }
@@ -281,7 +281,7 @@ $base-gradient: "none";
 
 .lanista-command-button .x-btn-button {
     height: 100px!important;
-    width: 70px!important;
+    width: 73px!important;
 }
 
 .lanista-command-button .x-btn-glyph {
@@ -321,6 +321,10 @@ $base-gradient: "none";
     padding-right: 0px;
 }
 
+.lanista-command-button .x-btn-icon-el {
+    margin-top: 2px;
+    margin-left: 2px;
+}
 
 .menu-lanista-button {
     //text-transform: uppercase;
@@ -582,7 +586,7 @@ $base-gradient: "none";
     font-size:130%;
 }
 
-.exercises-header {
+.exercises-header, .customer-header {
 	margin-top: 18px!important;
 }
 
@@ -1388,12 +1392,16 @@ $base-gradient: "none";
 }
 
 //Color for favorites items selected for delete
-.lanista-list-itemrounded-selected-delete .customer-list-background, .lanista-view-favorites .lanista-list-itemrounded-selected-delete{
+.lanista-list-itemrounded-selected-delete .customer-list-background, .lanista-x-exercise .lanista-list-itemrounded-selected-delete{
     box-shadow: 0 0 20px #FC0536;
 }
 
-#viewCustomers, #viewCustomersFavorites {
-    top: 10px;
+#viewCustomers, #viewFavorites {
+    top: 10px!important;
+}
+
+#viewFavorites {
+    top: 13px!important;
 }
 
 .lanista-favorites-delete {
@@ -1405,6 +1413,12 @@ $base-gradient: "none";
     text-align: right;
 }
 
+.lanista-active .x-btn-glyph{
+    box-shadow: 0 0 5px #4aacd8,inset 0 0 20px #4aacd8;
+    background-color: #4aacd8;
+    color: white;
+    overflow: visible;
+}
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

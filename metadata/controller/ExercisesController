@@ -203,7 +203,7 @@
                     "    filter = filter ? filter + '<div class=\"filterTitle\"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + '</span></div>  <div class=\"filterText\">' + searchText.toUpperCase() + '</div> <div class=\"lanista-delete-search lanista-icon\" id=\"deleteSearchFilter\">&nbsp;u</div>' : '<div class=\"filterTitle\"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + '</span></div>  <div class=\"filterText\">' + searchText.toUpperCase() + '</div> <div class=\"lanista-delete-search lanista-icon\" id=\"deleteSearchFilter\">&nbsp;u</div>';",
                     "",
                     "if (this.getExercisesPanel() && !this.getExercisesPanel().isHidden()) {",
-                    "    if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && ",
+                    "    if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&",
                     "         (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')     &&",
                     "         (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'FavoritesPanel'))",
                     "        info = '<div class=\"exercises-header\"><div class=\"header-filter lanista-exercise-filter-plan\">';",

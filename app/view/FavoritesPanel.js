@@ -271,18 +271,6 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
                     LanistaTrainer.app.fireEvent('showExercisePanel', record, '');
                 }
             },100);
-
-
-
-
-
-
-
-
-
-
-
-
         }
     },
 

@@ -45,7 +45,16 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
     ],
 
     onCloseFavoritesPanelButtonClick: function(button, e, eOpts) {
+        var controller = this;
+
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+
+        controller.favorites = '';
+        controller.favoritesStoreName = '';
+        controller.favoritesPanelName = '';
+        controller.favoritesControllerName = '';
+        controller.favoritesToDelete = '';
+
         LanistaTrainer.app.fireEvent('closeFavoritesPanel', function() {
             LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
         });
@@ -144,16 +153,6 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
         favoritesPanel.down('#viewFavorites').tpl = LanistaTrainer.app.getController(favoriteController).tpl;
         favoritesPanel.down('#viewFavorites').itemSelector = LanistaTrainer.app.getController(favoriteController).itemSelector;
 
-
-
-
-        console.log('Item selector....');
-        console.log(favoritesPanel.down('#viewFavorites').itemSelector);
-
-
-
-
-
         favoritesPanel.down('#viewFavorites').bindStore(favoriteStore);
         filterFunction = new Ext.util.Filter({
             filterFn: function(item){
@@ -201,7 +200,6 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                 item.hide();
             });
 
-            controller.favoritesToDelete = '';
             controller.getMainViewport().down("#header").removeCls('lanista-header-color-favorites');
             controller.getFavoritesPanel().hide();
             if (callback instanceof Function) callback();
@@ -376,7 +374,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
             for (var i = 0; i < favoritesToDeleteArray.length; i++) {
                 for ( var j = 0; j < favoritesArray.length; j++){
-                    index = favoritesArray.indexOf(favoritesToDeleteArray[j]);
+                    index = favoritesArray.indexOf(favoritesToDeleteArray[i]);
                     if (index >= 0){
                         favoritesArray.splice(index, 1);
                         break;
