@@ -254,6 +254,9 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
              this, {delegate: '.lanista-item-plans'});
 
 
+        //---------------------------------------------------------------
+        //  Deleting a Plan
+        //---------------------------------------------------------------
 
         el.on('click',function(e,t){
             record = component.getView().getRecord(component.getView().getSelectedNodes()[0]);

@@ -176,7 +176,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                    info: info,
                    title: Ext.ux.LanguageManager.TranslationArray.CUSTOMER_LIST.toUpperCase()
                 });
-            }, 100);
+            }, 200);
         }
     },
 

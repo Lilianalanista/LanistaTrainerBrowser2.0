@@ -28,13 +28,56 @@
                     "var controller = this,",
                     "    templatesPanel\t= controller.getTemplatesPanel(),",
                     "    mainStage\t= controller.getMainStage();",
+                    "    planStore = Ext.getStore('PlanStore');",
                     "",
+                    "//planStore.clearGrouping();",
+                    "//planStore.clearFilter();",
+                    "//planStore.getProxy().headers = {};",
+                    "",
+                    "planStore.setProxy(new Ext.data.proxy.Ajax({",
+                    "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',",
+                    "        model: 'Plan',",
+                    "        noCache: false,",
+                    "        reader: {",
+                    "            type: 'json',",
+                    "            root: 'entries'",
+                    "        },",
+                    "        writer: {",
+                    "            type: 'json',",
+                    "            root: 'results'",
+                    "        }",
+                    "    }));",
+                    "",
+                    "planStore.filter ({property: 'customer_id', value: '75'});",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "console.log(planStore);",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "templatesPanel.down('#templatesView').bindStore(planStore);",
+                    "planStore.load();",
+                    "",
+                    "planStore.sort( {",
+                    "    direction: 'DESC',",
+                    "    property: 'creation_date'",
+                    "});",
+                    "",
+                    "/*planStore.load({",
+                    "    callback: function(records, operation, success) {",
+                    "        templatesPanel.down('#templatesView').refresh();",
+                    "    }",
+                    "});*/",
+                    "",
+                    "//planStore.load();",
                     "mainStage.add( templatesPanel );",
                     "",
                     "templatesPanel.on('hide', function(component) {",
                     "    component.destroy();",
                     "}, controller);",
-                    "",
                     "",
                     "// **** 1 create the commands",
                     "LanistaTrainer.app.setStandardButtons('closeTemplatesPanelButton');",
@@ -56,7 +99,7 @@
                     "",
                     ""
                 ],
-                "name": "ShowTemplatesPanel",
+                "name": "showTemplatesPanel",
                 "scope": "this"
             },
             "designerId": "d015d8bd-2ae9-4d3e-ac98-7743a3486d35"
@@ -110,37 +153,7 @@
                     "controller.getRightCommandPanel().items.each(function (item) {",
                     "    item.hide();",
                     "});",
-                    "",
-                    "",
-                    "/*",
-                    "var privacySettingsButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
-                    "    iconCls: 'lanista-privacy',",
-                    "    text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_PRIVACY,",
-                    "    itemId: 'privacySettingsButton'",
-                    "});",
-                    "var passwordResetButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
-                    "    iconCls: 'lanista-question',",
-                    "    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PASSWORD_RESET,",
-                    "    itemId: 'forgotPasswordButton'",
-                    "});",
-                    "var licenceButton = Ext.create('LanistaTrainerTouch.view.LanistaButton', {",
-                    "    iconCls: localStorage.getItem(\"status\") == '1' ? 'lanista-checkmark' : 'lanista-cart',",
-                    "    text: Ext.ux.LanguageManager.TranslationArray.LICENSE,",
-                    "    itemId: 'licenseButton',",
-                    "    cls: localStorage.getItem(\"status\") == '1' ? ['lanista-command-buton'] : ['lanista-command-buton','lanista-command-buton-red']",
-                    "});",
-                    "",
-                    "controller.getRightCommandPanel().add(",
-                    "    passwordResetButton",
-                    ");",
-                    "controller.getRightCommandPanel().add(",
-                    "    privacySettingsButton",
-                    ");",
-                    "controller.getRightCommandPanel().add(",
-                    "    licenceButton",
-                    ");",
-                    "",
-                    "*/"
+                    ""
                 ]
             },
             "designerId": "246ba341-ffe9-4c19-a768-c2a384e2a376"
@@ -289,7 +302,7 @@
                     "if (this.getTemplatesPanel() && !this.getTemplatesPanel().isHidden()) {",
                     "    controller.getMainViewport().down(\"#header\").update({",
                     "       info: '',",
-                    "       title: '-' + Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES.toUpperCase()",
+                    "       title: Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES.toUpperCase()",
                     "    });",
                     "}"
                 ],
@@ -297,6 +310,54 @@
                 "scope": "this"
             },
             "designerId": "8ec6ce60-049e-4492-84f9-57f308317479"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #nextTemplates",
+                "designer|targetType": "Ext.panel.Tool",
+                "fn": "onNextTemplatesClick",
+                "implHandler": [
+                    "var store = Ext.getStore(\"TemplatesStore\");",
+                    "",
+                    "if (store.getTotalCount() >= store.pageSize){",
+                    "    store.nextPage();",
+                    "    LanistaTrainer.app.fireEvent('showTemplatesHeaderUpdate');",
+                    "}"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "eee1c94d-96a9-4694-859e-84c1a7574d64"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #previousTemplates",
+                "designer|targetType": "Ext.panel.Tool",
+                "fn": "onPreviousTemplatesClick",
+                "implHandler": [
+                    "if (Ext.getStore(\"TemplatesStore\").currentPage > 1)",
+                    "{",
+                    "    var store = Ext.getStore(\"TemplatesStore\");",
+                    "    store.previousPage();",
+                    "    LanistaTrainer.app.fireEvent('showTemplatesHeaderUpdate');",
+                    "}"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "eb3fcd84-8267-4b77-a602-d70ed892b6f8"
         }
     ]
 }

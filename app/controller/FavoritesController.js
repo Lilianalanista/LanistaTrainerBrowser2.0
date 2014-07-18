@@ -77,6 +77,24 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
     },
 
+    onPreviousFavoritesClick: function(tool, e, eOpts) {
+        if (Ext.getStore("FavoritesStore").currentPage > 1)
+        {
+            var store = Ext.getStore("FavoritesStore");
+            store.previousPage();
+            LanistaTrainer.app.fireEvent('showFavoritesHeaderUpdate');
+        }
+    },
+
+    onNextFavoritesClick: function(tool, e, eOpts) {
+        var store = Ext.getStore("FavoritesStore");
+
+        if (store.getTotalCount() >= store.pageSize){
+            store.nextPage();
+            LanistaTrainer.app.fireEvent('showFavoritesHeaderUpdate');
+        }
+    },
+
     onPromtNewFavorite: function(title, message, favoriteRecord, type, panel, store, favoriteController) {
         var controller = this,
             userId = localStorage.getItem("user_id"),
@@ -517,6 +535,12 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
             },
             "viewport #removeCustomerFavoritesButton": {
                 click: this.onRemoveCustomerFavoritesButtonClick
+            },
+            "viewport #previousFavorites": {
+                click: this.onPreviousFavoritesClick
+            },
+            "viewport #nextFavorites": {
+                click: this.onNextFavoritesClick
             }
         });
 

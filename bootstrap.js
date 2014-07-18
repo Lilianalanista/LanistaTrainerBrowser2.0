@@ -872,6 +872,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.CustomerInfoPanel": [],
   "LanistaTrainer.view.CustomersPanel": [],
   "LanistaTrainer.view.DashBoardPanel": [],
+  "LanistaTrainer.view.DefaultPlanValuesPanel": [],
   "LanistaTrainer.view.ExercisePanel": [],
   "LanistaTrainer.view.ExercisesPanel": [],
   "LanistaTrainer.view.FavoritesPanel": [],
@@ -1964,6 +1965,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.DashBoardPanel": [
     "widget.dashBoardPanel"
+  ],
+  "LanistaTrainer.view.DefaultPlanValuesPanel": [
+    "widget.defaultPlanValuesPanel"
   ],
   "LanistaTrainer.view.ExercisePanel": [
     "widget.exercisePanel"

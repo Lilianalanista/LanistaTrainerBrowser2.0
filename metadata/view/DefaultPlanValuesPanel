@@ -1,0 +1,51 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "defaultPlanValuesPanel",
+        "designer|userClassName": "DefaultPlanValuesPanel",
+        "header": false,
+        "height": 250,
+        "id": "defaultPlanValuesPanel",
+        "title": null,
+        "width": 400
+    },
+    "designerId": "ff22472d-8c6c-4268-a8cb-265c66884e7e",
+    "cn": [
+        {
+            "type": "Ext.form.field.Number",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fieldLabel": "Sets",
+                "id": "inputSetsPlan"
+            },
+            "designerId": "ea1c54d4-4ee6-4eaa-bbfd-21b612c10028"
+        },
+        {
+            "type": "Ext.XTemplate",
+            "reference": {
+                "name": "tpl",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "tpl",
+                "implHandler": [
+                    "<div class='lanista-plan-default-value'>",
+                    "    <div class='lanista-plan-set-default'>{[values.rounds_min + ' ' + Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS]}</div>",
+                    "    <div class='lanista-plan-rep-default'><div>{[values[\"training_min\"]]}</div> <div>{[values[\"training_unit\"] == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : values[\"training_unit\"] == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.REP]}</div></div>",
+                    "</div>"
+                ]
+            },
+            "designerId": "7bd45188-8b08-4323-92f4-6da0caab7a73"
+        }
+    ]
+}

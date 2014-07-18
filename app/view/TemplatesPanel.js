@@ -17,15 +17,181 @@ Ext.define('LanistaTrainer.view.TemplatesPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.templatesPanel',
 
+    requires: [
+        'Ext.view.View',
+        'Ext.XTemplate',
+        'Ext.panel.Tool'
+    ],
+
     border: false,
     height: 250,
     id: 'templatesPanel',
     width: 400,
+    layout: 'fit',
+    frameHeader: false,
+    headerPosition: 'bottom',
 
     initComponent: function() {
         var me = this;
 
+        Ext.applyIf(me, {
+            defaultDockWeights: {
+                top: {
+                    render: 1,
+                    visual: 1
+                },
+                left: {
+                    render: 3,
+                    visual: 5
+                },
+                right: {
+                    render: 5,
+                    visual: 7
+                },
+                bottom: {
+                    render: 7,
+                    visual: 3
+                }
+            },
+            items: [
+                {
+                    xtype: 'dataview',
+                    id: 'templatesView',
+                    tpl: [
+                        '<tpl for=".">',
+                        '    <div class="lanista-template-item">',
+                        '        <div class="plan-content">',
+                        '            <div class="plan-name">{[values[\'name\']]}</div>            ',
+                        '            <div class="plan-description">{[values[\'description\']]}</div>  ',
+                        '        </div>            ',
+                        '        <div class="plan-footer">       ',
+                        '            <div class="plan-duration-icon">y</div><div class="plan-duration">{[values[\'duration\'] + \' \' + Ext.ux.LanguageManager.TranslationArray.WEEKS]}</div>               ',
+                        '            <div class="plan-privacy-icon">{[values[\'public_template\'] === 0 ? \'Q\' : \'P\']}</div>         	 ',
+                        '        </div>        ',
+                        '    </div>',
+                        '</tpl> '
+                    ],
+                    itemSelector: 'div.lanista-template-item',
+                    listeners: {
+                        hide: {
+                            fn: me.onTemplatesViewHide,
+                            scope: me
+                        },
+                        afterrender: {
+                            fn: me.onTemplatesViewAfterRender,
+                            scope: me
+                        },
+                        itemclick: {
+                            fn: me.onTemplatesViewItemClick,
+                            scope: me
+                        }
+                    }
+                }
+            ],
+            tools: [
+                {
+                    xtype: 'tool',
+                    id: 'previousTemplates',
+                    type: 'left'
+                },
+                {
+                    xtype: 'tool',
+                    id: 'nextTemplates',
+                    type: 'right'
+                }
+            ]
+        });
+
         me.callParent(arguments);
+    },
+
+    onTemplatesViewHide: function(component, eOpts) {
+        component.destroy();
+    },
+
+    onTemplatesViewAfterRender: function(component, eOpts) {
+        var el = component.el,
+            classValue;
+
+        //--------------------------------------------
+        //   Managing templates items
+        //--------------------------------------------
+        el.on(
+            'click', function(e,t) {
+                Ext.get(t).removeCls('item-no-clicked');
+                /*if (!t.classList.contains('lanista-list-itemrounded-selected-delete')){
+                    classValue = t.className;
+                    classValue = classValue.replace(' lanista-list-itemrounded-deleting','', 'g');
+                    t.className = classValue;
+                }*/
+            },
+            this, {delegate: '.lanista-template-item'});
+        el.on(
+            'mouseover', function(e,t) {
+                //Ext.get(t).dom.children[0].innerHTML = 'u';
+                //classValue = Ext.get(t).dom.children[0].className;
+                //Ext.get(t).dom.children[0].className = classValue + ' lanista-color-no-delete';
+                //if (!t.classList.contains('lanista-list-itemrounded-selected-delete')){
+                    Ext.get(t).addCls('item-clicked');
+                    Ext.get(t).removeCls('item-no-clicked');
+                //}
+            },
+            this,{ delegate: '.lanista-template-item'});
+        el.on(
+            'mouseout', function(e,t) {
+                //Ext.get(t).dom.children[0].innerHTML = '';
+                //classValue = Ext.get(t).dom.children[0].className;
+                //classValue = classValue.replace(' lanista-color-no-delete','','g');
+                //classValue = classValue.replace(' lanista-color-no-delete','','g');
+                //Ext.get(t).dom.children[0].className = classValue;
+                Ext.get(t).removeCls('item-clicked');
+                Ext.get(t).addCls('item-no-clicked');
+            },
+            this,{ delegate: '.lanista-template-item'});
+
+
+        //--------------------------------------------
+        //  Deleting Templates
+        //--------------------------------------------
+        /*el.on(
+            'click', function(e,t) {
+                if (!t.parentNode.classList.contains('lanista-list-itemrounded-deleting'))
+                    t.parentNode.className = t.parentNode.className + ' lanista-list-itemrounded-deleting';
+                this.markDeleteFavorites(t, component);
+           },
+            this,{ delegate: '.lanista-item-delete'});
+        el.on(
+            'mouseover', function(e,t) {
+                classValue = Ext.get(t).dom.className;
+                classValue = classValue.replace(' item-not-clicked','','g');
+                classValue = classValue.replace(' lanista-color-no-delete','','g');
+                classValue = classValue.replace(' lanista-color-no-delete','','g');
+                Ext.get(t).dom.className = classValue + ' item-clicked lanista-color-delete';
+             },
+            this,{ delegate: '.lanista-item-delete'});
+        el.on(
+            'mouseout', function(e,t) {
+                classValue = Ext.get(t).dom.className;
+                classValue = classValue.replace(' item-clicked','','g');
+                classValue = classValue.replace(' lanista-color-delete','','g');
+                Ext.get(t).dom.className = classValue + ' item-not-clicked lanista-color-no-delete';
+           },
+            this,{ delegate: '.lanista-item-delete'});
+        */
+
+
+    },
+
+    onTemplatesViewItemClick: function(dataview, record, item, index, e, eOpts) {
+        //setTimeout(function() {
+        //    if (!Ext.get(item).dom.classList.contains('lanista-list-itemrounded-deleting')) {
+                LanistaTrainer.app.fireEvent('closeTemplatesPanel', function() {
+                    LanistaTrainer.app.getController ( 'PlanController' ).plan = record;
+                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                    LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name );
+                });
+        //    }
+        //},100);
     }
 
 });

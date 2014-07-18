@@ -7,12 +7,220 @@
     "codeClass": null,
     "userConfig": {
         "border": false,
+        "defaultDockWeights": [
+            "{\"top\":{\"render\":1,\"visual\":1},\"left\":{\"render\":3,\"visual\":5},\"right\":{\"render\":5,\"visual\":7},\"bottom\":{\"render\":7,\"visual\":3}}"
+        ],
         "designer|userAlias": "templatesPanel",
         "designer|userClassName": "TemplatesPanel",
+        "frameHeader": false,
+        "headerPosition": "bottom",
         "height": 250,
         "id": "templatesPanel",
+        "layout": "fit",
         "title": null,
         "width": 400
     },
-    "designerId": "1a25ee7d-39cf-4c13-b9dc-cd6973d85792"
+    "designerId": "1a25ee7d-39cf-4c13-b9dc-cd6973d85792",
+    "cn": [
+        {
+            "type": "Ext.view.View",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "templatesView",
+                "itemSelector": "div.lanista-template-item",
+                "store": null
+            },
+            "designerId": "dddc5e8b-26b2-4812-ac23-42168cdeffa2",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "tpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tpl",
+                        "implHandler": [
+                            "<tpl for=\".\">",
+                            "    <div class=\"lanista-template-item\">",
+                            "        <div class=\"plan-content\">",
+                            "            <div class=\"plan-name\">{[values['name']]}</div>            ",
+                            "            <div class=\"plan-description\">{[values['description']]}</div>  ",
+                            "        </div>            ",
+                            "        <div class=\"plan-footer\">       ",
+                            "            <div class=\"plan-duration-icon\">y</div><div class=\"plan-duration\">{[values['duration'] + ' ' + Ext.ux.LanguageManager.TranslationArray.WEEKS]}</div>               ",
+                            "            <div class=\"plan-privacy-icon\">{[values['public_template'] === 0 ? 'Q' : 'P']}</div>         \t ",
+                            "        </div>        ",
+                            "    </div>",
+                            "</tpl> "
+                        ]
+                    },
+                    "designerId": "98bae520-e037-4625-ae2c-a2ba5a807f0a"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTemplatesViewHide",
+                        "implHandler": [
+                            "component.destroy();"
+                        ],
+                        "name": "hide",
+                        "scope": "me"
+                    },
+                    "designerId": "5ef4619e-b8e1-4de7-8e87-52407dd56705"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTemplatesViewAfterRender",
+                        "implHandler": [
+                            "var el = component.el,",
+                            "    classValue;",
+                            "",
+                            "//--------------------------------------------",
+                            "//   Managing templates items",
+                            "//--------------------------------------------",
+                            "el.on(",
+                            "    'click', function(e,t) {",
+                            "        Ext.get(t).removeCls('item-no-clicked');",
+                            "        /*if (!t.classList.contains('lanista-list-itemrounded-selected-delete')){",
+                            "            classValue = t.className;",
+                            "            classValue = classValue.replace(' lanista-list-itemrounded-deleting','', 'g');",
+                            "            t.className = classValue;",
+                            "        }*/",
+                            "    },",
+                            "    this, {delegate: '.lanista-template-item'});",
+                            "el.on(",
+                            "    'mouseover', function(e,t) {",
+                            "        //Ext.get(t).dom.children[0].innerHTML = 'u';",
+                            "        //classValue = Ext.get(t).dom.children[0].className;",
+                            "        //Ext.get(t).dom.children[0].className = classValue + ' lanista-color-no-delete';",
+                            "        //if (!t.classList.contains('lanista-list-itemrounded-selected-delete')){",
+                            "            Ext.get(t).addCls('item-clicked');",
+                            "            Ext.get(t).removeCls('item-no-clicked');",
+                            "        //}",
+                            "    },",
+                            "    this,{ delegate: '.lanista-template-item'});",
+                            "el.on(",
+                            "    'mouseout', function(e,t) {",
+                            "        //Ext.get(t).dom.children[0].innerHTML = '';",
+                            "        //classValue = Ext.get(t).dom.children[0].className;",
+                            "        //classValue = classValue.replace(' lanista-color-no-delete','','g');",
+                            "        //classValue = classValue.replace(' lanista-color-no-delete','','g');",
+                            "        //Ext.get(t).dom.children[0].className = classValue;",
+                            "        Ext.get(t).removeCls('item-clicked');",
+                            "        Ext.get(t).addCls('item-no-clicked');",
+                            "    },",
+                            "    this,{ delegate: '.lanista-template-item'});",
+                            "",
+                            "",
+                            "//--------------------------------------------",
+                            "//  Deleting Templates",
+                            "//--------------------------------------------",
+                            "/*el.on(",
+                            "    'click', function(e,t) {",
+                            "        if (!t.parentNode.classList.contains('lanista-list-itemrounded-deleting'))",
+                            "            t.parentNode.className = t.parentNode.className + ' lanista-list-itemrounded-deleting';",
+                            "        this.markDeleteFavorites(t, component);",
+                            "   },",
+                            "    this,{ delegate: '.lanista-item-delete'});",
+                            "el.on(",
+                            "    'mouseover', function(e,t) {",
+                            "        classValue = Ext.get(t).dom.className;",
+                            "        classValue = classValue.replace(' item-not-clicked','','g');",
+                            "        classValue = classValue.replace(' lanista-color-no-delete','','g');",
+                            "        classValue = classValue.replace(' lanista-color-no-delete','','g');",
+                            "        Ext.get(t).dom.className = classValue + ' item-clicked lanista-color-delete';",
+                            "     },",
+                            "    this,{ delegate: '.lanista-item-delete'});",
+                            "el.on(",
+                            "    'mouseout', function(e,t) {",
+                            "        classValue = Ext.get(t).dom.className;",
+                            "        classValue = classValue.replace(' item-clicked','','g');",
+                            "        classValue = classValue.replace(' lanista-color-delete','','g');",
+                            "        Ext.get(t).dom.className = classValue + ' item-not-clicked lanista-color-no-delete';",
+                            "   },",
+                            "    this,{ delegate: '.lanista-item-delete'});",
+                            "*/",
+                            "",
+                            ""
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "20868d42-d7d4-4a5b-9cf5-fca920a548de"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTemplatesViewItemClick",
+                        "implHandler": [
+                            "//setTimeout(function() {",
+                            "//    if (!Ext.get(item).dom.classList.contains('lanista-list-itemrounded-deleting')) {",
+                            "        LanistaTrainer.app.fireEvent('closeTemplatesPanel', function() {",
+                            "            LanistaTrainer.app.getController ( 'PlanController' ).plan = record;",
+                            "            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';",
+                            "            LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name );",
+                            "        });",
+                            "//    }",
+                            "//},100);"
+                        ],
+                        "name": "itemclick",
+                        "scope": "me"
+                    },
+                    "designerId": "5a0dfcc8-afa4-42f9-80d2-c77eb8a7b309"
+                }
+            ]
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|createAlias": "",
+                "designer|displayName": null,
+                "id": "previousTemplates",
+                "type": "left"
+            },
+            "designerId": "570169bc-d1bf-48b4-96bf-b63eb73ebd7d"
+        },
+        {
+            "type": "Ext.panel.Tool",
+            "reference": {
+                "name": "tools",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|createAlias": "",
+                "designer|displayName": "",
+                "id": "nextTemplates",
+                "type": "right"
+            },
+            "designerId": "87ac4e9c-f84e-4c07-8cd9-6657913f21cc"
+        }
+    ]
 }

@@ -71,7 +71,8 @@ Ext.application({
         'PlanPanel',
         'PlanOptionsPanel',
         'VideoWindow',
-        'FavoritesPanel'
+        'FavoritesPanel',
+        'DefaultPlanValuesPanel'
     ],
     controllers: [
         'MainController',
@@ -259,9 +260,9 @@ Ext.application({
                     type: 'json',
                     root: 'results'
                 },
-                headers: {
-                    user_id: userId
-                }
+                headers: undefined //{
+                    //user_id: userId
+                //}
             }));
 
             Ext.getStore('FavoritesStore').setProxy(new Ext.data.proxy.Ajax({

@@ -37,6 +37,24 @@ Ext.define('LanistaTrainer.view.FavoritesPanel', {
         var me = this;
 
         Ext.applyIf(me, {
+            defaultDockWeights: {
+                top: {
+                    render: 1,
+                    visual: 1
+                },
+                left: {
+                    render: 3,
+                    visual: 5
+                },
+                right: {
+                    render: 5,
+                    visual: 7
+                },
+                bottom: {
+                    render: 7,
+                    visual: 3
+                }
+            },
             items: [
                 {
                     xtype: 'dataview',

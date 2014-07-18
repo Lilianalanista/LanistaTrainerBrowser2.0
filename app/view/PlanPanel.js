@@ -58,8 +58,10 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
                 tpl: [
                     '<div class="plan-header-description" id="planHeaderDescription">{description}</div>',
                     '<div class="plan-header-info">',
-                    '    <div class="plan-header-attribute">{[Ext.ux.LanguageManager.TranslationArray.CREATED_AT]}:</div><div class="plan-header-value">{[Ext.Date.format ( values.creation_date, \'d, M Y\' )]}</div>',
-                    '    <div class="plan-header-attribute">{[Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME]}:</div><div class="plan-header-value">{duration}</div>',
+                    '   <div class="plan-header-attribute">{[Ext.ux.LanguageManager.TranslationArray.CREATED_AT]}:</div><div class="plan-header-value">{[Ext.Date.format ( values.creation_date, \'d, M Y\' )]}</div>',
+                    '   <div class="plan-header-attribute">{[Ext.ux.LanguageManager.TranslationArray.PLAN_FROM_TRAINER ]}:</div><div class="plan-header-value">{creator_name}</div>',
+                    '	<div class="dashboard-customer-background" style="customer-image">a</div>',
+                    '	<div class="plan-header-customer-info" style="background-image: url({[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values.trainer_id + "_photo.jpg"]});"></div>',
                     '</div>'
                 ]
             },
@@ -68,6 +70,7 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
                 flex: 1,
                 cls: 'lanista-exercices-panel',
                 itemId: 'exercicesPanel',
+                plain: true,
                 items: [
                     {
                         xtype: 'planExercisesList',
