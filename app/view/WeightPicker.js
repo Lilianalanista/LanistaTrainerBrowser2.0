@@ -24,6 +24,7 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
     ],
 
     cls: 'lanista-weightPicker',
+    floating: true,
     id: 'weightPicker',
     width: 400,
 

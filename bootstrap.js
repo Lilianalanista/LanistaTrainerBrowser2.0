@@ -886,6 +886,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.PlanOptionsPanel": [],
   "LanistaTrainer.view.PlanPanel": [],
   "LanistaTrainer.view.RegistrationPanel": [],
+  "LanistaTrainer.view.SetObjectLanista": [],
   "LanistaTrainer.view.StopWatch": [],
   "LanistaTrainer.view.TemplatesPanel": [],
   "LanistaTrainer.view.Temporal": [],
@@ -2007,6 +2008,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.RegistrationPanel": [
     "widget.registrationPanel"
+  ],
+  "LanistaTrainer.view.SetObjectLanista": [
+    "widget.setObjectLanista"
   ],
   "LanistaTrainer.view.StopWatch": [
     "widget.stopWatch"

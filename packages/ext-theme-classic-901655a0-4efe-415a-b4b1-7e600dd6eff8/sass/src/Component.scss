@@ -1031,8 +1031,8 @@ $base-gradient: "none";
 }
 
 .lanista-closeProtocollButton .x-btn-glyph, .lanista-saveProtocollButton .x-btn-glyph {
-    height: 60px!important;
-    width: 60px!important;
+    height: 58px!important;
+    width: 58px!important;
     font-size: 21px;
     line-height: 51px;
 }
@@ -1541,8 +1541,29 @@ $base-gradient: "none";
     border-width: thin;
 }
 
+.lanista-plan-default-value{
+    font-family: "Roboto Medium";
+    font-size: 40px;
+    color: #5c93ce;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3),0px -1px 0 rgba(0,0,0,0.7);
+    margin-top: 150px;
+    margin-left: 200px;
+}
 
+.lanista-setrounds{
+    margin-top: 230px;
+    margin-left: 290px;
+}
 
+//Cancel Button on DefaultValues Plan Panel
+.lanista-command-button-cancel-defaultvalues{
+    z-index:10;
+}
+
+//Template Header
+.lanista-header-template{
+    padding-top: 30px;
+}
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

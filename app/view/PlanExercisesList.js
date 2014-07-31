@@ -43,7 +43,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                 '    <div class="exercise-list-imges"></div>',
                 '    <div class="lanista-exercices-title">{[values["exercise_name_" + Ext.ux.LanguageManager.lang]]}</div>',
                 '    <div class="lanista-exercices-foter">',
-                '        <div class="lanista-exercices-weight">{[values["weight_min"] > 0 ? "<span>Kg.</span>"+values["weight_min"] : \'/\']}</div>',
+                '        <div class="lanista-exercices-weight">{[values["weight_min"] > 0 ? "<span>Kg.</span>"+values["weight_min"] : \'\']}</div>',
                 '        <div class="lanista-exercices-training"><span>{[Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS]}</span> {rounds_min} </div>',
                 '        <div class="lanista-exercices-sets"><span>{[values["training_unit"] == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : values["training_unit"] == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.REP]} {training_min} </span></div>',
                 '    </div>',

@@ -178,6 +178,29 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
             item.hide();
         });
 
+        controller.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.NEW_TEMPLATE_TITLE,
+                itemId: 'newTemplateButton',
+                glyph: '108@Lanista Icons' //l
+            })
+        );
+
+        controller.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.MY_TEMPLATES,
+                itemId: 'myTemplatesButton',
+                glyph: '122@Lanista Icons' //z
+            })
+        );
+
+        controller.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.SEARCH,
+                itemId: 'searchTemplatesButton',
+                glyph: '90@Lanista Icons' //Z
+            })
+        );
     },
 
     loadData: function() {

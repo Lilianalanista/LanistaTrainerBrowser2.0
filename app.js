@@ -72,7 +72,8 @@ Ext.application({
         'PlanOptionsPanel',
         'VideoWindow',
         'FavoritesPanel',
-        'DefaultPlanValuesPanel'
+        'DefaultPlanValuesPanel',
+        'SetObjectLanista'
     ],
     controllers: [
         'MainController',

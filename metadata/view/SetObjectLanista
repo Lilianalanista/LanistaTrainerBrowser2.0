@@ -1,0 +1,134 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "cls": "lanista-setobject-lanista",
+        "designer|userAlias": "setObjectLanista",
+        "designer|userClassName": "SetObjectLanista",
+        "height": null,
+        "id": "setObjectLanista",
+        "width": 400
+    },
+    "designerId": "780a0f57-5d29-4010-b8fa-eed33da60b87",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "value"
+                ],
+                "fn": "setValue",
+                "implHandler": [
+                    "if (value)",
+                    "    this.down ( '#setRounds' ).setValue(value);",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "905ac98a-7fb0-4ea1-85ee-beda4381f426"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "getValue",
+                "implHandler": [
+                    "",
+                    "var value = this.down ( '#setRounds' ).getValue();",
+                    "return value;"
+                ]
+            },
+            "designerId": "af30afcb-4a44-4ed2-90d0-7915c904f81d"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onSetObjectLanistaRender",
+                "implHandler": [
+                    "",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "fb508802-289c-4856-aed6-9a4bdfd255d4"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onSetObjectLanistaHide",
+                "implHandler": [
+                    "component.destroy ( );"
+                ],
+                "name": "hide",
+                "scope": "me"
+            },
+            "designerId": "e168e7a1-186e-4d0e-895c-3a03a15cff41"
+        },
+        {
+            "type": "Ext.slider.Single",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "lanista-setrounds",
+                "fieldLabel": null,
+                "height": 20,
+                "id": "setRounds",
+                "maxValue": 20,
+                "useTips": false,
+                "value": 3,
+                "width": 400
+            },
+            "designerId": "0b2a7c18-90b6-4587-a018-99c1715cec2e",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onSetRoundsChange",
+                        "implHandler": [
+                            "record =  [{rounds_min: newValue,",
+                            "            training: Ext.ComponentQuery.query(\"viewport\")[0].down('#trainingPicker').getValue(),",
+                            "            training_unit: Ext.ComponentQuery.query(\"viewport\")[0].down('#trainingPicker').unit}];",
+                            "LanistaTrainer.app.getController('PlanController').getDefaultPlanValuesPanel().update(record[0]);"
+                        ],
+                        "name": "change",
+                        "scope": "me"
+                    },
+                    "designerId": "97873c48-a21d-4f50-9ee8-63f5abd9f2f6"
+                }
+            ]
+        }
+    ]
+}

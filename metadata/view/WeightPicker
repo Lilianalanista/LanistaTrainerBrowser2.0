@@ -9,6 +9,7 @@
         "cls": "lanista-weightPicker",
         "designer|userAlias": "weightPicker",
         "designer|userClassName": "WeightPicker",
+        "floating": true,
         "height": null,
         "id": "weightPicker",
         "width": 400

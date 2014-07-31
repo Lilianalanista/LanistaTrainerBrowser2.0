@@ -251,7 +251,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                 text: Ext.ux.LanguageManager.TranslationArray.SEARCH,
                 itemId: 'searchCustomerButton',
                 userAlias: 'searchCustomerButton',
-                glyph: '75@Lanista Icons' //K
+                glyph: '90@Lanista Icons' //Z
             })
         );
 

@@ -72,6 +72,9 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         this.selectionsTab = [];
         this.plan = null;
         this.planname = '';
+        this.rounds_min = '';
+        this.training_min = '';
+        this.training_unit = '';
 
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closePlanPanel', function() {
@@ -117,7 +120,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             storeExercises = Ext.getStore('ExerciseStore');
 
         for ( var i = 0; i < selection.length; i++ ) {
-            if (selection[i][2] === 1) //Record has just saved in previous added
+            if (selection[i][2] === 1) //Record already added in previous saving
                 continue;
 
             isCustom = isNaN (selection[i][1].substring (0,1));
@@ -126,7 +129,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 user_exercise_id : isCustom ? selection [i][0] : 0,
                 plan_id: controller.plan.data.id,
                 day: currentDay,
-                position: (currentExercisePosition + i + 1)
+                position: (currentExercisePosition + i + 1),
+                rounds_min: controller.rounds_min,
+                training_unit: controller.training_unit,
+                training_min: controller.training_min
             });
 
             newPlanExercise.setProxy(new Ext.data.proxy.Ajax({
@@ -289,6 +295,18 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         });
     },
 
+    onDefaultValuesClick: function(button, e, eOpts) {
+        var panelTraining = Ext.ComponentQuery.query("viewport")[0].down("#trainingPicker"),
+            setObjectLanista = Ext.ComponentQuery.query("viewport")[0].down("#setObjectLanista");
+
+        setObjectLanista.hide();
+        panelTraining.hide();
+        LanistaTrainer.app.fireEvent('defaultValuesChanged', '','','');
+
+
+
+    },
+
     onClosePlanPanel: function(callback) {
         var controller = this;
 
@@ -307,10 +325,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
     onShowPlanPanel: function(planname, callback) {
         var controller = this,
             planExercisesStore = controller.plan.planexercises(),
-            exerciseController = LanistaTrainer.app.getController ( 'ExerciseController' );
+            exerciseController = LanistaTrainer.app.getController ( 'ExerciseController' ),
+            values,
+            record;
 
         controller.planname = planname;
         controller.getPlanPanel().down('planExercisesList').store = planExercisesStore;
+
         planExercisesStore.setProxy(new Ext.data.proxy.Ajax({
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
                 model: 'PlanExercise',
@@ -362,6 +383,15 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
             LanistaTrainer.app.fireEvent('showPlanHeaderUpdate');
             controller.populateTabsExercisesByDay(records);
+
+            if (!controller.rounds_min && !controller.training_min){
+                values = [{rounds_min: 3, training_min: 12, training_unit: 0}];
+                record = tabActiveId.recordsArray && tabActiveId.recordsArray[0] ? tabActiveId.recordsArray[0] : values[0];
+                controller.rounds_min = record.rounds_min;
+                controller.training_min = record.training_min;
+                controller.training_unit = record.training_unit;
+            }
+
             planPanel.down ('tabpanel').setActiveTab(tabActiveId);
             LanistaTrainer.app.fireEvent('showStage');
 
@@ -378,14 +408,20 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             divLogo = '',
             divInfoCustomer = '',
             planPanel	= controller.getPlanPanel(),
-            title;
+            title = '';
 
-        title = "<div class='lanista-header-plan-name'>" + controller.planname +
-                "</div> <div class='lanista-header-plan-duration'>"  + Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME  + ': &nbsp;' +
+        if (!record){
+            title = "<div class='lanista-header-template-name'>" + Ext.ux.LanguageManager.TranslationArray.TEMPLATE_NAME + "</div>";
+            divLogo = "<div class='lanista-header-template'><div class='lanista-header-plan-name'>" + controller.planname +
+                      "</div> <div class='lanista-header-plan-duration'>"  + Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME  + ': &nbsp;' +
+                                                                       controller.plan.data.duration + ' ' +
+                                                                       Ext.ux.LanguageManager.TranslationArray.WEEKS + "</div></div>";
+        }
+        else{
+            title = "<div class='lanista-header-plan-name'>" + controller.planname +
+                    "</div> <div class='lanista-header-plan-duration'>"  + Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME  + ': &nbsp;' +
                                                                        controller.plan.data.duration + ' ' +
                                                                        Ext.ux.LanguageManager.TranslationArray.WEEKS + "</div>";
-
-        if (record){
             divLogo = '<div class="lansita-header-customer-image-not-found"><div class="lansita-header-customer-logo" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);"></div></div>';
             divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + record.data.last_name + '</span><br> <span class="first-name">' + record.data.first_name +'</span></div>';
         }
@@ -517,41 +553,74 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         var controller = this,
             mainStage				= controller.getMainStage(),
             defaultPlanValuesPanel	= controller.getDefaultPlanValuesPanel(),
-            plan					= controller.plan,
+            plan					= controller.getPlanPanel(),
             record,
-            values = [];
+            values = [],
+            trainingPicker = Ext.create('LanistaTrainer.view.TrainingPicker', {}),
+            SetObjectLanista = Ext.create('LanistaTrainer.view.SetObjectLanista', {}),
+            tabActive,
+            LeftPanel = Ext.ComponentQuery.query("viewport")[0].down("#leftCommandPanel");
 
         mainStage.add(defaultPlanValuesPanel);
-        LanistaTrainer.app.setStandardButtons('closeDefaultPlanValuesPanel');
+
+        LeftPanel.items.each(function (item) {
+            item.hide();
+        });
+        LeftPanel.add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_CANCEL,
+                itemId: 'closeDefaultValuesButton',
+                glyph: '117@Lanista Icons', //u
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-red',
+                    'lanista-command-button-cancel-defaultvalues'
+                ]
+            })
+        );
+
         defaultPlanValuesPanel.on('hide', function(component) {
             component.destroy();
         }, self);
 
-        record = controller.currentDay.data[0];
-        if (record)
-            defaultPlanValuesPanel.update(record);
-        else{
-            values = [{rounds_min: 3, training_min: 12, training_unit: 0}];
-        }
+        record = [{rounds_min: controller.rounds_min, training: controller.training_min, training_unit: controller.training_unit}];
+        defaultPlanValuesPanel.update(record[0]);
 
         defaultPlanValuesPanel.show();
         LanistaTrainer.app.fireEvent('showStage');
+
+        controller.getMainViewport().down("#header").update({
+            info: '',
+            title: Ext.ux.LanguageManager.TranslationArray.EXERCISE
+        });
+
+        controller.getMainViewport().add(trainingPicker);
+        controller.getMainViewport().add(SetObjectLanista);
+
+        trainingPicker.show ();
+
+        SetObjectLanista.setValue(record[0].rounds_min);
+        trainingPicker.setRecord(record[0]);
+
         if ( callback instanceof Function ) callback();
 
-        controller.getRightCommandPanel().items.each(function (item) {
-            item.hide();
-        });
+
+
+
 
     },
 
     onCreatePlan: function(planname) {
         var userId = localStorage.getItem("user_id"),
+            user = Ext.ux.SessionManager.getUser(),
             newPlan = Ext.create('LanistaTrainer.model.Plan', {
-            name : ( planname && planname.length > 1 )? planname : Ext.ux.LanguageManager.TranslationArray.PLAN_NAME_DEFAULT,
-            template: 0,
-            customer_id: LanistaTrainer.app.currentCustomer.data.id,
-            trainer_id: userId
-        });
+                name : ( planname && planname.length > 1 )? planname : Ext.ux.LanguageManager.TranslationArray.PLAN_NAME_DEFAULT,
+                template: 0,
+                customer_id: LanistaTrainer.app.currentCustomer.data.id,
+                trainer_id: userId,
+                creator_name: user.first_name + ' ' + user.last_name,
+                duration: 12
+            });
 
         newPlan.setProxy(new Ext.data.proxy.Ajax({
             url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
@@ -609,6 +678,22 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             });
             panel.hide();
             if (callback instanceof Function) callback();
+        });
+    },
+
+    onDefaultValuesChanged: function(defaultValues) {
+        var controller = this,
+            planPanel = controller.getPlanPanel();
+
+        if (defaultValues){
+            controller.rounds_min = defaultValues[0];
+            controller.training_min = defaultValues[1];
+            controller.training_unit = defaultValues[2];
+        }
+
+        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+        LanistaTrainer.app.fireEvent('closeGenericPanel', controller.getDefaultPlanValuesPanel(), function() {
+            LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController ( 'PlanController' ).planname);
         });
     },
 
@@ -738,7 +823,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
     },
 
     setPlanOptions: function() {
-        var controller = this;
+        var controller = this,
+            newOption;
 
         planOptions = new Ext.menu.Menu(
             {
@@ -750,7 +836,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 [
                     {text:	Ext.ux.LanguageManager.TranslationArray.BUTTON_ASSIGN_PLAN.toUpperCase(),
                             handler: function () {
-
                                         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
                                         LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {
                                             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomersPanel';
@@ -760,7 +845,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     },
                     {text:  Ext.ux.LanguageManager.TranslationArray.SEND_EMAIL.toUpperCase(),
                             handler: function () {
-
                                         Ext.Ajax.request({
                                             url: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/plan/sendmail",
                                             method: 'post',
@@ -793,7 +877,16 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             }
         );
 
+        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === "CustomerExercisesPanel"){
+            newOption = {text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE.toUpperCase() + ' ' +
+                                Ext.ux.LanguageManager.TranslationArray.SAVE_AS_TEMPLATE.toUpperCase(),
+                                handler: function () {
+                                            alert('nueva opcion....');
+                                }
+                        };
 
+            planOptions.add(newOption);
+        }
         return planOptions;
 
 
@@ -868,6 +961,9 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             },
             "viewport #closeDefaultPlanValuesPanel": {
                 click: this.onCloseDefaultPlanValuesPanelClick
+            },
+            "viewport #closeDefaultValuesButton": {
+                click: this.onDefaultValuesClick
             }
         });
 
@@ -906,6 +1002,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             },
             closeGenericPanel: {
                 fn: this.onCloseGenericPanel,
+                scope: this
+            },
+            defaultValuesChanged: {
+                fn: this.onDefaultValuesChanged,
                 scope: this
             }
         });

@@ -26,6 +26,7 @@ Ext.define('LanistaTrainer.view.TrainingPicker', {
     ],
 
     cls: 'lanista-trainingPicker',
+    floating: true,
     id: 'trainingPicker',
     width: 400,
 
@@ -438,20 +439,39 @@ Ext.define('LanistaTrainer.view.TrainingPicker', {
                         click: {
                             scope: this,
                             fn: function(){
-                                var panelWeight = Ext.ComponentQuery.query("viewport")[0].down("#weightPicker"),
+                                var panelWeight,
                                     panelTraining = Ext.ComponentQuery.query("viewport")[0].down("#trainingPicker"),
                                     infoProtocoll = [],
-                                    valueWeight = panelWeight.getValue();
+                                    valueWeight,
+                                    setObjectLanista;
 
-                                valueWeight = parseFloat(valueWeight.substring(0, valueWeight.indexOf(' ')).replace(",", "."));
-                                infoProtocoll[0] = valueWeight;
-                                infoProtocoll[1] = panelTraining.getValue();
-                                infoProtocoll[2] = panelTraining.unit;
+                                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
+                                    panelWeight = Ext.ComponentQuery.query("viewport")[0].down("#weightPicker");
+                                    valueWeight = panelWeight ? panelWeight.getValue() : 0;
+                                    valueWeight = valueWeight !== 0 ? parseFloat(valueWeight.substring(0, valueWeight.indexOf(' ')).replace(",", ".")) : 0;
+                                    infoProtocoll[0] = valueWeight;
+                                    infoProtocoll[1] = panelTraining.getValue();
+                                    infoProtocoll[2] = panelTraining.unit;
+                                    LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');
+                                }
 
-                                LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');
+                                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DefaultPlanValuesPanel'){
+                                    setObjectLanista = Ext.ComponentQuery.query("viewport")[0].down("#setObjectLanista");
+                                    infoProtocoll[0] = setObjectLanista.getValue();
+                                    infoProtocoll[1] = panelTraining.getValue();
+                                    infoProtocoll[2] = panelTraining.unit;
+                                    LanistaTrainer.app.fireEvent('defaultValuesChanged', infoProtocoll,'','');
+                                }
 
-                                panelWeight.removeAll();
-                                panelWeight.hide();
+                                if (panelWeight){
+                                    panelWeight.removeAll();
+                                    panelWeight.hide();
+                                }
+
+                                if (setObjectLanista){
+                                    setObjectLanista.removeAll();
+                                    setObjectLanista.hide();
+                                }
 
                                 panelTraining.removeAll();
                                 panelTraining.hide();
@@ -461,29 +481,40 @@ Ext.define('LanistaTrainer.view.TrainingPicker', {
                 })
         );
 
-        this.down ( '#setFieldButtons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
-                    itemId: 'closeProtocollButton',
-                    glyph: '117@Lanista Icons', //u
-                    cls: [
-                        'lanista-command-button',
-                        'lanista-command-button-red',
-                        'lanista-closeProtocollButton'
-                    ],
-                    listeners: {
-                        click: {
-                            scope: this,
-                            fn: function(){
-                                var panelWeight = Ext.ComponentQuery.query("viewport")[0].down("#weightPicker"),
-                                    panelTraining = Ext.ComponentQuery.query("viewport")[0].down("#trainingPicker");
 
-                                panelWeight.hide();
-                                panelTraining.hide();
+        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] !== 'DefaultPlanValuesPanel'){
+            this.down ( '#setFieldButtons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
+                        itemId: 'closeProtocollButton',
+                        glyph: '117@Lanista Icons', //u
+                        cls: [
+                            'lanista-command-button',
+                            'lanista-command-button-red',
+                            'lanista-closeProtocollButton'
+                        ],
+                        listeners: {
+                            click: {
+                                scope: this,
+                                fn: function(){
+                                    var panelWeight = Ext.ComponentQuery.query("viewport")[0].down("#weightPicker"),
+                                        panelTraining = Ext.ComponentQuery.query("viewport")[0].down("#trainingPicker"),
+                                        setObjectLanista = Ext.ComponentQuery.query("viewport")[0].down("#setObjectLanista");
+
+                                    if (setObjectLanista){
+                                        setObjectLanista.hide();
+                                        LanistaTrainer.app.fireEvent('defaultValuesChanged', '','','');
+                                    }
+
+
+                                    if (panelWeight)
+                                        panelWeight.hide();
+
+                                    panelTraining.hide();
+                                }
                             }
                         }
-                    }
-                })
-        );
-
+                    })
+            );
+        }
 
     },
 
@@ -492,12 +523,20 @@ Ext.define('LanistaTrainer.view.TrainingPicker', {
     },
 
     setValue: function(value) {
+        var unit = this.unit === 0 ? Ext.ux.LanguageManager.TranslationArray.REP : this.unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN,
+            record;
 
-        var unit = this.unit === 0 ? Ext.ux.LanguageManager.TranslationArray.REP : this.unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN;
         if (value && value !== 0) {
             this.down ( '#protocollTrainingValue' ).setValue(value + ' ' + unit);
         } else {
             this.down ( '#protocollTrainingValue' ).setValue('0 ' + unit);
+        }
+
+        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DefaultPlanValuesPanel'){
+            record =  [{rounds_min: Ext.ComponentQuery.query("viewport")[0].down('#setObjectLanista').getValue(),
+                        training: value,
+                        training_unit: this.unit}];
+            LanistaTrainer.app.getController('PlanController').getDefaultPlanValuesPanel().update(record[0]);
         }
 
     },

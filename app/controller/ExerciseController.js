@@ -391,6 +391,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             }));
             planExercise.save ();
         }
+
     },
 
     showCommands: function(callback) {

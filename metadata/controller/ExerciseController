@@ -381,7 +381,8 @@
                     "        }",
                     "    }));",
                     "    planExercise.save ();",
-                    "}"
+                    "}",
+                    ""
                 ],
                 "name": "planExerciseRecordChanged",
                 "scope": "this"

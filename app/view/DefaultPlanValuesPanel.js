@@ -18,7 +18,6 @@ Ext.define('LanistaTrainer.view.DefaultPlanValuesPanel', {
     alias: 'widget.defaultPlanValuesPanel',
 
     requires: [
-        'Ext.form.field.Number',
         'Ext.XTemplate'
     ],
 
@@ -33,17 +32,27 @@ Ext.define('LanistaTrainer.view.DefaultPlanValuesPanel', {
         Ext.applyIf(me, {
             tpl: [
                 '<div class=\'lanista-plan-default-value\'>',
-                '    <div class=\'lanista-plan-set-default\'>{[values.rounds_min + \' \' + Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS]}</div>',
-                '    <div class=\'lanista-plan-rep-default\'><div>{[values["training_min"]]}</div> <div>{[values["training_unit"] == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : values["training_unit"] == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.REP]}</div></div>',
+                '    <div class=\'lanista-plan-set-default\'><span>{[values.rounds_min + \' \' + Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS + \' / \' + values.training]}</span> <span> {[values["training_unit"] == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : values["training_unit"] == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.REP]}</span></div>',
                 '</div>'
             ],
-            items: [
-                {
-                    xtype: 'numberfield',
-                    id: 'inputSetsPlan',
-                    fieldLabel: 'Sets'
+            defaultDockWeights: {
+                top: {
+                    render: 1,
+                    visual: 1
+                },
+                left: {
+                    render: 3,
+                    visual: 5
+                },
+                right: {
+                    render: 5,
+                    visual: 7
+                },
+                bottom: {
+                    render: 7,
+                    visual: 3
                 }
-            ]
+            }
         });
 
         me.callParent(arguments);
