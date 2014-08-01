@@ -189,35 +189,7 @@ Ext.define('LanistaTrainer.view.CustomersPanel', {
                  }
             }
             else{
-                Ext.Ajax.request({
-                    url: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/plan/clone",
-                    method: 'post',
-                    params: { plan_id: LanistaTrainer.app.getController('PlanController').plan.data.id,
-                             user_id: record.data.id},
-                    headers: { user_id: localStorage.getItem("user_id") },
-                    failure : function(response){
-                        data = Ext.decode(response.responseText);
-                        console.log ( data );
-                        Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, '', Ext.emptyFn );
-                    },
-                    success: function(response, opts) {
-                        data = Ext.decode ( response.responseText);
-                        if (data.success === true)
-                        {
-                            Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message,
-                                          function(){
-                                              LanistaTrainer.app.currentCustomer = record;
-                                              LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
-                                              LanistaTrainer.app.fireEvent("closeCustomersPanel", function() {
-                                                  LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
-                                                  LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController('PlanController').planname);
-                                              });
-                                          });
-                        } else {
-                            Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, data.message, Ext.emptyFn);
-                        }
-                    }
-                });
+                LanistaTrainer.app.getController('PlanController').clonePlan(record);
             }
         }
     },

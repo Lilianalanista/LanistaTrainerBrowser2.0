@@ -881,8 +881,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             newOption = {text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE.toUpperCase() + ' ' +
                                 Ext.ux.LanguageManager.TranslationArray.SAVE_AS_TEMPLATE.toUpperCase(),
                                 handler: function () {
-                                            alert('nueva opcion....');
-                                }
+                                            LanistaTrainer.app.getController('PlanController').clonePlan('');
+                                        }
                         };
 
             planOptions.add(newOption);
@@ -934,6 +934,48 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
     loadData: function() {
 
+    },
+
+    clonePlan: function(record) {
+        Ext.Ajax.request({
+            url: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/plan/clone",
+            method: 'post',
+            params: { plan_id: LanistaTrainer.app.getController('PlanController').plan.data.id,
+                     user_id: record ? record.data.id : 0},
+            headers: { user_id: localStorage.getItem("user_id") },
+            failure : function(response){
+                data = Ext.decode(response.responseText);
+                Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, '', Ext.emptyFn );
+            },
+            success: function(response, opts) {
+                data = Ext.decode ( response.responseText);
+                if (data.success === true)
+                {
+                    Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message,
+                                  function(){
+                                      LanistaTrainer.app.currentCustomer = record ? record : '';
+                                      if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
+                                          LanistaTrainer.app.panels = [];
+                                          LanistaTrainer.app.panels = ['DashboardPanel', 'TemplatesPanel'];
+                                          LanistaTrainer.app.fireEvent("closePlanPanel", function() {
+                                              LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                                              LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController('PlanController').planname);
+                                          });
+                                      }
+                                      else{
+                                          LanistaTrainer.app.panels = [];
+                                          LanistaTrainer.app.panels = ['DashboardPanel', 'CustomersPanel','CustomerExercisesPanel'];
+                                          LanistaTrainer.app.fireEvent("closeCustomersPanel", function() {
+                                              LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                                              LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController('PlanController').planname);
+                                          });
+                                      }
+                                  });
+                } else {
+                    Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, data.message, Ext.emptyFn);
+                }
+            }
+        });
     },
 
     init: function(application) {
