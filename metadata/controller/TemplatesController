@@ -135,6 +135,29 @@
             "designerId": "43a10d19-b274-4888-b6ab-5e179eae762f"
         },
         {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowTemplatesHeaderUpdate",
+                "implHandler": [
+                    "var controller = this;",
+                    "if (this.getTemplatesPanel() && !this.getTemplatesPanel().isHidden()) {",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: '',",
+                    "       title: Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES.toUpperCase()",
+                    "    });",
+                    "}"
+                ],
+                "name": "showTemplatesHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "8ec6ce60-049e-4492-84f9-57f308317479"
+        },
+        {
             "type": "basicfunction",
             "reference": {
                 "name": "items",
@@ -312,29 +335,6 @@
             "designerId": "1da13181-97b7-4a8d-bce3-6665e994badb"
         },
         {
-            "type": "applicationaction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "onShowTemplatesHeaderUpdate",
-                "implHandler": [
-                    "var controller = this;",
-                    "if (this.getTemplatesPanel() && !this.getTemplatesPanel().isHidden()) {",
-                    "    controller.getMainViewport().down(\"#header\").update({",
-                    "       info: '',",
-                    "       title: Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES.toUpperCase()",
-                    "    });",
-                    "}"
-                ],
-                "name": "showTemplatesHeaderUpdate",
-                "scope": "this"
-            },
-            "designerId": "8ec6ce60-049e-4492-84f9-57f308317479"
-        },
-        {
             "type": "controlleraction",
             "reference": {
                 "name": "listeners",
@@ -381,6 +381,28 @@
                 "scope": "me"
             },
             "designerId": "eb3fcd84-8267-4b77-a602-d70ed892b6f8"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #newTemplateButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onNewTemplateButtonClick",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('closeTemplatesPanel', function() {",
+                    "    LanistaTrainer.app.getController('CustomerExercisesController').prompPlanNameRequest ( Ext.ux.LanguageManager.TranslationArray.NEW_TEMPLATE_TITLE, Ext.ux.LanguageManager.TranslationArray.NEW_TEMPLATE_MESSAGE );",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "0aa49870-ef8b-421f-8919-23d26b68c1ac"
         }
     ]
 }

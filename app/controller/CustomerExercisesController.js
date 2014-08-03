@@ -161,8 +161,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
         controller.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLL,
-                itemId: 'showProtocollsButton',
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLLS,
+                itemId: 'showExercisesPanelButton',
                 glyph: '78@Lanista Icons' //N
             })
         );

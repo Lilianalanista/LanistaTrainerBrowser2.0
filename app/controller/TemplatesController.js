@@ -80,6 +80,13 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
         }
     },
 
+    onNewTemplateButtonClick: function(button, e, eOpts) {
+        var controller = this;
+        LanistaTrainer.app.fireEvent('closeTemplatesPanel', function() {
+            LanistaTrainer.app.getController('CustomerExercisesController').prompPlanNameRequest ( Ext.ux.LanguageManager.TranslationArray.NEW_TEMPLATE_TITLE, Ext.ux.LanguageManager.TranslationArray.NEW_TEMPLATE_MESSAGE );
+        });
+    },
+
     onShowTemplatesPanel: function(callback) {
         var controller = this,
             templatesPanel	= controller.getTemplatesPanel(),
@@ -170,6 +177,16 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
         });
     },
 
+    onShowTemplatesHeaderUpdate: function() {
+        var controller = this;
+        if (this.getTemplatesPanel() && !this.getTemplatesPanel().isHidden()) {
+            controller.getMainViewport().down("#header").update({
+               info: '',
+               title: Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES.toUpperCase()
+            });
+        }
+    },
+
     showCommands: function(callback) {
 
         var controller = this;
@@ -207,16 +224,6 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
 
     },
 
-    onShowTemplatesHeaderUpdate: function() {
-        var controller = this;
-        if (this.getTemplatesPanel() && !this.getTemplatesPanel().isHidden()) {
-            controller.getMainViewport().down("#header").update({
-               info: '',
-               title: Ext.ux.LanguageManager.TranslationArray.MENU_TEMPLATES.toUpperCase()
-            });
-        }
-    },
-
     init: function(application) {
         this.control({
             "viewport #showTemplatesPanelButton": {
@@ -230,6 +237,9 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
             },
             "viewport #previousTemplates": {
                 click: this.onPreviousTemplatesClick
+            },
+            "viewport #newTemplateButton": {
+                click: this.onNewTemplateButtonClick
             }
         });
 
