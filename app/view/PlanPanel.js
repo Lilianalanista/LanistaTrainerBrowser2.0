@@ -97,11 +97,14 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
                                                     store: controller.plan.planexercises()
                                                 });
                                                 tabPanel.setActiveTab(tabPanel.items.items[tapPanelSize -1]);
-
+                                                tabPanel.getActiveTab().getEl().setHeight(tabPanel.getActiveTab().el.dom.clientHeight - 45);
                                             }
                                         }
-                                        else
+                                        else{
                                             tabPanel.setActiveTab(newCard);
+                                            tabPanel.getActiveTab().getEl().setHeight(tabPanel.getActiveTab().el.dom.clientHeight - 45);
+                                        }
+
                             }
                         }
                 },

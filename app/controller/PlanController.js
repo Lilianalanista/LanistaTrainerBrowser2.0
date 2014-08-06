@@ -393,6 +393,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             }
 
             planPanel.down ('tabpanel').setActiveTab(tabActiveId);
+            planPanel.down ('tabpanel').getActiveTab().getEl().setHeight(planPanel.down ('tabpanel').getActiveTab().el.dom.clientHeight - 45);
+
             LanistaTrainer.app.fireEvent('showStage');
 
             // *** 4 Callback
