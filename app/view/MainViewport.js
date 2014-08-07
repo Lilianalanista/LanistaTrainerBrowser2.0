@@ -392,7 +392,6 @@ Ext.define('LanistaTrainer.view.MainViewport', {
         if (LanistaTrainer.app.getController('PlanController').getPlanPanel().down ('tabpanel').getActiveTab().el)
             LanistaTrainer.app.getController('PlanController').getPlanPanel().down ('tabpanel').getActiveTab().getEl().setHeight(LanistaTrainer.app.getController('PlanController').getPlanPanel().down ('tabpanel').getActiveTab().el.dom.clientHeight - 45);
 
-
     },
 
     onMainViewportAfterRender: function(component, eOpts) {

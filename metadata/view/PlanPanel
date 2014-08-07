@@ -90,7 +90,7 @@
                     "                                    tabPanel.setActiveTab(newCard);",
                     "                                    tabPanel.getActiveTab().getEl().setHeight(tabPanel.getActiveTab().el.dom.clientHeight - 45);",
                     "                                }",
-                    "                                    ",
+                    "",
                     "                    }",
                     "                }",
                     "        },",

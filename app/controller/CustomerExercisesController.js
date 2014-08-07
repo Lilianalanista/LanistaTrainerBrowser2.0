@@ -81,7 +81,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
         var controller = this,
             customerExercisesPanel	= controller.getCustomerExercisesPanel(),
-            mainStage	= controller.getMainStage();
+            mainStage	= controller.getMainStage(),
+            newHeightProtocols = 0;
 
         customerExercisesPanel.controller = controller;
         mainStage.add( customerExercisesPanel );
@@ -96,6 +97,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
         // *** 2 Show the panel
         customerExercisesPanel.show();
+
 
         // PLANS
         controller.loadPlans();
@@ -235,7 +237,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                         border: false,
                                         store: gridStore,
                                         cls: 'lanista-customer-exercise',
-                                        width: 230,
+                                        width: 205,
                                         autoScroll: true,
                                         id: 'grid' + i,
                                         columns: [
@@ -267,7 +269,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                                             '     <input class="lanista-img-protocolls img-right" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_1.jpg" >',
                                                             '     <input class="lanista-img-protocolls img-left" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_2.jpg" ></div>',
                                                             '     <tpl for="children">',
-                                                            '           <p align="center"><span class="lanista-protocolls-weight"> {data.weight} Kgs. / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
+                                                            '           <p class="lanista-protocolls-weight-p" align="left"><span class="lanista-protocolls-weight"> {data.weight} Kgs. / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
                                                             '      </tpl>',
                                                             '</tpl>'
                                                         ],
