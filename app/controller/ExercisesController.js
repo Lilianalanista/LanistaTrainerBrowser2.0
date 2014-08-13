@@ -189,6 +189,35 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         }
     },
 
+    onMyExercisesButtonClick: function(button, e, eOpts) {
+        var store = Ext.getStore('ExerciseStore'),
+            filterFunction,
+            value,
+            result = [];
+
+        filterFunction = new Ext.util.Filter({
+            id:'myExercises',
+            filterFn: function(item){
+                value = item.data.ext_id;
+                result = value.match("\\w*CUST\\w*", "gi");
+                return (result && result.length > 0);
+            }
+        });
+
+        if (this.getRightCommandPanel().down('#myExercisesButton').el.dom.classList.contains('lanista-active')){
+            this.getRightCommandPanel().down('#myExercisesButton').removeCls('lanista-active');
+            store.removeFilter('myExercises');
+        }
+        else{
+            this.getRightCommandPanel().down('#myExercisesButton').addCls('lanista-active');
+            store.filters.add (filterFunction);
+        }
+        store.loadPage(1);
+        LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
+        this.showCommands();
+
+    },
+
     onShowExercisesPanel: function(callback) {
         var controller = this,
             exercisesPanel	= controller.getExercisesPanel(),
@@ -323,7 +352,18 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
     showCommands: function(callback) {
 
-        var controller = this;
+        var controller = this,
+            myExercies = false,
+            store = Ext.getStore('ExerciseStore');
+
+        for (var i = 0; i < store.filters.length; i++)
+        {
+            if (store.filters.items[i].id  == 'myExercises'){
+                myExercies = true;
+                break;
+            }
+
+        }
 
         controller.tpl = controller.getExercisesPanel().down('#viewExercises').tpl;
         controller.itemSelector = controller.getExercisesPanel().down('#viewExercises').itemSelector;
@@ -346,17 +386,6 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         );
 
         this.getRightCommandPanel().add(
-                Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.FOLDER_CREATE,
-                    itemId: 'favoritesCustomersButton',
-                    userAlias: 'favoritesCustomersButton',
-                    menu: LanistaTrainer.app.getController('FavoritesController').showFavorites(0, 'ExercisesPanel', 'ExerciseStore', 'ExercisesController',  'viewExercises'),
-                    menuButtonAlign: 'right',
-                    glyph: '122@Lanista Icons' //z
-                })
-            );
-
-        this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_EXERCISES_MINE,
                 itemId: 'myExercisesButton',
@@ -364,14 +393,36 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             })
         );
 
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_RECENTLY,
-                itemId: 'recentlyButton',
-                glyph: '121@Lanista Icons' //y
-            })
-        );
+        if (!myExercies){
+            this.getRightCommandPanel().add(
+                    Ext.create('LanistaTrainer.view.LanistaButton', {
+                        text: Ext.ux.LanguageManager.TranslationArray.FOLDER_CREATE,
+                        itemId: 'favoritesCustomersButton',
+                        userAlias: 'favoritesCustomersButton',
+                        menu: LanistaTrainer.app.getController('FavoritesController').showFavorites(0, 'ExercisesPanel', 'ExerciseStore', 'ExercisesController',  'viewExercises'),
+                        menuButtonAlign: 'right',
+                        glyph: '122@Lanista Icons' //z
+                    })
+                );
 
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_RECENTLY,
+                    itemId: 'recentlyButton',
+                    glyph: '121@Lanista Icons' //y
+                })
+            );
+        }
+        else{
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
+                    itemId: 'addToMyExercisesButton',
+                    glyph: '108@Lanista Icons' //l
+                })
+            );
+            this.getRightCommandPanel().down('#myExercisesButton').addCls('lanista-active');
+        }
     },
 
     loadData: function() {
@@ -967,6 +1018,9 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             },
             "viewport #previousExercises": {
                 click: this.onPreviousExercisesClick
+            },
+            "viewport #myExercisesButton": {
+                click: this.onMyExercisesButtonClick
             }
         });
 

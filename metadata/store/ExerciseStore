@@ -9,7 +9,6 @@
         "designer|userClassName": "ExerciseStore",
         "model": "ExerciseModel",
         "pageSize": 25,
-        "remoteFilter": true,
         "remoteSort": true,
         "storeId": "ExerciseStore"
     },
