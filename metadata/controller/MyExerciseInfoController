@@ -1,0 +1,408 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "myExerciseInfoController",
+        "designer|userClassName": "MyExerciseInfoController",
+        "id": "myExerciseInfoController"
+    },
+    "designerId": "5f783f4c-fb5b-483a-baac-9e3782f582c7",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "952fb24a-997f-4ca9-9329-e7a16828a185"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "ecdf004a-7276-4167-97b7-c1a215a005c7"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "a2906b4c-5d2d-4235-9364-40c8fa2c7a8e"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "027c7090-da31-497b-a2ea-970e86fa3893"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "myExerciseInfoPanel",
+                "selector": "#myExerciseInfoPanel",
+                "xtype": "myExerciseInfoPanel"
+            },
+            "designerId": "1665b44f-1afa-4e9c-9c5c-ead666ce43c1"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "myExercise_configuration",
+                "selector": "#myExercise_configuration",
+                "xtype": null
+            },
+            "designerId": "1e36641d-db75-4143-8ecb-b2b38d662c4c"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowMyExerciseInfoPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "var myExerciseInfoPanel\t= controller.getMyExerciseInfoPanel();",
+                    "var mainStage\t= controller.getMainStage();",
+                    "",
+                    "mainStage.add( myExerciseInfoPanel );",
+                    "",
+                    "myExerciseInfoPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons('closeMyExerciseInfoPanelButton');",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "myExerciseInfoPanel.show();",
+                    "LanistaTrainer.app.fireEvent('showMyExerciseInfoHeaderUpdate');",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();",
+                    "",
+                    ""
+                ],
+                "name": "showMyExerciseInfoPanel",
+                "scope": "this"
+            },
+            "designerId": "1b8f2395-db5e-452d-b45c-5731158ab1af"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseMyExerciseInfoPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getMyExerciseInfoPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closeMyExerciseInfoPanel",
+                "scope": "this"
+            },
+            "designerId": "a08aa541-f697-42dc-b94a-05d64bfa4b52"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowMyExerciseInfoHeaderUpdate",
+                "implHandler": [
+                    "var controller = this,",
+                    "    info;",
+                    "",
+                    "",
+                    "//    info = '<div class=\"lanista-user-setup lansita-header-customer-logo-not-found show-info-customer\" id=userLogoNotFound\"><div class=\"lansita-header-customer-logo\" id=\"changeUserLogo\" style=\"background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem(\"user_id\") + '_logo.jpg);\"></div></div>' + '<div class=\"lanista-user-setup trainer-logo-header\">' + Ext.ux.LanguageManager.TranslationArray.YOUR_LOGO + '</div>';",
+                    "//    info = info + '<div class=\"lanista-user-setup lansita-header-customer-image-not-found\" id=\"userPhotoNotFound\"><div class=\"lansita-header-customer-photo\" id=\"changeUserPhoto\" style=\"background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ localStorage.getItem(\"user_id\") + '_photo.jpg);\"></div></div>' + '<div class=\"lanista-user-setup trainer-foto-header\">' + Ext.ux.LanguageManager.TranslationArray.YOUR_PHOTO + '</div>';",
+                    "",
+                    "",
+                    "if (this.getMyExerciseInfoPanel() && !this.getMyExerciseInfoPanel().isHidden()) {",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: info,",
+                    "       title: Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()",
+                    "    });",
+                    "}"
+                ],
+                "name": "showMyExerciseInfoHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "9df9c65c-e31f-480e-9325-cd448fec754c"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "",
+                    "var controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "757966f5-0c62-44ba-91e9-ee414697ba40"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #showMyExerciseInfoButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onShowMyExerciseInfoButton",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'MyExerciseInfoPanel';",
+                    "    LanistaTrainer.app.fireEvent('showMyExerciseInfoPanel');",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "a5a86a80-c62a-4a95-ba55-41f031e97900"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeMyExerciseInfoPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseMyExerciseInfoPanelButton",
+                "implHandler": [
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "LanistaTrainer.app.fireEvent('closeMyExerciseInfoPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
+                    "});",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "911c0c08-52b0-42e4-9dc8-219d9ffb56e4"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    "var controller = this,",
+                    "    fieldset = controller.getMyExercise_configuration(),",
+                    "    fields = controller.getMyExerciseInfoPanel().getForm().getFields(),",
+                    "    currentLanguage = Ext.ux.LanguageManager.lang;",
+                    "",
+                    "//Ext.ux.LanguageManager.setLanguage(language",
+                    "",
+                    "",
+                    "",
+                    "fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.FORM_EXERCISE_CONFIG);",
+                    "fields.getByKey('myExercise_name').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_EXERCISE_NAME);",
+                    "fields.getByKey('myExercise_execution').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.EXECUTION);",
+                    "fields.getByKey('myExercise_errors').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS);",
+                    "fields.getByKey('myExercise_muscle').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES);",
+                    "fields.getByKey('myExercise_exerciseType').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_TYPE);",
+                    "fields.getByKey('myExercise_other').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_ADDITIVES);",
+                    "",
+                    "",
+                    "//document.getElementsByName(\"email\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_EMAIL;",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "controller.getMyExerciseInfoPanel().getForm().findField('myExercise_name').focus();"
+                ]
+            },
+            "designerId": "e1a76eda-f8ee-4196-be52-6a390581ec20"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #cancelSettingsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCancelSettingsButtonClick",
+                "implHandler": [
+                    "var controller = this;",
+                    "controller.showCommands();"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "58fdccd6-b0ea-4576-b4f3-1fe658f0be5f"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #saveSettingsButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onSaveSettingsButtonClick",
+                "implHandler": [
+                    "var controller = this,",
+                    "    server = Ext.ux.ConfigManager.getServer(),",
+                    "    root = Ext.ux.ConfigManager.getRoot() + '/tpmanager/',",
+                    "    form_data = controller.getMyExerciseInfoPanel().getValues();",
+                    "",
+                    "",
+                    "Ext.Ajax.request({",
+                    "    url : server + root + 'user/save' ,",
+                    "    params : this.getUserInfoPanel().getValues(true, false),",
+                    "    method: 'post',",
+                    "    headers: {",
+                    "        user_id: localStorage.getItem(\"user_id\")",
+                    "    },",
+                    "    success: function ( result, request ) {",
+                    "        var data = Ext.decode(result.responseText);",
+                    "        if (data.success) {",
+                    "            var user_data = data.entries[0];",
+                    "",
+                    "            localStorage.setItem(\"email\", user_data.email ? user_data.email : '');",
+                    "            localStorage.setItem(\"language\", user_data.language ? user_data.language : '');",
+                    "            localStorage.setItem(\"first_name\", user_data.first_name ? user_data.first_name : '');",
+                    "            localStorage.setItem(\"last_name\", user_data.last_name ? user_data.last_name : '');",
+                    "            localStorage.setItem(\"country\", user_data.country ? user_data.country : '');",
+                    "            localStorage.setItem(\"zipcode\", user_data.zipcode ? user_data.zipcode : '');",
+                    "            localStorage.setItem(\"city\", user_data.city ? user_data.city : '');",
+                    "            localStorage.setItem(\"street\", user_data.street ? user_data.street : '');",
+                    "            localStorage.setItem(\"company_name\", user_data.company_name ? user_data.company_name : '');",
+                    "            localStorage.setItem(\"phone_nr\", user_data.phone_nr ? user_data.phone_nr : '');",
+                    "            localStorage.setItem(\"website\", user_data.website ? user_data.website : '');",
+                    "",
+                    "            Ext.ux.SessionManager.loadLastUser();",
+                    "            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);",
+                    "",
+                    "            if (user_data.language != Ext.ux.LanguageManager.lang) {",
+                    "                Ext.Msg.alert ('', Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE,  function() {",
+                    "                    LanistaTrainer.app.fireEvent('changeLanguage', user_data.language, true);",
+                    "                });",
+                    "            }",
+                    "        } else {",
+                    "            if (data.error == 510) {",
+                    "                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, function () {",
+                    "                    controller.getUserInfoPanel().down( 'field[name=email]' ).reset();",
+                    "                    controller.getUserInfoPanel().down( 'field[name=email]' ).focus();",
+                    "                });",
+                    "            } else {",
+                    "                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, Ext.emptyFn);",
+                    "            }",
+                    "        }",
+                    "        controller.showCommands();",
+                    "    },",
+                    "    failure: function (result, request) {",
+                    "        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);",
+                    "        controller.showCommands();",
+                    "    }",
+                    "});",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "c1f1d5da-e5e5-4d58-935c-2a37e1c02692"
+        }
+    ]
+}

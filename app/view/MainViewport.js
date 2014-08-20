@@ -231,7 +231,9 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                 });
                 var lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];
                 LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';
-                LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/user/uploadphoto',  {type: 'photo', customer_id: LanistaTrainer.app.currentCustomer.data.id}, function() {});
+                LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/user/uploadphoto',
+                                             {type: 'photo', customer_id: LanistaTrainer.app.currentCustomer ? LanistaTrainer.app.currentCustomer.data.id : localStorage.getItem("user_id")},
+                                             function() {});
             }
         },this,{delegate: '.lansita-header-customer-photo'});
         el.on(
@@ -313,12 +315,9 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                             LanistaTrainer.app.getController ( 'ExercisesController' ).showFilteredExercises('', 3, this.text);
                             break;
                     }
-                    if ( Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim().toUpperCase().indexOf('TEXT') !== -1 ) {
-                        if (exerciseStore.filters.items.length > 1)
-                            exerciseStore.filters.items.splice(3, 1);
-                        else
-                            exerciseStore.filters.items.splice(0, 1);
-                    }
+                    if ( Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim().toUpperCase().indexOf('TEXT') !== -1 )
+                        exerciseStore.removeFilter('filterByWord');
+
                    exerciseStore.loadPage(1);
                    records = exerciseStore.data.items;
                    exercisesPanel = LanistaTrainer.app.getController('ExercisesController').getExercisesPanel();

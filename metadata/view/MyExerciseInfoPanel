@@ -1,0 +1,291 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 10,
+        "cls": "lanista-myexercise-panel",
+        "designer|userAlias": "myExerciseInfoPanel",
+        "designer|userClassName": "MyExerciseInfoPanel",
+        "header": false,
+        "height": 694,
+        "id": "myExerciseInfoPanel",
+        "title": null,
+        "width": 400
+    },
+    "designerId": "b657ef40-c231-4656-b95a-80ae98360fcf",
+    "cn": [
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "border": null,
+                "cls": "lanista-myexercise-configuration",
+                "defaultAlign": "c-c",
+                "id": "myExercise_configuration",
+                "title": null
+            },
+            "designerId": "364d0cfa-6022-457e-a7a3-a162ad607afd",
+            "cn": [
+                {
+                    "type": "Ext.form.field.ComboBox",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "editable": false,
+                        "enableKeyEvents": true,
+                        "fieldLabel": null,
+                        "id": "myExercise_language",
+                        "layout|anchor": "100%",
+                        "name": "myExercise_language"
+                    },
+                    "designerId": "f6cefdee-41cc-45df-aba6-0b1e431345f7",
+                    "cn": [
+                        {
+                            "type": "processcfgfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "config"
+                                ],
+                                "fn": "processMyExercise_language",
+                                "implHandler": [
+                                    "var server =\t'http://' + window.location.host,",
+                                    "    root =\t\tExt.ux.ConfigManager.getRoot() + '/LanistaTrainerBrowser2.0/';",
+                                    "",
+                                    "config.tpl = Ext.create(\"Ext.XTemplate\",",
+                                    "                        '<tpl for=\".\"><div class=\"x-boundlist-item\"><img src=' + server + root + 'resources/images/flags/{image} /> {LanguageName}</div></tpl>');",
+                                    "",
+                                    "config.displayTpl = Ext.create(\"Ext.XTemplate\",",
+                                    "                               '<tpl for=\".\">{LanguageName}</tpl>');",
+                                    "",
+                                    "config.valueField = 'IdLanguage';",
+                                    "",
+                                    "return config;",
+                                    ""
+                                ]
+                            },
+                            "designerId": "b53be2d1-a405-4c7c-a396-da380fab8626"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-field-myexercise",
+                        "fieldLabel": null,
+                        "hideEmptyLabel": false,
+                        "id": "myExercise_name",
+                        "labelCls": "lanista-myexercise-item-label",
+                        "layout|anchor": "100%",
+                        "name": "myExercise_name"
+                    },
+                    "designerId": "f32f6d09-8cca-49dc-b399-3cd8fd391a0a"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-field-myexercise",
+                        "fieldLabel": null,
+                        "id": "myExercise_execution",
+                        "labelCls": "lanista-myexercise-item-label",
+                        "layout|anchor": "100%",
+                        "name": "myExercise_execution"
+                    },
+                    "designerId": "129c62e9-1cbc-4517-967d-d41d39b847e7"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-field-myexercise",
+                        "fieldLabel": null,
+                        "id": "myExercise_errors",
+                        "labelCls": "lanista-myexercise-item-label",
+                        "layout|anchor": "100%",
+                        "name": "myExercise_errors"
+                    },
+                    "designerId": "7e20a53c-f6b4-40e1-ad0d-e5e3880ce33a"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "lanista-field-myexercise",
+                "fieldLabel": null,
+                "id": "myExercise_muscle",
+                "labelCls": "lanista-myexercise-item-label",
+                "layout|anchor": "100%",
+                "name": "muscle"
+            },
+            "designerId": "86e5d20b-c0d6-482d-864f-2877802eabad"
+        },
+        {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "lanista-field-myexercise",
+                "fieldLabel": null,
+                "id": "myExercise_exerciseType",
+                "labelCls": "lanista-myexercise-item-label",
+                "layout|anchor": "100%",
+                "name": "type"
+            },
+            "designerId": "247ddc24-1723-458a-b097-d43954c6d59d"
+        },
+        {
+            "type": "Ext.form.field.ComboBox",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "lanista-field-myexercise",
+                "fieldLabel": null,
+                "id": "myExercise_other",
+                "labelCls": "lanista-myexercise-item-label",
+                "layout|anchor": "100%",
+                "name": "addition"
+            },
+            "designerId": "b4bb8544-edae-4619-881d-9ee7197d3056"
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "lanista-myExercise-images",
+                "container|align": "stretch",
+                "id": "myExercise_images",
+                "layout": "hbox"
+            },
+            "designerId": "7fce3b01-3f18-424f-bf1f-6ee5cb43fc11",
+            "cn": [
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-myExercise-imageleft",
+                        "id": "myExercise_imageLeft",
+                        "layout|flex": 1
+                    },
+                    "designerId": "82c36c08-c03c-40fd-97da-b7a4cabffdc6"
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-myExercise-imageright",
+                        "id": "myExercise_imageRight",
+                        "layout|flex": 1
+                    },
+                    "designerId": "b5790682-602c-491b-8285-908edd080abd"
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onMyExerciseInfoPanelAfterRender",
+                "implHandler": [
+                    "var languagesStore = Ext.create('Ext.data.Store', {",
+                    "        fields: ['image', 'LanguageName', 'IdLanguage'],",
+                    "        data : [",
+                    "            {\"image\": \"es.png\", \"LanguageName\":\"Español\", \"IdLanguage\":\"ES\"},",
+                    "            {\"image\": \"de.png\", \"LanguageName\":\"Deutsch\", \"IdLanguage\":\"DE\"},",
+                    "            {\"image\": \"gb.png\", \"LanguageName\":\"English\", \"IdLanguage\":\"EN\"}",
+                    "        ]",
+                    "}),",
+                    "    fields = component.getForm().getFields();",
+                    "",
+                    "fields.getByKey('myExercise_language').bindStore(languagesStore);",
+                    "languagesStore.load();",
+                    "",
+                    "fields.getByKey('myExercise_language').setValue(Ext.ux.LanguageManager.lang);",
+                    "",
+                    "fields.each(function(field)",
+                    "            {field.on('change',function(f,n,o)",
+                    "                      {",
+                    "                          //f: field;  n: new value;  o: old value",
+                    "                          LanistaTrainer.app.fireEvent('showSavePanel', 'saveSettingsButton', 'cancelSettingsButton');",
+                    "                      }",
+                    "                     );",
+                    "             field.on('keypress',function(f,e,opts)",
+                    "                      {",
+                    "                          //f: field;  e: key pressed;  o: options",
+                    "                          if(e.getKey() == e.ENTER){",
+                    "                              if ( !Ext.getCmp('rightCommandPanel').down('#saveSettingsButton').hidden )",
+                    "                                  Ext.getCmp('rightCommandPanel').down('#saveSettingsButton').fireEvent('click', function() {",
+                    "                                      f.focus();",
+                    "                                  });",
+                    "                          }",
+                    "                      }",
+                    "                     );",
+                    "            }",
+                    "           );",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "f07c347a-840d-44e0-b3b0-d4353daa7f69"
+        }
+    ]
+}

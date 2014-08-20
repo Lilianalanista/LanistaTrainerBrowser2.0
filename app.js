@@ -73,7 +73,8 @@ Ext.application({
         'VideoWindow',
         'FavoritesPanel',
         'DefaultPlanValuesPanel',
-        'SetObjectLanista'
+        'SetObjectLanista',
+        'MyExerciseInfoPanel'
     ],
     controllers: [
         'MainController',
@@ -94,7 +95,8 @@ Ext.application({
         'CustomerExercisesController',
         'ExerciseController',
         'PlanController',
-        'FavoritesController'
+        'FavoritesController',
+        'MyExerciseInfoController'
     ],
     name: 'LanistaTrainer',
 

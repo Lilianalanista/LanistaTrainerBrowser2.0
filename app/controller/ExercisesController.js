@@ -324,7 +324,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
              searchText = controller.textToSearch,
              info;
 
-        if (store.filters.items.length > 1){
+        if (store.filters.items.length > 2){
             filter = ((Ext.isNumber(store.filters.items[1].value)) && (store.filters.items[1].textOptSel) ? '<div class="filterTitle"><span>Musclegruppe  </span> </div> <div class="filterText">' + store.filters.items[1].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[0].value)) && (store.filters.items[0].textOptSel) ? '<div class="filterTitle"><span> Übungstyp </span> </div> <div class="filterText">'+store.filters.items[0].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[2].value)) && (store.filters.items[2].textOptSel)  ? '<div class="filterTitle"><span> Zusätze  </span> </div> <div class="filterText">' + store.filters.items[2].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '');
         }
 
@@ -417,7 +417,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             this.getRightCommandPanel().add(
                 Ext.create('LanistaTrainer.view.LanistaButton', {
                     text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
-                    itemId: 'addToMyExercisesButton',
+                    itemId: 'showMyExerciseInfoButton',
                     glyph: '108@Lanista Icons' //l
                 })
             );
@@ -728,6 +728,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             return (!Ext.ComponentManager.get('recommendatiosContextMenu'));
         }, container);
 
+        tools.on('hide', function(component) {
+            component.getComponent('searchText').setValue('');
+        }, container);
+
         return tools;
     },
 
@@ -972,30 +976,9 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                             controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
 
                     }
-                    else //searchList = 0
-                    {
-                        if (!Ext.ComponentManager.get('recommendatiosContextMenu')){
-                            exercisesMenu = controller.getRightCommandPanel().getComponent('searchButton').menu;
-                            contextMenu = Ext.create('Ext.menu.Menu', {
-                                items: [],
-                                width: 100,
-                                height: 200,
-                                autoscroll: true,
-                                id: 'recommendatiosContextMenu'
-                            });
-                            contextMenu.on('hide', function(component) {
-                                controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').setValue('');
-                                component.destroy();
-                            }, controller);
-
-                            contextMenu.showAt(exercisesMenu.getX() - contextMenu.width, exercisesMenu.getY() - (contextMenu.height / 2));
-                        }
-                        else{
-                            contextMenu = Ext.ComponentManager.get('recommendatiosContextMenu');
-                            contextMenu.removeAll();
-                            contextMenu.add([]);
-                        }
-                            controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
+                    else{  //searchList.length === 0
+                        Ext.ComponentManager.get('recommendatiosContextMenu').hide();
+                        controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
                     }
                 }
             });

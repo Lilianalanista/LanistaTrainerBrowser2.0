@@ -368,6 +368,14 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                  ]
             });
 
+        tools.on('beforehide', function(component) {
+            return (!Ext.ComponentManager.get('recommendatiosContextMenu'));
+        }, container);
+
+        tools.on('hide', function(component) {
+            component.getComponent('searchText').setValue('');
+        }, container);
+
         return tools;
     },
 
@@ -461,7 +469,6 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
 
                                     customerStore.loadPage(1);
                                     controller.textToSearch = item.text;
-                                    //LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
 
                                     contextMenu.hide();
                                     customersMenu.hide();
@@ -477,30 +484,9 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                             controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
 
                     }
-                    else //searchList = 0
-                    {
-                        if (!Ext.ComponentManager.get('recommendatiosContextMenu')){
-                            customersMenu = controller.getRightCommandPanel().getComponent('searchButton').menu;
-                            contextMenu = Ext.create('Ext.menu.Menu', {
-                                items: [],
-                                width: 100,
-                                height: 200,
-                                autoscroll: true,
-                                id: 'recommendatiosContextMenu'
-                            });
-                            contextMenu.on('hide', function(component) {
-                                controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').setValue('');
-                                component.destroy();
-                            }, controller);
-
-                            contextMenu.showAt(customersMenu.getX() - contextMenu.width, customersMenu.getY() - (contextMenu.height / 2));
-                        }
-                        else{
-                            contextMenu = Ext.ComponentManager.get('recommendatiosContextMenu');
-                            contextMenu.removeAll();
-                            contextMenu.add([]);
-                        }
-                            controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
+                    else{  //searchList.length === 0
+                        Ext.ComponentManager.get('recommendatiosContextMenu').hide();
+                        controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
                     }
                 }
             });

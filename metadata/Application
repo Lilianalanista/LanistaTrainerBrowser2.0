@@ -25,7 +25,8 @@
             "CustomerExercisesController",
             "ExerciseController",
             "PlanController",
-            "FavoritesController"
+            "FavoritesController",
+            "MyExerciseInfoController"
         ],
         "models": [
             "ExerciseModel",
@@ -80,7 +81,8 @@
             "VideoWindow",
             "FavoritesPanel",
             "DefaultPlanValuesPanel",
-            "SetObjectLanista"
+            "SetObjectLanista",
+            "MyExerciseInfoPanel"
         ]
     },
     "configAlternates": {
