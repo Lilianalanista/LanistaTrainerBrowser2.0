@@ -80,6 +80,23 @@
                                 ]
                             },
                             "designerId": "b53be2d1-a405-4c7c-a396-da380fab8626"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onMyExercise_languageChange",
+                                "implHandler": [
+                                    "LanistaTrainer.app.getController ('MyExerciseInfoController').loadData();"
+                                ],
+                                "name": "change",
+                                "scope": "me"
+                            },
+                            "designerId": "84646457-6678-420a-9e8d-4c6c71482bb3"
                         }
                     ]
                 },
@@ -126,7 +143,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-field-myexercise",
+                        "cls": "lanista-field-myexercise lanista-field-myexercise-errors",
                         "fieldLabel": null,
                         "id": "myExercise_errors",
                         "labelCls": "lanista-myexercise-item-label",
@@ -179,7 +196,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-field-myexercise",
+                "cls": "lanista-field-myexercise lanista-field-myexercise-other",
                 "fieldLabel": null,
                 "id": "myExercise_other",
                 "labelCls": "lanista-myexercise-item-label",
@@ -257,6 +274,11 @@
                     "languagesStore.load();",
                     "",
                     "fields.getByKey('myExercise_language').setValue(Ext.ux.LanguageManager.lang);",
+                    "fields.getByKey('myExercise_muscle').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES);",
+                    "fields.getByKey('myExercise_exerciseType').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_TYPE);",
+                    "fields.getByKey('myExercise_other').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_ADDITIVES);",
+                    "",
+                    "document.getElementsByName(\"myExercise_name\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_EMAIL;",
                     "",
                     "fields.each(function(field)",
                     "            {field.on('change',function(f,n,o)",

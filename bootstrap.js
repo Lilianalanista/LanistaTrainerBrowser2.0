@@ -849,6 +849,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.controller.LoginController": [],
   "LanistaTrainer.controller.Main": [],
   "LanistaTrainer.controller.MainController": [],
+  "LanistaTrainer.controller.MyExerciseInfoController": [],
   "LanistaTrainer.controller.PlanController": [],
   "LanistaTrainer.controller.RegistrationController": [],
   "LanistaTrainer.controller.StopWatchController": [],
@@ -882,6 +883,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "LanistaTrainer.view.LoginPanel": [],
   "LanistaTrainer.view.Main": [],
   "LanistaTrainer.view.MainViewport": [],
+  "LanistaTrainer.view.MyExerciseInfoPanel": [],
   "LanistaTrainer.view.PlanExercisesList": [],
   "LanistaTrainer.view.PlanOptionsPanel": [],
   "LanistaTrainer.view.PlanPanel": [],
@@ -1926,6 +1928,9 @@ Ext.ClassManager.addNameAliasMappings({
   "LanistaTrainer.controller.MainController": [
     "controller.mainController"
   ],
+  "LanistaTrainer.controller.MyExerciseInfoController": [
+    "controller.myExerciseInfoController"
+  ],
   "LanistaTrainer.controller.PlanController": [
     "controller.planController"
   ],
@@ -1996,6 +2001,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "LanistaTrainer.view.MainViewport": [
     "widget.mainViewport"
+  ],
+  "LanistaTrainer.view.MyExerciseInfoPanel": [
+    "widget.myExerciseInfoPanel"
   ],
   "LanistaTrainer.view.PlanExercisesList": [
     "widget.planExercisesList"

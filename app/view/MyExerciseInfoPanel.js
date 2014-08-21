@@ -46,7 +46,13 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                             id: 'myExercise_language',
                             name: 'myExercise_language',
                             enableKeyEvents: true,
-                            editable: false
+                            editable: false,
+                            listeners: {
+                                change: {
+                                    fn: me.onMyExercise_languageChange,
+                                    scope: me
+                                }
+                            }
                         }),
                         {
                             xtype: 'textfield',
@@ -68,7 +74,7 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                         {
                             xtype: 'textfield',
                             anchor: '100%',
-                            cls: 'lanista-field-myexercise',
+                            cls: 'lanista-field-myexercise lanista-field-myexercise-errors',
                             id: 'myExercise_errors',
                             labelCls: 'lanista-myexercise-item-label',
                             name: 'myExercise_errors'
@@ -94,7 +100,7 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                 {
                     xtype: 'combobox',
                     anchor: '100%',
-                    cls: 'lanista-field-myexercise',
+                    cls: 'lanista-field-myexercise lanista-field-myexercise-other',
                     id: 'myExercise_other',
                     labelCls: 'lanista-myexercise-item-label',
                     name: 'addition'
@@ -150,6 +156,10 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
 
     },
 
+    onMyExercise_languageChange: function(field, newValue, oldValue, eOpts) {
+        LanistaTrainer.app.getController ('MyExerciseInfoController').loadData();
+    },
+
     onMyExerciseInfoPanelAfterRender: function(component, eOpts) {
         var languagesStore = Ext.create('Ext.data.Store', {
                 fields: ['image', 'LanguageName', 'IdLanguage'],
@@ -165,6 +175,11 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
         languagesStore.load();
 
         fields.getByKey('myExercise_language').setValue(Ext.ux.LanguageManager.lang);
+        fields.getByKey('myExercise_muscle').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES);
+        fields.getByKey('myExercise_exerciseType').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_TYPE);
+        fields.getByKey('myExercise_other').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_ADDITIVES);
+
+        document.getElementsByName("myExercise_name")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_EMAIL;
 
         fields.each(function(field)
                     {field.on('change',function(f,n,o)

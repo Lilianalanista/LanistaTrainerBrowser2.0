@@ -1,6 +1,6 @@
 {
     "expandedState": {
-        "data": false,
+        "data": true,
         "model": true,
         "component": true,
         "controller": true,
@@ -942,10 +942,12 @@
                     "cn": [
                         {
                             "id": "f6cefdee-41cc-45df-aba6-0b1e431345f7",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "b53be2d1-a405-4c7c-a396-da380fab8626"
+                                },
+                                {
+                                    "id": "84646457-6678-420a-9e8d-4c6c71482bb3"
                                 }
                             ]
                         },
@@ -1052,6 +1054,7 @@
         },
         "66a8eaf7-a566-40b9-8b53-cc931f03fe3f": {
             "id": "66a8eaf7-a566-40b9-8b53-cc931f03fe3f",
+            "expanded": false,
             "cn": [
                 {
                     "id": "9fb7256d-f2b6-4faf-b388-bab2a662d3a8"

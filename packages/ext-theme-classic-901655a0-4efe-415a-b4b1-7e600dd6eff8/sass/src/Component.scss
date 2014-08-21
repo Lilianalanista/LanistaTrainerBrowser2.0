@@ -1631,7 +1631,7 @@ $base-gradient: "none";
 
 .lanista-myexercise-configuration{
     border: 0px;
-    padding: 5px 0px!important;
+    padding: 0px 0px!important;
 }
 
 .lanista-myexercise-configuration legend{
@@ -1642,8 +1642,34 @@ $base-gradient: "none";
     width: 35%!important;
 }
 
+.lanista-field-myexercise .x-form-item-body input{
+    border-width: 1px 1px 0px 0px;
+}
+
 .lanista-field-myexercise .x-field-label-cell{
     padding-top: 10px!important;
+    background-color: gainsboro;
+    border-top: 1px solid #fff;
+}
+
+.lanista-myexercise-configuration .x-form-text{
+    border-bottom: 0px;
+}
+
+.lanista-myexercise-configuration .lanista-field-myexercise:last-of-type .x-field-label-cell, .lanista-field-myexercise:last-of-type .x-field-label-cell{
+    border-bottom-left-radius: 0.4em;
+}
+
+.lanista-myexercise-configuration .lanista-field-myexercise:first-of-type .x-field-label-cell, .lanista-field-myexercise:first-of-type .x-field-label-cell{
+    border-top: 1px solid gainsboro!important;
+}
+
+.lanista-myexercise-configuration .lanista-field-myexercise:last-of-type .x-form-field{
+    border-bottom: 1px solid gainsboro;
+}
+
+.lanista-myexercise-panel .lanista-field-myexercise-other input{
+    border-bottom-width: 1px;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
