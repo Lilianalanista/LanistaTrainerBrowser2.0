@@ -19,13 +19,15 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
 
     requires: [
         'Ext.form.FieldSet',
-        'Ext.form.field.ComboBox'
+        'Ext.form.field.ComboBox',
+        'Ext.XTemplate'
     ],
 
     cls: 'lanista-myexercise-panel',
     height: 694,
     id: 'myExerciseInfoPanel',
     width: 400,
+    autoScroll: true,
     bodyPadding: 10,
     header: false,
 
@@ -108,25 +110,31 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                 {
                     xtype: 'container',
                     cls: 'lanista-myExercise-images',
+                    height: 200,
                     id: 'myExercise_images',
+                    tpl: [
+                        '<div class="lanista-customer-myexercise">',
+                        '    <div class="lanista-customer-myexercise-image-title">',
+                        '        <div class="lanista-customer-myexercise-image-title-left">{[Ext.ux.LanguageManager.TranslationArray.START_POSITION_MYEXERCISE]}</div>',
+                        '        <div class="lanista-customer-myexercise-image-title-right">{[Ext.ux.LanguageManager.TranslationArray.END_POSITION_MYEXERCISE]}</div>',
+                        '    </div>',
+                        '    <div>',
+                        '        <div id="lanista-customer-myexercise-image-2" class="lanista-customer-myexercise-img customer-exercise-img-right" style="background-image: url(/tpmanager/img/b/{ext_id}_1.jpg);"></div>',
+                        '        <div id="lanista-customer-myexercise-image-1" class="lanista-customer-myexercise-img customer-exercise-img-left" style="background-image:  url(/tpmanager/img/b/{ext_id}_2.jpg);"></div>',
+                        '    </div>',
+                        '</div>'
+                    ],
                     layout: {
                         type: 'hbox',
-                        align: 'stretch'
+                        align: 'stretch',
+                        pack: 'end'
                     },
-                    items: [
-                        {
-                            xtype: 'container',
-                            flex: 1,
-                            cls: 'lanista-myExercise-imageleft',
-                            id: 'myExercise_imageLeft'
-                        },
-                        {
-                            xtype: 'container',
-                            flex: 1,
-                            cls: 'lanista-myExercise-imageright',
-                            id: 'myExercise_imageRight'
+                    listeners: {
+                        afterrender: {
+                            fn: me.onMyExercise_imagesAfterRender,
+                            scope: me
                         }
-                    ]
+                    }
                 }
             ],
             listeners: {
@@ -160,16 +168,91 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
         LanistaTrainer.app.getController ('MyExerciseInfoController').loadData();
     },
 
+    onMyExercise_imagesAfterRender: function(component, eOpts) {
+        var el = component.el,
+            server = Ext.ux.ConfigManager.getServer(),
+            root = Ext.ux.ConfigManager.getRoot();
+
+        ////////////////////////////////////////////////////////////////////
+        // Right Photo
+        ////////////////////////////////////////////////////////////////////
+        el.on('click',function(e,t) {
+            idImage = localStorage.getItem("user_id");
+            el.addCls('item-not-clicked');
+            var image = Ext.create('Ext.Img', {
+                src: server + root + '/tpmanager/img/b/CUST_'+ idImage + '_1.jpg',
+                renderTo: Ext.getBody(),
+                hidden: true,
+                width: 0,
+                height: 0
+            });
+            var lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];
+            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';
+            LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/user/uploadphoto',
+                                         {type: 'photo', customer_id: LanistaTrainer.app.currentCustomer ? LanistaTrainer.app.currentCustomer.data.id : localStorage.getItem("user_id")},
+                                         function() {});
+        },this,{delegate: '.customer-exercise-img-right'});
+
+        el.on(
+            'mouseover', function(e,t) {
+                el.removeCls('item-not-clicked');
+                el.addCls('item-clicked');
+
+            },
+            this,{ delegate: '.customer-exercise-img-right'});
+        el.on(
+            'mouseout', function(e,t) {
+                el.removeCls('item-clicked');
+                el.addCls('item-not-clicked');
+            },
+            this,{delegate: '.customer-exercise-img-right'});
+
+
+        ////////////////////////////////////////////////////////////////////
+        // Left Photo
+        ////////////////////////////////////////////////////////////////////
+        el.on('click',function(e,t) {
+            idImage = localStorage.getItem("user_id");
+            el.addCls('item-not-clicked');
+            var image = Ext.create('Ext.Img', {
+                src: server + root + '/tpmanager/img/b/CUST_'+ idImage + '_2.jpg',
+                renderTo: Ext.getBody(),
+                hidden: true,
+                width: 0,
+                height: 0
+            });
+            var lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];
+            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';
+            LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/user/uploadphoto',
+                                         {type: 'photo', customer_id: LanistaTrainer.app.currentCustomer ? LanistaTrainer.app.currentCustomer.data.id : localStorage.getItem("user_id")},
+                                         function() {});
+        },this,{delegate: '.customer-exercise-img-left'});
+
+        el.on(
+            'mouseover', function(e,t) {
+                el.removeCls('item-not-clicked');
+                el.addCls('item-clicked');
+             },
+            this,{ delegate: '.customer-exercise-img-left'});
+        el.on(
+            'mouseout', function(e,t) {
+                el.removeCls('item-clicked');
+                el.addCls('item-not-clicked');
+            },
+            this,{delegate: '.customer-exercise-img-left'});
+    },
+
     onMyExerciseInfoPanelAfterRender: function(component, eOpts) {
         var languagesStore = Ext.create('Ext.data.Store', {
-                fields: ['image', 'LanguageName', 'IdLanguage'],
-                data : [
-                    {"image": "es.png", "LanguageName":"Español", "IdLanguage":"ES"},
-                    {"image": "de.png", "LanguageName":"Deutsch", "IdLanguage":"DE"},
-                    {"image": "gb.png", "LanguageName":"English", "IdLanguage":"EN"}
-                ]
-        }),
-            fields = component.getForm().getFields();
+                                fields: ['image', 'LanguageName', 'IdLanguage'],
+                                data : [
+                                    {"image": "es.png", "LanguageName":"Español", "IdLanguage":"ES"},
+                                    {"image": "de.png", "LanguageName":"Deutsch", "IdLanguage":"DE"},
+                                    {"image": "gb.png", "LanguageName":"English", "IdLanguage":"EN"}
+                                ]
+                            }),
+            fields = component.getForm().getFields(),
+            record;
 
         fields.getByKey('myExercise_language').bindStore(languagesStore);
         languagesStore.load();
@@ -178,6 +261,9 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
         fields.getByKey('myExercise_muscle').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES);
         fields.getByKey('myExercise_exerciseType').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_TYPE);
         fields.getByKey('myExercise_other').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_ADDITIVES);
+
+        record = [{ext_id: 'a'}];
+        component.getComponent('myExercise_images').update(record[0]);
 
         document.getElementsByName("myExercise_name")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_EMAIL;
 

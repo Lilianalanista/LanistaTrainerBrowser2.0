@@ -544,7 +544,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
         if ( callback instanceof Function ) callback();
 
-
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });
