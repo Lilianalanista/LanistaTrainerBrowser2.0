@@ -218,6 +218,14 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
     },
 
+    onCreateMyExerciseButtonClick: function(button, e, eOpts) {
+        var controller = this;
+        LanistaTrainer.app.fireEvent('closeExercisesPanel', function() {
+            controller.promptMyExerciseNameRequest ( Ext.ux.LanguageManager.TranslationArray.BUTTON_CREATE_EMPTY_EXERCISE ,
+                                                     Ext.ux.LanguageManager.TranslationArray.NEW_MYEXERCISE_MESSAGE);
+        });
+    },
+
     onShowExercisesPanel: function(callback) {
         var controller = this,
             exercisesPanel	= controller.getExercisesPanel(),
@@ -350,6 +358,44 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         }
     },
 
+    onCreateMyExercise: function(myexercisename) {
+        var userId = localStorage.getItem("user_id"),
+            user = Ext.ux.SessionManager.getUser(),
+            newExercise;
+
+        newExercise = Ext.create('LanistaTrainer.model.ExerciseModel', {
+            name_DE : myexercisename
+        });
+
+        newExercise.setProxy(new Ext.data.proxy.Ajax({
+            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/exercise/userexercisesjson',
+            model: 'Exercise',
+            noCache: false,
+            reader: {
+                type: 'json',
+                root: 'entries'
+            },
+            writer: {
+                type: 'json',
+                root: 'records',
+                allowSingle: false
+            },
+            headers: {
+                user_id: userId
+            }
+        }));
+
+        newExercise.save (
+            {
+                callback: function ( record ){
+                    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).myexercise = record;
+                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'MyExerciseInfoPanel';
+                    LanistaTrainer.app.fireEvent( 'showMyExerciseInfoPanel', myexercisename);
+                }
+            });
+
+    },
+
     showCommands: function(callback) {
 
         var controller = this,
@@ -417,7 +463,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             this.getRightCommandPanel().add(
                 Ext.create('LanistaTrainer.view.LanistaButton', {
                     text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
-                    itemId: 'showMyExerciseInfoButton',
+                    itemId: 'createMyExerciseButton',
                     glyph: '108@Lanista Icons' //l
                 })
             );
@@ -988,6 +1034,30 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
     },
 
+    promptMyExerciseNameRequest: function(title, message) {
+        Ext.Msg.prompt (
+            title,
+            message,
+            function (response, myexercisename) {
+                if ( response == 'ok' ) {
+                    LanistaTrainer.app.fireEvent( 'createMyExercise', myexercisename );
+                } else {
+                    LanistaTrainer.app.fireEvent( 'showExercisesPanel' );
+                }
+            },
+            null,
+            false,
+            Ext.ux.LanguageManager.TranslationArray.NEW +
+              Ext.ux.LanguageManager.TranslationArray.EXERCISE ,
+            {
+                autoCapitalize: true,
+                placeHolder: Ext.ux.LanguageManager.TranslationArray.NEW +
+                             Ext.ux.LanguageManager.TranslationArray.EXERCISE ,
+                clearicon: true
+            }
+        );
+    },
+
     init: function(application) {
         this.control({
             "viewport #showExercisesPanelButton": {
@@ -1004,6 +1074,9 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             },
             "viewport #myExercisesButton": {
                 click: this.onMyExercisesButtonClick
+            },
+            "viewport #createMyExerciseButton": {
+                click: this.onCreateMyExerciseButtonClick
             }
         });
 
@@ -1026,6 +1099,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             },
             showSearchHeaderUpdate: {
                 fn: this.onShowSearchHeaderUpdate,
+                scope: this
+            },
+            createMyExercise: {
+                fn: this.onCreateMyExercise,
                 scope: this
             }
         });

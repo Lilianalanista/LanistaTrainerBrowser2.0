@@ -38,10 +38,12 @@ Ext.define('LanistaTrainer.model.ExerciseModel', {
             name: 'ext_id'
         },
         {
-            name: 'type'
+            name: 'type',
+            type: 'int'
         },
         {
-            name: 'unilateral'
+            name: 'unilateral',
+            type: 'int'
         },
         {
             name: 'coatchingnotes_DE'
@@ -62,10 +64,12 @@ Ext.define('LanistaTrainer.model.ExerciseModel', {
             name: 'mistakes_EN'
         },
         {
-            name: 'muscle'
+            name: 'muscle',
+            type: 'int'
         },
         {
-            name: 'addition'
+            name: 'addition',
+            type: 'int'
         }
     ],
 

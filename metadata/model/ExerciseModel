@@ -81,7 +81,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "type"
+                "name": "type",
+                "type": "int"
             },
             "designerId": "ad662084-5638-42bb-8b20-39e690413f6d"
         },
@@ -93,7 +94,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "unilateral"
+                "name": "unilateral",
+                "type": "int"
             },
             "designerId": "b8509c3e-89e1-4c24-8830-19d028ca6248"
         },
@@ -177,7 +179,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "muscle"
+                "name": "muscle",
+                "type": "int"
             },
             "designerId": "4b1b3bf7-a1e5-4720-a182-64b730ae5537"
         },
@@ -189,7 +192,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "addition"
+                "name": "addition",
+                "type": "int"
             },
             "designerId": "26973591-bb0e-4933-91d7-cbf569bd09c6"
         },

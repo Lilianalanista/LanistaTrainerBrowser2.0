@@ -223,6 +223,60 @@
             "designerId": "e8f65cd2-661e-415f-8682-d58a4fc3e3c0"
         },
         {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "myexercisename"
+                ],
+                "fn": "onCreateMyExercise",
+                "implHandler": [
+                    "var userId = localStorage.getItem(\"user_id\"),",
+                    "    user = Ext.ux.SessionManager.getUser(),",
+                    "    newExercise;",
+                    "",
+                    "newExercise = Ext.create('LanistaTrainer.model.ExerciseModel', {",
+                    "    name_DE : myexercisename",
+                    "});",
+                    "",
+                    "newExercise.setProxy(new Ext.data.proxy.Ajax({",
+                    "    url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/exercise/userexercisesjson',",
+                    "    model: 'Exercise',",
+                    "    noCache: false,",
+                    "    reader: {",
+                    "        type: 'json',",
+                    "        root: 'entries'",
+                    "    },",
+                    "    writer: {",
+                    "        type: 'json',",
+                    "        root: 'records',",
+                    "        allowSingle: false",
+                    "    },",
+                    "    headers: {",
+                    "        user_id: userId",
+                    "    }",
+                    "}));",
+                    "",
+                    "newExercise.save (",
+                    "    {",
+                    "        callback: function ( record ){",
+                    "            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).myexercise = record;",
+                    "            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'MyExerciseInfoPanel';",
+                    "            LanistaTrainer.app.fireEvent( 'showMyExerciseInfoPanel', myexercisename);",
+                    "        }",
+                    "    });",
+                    ""
+                ],
+                "name": "createMyExercise",
+                "scope": "this"
+            },
+            "designerId": "9d886d39-d740-4571-a29b-860d2695c66c"
+        },
+        {
             "type": "controllerref",
             "reference": {
                 "name": "items",
@@ -396,7 +450,7 @@
                     "    this.getRightCommandPanel().add(",
                     "        Ext.create('LanistaTrainer.view.LanistaButton', {",
                     "            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,",
-                    "            itemId: 'showMyExerciseInfoButton',",
+                    "            itemId: 'createMyExerciseButton',",
                     "            glyph: '108@Lanista Icons' //l",
                     "        })",
                     "    );",
@@ -1270,6 +1324,68 @@
                 "scope": "me"
             },
             "designerId": "7cbdfa94-7b8b-46ad-83a4-ee5be373c71d"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #createMyExerciseButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCreateMyExerciseButtonClick",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('closeExercisesPanel', function() {",
+                    "    controller.promptMyExerciseNameRequest ( Ext.ux.LanguageManager.TranslationArray.BUTTON_CREATE_EMPTY_EXERCISE ,",
+                    "                                             Ext.ux.LanguageManager.TranslationArray.NEW_MYEXERCISE_MESSAGE);",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "bcf1f532-b640-42ce-ab76-d650a2cab3a9"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "title",
+                    "message"
+                ],
+                "fn": "promptMyExerciseNameRequest",
+                "implHandler": [
+                    "Ext.Msg.prompt (",
+                    "    title,",
+                    "    message,",
+                    "    function (response, myexercisename) {",
+                    "        if ( response == 'ok' ) {",
+                    "            LanistaTrainer.app.fireEvent( 'createMyExercise', myexercisename );",
+                    "        } else {",
+                    "            LanistaTrainer.app.fireEvent( 'showExercisesPanel' );",
+                    "        }",
+                    "    },",
+                    "    null,",
+                    "    false,",
+                    "    Ext.ux.LanguageManager.TranslationArray.NEW +",
+                    "      Ext.ux.LanguageManager.TranslationArray.EXERCISE ,",
+                    "    {",
+                    "        autoCapitalize: true,",
+                    "        placeHolder: Ext.ux.LanguageManager.TranslationArray.NEW +",
+                    "                     Ext.ux.LanguageManager.TranslationArray.EXERCISE ,",
+                    "        clearicon: true",
+                    "    }",
+                    ");"
+                ]
+            },
+            "designerId": "002a61b8-a79f-4460-9449-97aee361e516"
         }
     ]
 }
