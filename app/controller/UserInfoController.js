@@ -165,7 +165,6 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
             component.destroy();
         }, controller);
 
-
         // **** 1 create the commands
         LanistaTrainer.app.setStandardButtons('closeUserInfoPanelButton');
         this.showCommands();

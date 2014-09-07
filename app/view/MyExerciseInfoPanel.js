@@ -30,9 +30,14 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
     autoScroll: true,
     bodyPadding: 10,
     header: false,
+    trackResetOnLoad: true,
 
     initComponent: function() {
         var me = this;
+
+        me.initialConfig = Ext.apply({
+            trackResetOnLoad: true
+        }, me.initialConfig);
 
         Ext.applyIf(me, {
             items: [
@@ -63,7 +68,13 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                             id: 'myExercise_name',
                             hideEmptyLabel: false,
                             labelCls: 'lanista-myexercise-item-label',
-                            name: 'myExercise_name'
+                            name: 'myExercise_name',
+                            listeners: {
+                                blur: {
+                                    fn: me.onMyExercise_nameBlur,
+                                    scope: me
+                                }
+                            }
                         },
                         {
                             xtype: 'textfield',
@@ -71,7 +82,13 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                             cls: 'lanista-field-myexercise',
                             id: 'myExercise_execution',
                             labelCls: 'lanista-myexercise-item-label',
-                            name: 'myExercise_execution'
+                            name: 'myExercise_execution',
+                            listeners: {
+                                blur: {
+                                    fn: me.onMyExercise_executionBlur,
+                                    scope: me
+                                }
+                            }
                         },
                         {
                             xtype: 'textfield',
@@ -79,7 +96,13 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                             cls: 'lanista-field-myexercise lanista-field-myexercise-errors',
                             id: 'myExercise_errors',
                             labelCls: 'lanista-myexercise-item-label',
-                            name: 'myExercise_errors'
+                            name: 'myExercise_errors',
+                            listeners: {
+                                blur: {
+                                    fn: me.onMyExercise_errorsBlur,
+                                    scope: me
+                                }
+                            }
                         }
                     ]
                 },
@@ -89,7 +112,12 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                     cls: 'lanista-field-myexercise',
                     id: 'myExercise_muscle',
                     labelCls: 'lanista-myexercise-item-label',
-                    name: 'muscle'
+                    name: 'muscle',
+                    enableKeyEvents: true,
+                    editable: false,
+                    displayField: 'name',
+                    queryMode: 'local',
+                    valueField: 'id'
                 },
                 {
                     xtype: 'combobox',
@@ -97,7 +125,12 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                     cls: 'lanista-field-myexercise',
                     id: 'myExercise_exerciseType',
                     labelCls: 'lanista-myexercise-item-label',
-                    name: 'type'
+                    name: 'type',
+                    enableKeyEvents: true,
+                    editable: false,
+                    displayField: 'name',
+                    queryMode: 'local',
+                    valueField: 'id'
                 },
                 {
                     xtype: 'combobox',
@@ -105,7 +138,12 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                     cls: 'lanista-field-myexercise lanista-field-myexercise-other',
                     id: 'myExercise_other',
                     labelCls: 'lanista-myexercise-item-label',
-                    name: 'addition'
+                    name: 'addition',
+                    enableKeyEvents: true,
+                    editable: false,
+                    displayField: 'name',
+                    queryMode: 'local',
+                    valueField: 'id'
                 },
                 {
                     xtype: 'container',
@@ -166,6 +204,42 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
 
     onMyExercise_languageChange: function(field, newValue, oldValue, eOpts) {
         LanistaTrainer.app.getController ('MyExerciseInfoController').loadData();
+    },
+
+    onMyExercise_nameBlur: function(component, e, eOpts) {
+        var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue();
+
+        if (currentLanguageField === 'ES')
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_ES = component.getValue();
+        if (currentLanguageField === 'EN')
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_EN = component.getValue();
+        if (currentLanguageField === 'DE')
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_DE = component.getValue();
+
+    },
+
+    onMyExercise_executionBlur: function(component, e, eOpts) {
+        var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue();
+
+        if (currentLanguageField === 'ES')
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_ES = component.getValue();
+        if (currentLanguageField === 'EN')
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_EN = component.getValue();
+        if (currentLanguageField === 'DE')
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_DE = component.getValue();
+
+    },
+
+    onMyExercise_errorsBlur: function(component, e, eOpts) {
+        var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue();
+
+        if (currentLanguageField === 'ES')
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES = component.getValue();
+        if (currentLanguageField === 'EN')
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN = component.getValue();
+        if (currentLanguageField === 'DE')
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_DE = component.getValue();
+
     },
 
     onMyExercise_imagesAfterRender: function(component, eOpts) {
@@ -260,6 +334,9 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                             }),
             fields = component.getForm().getFields(),
             record,
+            musclesStore,
+            typesStore,
+            othersStore,
             myExercise = LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).myexercise;
 
         fields.getByKey('myExercise_language').bindStore(languagesStore);
@@ -273,12 +350,79 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
         record = [{id: myExercise.data.ext_id}];
         component.getComponent('myExercise_images').update(record[0]);
 
-        document.getElementsByName("myExercise_name")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_EMAIL;
+        //Muscles Store
+        musclesStore = Ext.create('Ext.data.Store', {
+            fields: ['id', 'name'],
+            data : [
+                {"id":0, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_MUSCLES.toUpperCase()},
+                {"id":3, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_SHOULDER.toUpperCase()},
+                {"id":8, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_BICEPS.toUpperCase()},
+                {"id":9, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_TRICEPS.toUpperCase()},
+                {"id":10, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_FOREARM.toUpperCase()},
+                {"id":1, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase()},
+                {"id":2, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_UPPERBACK.toUpperCase()},
+                {"id":5, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_LOWERBACK.toUpperCase()},
+                {"id":7, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_AB.toUpperCase()},
+                {"id":6, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_WAISHIP.toUpperCase()},
+                {"id":4, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_FRONTTHIG.toUpperCase()},
+                {"id":14, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_BACKTHIGH.toUpperCase()},
+                {"id":11, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_LOWERLEG.toUpperCase()}
+            ]
+        });
+        fields.getByKey('myExercise_muscle').bindStore(musclesStore);
+        musclesStore.load();
+
+        //Exercises Types Store
+        typesStore = Ext.create('Ext.data.Store', {
+            fields: ['id', 'name'],
+            data : [
+                {"id":0, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_EXERCISES.toUpperCase()},
+                {"id":4, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_BODYWEIGHT.toUpperCase()},
+                {"id":1, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_MACHINE.toUpperCase()},
+                {"id":2, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_FREEWEIGHTS.toUpperCase()},
+                {"id":3, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_CABLE.toUpperCase()},
+                {"id":5, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_STRETCH.toUpperCase()},
+                {"id":7, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_CARDIO.toUpperCase()},
+                {"id":8, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_SPEC.toUpperCase()},
+                {"id":9, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_UNILATERAL.toUpperCase()}
+            ]
+        });
+        fields.getByKey('myExercise_exerciseType').bindStore(typesStore);
+        typesStore.load();
+
+        //Others Store
+        othersStore = Ext.create('Ext.data.Store', {
+            fields: ['id', 'name'],
+            data : [
+                {"id":0, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_MACHINES.toUpperCase()},
+                {"id":1, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_DUMBBELLS.toUpperCase()},
+                {"id":3, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_BARBELL.toUpperCase()},
+                {"id":2, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_KETT.toUpperCase()},
+                {"id":4, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_BANK.toUpperCase()},
+                {"id":5, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_VARADD.toUpperCase()},
+                {"id":6, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_BALL.toUpperCase()},
+                {"id":7, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_BLAST.toUpperCase()},
+                {"id":8, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_JUMPER.toUpperCase()},
+                {"id":9, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_FOAM.toUpperCase()},
+                {"id":11, "name":Ext.ux.LanguageManager.TranslationArray.FILTER_MINIBAND.toUpperCase()}
+            ]
+        });
+        fields.getByKey('myExercise_other').bindStore(othersStore);
+        othersStore.load();
 
         if (myExercise)
         {
             component.getForm().setValues(
                 {
+                    myExercise_name:		Ext.ux.LanguageManager.lang === 'ES' ? myExercise.data.name_ES :
+                                            Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.name_EN :
+                                            myExercise.data.name_DE,
+                    myExercise_execution:	Ext.ux.LanguageManager.lang === 'ES' ? myExercise.data.coatchingnotes_ES :
+                                            Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.coatchingnotes_EN :
+                                            myExercise.data.coatchingnotes_DE,
+                    myExercise_errors:		Ext.ux.LanguageManager.lang === 'ES' ? myExercise.data.mistakes_ES :
+                                            Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.mistakes_EN :
+                                            myExercise.data.mistakes_DE,
                     muscle:					myExercise.data.muscle,
                     addition:				myExercise.data.addition,
                     type:					myExercise.data.type,

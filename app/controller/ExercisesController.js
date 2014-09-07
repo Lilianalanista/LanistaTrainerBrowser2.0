@@ -364,7 +364,9 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             newExercise;
 
         newExercise = Ext.create('LanistaTrainer.model.ExerciseModel', {
-            name_DE : myexercisename
+            name_DE : myexercisename,
+            name_EN : myexercisename,
+            name_ES : myexercisename
         });
 
         newExercise.setProxy(new Ext.data.proxy.Ajax({

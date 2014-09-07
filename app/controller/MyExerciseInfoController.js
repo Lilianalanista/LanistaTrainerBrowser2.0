@@ -72,59 +72,75 @@ Ext.define('LanistaTrainer.controller.MyExerciseInfoController', {
         var controller = this,
             server = Ext.ux.ConfigManager.getServer(),
             root = Ext.ux.ConfigManager.getRoot() + '/tpmanager/',
-            form_data = controller.getMyExerciseInfoPanel().getValues();
+            userId = localStorage.getItem("user_id"),
+            newExercise,
+            fields = controller.getMyExerciseInfoPanel().getForm().getFields();
 
-
-        Ext.Ajax.request({
-            url : server + root + 'user/save' ,
-            params : this.getUserInfoPanel().getValues(true, false),
-            method: 'post',
-            headers: {
-                user_id: localStorage.getItem("user_id")
-            },
-            success: function ( result, request ) {
-                var data = Ext.decode(result.responseText);
-                if (data.success) {
-                    var user_data = data.entries[0];
-
-                    localStorage.setItem("email", user_data.email ? user_data.email : '');
-                    localStorage.setItem("language", user_data.language ? user_data.language : '');
-                    localStorage.setItem("first_name", user_data.first_name ? user_data.first_name : '');
-                    localStorage.setItem("last_name", user_data.last_name ? user_data.last_name : '');
-                    localStorage.setItem("country", user_data.country ? user_data.country : '');
-                    localStorage.setItem("zipcode", user_data.zipcode ? user_data.zipcode : '');
-                    localStorage.setItem("city", user_data.city ? user_data.city : '');
-                    localStorage.setItem("street", user_data.street ? user_data.street : '');
-                    localStorage.setItem("company_name", user_data.company_name ? user_data.company_name : '');
-                    localStorage.setItem("phone_nr", user_data.phone_nr ? user_data.phone_nr : '');
-                    localStorage.setItem("website", user_data.website ? user_data.website : '');
-
-                    Ext.ux.SessionManager.loadLastUser();
-                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);
-
-                    if (user_data.language != Ext.ux.LanguageManager.lang) {
-                        Ext.Msg.alert ('', Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE,  function() {
-                            LanistaTrainer.app.fireEvent('changeLanguage', user_data.language, true);
-                        });
-                    }
-                } else {
-                    if (data.error == 510) {
-                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, function () {
-                            controller.getUserInfoPanel().down( 'field[name=email]' ).reset();
-                            controller.getUserInfoPanel().down( 'field[name=email]' ).focus();
-                        });
-                    } else {
-                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, data.message, Ext.emptyFn);
-                    }
-                }
-                controller.showCommands();
-            },
-            failure: function (result, request) {
-                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
-                controller.showCommands();
-            }
+        newExercise = Ext.create('LanistaTrainer.model.ExerciseModel', {
+            id:					controller.myexercise.data.id,
+            name_DE:			controller.name_DE,
+            name_ES:			controller.name_ES,
+            name_EN:			controller.name_EN,
+            ext_id:				controller.myexercise.data.ext_id,
+            type:				fields.getByKey('myExercise_exerciseType').getValue(),
+            muscle:				fields.getByKey('myExercise_muscle').getValue(),
+            addtion:			fields.getByKey('myExercise_other').getValue(),
+            coatchingnotes_DE:	controller.execution_DE,
+            coatchingnotes_EN:	controller.execution_EN,
+            coatchingnotes_ES:	controller.execution_ES,
+            mistakes_DE:		controller.errors_DE,
+            mistakes_ES:		controller.errors_ES,
+            mistakes_EN:		controller.errors_EN
         });
 
+        newExercise.setProxy(new Ext.data.proxy.Ajax({
+            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/exercise/userexercisesjson',
+            model: 'Exercise',
+            noCache: false,
+            reader: {
+                type: 'json',
+                root: 'entries'
+            },
+            writer: {
+                type: 'json',
+                root: 'records',
+                allowSingle: false
+            },
+            headers: {
+                user_id: userId
+            }
+        }));
+
+        newExercise.save (
+        {
+            callback: function ( record, event, success ){
+                if (success)
+                {
+                    controller.getMyExerciseInfoPanel().getForm().setValues(
+                        {
+                            myExercise_name:		Ext.ux.LanguageManager.lang === 'ES' ? record.data.name_ES :
+                                                    Ext.ux.LanguageManager.lang === 'EN' ? record.data.name_EN :
+                                                    record.data.name_DE,
+                            myExercise_execution:	Ext.ux.LanguageManager.lang === 'ES' ? record.data.coatchingnotes_ES :
+                                                    Ext.ux.LanguageManager.lang === 'EN' ? record.data.coatchingnotes_EN :
+                                                    record.data.coatchingnotes_DE,
+                            myExercise_errors:		Ext.ux.LanguageManager.lang === 'ES' ? record.data.mistakes_ES :
+                                                    Ext.ux.LanguageManager.lang === 'EN' ? record.data.mistakes_EN :
+                                                    record.data.mistakes_DE,
+                            muscle:					record.data.muscle,
+                            addition:				record.data.addition,
+                            type:					record.data.type,
+                            id:						record.data.id
+                        }
+                    );
+
+                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);
+                    controller.showCommands();
+                }
+                else
+                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
+            }
+        });
 
 
     },
@@ -207,10 +223,7 @@ Ext.define('LanistaTrainer.controller.MyExerciseInfoController', {
             fields = controller.getMyExerciseInfoPanel().getForm().getFields(),
             currentLanguage = Ext.ux.LanguageManager.lang,
             comboLanguage = fields.getByKey('myExercise_language').getValue(),
-            myExercise = controller.myexercise,
-            myExerciseName,
-            myExerciseCoatchNote,
-            myExerciseMistake;
+            myExercise = controller.myexercise;
 
         Ext.ux.LanguageManager.setLanguage(comboLanguage);
         setTimeout(function()
@@ -224,18 +237,21 @@ Ext.define('LanistaTrainer.controller.MyExerciseInfoController', {
             document.getElementsByName("myExercise_execution")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.EXECUTION;
             document.getElementsByName("myExercise_errors")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS;
 
-            if (myExercise){
-                myExerciseName = currentLanguage === 'ES' ? myExercise.name_ES :
-                                 currentLanguage === 'EN' ? myExercise.name_EN :
-                                 currentLanguage === 'DE' ? myExercise.name_DE : '';
-
-                myExerciseCoatchNote = currentLanguage === 'ES' ? myExercise.coatchingnotes_ES :
-                                       currentLanguage === 'EN' ? myExercise.coatchingnotes_EN :
-                                       currentLanguage === 'DE' ? myExercise.coatchingnotes_DE : '';
-
-                myExerciseMistake = currentLanguage === 'ES' ? myExercise.mistakes_ES :
-                                    currentLanguage === 'EN' ? myExercise.mistakes_EN :
-                                    currentLanguage === 'DE' ? myExercise.mistakes_DE : '';
+            if (myExercise)
+            {
+                controller.getMyExerciseInfoPanel().getForm().setValues(
+                    {
+                        myExercise_name:		Ext.ux.LanguageManager.lang === 'ES' ? LanistaTrainer.app.getController('MyExerciseInfoController').name_ES :
+                                                Ext.ux.LanguageManager.lang === 'EN' ? LanistaTrainer.app.getController('MyExerciseInfoController').name_EN :
+                                                LanistaTrainer.app.getController('MyExerciseInfoController').name_DE,
+                        myExercise_execution:	Ext.ux.LanguageManager.lang === 'ES' ? LanistaTrainer.app.getController('MyExerciseInfoController').execution_ES :
+                                                Ext.ux.LanguageManager.lang === 'EN' ? LanistaTrainer.app.getController('MyExerciseInfoController').execution_EN :
+                                                LanistaTrainer.app.getController('MyExerciseInfoController').execution_DE,
+                        myExercise_errors:		Ext.ux.LanguageManager.lang === 'ES' ? LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES :
+                                                Ext.ux.LanguageManager.lang === 'EN' ? LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN :
+                                                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_DE
+                    }
+                );
             }
 
             Ext.ux.LanguageManager.setLanguage(currentLanguage);

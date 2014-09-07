@@ -15,6 +15,7 @@
         "height": 694,
         "id": "myExerciseInfoPanel",
         "title": null,
+        "trackResetOnLoad": true,
         "width": 400
     },
     "designerId": "b657ef40-c231-4656-b95a-80ae98360fcf",
@@ -117,7 +118,34 @@
                         "layout|anchor": "100%",
                         "name": "myExercise_name"
                     },
-                    "designerId": "f32f6d09-8cca-49dc-b399-3cd8fd391a0a"
+                    "designerId": "f32f6d09-8cca-49dc-b399-3cd8fd391a0a",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onMyExercise_nameBlur",
+                                "implHandler": [
+                                    "var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue();",
+                                    "",
+                                    "if (currentLanguageField === 'ES')",
+                                    "    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_ES = component.getValue();",
+                                    "if (currentLanguageField === 'EN')",
+                                    "    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_EN = component.getValue();",
+                                    "if (currentLanguageField === 'DE')",
+                                    "    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_DE = component.getValue();",
+                                    ""
+                                ],
+                                "name": "blur",
+                                "scope": "me"
+                            },
+                            "designerId": "fb8bc1f7-add3-423e-973b-90243824e38e"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.form.field.Text",
@@ -134,7 +162,34 @@
                         "layout|anchor": "100%",
                         "name": "myExercise_execution"
                     },
-                    "designerId": "129c62e9-1cbc-4517-967d-d41d39b847e7"
+                    "designerId": "129c62e9-1cbc-4517-967d-d41d39b847e7",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onMyExercise_executionBlur",
+                                "implHandler": [
+                                    "var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue();",
+                                    "",
+                                    "if (currentLanguageField === 'ES')",
+                                    "    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_ES = component.getValue();",
+                                    "if (currentLanguageField === 'EN')",
+                                    "    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_EN = component.getValue();",
+                                    "if (currentLanguageField === 'DE')",
+                                    "    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_DE = component.getValue();",
+                                    ""
+                                ],
+                                "name": "blur",
+                                "scope": "me"
+                            },
+                            "designerId": "10d00dd4-371e-469b-b4fa-e3252b731297"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.form.field.Text",
@@ -151,7 +206,34 @@
                         "layout|anchor": "100%",
                         "name": "myExercise_errors"
                     },
-                    "designerId": "7e20a53c-f6b4-40e1-ad0d-e5e3880ce33a"
+                    "designerId": "7e20a53c-f6b4-40e1-ad0d-e5e3880ce33a",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onMyExercise_errorsBlur",
+                                "implHandler": [
+                                    "var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue();",
+                                    "",
+                                    "if (currentLanguageField === 'ES')",
+                                    "    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES = component.getValue();",
+                                    "if (currentLanguageField === 'EN')",
+                                    "    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN = component.getValue();",
+                                    "if (currentLanguageField === 'DE')",
+                                    "    LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_DE = component.getValue();",
+                                    ""
+                                ],
+                                "name": "blur",
+                                "scope": "me"
+                            },
+                            "designerId": "51264f31-4375-407d-853b-ca89e8330df5"
+                        }
+                    ]
                 }
             ]
         },
@@ -164,11 +246,17 @@
             "codeClass": null,
             "userConfig": {
                 "cls": "lanista-field-myexercise",
+                "designer|displayName": null,
+                "displayField": "name",
+                "editable": false,
+                "enableKeyEvents": true,
                 "fieldLabel": null,
                 "id": "myExercise_muscle",
                 "labelCls": "lanista-myexercise-item-label",
                 "layout|anchor": "100%",
-                "name": "muscle"
+                "name": "muscle",
+                "queryMode": "local",
+                "valueField": "id"
             },
             "designerId": "86e5d20b-c0d6-482d-864f-2877802eabad"
         },
@@ -181,11 +269,16 @@
             "codeClass": null,
             "userConfig": {
                 "cls": "lanista-field-myexercise",
+                "displayField": "name",
+                "editable": false,
+                "enableKeyEvents": true,
                 "fieldLabel": null,
                 "id": "myExercise_exerciseType",
                 "labelCls": "lanista-myexercise-item-label",
                 "layout|anchor": "100%",
-                "name": "type"
+                "name": "type",
+                "queryMode": "local",
+                "valueField": "id"
             },
             "designerId": "247ddc24-1723-458a-b097-d43954c6d59d"
         },
@@ -198,11 +291,16 @@
             "codeClass": null,
             "userConfig": {
                 "cls": "lanista-field-myexercise lanista-field-myexercise-other",
+                "displayField": "name",
+                "editable": false,
+                "enableKeyEvents": true,
                 "fieldLabel": null,
                 "id": "myExercise_other",
                 "labelCls": "lanista-myexercise-item-label",
                 "layout|anchor": "100%",
-                "name": "addition"
+                "name": "addition",
+                "queryMode": "local",
+                "valueField": "id"
             },
             "designerId": "b4bb8544-edae-4619-881d-9ee7197d3056"
         },
@@ -279,8 +377,8 @@
                             "    var lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];",
                             "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';",
                             "    LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/exercise/uploadphoto',",
-                            "                                 {type: 'photo', ",
-                            "                                  customer_id: localStorage.getItem(\"user_id\"), ",
+                            "                                 {type: 'photo',",
+                            "                                  customer_id: localStorage.getItem(\"user_id\"),",
                             "                                  exercise_id: myExercise.data.id,",
                             "                                  order: 1},",
                             "                                 function() {});",
@@ -317,7 +415,7 @@
                             "    var lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];",
                             "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';",
                             "    LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/exercise/uploadphoto',",
-                            "                                 {type: 'photo', ",
+                            "                                 {type: 'photo',",
                             "                                  customer_id: localStorage.getItem(\"user_id\"),",
                             "                                  exercise_id: myExercise.data.id,",
                             "                                  order: 2},",
@@ -364,6 +462,9 @@
                     "                    }),",
                     "    fields = component.getForm().getFields(),",
                     "    record,",
+                    "    musclesStore,",
+                    "    typesStore,",
+                    "    othersStore,",
                     "    myExercise = LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).myexercise;",
                     "",
                     "fields.getByKey('myExercise_language').bindStore(languagesStore);",
@@ -377,12 +478,79 @@
                     "record = [{id: myExercise.data.ext_id}];",
                     "component.getComponent('myExercise_images').update(record[0]);",
                     "",
-                    "document.getElementsByName(\"myExercise_name\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_EMAIL;",
+                    "//Muscles Store",
+                    "musclesStore = Ext.create('Ext.data.Store', {",
+                    "    fields: ['id', 'name'],",
+                    "    data : [",
+                    "        {\"id\":0, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_MUSCLES.toUpperCase()},",
+                    "        {\"id\":3, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_SHOULDER.toUpperCase()},",
+                    "        {\"id\":8, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_BICEPS.toUpperCase()},",
+                    "        {\"id\":9, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_TRICEPS.toUpperCase()},",
+                    "        {\"id\":10, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_FOREARM.toUpperCase()},",
+                    "        {\"id\":1, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase()},",
+                    "        {\"id\":2, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_UPPERBACK.toUpperCase()},",
+                    "        {\"id\":5, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_LOWERBACK.toUpperCase()},",
+                    "        {\"id\":7, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_AB.toUpperCase()},",
+                    "        {\"id\":6, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_WAISHIP.toUpperCase()},",
+                    "        {\"id\":4, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_FRONTTHIG.toUpperCase()},",
+                    "        {\"id\":14, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_BACKTHIGH.toUpperCase()},",
+                    "        {\"id\":11, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_LOWERLEG.toUpperCase()}",
+                    "    ]",
+                    "});",
+                    "fields.getByKey('myExercise_muscle').bindStore(musclesStore);",
+                    "musclesStore.load();",
+                    "",
+                    "//Exercises Types Store",
+                    "typesStore = Ext.create('Ext.data.Store', {",
+                    "    fields: ['id', 'name'],",
+                    "    data : [",
+                    "        {\"id\":0, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_EXERCISES.toUpperCase()},",
+                    "        {\"id\":4, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_BODYWEIGHT.toUpperCase()},",
+                    "        {\"id\":1, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_MACHINE.toUpperCase()},",
+                    "        {\"id\":2, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_FREEWEIGHTS.toUpperCase()},",
+                    "        {\"id\":3, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_CABLE.toUpperCase()},",
+                    "        {\"id\":5, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_STRETCH.toUpperCase()},",
+                    "        {\"id\":7, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_CARDIO.toUpperCase()},",
+                    "        {\"id\":8, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_SPEC.toUpperCase()},",
+                    "        {\"id\":9, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_UNILATERAL.toUpperCase()}",
+                    "    ]",
+                    "});",
+                    "fields.getByKey('myExercise_exerciseType').bindStore(typesStore);",
+                    "typesStore.load();",
+                    "",
+                    "//Others Store",
+                    "othersStore = Ext.create('Ext.data.Store', {",
+                    "    fields: ['id', 'name'],",
+                    "    data : [",
+                    "        {\"id\":0, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_ALL_MACHINES.toUpperCase()},",
+                    "        {\"id\":1, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_DUMBBELLS.toUpperCase()},",
+                    "        {\"id\":3, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_BARBELL.toUpperCase()},",
+                    "        {\"id\":2, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_KETT.toUpperCase()},",
+                    "        {\"id\":4, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_BANK.toUpperCase()},",
+                    "        {\"id\":5, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_VARADD.toUpperCase()},",
+                    "        {\"id\":6, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_BALL.toUpperCase()},",
+                    "        {\"id\":7, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_BLAST.toUpperCase()},",
+                    "        {\"id\":8, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_JUMPER.toUpperCase()},",
+                    "        {\"id\":9, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_FOAM.toUpperCase()},",
+                    "        {\"id\":11, \"name\":Ext.ux.LanguageManager.TranslationArray.FILTER_MINIBAND.toUpperCase()}",
+                    "    ]",
+                    "});",
+                    "fields.getByKey('myExercise_other').bindStore(othersStore);",
+                    "othersStore.load();",
                     "",
                     "if (myExercise)",
                     "{",
                     "    component.getForm().setValues(",
                     "        {",
+                    "            myExercise_name:\t\tExt.ux.LanguageManager.lang === 'ES' ? myExercise.data.name_ES : ",
+                    "                                    Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.name_EN : ",
+                    "                                    myExercise.data.name_DE,",
+                    "            myExercise_execution:\tExt.ux.LanguageManager.lang === 'ES' ? myExercise.data.coatchingnotes_ES : ",
+                    "                                    Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.coatchingnotes_EN : ",
+                    "                                    myExercise.data.coatchingnotes_DE,",
+                    "            myExercise_errors:\t\tExt.ux.LanguageManager.lang === 'ES' ? myExercise.data.mistakes_ES : ",
+                    "                                    Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.mistakes_EN : ",
+                    "                                    myExercise.data.mistakes_DE,",
                     "            muscle:\t\t\t\t\tmyExercise.data.muscle,",
                     "            addition:\t\t\t\tmyExercise.data.addition,",
                     "            type:\t\t\t\t\tmyExercise.data.type,",
