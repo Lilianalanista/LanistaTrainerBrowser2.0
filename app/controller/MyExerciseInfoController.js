@@ -84,7 +84,7 @@ Ext.define('LanistaTrainer.controller.MyExerciseInfoController', {
             ext_id:				controller.myexercise.data.ext_id,
             type:				fields.getByKey('myExercise_exerciseType').getValue(),
             muscle:				fields.getByKey('myExercise_muscle').getValue(),
-            addtion:			fields.getByKey('myExercise_other').getValue(),
+            addition:			fields.getByKey('myExercise_other').getValue(),
             coatchingnotes_DE:	controller.execution_DE,
             coatchingnotes_EN:	controller.execution_EN,
             coatchingnotes_ES:	controller.execution_ES,

@@ -148,7 +148,7 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                 {
                     xtype: 'container',
                     cls: 'lanista-myExercise-images',
-                    height: 200,
+                    height: 350,
                     id: 'myExercise_images',
                     tpl: [
                         '<div class="lanista-customer-myexercise">',
@@ -429,6 +429,21 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                     id:						myExercise.data.id
                 }
             );
+            //if (Ext.ux.LanguageManager.lang === 'ES'){
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_ES = myExercise.data.name_ES;
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_ES = myExercise.data.coatchingnotes_ES;
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES = myExercise.data.mistakes_ES;
+            //}
+            //if (Ext.ux.LanguageManager.lang === 'EN'){
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_EN = myExercise.data.name_EN;
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_EN = myExercise.data.coatchingnotes_EN;
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN = myExercise.data.mistakes_EN;
+            //}
+            //if (Ext.ux.LanguageManager.lang === 'DE'){
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_DE = myExercise.data.name_DE;
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_DE = myExercise.data.coatchingnotes_DE;
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES = myExercise.data.mistakes_DE;
+            //}
         }
 
         fields.each(function(field)
