@@ -1,0 +1,157 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Circumferences"
+    },
+    "designerId": "2ac21b06-fb3b-4a9b-a7ce-217959f18f87",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id",
+                "type": "int"
+            },
+            "designerId": "dac7af3b-f305-4512-bc55-94b7b3d40db3"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "arm_right",
+                "type": "float"
+            },
+            "designerId": "1a100a10-bc2a-431b-aaa8-3c98471509da"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "arm_left",
+                "type": "float"
+            },
+            "designerId": "9358194d-77f8-432a-ae50-b8e17b322444"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "waist",
+                "type": "float"
+            },
+            "designerId": "b2484db3-0025-4911-bb9b-1627730753e7"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "umbilical",
+                "type": "float"
+            },
+            "designerId": "06d74b75-62ed-4450-a8d1-1d0172b618ff"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "chest",
+                "type": "float"
+            },
+            "designerId": "ea651497-927d-4568-930f-db80676f7d55"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ilica_ant",
+                "type": "float"
+            },
+            "designerId": "c30b2f92-489b-4a6c-af15-244eff056bd2"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "hips",
+                "type": "float"
+            },
+            "designerId": "cf28f92a-9031-4400-a800-840ab5aa98bd"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "quads_right",
+                "type": "float"
+            },
+            "designerId": "32f75c1e-7fd1-41ec-a886-31738409970e"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "quads_left",
+                "type": "float"
+            },
+            "designerId": "ff3413fc-a9f8-4f05-a7f5-f105439afcc3"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "note",
+                "type": "float"
+            },
+            "designerId": "171f3157-c3f3-40e7-8c3d-44a4097a9ae2"
+        }
+    ]
+}

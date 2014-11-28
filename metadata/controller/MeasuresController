@@ -1,0 +1,274 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "measuresController",
+        "designer|userClassName": "MeasuresController",
+        "id": "measuresController"
+    },
+    "designerId": "bfc39f89-dd40-4fa4-be5d-36466ecdedb9",
+    "cn": [
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowMeasuresPanel",
+                "implHandler": [
+                    "var controller = this,",
+                    "    measuresPanel\t= controller.getMeasuresPanel(),",
+                    "    mainStage\t= controller.getMainStage();",
+                    "    //measuresStore = Ext.getStore('MeasuresStore');",
+                    "    ",
+                    "//measuresStore.load();",
+                    "",
+                    "mainStage.add( measuresPanel );",
+                    "measuresPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons('closeMeasuresPanelButton');",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "measuresPanel.show();",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showMeasuresHeaderUpdate');",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "showMeasuresPanel",
+                "scope": "this"
+            },
+            "designerId": "f5b7b91f-753b-494d-9d8a-f29a97987ff7"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseMeasuresPanel1",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getMeasuresPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closeMeasuresPanel",
+                "scope": "this"
+            },
+            "designerId": "a0663461-a2da-429e-9792-15d9827b54f5"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onShowMeasuresHeaderUpdate",
+                "implHandler": [
+                    "var controller = this;",
+                    "if (this.getMeasuresPanel() && !this.getMeasuresPanel().isHidden()) {",
+                    "    controller.getMainViewport().down(\"#header\").update({",
+                    "       info: '',",
+                    "       title: ''",
+                    "    });",
+                    "}"
+                ],
+                "name": "showMeasuresHeaderUpdate",
+                "scope": "this"
+            },
+            "designerId": "1a33481f-73df-471d-8b43-c4faa7c75f5e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "",
+                    "var controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "048deebf-e2bc-43c1-9fb8-f9b84f4432d8"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #showMeasuresPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onShowMeasuresPanelButtonClick",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'MeasuresPanel';",
+                    "    LanistaTrainer.app.fireEvent('showMeasuresPanel');",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "d4819218-9cf1-4011-a1a8-10962ddc0765"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeMeasuresPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseMeasuresPanelButtonClick",
+                "implHandler": [
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "LanistaTrainer.app.fireEvent('closeMeasuresPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "812c3407-3455-4f67-b0b9-5aa87272c3c7"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "ee867c14-dece-4d74-992c-a3e809f540ae"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "measuresPanel",
+                "selector": "measuresPanel",
+                "xtype": "measuresPanel"
+            },
+            "designerId": "334937f3-d9c2-40cc-8cb6-84b7a361755f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "designerId": "b6257adc-f755-4be7-9e89-6c4c136d8863"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "designerId": "1abd5f4d-5139-4862-9120-0cdb00e09877"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "designerId": "b3241564-e142-4299-8836-0a5b6d89873c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "designerId": "aee02bb4-beb6-42a7-b525-d5e044276dc4"
+        }
+    ]
+}

@@ -65,7 +65,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
         var controller = this,
             favoritesStore;
 
-        Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.BUTTON_REMOVE_FROM_FAVORITE.toUpperCase(), Ext.ux.LanguageManager.TranslationArray.MSG_FAVORITES_REMOVE_CUSTOMER, function(button) {
+        Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.DELETE.toUpperCase(), Ext.ux.LanguageManager.TranslationArray.MSG_FAVORITES_REMOVE_ITEMS, function(button) {
             if (button == 'yes') {
                 controller.deleteFavorites();
                 controller.favoritesToDelete = '';
@@ -256,7 +256,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
 
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_REMOVE_FROM_FAVORITE,
+                text: Ext.ux.LanguageManager.TranslationArray.DELETE,
                 itemId: 'removeCustomerFavoritesButton',
                 cls: [
                     'lanista-command-button',

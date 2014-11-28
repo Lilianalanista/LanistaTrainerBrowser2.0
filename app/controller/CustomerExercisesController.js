@@ -172,7 +172,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
         controller.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.BODY_DATA,
-                itemId: 'showBodyDataButton',
+                itemId: 'showMeasuresPanelButton',
                 glyph: '75@Lanista Icons' //M
             })
         );

@@ -90,8 +90,9 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
     onShowTemplatesPanel: function(callback) {
         var controller = this,
             templatesPanel	= controller.getTemplatesPanel(),
-            mainStage	= controller.getMainStage();
-            planStore = Ext.getStore('PlanStore');
+            mainStage	= controller.getMainStage(),
+            planStore = Ext.getStore('PlanStore'),
+            userId = localStorage.getItem("user_id");
 
         //planStore.clearGrouping();
         //planStore.clearFilter();
@@ -108,10 +109,13 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
                 writer: {
                     type: 'json',
                     root: 'results'
-                }
+                },
+                headers: {
+                        user_id: userId
+                    }
             }));
 
-        planStore.filter ({property: 'customer_id', value: '75'});
+        //planStore.filter ({property: 'customer_id', value: '75'});
 
 
 

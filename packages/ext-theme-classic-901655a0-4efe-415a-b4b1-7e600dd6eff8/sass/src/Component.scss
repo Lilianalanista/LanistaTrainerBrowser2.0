@@ -1449,8 +1449,10 @@ $base-gradient: "none";
 }
 
 //Color for favorites items selected for delete
-.lanista-list-itemrounded-selected-delete .customer-list-background, .lanista-x-exercise .lanista-list-itemrounded-selected-delete{
-    box-shadow: 0 0 20px #FC0536;
+.lanista-list-itemrounded-selected-delete .customer-list-background,
+.lanista-x-exercise .lanista-list-itemrounded-selected-delete,
+.lanista-exercise-planpanel .lanista-list-itemrounded-selected-delete{
+    box-shadow: 0 0 20px #FC0536!important;
 }
 
 #viewCustomers, #viewFavorites {
@@ -1699,6 +1701,11 @@ $base-gradient: "none";
 
 .lanista-customer-myexercise-image-title-left{
     float: left;
+}
+
+//Measures Panel
+.lanista-measures-panel{
+    margin-top: 120px;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

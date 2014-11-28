@@ -1,0 +1,59 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "CircumferencesStore",
+        "model": "Circumferences",
+        "storeId": "CircumferencesStore"
+    },
+    "designerId": "0e7891cb-40a4-4d2d-9062-f5c8224a1c57",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "headers": [
+                    "{ ",
+                    "    user_id: localStorage.getItem(\"user_id\")",
+                    "}"
+                ],
+                "url": "tpmanager/measures/json"
+            },
+            "designerId": "3502d0f6-d4f3-491a-9d9d-e6deef9a37a3",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "entries"
+                    },
+                    "designerId": "d5b5be87-13be-40d8-a8a6-712c36495cd2"
+                },
+                {
+                    "type": "Ext.data.writer.Json",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "root": "results"
+                    },
+                    "designerId": "2123feed-fb8f-45fd-91db-120e2b2c7f50"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,336 @@
+{
+    "type": "Ext.container.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "cls": "lanista-measures-panel",
+        "designer|userAlias": "measuresPanel",
+        "designer|userClassName": "MeasuresPanel",
+        "height": 250,
+        "id": "measuresPanel",
+        "width": 400
+    },
+    "designerId": "ab357bfa-7d40-4fb3-9c13-b7704892bf1e",
+    "cn": [
+        {
+            "type": "Ext.tab.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "activeTab": 0
+            },
+            "designerId": "db4155d3-f8db-48d1-b48f-69568cfdead0",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "measuresTab",
+                        "title": null
+                    },
+                    "designerId": "096b2705-c025-4405-b798-b9ddedb1540b",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "designerId": "485d78ce-d48a-4936-a337-032d35c64ed1"
+                        },
+                        {
+                            "type": "Ext.chart.Chart",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "animate": [
+                                    "true"
+                                ],
+                                "height": 250,
+                                "insetPadding": 20,
+                                "store": "MeasuresStore",
+                                "width": 400
+                            },
+                            "designerId": "8effbda2-ff67-4279-9f1c-c8f5f013787e",
+                            "isBuiltIn": true,
+                            "iconCls": "icon-line-chart",
+                            "autoName": "LineChart",
+                            "cn": [
+                                {
+                                    "type": "Ext.chart.axis.Category",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fields": [
+                                            "x"
+                                        ],
+                                        "title": "Category Axis"
+                                    },
+                                    "designerId": "6f0fe68c-a882-4a7a-aee9-dea1a9424a23"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Numeric",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fields": [
+                                            "y"
+                                        ],
+                                        "title": "Numeric Axis"
+                                    },
+                                    "designerId": "0baeffcf-5c9d-4f32-ae02-5b5d2a270cbd"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "smooth": 3,
+                                        "xField": "x",
+                                        "yField": [
+                                            "y"
+                                        ]
+                                    },
+                                    "designerId": "e441753b-b7e1-4942-9576-52da84c1c8dd"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "caliperTab",
+                        "title": null
+                    },
+                    "designerId": "d4e0abfd-c152-4712-bcf9-c9e30a5057bb",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "designerId": "5d8c9745-7eea-4c1a-8ce7-56aa6fd17fe9"
+                        },
+                        {
+                            "type": "Ext.chart.Chart",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "animate": [
+                                    "true"
+                                ],
+                                "height": 250,
+                                "insetPadding": 20,
+                                "store": "MeasuresStore",
+                                "width": 400
+                            },
+                            "designerId": "744f8f5f-9c1d-493d-bed2-a79d0bf2a41a",
+                            "isBuiltIn": true,
+                            "iconCls": "icon-line-chart",
+                            "autoName": "LineChart",
+                            "cn": [
+                                {
+                                    "type": "Ext.chart.axis.Category",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fields": [
+                                            "x"
+                                        ],
+                                        "title": "Category Axis"
+                                    },
+                                    "designerId": "90f383b8-0bb4-4fa3-8ab0-6ae3cd7a1ec1"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Numeric",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fields": [
+                                            "y"
+                                        ],
+                                        "title": "Numeric Axis"
+                                    },
+                                    "designerId": "112a0173-99d6-4456-ad8c-22dd3afc66ac"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "smooth": 3,
+                                        "xField": "x",
+                                        "yField": [
+                                            "y"
+                                        ]
+                                    },
+                                    "designerId": "a775bc13-8a35-43bb-8f79-5e8b07c4c6ff"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "circumferencesTab",
+                        "title": null
+                    },
+                    "designerId": "07151673-5012-4c2d-9ede-439a4def9174",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "designerId": "165d764f-1403-4f6f-bbf8-8af36bb88a30"
+                        },
+                        {
+                            "type": "Ext.chart.Chart",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "animate": [
+                                    "true"
+                                ],
+                                "height": 250,
+                                "insetPadding": 20,
+                                "store": "CircumferencesStore",
+                                "width": 400
+                            },
+                            "designerId": "0fff6a7b-40ff-49d7-9ffb-bbfc0dbfa913",
+                            "isBuiltIn": true,
+                            "iconCls": "icon-line-chart",
+                            "autoName": "LineChart",
+                            "cn": [
+                                {
+                                    "type": "Ext.chart.axis.Category",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fields": [
+                                            "x"
+                                        ],
+                                        "title": "Category Axis"
+                                    },
+                                    "designerId": "86d3e70c-701d-4839-a3f1-f62674ea3434"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Numeric",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fields": [
+                                            "y"
+                                        ],
+                                        "title": "Numeric Axis"
+                                    },
+                                    "designerId": "7ffefef2-5db5-46c2-ac5a-50c775fd4923"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "smooth": 3,
+                                        "xField": "x",
+                                        "yField": [
+                                            "y"
+                                        ]
+                                    },
+                                    "designerId": "01235fab-4c82-4a78-99b2-d94931128501"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "testsTab",
+                        "title": null
+                    },
+                    "designerId": "6f15f263-1a89-45a3-9195-eac0b44170aa",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "designerId": "cfc3b888-49ae-41e1-a363-558b9bfb2228"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

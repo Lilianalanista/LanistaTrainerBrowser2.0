@@ -95,26 +95,19 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
         el.on(
             'click', function(e,t) {
                 var controller = LanistaTrainer.app.getController ('PlanController'),
-                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
-                    ItemModelData = activeTab.data || activeTab.recordsArray,
-                    selectionTab = controller.selectionsTab[activeTab.id.substring(1)];
+                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab();
 
-                for (var i = 0; i < activeTab.el.dom.childNodes.length; i++)
-                {
+                for (var i = 0; i < activeTab.el.dom.childNodes.length; i++){
                     activeTab.el.dom.childNodes[i].internalId = i;
                 }
+                if (!t.parentNode.classList.contains('lanista-list-itemrounded-deleting'))
+                    t.parentNode.className = t.parentNode.className + ' lanista-list-itemrounded-deleting';
 
-                var internalItemId = Ext.get(t).dom.parentNode.internalId,
-                     ItemModel = ItemModelData[internalItemId];
-
-                this.deleteItemView(ItemModel);
-                selectionTab.splice(internalItemId,1);
-                activeTab.recordsArray.splice(internalItemId, 1);
-                activeTab.getStore().load(function(records, operation, success) {
-                    controller.populateTabsExercisesByDay(records);
-                });
+                var internalItemId = Ext.get(t).dom.parentNode.internalId;
+                this.markDeleteExercises(t, internalItemId);
             },
             this, {delegate: '.exercise-list-delete'});
+
         el.on(
             'mouseover', function(e,t) {
                 Ext.get(t).removeCls('item-not-clicked');
@@ -123,6 +116,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                 Ext.get(t).addCls('exercise-apply-delete');
             },
             this,{ delegate: '.lanista-plan-exercise'});
+
         el.on(
             'mouseout', function(e,t) {
                 Ext.get(t).removeCls('item-clicked');
@@ -163,33 +157,47 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
         }
     },
 
-    deleteItemView: function(data) {
-        var PlanExercise = Ext.create('LanistaTrainer.model.PlanExercise'),
-            userId = localStorage.getItem("user_id");
+    markDeleteExercises: function(t, internalId) {
+        var exercisesToDelete,
+            exercisesToDeleteArray = [],
+            pos;
 
-        PlanExercise.data = data;
-        PlanExercise.phantom = false;
-        PlanExercise.setProxy(new Ext.data.proxy.Ajax({
-            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
-            model: 'PlanExercise',
-            noCache: false,
-            api: {
-                create: undefined,
-                read: undefined,
-                update: undefined,
-                destroy: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/deleteexercise'
-            },
-            extraParams: {
-                exercise_id: PlanExercise.data.id
-            },
-            headers: {
-                user_id: userId
+        exercisesToDelete = LanistaTrainer.app.getController('PlanController').exercisesToDelete ? LanistaTrainer.app.getController('PlanController').exercisesToDelete : "";
+        exercisesToDelete = new String(exercisesToDelete);
+
+        if (exercisesToDelete.valueOf()){
+            if (exercisesToDelete.indexOf(",") > 0)
+                exercisesToDeleteArray = exercisesToDelete.split(",");
+            else
+                exercisesToDeleteArray[0] = exercisesToDelete.valueOf();
+        }
+
+        pos = exercisesToDeleteArray.indexOf(internalId.toString());
+        if (pos >= 0){
+            classValue = t.parentNode.className;
+            classValue = classValue.replace('lanista-list-itemrounded-selected-delete','', 'g');
+            t.parentNode.className = classValue;
+
+            exercisesToDeleteArray.splice(pos,1);
+            exercisesToDelete = "";
+            if (exercisesToDeleteArray.length > 0){
+                exercisesToDelete = exercisesToDeleteArray[0];
+                for (var i = 1; i < exercisesToDeleteArray.length; i++){
+                    exercisesToDelete = exercisesToDelete + ',' + exercisesToDeleteArray[i];
+                }
             }
-        }));
+            LanistaTrainer.app.getController('PlanController').exercisesToDelete = exercisesToDelete;
+            if (exercisesToDeleteArray.length <= 0)
+                LanistaTrainer.app.getController('PlanController').getRightCommandPanel().getComponent('removePlanExercisesButton').hide();
+        }
+        else{
+            t.parentNode.className = t.parentNode.className + ' lanista-list-itemrounded-selected-delete';
+            LanistaTrainer.app.getController('PlanController').exercisesToDelete = exercisesToDelete.valueOf() ? exercisesToDelete + ',' + internalId : internalId.toString();
+            LanistaTrainer.app.getController('PlanController').showCommands();
+            LanistaTrainer.app.getController('PlanController').getRightCommandPanel().getComponent('removePlanExercisesButton').show();
 
-        PlanExercise.destroy ({
-            action: 'destroy'
-        });
+        }
+
     }
 
 });

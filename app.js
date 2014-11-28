@@ -36,7 +36,9 @@ Ext.application({
         'Protocoll',
         'PlanExercise',
         'Plan',
-        'Favorites'
+        'Favorites',
+        'Measures',
+        'Circumferences'
     ],
     stores: [
         'ExerciseInitialStore',
@@ -45,7 +47,9 @@ Ext.application({
         'ProtocollStore',
         'PlanExerciseStore',
         'PlanStore',
-        'FavoritesStore'
+        'FavoritesStore',
+        'MeasuresStore',
+        'CircumferencesStore'
     ],
     views: [
         'MainViewport',
@@ -74,7 +78,8 @@ Ext.application({
         'FavoritesPanel',
         'DefaultPlanValuesPanel',
         'SetObjectLanista',
-        'MyExerciseInfoPanel'
+        'MyExerciseInfoPanel',
+        'MeasuresPanel'
     ],
     controllers: [
         'MainController',
@@ -96,7 +101,8 @@ Ext.application({
         'ExerciseController',
         'PlanController',
         'FavoritesController',
-        'MyExerciseInfoController'
+        'MyExerciseInfoController',
+        'MeasuresController'
     ],
     name: 'LanistaTrainer',
 

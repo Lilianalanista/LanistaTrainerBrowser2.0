@@ -26,7 +26,8 @@
             "ExerciseController",
             "PlanController",
             "FavoritesController",
-            "MyExerciseInfoController"
+            "MyExerciseInfoController",
+            "MeasuresController"
         ],
         "models": [
             "ExerciseModel",
@@ -34,7 +35,9 @@
             "Protocoll",
             "PlanExercise",
             "Plan",
-            "Favorites"
+            "Favorites",
+            "Measures",
+            "Circumferences"
         ],
         "name": "LanistaTrainer",
         "panels": [
@@ -53,7 +56,9 @@
             "ProtocollStore",
             "PlanExerciseStore",
             "PlanStore",
-            "FavoritesStore"
+            "FavoritesStore",
+            "MeasuresStore",
+            "CircumferencesStore"
         ],
         "views": [
             "MainViewport",
@@ -82,7 +87,8 @@
             "FavoritesPanel",
             "DefaultPlanValuesPanel",
             "SetObjectLanista",
-            "MyExerciseInfoPanel"
+            "MyExerciseInfoPanel",
+            "MeasuresPanel"
         ]
     },
     "configAlternates": {

@@ -1060,6 +1060,74 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         );
     },
 
+    findFavoritesExercises: function() {
+        var container = this,
+            exerciseStore = Ext.getStore('ExerciseStore'),
+            favoritesStore = Ext.getStore('FavoritesStore'),
+            favoriteName,
+            selection,
+            records,
+            menu = new Ext.menu.Menu(
+                {
+                    Itemid:'favoritesMenu',
+                    defaults: {
+                        height: '50px',
+                        width: '220px'
+                    }
+                }
+            );
+
+        favoritesStore.getProxy().url = Ext.ux.ConfigManager.getRoot() + '/tpmanager/favorites/json';
+        favoritesStore.load({
+            callback: function(records, operation, success) {
+                for (var i = 0; i<records.length; i++){
+                    if (Number(records[i].data.type) === 0){
+                        favoriteName = records[i].data.name;
+                        menu.add([
+                            {
+                                text: records[i].data.name,
+                                handler: function () {
+                                            favoriteName = this.text;
+                                            favoriteRecord = this.record;
+                                            filterFunction = new Ext.util.Filter({
+                                                filterFn: function(item){
+                                                    favoritesIds = favoriteRecord.data.objects ? favoriteRecord.data.objects.split(',') : '';
+                                                    for ( var j = 0; j < favoritesIds.length; j++ ){
+                                                        if (Number(item.data.id) === Number(favoritesIds[j]))
+                                                            return true;
+                                                    }
+                                                }
+                                            });
+                                            exerciseStore.filters.add(filterFunction);
+                                            exerciseStore.loadPage(1);
+                                            selection = container.getExercisesPanel().selection;
+                                            records = exerciseStore.data.items;
+                                            for (var k = 0; k < records.length ; k++) {
+                                                for(var m = 0; m < selection.length; m++) {
+                                                    if(selection[m][0] === records[k].data.id) {
+                                                        break;
+                                                    }
+                                                }
+                                                if (m !== selection.length){
+                                                    itemNode = container.getExercisesPanel().down('#viewExercises').getNode(records[k]);
+                                                    Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                                                }
+                                            }
+                                            LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
+                                        },
+                                record: records[i]
+                            }
+                        ]);
+                    }
+                }
+            }
+        });
+        favoritesStore.clearFilter();
+        return menu;
+
+
+    },
+
     init: function(application) {
         this.control({
             "viewport #showExercisesPanelButton": {

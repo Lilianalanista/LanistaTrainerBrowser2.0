@@ -1,0 +1,157 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Measures"
+    },
+    "designerId": "485bf302-cf36-4393-a77c-4ef6ec95396e",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id",
+                "type": "int"
+            },
+            "designerId": "4514517f-97bc-43bc-a680-a76253e78f7e"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "weight",
+                "type": "float"
+            },
+            "designerId": "b06e7532-23b3-4859-8176-3c32af1973b9"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "triceps",
+                "type": "float"
+            },
+            "designerId": "c82d6426-1c8c-4d1c-99d1-bd926f0cdf74"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "scapula",
+                "type": "float"
+            },
+            "designerId": "bbc55383-7c9d-4f94-a474-457e8127e698"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "aux",
+                "type": "float"
+            },
+            "designerId": "54492a50-6fe1-4da0-8c99-2053cda3885d"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "chest",
+                "type": "float"
+            },
+            "designerId": "371ad141-e1ca-4da2-97a2-de564df5bdd1"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sprailium",
+                "type": "float"
+            },
+            "designerId": "82a5ce4d-988a-488b-97b2-93ef77c129e8"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "abs",
+                "type": "float"
+            },
+            "designerId": "a9d18725-4f45-4580-b64a-492e4737fbad"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "quads",
+                "type": "float"
+            },
+            "designerId": "0d669e86-4d2f-49d1-b8da-c561ef4f8d6f"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "futrex",
+                "type": "float"
+            },
+            "designerId": "cb3afc3f-2920-43e1-8fda-33d7197ac795"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "height",
+                "type": "float"
+            },
+            "designerId": "5cebac21-eecd-4823-af42-d8c3b7d7f865"
+        }
+    ]
+}
