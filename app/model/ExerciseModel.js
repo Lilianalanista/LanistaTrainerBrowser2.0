@@ -23,7 +23,8 @@ Ext.define('LanistaTrainer.model.ExerciseModel', {
 
     fields: [
         {
-            name: 'id'
+            name: 'id',
+            type: 'int'
         },
         {
             name: 'name_EN'
@@ -69,7 +70,7 @@ Ext.define('LanistaTrainer.model.ExerciseModel', {
         },
         {
             name: 'addition',
-            type: 'int'
+            type: 'auto'
         }
     ],
 

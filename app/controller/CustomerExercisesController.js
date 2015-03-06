@@ -297,6 +297,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                                             Exercise.load(group, {
                                                                 success: function( exercise ) {
                                                                     controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
+                                                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
                                                                     LanistaTrainer.app.fireEvent('showExercisePanel', exercise, protocolls);
                                                                 }
                                                             });

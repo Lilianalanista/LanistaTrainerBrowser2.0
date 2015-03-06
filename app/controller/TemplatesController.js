@@ -98,7 +98,22 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
         //planStore.clearFilter();
         //planStore.getProxy().headers = {};
 
-        planStore.setProxy(new Ext.data.proxy.Ajax({
+        if (!Ext.ux.SessionManager.getIsLoggedIn())
+            planStore.setProxy(new Ext.data.proxy.Ajax({
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
+                model: 'Plan',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    root: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    root: 'results'
+                }
+            }));
+        else{
+            planStore.setProxy(new Ext.data.proxy.Ajax({
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
                 model: 'Plan',
                 noCache: false,
@@ -114,6 +129,8 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
                         user_id: userId
                     }
             }));
+        }
+
 
         //planStore.filter ({property: 'customer_id', value: '75'});
 
@@ -193,28 +210,30 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
 
     showCommands: function(callback) {
 
-        var controller = this;
+        var controller = this,
+            user;
 
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });
 
-        controller.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.NEW_TEMPLATE_TITLE,
-                itemId: 'newTemplateButton',
-                glyph: '108@Lanista Icons' //l
-            })
-        );
+        if (Ext.ux.SessionManager.getIsLoggedIn()){
+            controller.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.NEW_TEMPLATE_TITLE,
+                    itemId: 'newTemplateButton',
+                    glyph: '108@Lanista Icons' //l
+                })
+            );
 
-        controller.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.MY_TEMPLATES,
-                itemId: 'myTemplatesButton',
-                glyph: '122@Lanista Icons' //z
-            })
-        );
-
+            controller.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.MY_TEMPLATES,
+                    itemId: 'myTemplatesButton',
+                    glyph: '122@Lanista Icons' //z
+                })
+            );
+        }
         controller.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.SEARCH,

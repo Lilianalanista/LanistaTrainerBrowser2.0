@@ -65,8 +65,8 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                         '  <div class="lanista-x-exercise">',
                         '  <div class="exercise-item">',
                         '	  <div class="lanista-icon lanista-item-delete"></div>',
-                        '      <div class="exercise-list-img exercise-list-img-right" style="background-image: url(resources/images/previews/{ext_id}_1.jpg);"></div>',
-                        '      <div class="exercise-list-img exercise-list-img-left" style="background-image: url(resources/images/previews/{ext_id}_2.jpg);"></div>',
+                        '      <div class="exercise-list-img exercise-list-img-right" style="background-image: url({[(values.ext_id && values.ext_id.indexOf ("CUST") == -1) ? ("resources/images/previews/"+values.ext_id+"_1") : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/s/"+values.ext_id+"_1")]}.jpg?_dc={[Ext.Date.now()]});"></div>',
+                        '      <div class="exercise-list-img exercise-list-img-left" style="background-image: url({[(values.ext_id && values.ext_id.indexOf ("CUST") == -1) ? ("resources/images/previews/"+values.ext_id+"_2") : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/s/"+values.ext_id+"_2")]}.jpg?_dc={[Ext.Date.now()]});"></div>',
                         '      <div class="exercise-list-text">{[values["name_" + Ext.ux.LanguageManager.lang]]}</div>',
                         '  </div>',
                         '  </div>',
@@ -142,7 +142,7 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                     {
                         this.selection.push( itemId );
                         Ext.get(t).addCls ( 'lanista-list-item-selected' );
-                        LanistaTrainer.app.getController('ExercisesController').getRightCommandPanel().getComponent('addPlanExercisesButton').show();
+                        //LanistaTrainer.app.getController('ExercisesController').getRightCommandPanel().getComponent('addPlanExercisesButton').show();
                     }
                     else {
                         if (this.selection[i][2] === 1 && !(this.selection[i][3])) {
@@ -153,7 +153,7 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                             if (this.selection[i][2] === 1 && this.selection[i][3] === 'd'){
                                 this.selection[i][3] = '';
                                 Ext.get(t).addCls ( 'lanista-list-item-selected' );
-                                LanistaTrainer.app.getController('ExercisesController').getRightCommandPanel().getComponent('addPlanExercisesButton').show();
+                                //LanistaTrainer.app.getController('ExercisesController').getRightCommandPanel().getComponent('addPlanExercisesButton').show();
                             }
                             else{
                                 this.selection.splice(i, 1);
@@ -165,6 +165,7 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                 else {
                     itemRecord = component.getRecord(t);
                     LanistaTrainer.app.getController('ExercisesController').getExercisesPanel().addCls ('blured');
+                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
                     LanistaTrainer.app.fireEvent('showExercisePanel', itemRecord, '');
                 }
             },
@@ -195,7 +196,8 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
              (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'CustomerExercisesPanel')) {
         */
         if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
-             (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel'))
+             (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&
+             (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'ExercisesPanel'))
          {
 
 

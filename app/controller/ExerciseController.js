@@ -116,6 +116,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     onCloseExercisePanelButtonClick: function(button, e, eOpts) {
         var controller = this;
 
+        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeExercisePanel'  , function() {
             if (controller.getMainStage().getLayout().getActiveItem().id === 'customerExercisesPanel')
             {
@@ -224,10 +225,79 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         this.getExercisePanel().down('#setInput').focus();
     },
 
+    onChangeOwnExerciseButtonClick: function(button, e, eOpts) {
+        LanistaTrainer.app.fireEvent('closeExercisePanel'  , function() {
+            LanistaTrainer.app.getController ('MyExerciseInfoController').myexercise = LanistaTrainer.app.getController ('ExerciseController').record;
+            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'MyExerciseInfoPanel';
+            LanistaTrainer.app.fireEvent( 'showMyExerciseInfoPanel', '');
+        });
+    },
+
+    onDeleteOwnExerciseButtonClick: function(button, e, eOpts) {
+        var controller = this,
+            server = Ext.ux.ConfigManager.getServer(),
+            root = Ext.ux.ConfigManager.getRoot() + '/tpmanager/',
+            userId = localStorage.getItem("user_id"),
+            Exercise = Ext.create('LanistaTrainer.model.ExerciseModel'),
+            ini = 4000,
+            recordAux,
+            store;
+
+        Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.DELETE.toUpperCase(), Ext.ux.LanguageManager.TranslationArray.MSG_OWNEXERCISE_REMOVE_ITEMS , function(button) {
+            if (button == 'yes') {
+                Exercise.data = controller.record.data;
+                Exercise.data.id = parseInt(controller.record.data.id) - ini;
+                Exercise.phantom = false;
+                Exercise.setProxy(new Ext.data.proxy.Ajax({
+                    url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/exercise/userexercisesjson',
+                    model: 'Exercise',
+                    noCache: false,
+                    api: {
+                        create: undefined,
+                        read: undefined,
+                        update: undefined,
+                        destroy: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/exercise/userexercisesjson'
+                    },
+                    extraParams: {
+                        exercise_id: controller.record.data.id
+                    },
+                    writer: {
+                        type: 'json',
+                        root: 'records',
+                        allowSingle: false
+                    },
+                    headers: {
+                        user_id: userId
+                    }
+                }));
+
+                Exercise.getProxy().actionMethods = {create: 'POST', read: 'GET', update: 'POST', destroy: 'DELETE'};
+                Exercise.destroy ({
+                    action: 'destroy',
+                    callback: function ( record, event ){
+                        if (event.success)
+                        {
+                            recordAux = controller.record;
+                            recordAux.data.id = controller.record.data.id + ini;
+                            store = Ext.getStore('ExerciseStore');
+                            store.remove(recordAux);
+                            store.sync();
+                            store.save();
+                            controller.getLeftCommandPanel().getComponent('closeExercisePanelButton').fireEvent('click');
+                        }
+                        else
+                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1 , Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
+                    }
+                });
+            }
+        });
+    },
+
     onShowExercisePanel: function(record, exerciseProtocoll, callback) {
         var controller = this,
             exercisePanel	= controller.getExercisePanel(),
-            mainStage	= controller.getMainStage();
+            mainStage	= controller.getMainStage(),
+            ini = 4000;
 
         controller.currentPlanExercise = exerciseProtocoll;
         controller.record = record;
@@ -255,7 +325,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             if ( record.data.ext_id.indexOf ( 'CUST' ) == -1 )
                 protocollsStore.filter ([ {property :'exercise_id', value:record.data.id } ,  {property: 'user_id',value: LanistaTrainer.app.currentCustomer.data.id} ]);
             else
-                protocollsStore.filter ([ {property :'user_exercise_id', value: record.data.id} , {property:'user_id', value: LanistaTrainer.app.currentCustomer.data.id} ]);
+                protocollsStore.filter ([ {property :'user_exercise_id', value: parseInt(record.data.id) - ini} , {property:'user_id', value: LanistaTrainer.app.currentCustomer.data.id} ]);
 
             protocollsStore.group( 'execution_date_day','DESC');
             protocollsStore.sort( {
@@ -568,16 +638,44 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             item.hide();
         });
 
-        var videoButton = Ext.create('LanistaTrainer.view.LanistaButton', {
-            text:  'VIDEO',
-            itemId: 'videoButton',
-            glyph: '89@Lanista Icons' //Y
+        if ( !LanistaTrainer.app.currentCustomer ) {
+            if ( controller.record.data.ext_id.indexOf ( 'CUST' ) == -1 ){ //Lanista exercise
+                var videoButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text:  'VIDEO',
+                    itemId: 'videoButton',
+                    glyph: '89@Lanista Icons' //Y
 
-        });
+                });
+                controller.getRightCommandPanel().add(
+                    videoButton
+                );
+            }
+            else{//Onw exercise
+                var changeOwnExerciseButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text:  Ext.ux.LanguageManager.TranslationArray.CHANGE,
+                    itemId: 'changeOwnExerciseButton',
+                    glyph: '73@Lanista Icons'//I
+                });
+                var deleteOwnExerciseButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text:  Ext.ux.LanguageManager.TranslationArray.DELETE ,
+                    itemId: 'deleteOwnExerciseButton',
+                    glyph: '68@Lanista Icons', //D
+                    cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-red'
+                    ]
+                });
+                controller.getRightCommandPanel().add(
+                    changeOwnExerciseButton
+                );
+                controller.getRightCommandPanel().add(
+                    deleteOwnExerciseButton
+                );
+            }
 
-        controller.getRightCommandPanel().add(
-            videoButton
-        );
+
+        }
+
     },
 
     init: function(application) {
@@ -614,6 +712,12 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             },
             "viewport #changeSetsButton": {
                 click: this.onChangeSetsButtonClick
+            },
+            "viewport #changeOwnExerciseButton": {
+                click: this.onChangeOwnExerciseButtonClick
+            },
+            "viewport #deleteOwnExerciseButton": {
+                click: this.onDeleteOwnExerciseButtonClick
             }
         });
 

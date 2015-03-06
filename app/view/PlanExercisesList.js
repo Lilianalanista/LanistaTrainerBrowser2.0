@@ -66,7 +66,8 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
     },
 
     onPlanExercisesListAfterRender: function(component, eOpts) {
-        el = component.el;
+        var el = component.el,
+            ini = 4000;
 
         el.on(
             'click', function(e,t) {
@@ -83,9 +84,10 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                     itemRecord = activeTab.recordsArray[internalItemId];
 
                 itemRecord.internalId = internalItemId;
-                Exercise.load(itemRecord.exercise_id !== 0 ? itemRecord.exercise_id : itemRecord.user_exercise_id, {
+                Exercise.load(itemRecord.exercise_id !== 0 ? itemRecord.exercise_id : parseInt(itemRecord.user_exercise_id) + ini, {
                     success: function( exercise ) {
                         LanistaTrainer.app.getController('PlanController').getPlanPanel().addCls ('blured');
+                        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
                         LanistaTrainer.app.fireEvent('showExercisePanel', exercise, itemRecord);
                     }
                 });
@@ -141,7 +143,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                         if (dataview.recordsArray[k].exercise_id === selectionTab[j][0] || dataview.recordsArray[k].user_exercise_id === selectionTab[j][0])
                             break;
                     }
-                    this.deleteItemView(dataview.recordsArray[k]);
+                    controller.deleteItemView(dataview.recordsArray[k]);
                     selectionTab.splice(j,1);
                     activeTab.recordsArray.splice(j, 1);
                     dataview.getStore().load(function(records, operation, success) {

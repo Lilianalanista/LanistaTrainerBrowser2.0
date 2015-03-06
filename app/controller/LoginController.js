@@ -47,7 +47,10 @@ Ext.define('LanistaTrainer.controller.LoginController', {
     onShowLoginPanel: function(callback) {
         var controller = this,
             loginPanel	= controller.getLoginPanel(),
-            mainStage	= controller.getMainStage();
+            mainStage	= controller.getMainStage(),
+            emailCookies = [],
+            thereAreCook = true,
+            i = 1;
 
         controller.getMainViewport().addCls("lanista-guest");
 
@@ -61,6 +64,32 @@ Ext.define('LanistaTrainer.controller.LoginController', {
         // **** 1 create the commands
         LanistaTrainer.app.setStandardButtons();
         this.showCommands();
+
+        //Charging current cookies for Users emails
+        while (thereAreCook){
+            cookie = Ext.util.Cookies.get('userLanista' + i);
+            if (cookie)
+                emailCookies.push({email: cookie});
+            else
+                thereAreCook = false;
+
+            i = i + 1;
+        }
+
+        // Define the model for Cookies
+        Ext.regModel('Cookies', {
+            fields: [
+                {type: 'string', name: 'email'}
+            ]
+        });
+
+        // The data store holding the states
+        var store = Ext.create('Ext.data.Store', {
+            model: 'Cookies',
+            data: emailCookies
+        });
+
+        loginPanel.getComponent('containerGroup').getComponent('formContainer').getComponent('fieldSetGroup').getComponent('user_email').store = store;
 
         // *** 2 Show the panel
         loginPanel.show();

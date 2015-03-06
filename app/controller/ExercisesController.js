@@ -195,27 +195,26 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             value,
             result = [];
 
-        filterFunction = new Ext.util.Filter({
-            id:'myExercises',
-            filterFn: function(item){
-                value = item.data.ext_id;
-                result = value.match("\\w*CUST\\w*", "gi");
-                return (result && result.length > 0);
-            }
-        });
-
         if (this.getRightCommandPanel().down('#myExercisesButton').el.dom.classList.contains('lanista-active')){
             this.getRightCommandPanel().down('#myExercisesButton').removeCls('lanista-active');
             store.removeFilter('myExercises');
         }
         else{
             this.getRightCommandPanel().down('#myExercisesButton').addCls('lanista-active');
+
+            filterFunction = new Ext.util.Filter({
+                id:'myExercises',
+                filterFn: function(item){
+                    value = item.data.ext_id;
+                    result = value.match("\\w*CUST\\w*", "gi");
+                    return (result && result.length > 0);
+                }
+            });
             store.filters.add (filterFunction);
         }
         store.loadPage(1);
         LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
         this.showCommands();
-
     },
 
     onCreateMyExerciseButtonClick: function(button, e, eOpts) {
@@ -230,38 +229,109 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         var controller = this,
             exercisesPanel	= controller.getExercisesPanel(),
             mainStage	= controller.getMainStage(),
-            store = Ext.getStore('ExerciseStore');
+            store = Ext.getStore('ExerciseStore'),
+            userId = localStorage.getItem("user_id"),
+            exercise,
+            ini = 4000,
+            myExercies = false;
 
         exercisesPanel.controller = controller;
         var viewportXCapacity	= Math.floor(mainStage.getEl().getWidth(true)/187);
         var viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/177) * viewportXCapacity;
 
         store.pageSize = viewportCapacity;
-        store.clearFilter(true);
+
+        for (var i = 0; i < store.filters.length; i++)
+        {
+            if (store.filters.items[i].id  == 'myExercises'){
+                myExercies = true;
+                break;
+            }
+
+        }
+
+        if (!myExercies)
+            store.clearFilter(true);
+
         store.sort('name_' + Ext.ux.LanguageManager.lang, 'ASC');
         store.load();
 
-        mainStage.add( exercisesPanel );
+        //controller.lookUserExercises();
 
-        exercisesPanel.on('hide', function(component) {
-            component.destroy();
-        }, controller);
+        Ext.Ajax.request({
+            url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/exercise/userexercisesjson',
+            method: 'get',
+            headers: {
+                user_id: userId
+            },
+            failure : function(result, request){
+                console.log( "There were problems in looking for user exercises" );
+            },
+            success: function(response, opts) {
+                try {
+                        var data = Ext.decode(response.responseText),
+                            storeVar = Ext.getStore('ExerciseStore');
 
-        // **** 1 create the commands
-        LanistaTrainer.app.setStandardButtons('closeExercisesPanelButton');
-        this.showCommands();
+                        for (var i = 0; i < data.entries.length; i++){
+                            exercise = Ext.create('LanistaTrainer.model.ExerciseModel', {
+                                id: (ini + parseInt(data.entries[i].id)),
+                                name_EN: data.entries[i].name_EN,
+                                name_ES: data.entries[i].name_ES,
+                                name_DE: data.entries[i].name_DE,
+                                ext_id: data.entries[i].ext_id,
+                                type: data.entries[i].type ? parseInt(data.entries[i].type) : 0,
+                                changed_date: data.entries[i].changed_date,
+                                unilateral: data.entries[i].unilateral,
+                                coatchingnotes_DE: data.entries[i].coatchingnotes_DE ,
+                                coatchingnotes_ES: data.entries[i].coatchingnotes_ES,
+                                coatchingnotes_EN: data.entries[i].coatchingnotes_EN,
+                                mistakes_DE: data.entries[i].mistakes_DE,
+                                mistakes_ES: data.entries[i].mistakes_ES,
+                                mistakes_EN: data.entries[i].mistakes_EN,
+                                muscle: data.entries[i].muscle ? parseInt(data.entries[i].muscle) : 0,
+                                addition: data.entries[i].addition ? parseInt(data.entries[i].addition) : 0
+                            });
+                            exercise.setDirty();
+                            //exercise.phantom = true;
+                            //storeVar.add(exercise, ini + parseInt(data.entries[i].id));
+                            storeVar.add(exercise);
+                        }
 
-        // *** 2 Show the panel
-        exercisesPanel.show();
+                        storeVar.sync();
+                        storeVar.save();
+                        //store.proxy.totalCount = store.proxy.totalCount + (data.entries.length - 1);
 
-        LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
-        LanistaTrainer.app.fireEvent('showStage');
+                        Ext.getStore('ExerciseStore').load(function(records, operation, success) {
+                            mainStage.add( exercisesPanel );
+                            mainStage.getLayout().setActiveItem("ExercisesPanel");
 
-        // *** 4 Callback
-        if (callback instanceof Function) callback();
+                            exercisesPanel.on('hide', function(component) {
+                                component.destroy();
+                            }, controller);
 
-        // *** 5 Load data
-        controller.loadData();
+                            // **** 1 create the commands
+                            LanistaTrainer.app.setStandardButtons('closeExercisesPanelButton');
+                            controller.showCommands();
+
+                            // *** 2 Show the panel
+                            exercisesPanel.show();
+
+                            LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
+                            LanistaTrainer.app.fireEvent('showStage');
+
+                            // *** 4 Callback
+                            if (callback instanceof Function) callback();
+
+                            // *** 5 Load data
+                            controller.loadData();
+                        });
+                   }
+                catch( err ) {
+                    Ext.Msg.alert('Problem', 'There were problems in looking for user exercises', Ext.emptyFn);
+                }
+            }
+        });
+
     },
 
     onCloseExercisesPanel: function(callback) {
@@ -366,7 +436,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         newExercise = Ext.create('LanistaTrainer.model.ExerciseModel', {
             name_DE : myexercisename,
             name_EN : myexercisename,
-            name_ES : myexercisename
+            name_ES : myexercisename,
+            muscle:	0,
+            addition: 0,
+            type: 0
         });
 
         newExercise.setProxy(new Ext.data.proxy.Ajax({
@@ -432,6 +505,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 glyph: '90@Lanista Icons' //Z
             })
         );
+
+        if (!Ext.ux.SessionManager.getIsLoggedIn()) return;
 
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
@@ -851,6 +926,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
               //
         }
 
+
         store.sort('name_' + language, 'ASC');
         store.loadPage(1);
         records = store.data.items;
@@ -1126,6 +1202,55 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         return menu;
 
 
+    },
+
+    lookUserExercises: function() {
+        var store = Ext.getStore('ExerciseStore'),
+            userId = localStorage.getItem("user_id"),
+            exercise;
+
+        Ext.Ajax.request({
+            url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/exercise/userexercisesjson',
+            method: 'get',
+            headers: {
+                user_id: userId
+            },
+            failure : function(result, request){
+                console.log( "There were problems in looking for user exercises" );
+            },
+            success: function(response, opts) {
+                try {
+                        var data = Ext.decode(response.responseText);
+
+                        for (var i = 0; i < data.entries.length; i++){
+                            exercise = Ext.create('LanistaTrainer.model.ExerciseModel', {
+                                id: data.entries[i].id,
+                                name_EN: data.entries[i].name_EN,
+                                name_ES: data.entries[i].name_ES,
+                                name_DE: data.entries[i].name_DE,
+                                ext_id: data.entries[i].ext_id,
+                                type: data.entries[i].type ,
+                                changed_date: data.entries[i].changed_date,
+                                unilateral: data.entries[i].unilateral,
+                                coatchingnotes_DE: data.entries[i].coatchingnotes_DE ,
+                                coatchingnotes_ES: data.entries[i].coatchingnotes_ES,
+                                coatchingnotes_EN: data.entries[i].coatchingnotes_EN,
+                                mistakes_DE: data.entries[i].mistakes_DE,
+                                mistakes_ES: data.entries[i].mistakes_ES,
+                                mistakes_EN: data.entries[i].mistakes_EN,
+                                muscle: data.entries[i].muscle,
+                                addition: data.entries[i].addition
+                            });
+                            Ext.getStore('ExerciseStore').add(exercise);
+                        }
+
+                        store.proxy.totalCount = store.proxy.totalCount + (data.entries.length - 1);
+                   }
+                catch( err ) {
+                    Ext.Msg.alert('Problem', 'There were problems in looking for user exercises', Ext.emptyFn);
+                }
+            }
+        });
     },
 
     init: function(application) {

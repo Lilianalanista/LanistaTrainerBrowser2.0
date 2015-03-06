@@ -21,7 +21,7 @@ Ext.define('LanistaTrainer.view.LoginPanel', {
         'Ext.panel.Panel',
         'Ext.form.Label',
         'Ext.form.FieldSet',
-        'Ext.form.field.Text',
+        'Ext.form.field.ComboBox',
         'Ext.XTemplate',
         'Ext.button.Button'
     ],
@@ -91,15 +91,19 @@ Ext.define('LanistaTrainer.view.LoginPanel', {
                                     title: '',
                                     items: [
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'combobox',
                                             anchor: '100%',
                                             id: 'user_email',
+                                            itemId: 'user_email',
                                             name: 'user_email',
                                             inputAttrTpl: [
-                                                '[ "autocomplete=\"on\""]'
+                                                'autocomplete="on"'
                                             ],
                                             tabIndex: 1,
                                             enableKeyEvents: true,
+                                            hideTrigger: true,
+                                            displayField: 'email',
+                                            queryMode: 'local',
                                             listeners: {
                                                 keypress: {
                                                     fn: me.onEmailKeypress,

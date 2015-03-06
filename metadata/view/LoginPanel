@@ -146,19 +146,23 @@
                             "designerId": "d72c69d3-d2de-46cd-a349-1dcac6515c70",
                             "cn": [
                                 {
-                                    "type": "Ext.form.field.Text",
+                                    "type": "Ext.form.field.ComboBox",
                                     "reference": {
                                         "name": "items",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "displayField": "email",
                                         "enableKeyEvents": true,
                                         "fieldLabel": null,
+                                        "hideTrigger": true,
                                         "id": "user_email",
+                                        "itemId": "user_email",
                                         "layout|anchor": "100%",
                                         "name": "user_email",
                                         "padding": null,
+                                        "queryMode": "local",
                                         "tabIndex": 1
                                     },
                                     "designerId": "8c3ceea1-f2e8-4f29-9a3b-51742dc5cb6f",
@@ -192,7 +196,7 @@
                                             "userConfig": {
                                                 "designer|displayName": "inputAttrTpl",
                                                 "implHandler": [
-                                                    "[ \"autocomplete=\\\"on\\\"\"]"
+                                                    "autocomplete=\"on\""
                                                 ]
                                             },
                                             "designerId": "61468549-06fd-40d2-99e9-572571e32e96"

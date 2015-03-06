@@ -23,6 +23,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
         'Ext.tab.Tab',
         'Ext.grid.Panel',
         'Ext.grid.column.Template',
+        'Ext.grid.View',
         'Ext.grid.feature.Grouping',
         'Ext.form.field.TextArea',
         'Ext.form.field.Number'
@@ -69,7 +70,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                             id: 'info',
                             tpl: Ext.create('Ext.XTemplate', 
                                 '<div class="exercise-description">',
-                                '    <div class="exercise-coaching-key"><span><b>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</b></span><br>{[Ext.ux.LanguageManager.lang === "EN" ? values.coatchingnotes_EN : Ext.ux.LanguageManager.lang === "ES" ? this.strLines(values.coatchingnotes_ES) :  values.coatchingnotes_DE]}</div>',
+                                '    <div class="exercise-coaching-key"><span><b>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</b></span><br>{[this.strLines(values["coatchingnotes_"+Ext.ux.LanguageManager.lang])]}</div>',
                                 '    <div class="exercise-errors"><span><b>{[Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS]}</b></span><br>{[this.strLines(values["mistakes_"+Ext.ux.LanguageManager.lang])]}</div>',
                                 '</div>',
                                 '',
@@ -78,21 +79,37 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                         var returnValue = '',
                                             strSplit = [];
 
-                                        for (var i = 0; i < value.length; i++){
-                                            strSplit = value[i].split(",");
-                                            for (var j = 0; j < strSplit.length; j++) {
-                                                returnValue = returnValue + strSplit[j].trim().substr(0,1).toUpperCase() + strSplit[j].trim().substr(1) + '<br>';
-                                            }
-                                            strSplit = [];
+                                        try{
+                                            if(value.indexOf("\n") !== -1)
+                                            returnValue = value.split( "\n" ).join( "<br>" );
+                                            else
+                                            returnValue = value.split( "||" ).join( "<br>" );
                                         }
+                                        catch(e){
+                                            for (var i = 0; i < value.length; i++){
+                                                strSplit = value[i].split(",");
+                                                for (var j = 0; j < strSplit.length; j++) {
+                                                    returnValue = returnValue + strSplit[j].trim().substr(0,1).toUpperCase() + strSplit[j].trim().substr(1) + '<br>';
+                                                }
+                                                strSplit = [];
+                                            }
+                                        }
+
                                         return returnValue;
                                     }
                                 }
                             ),
-                            title: 'Info'
+                            title: 'Info',
+                            listeners: {
+                                afterrender: {
+                                    fn: me.onInfoAfterRender,
+                                    scope: me
+                                }
+                            }
                         },
                         {
                             xtype: 'panel',
+                            hidden: true,
                             id: 'alternatives',
                             title: 'Alternatives'
                         },
@@ -118,12 +135,14 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                 }
                             ],
                             dockedItems: [
-                                me.processExerciseProtocolls({
+                                {
                                     xtype: 'gridpanel',
+                                    flex: 1,
                                     dock: 'right',
                                     id: 'exerciseProtocolls',
                                     width: 230,
                                     header: false,
+                                    title: 'My Grid Panel',
                                     disableSelection: true,
                                     emptyText: 'This exercise is not protocolled',
                                     hideHeaders: true,
@@ -133,7 +152,6 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                             border: false,
                                             cls: 'lanista-exercise-protocolls',
                                             id: 'rowProtocolls',
-                                            style: '',
                                             tpl: [
                                                 '<div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {#}: {weight} Kg x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>'
                                             ],
@@ -156,7 +174,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                             ]
                                         }
                                     ]
-                                })
+                                }
                             ]
                         },
                         {
@@ -173,8 +191,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                     id: 'configurationPanel',
                                     tpl: [
                                         '<div class="protocoll-configuration">{weight} Kg. x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]} {rounds_min} {[values.rounds_min > 1 ? Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS : Ext.ux.LanguageManager.TranslationArray.SET]}</div>',
-                                        '<div class="protocoll-description">{[values.description ? values.description : Ext.ux.LanguageManager.TranslationArray.NO_PLAN_EXERCISE_DESCRIPTION]}</div>',
-                                        ''
+                                        '<div class="protocoll-description">{[values.description ? values.description : Ext.ux.LanguageManager.TranslationArray.NO_PLAN_EXERCISE_DESCRIPTION]}</div>'
                                     ],
                                     width: 650,
                                     items: [
@@ -200,16 +217,6 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
         me.callParent(arguments);
     },
 
-    processExerciseProtocolls: function(config) {
-        config.viewConfig = {
-            getRowClass: function(record, index){
-                return 'lanista-row-grid';
-            }
-        };
-
-        return config;
-    },
-
     processExercisePanelContent: function(config) {
 
         config.tabBar = {
@@ -223,6 +230,10 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
 
 
         return config;
+    },
+
+    onInfoAfterRender: function(component, eOpts) {
+
     }
 
 });

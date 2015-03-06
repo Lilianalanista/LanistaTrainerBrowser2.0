@@ -21,7 +21,7 @@
             "codeClass": null,
             "userConfig": {
                 "name": "id",
-                "type": null
+                "type": "int"
             },
             "designerId": "9fb7256d-f2b6-4faf-b388-bab2a662d3a8"
         },
@@ -193,7 +193,7 @@
             "codeClass": null,
             "userConfig": {
                 "name": "addition",
-                "type": "int"
+                "type": "auto"
             },
             "designerId": "26973591-bb0e-4933-91d7-cbf569bd09c6"
         },

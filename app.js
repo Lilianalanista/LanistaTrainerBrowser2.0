@@ -25,7 +25,8 @@ Ext.application({
         'Ext.ux.LanguageManager',
         'Ext.ux.SessionManager',
         'Ext.ux.ConfigManager',
-        'Ext.ux.PreviewPlugin'
+        'Ext.ux.PreviewPlugin',
+        'Ext.util.Cookies'
     ],
     panels: [
         

@@ -27,7 +27,11 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
     ],
 
     onLoginButtonClick: function(button, e, eOpts) {
-        var self = this;
+        var self = this,
+            thereAreCook = true,
+            cookie,
+            i = 1;
+
         LanistaTrainer.app.fireEvent('hideStage', function () {
 
             var form = self.getLoginPanel(),
@@ -52,6 +56,21 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                     LanistaTrainer.app.fireEvent('loginUser', email, password, function (data) {
                             LanistaTrainer.app.getController('LoginController').getMainViewport().down("#header").el.dom.children[0].innerHTML = '';
                             Ext.ux.SessionManager.loadLastUser();
+
+                            //Setting new Cookie
+                            while (thereAreCook){
+                                cookie = Ext.util.Cookies.get('userLanista' + i);
+                                if (cookie){
+                                    if (cookie.trim() === email.trim())
+                                        thereAreCook = false;
+                                }
+                                else{
+                                    Ext.util.Cookies.set("userLanista" + (i), email);
+                                    thereAreCook = false;
+                                }
+                                i = i + 1;
+                            }
+
                             var user = Ext.ux.SessionManager.getUser(),
                                 url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
 

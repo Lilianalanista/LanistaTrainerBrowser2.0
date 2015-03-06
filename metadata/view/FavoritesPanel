@@ -281,6 +281,7 @@
                             "    setTimeout(function() {",
                             "        if (!Ext.get(item).dom.classList.contains('lanista-list-itemrounded-deleting')) {",
                             "            LanistaTrainer.app.getController('FavoritesController').getFavoritesPanel().addCls ('blured');",
+                            "            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';",
                             "            LanistaTrainer.app.fireEvent('showExercisePanel', record, '');",
                             "        }",
                             "    },100);",

@@ -181,6 +181,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
                 }
             }
         });
+        favoriteStore.filters.clear();
         favoriteStore.filters.add(filterFunction);
         favoriteStore.load({
             callback: function(records, operation, success) {

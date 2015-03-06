@@ -235,12 +235,6 @@ Ext.define('LanistaTrainer.controller.ImageController', {
                 rotateButton.show();
                 removeButton.show();
 
-
-            console.log('BOTON....');
-            console.log(newButton);
-
-
-
                 newButton.el.dom.onchange = function(e) {
                     if (e.target.files.length > 0) {
                         Lanista.app.fireEvent("uploadFile", newButton);
@@ -296,6 +290,8 @@ Ext.define('LanistaTrainer.controller.ImageController', {
             controller.getLeftCommandPanel().items.each(function (item) {
                 item.hide();
             });
+
+            controller.uploader.destroy();
             imagePanel.hide();
             imagePanel.destroy(true);
             if (callback instanceof Function) callback();

@@ -20,10 +20,10 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
     requires: [
         'Ext.form.FieldSet',
         'Ext.form.field.ComboBox',
+        'Ext.form.field.TextArea',
         'Ext.XTemplate'
     ],
 
-    cls: 'lanista-myexercise-panel',
     height: 694,
     id: 'myExerciseInfoPanel',
     width: 400,
@@ -77,7 +77,7 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                             }
                         },
                         {
-                            xtype: 'textfield',
+                            xtype: 'textareafield',
                             anchor: '100%',
                             cls: 'lanista-field-myexercise',
                             id: 'myExercise_execution',
@@ -91,7 +91,7 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                             }
                         },
                         {
-                            xtype: 'textfield',
+                            xtype: 'textareafield',
                             anchor: '100%',
                             cls: 'lanista-field-myexercise lanista-field-myexercise-errors',
                             id: 'myExercise_errors',
@@ -219,26 +219,28 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
     },
 
     onMyExercise_executionBlur: function(component, e, eOpts) {
-        var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue();
+        var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue(),
+            enter = /\n/gi;
 
         if (currentLanguageField === 'ES')
-            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_ES = component.getValue();
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_ES = component.getValue().replace(enter, "||");
         if (currentLanguageField === 'EN')
-            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_EN = component.getValue();
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_EN = component.getValue().replace(enter, "||");
         if (currentLanguageField === 'DE')
-            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_DE = component.getValue();
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_DE = component.getValue().replace(enter, "||");
 
     },
 
     onMyExercise_errorsBlur: function(component, e, eOpts) {
-        var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue();
+        var currentLanguageField = component.up('#myExercise_configuration').down('#myExercise_language').getValue(),
+            enter = /\n/gi;;
 
         if (currentLanguageField === 'ES')
-            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES = component.getValue();
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES = component.getValue().replace(enter, "||");
         if (currentLanguageField === 'EN')
-            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN = component.getValue();
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN = component.getValue().replace(enter, "||");
         if (currentLanguageField === 'DE')
-            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_DE = component.getValue();
+            LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_DE = component.getValue().replace(enter, "||");
 
     },
 
@@ -246,7 +248,9 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
         var el = component.el,
             server = Ext.ux.ConfigManager.getServer(),
             root = Ext.ux.ConfigManager.getRoot(),
-            myExercise = LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).myexercise;
+            myExercise = LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).myexercise,
+            ini = 4000,
+            exerciseId;
 
         ////////////////////////////////////////////////////////////////////
         // Right Photo
@@ -261,12 +265,22 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                 width: 0,
                 height: 0
             });
+
+            if (myExercise.data.ext_id.indexOf ("CUST") == -1) exerciseId = myExercise.data.id; // Lanista Exercise
+            else{
+                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'ExercisesPanel') //Own New Exercise
+                    exerciseId = myExercise.data.id;
+                else //Own modified Exercise
+                    exerciseId = parseInt(myExercise.data.id) - ini;
+            }
+
             var lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];
             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';
             LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/exercise/uploadphoto',
                                          {type: 'photo',
                                           customer_id: localStorage.getItem("user_id"),
-                                          exercise_id: myExercise.data.id,
+                                          //exercise_id: myExercise.data.ext_id.indexOf ("CUST") == -1 ? myExercise.data.id : parseInt(myExercise.data.id) - ini,
+                                          exercise_id: exerciseId,
                                           order: 1},
                                          function() {});
         },this,{delegate: '.customer-exercise-img-right'});
@@ -299,12 +313,22 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                 width: 0,
                 height: 0
             });
+
+            if (myExercise.data.ext_id.indexOf ("CUST") == -1) exerciseId = myExercise.data.id; // Lanista Exercise
+            else{
+                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'ExercisesPanel') //Own New Exercise
+                    exerciseId = myExercise.data.id;
+                else //Own modified Exercise
+                    exerciseId = parseInt(myExercise.data.id) - ini;
+            }
+
             var lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];
             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';
             LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/exercise/uploadphoto',
                                          {type: 'photo',
                                           customer_id: localStorage.getItem("user_id"),
-                                          exercise_id: myExercise.data.id,
+                                          //exercise_id: myExercise.data.ext_id.indexOf ("CUST") == -1 ? myExercise.data.id : parseInt(myExercise.data.id) - ini,
+                                          exercise_id: exerciseId,
                                           order: 2},
                                          function() {});
         },this,{delegate: '.customer-exercise-img-left'});
@@ -417,33 +441,36 @@ Ext.define('LanistaTrainer.view.MyExerciseInfoPanel', {
                     myExercise_name:		Ext.ux.LanguageManager.lang === 'ES' ? myExercise.data.name_ES :
                                             Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.name_EN :
                                             myExercise.data.name_DE,
-                    myExercise_execution:	Ext.ux.LanguageManager.lang === 'ES' ? myExercise.data.coatchingnotes_ES :
-                                            Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.coatchingnotes_EN :
-                                            myExercise.data.coatchingnotes_DE,
-                    myExercise_errors:		Ext.ux.LanguageManager.lang === 'ES' ? myExercise.data.mistakes_ES :
-                                            Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.mistakes_EN :
-                                            myExercise.data.mistakes_DE,
+                    myExercise_execution:	Ext.ux.LanguageManager.lang === 'ES' ? myExercise.data.coatchingnotes_ES.split( "||" ).join( "\n" ) :
+                                            Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.coatchingnotes_EN.split( "||" ).join( "\n" ) :
+                                            myExercise.data.coatchingnotes_DE.split( "||" ).join( "\n" ),
+                    myExercise_errors:		Ext.ux.LanguageManager.lang === 'ES' ? myExercise.data.mistakes_ES.split( "||" ).join( "\n" ) :
+                                            Ext.ux.LanguageManager.lang === 'EN' ? myExercise.data.mistakes_EN.split( "||" ).join( "\n" ) :
+                                            myExercise.data.mistakes_DE.split( "||" ).join( "\n" ),
                     muscle:					myExercise.data.muscle,
                     addition:				myExercise.data.addition,
                     type:					myExercise.data.type,
                     id:						myExercise.data.id
                 }
             );
+
+
             //if (Ext.ux.LanguageManager.lang === 'ES'){
                 LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_ES = myExercise.data.name_ES;
-                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_ES = myExercise.data.coatchingnotes_ES;
-                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES = myExercise.data.mistakes_ES;
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_ES = myExercise.data.coatchingnotes_ES.split( "||" ).join( "\n" );
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES = myExercise.data.mistakes_ES.split( "||" ).join( "\n" );
             //}
             //if (Ext.ux.LanguageManager.lang === 'EN'){
                 LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_EN = myExercise.data.name_EN;
-                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_EN = myExercise.data.coatchingnotes_EN;
-                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN = myExercise.data.mistakes_EN;
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_EN = myExercise.data.coatchingnotes_EN.split( "||" ).join( "\n" );
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN = myExercise.data.mistakes_EN.split( "||" ).join( "\n" );
             //}
             //if (Ext.ux.LanguageManager.lang === 'DE'){
                 LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).name_DE = myExercise.data.name_DE;
-                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_DE = myExercise.data.coatchingnotes_DE;
-                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES = myExercise.data.mistakes_DE;
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).execution_DE = myExercise.data.coatchingnotes_DE.split( "||" ).join( "\n" );
+                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_DE = myExercise.data.mistakes_DE.split( "||" ).join( "\n" );
             //}
+
         }
 
         fields.each(function(field)

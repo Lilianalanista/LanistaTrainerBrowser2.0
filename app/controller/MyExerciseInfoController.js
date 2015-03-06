@@ -56,9 +56,20 @@ Ext.define('LanistaTrainer.controller.MyExerciseInfoController', {
     },
 
     onCloseMyExerciseInfoPanelButton: function(button, e, eOpts) {
+        var controller = this;
+            exercise = controller.myexercise;
+
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeMyExerciseInfoPanel', function() {
-            LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
+            if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisesPanel') //New Exercise
+                LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
+            else{ //Exercise modified
+                LanistaTrainer.app.fireEvent('showExercisesPanel', function() {
+                    LanistaTrainer.app.getController('ExercisesController').getExercisesPanel().addCls ('blured');
+                    //LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
+                    LanistaTrainer.app.fireEvent('showExercisePanel', exercise, '');
+                });
+            }
         });
 
     },
@@ -74,10 +85,18 @@ Ext.define('LanistaTrainer.controller.MyExerciseInfoController', {
             root = Ext.ux.ConfigManager.getRoot() + '/tpmanager/',
             userId = localStorage.getItem("user_id"),
             newExercise,
-            fields = controller.getMyExerciseInfoPanel().getForm().getFields();
+            fields = controller.getMyExerciseInfoPanel().getForm().getFields(),
+            exerciseId,
+            fields,
+            ini = 4000;
+
+        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'ExercisesPanel') //New Exercise
+            exerciseId = controller.myexercise.data.id;
+        else //Exercise modified
+            exerciseId = parseInt(controller.myexercise.data.id) - ini;
 
         newExercise = Ext.create('LanistaTrainer.model.ExerciseModel', {
-            id:					controller.myexercise.data.id,
+            id:					exerciseId,
             name_DE:			controller.name_DE,
             name_ES:			controller.name_ES,
             name_EN:			controller.name_EN,
@@ -121,19 +140,25 @@ Ext.define('LanistaTrainer.controller.MyExerciseInfoController', {
                             myExercise_name:		Ext.ux.LanguageManager.lang === 'ES' ? record.data.name_ES :
                                                     Ext.ux.LanguageManager.lang === 'EN' ? record.data.name_EN :
                                                     record.data.name_DE,
-                            myExercise_execution:	Ext.ux.LanguageManager.lang === 'ES' ? record.data.coatchingnotes_ES :
-                                                    Ext.ux.LanguageManager.lang === 'EN' ? record.data.coatchingnotes_EN :
-                                                    record.data.coatchingnotes_DE,
-                            myExercise_errors:		Ext.ux.LanguageManager.lang === 'ES' ? record.data.mistakes_ES :
-                                                    Ext.ux.LanguageManager.lang === 'EN' ? record.data.mistakes_EN :
-                                                    record.data.mistakes_DE,
+                            myExercise_execution:	Ext.ux.LanguageManager.lang === 'ES' ? record.data.coatchingnotes_ES.split( "||" ).join( "\n" ) :
+                                                    Ext.ux.LanguageManager.lang === 'EN' ? record.data.coatchingnotes_EN.split( "||" ).join( "\n" ) :
+                                                    record.data.coatchingnotes_DE.split( "||" ).join( "\n" ),
+                            myExercise_errors:		Ext.ux.LanguageManager.lang === 'ES' ? record.data.mistakes_ES.split( "||" ).join( "\n" ) :
+                                                    Ext.ux.LanguageManager.lang === 'EN' ? record.data.mistakes_EN.split( "||" ).join( "\n" ) :
+                                                    record.data.mistakes_DE.split( "||" ).join( "\n" ),
                             muscle:					record.data.muscle,
                             addition:				record.data.addition,
                             type:					record.data.type,
                             id:						record.data.id
                         }
                     );
+                    fields = controller.getMyExerciseInfoPanel().getForm().getFields();
+                    fields.getByKey('myExercise_language').setValue(Ext.ux.LanguageManager.lang);
+                    fields.getByKey('myExercise_muscle').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES);
+                    fields.getByKey('myExercise_exerciseType').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_TYPE);
+                    fields.getByKey('myExercise_other').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_ADDITIVES);
 
+                    controller.myexercise = record;
                     Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);
                     controller.showCommands();
                 }
@@ -150,12 +175,14 @@ Ext.define('LanistaTrainer.controller.MyExerciseInfoController', {
         var myExerciseInfoPanel	= controller.getMyExerciseInfoPanel();
         var mainStage	= controller.getMainStage();
 
+        myExerciseInfoPanel.addCls('md-show');
         mainStage.add( myExerciseInfoPanel );
+        //mainStage.getLayout().setActiveItem("myExerciseInfoPanel",'1');
+        mainStage.getLayout().setActiveItem("myExerciseInfoPanel");
 
         myExerciseInfoPanel.on('hide', function(component) {
             component.destroy();
         }, controller);
-
 
         // **** 1 create the commands
         LanistaTrainer.app.setStandardButtons('closeMyExerciseInfoPanelButton');
@@ -244,12 +271,12 @@ Ext.define('LanistaTrainer.controller.MyExerciseInfoController', {
                         myExercise_name:		Ext.ux.LanguageManager.lang === 'ES' ? LanistaTrainer.app.getController('MyExerciseInfoController').name_ES :
                                                 Ext.ux.LanguageManager.lang === 'EN' ? LanistaTrainer.app.getController('MyExerciseInfoController').name_EN :
                                                 LanistaTrainer.app.getController('MyExerciseInfoController').name_DE,
-                        myExercise_execution:	Ext.ux.LanguageManager.lang === 'ES' ? LanistaTrainer.app.getController('MyExerciseInfoController').execution_ES :
-                                                Ext.ux.LanguageManager.lang === 'EN' ? LanistaTrainer.app.getController('MyExerciseInfoController').execution_EN :
-                                                LanistaTrainer.app.getController('MyExerciseInfoController').execution_DE,
-                        myExercise_errors:		Ext.ux.LanguageManager.lang === 'ES' ? LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES :
-                                                Ext.ux.LanguageManager.lang === 'EN' ? LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN :
-                                                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_DE
+                        myExercise_execution:	Ext.ux.LanguageManager.lang === 'ES' ? LanistaTrainer.app.getController('MyExerciseInfoController').execution_ES.split( "||" ).join( "\n" ) :
+                                                Ext.ux.LanguageManager.lang === 'EN' ? LanistaTrainer.app.getController('MyExerciseInfoController').execution_EN.split( "||" ).join( "\n" ) :
+                                                LanistaTrainer.app.getController('MyExerciseInfoController').execution_DE.split( "||" ).join( "\n" ),
+                        myExercise_errors:		Ext.ux.LanguageManager.lang === 'ES' ? LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_ES.split( "||" ).join( "\n" ) :
+                                                Ext.ux.LanguageManager.lang === 'EN' ? LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_EN.split( "||" ).join( "\n" ) :
+                                                LanistaTrainer.app.getController ( 'MyExerciseInfoController' ).errors_DE.split( "||" ).join( "\n" )
                     }
                 );
             }
