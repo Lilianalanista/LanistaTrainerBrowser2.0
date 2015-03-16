@@ -17,15 +17,94 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.dashBoardPanel',
 
+    requires: [
+        'Ext.container.Container'
+    ],
+
     border: false,
     height: 250,
     id: 'dashBoardPanel',
     width: 400,
     header: false,
-    title: 'My Panel',
+
+    layout: {
+        type: 'hbox',
+        align: 'stretch'
+    },
 
     initComponent: function() {
         var me = this;
+
+        Ext.applyIf(me, {
+            items: [
+                {
+                    xtype: 'container',
+                    id: 'customersContainer',
+                    layout: {
+                        type: 'hbox',
+                        align: 'stretch'
+                    },
+                    items: [
+                        {
+                            xtype: 'container',
+                            id: 'titlesCustomersAlerts'
+                        },
+                        {
+                            xtype: 'container',
+                            id: 'customers',
+                            layout: 'fit',
+                            items: [
+                                {
+                                    xtype: 'container',
+                                    id: 'activeCustomers',
+                                    autoScroll: true,
+                                    layout: {
+                                        type: 'hbox',
+                                        align: 'stretch'
+                                    }
+                                },
+                                {
+                                    xtype: 'container',
+                                    id: 'birthdayCustomers',
+                                    autoScroll: true,
+                                    layout: {
+                                        type: 'hbox',
+                                        align: 'stretch'
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    xtype: 'container',
+                    id: 'plansContainer',
+                    items: [
+                        {
+                            xtype: 'container',
+                            id: 'titlesPlans'
+                        },
+                        {
+                            xtype: 'container',
+                            id: 'plans',
+                            layout: 'fit',
+                            items: [
+                                {
+                                    xtype: 'container',
+                                    id: 'plansToExpire',
+                                    autoScroll: true
+                                },
+                                {
+                                    xtype: 'container',
+                                    id: 'planExpired',
+                                    autoScroll: true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        });
 
         me.callParent(arguments);
     }

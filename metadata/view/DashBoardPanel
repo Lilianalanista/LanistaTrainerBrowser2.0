@@ -7,13 +7,160 @@
     "codeClass": null,
     "userConfig": {
         "border": false,
+        "container|align": "stretch",
         "designer|userAlias": "dashBoardPanel",
         "designer|userClassName": "DashBoardPanel",
         "header": false,
         "height": 250,
         "id": "dashBoardPanel",
-        "title": "My Panel",
+        "layout": "hbox",
+        "title": null,
         "width": 400
     },
-    "designerId": "b9eb068c-5951-4785-bcf3-01af1d6813c0"
+    "designerId": "b9eb068c-5951-4785-bcf3-01af1d6813c0",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "stretch",
+                "id": "customersContainer",
+                "layout": "hbox"
+            },
+            "designerId": "3699dc26-13da-4dfd-9010-ef774d6f3324",
+            "cn": [
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "titlesCustomersAlerts"
+                    },
+                    "designerId": "5a860faf-db07-48e9-b253-dbb5e790d8f1"
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "customers",
+                        "layout": "fit",
+                        "overflowX": null
+                    },
+                    "designerId": "ec07da40-9ab3-4916-986d-017cb2dda15c",
+                    "cn": [
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "autoScroll": true,
+                                "container|align": "stretch",
+                                "id": "activeCustomers",
+                                "layout": "hbox"
+                            },
+                            "designerId": "c5fca25d-b048-41ec-af09-f4b3302c2c02"
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "autoScroll": true,
+                                "container|align": "stretch",
+                                "id": "birthdayCustomers",
+                                "layout": "hbox"
+                            },
+                            "designerId": "7bf935e7-d928-493b-84ac-a7e63fcb601e"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "plansContainer",
+                "layout": null
+            },
+            "designerId": "5a5f4cc6-cd79-4ff7-a3af-775d436eefa4",
+            "cn": [
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "titlesPlans"
+                    },
+                    "designerId": "ba378fe0-3d22-4bb7-9e3a-ce4deb5d513c"
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "plans",
+                        "layout": "fit"
+                    },
+                    "designerId": "a2caaf6f-0051-4b39-a24b-921c6845329b",
+                    "cn": [
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "autoScroll": true,
+                                "id": "plansToExpire",
+                                "layout": null
+                            },
+                            "designerId": "2d9fc89f-00b3-46b0-97c8-70e458014c77"
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "autoScroll": true,
+                                "id": "planExpired"
+                            },
+                            "designerId": "ce7aaf3d-da27-4064-a1c2-504352ff4735"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

@@ -112,32 +112,35 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
 
         storeCustomers.pageSize = viewportCapacity;
         storeCustomers.clearFilter();
-        storeCustomers.loadPage(1);
+        storeCustomers.loadPage(1, {
+            callback: function(records, operation, success) {
+                mainStage.add( customerPanel );
 
-        mainStage.add( customerPanel );
+                customerPanel.on('hide', function(component) {
+                    component.destroy();
+                }, controller);
 
-        customerPanel.on('hide', function(component) {
-            component.destroy();
-        }, controller);
+                // **** 1 create the commands
+                LanistaTrainer.app.setStandardButtons('closeCustomersPanelButton');
+                controller.showCommands();
 
-        // **** 1 create the commands
-        LanistaTrainer.app.setStandardButtons('closeCustomersPanelButton');
-        this.showCommands();
+                // *** 2 Show the panel
+                customerPanel.show();
 
-        // *** 2 Show the panel
-        customerPanel.show();
+                if (Object.getOwnPropertyNames(storeCustomers.getProxy().extraParams)[0])
+                    controller.getRightCommandPanel().down('#recentCustomersButton').addCls('lanista-active');
 
-        if (Object.getOwnPropertyNames(storeCustomers.getProxy().extraParams)[0])
-            this.getRightCommandPanel().down('#recentCustomersButton').addCls('lanista-active');
+                LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');
+                LanistaTrainer.app.fireEvent('showStage');
 
-        LanistaTrainer.app.fireEvent('showCustomersHeaderUpdate');
-        LanistaTrainer.app.fireEvent('showStage');
+                // *** 4 Callback
+                if (callback instanceof Function) callback();
 
-        // *** 4 Callback
-        if (callback instanceof Function) callback();
+                // *** 5 Load data
+                controller.loadData();
+            }
+        });
 
-        // *** 5 Load data
-        controller.loadData();
 
     },
 

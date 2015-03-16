@@ -103,6 +103,10 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         LanistaTrainer.app.setStandardButtons();
         this.showCommands();
 
+        controller.getActiveCustomers();
+        controller.getBirthdayCustomers();
+        controller.getPlansToExpire();
+
         // *** 2 Show the panel
         LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
@@ -169,6 +173,205 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
     },
 
     loadData: function() {
+
+    },
+
+    getBirthdayCustomers: function() {
+        var userId = localStorage.getItem("user_id"),
+            birthdayStore,
+            controller = this,
+            containerAux,
+            dateFormat;
+
+        Ext.define('Birthday', {
+             extend: 'Ext.data.Model',
+             fields: [
+                 {name: 'id',         type: 'string'},
+                 {name: 'first_name', type: 'string'},
+                 {name: 'last_name',  type: 'string'},
+                 {name: 'birthday',   type: 'string'}
+             ]
+         });
+
+         var birthdayStore = Ext.create('Ext.data.Store', {
+             model: 'Birthday',
+             proxy: {
+                 type: 'ajax',
+                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/getbirthdayslist',
+                 headers: {
+                     user_id: userId
+                 },
+                 noCache: false,
+                 reader: {
+                     type: 'json',
+                     root: 'entries'
+                 }
+             }
+         });
+
+        birthdayStore.load(function(records, operation, success) {
+            for(var i = 0; (i < records.length && i < 20); i++){
+                containerAux = Ext.create('Ext.container.Container', {
+                    tpl: [
+                        '<div class="lanista-birthday-customer">',
+                        '<div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["id"] + "_photo.jpg"]});"></div>',
+                        '<div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
+                        '<div class="lanista-dashboard-text">',
+                        '   <div class="lanista-birthday-firstname">{first_name}</div>',
+                        '   <div class="lanista-birthday-lastname">{last_name}</div>',
+                        '   <div class="lanista-birthday-date">{birthday}</div>',
+                        '</div>',
+                        '</div>'
+                    ]
+                });
+
+                dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( records[i].data.birthday, 'F d') :Ext.util.Format.date( records[i].data.birthday, 'd F');
+                containerAux.update({	id: records[i].data.id,
+                                        first_name: records[i].data.first_name,
+                                        last_name: records[i].data.last_name ,
+                                        birthday: dateFormat });
+
+                controller.getDashBoardPanel().down('#customersContainer').down('#customers').down('#birthdayCustomers').insert ( i, containerAux );
+            }
+        });
+
+    },
+
+    getActiveCustomers: function() {
+        var userId = localStorage.getItem("user_id"),
+            birthdayStore,
+            controller = this,
+            containerAux,
+            auxDate,
+            dif,
+            today,
+            partNum = [],
+            partDec = [];
+
+        Ext.define('Birthday', {
+             extend: 'Ext.data.Model',
+             fields: [
+                 {name: 'id',         type: 'string'},
+                 {name: 'first_name', type: 'string'},
+                 {name: 'last_name',  type: 'string'},
+                 {name: 'last_protocoll_date',   type: 'string'},
+                 {name: 'email ',   type: 'string'}
+             ]
+         });
+
+         var birthdayStore = Ext.create('Ext.data.Store', {
+             model: 'Birthday',
+             proxy: {
+                 type: 'ajax',
+                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/getselfprotocolledusers',
+                 headers: {
+                     user_id: userId
+                 },
+                 noCache: false,
+                 reader: {
+                     type: 'json',
+                     root: 'entries'
+                 }
+             }
+         });
+
+        birthdayStore.load(function(records, operation, success) {
+            for(var i = 0; (i < records.length && i < 20); i++){
+                containerAux = Ext.create('Ext.container.Container', {
+                    tpl: [
+                        '<div class="lanista-active-customer">',
+                        '<div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["id"] + "_photo.jpg"]});"></div>',
+                        '<div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
+                        '<div class="lanista-dashboard-text">',
+                        '   <div class="lanista-birthday-firstname">{first_name}</div>',
+                        '   <div class="lanista-birthday-lastname">{last_name}</div>',
+                        '   <div class="lanista-birthday-date">{last_protocoll_date}</div>',
+                        '</div>',
+                        '</div>'
+                    ]
+                });
+
+                today = new Date();
+                auxDate = new Date(records[i].data.last_protocoll_date);
+                dif = ((today.getTime() - auxDate.getTime()) / 86400000) * 0.00274057;
+                partNum = dif.toString().split(".");
+
+                if (partNum[1] > 0){
+                    partNum[1] = (dif - partNum[0]) / 0.0833;
+                    partDec = partNum[1].toString().split(".");
+                }
+
+                containerAux.update({	id: records[i].data.id,
+                                        first_name: records[i].data.first_name,
+                                        last_name: records[i].data.last_name,
+                                        last_protocoll_date: partNum[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + (partNum[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR + ' ' + (partDec[0] > 0 ? partDec[0] + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '')) :
+                                                             partDec[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + partDec[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '',
+                                        email: records[i].data.email});
+
+                controller.getDashBoardPanel().down('#customersContainer').down('#customers').down('#activeCustomers').insert ( i, containerAux );
+            }
+        });
+
+    },
+
+    getPlansToExpire: function() {
+        var userId = localStorage.getItem("user_id"),
+            birthdayStore,
+            controller = this,
+            containerAux,
+            dateFormat;
+
+        Ext.define('Birthday', {
+             extend: 'Ext.data.Model',
+             fields: [
+                 {name: 'id',         type: 'string'},
+                 {name: 'first_name', type: 'string'},
+                 {name: 'last_name',  type: 'string'},
+                 {name: 'birthday',   type: 'string'}
+             ]
+         });
+
+         var birthdayStore = Ext.create('Ext.data.Store', {
+             model: 'Birthday',
+             proxy: {
+                 type: 'ajax',
+                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/getplansabouttoexpire',
+                 headers: {
+                     user_id: userId
+                 },
+                 noCache: false,
+                 reader: {
+                     type: 'json',
+                     root: 'entries'
+                 }
+             }
+         });
+
+        birthdayStore.load(function(records, operation, success) {
+            for(var i = 0; (i < records.length && i < 20); i++){
+                containerAux = Ext.create('Ext.container.Container', {
+                    tpl: [
+                        '<div class="lanista-birthday-customer">',
+                        '<div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["id"] + "_photo.jpg"]});"></div>',
+                        '<div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
+                        '<div class="lanista-dashboard-text">',
+                        '   <div class="lanista-birthday-firstname">{first_name}</div>',
+                        '   <div class="lanista-birthday-lastname">{last_name}</div>',
+                        '   <div class="lanista-birthday-date">{birthday}</div>',
+                        '</div>',
+                        '</div>'
+                    ]
+                });
+
+                dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( records[i].data.birthday, 'F d') :Ext.util.Format.date( records[i].data.birthday, 'd F');
+                containerAux.update({	id: records[i].data.id,
+                                        first_name: records[i].data.first_name,
+                                        last_name: records[i].data.last_name ,
+                                        birthday: dateFormat });
+
+                controller.getDashBoardPanel().down('#plansContainer').down('#plans').down('#plansToExpire').insert ( i, containerAux );
+            }
+        });
 
     },
 

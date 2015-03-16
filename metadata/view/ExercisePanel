@@ -63,7 +63,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "activeTab": 0,
+                "activeTab": null,
                 "cls": "lanista-exercise-panel-content",
                 "height": null,
                 "id": "exercisePanelContent",
@@ -475,6 +475,26 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onExercisePanelContentAfterRender",
+                        "implHandler": [
+                            "component.down('#info').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_INFO  );",
+                            "component.down('#protocollsTabPanel').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLLS   );",
+                            "component.down('#configurationTabPanel').setTitle( Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT + ' / ' ",
+                            "                                                  + Ext.ux.LanguageManager.TranslationArray.REP );"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "c8edc7f6-9a04-4c51-b9f5-d8fb8a9800ce"
                 }
             ]
         }

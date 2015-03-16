@@ -62,7 +62,6 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                     flex: 1,
                     cls: 'lanista-exercise-panel-content',
                     id: 'exercisePanelContent',
-                    activeTab: 0,
                     plain: true,
                     items: [
                         {
@@ -209,7 +208,13 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    listeners: {
+                        afterrender: {
+                            fn: me.onExercisePanelContentAfterRender,
+                            scope: me
+                        }
+                    }
                 })
             ]
         });
@@ -234,6 +239,13 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
 
     onInfoAfterRender: function(component, eOpts) {
 
+    },
+
+    onExercisePanelContentAfterRender: function(component, eOpts) {
+        component.down('#info').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_INFO  );
+        component.down('#protocollsTabPanel').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLLS   );
+        component.down('#configurationTabPanel').setTitle( Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT + ' / '
+                                                          + Ext.ux.LanguageManager.TranslationArray.REP );
     }
 
 });

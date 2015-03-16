@@ -979,7 +979,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             textToSearch = value,
             new_filters  = [],
             lang = Ext.ux.LanguageManager.lang,
-            exerciseStoreFilter = Ext.getStore('ExerciseInitialStore'),
+            //exerciseStoreFilter = Ext.getStore('ExerciseInitialStore'),
             re = new RegExp("\\w*"+textToSearch+"\\w*", "gi"),
             result = [],
             searchList = [],
@@ -992,6 +992,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             new_filters = [],
             indexFilter,
             records;
+
+        var exerciseStoreFilter = Ext.create('Ext.data.Store', {
+             model: 'LanistaTrainer.model.ExerciseModel'
+         });
 
         var filterFunction = new Ext.util.Filter({
                 filterFn: function(item){

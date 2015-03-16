@@ -297,7 +297,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         var controller = this,
             exercisePanel	= controller.getExercisePanel(),
             mainStage	= controller.getMainStage(),
-            ini = 4000;
+            ini = 4000,
+            tabAux;
 
         controller.currentPlanExercise = exerciseProtocoll;
         controller.record = record;
@@ -348,7 +349,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
            });
 
         }
-        exercisePanel.down('#exercisePanelContent').setActiveTab(0).show();
+
         exercisePanel.addCls('md-show');
         mainStage.add( exercisePanel );
         mainStage.getLayout().setActiveItem("exercisePanel",'1');
@@ -364,7 +365,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         // *** 2 Show the panel
         exercisePanel.show();
 
-        exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(0));
+        exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(3));
         LanistaTrainer.app.fireEvent('showExerciseHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
 

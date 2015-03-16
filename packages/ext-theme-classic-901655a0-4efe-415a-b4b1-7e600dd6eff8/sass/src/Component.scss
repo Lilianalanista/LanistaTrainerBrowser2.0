@@ -599,7 +599,7 @@ $base-gradient: "none";
     text-align: left;
     //margin-left: -45px;
     margin-left: -530px;
-    width: 475px;
+    width: 486px;
 }
 
 .lanista-exercise-filter-plan {
@@ -1725,6 +1725,118 @@ $base-gradient: "none";
 
 #myExerciseInfoPanel{
     top: 100px;
+}
+
+// Dashboard
+#titlesCustomersAlerts{
+    width: 10%;
+}
+
+#customers{
+    width: 90%;
+    left: 315px!important;
+}
+
+.lanista-birthday-customer-item{
+    height: 75px;
+    overflow: scroll;
+}
+
+.lanista-birthday-customer, .lanista-active-customer{
+    float: left;
+    overflow: hidden;
+    padding: 5px 0px 5px 5px;
+    background-color: rgba(255,255,255,0.3);
+    width: 150px;
+    height: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+}
+
+#customersContainer{
+    padding-top: 104px;
+}
+
+#birthdayCustomers {
+    height: 141px!important;
+    background: rgba(117,203,0,0.95);
+    background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
+    top: 3px!important;
+}
+
+#birthdayCustomers .x-box-item, #activeCustomers .x-box-item{
+    height: 151px!important;
+    padding: 5px 0px 5px 5px;
+}
+
+#birthdayCustomers .x-box-item span, #activeCustomers .x-box-item span{
+    height: 100%!important;
+}
+
+#birthdayCustomers .x-box-inner, #activeCustomers .x-box-inner{
+    height: 141px!important;
+}
+
+#activeCustomers{
+    height: 141px!important;
+    background: rgba(117,203,0,0.95);
+    background-image: linear-gradient(to bottom right, #e0be00,#417711) !important;
+}
+
+.lanista-dashboard-customer-background{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-size: cover;
+    font-family: "Lanista Icons";
+    text-align: center;
+    font-size: 40px;
+    line-height: 60px;
+    color: white;
+    background-image: -webkit-linear-gradient(#4786ba, #60b0a3) !important;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: grey;
+    top: -8px;
+    position: relative;
+}
+
+#activeCustomers .lanista-dashboard-customer-background{
+    background-image: linear-gradient(to bottom right, #417711,#e0be00) !important;
+}
+
+.lanista-dashboard-customer-photo{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-size: cover;
+    position: relative;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -50px;
+    top: 52px;
+    z-index: 1;
+}
+
+.lanista-dashboard-text{
+    font-family: "Avenir LT Std";
+    font-weight: lighter;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    //padding-top: 3px;
+}
+
+.lanista-birthday-lastname{
+  font-family: "Roboto Light";
+  text-transform: uppercase;
+  font-weight: bold;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
