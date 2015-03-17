@@ -79,6 +79,10 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                 {
                     xtype: 'container',
                     id: 'plansContainer',
+                    layout: {
+                        type: 'hbox',
+                        align: 'stretch'
+                    },
                     items: [
                         {
                             xtype: 'container',
@@ -87,15 +91,20 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         {
                             xtype: 'container',
                             id: 'plans',
-                            layout: 'fit',
+                            layout: {
+                                type: 'hbox',
+                                align: 'stretch'
+                            },
                             items: [
                                 {
                                     xtype: 'container',
+                                    flex: 1,
                                     id: 'plansToExpire',
                                     autoScroll: true
                                 },
                                 {
                                     xtype: 'container',
+                                    flex: 1,
                                     id: 'planExpired',
                                     autoScroll: true
                                 }

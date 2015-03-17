@@ -1736,7 +1736,7 @@ $base-gradient: "none";
     width: 90%;
     left: 315px!important;
 }
-
+  
 .lanista-birthday-customer-item{
     height: 75px;
     overflow: scroll;
@@ -1757,6 +1757,52 @@ $base-gradient: "none";
 
 #customersContainer{
     padding-top: 104px;
+}
+
+#plansContainer{
+    top: 395px!important;
+    left:0px!important;
+    width: 100%!important;
+}
+
+#titlesPlans{
+    width: 26%!important;
+}
+
+#planExpired{
+    left: 462px!important;
+    width: 50%!important;
+}
+
+#plansToExpire .x-border-box{
+    width: 100%!important;
+    height: 100px;
+    padding: 5px 5px 0px 5px;
+}
+
+#plansToExpire span{
+    display: table;
+    font-size: 14px;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    background-color: rgba(255,255,255,0.3);
+    width: 100%;
+    height: 100%;
+    padding: 7px;
+}
+
+#plansToExpire{
+    width: 50%!important;
+    background-image: linear-gradient(to bottom right, #417711,#dc4225);
+}
+
+#plans{
+    width: 74%!important;
+    left: 315px!important;
+}
+
+#plansContainer .x-box-inner, #plansContainer .x-box-target{
+    width: 100%!important;
 }
 
 #birthdayCustomers {
@@ -1783,6 +1829,10 @@ $base-gradient: "none";
     height: 141px!important;
     background: rgba(117,203,0,0.95);
     background-image: linear-gradient(to bottom right, #e0be00,#417711) !important;
+}
+
+.lanista-toexpire-plan-data{
+    float: left;
 }
 
 .lanista-dashboard-customer-background{
@@ -1820,6 +1870,10 @@ $base-gradient: "none";
     margin-top: -50px;
     top: 52px;
     z-index: 1;
+}
+
+.lanista-dashboard-text-exp{
+    float: right;
 }
 
 .lanista-dashboard-text{

@@ -106,6 +106,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         controller.getActiveCustomers();
         controller.getBirthdayCustomers();
         controller.getPlansToExpire();
+        controller.getPlansExpired();
 
         // *** 2 Show the panel
         LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');
@@ -327,7 +328,10 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                  {name: 'id',         type: 'string'},
                  {name: 'first_name', type: 'string'},
                  {name: 'last_name',  type: 'string'},
-                 {name: 'birthday',   type: 'string'}
+                 {name: 'plan_name',   type: 'string'},
+                 {name: 'creation_date',   type: 'string'},
+                 {name: 'duration',   type: 'string'},
+                 {name: 'remaining_days ',   type: 'string'}
              ]
          });
 
@@ -351,15 +355,45 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
             for(var i = 0; (i < records.length && i < 20); i++){
                 containerAux = Ext.create('Ext.container.Container', {
                     tpl: [
-                        '<div class="lanista-birthday-customer">',
+                            '<div class="lanista-toexpire-plan">',
+                            '  <div class="lanista-toexpire-plan-data">',
+                            '      <div class="lanista-toexpire-plan-photo">',
+                            '         <div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["customer_remote_id"] + "_photo.jpg"]});"></div>',
+                            '         <div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
+                            '      </div>',
+                            '      <div class="lanista-dashboard-name">',
+                            '         <div class="lanista-toexpire-plan-name">{first_name}</div>',
+                            '         <div class="lanista-toexpire-plan-creation_date">{last_name}</div>',
+                            '      </div>',
+                            '  </div>',
+                            '  <div class="lanista-dashboard-text lanista-dashboard-text-exp">',
+                            '     <div class="lanista-toexpire-plan-name">{plan_name}</div>',
+                            '     <div class="lanista-toexpire-plan-creation_date">{creation_date}</div>',
+                            '     <div class="lanista-toexpire-plan-duration">{duration}</div>',
+                            '     <div class="lanista-toexpire-plan-remaining_days">{remaining_days}</div>',
+                            '  </div>',
+                            '</div>'
+
+
+
+
+
+                        /*
+
+                        '<div class="lanista-toexpire-plan">',
                         '<div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["id"] + "_photo.jpg"]});"></div>',
                         '<div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
-                        '<div class="lanista-dashboard-text">',
-                        '   <div class="lanista-birthday-firstname">{first_name}</div>',
-                        '   <div class="lanista-birthday-lastname">{last_name}</div>',
-                        '   <div class="lanista-birthday-date">{birthday}</div>',
+                        '<div class="lanista-dashboard-name">',
+                        '   <div class="lanista-toexpire-plan-name">{first_name}</div>',
+                        '   <div class="lanista-toexpire-plan-creation_date">{last_name}</div>',
                         '</div>',
-                        '</div>'
+                        '<div class="lanista-dashboard-text">',
+                        '   <div class="lanista-toexpire-plan-name">{plan_name}</div>',
+                        '   <div class="lanista-toexpire-plan-creation_date">{creation_date}</div>',
+                        '   <div class="lanista-toexpire-plan-duration">{duration}</div>',
+                        '   <div class="lanista-toexpire-plan-remaining_days">{remaining_days}</div>',
+                        '</div>',
+                        '</div>'*/
                     ]
                 });
 
@@ -367,9 +401,88 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                 containerAux.update({	id: records[i].data.id,
                                         first_name: records[i].data.first_name,
                                         last_name: records[i].data.last_name ,
-                                        birthday: dateFormat });
+                                        plan_name: records[i].data.plan_name,
+                                        creation_date: records[i].data.creation_date,
+                                        duration: records[i].data.duration,
+                                        remaining_days: records[i].data.remaining_days});
 
                 controller.getDashBoardPanel().down('#plansContainer').down('#plans').down('#plansToExpire').insert ( i, containerAux );
+            }
+        });
+
+    },
+
+    getPlansExpired: function() {
+        var userId = localStorage.getItem("user_id"),
+            birthdayStore,
+            controller = this,
+            containerAux,
+            dateFormat;
+
+        Ext.define('Birthday', {
+             extend: 'Ext.data.Model',
+             fields: [
+                 {name: 'customer_remote_id', type: 'string'},
+                 {name: 'first_name', type: 'string'},
+                 {name: 'last_name',  type: 'string'},
+                 {name: 'plan_name',   type: 'string'},
+                 {name: 'creation_date',   type: 'string'},
+                 {name: 'duration',   type: 'string'},
+                 {name: 'remaining_days ',   type: 'string'}
+             ]
+         });
+
+         var birthdayStore = Ext.create('Ext.data.Store', {
+             model: 'Birthday',
+             proxy: {
+                 type: 'ajax',
+                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/getexpiredexercises',
+                 headers: {
+                     user_id: userId
+                 },
+                 noCache: false,
+                 reader: {
+                     type: 'json',
+                     root: 'entries'
+                 }
+             }
+         });
+
+        birthdayStore.load(function(records, operation, success) {
+            for(var i = 0; (i < records.length && i < 20); i++){
+                containerAux = Ext.create('Ext.container.Container', {
+                    tpl: [
+                        '<div class="lanista-toexpire-plan">',
+                        '  <div class="lanista-toexpire-plan-data">',
+                        '      <div class="lanista-toexpire-plan-photo">',
+                        '         <div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["customer_remote_id"] + "_photo.jpg"]});"></div>',
+                        '         <div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
+                        '      </div>',
+                        '      <div class="lanista-dashboard-name">',
+                        '         <div class="lanista-toexpire-plan-name">{first_name}</div>',
+                        '         <div class="lanista-toexpire-plan-creation_date">{last_name}</div>',
+                        '      </div>',
+                        '  </div>',
+                        '  <div class="lanista-dashboard-text">',
+                        '     <div class="lanista-toexpire-plan-name">{plan_name}</div>',
+                        '     <div class="lanista-toexpire-plan-creation_date">{creation_date}</div>',
+                        '     <div class="lanista-toexpire-plan-duration">{duration}</div>',
+                        '     <div class="lanista-toexpire-plan-remaining_days">{remaining_days}</div>',
+                        '  </div>',
+                        '</div>'
+                    ]
+                });
+
+                dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( records[i].data.birthday, 'F d') :Ext.util.Format.date( records[i].data.birthday, 'd F');
+                containerAux.update({	customer_remote_id : records[i].data.customer_remote_id,
+                                        first_name: records[i].data.first_name,
+                                        last_name: records[i].data.last_name ,
+                                        plan_name: records[i].data.plan_name,
+                                        creation_date: records[i].data.creation_date,
+                                        duration: records[i].data.duration,
+                                        remaining_days: records[i].data.remaining_days});
+
+                controller.getDashBoardPanel().down('#plansContainer').down('#plans').down('#planExpired').insert ( i, containerAux );
             }
         });
 

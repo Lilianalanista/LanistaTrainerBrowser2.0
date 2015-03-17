@@ -101,8 +101,9 @@
             },
             "codeClass": null,
             "userConfig": {
+                "container|align": "stretch",
                 "id": "plansContainer",
-                "layout": null
+                "layout": "hbox"
             },
             "designerId": "5a5f4cc6-cd79-4ff7-a3af-775d436eefa4",
             "cn": [
@@ -126,8 +127,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "container|align": "stretch",
                         "id": "plans",
-                        "layout": "fit"
+                        "layout": "hbox"
                     },
                     "designerId": "a2caaf6f-0051-4b39-a24b-921c6845329b",
                     "cn": [
@@ -141,7 +143,8 @@
                             "userConfig": {
                                 "autoScroll": true,
                                 "id": "plansToExpire",
-                                "layout": null
+                                "layout": null,
+                                "layout|flex": 1
                             },
                             "designerId": "2d9fc89f-00b3-46b0-97c8-70e458014c77"
                         },
@@ -154,7 +157,8 @@
                             "codeClass": null,
                             "userConfig": {
                                 "autoScroll": true,
-                                "id": "planExpired"
+                                "id": "planExpired",
+                                "layout|flex": 1
                             },
                             "designerId": "ce7aaf3d-da27-4064-a1c2-504352ff4735"
                         }
