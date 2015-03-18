@@ -331,7 +331,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                  {name: 'plan_name',   type: 'string'},
                  {name: 'creation_date',   type: 'string'},
                  {name: 'duration',   type: 'string'},
-                 {name: 'remaining_days ',   type: 'string'}
+                 {name: 'remaining_days',   type: 'string'}
              ]
          });
 
@@ -354,12 +354,13 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         birthdayStore.load(function(records, operation, success) {
             for(var i = 0; (i < records.length && i < 20); i++){
                 containerAux = Ext.create('Ext.container.Container', {
+                    cls: 'lanista-expire',
                     tpl: [
                             '<div class="lanista-toexpire-plan">',
                             '  <div class="lanista-toexpire-plan-data">',
                             '      <div class="lanista-toexpire-plan-photo">',
-                            '         <div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["customer_remote_id"] + "_photo.jpg"]});"></div>',
-                            '         <div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
+                            '         <div class="lanista-dashboard-expire-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["customer_remote_id"] + "_photo.jpg"]});"></div>',
+                            '         <div class="lanista-dashboard-expire-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
                             '      </div>',
                             '      <div class="lanista-dashboard-name">',
                             '         <div class="lanista-toexpire-plan-name">{first_name}</div>',
@@ -373,27 +374,6 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                             '     <div class="lanista-toexpire-plan-remaining_days">{remaining_days}</div>',
                             '  </div>',
                             '</div>'
-
-
-
-
-
-                        /*
-
-                        '<div class="lanista-toexpire-plan">',
-                        '<div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["id"] + "_photo.jpg"]});"></div>',
-                        '<div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
-                        '<div class="lanista-dashboard-name">',
-                        '   <div class="lanista-toexpire-plan-name">{first_name}</div>',
-                        '   <div class="lanista-toexpire-plan-creation_date">{last_name}</div>',
-                        '</div>',
-                        '<div class="lanista-dashboard-text">',
-                        '   <div class="lanista-toexpire-plan-name">{plan_name}</div>',
-                        '   <div class="lanista-toexpire-plan-creation_date">{creation_date}</div>',
-                        '   <div class="lanista-toexpire-plan-duration">{duration}</div>',
-                        '   <div class="lanista-toexpire-plan-remaining_days">{remaining_days}</div>',
-                        '</div>',
-                        '</div>'*/
                     ]
                 });
 
@@ -405,10 +385,9 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                                         creation_date: records[i].data.creation_date,
                                         duration: records[i].data.duration,
                                         remaining_days: records[i].data.remaining_days});
-
-                controller.getDashBoardPanel().down('#plansContainer').down('#plans').down('#plansToExpire').insert ( i, containerAux );
+                  controller.getDashBoardPanel().down('#plansContainer').down('#plans').down('#plansToExpire').insert ( i, containerAux );
             }
-        });
+         });
 
     },
 
@@ -428,7 +407,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                  {name: 'plan_name',   type: 'string'},
                  {name: 'creation_date',   type: 'string'},
                  {name: 'duration',   type: 'string'},
-                 {name: 'remaining_days ',   type: 'string'}
+                 {name: 'expired_days',   type: 'string'}
              ]
          });
 
@@ -451,25 +430,26 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         birthdayStore.load(function(records, operation, success) {
             for(var i = 0; (i < records.length && i < 20); i++){
                 containerAux = Ext.create('Ext.container.Container', {
+                    cls: 'lanista-expire',
                     tpl: [
-                        '<div class="lanista-toexpire-plan">',
-                        '  <div class="lanista-toexpire-plan-data">',
-                        '      <div class="lanista-toexpire-plan-photo">',
-                        '         <div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["customer_remote_id"] + "_photo.jpg"]});"></div>',
-                        '         <div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
-                        '      </div>',
-                        '      <div class="lanista-dashboard-name">',
-                        '         <div class="lanista-toexpire-plan-name">{first_name}</div>',
-                        '         <div class="lanista-toexpire-plan-creation_date">{last_name}</div>',
-                        '      </div>',
-                        '  </div>',
-                        '  <div class="lanista-dashboard-text">',
-                        '     <div class="lanista-toexpire-plan-name">{plan_name}</div>',
-                        '     <div class="lanista-toexpire-plan-creation_date">{creation_date}</div>',
-                        '     <div class="lanista-toexpire-plan-duration">{duration}</div>',
-                        '     <div class="lanista-toexpire-plan-remaining_days">{remaining_days}</div>',
-                        '  </div>',
-                        '</div>'
+                            '<div class="lanista-toexpire-plan">',
+                            '  <div class="lanista-toexpire-plan-data">',
+                            '      <div class="lanista-toexpire-plan-photo">',
+                            '         <div class="lanista-dashboard-expire-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["customer_remote_id"] + "_photo.jpg"]});"></div>',
+                            '         <div class="lanista-dashboard-expire-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
+                            '      </div>',
+                            '      <div class="lanista-dashboard-name">',
+                            '         <div class="lanista-toexpire-plan-name">{first_name}</div>',
+                            '         <div class="lanista-toexpire-plan-creation_date">{last_name}</div>',
+                            '      </div>',
+                            '  </div>',
+                            '  <div class="lanista-dashboard-text lanista-dashboard-text-exp">',
+                            '     <div class="lanista-toexpire-plan-name">{plan_name}</div>',
+                            '     <div class="lanista-toexpire-plan-creation_date">{creation_date}</div>',
+                            '     <div class="lanista-toexpire-plan-duration">{duration}</div>',
+                            '     <div class="lanista-toexpire-plan-remaining_days">{expired_days}</div>',
+                            '  </div>',
+                            '</div>'
                     ]
                 });
 

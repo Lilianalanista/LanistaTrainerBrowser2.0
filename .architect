@@ -1,7 +1,7 @@
 {
     "expandedState": {
         "data": false,
-        "model": false,
+        "model": true,
         "component": true,
         "controller": true,
         "resource": true,
@@ -416,6 +416,7 @@
             "cn": [
                 {
                     "id": "ea230807-99a9-4ad2-8bb9-2b560934c010",
+                    "expanded": false,
                     "cn": [
                         {
                             "id": "e7f53ebb-2faf-4e19-b2b7-586e55434638",
@@ -442,11 +443,9 @@
                 },
                 {
                     "id": "f4ae9db5-9e3f-430b-a842-bb05a28af975",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "5e08d8f9-6263-4cee-836e-0de2af8c252a",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "80e73ef9-5d76-4e47-8a28-cc0715a3874a",
@@ -1474,7 +1473,6 @@
         },
         "9fa79ca2-1a5d-427c-8579-265c751fa65d": {
             "id": "9fa79ca2-1a5d-427c-8579-265c751fa65d",
-            "expanded": false,
             "cn": [
                 {
                     "id": "17456f2c-3f5f-4310-be46-8fdf5554d74a"
@@ -1883,7 +1881,6 @@
         },
         "3cebb1f9-1e3f-4ce1-a430-d2db18adcf91": {
             "id": "3cebb1f9-1e3f-4ce1-a430-d2db18adcf91",
-            "expanded": false,
             "cn": [
                 {
                     "id": "8b37e158-2337-4267-b002-8cba77818e63"
@@ -2368,7 +2365,6 @@
         },
         "5a730e34-4f69-481d-8544-8c9947de6064": {
             "id": "5a730e34-4f69-481d-8544-8c9947de6064",
-            "expanded": false,
             "cn": [
                 {
                     "id": "83a91829-dc3b-4aca-8988-33ccb305c8f0"
@@ -2707,7 +2703,7 @@
     },
     "inspectorState": {
         "topInstance": "16630f1f-c099-4905-a757-af7f967204f8",
-        "selectedInstance": "9f76f503-813f-4b7f-b6d6-c3f24389c116"
+        "selectedInstance": "00058e13-d336-40f5-80a2-83ff4a848ccc"
     },
     "codeState": {
         "topInstance": "16630f1f-c099-4905-a757-af7f967204f8"
