@@ -352,6 +352,12 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             property: 'creation_date'
         });
         store.load();
+
+
+
+        console.log('CUSTOMERSSSSS');
+        console.log(store);
+
     },
 
     init: function(application) {

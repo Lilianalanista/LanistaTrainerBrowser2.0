@@ -8,7 +8,6 @@
     "userConfig": {
         "designer|userClassName": "PlanStore",
         "model": "Plan",
-        "remoteFilter": true,
         "remoteSort": true,
         "requires": [
             "Ext.data.proxy.Ajax",

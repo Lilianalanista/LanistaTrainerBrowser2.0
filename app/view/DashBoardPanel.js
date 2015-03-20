@@ -61,6 +61,12 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                     layout: {
                                         type: 'hbox',
                                         align: 'stretch'
+                                    },
+                                    listeners: {
+                                        afterrender: {
+                                            fn: me.onActiveCustomersAfterRender,
+                                            scope: me
+                                        }
                                     }
                                 },
                                 {
@@ -116,6 +122,76 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
         });
 
         me.callParent(arguments);
+    },
+
+    onActiveCustomersAfterRender: function(component, eOpts) {
+        var el = component.el,
+            ActiveCustomer,
+            data,
+            userId = localStorage.getItem("user_id"),
+            idCustomer;
+
+        el.on(
+            'click', function(e,t) {
+                    el.addCls('item-not-clicked');
+                    idCustomer = t.id;
+                    Ext.Ajax.request({
+                        url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getuser',
+                        method: 'get',
+                        params: {id: idCustomer},
+                        headers: {user_id: userId},
+                        failure : function(result, request){
+                            console.log( "There were problems in looking for user information" );
+                        },
+                        success: function(response, opts) {
+                            try {
+                                data = Ext.decode(response.responseText);
+                                ActiveCustomer = Ext.create('LanistaTrainer.model.Customer', {
+                                    id: data.user.id,
+                                    first_name: data.user.first_name,
+                                    last_name: data.user.last_name,
+                                    email: data.user.email,
+                                    street: data.user.street,
+                                    city: data.user.city,
+                                    zipcode: data.user.zipcode,
+                                    country: data.user.country,
+                                    note: data.user.note,
+                                    phone_nr: data.user.phone_nr,
+                                    birthday: data.user.birthday,
+                                    gender: data.user.gender,
+                                    deleted: data.user.deleted,
+                                    image: data.user.image,
+                                    last_change: data.user.last_change,
+                                    language: data.user.language,
+                                    sincronized: data.user.sincronized
+                                });
+
+                                LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                    LanistaTrainer.app.currentCustomer = ActiveCustomer;
+                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
+                                    LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
+                                });
+                            }
+                            catch( err ) {
+                                Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);
+                            }
+                        }
+                    });
+            },
+            this, {delegate: '.lanista-active-customer'});
+        el.on(
+            'mouseover', function(e,t) {
+                el.removeCls('item-not-clicked');
+                el.addCls('item-clicked');
+                            },
+            this,{ delegate: '.lanista-active-customer'});
+        el.on(
+            'mouseout', function(e,t) {
+                el.removeCls('item-clicked');
+                el.addCls('item-not-clicked');
+                            },
+            this,{delegate: '.lanista-active-customer'});
+
     }
 
 });

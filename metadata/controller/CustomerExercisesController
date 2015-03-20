@@ -550,7 +550,13 @@
                     "    direction: 'DESC',",
                     "    property: 'creation_date'",
                     "});",
-                    "store.load();"
+                    "store.load();",
+                    "",
+                    "",
+                    "",
+                    "console.log('CUSTOMERSSSSS');",
+                    "console.log(store);",
+                    ""
                 ]
             },
             "designerId": "1af6779b-2526-4944-b981-3c554a202405"

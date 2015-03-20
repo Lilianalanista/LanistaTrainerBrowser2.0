@@ -88,37 +88,6 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         });
     },
 
-    onDisplayDashBoard: function(callback) {
-        var controller = this,
-            dashBoardPanel	= controller.getDashBoardPanel(),
-            mainStage	= controller.getMainStage();
-
-        mainStage.add( dashBoardPanel );
-
-        dashBoardPanel.on('hide', function(component) {
-            component.destroy();
-        }, controller);
-
-        // **** 1 create the commands
-        LanistaTrainer.app.setStandardButtons();
-        this.showCommands();
-
-        controller.getActiveCustomers();
-        controller.getBirthdayCustomers();
-        controller.getPlansToExpire();
-        controller.getPlansExpired();
-
-        // *** 2 Show the panel
-        LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');
-        LanistaTrainer.app.fireEvent('showStage');
-
-        // *** 4 Callback
-        if (callback instanceof Function) callback();
-
-        // *** 5 Load data
-        controller.loadData();
-    },
-
     onShowDashBoardHeaderUpdate: function() {
 
         var controller = this,
@@ -280,7 +249,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
             for(var i = 0; (i < records.length && i < 20); i++){
                 containerAux = Ext.create('Ext.container.Container', {
                     tpl: [
-                        '<div class="lanista-active-customer">',
+                        '<div class="lanista-active-customer" id={[values["id"]]} >',
                         '<div class="lanista-dashboard-customer-photo" id="dahsboardcustomerItemInfo" style="background-image: url({[Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values["id"] + "_photo.jpg"]});"></div>',
                         '<div class="lanista-dashboard-customer-background" id="dahsboardcustomerItem" style="customer-image">j</div>',
                         '<div class="lanista-dashboard-text">',
@@ -308,7 +277,9 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                                         last_protocoll_date: partNum[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + (partNum[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR + ' ' + (partDec[0] > 0 ? partDec[0] + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '')) :
                                                              partDec[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + partDec[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '',
                                         email: records[i].data.email});
+                containerAux.recordId = records[i].data.id;
 
+                controller.getDashBoardPanel().down('#customersContainer').down('#customers').down('#activeCustomers').recordId = records[i].data.id;
                 controller.getDashBoardPanel().down('#customersContainer').down('#customers').down('#activeCustomers').insert ( i, containerAux );
             }
         });
@@ -468,6 +439,37 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
 
     },
 
+    onDisplayDashBoard: function(callback) {
+        var controller = this,
+            dashBoardPanel	= controller.getDashBoardPanel(),
+            mainStage	= controller.getMainStage();
+
+        mainStage.add( dashBoardPanel );
+
+        dashBoardPanel.on('hide', function(component) {
+            component.destroy();
+        }, controller);
+
+        // **** 1 create the commands
+        LanistaTrainer.app.setStandardButtons();
+        this.showCommands();
+
+        controller.getActiveCustomers();
+        controller.getBirthdayCustomers();
+        controller.getPlansToExpire();
+        controller.getPlansExpired();
+
+        // *** 2 Show the panel
+        LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');
+        LanistaTrainer.app.fireEvent('showStage');
+
+        // *** 4 Callback
+        if (callback instanceof Function) callback();
+
+        // *** 5 Load data
+        controller.loadData();
+    },
+
     init: function(application) {
         this.control({
             "viewport #ShowDashBoardPanelButton": {
@@ -487,12 +489,12 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                 fn: this.onCloseDashBoardPanel,
                 scope: this
             },
-            displayDashBoard: {
-                fn: this.onDisplayDashBoard,
-                scope: this
-            },
             showDashBoardHeaderUpdate: {
                 fn: this.onShowDashBoardHeaderUpdate,
+                scope: this
+            },
+            displayDashBoard: {
+                fn: this.onDisplayDashBoard,
                 scope: this
             }
         });

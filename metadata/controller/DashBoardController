@@ -148,53 +148,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|params": [
-                    "callback"
-                ],
-                "fn": "onDisplayDashBoard",
-                "implHandler": [
-                    "var controller = this,",
-                    "    dashBoardPanel\t= controller.getDashBoardPanel(),",
-                    "    mainStage\t= controller.getMainStage();",
-                    "",
-                    "mainStage.add( dashBoardPanel );",
-                    "",
-                    "dashBoardPanel.on('hide', function(component) {",
-                    "    component.destroy();",
-                    "}, controller);",
-                    "",
-                    "// **** 1 create the commands",
-                    "LanistaTrainer.app.setStandardButtons();",
-                    "this.showCommands();",
-                    "",
-                    "controller.getActiveCustomers();",
-                    "controller.getBirthdayCustomers();",
-                    "controller.getPlansToExpire();",
-                    "controller.getPlansExpired();",
-                    "",
-                    "// *** 2 Show the panel",
-                    "LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');",
-                    "LanistaTrainer.app.fireEvent('showStage');",
-                    "",
-                    "// *** 4 Callback",
-                    "if (callback instanceof Function) callback();",
-                    "",
-                    "// *** 5 Load data",
-                    "controller.loadData();"
-                ],
-                "name": "displayDashBoard",
-                "scope": "this"
-            },
-            "designerId": "47b97486-e22a-4018-aa21-76e8b6325557"
-        },
-        {
-            "type": "applicationaction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "fn": "onShowDashBoardHeaderUpdate",
                 "implHandler": [
                     "",
@@ -385,7 +338,7 @@
                     "                '</div>'",
                     "            ]",
                     "        });",
-                    "        ",
+                    "",
                     "        dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( records[i].data.birthday, 'F d') :Ext.util.Format.date( records[i].data.birthday, 'd F');",
                     "        containerAux.update({\tid: records[i].data.id,",
                     "                                first_name: records[i].data.first_name,",
@@ -451,7 +404,7 @@
                     "    for(var i = 0; (i < records.length && i < 20); i++){",
                     "        containerAux = Ext.create('Ext.container.Container', {",
                     "            tpl: [",
-                    "                '<div class=\"lanista-active-customer\">',",
+                    "                '<div class=\"lanista-active-customer\" id={[values[\"id\"]]} >',",
                     "                '<div class=\"lanista-dashboard-customer-photo\" id=\"dahsboardcustomerItemInfo\" style=\"background-image: url({[Ext.ux.ConfigManager.getRoot() + \"/tpmanager/img/p/\" + values[\"id\"] + \"_photo.jpg\"]});\"></div>',",
                     "                '<div class=\"lanista-dashboard-customer-background\" id=\"dahsboardcustomerItem\" style=\"customer-image\">j</div>',",
                     "                '<div class=\"lanista-dashboard-text\">',",
@@ -462,12 +415,12 @@
                     "                '</div>'",
                     "            ]",
                     "        });",
-                    "        ",
+                    "",
                     "        today = new Date();",
                     "        auxDate = new Date(records[i].data.last_protocoll_date);",
                     "        dif = ((today.getTime() - auxDate.getTime()) / 86400000) * 0.00274057;",
                     "        partNum = dif.toString().split(\".\");",
-                    " ",
+                    "",
                     "        if (partNum[1] > 0){",
                     "            partNum[1] = (dif - partNum[0]) / 0.0833;",
                     "            partDec = partNum[1].toString().split(\".\");",
@@ -476,10 +429,12 @@
                     "        containerAux.update({\tid: records[i].data.id,",
                     "                                first_name: records[i].data.first_name,",
                     "                                last_name: records[i].data.last_name,",
-                    "                                last_protocoll_date: partNum[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + (partNum[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR + ' ' + (partDec[0] > 0 ? partDec[0] + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '')) : ",
+                    "                                last_protocoll_date: partNum[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + (partNum[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR + ' ' + (partDec[0] > 0 ? partDec[0] + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '')) :",
                     "                                                     partDec[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + partDec[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '',",
                     "                                email: records[i].data.email});",
+                    "        containerAux.recordId = records[i].data.id;",
                     "",
+                    "        controller.getDashBoardPanel().down('#customersContainer').down('#customers').down('#activeCustomers').recordId = records[i].data.id;",
                     "        controller.getDashBoardPanel().down('#customersContainer').down('#customers').down('#activeCustomers').insert ( i, containerAux );",
                     "    }",
                     "});",
@@ -662,6 +617,53 @@
                 ]
             },
             "designerId": "00058e13-d336-40f5-80a2-83ff4a848ccc"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onDisplayDashBoard",
+                "implHandler": [
+                    "var controller = this,",
+                    "    dashBoardPanel\t= controller.getDashBoardPanel(),",
+                    "    mainStage\t= controller.getMainStage();",
+                    "",
+                    "mainStage.add( dashBoardPanel );",
+                    "",
+                    "dashBoardPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons();",
+                    "this.showCommands();",
+                    "",
+                    "controller.getActiveCustomers();",
+                    "controller.getBirthdayCustomers();",
+                    "controller.getPlansToExpire();",
+                    "controller.getPlansExpired();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();"
+                ],
+                "name": "displayDashBoard",
+                "scope": "this"
+            },
+            "designerId": "47b97486-e22a-4018-aa21-76e8b6325557"
         }
     ]
 }

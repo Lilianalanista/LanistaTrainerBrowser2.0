@@ -27,7 +27,6 @@ Ext.define('LanistaTrainer.store.PlanStore', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             model: 'LanistaTrainer.model.Plan',
-            remoteFilter: true,
             remoteSort: true,
             storeId: 'PlanStore'
         }, cfg)]);
