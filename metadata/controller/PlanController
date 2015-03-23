@@ -869,7 +869,12 @@
                     "",
                     "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
                     "LanistaTrainer.app.fireEvent('closePlanPanel', function() {",
-                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
+                    "    if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DashboardPanel' ){",
+                    "        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';",
+                    "            LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');",
+                    "    }",
+                    "    else",
+                    "        LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
                     "});",
                     ""
                 ],

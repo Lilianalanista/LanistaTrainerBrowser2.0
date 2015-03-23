@@ -62,7 +62,8 @@ Ext.define('LanistaTrainer.model.Customer', {
             type: 'string'
         },
         {
-            name: 'birthday'
+            name: 'birthday',
+            type: 'date'
         },
         {
             name: 'gender',

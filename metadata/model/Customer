@@ -148,7 +148,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "birthday"
+                "name": "birthday",
+                "type": "date"
             },
             "designerId": "65e4f570-6ff9-47ba-8aa1-ac1d6b863dc1"
         },

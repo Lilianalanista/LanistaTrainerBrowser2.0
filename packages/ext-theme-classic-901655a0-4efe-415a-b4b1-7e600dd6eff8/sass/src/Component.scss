@@ -1728,12 +1728,15 @@ $base-gradient: "none";
 }
 
 // Dashboard
-#titlesCustomersAlerts{
-    width: 10%;
+#titlesCustomersAlerts, #titlesPlans{
+    //width: 26%;
+    width: 310px;
+    height: 633px!important;
 }
 
 #customers{
-    width: 90%;
+    //width: 90%;
+    width: 26%;
     left: 315px!important;
 }
 
@@ -1757,6 +1760,11 @@ $base-gradient: "none";
 
 #customersContainer{
     padding-top: 104px;
+    width: 100%;
+}
+
+#customersContainer .x-box-inner, .x-box-target{
+     width: 100%;   
 }
 
 #plansContainer{
@@ -1769,10 +1777,10 @@ $base-gradient: "none";
     width: 26%!important;
 }
 
-#planExpired{
-    left: 462px!important;
-    width: 50%!important;
-}
+//#planExpired{
+//    left: 462px!important;
+//    width: 50%!important;
+//}
 
 #plansToExpire .x-border-box, #planExpired .x-border-box{
     width: 100%!important;
@@ -1797,8 +1805,9 @@ $base-gradient: "none";
 }
 
 #planExpired{
-    width: 50%!important;
+    width: 49%!important;
     background-image: linear-gradient(to bottom right, #292484,#417711);
+    left: 453px!important;
 }
 
 #plans{
@@ -1813,8 +1822,9 @@ $base-gradient: "none";
 #birthdayCustomers {
     height: 141px!important;
     background: rgba(117,203,0,0.95);
-    background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
-    top: 3px!important;
+    background-image: linear-gradient(to bottom right, #e0be00,#417711) !important;
+    //background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
+    //top: 3px!important;
 }
 
 #birthdayCustomers .x-box-item, #activeCustomers .x-box-item{
@@ -1833,7 +1843,9 @@ $base-gradient: "none";
 #activeCustomers{
     height: 141px!important;
     background: rgba(117,203,0,0.95);
-    background-image: linear-gradient(to bottom right, #e0be00,#417711) !important;
+    //background-image: linear-gradient(to bottom right, #e0be00,#417711) !important;
+    background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
+    top: 5px!important;
 }
 
 .lanista-toexpire-plan-data{
@@ -1850,7 +1862,8 @@ $base-gradient: "none";
     font-size: 40px;
     line-height: 60px;
     color: white;
-    background-image: -webkit-linear-gradient(#4786ba, #60b0a3) !important;
+    //background-image: -webkit-linear-gradient(#4786ba, #60b0a3) !important;
+    background-image: linear-gradient(to bottom right, #417711,#e0be00) !important;
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -1860,7 +1873,8 @@ $base-gradient: "none";
 }
 
 #activeCustomers .lanista-dashboard-customer-background{
-    background-image: linear-gradient(to bottom right, #417711,#e0be00) !important;
+    //background-image: linear-gradient(to bottom right, #417711,#e0be00) !important;
+    background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
 }
 
 .lanista-dashboard-customer-photo{
@@ -1908,13 +1922,18 @@ $base-gradient: "none";
     font-size: 35px;
     line-height: 40px;
     color: white;
-    background-image: -webkit-linear-gradient(#4786ba, #60b0a3) !important;
+    background-image: linear-gradient(to bottom right, #417711,#292484) !important;
+    //background-image: -webkit-linear-gradient(#4786ba, #60b0a3) !important;
     display: block;
     margin-right: auto;
     //margin-left: auto;
     background-color: grey;
     top: 9px;
     position: relative;
+}
+
+#plansToExpire .lanista-dashboard-expire-background{
+    background-image: linear-gradient(to bottom right, #dc4225,#417711) !important;
 }
 
 .lanista-expire{
@@ -1946,6 +1965,49 @@ $base-gradient: "none";
 .lanista-toexpire-plan .lanista-dashboard-name{
     padding-top: 11px;
 }
+
+#titlesCustomersAlerts span, #titlesPlans span{
+  height: 27% !important;
+  //margin: 0px 10px 0px 0px !important;
+  padding-bottom: 5px;
+  color: white;
+  width: 100%;
+}
+
+.title-component{
+  height: 100%;
+  background: #e6e6e6;
+  padding: 15px 10px 10px 10px!important;
+}
+
+.top-component, .botton-component{
+  height: 50%;
+  width: 100%;
+  float: left;
+  padding: 10px;
+  line-height: 13px;
+}
+
+.top-component div:first-child, .botton-component div:first-child{
+  font-size: 15px;
+  background-image: -webkit-linear-gradient(92deg, #e0be00, #417711);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 60s infinite linear;
+}
+ 
+.top-component div:last-child, .botton-component div:last-child{
+  font-family: "Roboto Black";
+  font-size: 18px;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -1px;
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
+}
+
+//.botton-component div:last-child{
+//    background-image: -webkit-linear-gradient(92deg, #60b0a3, #4786ba)!important;
+//}
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

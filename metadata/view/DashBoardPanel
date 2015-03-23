@@ -41,9 +41,39 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "html": null,
                         "id": "titlesCustomersAlerts"
                     },
-                    "designerId": "5a860faf-db07-48e9-b253-dbb5e790d8f1"
+                    "configAlternates": {
+                        "html": "string"
+                    },
+                    "designerId": "5a860faf-db07-48e9-b253-dbb5e790d8f1",
+                    "cn": [
+                        {
+                            "type": "Ext.XTemplate",
+                            "reference": {
+                                "name": "tpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tpl",
+                                "implHandler": [
+                                    "<div class=\"title-component\">",
+                                    "\t<div class=\"top-component\">",
+                                    "\t\t<div>{birthday1}</div>",
+                                    "\t\t<div>{birthday2}</div>",
+                                    "\t</div>",
+                                    "    <div class=\"botton-component\">",
+                                    "\t\t<div>{protocoll1}</div>",
+                                    "\t\t<div>{protocoll2}</div>",
+                                    "\t</div>",
+                                    "</div>"
+                                ]
+                            },
+                            "designerId": "1f06353d-461b-428e-ab24-a709a62479a8"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.container.Container",
@@ -59,6 +89,106 @@
                     },
                     "designerId": "ec07da40-9ab3-4916-986d-017cb2dda15c",
                     "cn": [
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "autoScroll": true,
+                                "container|align": "stretch",
+                                "id": "birthdayCustomers",
+                                "layout": "hbox"
+                            },
+                            "designerId": "7bf935e7-d928-493b-84ac-a7e63fcb601e",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBirthdayCustomersAfterRender",
+                                        "implHandler": [
+                                            "var el = component.el,",
+                                            "    ActiveCustomer,",
+                                            "    data,",
+                                            "    userId = localStorage.getItem(\"user_id\"),",
+                                            "    idCustomer;",
+                                            "",
+                                            "el.on(",
+                                            "    'click', function(e,t) {",
+                                            "            el.addCls('item-not-clicked');",
+                                            "            idCustomer = t.id;",
+                                            "            Ext.Ajax.request({",
+                                            "                url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getuser',",
+                                            "                method: 'get',",
+                                            "                params: {id: idCustomer},",
+                                            "                headers: {user_id: userId},",
+                                            "                failure : function(result, request){",
+                                            "                    console.log( \"There were problems in looking for user information\" );",
+                                            "                },",
+                                            "                success: function(response, opts) {",
+                                            "                    try {",
+                                            "                        data = Ext.decode(response.responseText);",
+                                            "                        ActiveCustomer = Ext.create('LanistaTrainer.model.Customer', {",
+                                            "                            id: data.user.id,",
+                                            "                            first_name: data.user.first_name,",
+                                            "                            last_name: data.user.last_name,",
+                                            "                            email: data.user.email,",
+                                            "                            street: data.user.street,",
+                                            "                            city: data.user.city,",
+                                            "                            zipcode: data.user.zipcode,",
+                                            "                            country: data.user.country,",
+                                            "                            note: data.user.note,",
+                                            "                            phone_nr: data.user.phone_nr,",
+                                            "                            birthday: data.user.birthday,",
+                                            "                            gender: data.user.gender,",
+                                            "                            deleted: data.user.deleted,",
+                                            "                            image: data.user.image,",
+                                            "                            last_change: data.user.last_change,",
+                                            "                            language: data.user.language,",
+                                            "                            sincronized: data.user.sincronized",
+                                            "                        });",
+                                            "",
+                                            "                        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                                            "                            LanistaTrainer.app.currentCustomer = ActiveCustomer;",
+                                            "                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';",
+                                            "                            LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');",
+                                            "                        });",
+                                            "                    }",
+                                            "                    catch( err ) {",
+                                            "                        Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);",
+                                            "                    }",
+                                            "                }",
+                                            "            });",
+                                            "    },",
+                                            "    this, {delegate: '.lanista-birthday-customer'});",
+                                            "el.on(",
+                                            "    'mouseover', function(e,t) {",
+                                            "        el.removeCls('item-not-clicked');",
+                                            "        el.addCls('item-clicked');",
+                                            "                    },",
+                                            "    this,{ delegate: '.lanista-birthday-customer'});",
+                                            "el.on(",
+                                            "    'mouseout', function(e,t) {",
+                                            "        el.removeCls('item-clicked');",
+                                            "        el.addCls('item-not-clicked');",
+                                            "                    },",
+                                            "    this,{delegate: '.lanista-birthday-customer'});",
+                                            ""
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "0fb2b94d-3169-4515-8430-992641f1d24b"
+                                }
+                            ]
+                        },
                         {
                             "type": "Ext.container.Container",
                             "reference": {
@@ -158,21 +288,6 @@
                                     "designerId": "1c74a6ee-fb83-4917-b783-acf1c20e03b9"
                                 }
                             ]
-                        },
-                        {
-                            "type": "Ext.container.Container",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "autoScroll": true,
-                                "container|align": "stretch",
-                                "id": "birthdayCustomers",
-                                "layout": "hbox"
-                            },
-                            "designerId": "7bf935e7-d928-493b-84ac-a7e63fcb601e"
                         }
                     ]
                 }
@@ -202,7 +317,33 @@
                     "userConfig": {
                         "id": "titlesPlans"
                     },
-                    "designerId": "ba378fe0-3d22-4bb7-9e3a-ce4deb5d513c"
+                    "designerId": "ba378fe0-3d22-4bb7-9e3a-ce4deb5d513c",
+                    "cn": [
+                        {
+                            "type": "Ext.XTemplate",
+                            "reference": {
+                                "name": "tpl",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tpl",
+                                "implHandler": [
+                                    "<div class=\"title-component\">",
+                                    "\t<div class=\"top-component\">",
+                                    "\t\t<div>{toexpire1}</div>",
+                                    "\t\t<div>{toexpire2}</div>",
+                                    "\t</div>",
+                                    "    <div class=\"botton-component\">",
+                                    "\t\t<div>{expired1}</div>",
+                                    "\t\t<div>{expired2}</div>",
+                                    "\t</div>",
+                                    "</div>"
+                                ]
+                            },
+                            "designerId": "c8bd27b2-0db6-4155-91fc-f50d20b4e50d"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.container.Container",
@@ -231,7 +372,128 @@
                                 "layout": null,
                                 "layout|flex": 1
                             },
-                            "designerId": "2d9fc89f-00b3-46b0-97c8-70e458014c77"
+                            "designerId": "2d9fc89f-00b3-46b0-97c8-70e458014c77",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onPlansToExpireAfterRender",
+                                        "implHandler": [
+                                            "var el = component.el,",
+                                            "    ActiveCustomer,",
+                                            "    data,data1,",
+                                            "    userId = localStorage.getItem(\"user_id\"),",
+                                            "    idCustomer;",
+                                            "",
+                                            "el.on(",
+                                            "    'click', function(e,t) {",
+                                            "            el.addCls('item-not-clicked');",
+                                            "            idCustomer = t.id;",
+                                            "            Ext.Ajax.request({",
+                                            "                url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/plan/getplan',",
+                                            "                method: 'get',",
+                                            "                params: {id: idCustomer},",
+                                            "                headers: {user_id: userId},",
+                                            "                failure : function(result, request){",
+                                            "                    console.log( \"There were problems in looking for plan information\" );",
+                                            "                },",
+                                            "                success: function(response, opts) {",
+                                            "                    try {",
+                                            "                        data = Ext.decode(response.responseText);",
+                                            "                        ",
+                                            "                        //looking for the customer whom belong the exercise",
+                                            "                        Ext.Ajax.request({",
+                                            "                        url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getuser',",
+                                            "                        method: 'get',",
+                                            "                        params: {id: data.plan.assigned_to_id},",
+                                            "                        headers: {user_id: userId},",
+                                            "                        failure : function(result, request){",
+                                            "                            console.log( \"There were problems in looking for user information\" );",
+                                            "                        },",
+                                            "                        success: function(response, opts) {",
+                                            "                            try {",
+                                            "                                data1 = Ext.decode(response.responseText);",
+                                            "                                ActiveCustomer = Ext.create('LanistaTrainer.model.Customer', {",
+                                            "                                    id: data1.user.id,",
+                                            "                                    first_name: data1.user.first_name,",
+                                            "                                    last_name: data1.user.last_name,",
+                                            "                                    email: data1.user.email,",
+                                            "                                    street: data1.user.street,",
+                                            "                                    city: data1.user.city,",
+                                            "                                    zipcode: data1.user.zipcode,",
+                                            "                                    country: data1.user.country,",
+                                            "                                    note: data1.user.note,",
+                                            "                                    phone_nr: data1.user.phone_nr,",
+                                            "                                    birthday: data1.user.birthday,",
+                                            "                                    gender: data1.user.gender,",
+                                            "                                    deleted: data1.user.deleted,",
+                                            "                                    image: data1.user.image,",
+                                            "                                    last_change: data1.user.last_change,",
+                                            "                                    language: data1.user.language,",
+                                            "                                    sincronized: data1.user.sincronized",
+                                            "                                });",
+                                            "        ",
+                                            "                                    LanistaTrainer.app.currentCustomer = ActiveCustomer;",
+                                            "                            }",
+                                            "                            catch( err ) {",
+                                            "                                Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);",
+                                            "                            }",
+                                            "                          }",
+                                            "                        });",
+                                            "                        ",
+                                            "                        Plan = Ext.create('LanistaTrainer.model.Plan', {",
+                                            "                            id: data.plan.id,",
+                                            "                            template: data.plan.template,",
+                                            "                            name: data.plan.name,",
+                                            "                            days: data.plan.days,",
+                                            "                            duration: data.plan.duration,",
+                                            "                            description: data.plan.description,",
+                                            "                            customer_id: data.plan.assigned_to_id,",
+                                            "                            trainer_id: userId,",
+                                            "                            creator_name: data.plan.creator_name,",
+                                            "                            creation_date: data.plan.creation_date,",
+                                            "                            changed_date: data.plan.changed_date,",
+                                            "                            public_template: data.plan.public",
+                                            "                        });",
+                                            "",
+                                            "                        LanistaTrainer.app.fireEvent('closeDashBoardPanel', function() {",
+                                            "                            LanistaTrainer.app.getController ( 'PlanController' ).plan = Plan;",
+                                            "                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';",
+                                            "                            LanistaTrainer.app.fireEvent( 'showPlanPanel', Plan.data.name );",
+                                            "                        });",
+                                            "                    }",
+                                            "                    catch( err ) {",
+                                            "                        Ext.Msg.alert('Problem', 'There were problems in looking for plan information', Ext.emptyFn);",
+                                            "                    }",
+                                            "                }",
+                                            "            });",
+                                            "    },",
+                                            "    this, {delegate: '.lanista-toexpire-plan'});",
+                                            "el.on(",
+                                            "    'mouseover', function(e,t) {",
+                                            "        el.removeCls('item-not-clicked');",
+                                            "        el.addCls('item-clicked');",
+                                            "                    },",
+                                            "    this,{ delegate: '.lanista-toexpire-plan'});",
+                                            "el.on(",
+                                            "    'mouseout', function(e,t) {",
+                                            "        el.removeCls('item-clicked');",
+                                            "        el.addCls('item-not-clicked');",
+                                            "                    },",
+                                            "    this,{delegate: '.lanista-toexpire-plan'});",
+                                            ""
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "2de5d65e-a51e-401c-b4c8-7c565754fe29"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.container.Container",
@@ -245,7 +507,128 @@
                                 "id": "planExpired",
                                 "layout|flex": 1
                             },
-                            "designerId": "ce7aaf3d-da27-4064-a1c2-504352ff4735"
+                            "designerId": "ce7aaf3d-da27-4064-a1c2-504352ff4735",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onPlanExpiredAfterRender",
+                                        "implHandler": [
+                                            "var el = component.el,",
+                                            "    ActiveCustomer,",
+                                            "    data,data1,",
+                                            "    userId = localStorage.getItem(\"user_id\"),",
+                                            "    idCustomer;",
+                                            "",
+                                            "el.on(",
+                                            "    'click', function(e,t) {",
+                                            "            el.addCls('item-not-clicked');",
+                                            "            idCustomer = t.id;",
+                                            "            Ext.Ajax.request({",
+                                            "                url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/plan/getplan',",
+                                            "                method: 'get',",
+                                            "                params: {id: idCustomer},",
+                                            "                headers: {user_id: userId},",
+                                            "                failure : function(result, request){",
+                                            "                    console.log( \"There were problems in looking for plan information\" );",
+                                            "                },",
+                                            "                success: function(response, opts) {",
+                                            "                    try {",
+                                            "                        data = Ext.decode(response.responseText);",
+                                            "                        ",
+                                            "                        //looking for the customer whom belong the exercise",
+                                            "                        Ext.Ajax.request({",
+                                            "                        url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getuser',",
+                                            "                        method: 'get',",
+                                            "                        params: {id: data.plan.assigned_to_id},",
+                                            "                        headers: {user_id: userId},",
+                                            "                        failure : function(result, request){",
+                                            "                            console.log( \"There were problems in looking for user information\" );",
+                                            "                        },",
+                                            "                        success: function(response, opts) {",
+                                            "                            try {",
+                                            "                                data1 = Ext.decode(response.responseText);",
+                                            "                                ActiveCustomer = Ext.create('LanistaTrainer.model.Customer', {",
+                                            "                                    id: data1.user.id,",
+                                            "                                    first_name: data1.user.first_name,",
+                                            "                                    last_name: data1.user.last_name,",
+                                            "                                    email: data1.user.email,",
+                                            "                                    street: data1.user.street,",
+                                            "                                    city: data1.user.city,",
+                                            "                                    zipcode: data1.user.zipcode,",
+                                            "                                    country: data1.user.country,",
+                                            "                                    note: data1.user.note,",
+                                            "                                    phone_nr: data1.user.phone_nr,",
+                                            "                                    birthday: data1.user.birthday,",
+                                            "                                    gender: data1.user.gender,",
+                                            "                                    deleted: data1.user.deleted,",
+                                            "                                    image: data1.user.image,",
+                                            "                                    last_change: data1.user.last_change,",
+                                            "                                    language: data1.user.language,",
+                                            "                                    sincronized: data1.user.sincronized",
+                                            "                                });",
+                                            "        ",
+                                            "                                    LanistaTrainer.app.currentCustomer = ActiveCustomer;",
+                                            "                            }",
+                                            "                            catch( err ) {",
+                                            "                                Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);",
+                                            "                            }",
+                                            "                          }",
+                                            "                        });",
+                                            "                        ",
+                                            "                        Plan = Ext.create('LanistaTrainer.model.Plan', {",
+                                            "                            id: data.plan.id,",
+                                            "                            template: data.plan.template,",
+                                            "                            name: data.plan.name,",
+                                            "                            days: data.plan.days,",
+                                            "                            duration: data.plan.duration,",
+                                            "                            description: data.plan.description,",
+                                            "                            customer_id: data.plan.assigned_to_id,",
+                                            "                            trainer_id: userId,",
+                                            "                            creator_name: data.plan.creator_name,",
+                                            "                            creation_date: data.plan.creation_date,",
+                                            "                            changed_date: data.plan.changed_date,",
+                                            "                            public_template: data.plan.public",
+                                            "                        });",
+                                            "",
+                                            "                        LanistaTrainer.app.fireEvent('closeDashBoardPanel', function() {",
+                                            "                            LanistaTrainer.app.getController ( 'PlanController' ).plan = Plan;",
+                                            "                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';",
+                                            "                            LanistaTrainer.app.fireEvent( 'showPlanPanel', Plan.data.name );",
+                                            "                        });",
+                                            "                    }",
+                                            "                    catch( err ) {",
+                                            "                        Ext.Msg.alert('Problem', 'There were problems in looking for plan information', Ext.emptyFn);",
+                                            "                    }",
+                                            "                }",
+                                            "            });",
+                                            "    },",
+                                            "    this, {delegate: '.lanista-toexpire-plan'});",
+                                            "el.on(",
+                                            "    'mouseover', function(e,t) {",
+                                            "        el.removeCls('item-not-clicked');",
+                                            "        el.addCls('item-clicked');",
+                                            "                    },",
+                                            "    this,{ delegate: '.lanista-toexpire-plan'});",
+                                            "el.on(",
+                                            "    'mouseout', function(e,t) {",
+                                            "        el.removeCls('item-clicked');",
+                                            "        el.addCls('item-not-clicked');",
+                                            "                    },",
+                                            "    this,{delegate: '.lanista-toexpire-plan'});",
+                                            ""
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "95f67884-70a3-48eb-a2e6-c4a04e2b9b80"
+                                }
+                            ]
                         }
                     ]
                 }
