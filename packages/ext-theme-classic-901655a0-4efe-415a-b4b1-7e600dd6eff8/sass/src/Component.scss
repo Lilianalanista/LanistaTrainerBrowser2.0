@@ -1764,7 +1764,7 @@ $base-gradient: "none";
 }
 
 #customersContainer .x-box-inner, .x-box-target{
-     width: 100%;   
+     width: 100%;
 }
 
 #plansContainer{
@@ -1773,9 +1773,9 @@ $base-gradient: "none";
     width: 100%!important;
 }
 
-#titlesPlans{
-    width: 26%!important;
-}
+//#titlesPlans{
+//    width: 26%!important;
+//}
 
 //#planExpired{
 //    left: 462px!important;
@@ -1966,7 +1966,15 @@ $base-gradient: "none";
     padding-top: 11px;
 }
 
-#titlesCustomersAlerts span, #titlesPlans span{
+#titlesCustomersAlerts span{
+    width: 100%!important;
+}
+
+#titlesCustomersAlerts #titles{
+    width: 100%!important;
+}
+
+#titlesPlans span{
   height: 27% !important;
   //margin: 0px 10px 0px 0px !important;
   padding-bottom: 5px;
@@ -1995,7 +2003,7 @@ $base-gradient: "none";
   -webkit-text-fill-color: transparent;
   -webkit-animation: hue 60s infinite linear;
 }
- 
+
 .top-component div:last-child, .botton-component div:last-child{
   font-family: "Roboto Black";
   font-size: 18px;
@@ -2005,9 +2013,63 @@ $base-gradient: "none";
   text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
 }
 
-//.botton-component div:last-child{
-//    background-image: -webkit-linear-gradient(92deg, #60b0a3, #4786ba)!important;
-//}
+.botton-component div:first-child {
+  background-image: -webkit-linear-gradient(92deg, #60b0a3, #4786ba);
+}
+
+#titlesPlans .top-component div:first-child {
+  background-image: -webkit-linear-gradient(92deg, #417711, #dc4225);
+}
+
+#titlesPlans .botton-component div:first-child {
+  background-image: -webkit-linear-gradient(92deg, #292484, #417711);
+}
+
+#dashboardNotificationsButton{
+    top: 120px;
+}
+
+#dashboardNotificationsButton span{
+    height: 100%!important;
+}
+
+#titles{
+  background: #e6e6e6;
+  padding: 15px -1px 10px 10px!important;
+  padding: 0px;
+  height: 140px;
+  color: white;
+}
+
+#notificationsBotton{
+    width: 88px;
+    float: left;
+}
+
+#titlesCustomersAlerts #notificationsBotton .x-btn-glyph{
+  font-family: Lanista Icons;
+  border-style: none!important;
+  font-size: 80px;
+  color: #FDB825;
+  border-color: #FDB825;
+  line-height: 90px;
+}
+
+#notificationContainer{
+  float: left;
+  margin-top: 48px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background-image: none;
+  background-color: #4aacd8;
+  border: none;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  font-family: Roboto Medium;
+}
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

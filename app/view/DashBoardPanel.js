@@ -19,7 +19,8 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
 
     requires: [
         'Ext.container.Container',
-        'Ext.XTemplate'
+        'Ext.XTemplate',
+        'Ext.button.Button'
     ],
 
     border: false,
@@ -49,17 +50,42 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         {
                             xtype: 'container',
                             id: 'titlesCustomersAlerts',
-                            tpl: [
-                                '<div class="title-component">',
-                                '	<div class="top-component">',
-                                '		<div>{birthday1}</div>',
-                                '		<div>{birthday2}</div>',
-                                '	</div>',
-                                '    <div class="botton-component">',
-                                '		<div>{protocoll1}</div>',
-                                '		<div>{protocoll2}</div>',
-                                '	</div>',
-                                '</div>'
+                            items: [
+                                {
+                                    xtype: 'container',
+                                    id: 'titles',
+                                    tpl: [
+                                        '<div class="title-component">',
+                                        '	<div class="top-component">',
+                                        '		<div>{birthday1}</div>',
+                                        '		<div>{birthday2}</div>',
+                                        '	</div>',
+                                        '    <div class="botton-component">',
+                                        '		<div>{protocoll1}</div>',
+                                        '		<div>{protocoll2}</div>',
+                                        '	</div>',
+                                        '</div>'
+                                    ]
+                                },
+                                {
+                                    xtype: 'button',
+                                    cls: 'lanista-command-button',
+                                    id: 'notificationsBotton',
+                                    glyph: '113@Lanista Icons'
+                                },
+                                {
+                                    xtype: 'container',
+                                    id: 'notificationContainer',
+                                    tpl: [
+                                        '<div class="lanista-notification-dashboard">{notifications}</div>'
+                                    ],
+                                    listeners: {
+                                        afterrender: {
+                                            fn: me.onNotificationContainerAfterRender,
+                                            scope: me
+                                        }
+                                    }
+                                }
                             ]
                         },
                         {
@@ -165,6 +191,29 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
         });
 
         me.callParent(arguments);
+    },
+
+    onNotificationContainerAfterRender: function(component, eOpts) {
+        var el = component.el;
+
+        el.on(
+            'click', function(e,t) {
+                 el.removeCls('item-clicked');
+            },
+            this, {delegate: '.lanista-notification-dashboard'});
+        el.on(
+            'mouseover', function(e,t) {
+                el.removeCls('item-not-clicked');
+                el.addCls('item-clicked');
+                            },
+            this,{ delegate: '.lanista-notification-dashboard'});
+        el.on(
+            'mouseout', function(e,t) {
+                el.removeCls('item-clicked');
+                el.addCls('item-not-clicked');
+                            },
+            this,{delegate: '.lanista-notification-dashboard'});
+
     },
 
     onBirthdayCustomersAfterRender: function(component, eOpts) {

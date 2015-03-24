@@ -50,28 +50,122 @@
                     "designerId": "5a860faf-db07-48e9-b253-dbb5e790d8f1",
                     "cn": [
                         {
-                            "type": "Ext.XTemplate",
+                            "type": "Ext.container.Container",
                             "reference": {
-                                "name": "tpl",
-                                "type": "object"
+                                "name": "items",
+                                "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "designer|displayName": "tpl",
-                                "implHandler": [
-                                    "<div class=\"title-component\">",
-                                    "\t<div class=\"top-component\">",
-                                    "\t\t<div>{birthday1}</div>",
-                                    "\t\t<div>{birthday2}</div>",
-                                    "\t</div>",
-                                    "    <div class=\"botton-component\">",
-                                    "\t\t<div>{protocoll1}</div>",
-                                    "\t\t<div>{protocoll2}</div>",
-                                    "\t</div>",
-                                    "</div>"
-                                ]
+                                "id": "titles"
                             },
-                            "designerId": "1f06353d-461b-428e-ab24-a709a62479a8"
+                            "designerId": "7a1c7f6a-0fd3-4e98-81ee-164344920438",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "tpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "tpl",
+                                        "implHandler": [
+                                            "<div class=\"title-component\">",
+                                            "\t<div class=\"top-component\">",
+                                            "\t\t<div>{birthday1}</div>",
+                                            "\t\t<div>{birthday2}</div>",
+                                            "\t</div>",
+                                            "    <div class=\"botton-component\">",
+                                            "\t\t<div>{protocoll1}</div>",
+                                            "\t\t<div>{protocoll2}</div>",
+                                            "\t</div>",
+                                            "</div>"
+                                        ]
+                                    },
+                                    "designerId": "1f06353d-461b-428e-ab24-a709a62479a8"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "lanista-command-button",
+                                "glyph": "113@Lanista Icons",
+                                "id": "notificationsBotton",
+                                "text": null
+                            },
+                            "designerId": "aced2e5c-932f-4001-b9f7-e3286fa9b93d"
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "notificationContainer"
+                            },
+                            "designerId": "88739ab0-cd50-407c-87c9-de1721626ac2",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "tpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "tpl",
+                                        "implHandler": [
+                                            "<div class=\"lanista-notification-dashboard\">{notifications}</div>"
+                                        ]
+                                    },
+                                    "designerId": "6b879d7d-900c-431f-ab8c-711536bb668a"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onNotificationContainerAfterRender",
+                                        "implHandler": [
+                                            "var el = component.el;",
+                                            "    ",
+                                            "el.on(",
+                                            "    'click', function(e,t) {",
+                                            "         el.removeCls('item-clicked');",
+                                            "    },",
+                                            "    this, {delegate: '.lanista-notification-dashboard'});",
+                                            "el.on(",
+                                            "    'mouseover', function(e,t) {",
+                                            "        el.removeCls('item-not-clicked');",
+                                            "        el.addCls('item-clicked');",
+                                            "                    },",
+                                            "    this,{ delegate: '.lanista-notification-dashboard'});",
+                                            "el.on(",
+                                            "    'mouseout', function(e,t) {",
+                                            "        el.removeCls('item-clicked');",
+                                            "        el.addCls('item-not-clicked');",
+                                            "                    },",
+                                            "    this,{delegate: '.lanista-notification-dashboard'});",
+                                            ""
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "b76f4173-370b-409b-968b-333fabd6efab"
+                                }
+                            ]
                         }
                     ]
                 },

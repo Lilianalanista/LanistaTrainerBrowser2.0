@@ -103,6 +103,38 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
 
     },
 
+    onDisplayDashBoard: function(callback) {
+        var controller = this,
+            dashBoardPanel	= controller.getDashBoardPanel(),
+            mainStage	= controller.getMainStage();
+
+        mainStage.add( dashBoardPanel );
+
+        dashBoardPanel.on('hide', function(component) {
+            component.destroy();
+        }, controller);
+
+        // **** 1 create the commands
+        LanistaTrainer.app.setStandardButtons();
+        this.showCommands();
+
+        controller.getActiveCustomers();
+        controller.getBirthdayCustomers();
+        controller.getPlansToExpire();
+        controller.getPlansExpired();
+        controller.getNotificactions();
+
+        // *** 2 Show the panel
+        LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');
+        LanistaTrainer.app.fireEvent('showStage');
+
+        // *** 4 Callback
+        if (callback instanceof Function) callback();
+
+        // *** 5 Load data
+        controller.loadData();
+    },
+
     showCommands: function(callback) {
 
         var controller = this;
@@ -153,7 +185,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
             containerAux,
             dateFormat;
 
-        controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').update({
+        controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#titles').update({
             birthday1: Ext.ux.LanguageManager.TranslationArray.DASHBOARD_CUSTOMERS_BIRHDAY1,
             birthday2: Ext.ux.LanguageManager.TranslationArray.DASHBOARD_CUSTOMERS_BIRHDAY2,
             protocoll1: Ext.ux.LanguageManager.TranslationArray.DASHBOARD_CUSTOMERS_PROTOCOLL1 ,
@@ -457,35 +489,73 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
 
     },
 
-    onDisplayDashBoard: function(callback) {
-        var controller = this,
-            dashBoardPanel	= controller.getDashBoardPanel(),
-            mainStage	= controller.getMainStage();
+    getNotificactions: function() {
+        var controller = this;
+        /*    container = controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts');
 
-        mainStage.add( dashBoardPanel );
+        container.add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                itemId: 'dashboardNotificationsButton',
+                id: 'dashboardNotificationsButton',
+                glyph: '113@Lanista Icons', //q
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-yellow'
+                ]
+            })
+        );
+        */
+        var userId = localStorage.getItem("user_id");
 
-        dashBoardPanel.on('hide', function(component) {
-            component.destroy();
-        }, controller);
+        Ext.Ajax.request({
+            url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getinvitations',
+            method: 'get',
+            params: {
+                user_id: userId
+            },
+            headers: {
+                user_id: userId
+            },
+            failure : function(result, request){
+                console.log( "There were problems in looking for Notifications" );
+            },
+            success: function(response, opts) {
+                try {
+                        var data = Ext.decode(response.responseText);
 
-        // **** 1 create the commands
-        LanistaTrainer.app.setStandardButtons();
-        this.showCommands();
+                        controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').update({
+                            notifications : data.entries.length > 0 ? data.entries.length : 0});
 
-        controller.getActiveCustomers();
-        controller.getBirthdayCustomers();
-        controller.getPlansToExpire();
-        controller.getPlansExpired();
+                        /*for (var i = 0; i < data.entries.length; i++){
+                            exercise = Ext.create('LanistaTrainer.model.ExerciseModel', {
+                                id: (ini + parseInt(data.entries[i].id)),
+                                name_EN: data.entries[i].name_EN,
+                                name_ES: data.entries[i].name_ES,
+                                name_DE: data.entries[i].name_DE,
+                                ext_id: data.entries[i].ext_id,
+                                type: data.entries[i].type ? parseInt(data.entries[i].type) : 0,
+                                changed_date: data.entries[i].changed_date,
+                                unilateral: data.entries[i].unilateral,
+                                coatchingnotes_DE: data.entries[i].coatchingnotes_DE ,
+                                coatchingnotes_ES: data.entries[i].coatchingnotes_ES,
+                                coatchingnotes_EN: data.entries[i].coatchingnotes_EN,
+                                mistakes_DE: data.entries[i].mistakes_DE,
+                                mistakes_ES: data.entries[i].mistakes_ES,
+                                mistakes_EN: data.entries[i].mistakes_EN,
+                                muscle: data.entries[i].muscle ? parseInt(data.entries[i].muscle) : 0,
+                                addition: data.entries[i].addition ? parseInt(data.entries[i].addition) : 0
+                            });
 
-        // *** 2 Show the panel
-        LanistaTrainer.app.fireEvent('showDashBoardHeaderUpdate');
-        LanistaTrainer.app.fireEvent('showStage');
+                        }*/
 
-        // *** 4 Callback
-        if (callback instanceof Function) callback();
 
-        // *** 5 Load data
-        controller.loadData();
+                   }
+                catch( err ) {
+                    Ext.Msg.alert('Problem', 'There were problems in looking for Notifications', Ext.emptyFn);
+                }
+            }
+        });
+
     },
 
     init: function(application) {
