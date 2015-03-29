@@ -394,10 +394,18 @@ Ext.define('LanistaTrainer.view.MainViewport', {
     },
 
     onMainViewportAfterRender: function(component, eOpts) {
-        var el = component.el;
+        var el = component.el,
+            viewPort,
+            window;
+
         el.on('click',function(e,t) {
+            viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport').floatingItems;
+            if (viewPort.keys[0] === 'notificationsWindow')
+                viewPort.items[0].hide();
+
             if (component.down('#videoWindow'))
                 component.down('#videoWindow').hide();
+
         },this,{delegate: '.x-mask'});
     }
 

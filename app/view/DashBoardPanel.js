@@ -196,18 +196,23 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
     onNotificationContainerAfterRender: function(component, eOpts) {
         var el = component.el,
             userId = localStorage.getItem("user_id"),
-            record;
+            record,
+            compt,
+            notifWindow,
+            viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport');
 
         el.on(
             'click', function(e,t) {
                 var store = LanistaTrainer.app.getController ('DashBoardController').storeNotification;
                 el.removeCls('item-clicked');
-                Ext.create('Ext.window.Window', {
+                notifWindow = Ext.create('Ext.window.Window', {
+                    id: 'notificationsWindow',
                     cls:'lanista-notification-window',
                     layout: 'fit',
                     modal: true,
                     draggable: false,
-                    closable: false,
+                    closable: true,
+                    header:false,
                     items: {
                         xtype: 'dataview',
                         store: store,
@@ -216,7 +221,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                             '<div class="lanista-dashboard-notification" id={[values["id"]]}>',
                             '   <div class="lanista-notification-message">{[Ext.ux.LanguageManager.TranslationArray.DASHBOARD_NOTIFICATION_CUSTOMER]}</div>',
                             '   <div class="lanista-notification-text">',
-                            '       <div class="lanista-notification-firstname">{first_name}</div>',
+                            '       <div class="lanista-notification-firstname">{first_name}&nbsp;</div>',
                             '       <div class="lanista-notification-lastname">{last_name}</div>',
                             '       <div class="lanista-notification-email">{email}</div>',
                             '   </div>',
@@ -243,68 +248,124 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                             component.destroy();
                                         }, this);
 
+                                        //CONFIRMATION
                                         elCpn.on('click', function(component, t) {
-
                                             var compt = Ext.get(t);
-                                            console.log('VALORES........');
-                                            console.log(compt);
-                                            console.log(dataview.getRecord(compt.dom.parentNode.parentNode));
+                                            if (compt.dom.parentNode.parentNode.classList.contains('x-item-selected')){
+                                                compt = Ext.get(t);
+                                                record = dataview.getRecord(compt.dom.parentNode.parentNode);
 
+                                                Ext.Ajax.request({
+                                                    url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/confirminvitation',
+                                                    method: 'get',
+                                                    headers: {
+                                                        user_id: userId
+                                                    },
+                                                    params: {
+                                                        id: record.data.id
+                                                    },
+                                                    failure : function(result, request){
+                                                        console.log( "There were problems in the confirmation" );
+                                                    },
+                                                    success: function(response, opts) {
+                                                        try {
+                                                            //Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);
+                                                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, 'Mensaje que debe cambiar....', Ext.emptyFn);
 
+                                                            var store = LanistaTrainer.app.getController ('DashBoardController').storeNotification;
+                                                            store.load(function(records, operation, success) {
+                                                                LanistaTrainer.app.getController ('DashBoardController').getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').update({
+                                                                    notifications : records.length > 0 ? records.length : 0});
+                                                            });
 
-
-
-
-
-
-
-                                            Ext.Ajax.request({
-                                                url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/confirminvitation',
-                                                method: 'get',
-                                                headers: {
-                                                    user_id: userId
-                                                },
-                                                params: {
-                                                    id: userId
-                                                },
-                                                failure : function(result, request){
-                                                    console.log( "There were problems in the confirmation" );
-                                                },
-                                                success: function(response, opts) {
-                                                    try {
-                                                        var data = Ext.decode(response.responseText);
-
+                                                        }
+                                                        catch( err ) {
+                                                            Ext.Msg.alert('Problem', 'There were problems in the confirmation', Ext.emptyFn);
+                                                        }
                                                     }
-                                                    catch( err ) {
-                                                        Ext.Msg.alert('Problem', 'There were problems in the confirmation', Ext.emptyFn);
-                                                    }
-                                                }
-                                            });
-
-
-
-
-
-
-
-
-
-
-
-
+                                                });
+                                            }
                                         }, this, { delegate: '.invitation-confirm'});
 
                                         elCpn.on('mouseover', function(e,t) {
                                             var compt = Ext.get(t);
-                                            compt.removeCls('item-not-clicked');
-                                            compt.addCls('item-clicked');
+                                            if (compt.dom.parentNode.parentNode.classList.contains('x-item-selected')){
+                                                compt.removeCls('item-not-clicked');
+                                                compt.addCls('item-clicked');
+                                            }
                                         }, this, { delegate: '.invitation-confirm'});
+
+                                        elCpn.on('mouseout', function(e,t) {
+                                            var compt = Ext.get(t);
+                                            compt.removeCls('item-clicked');
+                                            compt.addCls('item-not-clicked');
+                                        }, this, { delegate: '.invitation-confirm'});
+
+
+                                        //REJECTING
+                                        elCpn.on('click', function(component, t) {
+                                            var compt = Ext.get(t);
+                                            if (compt.dom.parentNode.parentNode.classList.contains('x-item-selected')){
+                                                compt = Ext.get(t);
+                                                record = dataview.getRecord(compt.dom.parentNode.parentNode);
+
+                                                Ext.Ajax.request({
+                                                    url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/declineinvitation',
+                                                    method: 'get',
+                                                    headers: {
+                                                        user_id: userId
+                                                    },
+                                                    params: {
+                                                        id: record.data.id
+                                                    },
+                                                    failure : function(result, request){
+                                                        console.log( "There were problems in the declination" );
+                                                    },
+                                                    success: function(response, opts) {
+                                                        try {
+                                                            //Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);
+                                                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, 'Mensaje que debe cambiar....', Ext.emptyFn);
+
+                                                            var store = LanistaTrainer.app.getController ('DashBoardController').storeNotification;
+                                                            store.load(function(records, operation, success) {
+                                                                LanistaTrainer.app.getController ('DashBoardController').getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').update({
+                                                                    notifications : records.length > 0 ? records.length : 0});
+                                                            });
+
+                                                        }
+                                                        catch( err ) {
+                                                            Ext.Msg.alert('Problem', 'There were problems in the declination', Ext.emptyFn);
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }, this, { delegate: '.invitation-reject'});
+
+                                        elCpn.on('mouseover', function(e,t) {
+                                            var compt = Ext.get(t);
+                                            if (compt.dom.parentNode.parentNode.classList.contains('x-item-selected')){
+                                                compt.removeCls('item-not-clicked');
+                                                compt.addCls('item-clicked');
+                                            }
+                                        }, this, { delegate: '.invitation-reject'});
+
+                                        elCpn.on('mouseout', function(e,t) {
+                                            var compt = Ext.get(t);
+                                            compt.removeCls('item-clicked');
+                                            compt.addCls('item-not-clicked');
+                                        }, this, { delegate: '.invitation-reject'});
                                     }
                                  }
                              }
                     }
 
-                }).show();
+                });
+                notifWindow.on ( 'hide', function ( component ) {
+                    component.destroy ();
+                });
+                viewPort.add( notifWindow );
+                notifWindow.show ();
+
             },
             this, {delegate: '.lanista-notification-dashboard'});
         el.on(

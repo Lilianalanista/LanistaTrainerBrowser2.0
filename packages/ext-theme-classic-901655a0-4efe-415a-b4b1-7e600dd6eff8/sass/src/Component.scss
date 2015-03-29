@@ -2084,29 +2084,34 @@ $base-gradient: "none";
 }
 
 .lanista-dashboard-notification{
-    padding: 6px;
+    padding: 4px;
 }
 
 .lanista-notification-text{
-    background-color: white;
+    background-color: ghostwhite;
     padding: 10px;
+    font-family: Roboto Black;
+    font-size: 17px;
 }
 
 .lanista-notification-footer{
-  bottom: -9px;
+  bottom: 0px;
   position: relative;
-  background-color: #ebebeb;
+  background-color: darkgrey;  
+  //background-color: #ebebeb;
   height: 35px;
   line-height: 35px;
   text-align: center;
-  color: #A8A8A8;
+  color: white;
+  //color: #A8A8A8;
   font-family: Roboto Black;
   -webkit-font-smoothing: antialiased;
   padding-right: 0px;
 }
 
 .lanista-notification-window .x-item-selected{
-    background-color: rgba(74,172,216,0.5) !important;
+    //background-color: rgba(74,172,216,0.5) !important;
+    background-color: darkgray;
 }
 
 #confirmInvitation{
@@ -2122,6 +2127,51 @@ $base-gradient: "none";
 .lanista-notification-date{
     width: 40%;
     float: left;
+}
+
+#notificationsWindow .x-tool-img {
+    background-image: none;
+}
+
+#notificationsWindow .x-window-header-default-top{
+    background-color: transparent!important;
+}
+
+#notificationsWindow .x-window-header-default .x-tool-img{
+    background-color: transparent!important;
+}
+
+#notificationsWindow .x-tool-over .x-tool-close{
+    background-position: 0px!important;
+}
+
+.lanista-notification-message{
+    font-size: 20px;
+    background-color: ghostwhite;
+    padding: 6px 0px 0px 9px;
+    //font-style: italic;
+}
+
+#notificationsWindow .x-window-body-default{
+    border-style: none;
+    background: transparent;
+}
+
+.lanista-notification-firstname{
+    float: left;
+}
+
+.lanista-notification-email{
+    font-size: 14px!important;
+    font-family: Roboto Light!important;
+}
+
+.lanista-notification-window .x-item-selected .invitation-confirm{
+    background-color: deepskyblue;
+}
+
+.lanista-notification-window .x-item-selected .invitation-reject{
+    background-color: crimson;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
