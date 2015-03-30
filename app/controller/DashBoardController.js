@@ -183,7 +183,8 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
             birthdayStore,
             controller = this,
             containerAux,
-            dateFormat;
+            dateFormat,
+            dateFromData;
 
         controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#titles').update({
             birthday1: Ext.ux.LanguageManager.TranslationArray.DASHBOARD_CUSTOMERS_BIRHDAY1,
@@ -234,7 +235,8 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                     ]
                 });
 
-                dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( records[i].data.birthday, 'F d') :Ext.util.Format.date( records[i].data.birthday, 'd F');
+                dateFromData = records[i].data.birthday;
+                dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( dateFromData, 'F d') :Ext.util.Format.date( dateFromData, 'd F');
                 containerAux.update({	id: records[i].data.id,
                                         first_name: records[i].data.first_name,
                                         last_name: records[i].data.last_name ,
@@ -255,7 +257,9 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
             dif,
             today,
             partNum = [],
-            partDec = [];
+            partDec = [],
+            dateFromData,
+            dateFormat;
 
         Ext.define('Birthday', {
              extend: 'Ext.data.Model',
@@ -300,7 +304,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                     ]
                 });
 
-                today = new Date();
+                /*today = new Date();
                 auxDate = new Date(records[i].data.last_protocoll_date);
                 dif = ((today.getTime() - auxDate.getTime()) / 86400000) * 0.00274057;
                 partNum = dif.toString().split(".");
@@ -308,13 +312,16 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                 if (partNum[1] > 0){
                     partNum[1] = (dif - partNum[0]) / 0.0833;
                     partDec = partNum[1].toString().split(".");
-                }
+                }*/
 
+                dateFromData = records[i].data.last_protocoll_date;
+                dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( dateFromData, 'F d') : Ext.util.Format.date( dateFromData, 'd F');
                 containerAux.update({	id: records[i].data.id,
                                         first_name: records[i].data.first_name,
                                         last_name: records[i].data.last_name,
-                                        last_protocoll_date: partNum[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + (partNum[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR + ' ' + (partDec[0] > 0 ? partDec[0] + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '')) :
-                                                             partDec[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + partDec[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '',
+                                        last_protocoll_date: dateFormat,
+                                        //last_protocoll_date: partNum[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + (partNum[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR + ' ' + (partDec[0] > 0 ? partDec[0] + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '')) :
+                                        //                     partDec[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + partDec[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '',
                                         email: records[i].data.email});
 
                 controller.getDashBoardPanel().down('#customersContainer').down('#customers').down('#activeCustomers').insert ( i, containerAux );
@@ -328,7 +335,12 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
             birthdayStore,
             controller = this,
             containerAux,
-            dateFormat;
+            dateFromData,
+            dateFormat,
+            today = new Date(),
+            partNum = [],
+            partDec = [],
+            dayss, weeks, years, months, totalPeriod;
 
         controller.getDashBoardPanel().down('#plansContainer').down('#titlesPlans').update({
             toexpire1: Ext.ux.LanguageManager.TranslationArray.DASHBOARD_PLANS_TOEXPIRE1,
@@ -393,15 +405,36 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                     ]
                 });
 
-                dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( records[i].data.birthday, 'F d') :Ext.util.Format.date( records[i].data.birthday, 'd F');
+                dayss = records[i].data.remaining_days;
+                if (dayss <= 7)
+                    totalPeriod = Math.floor(dayss)  + dayss === 1 ? controller.calcPeriodo(true, Ext.ux.LanguageManager.TranslationArray.DAY) : controller.calcPeriodo(false, Ext.ux.LanguageManager.TranslationArray.DAY);
+                else{
+                    weeks = dayss * 0.1429;
+                    if (weeks <= 4)
+                        totalPeriod = Math.floor(weeks) + weeks === 1 ? controller.calcPeriodo(true, Ext.ux.LanguageManager.TranslationArray.WEEK) : controller.calcPeriodo(false, Ext.ux.LanguageManager.TranslationArray.WEEK);
+                    else
+                        months = dayss * 0.0328;
+                        if (months <= 12)
+                            totalPeriod = Math.floor(months) + months === 1 ? controller.calcPeriodo(true, Ext.ux.LanguageManager.TranslationArray.MONTH) : controller.calcPeriodo(false, Ext.ux.LanguageManager.TranslationArray.MONTH);
+                        else{
+                                years = dayss * 0.0027;
+                                totalPeriod = Math.floor(years) + years === 1 ? controller.calcPeriodo(true, Ext.ux.LanguageManager.TranslationArray.YEAR) : controller.calcPeriodo(false, Ext.ux.LanguageManager.TranslationArray.YEAR);
+                            }
+                }
+
+                dateFromData = records[i].data.creation_date;
+                dateFormat = Ext.util.Format.date( dateFromData, 'd. F Y');
                 containerAux.update({	id: records[i].data.id,
                                         first_name: records[i].data.first_name,
                                         last_name: records[i].data.last_name ,
                                         plan_name: records[i].data.plan_name,
-                                        creation_date: records[i].data.creation_date,
-                                        duration: records[i].data.duration,
+                                        creation_date: dateFormat,
+                                        duration: records[i].data.duration === 1 ? '1 ' +
+                                                  Ext.ux.LanguageManager.TranslationArray.WEEKS.substr( 0, Ext.ux.LanguageManager.TranslationArray.WEEKS.length - 1 ) :
+                                                  records[i].data.duration + ' ' + Ext.ux.LanguageManager.TranslationArray.WEEKS,
                                         user_id: records[i].data.user_id,
-                                        remaining_days: records[i].data.remaining_days});
+                                        remaining_days: totalPeriod
+                                    });
                   controller.getDashBoardPanel().down('#plansContainer').down('#plans').down('#plansToExpire').insert ( i, containerAux );
             }
          });
@@ -413,7 +446,11 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
             birthdayStore,
             controller = this,
             containerAux,
-            dateFormat;
+            dateForma,
+            today = new Date(),
+            partNum = [],
+            partDec = [],
+            dayss, weeks, years, months, totalPeriod;
 
         Ext.define('Birthday', {
              extend: 'Ext.data.Model',
@@ -472,17 +509,36 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                     ]
                 });
 
-                dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( records[i].data.birthday, 'F d') :Ext.util.Format.date( records[i].data.birthday, 'd F');
+                dayss = records[i].data.expired_days;
+                if (dayss <= 7)
+                    totalPeriod = Math.floor(dayss)  + Ext.ux.LanguageManager.TranslationArray.DAY;
+                else{
+                    weeks = dayss * 0.1429;
+                    if (weeks <= 4)
+                        totalPeriod = Math.floor(weeks) + Ext.ux.LanguageManager.TranslationArray.WEEKS;
+                    else
+                        months = dayss * 0.0328;
+                        if (months <= 12)
+                            totalPeriod = Math.floor(months) + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH;
+                        else{
+                                years = dayss * 0.0027;
+                                totalPeriod = Math.floor(years) + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR;
+                            }
+                }
+
+                dateFromData = records[i].data.creation_date;
+                dateFormat = Ext.util.Format.date( dateFromData, 'd. F Y');
                 containerAux.update({	customer_remote_id : records[i].data.customer_remote_id,
                                         first_name: records[i].data.first_name,
                                         last_name: records[i].data.last_name ,
                                         plan_name: records[i].data.plan_name,
-                                        creation_date: records[i].data.creation_date,
-                                        duration: records[i].data.duration,
+                                        creation_date: dateFormat,
+                                        duration: records[i].data.duration === 1 ? '1 ' +
+                                                  Ext.ux.LanguageManager.TranslationArray.WEEKS.substr( 0, Ext.ux.LanguageManager.TranslationArray.WEEKS.length - 1 ) :
+                                                  records[i].data.duration + ' ' + Ext.ux.LanguageManager.TranslationArray.WEEKS,
                                         plan_id: records[i].data.plan_id,
-                                        expired_days: records[i].data.expired_days,
-                                        remaining_days: records[i].data.remaining_days});
-
+                                        expired_days: totalPeriod
+                                    });
                 controller.getDashBoardPanel().down('#plansContainer').down('#plans').down('#planExpired').insert ( i, containerAux );
             }
         });
@@ -530,6 +586,23 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
             controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').update({
                 notifications : records.length > 0 ? records.length : 0});
         });
+
+    },
+
+    calcPeriodo: function(singular, period) {
+        if (Ext.ux.LanguageManager.lang === 'EN')
+            return singular ? period : period + 's';
+
+        if (Ext.ux.LanguageManager.lang === 'DE')
+            return singular ? period : period + 'e';
+
+        if (Ext.ux.LanguageManager.lang === 'ES'){
+            if (singular)
+                return period;
+                else
+                    return period === 'Month' ? period + 'es' : period + 's';
+        }
+
 
     },
 
