@@ -70,6 +70,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                 {
                                     xtype: 'button',
                                     cls: 'lanista-command-button',
+                                    hidden: true,
                                     id: 'notificationsBotton',
                                     glyph: '113@Lanista Icons'
                                 },
@@ -199,7 +200,8 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
             record,
             compt,
             notifWindow,
-            viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport');
+            viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport'),
+            floatingItemsViewport = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport').floatingItems;
 
         el.on(
             'click', function(e,t) {
@@ -265,22 +267,25 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                                         id: record.data.id
                                                     },
                                                     failure : function(result, request){
-                                                        console.log( "There were problems in the confirmation" );
+                                                        console.log( "There was a problem during the request" );
                                                     },
                                                     success: function(response, opts) {
                                                         try {
-                                                            //Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);
-                                                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, 'Mensaje que debe cambiar....', Ext.emptyFn);
-
+                                                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_CONFIRMATION_1, Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_CONFIRMATION_1 , Ext.emptyFn);
                                                             var store = LanistaTrainer.app.getController ('DashBoardController').storeNotification;
                                                             store.load(function(records, operation, success) {
                                                                 LanistaTrainer.app.getController ('DashBoardController').getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').update({
-                                                                    notifications : records.length > 0 ? records.length : 0});
+                                                                    notifications : records.length > 0 ? records.length : ''});
+                                                                if (records.length === 0){
+                                                                    floatingItemsViewport.items[0].hide();
+                                                                    LanistaTrainer.app.getController ('DashBoardController').getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationsBotton').hide();
+                                                                    LanistaTrainer.app.getController ('DashBoardController').getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').el.addCls('notification-hidden');
+                                                                }
                                                             });
 
                                                         }
                                                         catch( err ) {
-                                                            Ext.Msg.alert('Problem', 'There were problems in the confirmation', Ext.emptyFn);
+                                                            Ext.Msg.alert('Problem', Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_CONFIRMATION_ERROR_2 , Ext.emptyFn);
                                                         }
                                                     }
                                                 });
@@ -323,18 +328,21 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                                     },
                                                     success: function(response, opts) {
                                                         try {
-                                                            //Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);
-                                                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, 'Mensaje que debe cambiar....', Ext.emptyFn);
+                                                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_DECLINE_1, Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_DECLINE_1 , Ext.emptyFn);
 
                                                             var store = LanistaTrainer.app.getController ('DashBoardController').storeNotification;
                                                             store.load(function(records, operation, success) {
                                                                 LanistaTrainer.app.getController ('DashBoardController').getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').update({
-                                                                    notifications : records.length > 0 ? records.length : 0});
+                                                                    notifications : records.length > 0 ? records.length : ''});
+                                                                if (records.length === 0)
+                                                                    floatingItemsViewport.items[0].hide();
+                                                                    LanistaTrainer.app.getController ('DashBoardController').getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationsBotton').hide();
+                                                                    LanistaTrainer.app.getController ('DashBoardController').getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').el.addCls('notification-hidden');
                                                             });
 
                                                         }
                                                         catch( err ) {
-                                                            Ext.Msg.alert('Problem', 'There were problems in the declination', Ext.emptyFn);
+                                                            Ext.Msg.alert('Problem', Ext.ux.LanguageManager.TranslationArray.MSG_INVITATION_DECLINE_ERROR_2 , Ext.emptyFn);
                                                         }
                                                     }
                                                 });

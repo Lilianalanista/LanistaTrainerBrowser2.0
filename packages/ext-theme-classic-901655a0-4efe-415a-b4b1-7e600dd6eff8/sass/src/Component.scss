@@ -2097,7 +2097,7 @@ $base-gradient: "none";
 .lanista-notification-footer{
   bottom: 0px;
   position: relative;
-  background-color: darkgrey;  
+  background-color: darkgrey;
   //background-color: #ebebeb;
   height: 35px;
   line-height: 35px;
@@ -2172,6 +2172,10 @@ $base-gradient: "none";
 
 .lanista-notification-window .x-item-selected .invitation-reject{
     background-color: crimson;
+}
+
+.notification-hidden{
+    background-color: transparent!important;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

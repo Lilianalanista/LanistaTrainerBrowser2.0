@@ -406,19 +406,26 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                 });
 
                 dayss = records[i].data.remaining_days;
-                if (dayss <= 7)
-                    totalPeriod = Math.floor(dayss)  + dayss === 1 ? controller.calcPeriodo(true, Ext.ux.LanguageManager.TranslationArray.DAY) : controller.calcPeriodo(false, Ext.ux.LanguageManager.TranslationArray.DAY);
+                if (dayss <= 7){
+                    dayss = Math.floor(dayss);
+                    totalPeriod = dayss + ' ' + (dayss === 1 ?  Ext.ux.LanguageManager.TranslationArray.DAY : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.DAY));
+                }
                 else{
                     weeks = dayss * 0.1429;
-                    if (weeks <= 4)
-                        totalPeriod = Math.floor(weeks) + weeks === 1 ? controller.calcPeriodo(true, Ext.ux.LanguageManager.TranslationArray.WEEK) : controller.calcPeriodo(false, Ext.ux.LanguageManager.TranslationArray.WEEK);
+                    if (weeks <= 4){
+                        weeks = Math.floor(weeks);
+                        totalPeriod = weeks + ' ' + (weeks === 1 ? Ext.ux.LanguageManager.TranslationArray.WEEK : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.WEEK));
+                    }
                     else
                         months = dayss * 0.0328;
-                        if (months <= 12)
-                            totalPeriod = Math.floor(months) + months === 1 ? controller.calcPeriodo(true, Ext.ux.LanguageManager.TranslationArray.MONTH) : controller.calcPeriodo(false, Ext.ux.LanguageManager.TranslationArray.MONTH);
+                        if (months <= 12){
+                            months = Math.floor(months);
+                            totalPeriod = months + ' ' + (months === 1 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH));
+                        }
                         else{
                                 years = dayss * 0.0027;
-                                totalPeriod = Math.floor(years) + years === 1 ? controller.calcPeriodo(true, Ext.ux.LanguageManager.TranslationArray.YEAR) : controller.calcPeriodo(false, Ext.ux.LanguageManager.TranslationArray.YEAR);
+                                years = Math.floor(years);
+                                totalPeriod = Math.floor(years) + ' ' + (Math.floor(years) === 1 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR));
                             }
                 }
 
@@ -510,19 +517,26 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                 });
 
                 dayss = records[i].data.expired_days;
-                if (dayss <= 7)
-                    totalPeriod = Math.floor(dayss)  + Ext.ux.LanguageManager.TranslationArray.DAY;
+                if (dayss <= 7){
+                    dayss = Math.floor(dayss);
+                    totalPeriod = dayss + ' ' + (dayss === 1 ?  Ext.ux.LanguageManager.TranslationArray.DAY : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.DAY));
+                }
                 else{
                     weeks = dayss * 0.1429;
-                    if (weeks <= 4)
-                        totalPeriod = Math.floor(weeks) + Ext.ux.LanguageManager.TranslationArray.WEEKS;
+                    if (weeks <= 4){
+                        weeks = Math.floor(weeks);
+                        totalPeriod = weeks + ' ' + (weeks === 1 ? Ext.ux.LanguageManager.TranslationArray.WEEK : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.WEEK));
+                    }
                     else
                         months = dayss * 0.0328;
-                        if (months <= 12)
-                            totalPeriod = Math.floor(months) + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH;
+                        if (months <= 12){
+                            months = Math.floor(months);
+                            totalPeriod = months + ' ' + (months === 1 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH));
+                        }
                         else{
                                 years = dayss * 0.0027;
-                                totalPeriod = Math.floor(years) + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR;
+                                years = Math.floor(years);
+                                totalPeriod = Math.floor(years) + ' ' + (Math.floor(years) === 1 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR));
                             }
                 }
 
@@ -583,25 +597,31 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
 
         controller.storeNotification = notificationsStore;
         controller.storeNotification.load(function(records, operation, success) {
-            controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').update({
-                notifications : records.length > 0 ? records.length : 0});
+
+            if (records.length === 0){
+                controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationsBotton').hide();
+                controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').el.addCls('notification-hidden');
+            }
+            else{
+                controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationsBotton').show();
+                controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').el.removeCls('notification-hidden');
+                controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationContainer').update({
+                    notifications : records.length > 0 ? records.length : 0});
+            }
         });
 
     },
 
-    calcPeriodo: function(singular, period) {
+    calcPeriodo: function(period) {
         if (Ext.ux.LanguageManager.lang === 'EN')
-            return singular ? period : period + 's';
+            return period + 's';
 
         if (Ext.ux.LanguageManager.lang === 'DE')
-            return singular ? period : period + 'e';
+            return period + 'e';
 
-        if (Ext.ux.LanguageManager.lang === 'ES'){
-            if (singular)
-                return period;
-                else
-                    return period === 'Month' ? period + 'es' : period + 's';
-        }
+        if (Ext.ux.LanguageManager.lang === 'ES')
+            return period === 'Mes' ? 'Meses' : period + 's';
+
 
 
     },

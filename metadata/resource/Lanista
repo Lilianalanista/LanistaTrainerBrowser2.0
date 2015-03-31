@@ -10,7 +10,7 @@
     },
     "designerId": "901655a0-4efe-415a-b4b1-7e600dd6eff8",
     "storage": {
-        "needsCompile": false,
+        "needsCompile": true,
         "simple": {
             "pkgVersion": 1,
             "pkgPath": "packages"
@@ -2517,7 +2517,7 @@
                     ".lanista-notification-footer{",
                     "  bottom: 0px;",
                     "  position: relative;",
-                    "  background-color: darkgrey;  ",
+                    "  background-color: darkgrey;",
                     "  //background-color: #ebebeb;",
                     "  height: 35px;",
                     "  line-height: 35px;",
@@ -2592,6 +2592,10 @@
                     "",
                     ".lanista-notification-window .x-item-selected .invitation-reject{",
                     "    background-color: crimson;",
+                    "}",
+                    "",
+                    ".notification-hidden{",
+                    "    background-color: transparent!important;",
                     "}"
                 ]
             },
