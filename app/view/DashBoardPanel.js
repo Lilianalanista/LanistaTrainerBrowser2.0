@@ -76,6 +76,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                 },
                                 {
                                     xtype: 'container',
+                                    cls: 'notification-hidden',
                                     id: 'notificationContainer',
                                     tpl: [
                                         '<div class="lanista-notification-dashboard">{notifications}</div>'

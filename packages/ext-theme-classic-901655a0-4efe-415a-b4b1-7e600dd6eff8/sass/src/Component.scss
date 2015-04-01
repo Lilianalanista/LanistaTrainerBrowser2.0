@@ -1409,6 +1409,8 @@ $base-gradient: "none";
     display: block!important;
     font-size: 13px;
     color: darkslategray;
+    text-align: left;
+    padding-left: 193px;
 }
 
 .lanista-copyrights-text span{
@@ -1844,7 +1846,8 @@ $base-gradient: "none";
     height: 141px!important;
     background: rgba(117,203,0,0.95);
     //background-image: linear-gradient(to bottom right, #e0be00,#417711) !important;
-    background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
+    //background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
+    background-image: linear-gradient(to bottom right, #00ade0,#5E6153) !important;
     top: 5px!important;
 }
 
@@ -1874,6 +1877,7 @@ $base-gradient: "none";
 
 #activeCustomers .lanista-dashboard-customer-background{
     //background-image: linear-gradient(to bottom right, #417711,#e0be00) !important;
+    background-image: linear-gradient(to right bottom, #114C77, #00E0B1) !important;
     background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
 }
 
@@ -1998,6 +2002,7 @@ $base-gradient: "none";
 
 .top-component div:first-child, .botton-component div:first-child{
   font-size: 15px;
+  color: #98BA10; 
   background-image: -webkit-linear-gradient(92deg, #e0be00, #417711);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -2014,14 +2019,17 @@ $base-gradient: "none";
 }
 
 .botton-component div:first-child {
+  color: #17ACC5;
   background-image: -webkit-linear-gradient(92deg, #60b0a3, #4786ba);
 }
 
 #titlesPlans .top-component div:first-child {
+  color: #C59E17;
   background-image: -webkit-linear-gradient(92deg, #417711, #dc4225);
 }
 
 #titlesPlans .botton-component div:first-child {
+  color: #6B17C5;
   background-image: -webkit-linear-gradient(92deg, #292484, #417711);
 }
 

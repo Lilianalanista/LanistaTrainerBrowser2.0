@@ -111,6 +111,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "cls": "notification-hidden",
                                 "id": "notificationContainer"
                             },
                             "designerId": "88739ab0-cd50-407c-87c9-de1721626ac2",

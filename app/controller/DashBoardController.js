@@ -237,6 +237,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
 
                 dateFromData = records[i].data.birthday;
                 dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( dateFromData, 'F d') :Ext.util.Format.date( dateFromData, 'd F');
+
                 containerAux.update({	id: records[i].data.id,
                                         first_name: records[i].data.first_name,
                                         last_name: records[i].data.last_name ,
@@ -304,24 +305,13 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                     ]
                 });
 
-                /*today = new Date();
-                auxDate = new Date(records[i].data.last_protocoll_date);
-                dif = ((today.getTime() - auxDate.getTime()) / 86400000) * 0.00274057;
-                partNum = dif.toString().split(".");
-
-                if (partNum[1] > 0){
-                    partNum[1] = (dif - partNum[0]) / 0.0833;
-                    partDec = partNum[1].toString().split(".");
-                }*/
-
                 dateFromData = records[i].data.last_protocoll_date;
+                dateFromData = dateFromData.substr(0,10);
                 dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( dateFromData, 'F d') : Ext.util.Format.date( dateFromData, 'd F');
                 containerAux.update({	id: records[i].data.id,
                                         first_name: records[i].data.first_name,
                                         last_name: records[i].data.last_name,
                                         last_protocoll_date: dateFormat,
-                                        //last_protocoll_date: partNum[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + (partNum[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR + ' ' + (partDec[0] > 0 ? partDec[0] + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '')) :
-                                        //                     partDec[0] > 0 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_FROM + ' ' + partDec[0] + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_MONTH : '',
                                         email: records[i].data.email});
 
                 controller.getDashBoardPanel().down('#customersContainer').down('#customers').down('#activeCustomers').insert ( i, containerAux );
@@ -430,6 +420,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                 }
 
                 dateFromData = records[i].data.creation_date;
+                dateFromData = dateFromData.substr(0,10);
                 dateFormat = Ext.util.Format.date( dateFromData, 'd. F Y');
                 containerAux.update({	id: records[i].data.id,
                                         first_name: records[i].data.first_name,
@@ -541,6 +532,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                 }
 
                 dateFromData = records[i].data.creation_date;
+                dateFromData = dateFromData.substr(0,10);
                 dateFormat = Ext.util.Format.date( dateFromData, 'd. F Y');
                 containerAux.update({	customer_remote_id : records[i].data.customer_remote_id,
                                         first_name: records[i].data.first_name,
