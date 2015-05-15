@@ -404,9 +404,9 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                     weeks = dayss * 0.1429;
                     if (weeks <= 4){
                         weeks = Math.floor(weeks);
-                        totalPeriod = weeks + ' ' + (weeks === 1 ? Ext.ux.LanguageManager.TranslationArray.WEEK : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.WEEK));
+                        totalPeriod = weeks + ' ' + (weeks === 1 ? Ext.ux.LanguageManager.TranslationArray.WEEKS : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.WEEKS));
                     }
-                    else
+                    else{
                         months = dayss * 0.0328;
                         if (months <= 12){
                             months = Math.floor(months);
@@ -417,6 +417,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                                 years = Math.floor(years);
                                 totalPeriod = Math.floor(years) + ' ' + (Math.floor(years) === 1 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR));
                             }
+                    }
                 }
 
                 dateFromData = records[i].data.creation_date;
@@ -431,7 +432,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                                                   Ext.ux.LanguageManager.TranslationArray.WEEKS.substr( 0, Ext.ux.LanguageManager.TranslationArray.WEEKS.length - 1 ) :
                                                   records[i].data.duration + ' ' + Ext.ux.LanguageManager.TranslationArray.WEEKS,
                                         user_id: records[i].data.user_id,
-                                        remaining_days: totalPeriod
+                                        remaining_days: Ext.ux.LanguageManager.TranslationArray.DASHBOARD_PLANS_IN_STRING + ' ' + totalPeriod
                                     });
                   controller.getDashBoardPanel().down('#plansContainer').down('#plans').down('#plansToExpire').insert ( i, containerAux );
             }
@@ -518,7 +519,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                         weeks = Math.floor(weeks);
                         totalPeriod = weeks + ' ' + (weeks === 1 ? Ext.ux.LanguageManager.TranslationArray.WEEK : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.WEEK));
                     }
-                    else
+                    else{
                         months = dayss * 0.0328;
                         if (months <= 12){
                             months = Math.floor(months);
@@ -529,6 +530,7 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                                 years = Math.floor(years);
                                 totalPeriod = Math.floor(years) + ' ' + (Math.floor(years) === 1 ? Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR : controller.calcPeriodo(Ext.ux.LanguageManager.TranslationArray.DASHBOARD_ACTIVE_CUSTOMERS_YEAR));
                             }
+                    }
                 }
 
                 dateFromData = records[i].data.creation_date;
@@ -543,7 +545,9 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
                                                   Ext.ux.LanguageManager.TranslationArray.WEEKS.substr( 0, Ext.ux.LanguageManager.TranslationArray.WEEKS.length - 1 ) :
                                                   records[i].data.duration + ' ' + Ext.ux.LanguageManager.TranslationArray.WEEKS,
                                         plan_id: records[i].data.plan_id,
-                                        expired_days: totalPeriod
+                                        expired_days: Ext.ux.LanguageManager.lang === 'EN' ?
+                                                      totalPeriod + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_PLANS_FROM_STRING :
+                                                      Ext.ux.LanguageManager.TranslationArray.DASHBOARD_PLANS_FROM_STRING  + ' ' + totalPeriod
                                     });
                 controller.getDashBoardPanel().down('#plansContainer').down('#plans').down('#planExpired').insert ( i, containerAux );
             }

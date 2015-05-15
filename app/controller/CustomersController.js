@@ -110,6 +110,33 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             viewportXCapacity	= Math.round(mainStage.getEl().getWidth(true)/207),
             viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/190) * viewportXCapacity;
 
+
+
+        /*
+        var userId = localStorage.getItem("user_id");
+        Ext.Ajax.request({
+            url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getusers',
+            method: 'get',
+            headers: {
+                user_id: userId
+            },
+            failure : function(result, request){
+                console.log( "There were problems in looking for user exercises" );
+            },
+            success: function(response, opts) {
+                var data = Ext.decode(response.responseText);
+
+
+                console.log('CLIENTES......');
+                console.log(data);
+
+
+            }
+        });
+        */
+
+
+
         storeCustomers.pageSize = viewportCapacity;
         storeCustomers.clearFilter();
         storeCustomers.loadPage(1, {

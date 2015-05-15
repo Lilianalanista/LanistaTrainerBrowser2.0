@@ -62,41 +62,113 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
     },
 
-    onShowMeasuresPanel: function(callback) {
+    onTabpanelTabChange: function(tabPanel, newCard, oldCard, eOpts) {
         var controller = this,
-            measuresPanel	= controller.getMeasuresPanel(),
-            mainStage	= controller.getMainStage();
-            //measuresStore = Ext.getStore('MeasuresStore');
+            store = Ext.getStore('MeasuresStore');
 
-        //measuresStore.load();
-
-        mainStage.add( measuresPanel );
-        measuresPanel.on('hide', function(component) {
-            component.destroy();
-        }, controller);
-
-        // **** 1 create the commands
-        LanistaTrainer.app.setStandardButtons('closeMeasuresPanelButton');
-        this.showCommands();
-
-        // *** 2 Show the panel
-        measuresPanel.show();
-
-        LanistaTrainer.app.fireEvent('showMeasuresHeaderUpdate');
-        LanistaTrainer.app.fireEvent('showStage');
-
-        // *** 4 Callback
-        if (callback instanceof Function) callback();
-
-        // *** 5 Load data
-        controller.loadData();
-
-
+        if ( newCard.id == 'measuresTab' ) {
+            store.removeFilter('measuresFilter');
+            store.removeFilter('caliperFilter');
+            filterFunction = new Ext.util.Filter({
+                id:'measuresFilter',
+                filterFn: function(item){
+                    return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
+                }
+            });
+            store.filters.add (filterFunction);
+            store.loadPage(1);
+        }else if ( newCard.id == 'caliperTab' ) {
+            store.removeFilter('measuresFilter');
+            store.removeFilter('caliperFilter');
+            filterFunction = new Ext.util.Filter({
+                id:'caliperFilter',
+                filterFn: function(item){
+                    return (item.data.trizeps   !== 0 ||
+                            item.data.scapula   !== 0 ||
+                            item.data.auxiliar  !== 0 ||
+                            item.data.chest     !== 0 ||
+                            item.data.sprailium !== 0 ||
+                            item.data.abs       !== 0 ||
+                            item.data.quads     !== 0 );
+                }
+            });
+            store.filters.add (filterFunction);
+            store.loadPage(1);
+        }
 
 
     },
 
-    onCloseMeasuresPanel1: function(callback) {
+    onchartTableButtonClick: function(button, e, eOpts) {
+        var controller = this,
+            measuresPanel = controller.getMeasuresPanel();
+
+        if (!controller.currentPanel || controller.currentPanel === 'table'){
+            measuresPanel.down('chart').show();
+            measuresPanel.down('gridpanel').hide();
+        }
+        else{
+            measuresPanel.down('chart').hide();
+            measuresPanel.down('gridpanel').show();
+        }
+        controller.currentPanel = (!controller.currentPanel || controller.currentPanel === 'table') ? 'chart' : 'table';
+    },
+
+    onShowMeasuresPanel: function(callback) {
+        var controller = this,
+            measuresPanel,
+            mainStage	= controller.getMainStage(),
+            measuresPanel = controller.getMeasuresPanel(),
+            measuresStore = Ext.getStore('MeasuresStore');
+
+        //measuresPanel = (!controller.currentPanel || controller.currentPanel === 'table') ? controller.getMeasuresPanel() : controller.getMeasuresTablePanel();
+
+        if (!controller.currentPanel || controller.currentPanel === 'table'){
+            measuresPanel.down('chart').show();
+            measuresPanel.down('gridpanel').hide();
+        }
+        else{
+            measuresPanel.down('chart').hide();
+            measuresPanel.down('gridpanel').show();
+        }
+
+        controller.currentPanel = (!controller.currentPanel || controller.currentPanel === 'table') ? 'chart' : 'table';
+
+        measuresStore.removeFilter('caliperFilter');
+        filterFunction = new Ext.util.Filter({
+            id:'measuresFilter',
+            filterFn: function(item){
+                return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
+            }
+        });
+        measuresStore.filters.add (filterFunction);
+
+        measuresStore.load(function(records, operation, success) {
+            mainStage.add( measuresPanel );
+            measuresPanel.on('hide', function(component) {
+                component.destroy();
+            }, controller);
+
+            // **** 1 create the commands
+            LanistaTrainer.app.setStandardButtons('closeMeasuresPanelButton');
+            controller.showCommands();
+
+            // *** 2 Show the panel
+            measuresPanel.show();
+
+            LanistaTrainer.app.fireEvent('showMeasuresHeaderUpdate');
+            LanistaTrainer.app.fireEvent('showStage');
+
+            // *** 4 Callback
+            if (callback instanceof Function) callback();
+
+            // *** 5 Load data
+            controller.loadData();
+        });
+
+    },
+
+    onCloseMeasuresPanel: function(callback) {
         var controller = this;
         LanistaTrainer.app.fireEvent('hideStage', function () {
             controller.getRightCommandPanel().items.each(function (item) {
@@ -128,7 +200,13 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             item.hide();
         });
 
-
+        this.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
+                itemId: 'chartTableButton',
+                glyph: '79@Lanista Icons' //O
+            })
+        );
     },
 
     loadData: function() {
@@ -142,6 +220,12 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             },
             "viewport #closeMeasuresPanelButton": {
                 click: this.onCloseMeasuresPanelButtonClick
+            },
+            "measuresPanel #measureTabs": {
+                tabchange: this.onTabpanelTabChange
+            },
+            "viewport  #chartTableButton": {
+                click: this.onchartTableButtonClick
             }
         });
 
@@ -151,7 +235,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 scope: this
             },
             closeMeasuresPanel: {
-                fn: this.onCloseMeasuresPanel1,
+                fn: this.onCloseMeasuresPanel,
                 scope: this
             },
             showMeasuresHeaderUpdate: {

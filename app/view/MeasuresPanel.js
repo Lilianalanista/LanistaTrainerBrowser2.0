@@ -21,9 +21,12 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         'Ext.tab.Panel',
         'Ext.tab.Tab',
         'Ext.chart.Chart',
-        'Ext.chart.axis.Category',
-        'Ext.chart.axis.Numeric',
-        'Ext.chart.series.Line'
+        'Ext.chart.series.Line',
+        'Ext.chart.axis.Time',
+        'Ext.grid.Panel',
+        'Ext.grid.View',
+        'Ext.grid.column.Date',
+        'Ext.chart.axis.Category'
     ],
 
     cls: 'lanista-measures-panel',
@@ -38,6 +41,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
             items: [
                 {
                     xtype: 'tabpanel',
+                    id: 'measureTabs',
                     activeTab: 0,
                     items: [
                         {
@@ -47,35 +51,142 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                             items: [
                                 {
                                     xtype: 'chart',
-                                    height: 250,
-                                    width: 400,
+                                    height: 550,
+                                    id: 'measuresChat',
+                                    width: 1200,
                                     animate: true,
                                     insetPadding: 20,
                                     store: 'MeasuresStore',
+                                    series: [
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'percentage',
+                                            smooth: 3
+                                        },
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'futrex',
+                                            smooth: 3
+                                        },
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'weight',
+                                            smooth: 3
+                                        },
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'height',
+                                            smooth: 3
+                                        }
+                                    ],
                                     axes: [
                                         {
-                                            type: 'Category',
+                                            type: 'Time',
                                             fields: [
-                                                'x'
+                                                'record_date'
                                             ],
-                                            title: 'Category Axis',
-                                            position: 'bottom'
+                                            adjustEnd: false,
+                                            position: 'bottom',
+                                            dateFormat: 'd-m-Y',
+                                            step: [
+                                                Ext.Date.MONTH,
+                                                3
+                                            ]
                                         },
                                         {
                                             type: 'Numeric',
                                             fields: [
-                                                'y'
+                                                'weight',
+                                                'height',
+                                                'futrex',
+                                                'percentage'
                                             ],
                                             title: 'Numeric Axis',
+                                            adjustMaximumByMajorUnit: true,
+                                            minimum: 0,
                                             position: 'left'
                                         }
-                                    ],
-                                    series: [
+                                    ]
+                                },
+                                {
+                                    xtype: 'gridpanel',
+                                    height: 550,
+                                    hidden: true,
+                                    id: 'measuresTable',
+                                    width: 1200,
+                                    collapseFirst: false,
+                                    frameHeader: false,
+                                    header: false,
+                                    enableColumnHide: false,
+                                    enableColumnMove: false,
+                                    enableColumnResize: false,
+                                    sortableColumns: false,
+                                    store: 'MeasuresStore',
+                                    columns: [
                                         {
-                                            type: 'line',
-                                            xField: 'x',
-                                            yField: 'y',
-                                            smooth: 3
+                                            xtype: 'datecolumn',
+                                            align: 'center',
+                                            dataIndex: 'record_date',
+                                            flex: 1,
+                                            format: 'd-m-y'
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            align: 'center',
+                                            dataIndex: 'height',
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            align: 'center',
+                                            dataIndex: 'weight',
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender2,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'futrex',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender1,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            align: 'center',
+                                            dataIndex: 'percentage',
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender3,
+                                                    scope: me
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -88,35 +199,234 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                             items: [
                                 {
                                     xtype: 'chart',
-                                    height: 250,
-                                    width: 400,
+                                    height: 550,
+                                    width: 1200,
                                     animate: true,
                                     insetPadding: 20,
                                     store: 'MeasuresStore',
+                                    series: [
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'trizeps',
+                                            smooth: 3
+                                        },
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'scapula',
+                                            smooth: 3
+                                        },
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'auxiliar',
+                                            smooth: 3
+                                        },
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'chest',
+                                            smooth: 3
+                                        },
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'sprailium',
+                                            smooth: 3
+                                        },
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'abs',
+                                            smooth: 3
+                                        },
+                                        {
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'quads',
+                                            smooth: 3
+                                        }
+                                    ],
                                     axes: [
                                         {
-                                            type: 'Category',
+                                            type: 'Time',
                                             fields: [
-                                                'x'
+                                                'record_date'
                                             ],
-                                            title: 'Category Axis',
-                                            position: 'bottom'
+                                            adjustEnd: false,
+                                            position: 'bottom',
+                                            dateFormat: 'd-m-Y',
+                                            step: [
+                                                Ext.Date.MONTH,
+                                                3
+                                            ]
                                         },
                                         {
                                             type: 'Numeric',
                                             fields: [
-                                                'y'
+                                                'trizeps',
+                                                'scapula',
+                                                'auxiliar',
+                                                'chest',
+                                                'sprailium',
+                                                'abs',
+                                                'quads'
                                             ],
                                             title: 'Numeric Axis',
+                                            adjustMaximumByMajorUnit: true,
+                                            minimum: 0,
                                             position: 'left'
                                         }
-                                    ],
-                                    series: [
+                                    ]
+                                },
+                                {
+                                    xtype: 'gridpanel',
+                                    height: 550,
+                                    id: 'measuresTable1',
+                                    width: 1200,
+                                    collapseFirst: false,
+                                    frameHeader: false,
+                                    header: false,
+                                    enableColumnHide: false,
+                                    enableColumnMove: false,
+                                    enableColumnResize: false,
+                                    sortableColumns: false,
+                                    store: 'MeasuresStore',
+                                    columns: [
                                         {
-                                            type: 'line',
-                                            xField: 'x',
-                                            yField: 'y',
-                                            smooth: 3
+                                            xtype: 'datecolumn',
+                                            align: 'center',
+                                            dataIndex: 'record_date',
+                                            flex: 1,
+                                            format: 'd-m-y'
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            align: 'center',
+                                            dataIndex: 'trizeps',
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender4,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            align: 'center',
+                                            dataIndex: 'scapula',
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender21,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'auxiliar',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender11,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'chest',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender1114,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'sprailium',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender1113,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'abs',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender1112,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'quads',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender111,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'sum',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender1111,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            align: 'center',
+                                            dataIndex: 'percentage',
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender31,
+                                                    scope: me
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -170,10 +480,72 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                         }
                     ]
                 }
-            ]
+            ],
+            listeners: {
+                hide: {
+                    fn: me.onMeasuresPanelHide,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
+    },
+
+    onGridcolumnAfterRender: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE);
+    },
+
+    onGridcolumnAfterRender2: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);
+    },
+
+    onGridcolumnAfterRender1: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_FAT);
+    },
+
+    onGridcolumnAfterRender3: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);
+    },
+
+    onGridcolumnAfterRender4: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.TRICEPS);
+    },
+
+    onGridcolumnAfterRender21: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.SCAPULA);
+    },
+
+    onGridcolumnAfterRender11: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ARMPIT);
+    },
+
+    onGridcolumnAfterRender1114: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);
+    },
+
+    onGridcolumnAfterRender1113: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);
+    },
+
+    onGridcolumnAfterRender1112: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_AB);
+    },
+
+    onGridcolumnAfterRender111: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.QUADS);
+    },
+
+    onGridcolumnAfterRender1111: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.SUM);
+    },
+
+    onGridcolumnAfterRender31: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);
+    },
+
+    onMeasuresPanelHide: function(component, eOpts) {
+        component.destroy();
     }
 
 });

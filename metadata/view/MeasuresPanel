@@ -23,7 +23,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "activeTab": 0
+                "activeTab": 0,
+                "id": "measureTabs"
             },
             "designerId": "db4155d3-f8db-48d1-b48f-69568cfdead0",
             "cn": [
@@ -36,7 +37,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "measuresTab",
-                        "title": null
+                        "title": "My Tab"
                     },
                     "designerId": "096b2705-c025-4405-b798-b9ddedb1540b",
                     "cn": [
@@ -60,10 +61,11 @@
                                 "animate": [
                                     "true"
                                 ],
-                                "height": 250,
+                                "height": 550,
+                                "id": "measuresChat",
                                 "insetPadding": 20,
                                 "store": "MeasuresStore",
-                                "width": 400
+                                "width": 1200
                             },
                             "designerId": "8effbda2-ff67-4279-9f1c-c8f5f013787e",
                             "isBuiltIn": true,
@@ -71,34 +73,24 @@
                             "autoName": "LineChart",
                             "cn": [
                                 {
-                                    "type": "Ext.chart.axis.Category",
+                                    "type": "Ext.chart.series.Line",
                                     "reference": {
-                                        "name": "axes",
+                                        "name": "series",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "fields": [
-                                            "x"
+                                        "axis": [
+                                            "left"
                                         ],
-                                        "title": "Category Axis"
+                                        "designer|createAlias": null,
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "percentage"
+                                        ]
                                     },
-                                    "designerId": "6f0fe68c-a882-4a7a-aee9-dea1a9424a23"
-                                },
-                                {
-                                    "type": "Ext.chart.axis.Numeric",
-                                    "reference": {
-                                        "name": "axes",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "fields": [
-                                            "y"
-                                        ],
-                                        "title": "Numeric Axis"
-                                    },
-                                    "designerId": "0baeffcf-5c9d-4f32-ae02-5b5d2a270cbd"
+                                    "designerId": "e441753b-b7e1-4942-9576-52da84c1c8dd"
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -108,13 +100,287 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "designer|createAlias": null,
                                         "smooth": 3,
-                                        "xField": "x",
+                                        "xField": "record_date",
                                         "yField": [
-                                            "y"
+                                            "futrex"
                                         ]
                                     },
-                                    "designerId": "e441753b-b7e1-4942-9576-52da84c1c8dd"
+                                    "designerId": "8db5440d-97b4-4cab-9aa4-fa0044882e46"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "designer|createAlias": null,
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "weight"
+                                        ]
+                                    },
+                                    "designerId": "2c42bbc3-f162-4b2e-8ddb-a9200e4ecece"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "height"
+                                        ]
+                                    },
+                                    "designerId": "4601a20d-4855-417f-9b81-945d294b374e"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Time",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "adjustEnd": false,
+                                        "dateFormat": "d-m-Y",
+                                        "fields": [
+                                            "record_date"
+                                        ],
+                                        "position": "bottom",
+                                        "step": [
+                                            " [Ext.Date.MONTH, 3]"
+                                        ],
+                                        "title": null
+                                    },
+                                    "designerId": "e63f75a1-5340-4d33-a000-2c6789c01225"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Numeric",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "adjustMaximumByMajorUnit": true,
+                                        "fields": [
+                                            "weight",
+                                            "height",
+                                            "futrex",
+                                            "percentage"
+                                        ],
+                                        "maximum": null,
+                                        "minimum": 0,
+                                        "title": "Numeric Axis"
+                                    },
+                                    "designerId": "6f5855a2-f526-4f72-94dd-acf681e457f4"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.grid.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "collapseFirst": false,
+                                "enableColumnHide": false,
+                                "enableColumnMove": false,
+                                "enableColumnResize": false,
+                                "frameHeader": false,
+                                "header": false,
+                                "height": 550,
+                                "hidden": true,
+                                "id": "measuresTable",
+                                "sortableColumns": false,
+                                "store": "MeasuresStore",
+                                "title": null,
+                                "width": 1200
+                            },
+                            "designerId": "dbf4ef7f-7e3c-49cc-afad-ed64636d97e4",
+                            "cn": [
+                                {
+                                    "type": "Ext.grid.View",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "designerId": "a1ed4612-642d-49a6-95df-63fde9e74fef"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Date",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "record_date",
+                                        "flex": 1,
+                                        "format": "d-m-y",
+                                        "text": null
+                                    },
+                                    "designerId": "425b1824-7463-4cb1-ae08-7e7f06492ad7"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "height",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "designerId": "860a52ef-94e0-4ac2-88d3-b343f1840eb2",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "17ad85da-6f61-4523-9147-7ae242380d03"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "weight",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "designerId": "c56bea3b-d0d3-4527-a1d4-1e724d56a625",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender2",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "d21e20eb-91e0-4da0-8756-88b79f20df59"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "futrex",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "669f6110-d2d7-4935-b3f8-879888ac1262",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender1",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_FAT); "
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "8e40a846-de79-48ed-a60e-1fc0e82f8692"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "percentage",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "designerId": "3aec8e60-414a-4f78-9b3e-fd8540e138d6",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender3",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "caef65b8-1288-4f1c-af64-20dc2ea35013"
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -129,7 +395,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "caliperTab",
-                        "title": null
+                        "title": "My Tab"
                     },
                     "designerId": "d4e0abfd-c152-4712-bcf9-c9e30a5057bb",
                     "cn": [
@@ -153,45 +419,35 @@
                                 "animate": [
                                     "true"
                                 ],
-                                "height": 250,
+                                "height": 550,
                                 "insetPadding": 20,
                                 "store": "MeasuresStore",
-                                "width": 400
+                                "width": 1200
                             },
-                            "designerId": "744f8f5f-9c1d-493d-bed2-a79d0bf2a41a",
+                            "designerId": "d4cd73c5-2ca6-4efb-bb7a-e5149eb16810",
                             "isBuiltIn": true,
                             "iconCls": "icon-line-chart",
                             "autoName": "LineChart",
                             "cn": [
                                 {
-                                    "type": "Ext.chart.axis.Category",
+                                    "type": "Ext.chart.series.Line",
                                     "reference": {
-                                        "name": "axes",
+                                        "name": "series",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "fields": [
-                                            "x"
+                                        "axis": [
+                                            "left"
                                         ],
-                                        "title": "Category Axis"
+                                        "designer|createAlias": null,
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "trizeps"
+                                        ]
                                     },
-                                    "designerId": "90f383b8-0bb4-4fa3-8ab0-6ae3cd7a1ec1"
-                                },
-                                {
-                                    "type": "Ext.chart.axis.Numeric",
-                                    "reference": {
-                                        "name": "axes",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "fields": [
-                                            "y"
-                                        ],
-                                        "title": "Numeric Axis"
-                                    },
-                                    "designerId": "112a0173-99d6-4456-ad8c-22dd3afc66ac"
+                                    "designerId": "1ec5febe-b80a-4314-9fae-a6c49a82e537"
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -201,13 +457,526 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "designer|createAlias": null,
                                         "smooth": 3,
-                                        "xField": "x",
+                                        "xField": "record_date",
                                         "yField": [
-                                            "y"
+                                            "scapula"
                                         ]
                                     },
-                                    "designerId": "a775bc13-8a35-43bb-8f79-5e8b07c4c6ff"
+                                    "designerId": "112962ac-75e3-4e8e-96b8-9e47753a0773"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "designer|createAlias": null,
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "auxiliar"
+                                        ]
+                                    },
+                                    "designerId": "11ba5bf6-401f-4b11-9637-cc04d53ca72f"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "chest"
+                                        ]
+                                    },
+                                    "designerId": "8c56d037-8a0f-45b6-9e43-ea39893caafc"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "sprailium"
+                                        ]
+                                    },
+                                    "designerId": "cd2d7065-1192-49a5-a7d6-fcecca8d0dee"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "abs"
+                                        ]
+                                    },
+                                    "designerId": "3b41f0a3-56cf-43df-8955-14f8a17aa797"
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "quads"
+                                        ]
+                                    },
+                                    "designerId": "2619de57-c11e-4a81-a828-ed968d461c71"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Time",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "adjustEnd": false,
+                                        "dateFormat": "d-m-Y",
+                                        "fields": [
+                                            "record_date"
+                                        ],
+                                        "position": "bottom",
+                                        "step": [
+                                            " [Ext.Date.MONTH, 3]"
+                                        ],
+                                        "title": null
+                                    },
+                                    "designerId": "0772b723-bd25-4c81-aff5-fa3f0612abba"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Numeric",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "adjustMaximumByMajorUnit": true,
+                                        "fields": [
+                                            "trizeps",
+                                            "scapula",
+                                            "auxiliar",
+                                            "chest",
+                                            "sprailium",
+                                            "abs",
+                                            "quads"
+                                        ],
+                                        "maximum": null,
+                                        "minimum": 0,
+                                        "title": "Numeric Axis"
+                                    },
+                                    "designerId": "088edf56-7baa-4989-8b87-dc86a0d73cbc"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.grid.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "collapseFirst": false,
+                                "enableColumnHide": false,
+                                "enableColumnMove": false,
+                                "enableColumnResize": false,
+                                "frameHeader": false,
+                                "header": false,
+                                "height": 550,
+                                "id": "measuresTable1",
+                                "sortableColumns": false,
+                                "store": "MeasuresStore",
+                                "title": null,
+                                "width": 1200
+                            },
+                            "designerId": "65d7305a-478a-4831-bdb3-a7e64e6d3854",
+                            "cn": [
+                                {
+                                    "type": "Ext.grid.View",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "designerId": "b58b4ca3-ed16-4a6f-9962-887d0c46bdcb"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Date",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "record_date",
+                                        "flex": 1,
+                                        "format": "d-m-y",
+                                        "text": null
+                                    },
+                                    "designerId": "f7b940b7-3463-458b-a353-019267230013"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "trizeps",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "designerId": "f456547b-2439-4bb9-94b7-daea8fa5d06a",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender4",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.TRICEPS);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "bae8a030-8175-49ae-9ed4-7f5477de4a12"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "scapula",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "designerId": "0d0f4877-3060-47e7-a874-c5b696a7796b",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender21",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.SCAPULA);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "6805e961-e5b0-40d9-b96d-b7f863383dd4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "auxiliar",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "6a1df8fa-5bb2-4267-aa73-f47fe3ac6231",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender11",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ARMPIT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "fe2bec6b-0530-4271-afdb-e32d4d60f0fa"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "chest",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "9ff9d147-3f08-418c-b18a-143c1f1c0cb5",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender1114",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "57e8a12b-41e8-45a2-b32f-731fcf37f8f4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "sprailium",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "4a00e381-1824-4860-82b9-4367a2c69ee6",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender1113",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "621e7565-612d-4e57-8931-3b4c40170462"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "abs",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "db3494d7-9f0d-45a1-8775-7ffc8bbae9a3",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender1112",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_AB);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "14a58d39-839a-4306-bb06-cd8149319ebb"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "quads",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "cf85ba33-2a64-464f-beb5-ac11a2059309",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender111",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.QUADS);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "cc5512df-7b87-4f92-8ed8-20f80a651e81"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "sum",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "0a8ba599-882d-48ef-bf2c-0d2c4e3b928c",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender1111",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.SUM);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "15bdd504-67f8-460c-9154-6ee60757c98e"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "percentage",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "designerId": "a9908a9d-b188-4218-a0dd-9807925cb2f2",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender31",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "f4161940-1e5d-4f3f-88ef-1350795d1e92"
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -222,7 +991,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "circumferencesTab",
-                        "title": null
+                        "title": "My Tab"
                     },
                     "designerId": "07151673-5012-4c2d-9ede-439a4def9174",
                     "cn": [
@@ -315,7 +1084,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "testsTab",
-                        "title": null
+                        "title": "My Tab"
                     },
                     "designerId": "6f15f263-1a89-45a3-9195-eac0b44170aa",
                     "cn": [
@@ -331,6 +1100,23 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onMeasuresPanelHide",
+                "implHandler": [
+                    "component.destroy();"
+                ],
+                "name": "hide",
+                "scope": "me"
+            },
+            "designerId": "3f9069a2-8bf3-4e8a-a118-f0a3d606c153"
         }
     ]
 }

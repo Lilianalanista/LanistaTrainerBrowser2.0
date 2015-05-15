@@ -552,10 +552,6 @@
                     "});",
                     "store.load();",
                     "",
-                    "",
-                    "",
-                    "console.log('CUSTOMERSSSSS');",
-                    "console.log(store);",
                     ""
                 ]
             },

@@ -44,7 +44,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "triceps",
+                "name": "trizeps",
                 "type": "float"
             },
             "designerId": "c82d6426-1c8c-4d1c-99d1-bd926f0cdf74"
@@ -70,7 +70,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "aux",
+                "name": "auxiliar",
                 "type": "float"
             },
             "designerId": "54492a50-6fe1-4da0-8c99-2053cda3885d"
@@ -152,6 +152,163 @@
                 "type": "float"
             },
             "designerId": "5cebac21-eecd-4823-af42-d8c3b7d7f865"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "user_id",
+                "type": "int"
+            },
+            "designerId": "3d2745c6-8bed-455c-8cdc-31862839eb48"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "customer_id",
+                "type": "int"
+            },
+            "designerId": "627cafd7-3aab-4ad7-a015-447815fc2df0"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "note",
+                "type": "string"
+            },
+            "designerId": "47b8bd8e-3f23-4956-ae90-a63ea6386032"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "record_date",
+                "type": "date"
+            },
+            "designerId": "62b2d3cf-75d1-49d9-a3a3-d846d2560cdc"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "percentage",
+                "type": "int"
+            },
+            "designerId": "bb72f20c-da17-453e-bfcb-34caa716fea5",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "return  this.porcCalculate(rec);"
+                        ]
+                    },
+                    "designerId": "cffdb9e2-dd1d-4570-a521-5eb58cbb72b4"
+                },
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "rec"
+                        ],
+                        "fn": "porcCalculate",
+                        "implHandler": [
+                            "var birthday = LanistaTrainer.app.currentCustomer.data.birthday,",
+                            "    sum, computedFat,dia,mes, ano, fecha_hoy, ahora_ano, ahora_mes, ahora_dia, edad,",
+                            "    userGender =  LanistaTrainer.app.currentCustomer.data.gender;",
+                            "",
+                            "dia = birthday.getDay();",
+                            "mes = birthday.getMonth() - 1;",
+                            "ano = birthday.getFullYear();",
+                            "",
+                            "fecha_hoy = new Date();",
+                            "ahora_ano = fecha_hoy.getYear();",
+                            "ahora_mes = fecha_hoy.getMonth()+1;",
+                            "ahora_dia = fecha_hoy.getDate();",
+                            "",
+                            "edad = (ahora_ano + 1900) - ano;",
+                            "if ( ahora_mes < mes )",
+                            "{",
+                            "    edad--;",
+                            "}",
+                            "if ((mes == ahora_mes) && (ahora_dia < dia))",
+                            "{",
+                            "    edad--;",
+                            "}",
+                            "if (edad > 1900)",
+                            "{",
+                            "    edad -= 1900;",
+                            "}",
+                            "",
+                            "sum = 0;",
+                            "computedFat = 0;",
+                            "",
+                            "    sum = rec.data.trizeps + rec.data.scapula + rec.data.auxiliar + rec.data.chest + rec.data.sprailium + rec.data.abs + rec.data.quads;",
+                            "    if ( sum > 0 ) {",
+                            "        if( userGender === 0 ){",
+                            "            computedFat =  (Math.round (((4.96/(1.112-0.00043499*sum+0.00000055*sum*sum-0.00028826*edad))-4.5)*10000, 4) / 100);",
+                            "        } else {",
+                            "            computedFat = (Math.round (((4.96/(1.097-0.00046971*sum+0.00000056*sum*sum-0.00012828*edad))-4.51)*10000, 4) / 100);",
+                            "        }",
+                            "        rec.data.sum = sum;",
+                            "    }",
+                            "",
+                            "return computedFat;"
+                        ]
+                    },
+                    "designerId": "fa27c556-1a59-4ca3-9b40-ef1416ded1a1"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sum",
+                "type": "int"
+            },
+            "designerId": "d73a3d5d-fe43-4c78-ace1-ce38e38047f8"
         }
     ]
 }
