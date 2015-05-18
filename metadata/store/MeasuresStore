@@ -8,6 +8,7 @@
     "userConfig": {
         "designer|userClassName": "MeasuresStore",
         "model": "Measures",
+        "remoteFilter": true,
         "storeId": "MeasuresStore"
     },
     "designerId": "014328b8-ffc9-40db-acee-8d71443f68e5",
@@ -20,11 +21,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "headers": [
-                    "{ ",
-                    "    user_id: localStorage.getItem(\"user_id\")",
-                    "}"
-                ],
+                "headers": null,
                 "url": "/tpmanager/user/getcustomerweights"
             },
             "designerId": "51c4ce44-c71f-4553-98f0-88c50b55b889",

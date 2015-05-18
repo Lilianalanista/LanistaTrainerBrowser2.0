@@ -28,13 +28,11 @@ Ext.define('LanistaTrainer.store.MeasuresStore', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             model: 'LanistaTrainer.model.Measures',
+            remoteFilter: true,
             storeId: 'MeasuresStore',
             proxy: {
                 type: 'ajax',
                 url: '/tpmanager/user/getcustomerweights',
-                headers: {
-                    user_id: localStorage.getItem('user_id')
-                },
                 reader: {
                     type: 'json',
                     root: 'entries'

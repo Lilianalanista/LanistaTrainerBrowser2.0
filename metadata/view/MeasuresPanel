@@ -62,8 +62,9 @@
                                     "true"
                                 ],
                                 "height": 550,
-                                "id": "measuresChat",
+                                "id": "",
                                 "insetPadding": 20,
+                                "itemId": "measuresChat",
                                 "store": "MeasuresStore",
                                 "width": 1200
                             },
@@ -81,7 +82,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "axis": [
-                                            "left"
+                                            "right"
                                         ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
@@ -184,14 +185,32 @@
                                         "fields": [
                                             "weight",
                                             "height",
-                                            "futrex",
-                                            "percentage"
+                                            "futrex"
                                         ],
                                         "maximum": null,
                                         "minimum": 0,
                                         "title": "Numeric Axis"
                                     },
                                     "designerId": "6f5855a2-f526-4f72-94dd-acf681e457f4"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Numeric",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "adjustMaximumByMajorUnit": true,
+                                        "fields": [
+                                            "percentage"
+                                        ],
+                                        "maximum": null,
+                                        "minimum": 0,
+                                        "position": "right",
+                                        "title": "Numeric Axis"
+                                    },
+                                    "designerId": "c9d7d7d6-c3ca-4837-84a7-7a715d7a66ed"
                                 }
                             ]
                         },
@@ -211,7 +230,8 @@
                                 "header": false,
                                 "height": 550,
                                 "hidden": true,
-                                "id": "measuresTable",
+                                "id": null,
+                                "itemId": "measuresTable",
                                 "sortableColumns": false,
                                 "store": "MeasuresStore",
                                 "title": null,
@@ -420,7 +440,9 @@
                                     "true"
                                 ],
                                 "height": 550,
+                                "id": null,
                                 "insetPadding": 20,
+                                "itemId": "measuresChat",
                                 "store": "MeasuresStore",
                                 "width": 1200
                             },
@@ -627,7 +649,9 @@
                                 "frameHeader": false,
                                 "header": false,
                                 "height": 550,
-                                "id": "measuresTable1",
+                                "hidden": true,
+                                "id": null,
+                                "itemId": "measuresTable",
                                 "sortableColumns": false,
                                 "store": "MeasuresStore",
                                 "title": null,

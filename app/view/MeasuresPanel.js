@@ -52,7 +52,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 {
                                     xtype: 'chart',
                                     height: 550,
-                                    id: 'measuresChat',
+                                    id: '',
+                                    itemId: 'measuresChat',
                                     width: 1200,
                                     animate: true,
                                     insetPadding: 20,
@@ -60,7 +61,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                     series: [
                                         {
                                             type: 'line',
-                                            axis: 'left',
+                                            axis: 'right',
                                             xField: 'record_date',
                                             yField: 'percentage',
                                             smooth: 3
@@ -106,13 +107,22 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             fields: [
                                                 'weight',
                                                 'height',
-                                                'futrex',
-                                                'percentage'
+                                                'futrex'
                                             ],
                                             title: 'Numeric Axis',
                                             adjustMaximumByMajorUnit: true,
                                             minimum: 0,
                                             position: 'left'
+                                        },
+                                        {
+                                            type: 'Numeric',
+                                            fields: [
+                                                'percentage'
+                                            ],
+                                            position: 'right',
+                                            title: 'Numeric Axis',
+                                            adjustMaximumByMajorUnit: true,
+                                            minimum: 0
                                         }
                                     ]
                                 },
@@ -120,7 +130,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                     xtype: 'gridpanel',
                                     height: 550,
                                     hidden: true,
-                                    id: 'measuresTable',
+                                    itemId: 'measuresTable',
                                     width: 1200,
                                     collapseFirst: false,
                                     frameHeader: false,
@@ -200,6 +210,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 {
                                     xtype: 'chart',
                                     height: 550,
+                                    itemId: 'measuresChat',
                                     width: 1200,
                                     animate: true,
                                     insetPadding: 20,
@@ -290,7 +301,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 {
                                     xtype: 'gridpanel',
                                     height: 550,
-                                    id: 'measuresTable1',
+                                    hidden: true,
+                                    itemId: 'measuresTable',
                                     width: 1200,
                                     collapseFirst: false,
                                     frameHeader: false,
