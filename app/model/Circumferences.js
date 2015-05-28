@@ -46,6 +46,13 @@ Ext.define('LanistaTrainer.model.Circumferences', {
             type: 'float'
         },
         {
+            convert: function(v, rec) {
+                return rec.data.chest;
+            },
+            name: 'chest_circ',
+            type: 'float'
+        },
+        {
             name: 'ilica_ant',
             type: 'float'
         },
@@ -64,6 +71,32 @@ Ext.define('LanistaTrainer.model.Circumferences', {
         {
             name: 'note',
             type: 'float'
+        },
+        {
+            convert: function(v, rec) {
+                return rec.data.note;
+            },
+            name: 'note_circ',
+            type: 'float'
+        },
+        {
+            name: 'user_id',
+            type: 'int'
+        },
+        {
+            name: 'customer_id',
+            type: 'int'
+        },
+        {
+            name: 'record_date',
+            type: 'date'
+        },
+        {
+            convert: function(v, rec) {
+                return rec.data.record_date;
+            },
+            name: 'record_date_local_circ',
+            type: 'string'
         }
     ]
 });

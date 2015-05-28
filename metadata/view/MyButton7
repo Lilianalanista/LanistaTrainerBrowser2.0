@@ -1,0 +1,169 @@
+{
+    "type": "Ext.button.Button",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "cls": "lanista-command-button",
+        "designer|userAlias": "lanistaButton",
+        "designer|userClassName": "MyButton7",
+        "glyph": null,
+        "height": null,
+        "icon": null,
+        "iconAlign": null,
+        "iconCls": null,
+        "scale": null,
+        "style": null,
+        "text": "command"
+    },
+    "configAlternates": {
+        "style": "string"
+    },
+    "designerId": "344b529d-2d82-4128-951d-0047d5044e5c",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "menuButtonAlign",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonMouseOver",
+                "implHandler": [
+                    "",
+                    "if (button.menu)",
+                    "{",
+                    "    button.menu.show();",
+                    "    if (button.menuButtonAlign == 'left')",
+                    "        button.menu.alignTo(button, 'c-c',[150,0]);",
+                    "    else",
+                    "        if (button.menuButtonAlign == 'right')",
+                    "            button.menu.alignTo(button, 'c-c',[-150,0]);",
+                    "}",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "mouseover",
+                "scope": "me"
+            },
+            "designerId": "45e1fb35-182d-4462-908f-4db804a8b930"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonAfterRender",
+                "implHandler": [
+                    "",
+                    "if (component.menu)",
+                    "{",
+                    "    component.menu.addCls('menu-lanista-button');",
+                    "    component.menu.on('mouseleave', function() {",
+                    "        component.menu.locked = false;",
+                    "        component.menu.hide();",
+                    "    });",
+                    "",
+                    "    component.menu.on('mouseenter', function() {",
+                    "        component.menu.locked = true;",
+                    "    });",
+                    "}",
+                    ""
+                ],
+                "name": "afterrender",
+                "scope": "me"
+            },
+            "designerId": "45eabcc4-ab3c-476b-b843-13400be22dcd"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonMouseOut",
+                "implHandler": [
+                    "",
+                    "setTimeout(function()",
+                    "{",
+                    "    if (button.menu && !button.menu.locked)",
+                    "        button.menu.hide();",
+                    "}, 100);",
+                    ""
+                ],
+                "name": "mouseout",
+                "scope": "me"
+            },
+            "designerId": "690643af-5317-4d62-aa29-45a61e14d9c7"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonClick",
+                "implHandler": [
+                    "if (button.menu)",
+                    "{",
+                    "    button.menu.show();",
+                    "    if (button.menuButtonAlign == 'left')",
+                    "        button.menu.alignTo(button, 'c-c',[150,0]);",
+                    "    else",
+                    "        if (button.menuButtonAlign == 'right')",
+                    "            button.menu.alignTo(button, 'c-c',[-150,0]);",
+                    "}",
+                    "else",
+                    "{",
+                    "    setTimeout(function()",
+                    "    {",
+                    "        if (button.menu && !button.menu.locked)",
+                    "            button.menu.hide();",
+                    "    }, 100);",
+                    "",
+                    "}"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "ddde4452-2021-4bcf-8922-a1aaf21cb7ac"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onButtonHide",
+                "implHandler": [
+                    "component.destroy();"
+                ],
+                "name": "hide",
+                "scope": "me"
+            },
+            "designerId": "386392d6-50d1-4828-aa21-ff8253038387"
+        }
+    ]
+}

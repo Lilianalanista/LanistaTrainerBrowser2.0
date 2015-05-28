@@ -406,6 +406,8 @@ Ext.define('LanistaTrainer.view.MainViewport', {
             if (component.down('#videoWindow'))
                 component.down('#videoWindow').hide();
 
+            if (component.down('#chartWindow'))
+                component.down('#chartWindow').hide();
         },this,{delegate: '.x-mask'});
     }
 

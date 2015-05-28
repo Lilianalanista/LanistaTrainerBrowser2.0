@@ -82,16 +82,86 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "axis": [
-                                            "right"
+                                            "left"
                                         ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
-                                            "percentage"
+                                            "weight"
                                         ]
                                     },
-                                    "designerId": "e441753b-b7e1-4942-9576-52da84c1c8dd"
+                                    "designerId": "2c42bbc3-f162-4b2e-8ddb-a9200e4ecece",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries2",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "2146ecef-8bfc-48be-afd4-9027e6fc0017"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "height"
+                                        ]
+                                    },
+                                    "designerId": "4601a20d-4855-417f-9b81-945d294b374e",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries1",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;",
+                                                    ""
+                                                ]
+                                            },
+                                            "designerId": "69f65c8f-29bb-4f45-b1f9-3be8a3aa71f4"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -111,7 +181,33 @@
                                             "futrex"
                                         ]
                                     },
-                                    "designerId": "8db5440d-97b4-4cab-9aa4-fa0044882e46"
+                                    "designerId": "8db5440d-97b4-4cab-9aa4-fa0044882e46",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries21",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;",
+                                                    ""
+                                                ]
+                                            },
+                                            "designerId": "eccf430e-f0e5-4615-ab12-b1156504b1c1"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -122,35 +218,42 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "axis": [
-                                            "left"
+                                            "right"
                                         ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
-                                            "weight"
+                                            "percentage"
                                         ]
                                     },
-                                    "designerId": "2c42bbc3-f162-4b2e-8ddb-a9200e4ecece"
-                                },
-                                {
-                                    "type": "Ext.chart.series.Line",
-                                    "reference": {
-                                        "name": "series",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
-                                        "smooth": 3,
-                                        "xField": "record_date",
-                                        "yField": [
-                                            "height"
-                                        ]
-                                    },
-                                    "designerId": "4601a20d-4855-417f-9b81-945d294b374e"
+                                    "designerId": "e441753b-b7e1-4942-9576-52da84c1c8dd",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries3",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;",
+                                                    ""
+                                                ]
+                                            },
+                                            "designerId": "0f62aff2-82ea-4b23-b1a3-0eaaabdf87cb"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.axis.Time",
@@ -211,6 +314,18 @@
                                         "title": "Numeric Axis"
                                     },
                                     "designerId": "c9d7d7d6-c3ca-4837-84a7-7a715d7a66ed"
+                                },
+                                {
+                                    "type": "Ext.chart.Legend",
+                                    "reference": {
+                                        "name": "legend",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "position": "top"
+                                    },
+                                    "designerId": "4debf0f2-76b3-4979-a5f3-a1a3c97ea7ee"
                                 }
                             ]
                         },
@@ -401,6 +516,23 @@
                                             "designerId": "caef65b8-1288-4f1c-af64-20dc2ea35013"
                                         }
                                     ]
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onMeasuresTableItemClick",
+                                        "implHandler": [
+                                            "LanistaTrainer.app.getController('MeasuresController').showForm(record);"
+                                        ],
+                                        "name": "itemclick",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "81c7b9bf-685d-49ed-a948-b9e113ccec6f"
                                 }
                             ]
                         }
@@ -469,7 +601,32 @@
                                             "trizeps"
                                         ]
                                     },
-                                    "designerId": "1ec5febe-b80a-4314-9fae-a6c49a82e537"
+                                    "designerId": "1ec5febe-b80a-4314-9fae-a6c49a82e537",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries4",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "5bf74a90-a1c1-466e-a2c4-5d3f0fe5e800"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -489,7 +646,32 @@
                                             "scapula"
                                         ]
                                     },
-                                    "designerId": "112962ac-75e3-4e8e-96b8-9e47753a0773"
+                                    "designerId": "112962ac-75e3-4e8e-96b8-9e47753a0773",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries5",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "6a212cbf-7865-412b-867a-6ef090f25f02"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -509,7 +691,32 @@
                                             "auxiliar"
                                         ]
                                     },
-                                    "designerId": "11ba5bf6-401f-4b11-9637-cc04d53ca72f"
+                                    "designerId": "11ba5bf6-401f-4b11-9637-cc04d53ca72f",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries6",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "6748461a-3925-416e-a7f1-43e2463cd655"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -528,7 +735,32 @@
                                             "chest"
                                         ]
                                     },
-                                    "designerId": "8c56d037-8a0f-45b6-9e43-ea39893caafc"
+                                    "designerId": "8c56d037-8a0f-45b6-9e43-ea39893caafc",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries7",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "dfed153e-df20-4ec4-a207-91f4fced26c6"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -547,7 +779,32 @@
                                             "sprailium"
                                         ]
                                     },
-                                    "designerId": "cd2d7065-1192-49a5-a7d6-fcecca8d0dee"
+                                    "designerId": "cd2d7065-1192-49a5-a7d6-fcecca8d0dee",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries8",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "93c777c6-39b8-4e63-850b-f13017f8463e"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -566,7 +823,32 @@
                                             "abs"
                                         ]
                                     },
-                                    "designerId": "3b41f0a3-56cf-43df-8955-14f8a17aa797"
+                                    "designerId": "3b41f0a3-56cf-43df-8955-14f8a17aa797",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries9",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "56967ea8-d9fe-4879-9330-3b8df6ad4562"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -585,7 +867,32 @@
                                             "quads"
                                         ]
                                     },
-                                    "designerId": "2619de57-c11e-4a81-a828-ed968d461c71"
+                                    "designerId": "2619de57-c11e-4a81-a828-ed968d461c71",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries10",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "10a2dbbe-7c72-4cb9-b78d-cccaec000f32"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.axis.Time",
@@ -631,6 +938,18 @@
                                         "title": "Numeric Axis"
                                     },
                                     "designerId": "088edf56-7baa-4989-8b87-dc86a0d73cbc"
+                                },
+                                {
+                                    "type": "Ext.chart.Legend",
+                                    "reference": {
+                                        "name": "legend",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "position": "top"
+                                    },
+                                    "designerId": "8bfebdf5-da76-4db9-bdc7-463788e61039"
                                 }
                             ]
                         },
@@ -1001,6 +1320,23 @@
                                             "designerId": "f4161940-1e5d-4f3f-88ef-1350795d1e92"
                                         }
                                     ]
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onMeasuresTableItemClick1",
+                                        "implHandler": [
+                                            "LanistaTrainer.app.getController('MeasuresController').showForm(record);"
+                                        ],
+                                        "name": "itemclick",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "5819b06f-84c5-4811-8e24-152859ac46b8"
                                 }
                             ]
                         }
@@ -1039,45 +1375,62 @@
                                 "animate": [
                                     "true"
                                 ],
-                                "height": 250,
+                                "height": 550,
+                                "id": null,
                                 "insetPadding": 20,
+                                "itemId": "measuresChat",
                                 "store": "CircumferencesStore",
-                                "width": 400
+                                "width": 1200
                             },
-                            "designerId": "0fff6a7b-40ff-49d7-9ffb-bbfc0dbfa913",
+                            "designerId": "8c8c2c49-3ef3-4efc-8f33-ecead5fdfbdf",
                             "isBuiltIn": true,
                             "iconCls": "icon-line-chart",
                             "autoName": "LineChart",
                             "cn": [
                                 {
-                                    "type": "Ext.chart.axis.Category",
+                                    "type": "Ext.chart.series.Line",
                                     "reference": {
-                                        "name": "axes",
+                                        "name": "series",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "fields": [
-                                            "x"
+                                        "axis": [
+                                            "left"
                                         ],
-                                        "title": "Category Axis"
+                                        "designer|createAlias": null,
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "arm_left"
+                                        ]
                                     },
-                                    "designerId": "86d3e70c-701d-4839-a3f1-f62674ea3434"
-                                },
-                                {
-                                    "type": "Ext.chart.axis.Numeric",
-                                    "reference": {
-                                        "name": "axes",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "fields": [
-                                            "y"
-                                        ],
-                                        "title": "Numeric Axis"
-                                    },
-                                    "designerId": "7ffefef2-5db5-46c2-ac5a-50c775fd4923"
+                                    "designerId": "3dba3dbb-cc4d-4749-a27f-f30c05c1c198",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries4",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "2bbeb5d1-e739-4438-a293-6e83f78aa9bf"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.chart.series.Line",
@@ -1087,13 +1440,797 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "designer|createAlias": null,
                                         "smooth": 3,
-                                        "xField": "x",
+                                        "xField": "record_date",
                                         "yField": [
-                                            "y"
+                                            "arm_right"
                                         ]
                                     },
-                                    "designerId": "01235fab-4c82-4a78-99b2-d94931128501"
+                                    "designerId": "a37923e1-ea83-45f9-8d79-7142c0009d57",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries5",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "4a4411f4-9a27-4377-afa2-ffb79546647a"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "designer|createAlias": null,
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "chest"
+                                        ]
+                                    },
+                                    "designerId": "f344bbc9-3277-43b3-81bc-eeb1af619a3b",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries6",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "bc806fba-c773-4f27-84b3-99235f769c9a"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "waist"
+                                        ]
+                                    },
+                                    "designerId": "cabf10bf-b84c-4778-9fb7-28698811773a",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries7",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "0969d07d-59fc-416d-ac43-f7cad0e4ce35"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "umbilical"
+                                        ]
+                                    },
+                                    "designerId": "279ec127-c204-42e4-9c80-258fdf6c91c0",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries8",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "4423e14d-0133-4f0f-b869-fba919b3a438"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "ilica_ant"
+                                        ]
+                                    },
+                                    "designerId": "d0f33b0a-43c6-4cda-a7e6-6cc3a8c88c74",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries9",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "323f7e55-16ee-462c-a477-36d164a53111"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "hips"
+                                        ]
+                                    },
+                                    "designerId": "21d6a44b-0c38-4ca5-aa35-a23b2c9ecee6",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries10",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "cefd7d81-fb7a-4540-bf8b-61d99dd4e39c"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "quads_left"
+                                        ]
+                                    },
+                                    "designerId": "ad25f0b1-dbe1-4c02-9b70-4a1ded62ae89",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries10",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "fff4a697-51c9-4bad-b7cb-c3ef1c8e886b"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.chart.series.Line",
+                                    "reference": {
+                                        "name": "series",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "axis": [
+                                            "left"
+                                        ],
+                                        "smooth": 3,
+                                        "xField": "record_date",
+                                        "yField": [
+                                            "quads_right"
+                                        ]
+                                    },
+                                    "designerId": "5ddb6bab-7b4b-4d39-8a7c-7b958b8f7c4f",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLineSeries10",
+                                                "implHandler": [
+                                                    "config.listeners = {",
+                                                    "    itemclick : function(item) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    }",
+                                                    "};",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "designerId": "89517a9f-3ebb-47a4-95b1-a1b807a0a9eb"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Time",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "adjustEnd": false,
+                                        "dateFormat": "d-m-Y",
+                                        "fields": [
+                                            "record_date"
+                                        ],
+                                        "position": "bottom",
+                                        "step": [
+                                            " [Ext.Date.MONTH, 3]"
+                                        ],
+                                        "title": null
+                                    },
+                                    "designerId": "291be506-3f44-4026-82e0-5714f51ba712"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Numeric",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "adjustMaximumByMajorUnit": true,
+                                        "fields": [
+                                            "arm_left",
+                                            "arm_right",
+                                            "chest",
+                                            "waist",
+                                            "umbilical",
+                                            "ilica_ant",
+                                            "hips",
+                                            "quads_left",
+                                            "quads_right"
+                                        ],
+                                        "maximum": null,
+                                        "minimum": 0,
+                                        "title": "Numeric Axis"
+                                    },
+                                    "designerId": "088f0946-0364-4de4-a657-6254497a38a3"
+                                },
+                                {
+                                    "type": "Ext.chart.Legend",
+                                    "reference": {
+                                        "name": "legend",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "position": "top"
+                                    },
+                                    "designerId": "53b303e4-3641-4fc0-b39f-481fa5b41e8c"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.grid.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "collapseFirst": false,
+                                "enableColumnHide": false,
+                                "enableColumnMove": false,
+                                "enableColumnResize": false,
+                                "frameHeader": false,
+                                "header": false,
+                                "height": 550,
+                                "hidden": true,
+                                "id": null,
+                                "itemId": "measuresTable",
+                                "sortableColumns": false,
+                                "store": "CircumferencesStore",
+                                "title": null,
+                                "width": 1200
+                            },
+                            "designerId": "dd2a1b92-901a-4607-85ca-b1787583502d",
+                            "cn": [
+                                {
+                                    "type": "Ext.grid.View",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "designerId": "d241defc-e056-49ce-996f-16495f0c4397"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Date",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "record_date",
+                                        "flex": 1,
+                                        "format": "d-m-y",
+                                        "text": null
+                                    },
+                                    "designerId": "ca4b18be-a9e4-4db5-9032-cc906e1f31c2"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "arm_left",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "designerId": "4c77412c-e4ac-42e5-be3b-3fb99cf204d0",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender41",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_LEFT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "5e46c7bd-7169-4885-9894-f5c0c6400799"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "arm_right",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "designerId": "62fe2312-1d97-412d-89eb-c010c980b920",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender211",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_RIGHT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "5a6e20db-0002-4fc6-943d-090118f8c25d"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "chest",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "7621f232-9c47-4431-a231-aa3222c4d117",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender112",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "0ab0ca7b-2e04-4e4d-af9f-80a2e1453717"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "waist",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "93c50123-4c09-4545-948a-95662aff8222",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender11141",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.WAIST);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "3a536198-4177-4788-91bb-5c066a2020a2"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "umbilical",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "dcb71271-434b-4dfa-b964-0a09dddcd966",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender11131",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.NAVEL);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "42674fcc-9fb4-4a94-9e3a-5296091e1b67"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "ilica_ant",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "b4ba4dec-a70c-40b4-956c-f04f580a228c",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender11121",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "d5768777-e396-4d8d-bcb9-95848baedbd4"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "hips",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "fafaab37-1f6e-4808-8f96-c419fa1c9aa7",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender1115",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.HIP);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "feb0b12d-c960-4124-94a0-cd9aa7879e6c"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "quads_left",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "designerId": "56bd6125-b5c6-497f-a1f7-771fe1b0f723",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender11111",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.THING_LEFT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "5e77c053-cfce-4a1e-9023-5aaf2ba4e90b"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "quads_right",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "designerId": "5d680b79-7859-41e7-9cef-a853c6262798",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender311",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT);"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "223f50a4-88a4-476d-bf6f-88a5cb9ec6ef"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onMeasuresTableItemClick11",
+                                        "implHandler": [
+                                            "LanistaTrainer.app.getController('MeasuresController').showForm(record);"
+                                        ],
+                                        "name": "itemclick",
+                                        "scope": "me"
+                                    },
+                                    "designerId": "05dd38b2-6b7d-43d6-a8e2-b37bd6e4c2de"
                                 }
                             ]
                         }

@@ -28,10 +28,11 @@ Ext.define('LanistaTrainer.store.CircumferencesStore', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             model: 'LanistaTrainer.model.Circumferences',
+            remoteFilter: true,
             storeId: 'CircumferencesStore',
             proxy: {
                 type: 'ajax',
-                url: 'tpmanager/measures/json',
+                url: '/tpmanager/user/bodymeasuresjson',
                 headers: {
                     user_id: localStorage.getItem('user_id')
                 },

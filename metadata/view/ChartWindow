@@ -1,0 +1,664 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoScroll": true,
+        "border": false,
+        "cls": "lanista-chart-measures-window",
+        "designer|userAlias": "chartWindow",
+        "designer|userClassName": "ChartWindow",
+        "height": 510,
+        "id": "chartWindow",
+        "modal": true,
+        "resizable": false,
+        "style": null,
+        "title": null,
+        "width": 400
+    },
+    "configAlternates": {
+        "style": "string",
+        "resizable": "boolean"
+    },
+    "designerId": "a0cd69a2-903f-4fe6-852f-76950324f9a6",
+    "cn": [
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onChartWindowHide",
+                "implHandler": [
+                    "component.destroy();"
+                ],
+                "name": "hide",
+                "scope": "me"
+            },
+            "designerId": "00b5cd30-4d34-4574-87bc-b9e58176491b"
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoScroll": true,
+                "bodyPadding": 10,
+                "defaults": [
+                    "{\tenableKeyEvents: true,",
+                    "    selectOnFocus: true",
+                    "}"
+                ],
+                "id": "measuresTabForm",
+                "title": null
+            },
+            "designerId": "8557a07c-f92d-4b76-a0e5-212f6ef29369",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Date",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "format": "d-m-Y",
+                        "id": "record_date_local",
+                        "layout|anchor": "100%",
+                        "name": "record_date_local"
+                    },
+                    "designerId": "409784fb-3fc1-4511-9c87-c15f49e71ee4"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "weight",
+                        "layout|anchor": "100%",
+                        "name": "weight"
+                    },
+                    "designerId": "46a6e1e2-d4b5-4c91-9360-5e54aadcde51"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "trizeps",
+                        "layout|anchor": "100%",
+                        "name": "trizeps"
+                    },
+                    "designerId": "524d401e-3050-4fe0-826e-aba938afcd2b"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "scapula",
+                        "layout|anchor": "100%",
+                        "name": "scapula"
+                    },
+                    "designerId": "e7c88edd-0fe1-4e5c-b718-a74318896614"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "auxiliar",
+                        "layout|anchor": "100%",
+                        "name": "auxiliar"
+                    },
+                    "designerId": "bf6b16be-005e-44c4-b441-9f42f372f13a"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "chest",
+                        "layout|anchor": "100%",
+                        "name": "chest"
+                    },
+                    "designerId": "8e75c61d-f590-4073-83b5-8eba58a9203c"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "sprailium",
+                        "layout|anchor": "100%",
+                        "name": "sprailium"
+                    },
+                    "designerId": "5c7f82a8-5ed3-4642-ba6a-40227897f974"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "abs",
+                        "layout|anchor": "100%",
+                        "name": "abs"
+                    },
+                    "designerId": "7aad981f-e105-42ed-8272-8355ef3a2421"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "quads",
+                        "layout|anchor": "100%",
+                        "name": "quads"
+                    },
+                    "designerId": "5d66ff7e-f435-4f03-9cba-ff30be2568ed"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "futrex",
+                        "layout|anchor": "100%",
+                        "name": "futrex"
+                    },
+                    "designerId": "9cd9fa0b-0ed3-4252-9a04-ae64ed1ea693"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "height",
+                        "layout|anchor": "100%",
+                        "name": "height"
+                    },
+                    "designerId": "1af7c526-04b7-4256-8ce4-5a6305864b59"
+                },
+                {
+                    "type": "Ext.form.field.TextArea",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "note",
+                        "layout|anchor": "100%",
+                        "name": "note"
+                    },
+                    "designerId": "648a7ca7-07b4-4e77-80a4-884dc6f061ea"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "disabled": true,
+                        "fieldLabel": null,
+                        "id": "percentage",
+                        "layout|anchor": "100%",
+                        "name": "percentage",
+                        "readOnly": true
+                    },
+                    "designerId": "26558174-211a-4e47-884d-edf66a497e8c"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onMeasuresTabFormAfterRender",
+                        "implHandler": [
+                            "var fields = component.getForm().getFields(),",
+                            "    activeTab = LanistaTrainer.app.getController('MeasuresController').getMeasuresPanel().down('#measureTabs').getActiveTab(),",
+                            "    dateMeasure,",
+                            "    item,",
+                            "    storeMeasures,",
+                            "    recordMeasures;",
+                            "",
+                            "item = LanistaTrainer.app.getController('MeasuresController').item;",
+                            "fields.getByKey('record_date_local').readOnly = item;",
+                            "",
+                            "if (!item){",
+                            "    storeMeasures = Ext.getStore('MeasuresStore');",
+                            "    recordMeasures = storeMeasures.first();",
+                            "    if (recordMeasures)",
+                            "        component.loadRecord(recordMeasures);",
+                            "}",
+                            "",
+                            "fields.getByKey('record_date_local').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.DATE);",
+                            "dateMeasure = new Date(fields.getByKey('record_date_local').getValue());",
+                            "fields.getByKey('record_date_local').setValue(Ext.Date.format(dateMeasure, 'd-m-Y'));",
+                            "",
+                            "if (activeTab.id === 'measuresTab'){",
+                            "    fields.getByKey('trizeps').hide();",
+                            "    fields.getByKey('scapula').hide();",
+                            "    fields.getByKey('auxiliar').hide();",
+                            "    fields.getByKey('chest').hide();",
+                            "    fields.getByKey('sprailium').hide();",
+                            "    fields.getByKey('abs').hide();",
+                            "    fields.getByKey('quads').hide();",
+                            "    fields.getByKey('percentage').disabled = true;",
+                            "",
+                            "    fields.getByKey('weight').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);",
+                            "    fields.getByKey('height').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE);",
+                            "    fields.getByKey('futrex').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.BODY_FAT);",
+                            "    fields.getByKey('note').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_NOTE);",
+                            "    fields.getByKey('percentage').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.CALIPER );",
+                            "}",
+                            "else{",
+                            "    if (activeTab.id === 'caliperTab'){",
+                            "        fields.getByKey('weight').hide();",
+                            "        fields.getByKey('height').hide();",
+                            "        fields.getByKey('futrex').hide();",
+                            "        fields.getByKey('percentage').hide();",
+                            "",
+                            "        fields.getByKey('trizeps').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.TRICEPS);",
+                            "        fields.getByKey('scapula').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.SCAPULA);",
+                            "        fields.getByKey('auxiliar').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.ARMPIT);",
+                            "        fields.getByKey('chest').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);",
+                            "        fields.getByKey('sprailium').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);",
+                            "        fields.getByKey('abs').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_AB);",
+                            "        fields.getByKey('quads').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.QUADS);",
+                            "        fields.getByKey('note').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_NOTE);",
+                            "    }",
+                            "}",
+                            "",
+                            "fields.each(function(field)",
+                            "            {field.on('change',function(f,n,o)",
+                            "                      {",
+                            "                          component.up('#chartWindow').down('#saveMeasureButton').show();",
+                            "                          component.up('#chartWindow').down('#cancelMeasureButton').show();",
+                            "                          if (component.up('#chartWindow').down('#deleteMeasureButton'))",
+                            "                              component.up('#chartWindow').down('#deleteMeasureButton').hide();",
+                            "                      }",
+                            "                     );",
+                            "             /*field.on('keypress',function(f,e,opts)",
+                            "                      {",
+                            "                          //f: field;  e: key pressed;  o: options",
+                            "                          if(e.getKey() == e.ENTER){",
+                            "                              if (!LanistaTrainer.app.getController('MeasuresController').item) return;",
+                            "                              if ( !component.up('#chartWindow').down('#saveMeasureButton').hidden )",
+                            "                                  component.up('#chartWindow').down('#saveMeasureButton').fireEvent('click', function() {",
+                            "                                      f.focus();",
+                            "                                  });",
+                            "                          }",
+                            "                      }",
+                            "                     );*/",
+                            "            }",
+                            "           );"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "f2e3ccf0-dffb-44d1-834a-d973b5e7ac55"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onMeasuresTabFormHide",
+                        "implHandler": [
+                            "component.destroy();"
+                        ],
+                        "name": "hide",
+                        "scope": "me"
+                    },
+                    "designerId": "2eb7c946-f266-4928-ad0c-0c0d9a80affc"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoScroll": true,
+                "bodyPadding": 10,
+                "id": "circumferencesTabForm",
+                "title": null
+            },
+            "designerId": "a6c73804-6a2c-44fc-858b-31d8f6c326c2",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onCircumferencesTabFormHide",
+                        "implHandler": [
+                            "component.destroy();"
+                        ],
+                        "name": "hide",
+                        "scope": "me"
+                    },
+                    "designerId": "9cc9c531-e868-4a22-a2ab-cc5d83d52f06"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "record_date_local_circ",
+                        "layout|anchor": "100%",
+                        "name": "record_date_local"
+                    },
+                    "designerId": "b87bb493-6415-47c9-9979-298a07415d0f"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "arm_left",
+                        "layout|anchor": "100%",
+                        "name": "arm_left"
+                    },
+                    "designerId": "34058fa4-452e-4352-8420-6b574ee06e7a"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "arm_right",
+                        "layout|anchor": "100%",
+                        "name": "arm_right"
+                    },
+                    "designerId": "aaed332c-fdbe-4351-a299-36af2ee26e0b"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "chest_circ",
+                        "layout|anchor": "100%",
+                        "name": "chest"
+                    },
+                    "designerId": "5abc123f-9c0c-45fe-bb9b-7671ec0c5bbf"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "waist",
+                        "layout|anchor": "100%",
+                        "name": "waist"
+                    },
+                    "designerId": "a41eecdc-e5e7-497d-b40c-2e1e8121d124"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "umbilical",
+                        "layout|anchor": "100%",
+                        "name": "umbilical"
+                    },
+                    "designerId": "e81036b9-5b10-460f-9d95-acc3208ed65e"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "ilica_ant",
+                        "layout|anchor": "100%",
+                        "name": "ilica_ant"
+                    },
+                    "designerId": "3e2b57cb-295b-4e0c-9077-04914b1c7911"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "hips",
+                        "layout|anchor": "100%",
+                        "name": "hips"
+                    },
+                    "designerId": "f6b3d099-f243-4f35-90df-140c326c3931"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "quads_left",
+                        "layout|anchor": "100%",
+                        "name": "quads_left"
+                    },
+                    "designerId": "5e0c92da-2a6b-4e89-8c6d-210936fa2e7e"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "quads_right",
+                        "layout|anchor": "100%",
+                        "name": "quads_right"
+                    },
+                    "designerId": "1080027e-8a81-46e3-a52c-b5b1629faed5"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "id": "note_circ",
+                        "layout|anchor": "100%",
+                        "name": "note_circ"
+                    },
+                    "designerId": "2059493c-309f-4dec-ae64-38010b1f64ae"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onCircumferencesTabFormAfterRender",
+                        "implHandler": [
+                            "var fields = component.getForm().getFields(),",
+                            "    dateMeasure,",
+                            "    item,",
+                            "    storeMeasures,",
+                            "    recordMeasures,",
+                            "    newDate;",
+                            "",
+                            "item = LanistaTrainer.app.getController('MeasuresController').item;",
+                            "fields.getByKey('record_date_local_circ').readOnly = item;",
+                            "",
+                            "if (!item){",
+                            "    storeMeasures = Ext.getStore('CircumferencesStore');",
+                            "    recordMeasures = storeMeasures.first();",
+                            "    if (recordMeasures)",
+                            "        component.loadRecord(recordMeasures);",
+                            "    newDate = new Date();",
+                            "    fields.getByKey('record_date_local_circ').setValue(newDate);",
+                            "}",
+                            "",
+                            "fields.getByKey('record_date_local_circ').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.DATE);",
+                            "dateMeasure = new Date(fields.getByKey('record_date_local_circ').getValue());",
+                            "fields.getByKey('record_date_local_circ').setValue(Ext.Date.format(dateMeasure, 'd-m-Y'));",
+                            "",
+                            "fields.getByKey('arm_left').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.ARM_LEFT);",
+                            "fields.getByKey('arm_right').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.ARM_RIGHT);",
+                            "fields.getByKey('chest_circ').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);",
+                            "fields.getByKey('waist').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.WAIST);",
+                            "fields.getByKey('umbilical').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.NAVEL);",
+                            "fields.getByKey('ilica_ant').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);",
+                            "fields.getByKey('hips').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.HIP);",
+                            "fields.getByKey('quads_left').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.THING_LEFT);",
+                            "fields.getByKey('quads_right').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT);",
+                            "fields.getByKey('note_circ').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_NOTE);",
+                            "",
+                            "fields.each(function(field)",
+                            "            {field.on('change',function(f,n,o)",
+                            "                      {",
+                            "                          component.up('#chartWindow').down('#saveMeasureButton').show();",
+                            "                          component.up('#chartWindow').down('#cancelMeasureButton').show();",
+                            "                          if (component.up('#chartWindow').down('#deleteMeasureButton'))",
+                            "                              component.up('#chartWindow').down('#deleteMeasureButton').hide();",
+                            "                      }",
+                            "                     );",
+                            "             /*field.on('keypress',function(f,e,opts)",
+                            "                      {",
+                            "                          //f: field;  e: key pressed;  o: options",
+                            "                          if(e.getKey() == e.ENTER){",
+                            "                              if (!LanistaTrainer.app.getController('MeasuresController').item) return;",
+                            "                              if ( !component.up('#chartWindow').down('#saveMeasureButton').hidden )",
+                            "                                  component.up('#chartWindow').down('#saveMeasureButton').fireEvent('click', function() {",
+                            "                                      f.focus();",
+                            "                                  });",
+                            "                          }",
+                            "                      }",
+                            "                     );*/",
+                            "            }",
+                            "           );"
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "b3324d31-11c3-48d9-8302-7b098ca9456c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "stretch",
+                "dock": "bottom",
+                "id": "buttonContainerMes",
+                "layout": "hbox"
+            },
+            "designerId": "0a9b3c15-8cac-4872-9bcf-11de25d51ede"
+        }
+    ]
+}

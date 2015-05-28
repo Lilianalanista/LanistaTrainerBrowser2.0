@@ -33,6 +33,9 @@ Ext.define('LanistaTrainer.store.MeasuresStore', {
             proxy: {
                 type: 'ajax',
                 url: '/tpmanager/user/getcustomerweights',
+                headers: {
+                    user_id: localStorage.getItem('user_id')
+                },
                 reader: {
                     type: 'json',
                     root: 'entries'

@@ -27,6 +27,12 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             xtype: 'measuresPanel'
         },
         {
+            autoCreate: true,
+            ref: 'chartWindow',
+            selector: 'chartWindow',
+            xtype: 'chartWindow'
+        },
+        {
             ref: 'mainStage',
             selector: '#mainStage'
         },
@@ -70,9 +76,10 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
     onTabpanelTabChange: function(tabPanel, newCard, oldCard, eOpts) {
         var controller = this,
-            store = Ext.getStore('MeasuresStore');
+            store;
 
         if ( newCard.id == 'measuresTab' ) {
+            store = Ext.getStore('MeasuresStore');
             store.removeFilter('measuresFilter');
             store.removeFilter('caliperFilter');
             filterFunction = new Ext.util.Filter({
@@ -85,6 +92,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             store.filters.add (filterFunction);
             store.loadPage(1);
         }else if ( newCard.id == 'caliperTab' ) {
+            store = Ext.getStore('MeasuresStore');
             store.removeFilter('measuresFilter');
             store.removeFilter('caliperFilter');
             filterFunction = new Ext.util.Filter({
@@ -102,8 +110,17 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             });
             store.filters.add (filterFunction);
             store.loadPage(1);
+        }else if ( newCard.id == 'circumferencesTab') {
+            store = Ext.getStore('CircumferencesStore');
+            store.removeFilter('circumFilter');
+            var filter = new Ext.util.Filter({
+                id: 'circumFilter',
+                property: "user_id",
+                value   : LanistaTrainer.app.currentCustomer.data.id
+            });
+            store.filters.add (filter);
+            store.loadPage(1);
         }
-
 
     },
 
@@ -125,27 +142,151 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         controller.currentPanel.replace(activeTab.id, (!controller.currentPanel.get(activeTab.id) || controller.currentPanel.get(activeTab.id) === 'table') ? 'chart' : 'table');
     },
 
-    onShowMeasuresPanel: function(callback) {
+    onSaveMeasuresButtonClick: function(button, e, eOpts) {
         var controller = this,
-            measuresPanel,
-            mainStage	= controller.getMainStage(),
-            measuresPanel = controller.getMeasuresPanel(),
-            measuresStore = Ext.getStore('MeasuresStore');
+            formPanel = controller.getChartWindow().down('#measuresTabForm'),
+            activeTab = controller.getMeasuresPanel().down('#measureTabs').getActiveTab(),
+            item,
+            fields,
+            today = new Date();
 
-        measuresStore.setProxy(new Ext.data.proxy.Ajax({
-            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/getcustomerweights',
+        if (!controller.item){
+            fields = formPanel.getForm().getValues();
+            item = Ext.create('LanistaTrainer.model.Measures');
+            item.data = fields;
+            item.data.user_id = LanistaTrainer.app.currentCustomer.data.id;
+            item.data.customer_id = LanistaTrainer.app.currentCustomer.data.id;
+            item.data.record_date = Ext.Date.format(today, 'Y-m-d');
+            formPanel.loadRecord(item);
+        }
+
+        formPanel.updateRecord();
+        formPanel.getRecord().setProxy(new Ext.data.proxy.Ajax({
+            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/weightjson',
+            noCache: false,
             reader: {
                 type: 'json',
                 root: 'entries'
             },
             writer: {
                 type: 'json',
-                root: 'results'
+                root: 'records',
+                allowSingle: false
             },
             headers: {
                 user_id: localStorage.getItem("user_id")
             }
         }));
+
+        formPanel.getRecord().save({
+            callback: function(record,event,success) {
+                if (success)
+                {
+                    formPanel.loadRecord(record);
+                    Ext.getStore('MeasuresStore').load();
+                    if (controller.currentPanel.get(activeTab.id) === 'chart')
+                        activeTab.down('#measuresChat').show();
+                    else
+                        activeTab.down('#measuresTable').show();
+
+                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);
+                    controller.getChartWindow().hide();
+                }
+                else
+                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
+            }
+        });
+    },
+
+    onCancelMeasureButtonClick: function(button, e, eOpts) {
+        var controller = this;
+            form = controller.getChartWindow();
+
+        form.down('#measuresTabForm').loadRecord(controller.item);
+
+        controller.showCommandsForm();
+        form.down('#saveMeasureButton').hide();
+        form.down('#cancelMeasureButton').hide();
+        form.down('#deleteMeasureButton').show();
+    },
+
+    onDeleteMeasureButtonClick: function(button, e, eOpts) {
+        var controller = this,
+            formPanel,
+            measuresModel,
+            url,
+            destroy,
+            activeTab = controller.getMeasuresPanel().down('#measureTabs').getActiveTab();
+
+        if (activeTab.id === 'measuresTab' || activeTab.id === 'caliperTab'){
+            formPanel = controller.getChartWindow().down('#measuresTabForm');
+            measuresModel = Ext.create('LanistaTrainer.model.Measures');
+            url = Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/weightjson';
+            destroy = Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/deleteweight';
+        }
+        else{
+            if (activeTab.id === 'circumferencesTab'){
+                formPanel = controller.getChartWindow().down('#circumferencesTabForm');
+                measuresModel = Ext.create('LanistaTrainer.model.Circumferences');
+                url = Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/bodymeasuresjson';
+                destroy = Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/bodymeasuresjson';
+            }
+        }
+
+        userId = localStorage.getItem("user_id");
+
+        measuresModel.data = formPanel.getRecord().data;
+        measuresModel.phantom = false;
+        measuresModel.setProxy(new Ext.data.proxy.Ajax({
+            url: url,
+            model: 'Measures',
+            noCache: false,
+            writer: {
+                    type: 'json',
+                    root: 'records',
+                    allowSingle: false
+            },
+            api: {
+                create: undefined,
+                read: undefined,
+                update: undefined,
+                destroy: destroy
+            },
+            headers: {
+                user_id: userId
+            }
+        }));
+
+        measuresModel.destroy ({
+            action: 'destroy',
+            callback: function(record,event,success) {
+                if (event.success)
+                {
+                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);
+                    if (activeTab.id === 'measuresTab' || activeTab.id === 'caliperTab')
+                        Ext.getStore('MeasuresStore').load();
+                    if (activeTab.id === 'circumferencesTab')
+                        Ext.getStore('CircumferencesStore').load();
+                    controller.getChartWindow().hide();
+                }
+                else
+                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
+            }
+        });
+
+
+    },
+
+    onNewMeasureButtonClick: function(button, e, eOpts) {
+        LanistaTrainer.app.getController('MeasuresController').showForm();
+    },
+
+    onShowMeasuresPanel: function(callback) {
+        var controller = this,
+            measuresPanel,
+            mainStage	= controller.getMainStage(),
+            measuresPanel = controller.getMeasuresPanel(),
+            measuresStore = Ext.getStore('MeasuresStore');
 
         measuresPanel.down('#measuresChat').show();
         measuresPanel.down('#measuresTable').hide();
@@ -159,7 +300,10 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             }
         });
         measuresStore.filters.add (filterFunction);
-        //measuresStore.setSorters ( 'record_date' );
+        measuresStore.sort( {
+            direction: 'DESC',
+            property: 'record_date'
+        });
         measuresStore.load(function(records, operation, success) {
             mainStage.add( measuresPanel );
             measuresPanel.on('hide', function(component) {
@@ -209,6 +353,95 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         }
     },
 
+    showForm: function(item) {
+        var controller = LanistaTrainer.app.getController('MeasuresController'),
+            windowPanel = controller.getChartWindow(),
+            viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport'),
+            activeTab = controller.getMeasuresPanel().down('#measureTabs').getActiveTab(),
+            storeMeasures,
+            recordMeasures;
+
+        controller.showCommandsForm();
+        controller.item = item ? item : '';
+
+         switch(activeTab.id) {
+            case 'measuresTab':
+                     if (item)
+                        windowPanel.down('#measuresTabForm').loadRecord(item);
+
+                     windowPanel.down('#circumferencesTabForm').hide();
+                     windowPanel.setHeight(510);
+                     break;
+            case 'caliperTab':
+                     if (item)
+                        windowPanel.down('#measuresTabForm').loadRecord(item);
+
+                     windowPanel.down('#circumferencesTabForm').hide();
+                     windowPanel.setHeight(610);
+                     break;
+            case 'circumferencesTab':
+                     if (item)
+                        windowPanel.down('#circumferencesTabForm').loadRecord(item);
+
+                     windowPanel.down('#measuresTabForm').hide();
+                     windowPanel.setHeight(660);
+                     break;
+        }
+
+        viewPort.add( windowPanel );
+        windowPanel.show ();
+        windowPanel.on ( 'hide', function ( component ) {
+            component.destroy ();
+        });
+    },
+
+    showCommandsForm: function() {
+        var controller = LanistaTrainer.app.getController('MeasuresController'),
+            windowPanelFrame = controller.getChartWindow().down('#buttonContainerMes');
+
+        windowPanelFrame.items.each(function (item) {
+            item.hide();
+        });
+
+        windowPanelFrame.add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE,
+                itemId: 'saveMeasureButton',
+                glyph: '100@Lanista Icons', //d
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-green'
+                    ],
+                hidden: true
+            })
+        );
+
+        windowPanelFrame.add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_CANCEL,
+                itemId: 'cancelMeasureButton',
+                glyph: '98@Lanista Icons', //b
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-red'
+                    ],
+                hidden: true
+            })
+        );
+
+        windowPanelFrame.add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.DELETE,
+                itemId: 'deleteMeasureButton',
+                glyph: '68@Lanista Icons', //D
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-red'
+                    ]
+            })
+        );
+    },
+
     showCommands: function(callback) {
 
         var controller = this;
@@ -220,10 +453,23 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
+                itemId: 'newMeasureButton',
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-green'
+                ],
+                glyph: '108@Lanista Icons' //l
+            })
+        );
+
+        this.getRightCommandPanel().add(
+            Ext.create('LanistaTrainer.view.LanistaButton', {
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
                 itemId: 'chartTableButton',
                 glyph: '79@Lanista Icons' //O
             })
         );
+
     },
 
     loadData: function() {
@@ -243,6 +489,18 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             },
             "viewport  #chartTableButton": {
                 click: this.onchartTableButtonClick
+            },
+            "viewport #saveMeasureButton": {
+                click: this.onSaveMeasuresButtonClick
+            },
+            "viewport #cancelMeasureButton": {
+                click: this.onCancelMeasureButtonClick
+            },
+            "viewport #deleteMeasureButton": {
+                click: this.onDeleteMeasureButtonClick
+            },
+            "viewport #newMeasureButton": {
+                click: this.onNewMeasureButtonClick
             }
         });
 

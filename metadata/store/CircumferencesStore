@@ -8,6 +8,7 @@
     "userConfig": {
         "designer|userClassName": "CircumferencesStore",
         "model": "Circumferences",
+        "remoteFilter": true,
         "storeId": "CircumferencesStore"
     },
     "designerId": "0e7891cb-40a4-4d2d-9062-f5c8224a1c57",
@@ -25,7 +26,7 @@
                     "    user_id: localStorage.getItem(\"user_id\")",
                     "}"
                 ],
-                "url": "tpmanager/measures/json"
+                "url": "/tpmanager/user/bodymeasuresjson"
             },
             "designerId": "3502d0f6-d4f3-491a-9d9d-e6deef9a37a3",
             "cn": [

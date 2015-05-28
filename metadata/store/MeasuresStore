@@ -21,7 +21,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "headers": null,
+                "headers": [
+                    "{user_id: localStorage.getItem(\"user_id\")}"
+                ],
                 "url": "/tpmanager/user/getcustomerweights"
             },
             "designerId": "51c4ce44-c71f-4553-98f0-88c50b55b889",

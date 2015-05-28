@@ -23,10 +23,10 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         'Ext.chart.Chart',
         'Ext.chart.series.Line',
         'Ext.chart.axis.Time',
+        'Ext.chart.Legend',
         'Ext.grid.Panel',
         'Ext.grid.View',
-        'Ext.grid.column.Date',
-        'Ext.chart.axis.Category'
+        'Ext.grid.column.Date'
     ],
 
     cls: 'lanista-measures-panel',
@@ -59,34 +59,34 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                     insetPadding: 20,
                                     store: 'MeasuresStore',
                                     series: [
-                                        {
-                                            type: 'line',
-                                            axis: 'right',
-                                            xField: 'record_date',
-                                            yField: 'percentage',
-                                            smooth: 3
-                                        },
-                                        {
-                                            type: 'line',
-                                            axis: 'left',
-                                            xField: 'record_date',
-                                            yField: 'futrex',
-                                            smooth: 3
-                                        },
-                                        {
+                                        me.processMyLineSeries2({
                                             type: 'line',
                                             axis: 'left',
                                             xField: 'record_date',
                                             yField: 'weight',
                                             smooth: 3
-                                        },
-                                        {
+                                        }),
+                                        me.processMyLineSeries1({
                                             type: 'line',
                                             axis: 'left',
                                             xField: 'record_date',
                                             yField: 'height',
                                             smooth: 3
-                                        }
+                                        }),
+                                        me.processMyLineSeries21({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'futrex',
+                                            smooth: 3
+                                        }),
+                                        me.processMyLineSeries3({
+                                            type: 'line',
+                                            axis: 'right',
+                                            xField: 'record_date',
+                                            yField: 'percentage',
+                                            smooth: 3
+                                        })
                                     ],
                                     axes: [
                                         {
@@ -124,7 +124,10 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             adjustMaximumByMajorUnit: true,
                                             minimum: 0
                                         }
-                                    ]
+                                    ],
+                                    legend: {
+                                        position: 'top'
+                                    }
                                 },
                                 {
                                     xtype: 'gridpanel',
@@ -198,7 +201,13 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 }
                                             }
                                         }
-                                    ]
+                                    ],
+                                    listeners: {
+                                        itemclick: {
+                                            fn: me.onMeasuresTableItemClick,
+                                            scope: me
+                                        }
+                                    }
                                 }
                             ]
                         },
@@ -216,55 +225,55 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                     insetPadding: 20,
                                     store: 'MeasuresStore',
                                     series: [
-                                        {
+                                        me.processMyLineSeries4({
                                             type: 'line',
                                             axis: 'left',
                                             xField: 'record_date',
                                             yField: 'trizeps',
                                             smooth: 3
-                                        },
-                                        {
+                                        }),
+                                        me.processMyLineSeries5({
                                             type: 'line',
                                             axis: 'left',
                                             xField: 'record_date',
                                             yField: 'scapula',
                                             smooth: 3
-                                        },
-                                        {
+                                        }),
+                                        me.processMyLineSeries6({
                                             type: 'line',
                                             axis: 'left',
                                             xField: 'record_date',
                                             yField: 'auxiliar',
                                             smooth: 3
-                                        },
-                                        {
+                                        }),
+                                        me.processMyLineSeries7({
                                             type: 'line',
                                             axis: 'left',
                                             xField: 'record_date',
                                             yField: 'chest',
                                             smooth: 3
-                                        },
-                                        {
+                                        }),
+                                        me.processMyLineSeries8({
                                             type: 'line',
                                             axis: 'left',
                                             xField: 'record_date',
                                             yField: 'sprailium',
                                             smooth: 3
-                                        },
-                                        {
+                                        }),
+                                        me.processMyLineSeries9({
                                             type: 'line',
                                             axis: 'left',
                                             xField: 'record_date',
                                             yField: 'abs',
                                             smooth: 3
-                                        },
-                                        {
+                                        }),
+                                        me.processMyLineSeries10({
                                             type: 'line',
                                             axis: 'left',
                                             xField: 'record_date',
                                             yField: 'quads',
                                             smooth: 3
-                                        }
+                                        })
                                     ],
                                     axes: [
                                         {
@@ -296,7 +305,10 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             minimum: 0,
                                             position: 'left'
                                         }
-                                    ]
+                                    ],
+                                    legend: {
+                                        position: 'top'
+                                    }
                                 },
                                 {
                                     xtype: 'gridpanel',
@@ -440,7 +452,13 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 }
                                             }
                                         }
-                                    ]
+                                    ],
+                                    listeners: {
+                                        itemclick: {
+                                            fn: me.onMeasuresTableItemClick1,
+                                            scope: me
+                                        }
+                                    }
                                 }
                             ]
                         },
@@ -451,37 +469,263 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                             items: [
                                 {
                                     xtype: 'chart',
-                                    height: 250,
-                                    width: 400,
+                                    height: 550,
+                                    itemId: 'measuresChat',
+                                    width: 1200,
                                     animate: true,
                                     insetPadding: 20,
                                     store: 'CircumferencesStore',
+                                    series: [
+                                        me.processMyLineSeries4({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'arm_left',
+                                            smooth: 3
+                                        }),
+                                        me.processMyLineSeries5({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'arm_right',
+                                            smooth: 3
+                                        }),
+                                        me.processMyLineSeries6({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'chest',
+                                            smooth: 3
+                                        }),
+                                        me.processMyLineSeries7({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'waist',
+                                            smooth: 3
+                                        }),
+                                        me.processMyLineSeries8({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'umbilical',
+                                            smooth: 3
+                                        }),
+                                        me.processMyLineSeries9({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'ilica_ant',
+                                            smooth: 3
+                                        }),
+                                        me.processMyLineSeries10({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'hips',
+                                            smooth: 3
+                                        }),
+                                        me.processMyLineSeries10({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'quads_left',
+                                            smooth: 3
+                                        }),
+                                        me.processMyLineSeries10({
+                                            type: 'line',
+                                            axis: 'left',
+                                            xField: 'record_date',
+                                            yField: 'quads_right',
+                                            smooth: 3
+                                        })
+                                    ],
                                     axes: [
                                         {
-                                            type: 'Category',
+                                            type: 'Time',
                                             fields: [
-                                                'x'
+                                                'record_date'
                                             ],
-                                            title: 'Category Axis',
-                                            position: 'bottom'
+                                            adjustEnd: false,
+                                            position: 'bottom',
+                                            dateFormat: 'd-m-Y',
+                                            step: [
+                                                Ext.Date.MONTH,
+                                                3
+                                            ]
                                         },
                                         {
                                             type: 'Numeric',
                                             fields: [
-                                                'y'
+                                                'arm_left',
+                                                'arm_right',
+                                                'chest',
+                                                'waist',
+                                                'umbilical',
+                                                'ilica_ant',
+                                                'hips',
+                                                'quads_left',
+                                                'quads_right'
                                             ],
                                             title: 'Numeric Axis',
+                                            adjustMaximumByMajorUnit: true,
+                                            minimum: 0,
                                             position: 'left'
                                         }
                                     ],
-                                    series: [
+                                    legend: {
+                                        position: 'top'
+                                    }
+                                },
+                                {
+                                    xtype: 'gridpanel',
+                                    height: 550,
+                                    hidden: true,
+                                    itemId: 'measuresTable',
+                                    width: 1200,
+                                    collapseFirst: false,
+                                    frameHeader: false,
+                                    header: false,
+                                    enableColumnHide: false,
+                                    enableColumnMove: false,
+                                    enableColumnResize: false,
+                                    sortableColumns: false,
+                                    store: 'CircumferencesStore',
+                                    columns: [
                                         {
-                                            type: 'line',
-                                            xField: 'x',
-                                            yField: 'y',
-                                            smooth: 3
+                                            xtype: 'datecolumn',
+                                            align: 'center',
+                                            dataIndex: 'record_date',
+                                            flex: 1,
+                                            format: 'd-m-y'
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            align: 'center',
+                                            dataIndex: 'arm_left',
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender41,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            align: 'center',
+                                            dataIndex: 'arm_right',
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender211,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'chest',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender112,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'waist',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender11141,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'umbilical',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender11131,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'ilica_ant',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender11121,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'hips',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender1115,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            resizable: false,
+                                            align: 'center',
+                                            dataIndex: 'quads_left',
+                                            hideable: false,
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender11111,
+                                                    scope: me
+                                                }
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            align: 'center',
+                                            dataIndex: 'quads_right',
+                                            flex: 1,
+                                            listeners: {
+                                                afterrender: {
+                                                    fn: me.onGridcolumnAfterRender311,
+                                                    scope: me
+                                                }
+                                            }
                                         }
-                                    ]
+                                    ],
+                                    listeners: {
+                                        itemclick: {
+                                            fn: me.onMeasuresTableItemClick11,
+                                            scope: me
+                                        }
+                                    }
                                 }
                             ]
                         },
@@ -504,6 +748,189 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         me.callParent(arguments);
     },
 
+    processMyLineSeries2: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries1: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+
+    },
+
+    processMyLineSeries21: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+
+    },
+
+    processMyLineSeries3: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+
+    },
+
+    processMyLineSeries4: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries5: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries6: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries7: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries8: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries9: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries10: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries4: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries5: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries6: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries7: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries8: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries9: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries10: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries10: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
+    processMyLineSeries10: function(config) {
+        config.listeners = {
+            itemclick : function(item) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            }
+        };
+        return config;
+    },
+
     onGridcolumnAfterRender: function(component, eOpts) {
         component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE);
     },
@@ -518,6 +945,10 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     onGridcolumnAfterRender3: function(component, eOpts) {
         component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);
+    },
+
+    onMeasuresTableItemClick: function(dataview, record, item, index, e, eOpts) {
+        LanistaTrainer.app.getController('MeasuresController').showForm(record);
     },
 
     onGridcolumnAfterRender4: function(component, eOpts) {
@@ -554,6 +985,50 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     onGridcolumnAfterRender31: function(component, eOpts) {
         component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);
+    },
+
+    onMeasuresTableItemClick1: function(dataview, record, item, index, e, eOpts) {
+        LanistaTrainer.app.getController('MeasuresController').showForm(record);
+    },
+
+    onGridcolumnAfterRender41: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_LEFT);
+    },
+
+    onGridcolumnAfterRender211: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_RIGHT);
+    },
+
+    onGridcolumnAfterRender112: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);
+    },
+
+    onGridcolumnAfterRender11141: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.WAIST);
+    },
+
+    onGridcolumnAfterRender11131: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.NAVEL);
+    },
+
+    onGridcolumnAfterRender11121: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);
+    },
+
+    onGridcolumnAfterRender1115: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.HIP);
+    },
+
+    onGridcolumnAfterRender11111: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.THING_LEFT);
+    },
+
+    onGridcolumnAfterRender311: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT);
+    },
+
+    onMeasuresTableItemClick11: function(dataview, record, item, index, e, eOpts) {
+        LanistaTrainer.app.getController('MeasuresController').showForm(record);
     },
 
     onMeasuresPanelHide: function(component, eOpts) {

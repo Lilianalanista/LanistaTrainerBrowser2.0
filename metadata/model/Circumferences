@@ -96,6 +96,40 @@
             },
             "codeClass": null,
             "userConfig": {
+                "name": "chest_circ",
+                "type": "float"
+            },
+            "designerId": "03a50b98-a0ee-469e-9ee8-a4f0cc0759a7",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "return rec.data.chest;"
+                        ]
+                    },
+                    "designerId": "2e856560-59ae-411e-8a72-decd4c33f0d8"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "name": "ilica_ant",
                 "type": "float"
             },
@@ -152,6 +186,113 @@
                 "type": "float"
             },
             "designerId": "171f3157-c3f3-40e7-8c3d-44a4097a9ae2"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "note_circ",
+                "type": "float"
+            },
+            "designerId": "30afb1b8-eb2f-4175-971b-9e4559551fd7",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "return rec.data.note;"
+                        ]
+                    },
+                    "designerId": "41d3a116-9878-4654-947b-a58a72409487"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "user_id",
+                "type": "int"
+            },
+            "designerId": "4b11d489-ed44-424d-92ff-c24b8af12854"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "customer_id",
+                "type": "int"
+            },
+            "designerId": "003253fa-aaa6-4fde-b999-8136d3ae62c7"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "record_date",
+                "type": "date"
+            },
+            "designerId": "cc86f46c-48c9-496d-9ebb-117491694ac4"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "record_date_local_circ",
+                "type": "string"
+            },
+            "designerId": "be21efc0-7091-4471-94dc-16f9a524a728",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "return rec.data.record_date;"
+                        ]
+                    },
+                    "designerId": "5e0f8417-4379-4c3c-b5c1-8ceb82276c41"
+                }
+            ]
         }
     ]
 }

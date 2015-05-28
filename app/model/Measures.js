@@ -134,6 +134,13 @@ Ext.define('LanistaTrainer.model.Measures', {
         {
             name: 'sum',
             type: 'int'
+        },
+        {
+            convert: function(v, rec) {
+                return rec.data.record_date;
+            },
+            name: 'record_date_local',
+            type: 'string'
         }
     ]
 });

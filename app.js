@@ -80,7 +80,9 @@ Ext.application({
         'DefaultPlanValuesPanel',
         'SetObjectLanista',
         'MyExerciseInfoPanel',
-        'MeasuresPanel'
+        'MeasuresPanel',
+        'ChartWindow',
+        'MyButton7'
     ],
     controllers: [
         'MainController',
@@ -293,8 +295,25 @@ Ext.application({
             }));
 
              Ext.getStore('MeasuresStore').setProxy(new Ext.data.proxy.Ajax({
-                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/getcustomerweights',
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/weightjson',
                 model: 'Measures',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    root: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    root: 'results'
+                },
+                headers: {
+                    user_id: userId
+                }
+            }));
+
+            Ext.getStore('CircumferencesStore').setProxy(new Ext.data.proxy.Ajax({
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/bodymeasuresjson',
+                model: 'Circumferences',
                 noCache: false,
                 reader: {
                     type: 'json',

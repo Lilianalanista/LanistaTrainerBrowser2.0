@@ -309,6 +309,40 @@
                 "type": "int"
             },
             "designerId": "d73a3d5d-fe43-4c78-ace1-ce38e38047f8"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "record_date_local",
+                "type": "string"
+            },
+            "designerId": "3dd69567-93e5-4dc5-a24b-50084113712d",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "return rec.data.record_date;"
+                        ]
+                    },
+                    "designerId": "b081171e-5c51-4211-bf18-7c4c03e85e16"
+                }
+            ]
         }
     ]
 }
