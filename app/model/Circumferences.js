@@ -53,11 +53,11 @@ Ext.define('LanistaTrainer.model.Circumferences', {
             type: 'float'
         },
         {
-            name: 'ilica_ant',
+            name: 'spina_ilica_ant',
             type: 'float'
         },
         {
-            name: 'hips',
+            name: 'wide_hips',
             type: 'float'
         },
         {
@@ -70,14 +70,14 @@ Ext.define('LanistaTrainer.model.Circumferences', {
         },
         {
             name: 'note',
-            type: 'float'
+            type: 'string'
         },
         {
             convert: function(v, rec) {
                 return rec.data.note;
             },
             name: 'note_circ',
-            type: 'float'
+            type: 'string'
         },
         {
             name: 'user_id',

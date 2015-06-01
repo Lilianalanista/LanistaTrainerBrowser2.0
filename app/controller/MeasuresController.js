@@ -144,25 +144,49 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
     onSaveMeasuresButtonClick: function(button, e, eOpts) {
         var controller = this,
-            formPanel = controller.getChartWindow().down('#measuresTabForm'),
+            formPanel,
             activeTab = controller.getMeasuresPanel().down('#measureTabs').getActiveTab(),
             item,
-            fields,
+            fields, fieldsII,
+            url,
             today = new Date();
 
+        if (activeTab.id === 'measuresTab' || activeTab.id === 'caliperTab'){
+            formPanel = controller.getChartWindow().down('#measuresTabForm');
+            url = Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/weightjson';
+        }
+        if (activeTab.id === 'circumferencesTab'){
+            formPanel = controller.getChartWindow().down('#circumferencesTabForm');
+            url = Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/bodymeasuresjson';
+        }
         if (!controller.item){
             fields = formPanel.getForm().getValues();
-            item = Ext.create('LanistaTrainer.model.Measures');
+            fieldsII = formPanel.getForm().getFields();
+
+            if (activeTab.id === 'circumferencesTab')
+                item = Ext.create('LanistaTrainer.model.Circumferences');
+            else
+                item = Ext.create('LanistaTrainer.model.Measures');
+
             item.data = fields;
             item.data.user_id = LanistaTrainer.app.currentCustomer.data.id;
             item.data.customer_id = LanistaTrainer.app.currentCustomer.data.id;
-            item.data.record_date = Ext.Date.format(today, 'Y-m-d');
+
+            if (activeTab.id === 'circumferencesTab'){
+                item.data.chest = fieldsII.getByKey('chest_circ').value;
+                item.data.note = fieldsII.getByKey('note_circ').value;
+                item.data.record_date = fieldsII.getByKey('record_date_local_circ').value;
+            }
+            else
+                item.data.record_date = fieldsII.getByKey('record_date_local').value;
+
+            //item.data.record_date = Ext.Date.format(today, 'Y-m-d');
             formPanel.loadRecord(item);
         }
 
         formPanel.updateRecord();
         formPanel.getRecord().setProxy(new Ext.data.proxy.Ajax({
-            url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/weightjson',
+            url: url,
             noCache: false,
             reader: {
                 type: 'json',
@@ -183,7 +207,10 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 if (success)
                 {
                     formPanel.loadRecord(record);
-                    Ext.getStore('MeasuresStore').load();
+                    if (activeTab.id === 'measuresTab' || activeTab.id === 'caliperTab')
+                        Ext.getStore('MeasuresStore').load();
+                    if (activeTab.id === 'circumferencesTab')
+                        Ext.getStore('CircumferencesStore').load();
                     if (controller.currentPanel.get(activeTab.id) === 'chart')
                         activeTab.down('#measuresChat').show();
                     else

@@ -163,10 +163,18 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
                     },
                     items: [
                         {
-                            xtype: 'textfield',
+                            xtype: 'datefield',
                             anchor: '100%',
                             id: 'record_date_local_circ',
-                            name: 'record_date_local'
+                            name: 'record_date_local_circ',
+                            format: 'd-m-Y'
+                        },
+                        {
+                            xtype: 'datefield',
+                            anchor: '100%',
+                            hidden: true,
+                            name: 'record_date',
+                            format: 'd-m-Y'
                         },
                         {
                             xtype: 'textfield',
@@ -184,6 +192,12 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
                             xtype: 'textfield',
                             anchor: '100%',
                             id: 'chest_circ',
+                            name: 'chest_circ'
+                        },
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            hidden: true,
                             name: 'chest'
                         },
                         {
@@ -201,14 +215,14 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
                         {
                             xtype: 'textfield',
                             anchor: '100%',
-                            id: 'ilica_ant',
-                            name: 'ilica_ant'
+                            id: 'spina_ilica_ant',
+                            name: 'spina_ilica_ant'
                         },
                         {
                             xtype: 'textfield',
                             anchor: '100%',
-                            id: 'hips',
-                            name: 'hips'
+                            id: 'wide_hips',
+                            name: 'wide_hips'
                         },
                         {
                             xtype: 'textfield',
@@ -227,6 +241,12 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
                             anchor: '100%',
                             id: 'note_circ',
                             name: 'note_circ'
+                        },
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            hidden: true,
+                            name: 'note'
                         }
                     ]
                 }
@@ -260,13 +280,32 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
             recordMeasures;
 
         item = LanistaTrainer.app.getController('MeasuresController').item;
-        fields.getByKey('record_date_local').readOnly = item;
+        if (item)
+            fields.getByKey('record_date_local').readOnly = true;
+        else
+            fields.getByKey('record_date_local').readOnly = false;
 
         if (!item){
             storeMeasures = Ext.getStore('MeasuresStore');
             recordMeasures = storeMeasures.first();
-            if (recordMeasures)
+
+            if (recordMeasures){
+                recordMeasures.data.abs = 0;
+                recordMeasures.data.auxiliar = 0;
+                recordMeasures.data.chest = 0;
+                recordMeasures.data.quads = 0;
+                recordMeasures.data.scapula = 0;
+                recordMeasures.data.sprailium = 0;
+                recordMeasures.data.trizeps = 0;
+                recordMeasures.data.sum = 0;
                 component.loadRecord(recordMeasures);
+            }
+
+            newDate = new Date();
+            fields.getByKey('record_date_local').setValue(newDate);
+            component.up('#chartWindow').down('#saveMeasureButton').show();
+            if (component.up('#chartWindow').down('#deleteMeasureButton'))
+                component.up('#chartWindow').down('#deleteMeasureButton').hide();
         }
 
         fields.getByKey('record_date_local').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.DATE);
@@ -310,6 +349,7 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
         fields.each(function(field)
                     {field.on('change',function(f,n,o)
                               {
+                                  if (!LanistaTrainer.app.getController('MeasuresController').item) return;
                                   component.up('#chartWindow').down('#saveMeasureButton').show();
                                   component.up('#chartWindow').down('#cancelMeasureButton').show();
                                   if (component.up('#chartWindow').down('#deleteMeasureButton'))
@@ -349,15 +389,28 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
             newDate;
 
         item = LanistaTrainer.app.getController('MeasuresController').item;
-        fields.getByKey('record_date_local_circ').readOnly = item;
+        if (item)
+            fields.getByKey('record_date_local_circ').readOnly = true;
+        else
+            fields.getByKey('record_date_local_circ').readOnly = false;
 
         if (!item){
             storeMeasures = Ext.getStore('CircumferencesStore');
             recordMeasures = storeMeasures.first();
-            if (recordMeasures)
+
+            if (recordMeasures){
+                recordMeasures.data.weight = 0;
+                recordMeasures.data.height = 0;
+                recordMeasures.data.futrex = 0;
+                recordMeasures.data.percentage = 0;
                 component.loadRecord(recordMeasures);
+            }
+
             newDate = new Date();
             fields.getByKey('record_date_local_circ').setValue(newDate);
+            component.up('#chartWindow').down('#saveMeasureButton').show();
+            if (component.up('#chartWindow').down('#deleteMeasureButton'))
+                component.up('#chartWindow').down('#deleteMeasureButton').hide();
         }
 
         fields.getByKey('record_date_local_circ').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.DATE);
@@ -369,8 +422,8 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
         fields.getByKey('chest_circ').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);
         fields.getByKey('waist').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.WAIST);
         fields.getByKey('umbilical').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.NAVEL);
-        fields.getByKey('ilica_ant').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);
-        fields.getByKey('hips').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.HIP);
+        fields.getByKey('spina_ilica_ant').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);
+        fields.getByKey('wide_hips').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.HIP);
         fields.getByKey('quads_left').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.THING_LEFT);
         fields.getByKey('quads_right').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT);
         fields.getByKey('note_circ').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_NOTE);
@@ -378,6 +431,7 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
         fields.each(function(field)
                     {field.on('change',function(f,n,o)
                               {
+                                  if (!LanistaTrainer.app.getController('MeasuresController').item) return;
                                   component.up('#chartWindow').down('#saveMeasureButton').show();
                                   component.up('#chartWindow').down('#cancelMeasureButton').show();
                                   if (component.up('#chartWindow').down('#deleteMeasureButton'))

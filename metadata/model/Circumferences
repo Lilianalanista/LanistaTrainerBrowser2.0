@@ -130,7 +130,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "ilica_ant",
+                "name": "spina_ilica_ant",
                 "type": "float"
             },
             "designerId": "c30b2f92-489b-4a6c-af15-244eff056bd2"
@@ -143,7 +143,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "hips",
+                "name": "wide_hips",
                 "type": "float"
             },
             "designerId": "cf28f92a-9031-4400-a800-840ab5aa98bd"
@@ -183,7 +183,7 @@
             "codeClass": null,
             "userConfig": {
                 "name": "note",
-                "type": "float"
+                "type": "string"
             },
             "designerId": "171f3157-c3f3-40e7-8c3d-44a4097a9ae2"
         },
@@ -196,7 +196,7 @@
             "codeClass": null,
             "userConfig": {
                 "name": "note_circ",
-                "type": "float"
+                "type": "string"
             },
             "designerId": "30afb1b8-eb2f-4175-971b-9e4559551fd7",
             "cn": [

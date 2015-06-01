@@ -278,13 +278,32 @@
                             "    recordMeasures;",
                             "",
                             "item = LanistaTrainer.app.getController('MeasuresController').item;",
-                            "fields.getByKey('record_date_local').readOnly = item;",
+                            "if (item)",
+                            "    fields.getByKey('record_date_local').readOnly = true;",
+                            "else",
+                            "    fields.getByKey('record_date_local').readOnly = false;",
                             "",
                             "if (!item){",
                             "    storeMeasures = Ext.getStore('MeasuresStore');",
                             "    recordMeasures = storeMeasures.first();",
-                            "    if (recordMeasures)",
+                            "         ",
+                            "    if (recordMeasures){",
+                            "        recordMeasures.data.abs = 0;",
+                            "        recordMeasures.data.auxiliar = 0;",
+                            "        recordMeasures.data.chest = 0;",
+                            "        recordMeasures.data.quads = 0;",
+                            "        recordMeasures.data.scapula = 0;",
+                            "        recordMeasures.data.sprailium = 0;",
+                            "        recordMeasures.data.trizeps = 0;",
+                            "        recordMeasures.data.sum = 0;",
                             "        component.loadRecord(recordMeasures);",
+                            "    }",
+                            "        ",
+                            "    newDate = new Date();",
+                            "    fields.getByKey('record_date_local').setValue(newDate);",
+                            "    component.up('#chartWindow').down('#saveMeasureButton').show();",
+                            "    if (component.up('#chartWindow').down('#deleteMeasureButton'))",
+                            "        component.up('#chartWindow').down('#deleteMeasureButton').hide();",
                             "}",
                             "",
                             "fields.getByKey('record_date_local').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.DATE);",
@@ -328,6 +347,7 @@
                             "fields.each(function(field)",
                             "            {field.on('change',function(f,n,o)",
                             "                      {",
+                            "                          if (!LanistaTrainer.app.getController('MeasuresController').item) return;",
                             "                          component.up('#chartWindow').down('#saveMeasureButton').show();",
                             "                          component.up('#chartWindow').down('#cancelMeasureButton').show();",
                             "                          if (component.up('#chartWindow').down('#deleteMeasureButton'))",
@@ -406,7 +426,7 @@
                     "designerId": "9cc9c531-e868-4a22-a2ab-cc5d83d52f06"
                 },
                 {
-                    "type": "Ext.form.field.Text",
+                    "type": "Ext.form.field.Date",
                     "reference": {
                         "name": "items",
                         "type": "array"
@@ -414,11 +434,29 @@
                     "codeClass": null,
                     "userConfig": {
                         "fieldLabel": null,
+                        "format": "d-m-Y",
                         "id": "record_date_local_circ",
                         "layout|anchor": "100%",
-                        "name": "record_date_local"
+                        "name": "record_date_local_circ"
                     },
                     "designerId": "b87bb493-6415-47c9-9979-298a07415d0f"
+                },
+                {
+                    "type": "Ext.form.field.Date",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "format": "d-m-Y",
+                        "hidden": true,
+                        "id": null,
+                        "layout|anchor": "100%",
+                        "name": "record_date"
+                    },
+                    "designerId": "290ea325-1c01-4f5a-a508-9a3f0b96b12f"
                 },
                 {
                     "type": "Ext.form.field.Text",
@@ -461,9 +499,25 @@
                         "fieldLabel": null,
                         "id": "chest_circ",
                         "layout|anchor": "100%",
-                        "name": "chest"
+                        "name": "chest_circ"
                     },
                     "designerId": "5abc123f-9c0c-45fe-bb9b-7671ec0c5bbf"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "hidden": true,
+                        "id": null,
+                        "layout|anchor": "100%",
+                        "name": "chest"
+                    },
+                    "designerId": "a2ca866d-5ab7-46e9-9c8e-ac870b15bf35"
                 },
                 {
                     "type": "Ext.form.field.Text",
@@ -504,9 +558,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "fieldLabel": null,
-                        "id": "ilica_ant",
+                        "id": "spina_ilica_ant",
                         "layout|anchor": "100%",
-                        "name": "ilica_ant"
+                        "name": "spina_ilica_ant"
                     },
                     "designerId": "3e2b57cb-295b-4e0c-9077-04914b1c7911"
                 },
@@ -519,9 +573,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "fieldLabel": null,
-                        "id": "hips",
+                        "id": "wide_hips",
                         "layout|anchor": "100%",
-                        "name": "hips"
+                        "name": "wide_hips"
                     },
                     "designerId": "f6b3d099-f243-4f35-90df-140c326c3931"
                 },
@@ -571,6 +625,22 @@
                     "designerId": "2059493c-309f-4dec-ae64-38010b1f64ae"
                 },
                 {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "hidden": true,
+                        "id": null,
+                        "layout|anchor": "100%",
+                        "name": "note"
+                    },
+                    "designerId": "43e448d8-1510-465a-98c2-832706a73f0e"
+                },
+                {
                     "type": "basiceventbinding",
                     "reference": {
                         "name": "listeners",
@@ -588,15 +658,28 @@
                             "    newDate;",
                             "",
                             "item = LanistaTrainer.app.getController('MeasuresController').item;",
-                            "fields.getByKey('record_date_local_circ').readOnly = item;",
+                            "if (item)",
+                            "    fields.getByKey('record_date_local_circ').readOnly = true;",
+                            "else",
+                            "    fields.getByKey('record_date_local_circ').readOnly = false;",
                             "",
                             "if (!item){",
                             "    storeMeasures = Ext.getStore('CircumferencesStore');",
                             "    recordMeasures = storeMeasures.first();",
-                            "    if (recordMeasures)",
+                            "    ",
+                            "    if (recordMeasures){",
+                            "        recordMeasures.data.weight = 0;",
+                            "        recordMeasures.data.height = 0;",
+                            "        recordMeasures.data.futrex = 0;",
+                            "        recordMeasures.data.percentage = 0;",
                             "        component.loadRecord(recordMeasures);",
+                            "    }",
+                            "        ",
                             "    newDate = new Date();",
                             "    fields.getByKey('record_date_local_circ').setValue(newDate);",
+                            "    component.up('#chartWindow').down('#saveMeasureButton').show();",
+                            "    if (component.up('#chartWindow').down('#deleteMeasureButton'))",
+                            "        component.up('#chartWindow').down('#deleteMeasureButton').hide();",
                             "}",
                             "",
                             "fields.getByKey('record_date_local_circ').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.DATE);",
@@ -608,8 +691,8 @@
                             "fields.getByKey('chest_circ').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);",
                             "fields.getByKey('waist').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.WAIST);",
                             "fields.getByKey('umbilical').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.NAVEL);",
-                            "fields.getByKey('ilica_ant').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);",
-                            "fields.getByKey('hips').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.HIP);",
+                            "fields.getByKey('spina_ilica_ant').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);",
+                            "fields.getByKey('wide_hips').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.HIP);",
                             "fields.getByKey('quads_left').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.THING_LEFT);",
                             "fields.getByKey('quads_right').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT);",
                             "fields.getByKey('note_circ').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_NOTE);",
@@ -617,6 +700,7 @@
                             "fields.each(function(field)",
                             "            {field.on('change',function(f,n,o)",
                             "                      {",
+                            "                          if (!LanistaTrainer.app.getController('MeasuresController').item) return;",
                             "                          component.up('#chartWindow').down('#saveMeasureButton').show();",
                             "                          component.up('#chartWindow').down('#cancelMeasureButton').show();",
                             "                          if (component.up('#chartWindow').down('#deleteMeasureButton'))",

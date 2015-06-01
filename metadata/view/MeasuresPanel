@@ -1822,8 +1822,8 @@
                                             "chest",
                                             "waist",
                                             "umbilical",
-                                            "ilica_ant",
-                                            "hips",
+                                            "spina_ilica_ant",
+                                            "wide_hips",
                                             "quads_left",
                                             "quads_right"
                                         ],
@@ -2082,7 +2082,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "align": "center",
-                                        "dataIndex": "ilica_ant",
+                                        "dataIndex": "spina_ilica_ant",
                                         "flex": 1,
                                         "hideable": false,
                                         "resizable": false,
@@ -2118,7 +2118,7 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "align": "center",
-                                        "dataIndex": "hips",
+                                        "dataIndex": "wide_hips",
                                         "flex": 1,
                                         "hideable": false,
                                         "resizable": false,

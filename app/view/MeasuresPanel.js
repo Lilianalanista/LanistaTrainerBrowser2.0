@@ -562,8 +562,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 'chest',
                                                 'waist',
                                                 'umbilical',
-                                                'ilica_ant',
-                                                'hips',
+                                                'spina_ilica_ant',
+                                                'wide_hips',
                                                 'quads_left',
                                                 'quads_right'
                                             ],
@@ -669,7 +669,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             xtype: 'gridcolumn',
                                             resizable: false,
                                             align: 'center',
-                                            dataIndex: 'ilica_ant',
+                                            dataIndex: 'spina_ilica_ant',
                                             hideable: false,
                                             flex: 1,
                                             listeners: {
@@ -683,7 +683,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             xtype: 'gridcolumn',
                                             resizable: false,
                                             align: 'center',
-                                            dataIndex: 'hips',
+                                            dataIndex: 'wide_hips',
                                             hideable: false,
                                             flex: 1,
                                             listeners: {
