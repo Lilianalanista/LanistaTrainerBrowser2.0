@@ -159,9 +159,10 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             formPanel = controller.getChartWindow().down('#circumferencesTabForm');
             url = Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/bodymeasuresjson';
         }
-        if (!controller.item){
-            fields = formPanel.getForm().getValues();
-            fieldsII = formPanel.getForm().getFields();
+
+        fields = formPanel.getForm().getValues();
+        fieldsII = formPanel.getForm().getFields();
+        //if (!controller.item){
 
             if (activeTab.id === 'circumferencesTab')
                 item = Ext.create('LanistaTrainer.model.Circumferences');
@@ -180,9 +181,18 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             else
                 item.data.record_date = fieldsII.getByKey('record_date_local').value;
 
-            //item.data.record_date = Ext.Date.format(today, 'Y-m-d');
             formPanel.loadRecord(item);
-        }
+        /*}
+        else{
+
+            if (activeTab.id === 'circumferencesTab'){
+                fields.chest = fieldsII.getByKey('chest_circ').value;
+                fields.note = fieldsII.getByKey('note_circ').value;
+                fields.record_date = fieldsII.getByKey('record_date_local_circ').value;
+            }
+            else
+                fields.record_date = fieldsII.getByKey('record_date_local').value;
+        }*/
 
         formPanel.updateRecord();
         formPanel.getRecord().setProxy(new Ext.data.proxy.Ajax({

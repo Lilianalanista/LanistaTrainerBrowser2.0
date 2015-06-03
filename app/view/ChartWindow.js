@@ -243,7 +243,7 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
                             name: 'note_circ'
                         },
                         {
-                            xtype: 'textfield',
+                            xtype: 'textareafield',
                             anchor: '100%',
                             hidden: true,
                             name: 'note'
@@ -277,7 +277,9 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
             dateMeasure,
             item,
             storeMeasures,
-            recordMeasures;
+            recordMeasures,
+            fecha,
+            today;
 
         item = LanistaTrainer.app.getController('MeasuresController').item;
         if (item)
@@ -289,15 +291,25 @@ Ext.define('LanistaTrainer.view.ChartWindow', {
             storeMeasures = Ext.getStore('MeasuresStore');
             recordMeasures = storeMeasures.first();
 
+            fecha = new Date(recordMeasures.data.record_date_local);
+            today = new Date();
+
             if (recordMeasures){
-                recordMeasures.data.abs = 0;
-                recordMeasures.data.auxiliar = 0;
-                recordMeasures.data.chest = 0;
-                recordMeasures.data.quads = 0;
-                recordMeasures.data.scapula = 0;
-                recordMeasures.data.sprailium = 0;
-                recordMeasures.data.trizeps = 0;
-                recordMeasures.data.sum = 0;
+                if ((activeTab.id === 'measuresTab') && (Ext.Date.format(fecha, 'd-m-Y') !== Ext.Date.format(today, 'd-m-Y'))){
+                    recordMeasures.data.abs = 0;
+                    recordMeasures.data.auxiliar = 0;
+                    recordMeasures.data.chest = 0;
+                    recordMeasures.data.quads = 0;
+                    recordMeasures.data.scapula = 0;
+                    recordMeasures.data.sprailium = 0;
+                    recordMeasures.data.trizeps = 0;
+                    recordMeasures.data.sum = 0;
+                }
+                if ((activeTab.id === 'caliperTab') && (Ext.Date.format(fecha, 'd-m-Y') !== Ext.Date.format(today, 'd-m-Y'))) {
+                    recordMeasures.data.weight = 0;
+                    recordMeasures.data.height = 0;
+                    recordMeasures.data.futrex = 0;
+                }
                 component.loadRecord(recordMeasures);
             }
 
