@@ -37,7 +37,9 @@
             "Plan",
             "Favorites",
             "Measures",
-            "Circumferences"
+            "Circumferences",
+            "TestTypesNodes",
+            "TestTypes"
         ],
         "name": "LanistaTrainer",
         "panels": [
@@ -59,7 +61,8 @@
             "PlanStore",
             "FavoritesStore",
             "MeasuresStore",
-            "CircumferencesStore"
+            "CircumferencesStore",
+            "TestTypesNodesStore"
         ],
         "views": [
             "MainViewport",

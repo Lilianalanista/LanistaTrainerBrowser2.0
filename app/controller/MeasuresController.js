@@ -328,6 +328,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         measuresPanel.down('#measuresChat').show();
         measuresPanel.down('#measuresTable').hide();
 
+        controller.getTestTypesNodes();
+
         measuresStore.removeFilter('caliperFilter');
         filterFunction = new Ext.util.Filter({
             id:'measuresFilter',
@@ -511,6 +513,86 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
     loadData: function() {
 
+    },
+
+    getTestTypesNodes: function() {
+        var controller = this,
+            data,
+            testTypes,
+            testTypesNodes,
+            userId = localStorage.getItem("user_id"),
+            entries = [];
+
+        Ext.Ajax.request({
+            url: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/user/testtypesjson",
+            method: 'get',
+            headers: {
+                    user_id: userId
+                },
+            failure : function(result, request){
+                //console.log( "Failure form getPlan" );
+            },
+            success: function(response, opts) {
+                try {
+                    data = Ext.decode(response.responseText);
+                    entries = data.entries;
+
+                    for (var i=0; i < entries.length; i++){
+                        plan = Ext.create('LanistaTrainer.model.TestTypes', {
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+                            id: entries[i].id,
+
+
+                        });
+
+
+
+                    }
+
+
+
+
+                    plan = Ext.create('LanistaTrainer.model.TestTypesNodes', {
+                        id: data.plan.id,
+                        days: data.plan.days,
+                        duration: data.plan.duration,
+                        description: data.plan.description,
+                        name: data.plan.name,
+                        creation_date: data.plan.creation_date,
+                        changed_date: data.plan.changed_date,
+                        template: data.plan.template,
+                        creator_name: data.plan.creator_name,
+                        creator_first_name: data.plan.creator_first_name,
+                        creator_last_name: data.plan.creator_last_name,
+                        creator_id: data.plan.creator_id,
+                        bu_name: "",
+                        bu_email: "",
+                        bu_domain: "",
+                        creator_website: data.plan.creator_website
+                    });
+
+                    controller.testTypes = testTypes;
+                    controller.testTypesNodes = testTypesNodes;
+                }
+                catch( err ) {
+                    //Ext.Msg.alert('Problem', 'Templatesinformation könnten nicht gelessen werden', Ext.emptyFn);
+                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.ERROR_TEMPLATE_BU_NOTFOUND_TEXT, Ext.ux.LanguageManager.TranslationArray.ERROR_TEMPLATE_BU_NOTFOUND_HEADER, Ext.emptyFn);
+                }
+            }
+        });
     },
 
     init: function(application) {

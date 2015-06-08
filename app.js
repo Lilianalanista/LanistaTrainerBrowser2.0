@@ -39,7 +39,9 @@ Ext.application({
         'Plan',
         'Favorites',
         'Measures',
-        'Circumferences'
+        'Circumferences',
+        'TestTypesNodes',
+        'TestTypes'
     ],
     stores: [
         'ExerciseInitialStore',
@@ -50,7 +52,8 @@ Ext.application({
         'PlanStore',
         'FavoritesStore',
         'MeasuresStore',
-        'CircumferencesStore'
+        'CircumferencesStore',
+        'TestTypesNodesStore'
     ],
     views: [
         'MainViewport',

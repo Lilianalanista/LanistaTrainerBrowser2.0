@@ -397,7 +397,7 @@
                     "",
                     "        dateFromData = records[i].data.birthday;",
                     "        dateFormat = Ext.ux.LanguageManager.lang === 'EN' ? Ext.util.Format.date( dateFromData, 'F d') :Ext.util.Format.date( dateFromData, 'd F');",
-                    " ",
+                    "",
                     "        containerAux.update({\tid: records[i].data.id,",
                     "                                first_name: records[i].data.first_name,",
                     "                                last_name: records[i].data.last_name ,",

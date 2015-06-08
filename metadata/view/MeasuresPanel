@@ -2257,6 +2257,35 @@
                             },
                             "codeClass": null,
                             "designerId": "cfc3b888-49ae-41e1-a363-558b9bfb2228"
+                        },
+                        {
+                            "type": "Ext.view.View",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemSelector": "div"
+                            },
+                            "designerId": "5c6c0aa5-6625-4254-bdba-6ba348aa7cef",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "Data View Item {string}"
+                                        ]
+                                    },
+                                    "designerId": "927505e5-c46b-4b9d-b030-d7b24a9047cc"
+                                }
+                            ]
                         }
                     ]
                 }

@@ -1,0 +1,39 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "TestTypesNodesStore",
+        "model": "TestTypesNodes",
+        "storeId": "TestTypesNodesStore"
+    },
+    "designerId": "433136cc-b348-4117-9c8d-e09ef2220d45",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "/tpmanager/user/bodymeasuresjson"
+            },
+            "designerId": "6e55218a-8215-4417-8808-efe95a6bbd43",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "designerId": "699b3576-0a3b-43da-906b-6beadb20fc93"
+                }
+            ]
+        }
+    ]
+}
