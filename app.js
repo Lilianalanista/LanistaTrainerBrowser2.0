@@ -53,7 +53,8 @@ Ext.application({
         'FavoritesStore',
         'MeasuresStore',
         'CircumferencesStore',
-        'TestTypesNodesStore'
+        'TestTypesNodesStore',
+        'TestTypesStore'
     ],
     views: [
         'MainViewport',

@@ -739,7 +739,11 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                     xtype: 'dataview',
                                     itemSelector: 'div',
                                     itemTpl: [
-                                        'Data View Item {string}'
+                                        '<tpl for=".">',
+                                        '  <div class="lanista-x-exercise">',
+                                        '  ',
+                                        '  </div>',
+                                        '</tpl>'
                                     ]
                                 }
                             ]

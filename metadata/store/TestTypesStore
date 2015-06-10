@@ -6,11 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userClassName": "TestTypesNodesStore",
-        "model": "TestTypesNodes",
-        "storeId": "TestTypesNodesStore"
+        "designer|userClassName": "TestTypesStore",
+        "model": "TestTypes",
+        "storeId": "TestTypesStore"
     },
-    "designerId": "433136cc-b348-4117-9c8d-e09ef2220d45",
+    "designerId": "d87dd788-9fc9-4c25-aaca-106b97313cc7",
     "cn": [
         {
             "type": "Ext.data.proxy.Ajax",
@@ -22,7 +22,7 @@
             "userConfig": {
                 "url": "/tpmanager/user/testtypesjson"
             },
-            "designerId": "6e55218a-8215-4417-8808-efe95a6bbd43",
+            "designerId": "1fdd7c2a-cac5-4f38-8576-6827ca9c4338",
             "cn": [
                 {
                     "type": "Ext.data.reader.Json",
@@ -31,7 +31,7 @@
                         "type": "object"
                     },
                     "codeClass": null,
-                    "designerId": "699b3576-0a3b-43da-906b-6beadb20fc93"
+                    "designerId": "3326c69b-cb7a-469b-8a27-1d8587e4150a"
                 }
             ]
         }

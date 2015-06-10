@@ -2280,7 +2280,11 @@
                                     "userConfig": {
                                         "designer|displayName": "itemTpl",
                                         "implHandler": [
-                                            "Data View Item {string}"
+                                            "<tpl for=\".\">",
+                                            "  <div class=\"lanista-x-exercise\">",
+                                            "  ",
+                                            "  </div>",
+                                            "</tpl>"
                                         ]
                                     },
                                     "designerId": "927505e5-c46b-4b9d-b030-d7b24a9047cc"

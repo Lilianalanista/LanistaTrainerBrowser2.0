@@ -54,10 +54,6 @@ Ext.define('LanistaTrainer.model.TestTypes', {
             type: 'string'
         },
         {
-            name: 'user_id',
-            type: 'int'
-        },
-        {
             name: 'description_DE',
             type: 'string'
         },

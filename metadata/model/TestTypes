@@ -122,19 +122,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "user_id",
-                "type": "int"
-            },
-            "designerId": "3833cd98-718d-4c42-91a1-271d7b45bbdc"
-        },
-        {
-            "type": "Ext.data.Field",
-            "reference": {
-                "name": "fields",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "name": "description_DE",
                 "type": "string"
             },
