@@ -26,8 +26,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         'Ext.chart.Legend',
         'Ext.grid.Panel',
         'Ext.grid.View',
-        'Ext.grid.column.Date',
-        'Ext.XTemplate'
+        'Ext.grid.column.Date'
     ],
 
     cls: 'lanista-measures-panel',
@@ -736,14 +735,14 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                             title: 'My Tab',
                             items: [
                                 {
-                                    xtype: 'dataview',
-                                    itemSelector: 'div',
-                                    itemTpl: [
-                                        '<tpl for=".">',
-                                        '  <div class="lanista-x-exercise">',
-                                        '  ',
-                                        '  </div>',
-                                        '</tpl>'
+                                    xtype: 'gridpanel',
+                                    id: 'testGrid',
+                                    columns: [
+                                        {
+                                            xtype: 'gridcolumn',
+                                            dataIndex: 'string',
+                                            text: 'String'
+                                        }
                                     ]
                                 }
                             ]

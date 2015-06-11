@@ -2259,35 +2259,39 @@
                             "designerId": "cfc3b888-49ae-41e1-a363-558b9bfb2228"
                         },
                         {
-                            "type": "Ext.view.View",
+                            "type": "Ext.grid.Panel",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "itemSelector": "div"
+                                "id": "testGrid",
+                                "title": null
                             },
-                            "designerId": "5c6c0aa5-6625-4254-bdba-6ba348aa7cef",
+                            "designerId": "4e562ac1-6690-4b98-9b28-e4b72b8d2018",
                             "cn": [
                                 {
-                                    "type": "Ext.XTemplate",
+                                    "type": "Ext.grid.column.Column",
                                     "reference": {
-                                        "name": "itemTpl",
-                                        "type": "object"
+                                        "name": "columns",
+                                        "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|displayName": "itemTpl",
-                                        "implHandler": [
-                                            "<tpl for=\".\">",
-                                            "  <div class=\"lanista-x-exercise\">",
-                                            "  ",
-                                            "  </div>",
-                                            "</tpl>"
-                                        ]
+                                        "dataIndex": "string",
+                                        "text": "String"
                                     },
-                                    "designerId": "927505e5-c46b-4b9d-b030-d7b24a9047cc"
+                                    "designerId": "06524e08-5150-4958-9b0c-4abea881e940"
+                                },
+                                {
+                                    "type": "Ext.grid.View",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "designerId": "26cd35a5-2863-4a64-b6c4-a52f59b5ff73"
                                 }
                             ]
                         }

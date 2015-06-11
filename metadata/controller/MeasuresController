@@ -848,9 +848,9 @@
                     "                        tools_EN: entries[i].tools_EN,",
                     "                        tools_ES: entries[i].tools_ES",
                     "                    });",
-                    "    ",
+                    "",
                     "                    testTypesStore.add(testTypes);",
-                    "                    ",
+                    "",
                     "                    if (entries[i].nodes){",
                     "                        nodes = entries[i].nodes;",
                     "                        for (var j=0; j < nodes.length; j++){",
@@ -870,6 +870,15 @@
                     "                        }",
                     "                    }",
                     "            }",
+                    "            ",
+                    "            ",
+                    "            ",
+                    "            ",
+                    "            console.log('DATOS..............');",
+                    "            console.log(testTypesNodesStore);",
+                    "            ",
+                    "            ",
+                    "            ",
                     "",
                     "        }",
                     "        catch( err ) {",
@@ -911,8 +920,8 @@
                     "items = testTypesStore.data.items;",
                     "",
                     "for (var i = 0; i < items.length; i++){",
-                    "    objItem = {text: lang === 'DE' ? items[i].data.name_DE.toUpperCase() : ",
-                    "                     lang === 'EN' ? items[i].data.name_EN.toUpperCase() : ",
+                    "    objItem = {text: lang === 'DE' ? items[i].data.name_DE.toUpperCase() :",
+                    "                     lang === 'EN' ? items[i].data.name_EN.toUpperCase() :",
                     "                     lang === 'ES' ? items[i].data.name_ES.toUpperCase() : '',",
                     "               itemId: items[i].data.id,",
                     "               handler: function (itemMenu) {",
@@ -935,6 +944,25 @@
                 ]
             },
             "designerId": "0f3ab09e-6310-48f1-8291-2149a70242a8"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "type",
+                    "new"
+                ],
+                "fn": "showTest",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "designerId": "62c5ba08-73fe-45d5-9cf5-043695441c5b"
         }
     ]
 }

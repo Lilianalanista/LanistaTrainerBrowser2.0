@@ -603,6 +603,15 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                             }
                     }
 
+
+
+
+                    console.log('DATOS..............');
+                    console.log(testTypesNodesStore);
+
+
+
+
                 }
                 catch( err ) {
                     //Ext.Msg.alert('Problem', 'Templatesinformation könnten nicht gelessen werden', Ext.emptyFn);
@@ -653,6 +662,10 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         }
 
         return menu;
+    },
+
+    showTest: function(type, new) {
+
     },
 
     init: function(application) {

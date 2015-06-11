@@ -1577,10 +1577,13 @@
                                     "id": "cfc3b888-49ae-41e1-a363-558b9bfb2228"
                                 },
                                 {
-                                    "id": "5c6c0aa5-6625-4254-bdba-6ba348aa7cef",
+                                    "id": "4e562ac1-6690-4b98-9b28-e4b72b8d2018",
                                     "cn": [
                                         {
-                                            "id": "927505e5-c46b-4b9d-b030-d7b24a9047cc"
+                                            "id": "06524e08-5150-4958-9b0c-4abea881e940"
+                                        },
+                                        {
+                                            "id": "26cd35a5-2863-4a64-b6c4-a52f59b5ff73"
                                         }
                                     ]
                                 }
@@ -2314,7 +2317,6 @@
         },
         "207b3011-d373-43a5-9030-d4e0067c6b66": {
             "id": "207b3011-d373-43a5-9030-d4e0067c6b66",
-            "expanded": false,
             "cn": [
                 {
                     "id": "0d3da199-ddfc-4398-9175-5f741be6cd90"
@@ -2350,6 +2352,7 @@
         },
         "bb7385a9-358b-4d94-b9e7-f0234cf2d424": {
             "id": "bb7385a9-358b-4d94-b9e7-f0234cf2d424",
+            "expanded": false,
             "cn": [
                 {
                     "id": "22b501d6-fc65-466a-9d0c-88cafce533a1"
@@ -3382,6 +3385,9 @@
                 },
                 {
                     "id": "0f3ab09e-6310-48f1-8291-2149a70242a8"
+                },
+                {
+                    "id": "62c5ba08-73fe-45d5-9cf5-043695441c5b"
                 }
             ]
         },
@@ -3521,11 +3527,11 @@
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "ab357bfa-7d40-4fb3-9c13-b7704892bf1e",
-        "selectedInstance": "927505e5-c46b-4b9d-b030-d7b24a9047cc"
+        "topInstance": "bfc39f89-dd40-4fa4-be5d-36466ecdedb9",
+        "selectedInstance": "fac0cad5-34ed-4f6e-a685-8f58f2bd468c"
     },
     "codeState": {
-        "topInstance": "ab357bfa-7d40-4fb3-9c13-b7704892bf1e"
+        "topInstance": "bfc39f89-dd40-4fa4-be5d-36466ecdedb9"
     },
     "editMode": "code",
     "userSettings": {}
