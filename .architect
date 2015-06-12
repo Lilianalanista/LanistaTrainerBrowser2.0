@@ -209,6 +209,7 @@
         },
         "7b6b8165-f918-4dba-af71-f1183b637161": {
             "id": "7b6b8165-f918-4dba-af71-f1183b637161",
+            "expanded": false,
             "cn": [
                 {
                     "id": "63d9f1d0-5c39-4b4b-9e0b-ad40ac21845e",
@@ -256,7 +257,6 @@
                     "cn": [
                         {
                             "id": "3d5af9f8-e856-4993-bdf0-a78a4bcf3b1d",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "77ec7cce-9f7f-4661-9948-db571731c73b"
@@ -1577,13 +1577,15 @@
                                     "id": "cfc3b888-49ae-41e1-a363-558b9bfb2228"
                                 },
                                 {
-                                    "id": "4e562ac1-6690-4b98-9b28-e4b72b8d2018",
+                                    "id": "b25ff8e2-4a1b-4342-99fe-db395f65d3b5",
                                     "cn": [
                                         {
-                                            "id": "06524e08-5150-4958-9b0c-4abea881e940"
-                                        },
-                                        {
-                                            "id": "26cd35a5-2863-4a64-b6c4-a52f59b5ff73"
+                                            "id": "40b70cf7-5e00-4378-b4a3-c595b1042104",
+                                            "cn": [
+                                                {
+                                                    "id": "1371d124-f0a4-45a1-b6b2-b7316a53a511"
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
@@ -1833,6 +1835,7 @@
         },
         "433136cc-b348-4117-9c8d-e09ef2220d45": {
             "id": "433136cc-b348-4117-9c8d-e09ef2220d45",
+            "expanded": false,
             "cn": [
                 {
                     "id": "6e55218a-8215-4417-8808-efe95a6bbd43",
@@ -3528,7 +3531,7 @@
     },
     "inspectorState": {
         "topInstance": "bfc39f89-dd40-4fa4-be5d-36466ecdedb9",
-        "selectedInstance": "fac0cad5-34ed-4f6e-a685-8f58f2bd468c"
+        "selectedInstance": "62c5ba08-73fe-45d5-9cf5-043695441c5b"
     },
     "codeState": {
         "topInstance": "bfc39f89-dd40-4fa4-be5d-36466ecdedb9"

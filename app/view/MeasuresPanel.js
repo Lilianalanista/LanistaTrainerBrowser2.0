@@ -26,7 +26,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         'Ext.chart.Legend',
         'Ext.grid.Panel',
         'Ext.grid.View',
-        'Ext.grid.column.Date'
+        'Ext.grid.column.Date',
+        'Ext.XTemplate'
     ],
 
     cls: 'lanista-measures-panel',
@@ -735,15 +736,30 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                             title: 'My Tab',
                             items: [
                                 {
-                                    xtype: 'gridpanel',
-                                    id: 'testGrid',
-                                    columns: [
+                                    xtype: 'dataview',
+                                    itemSelector: 'div',
+                                    itemTpl: Ext.create('Ext.XTemplate', 
+                                        '<tpl for=".">',
+                                        '  ',
+                                        '  <div class="lanista-testnode-item">',
+                                        '      ',
+                                        '  </div>',
+                                        '  ',
+                                        '</tpl>',
                                         {
-                                            xtype: 'gridcolumn',
-                                            dataIndex: 'string',
-                                            text: 'String'
+                                            showScales: function(scale) {
+                                                var arrayScale = [],
+                                                    value = '';
+
+                                                arrayScale = scale.split('|');
+
+                                                for (var i = 0; i < arrayScale.length; i++){
+                                                    value = value + '<div class="lanista-testnode-scale">' + arrayScale[i] + '</div>';
+                                                }
+                                                return value;
+                                            }
                                         }
-                                    ]
+                                    )
                                 }
                             ]
                         }

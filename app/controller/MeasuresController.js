@@ -602,16 +602,6 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                                 }
                             }
                     }
-
-
-
-
-                    console.log('DATOS..............');
-                    console.log(testTypesNodesStore);
-
-
-
-
                 }
                 catch( err ) {
                     //Ext.Msg.alert('Problem', 'Templatesinformation könnten nicht gelessen werden', Ext.emptyFn);
@@ -646,16 +636,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                              lang === 'ES' ? items[i].data.name_ES.toUpperCase() : '',
                        itemId: items[i].data.id,
                        handler: function (itemMenu) {
-                           testTypesNodesStore = Ext.getStore('TestTypesNodesStore');
-                           testTypesNodesStore.removeFilter('testFilter');
-                            var filter = new Ext.util.Filter({
-                                id: 'testFilter',
-                                property: "testtypes_id",
-                                root: 'data',
-                                value   : itemMenu.itemId
-                            });
-                            testTypesNodesStore.filters.add (filter);
-                            testTypesNodesStore.filter();
+                           controller.showTest(itemMenu.itemId);
                        }
                       };
             menu.add(objItem);
@@ -664,7 +645,94 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         return menu;
     },
 
-    showTest: function(type, new) {
+    showTest: function(type, ifNew) {
+        var controller = this,
+            testTypesNodesStore = Ext.getStore('TestTypesNodesStore'),
+            measuresPanel = controller.getMeasuresPanel(),
+            testGrid,
+            nodes,
+            lang = Ext.ux.LanguageManager.lang,
+            arrayScale = [],
+            firstNode,
+            arrayFields = [],
+            nodesStore,
+            nodesModel;
+
+        testTypesNodesStore.removeFilter('testFilter');
+        var filter = new Ext.util.Filter({
+            id: 'testFilter',
+            property: "testtypes_id",
+            root: 'data',
+            value   : type
+        });
+        testTypesNodesStore.filters.add (filter);
+        testTypesNodesStore.filter();
+
+        firstNode = testTypesNodesStore.first();
+        arrayScale = firstNode.data.scale_DE.split('|');
+
+        arrayFields[0] = {name: 'Name', type: 'string'};
+        arrayFields[1] = {name: 'Type', type: 'string'};
+        for (var i = 0; i < arrayScale.length; i++ ){
+            arrayFields[i + 2] = {name: 'Node' + i, type: 'string'};
+        }
+
+
+
+        Ext.define('NodesModel', {
+            extend: 'Ext.data.Model',
+            fields: arrayFields
+        });
+        nodesStore = Ext.create('Ext.data.Store', {
+            model: 'NodesModel'
+        });
+
+        /*
+        arrayFields[0] = lang === 'DE' ? firstNode.data.name_DE :
+                         lang === 'EN' ? firstNode.data.name_EN :
+                         lang === 'ES' ? firstNode.data.name_ES : '';
+        arrayFields[1] = firstNode.data.type;
+
+        for (var i = 0; i < arrayScale.length; i++ ){
+            arrayFields[i + 2] = arrayScale[i];
+        }
+        */
+
+
+        console.log('VALORES............');
+        console.log(nodesStore);
+
+
+
+
+
+
+
+
+        //nodes = testTypesNodesStore.data.items;
+        //testGrid = measuresPanel.down('#measureTabs').down('#testsTab');
+
+        /*for (var i = 0; i < nodes.length; i++){
+
+            Ext.create('Ext.grid.Panel', {
+                title: lang === 'DE' ? nodes[i].data.name_DE :
+                       lang === 'EN' ? nodes[i].data.name_EN :
+                       lang === 'ES' ? nodes[i].data.name_ES : '',
+                store: Ext.data.StoreManager.lookup('employeeStore'),
+                columns: [
+                    {text: 'First Name',  dataIndex:'firstname'},
+                    {text: 'Last Name',  dataIndex:'lastname'},
+                    {text: 'Hired Month',  dataIndex:'hired', xtype:'datecolumn', format:'M'},
+                    {text: 'Department (Yrs)', xtype:'templatecolumn', tpl:'{dep} ({seniority})'}
+                ],
+                width: 400,
+                forceFit: true,
+                renderTo: Ext.getBody()
+            });
+
+
+        }*/
+
 
     },
 

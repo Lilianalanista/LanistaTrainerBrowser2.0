@@ -2259,39 +2259,66 @@
                             "designerId": "cfc3b888-49ae-41e1-a363-558b9bfb2228"
                         },
                         {
-                            "type": "Ext.grid.Panel",
+                            "type": "Ext.view.View",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "id": "testGrid",
-                                "title": null
+                                "itemSelector": "div",
+                                "store": null
                             },
-                            "designerId": "4e562ac1-6690-4b98-9b28-e4b72b8d2018",
+                            "designerId": "b25ff8e2-4a1b-4342-99fe-db395f65d3b5",
                             "cn": [
                                 {
-                                    "type": "Ext.grid.column.Column",
+                                    "type": "Ext.XTemplate",
                                     "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "dataIndex": "string",
-                                        "text": "String"
-                                    },
-                                    "designerId": "06524e08-5150-4958-9b0c-4abea881e940"
-                                },
-                                {
-                                    "type": "Ext.grid.View",
-                                    "reference": {
-                                        "name": "viewConfig",
+                                        "name": "itemTpl",
                                         "type": "object"
                                     },
                                     "codeClass": null,
-                                    "designerId": "26cd35a5-2863-4a64-b6c4-a52f59b5ff73"
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<tpl for=\".\">",
+                                            "  ",
+                                            "  <div class=\"lanista-testnode-item\">",
+                                            "      ",
+                                            "  </div>",
+                                            "  ",
+                                            "</tpl>"
+                                        ]
+                                    },
+                                    "designerId": "40b70cf7-5e00-4378-b4a3-c595b1042104",
+                                    "cn": [
+                                        {
+                                            "type": "templatefunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "scale"
+                                                ],
+                                                "fn": "showScales",
+                                                "implHandler": [
+                                                    "var arrayScale = [],",
+                                                    "    value = '';",
+                                                    "",
+                                                    "arrayScale = scale.split('|');",
+                                                    "",
+                                                    "for (var i = 0; i < arrayScale.length; i++){",
+                                                    "    value = value + '<div class=\"lanista-testnode-scale\">' + arrayScale[i] + '</div>';",
+                                                    "}",
+                                                    "return value;"
+                                                ]
+                                            },
+                                            "designerId": "1371d124-f0a4-45a1-b6b2-b7316a53a511"
+                                        }
+                                    ]
                                 }
                             ]
                         }
