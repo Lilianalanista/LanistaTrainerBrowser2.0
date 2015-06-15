@@ -26,8 +26,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         'Ext.chart.Legend',
         'Ext.grid.Panel',
         'Ext.grid.View',
-        'Ext.grid.column.Date',
-        'Ext.XTemplate'
+        'Ext.grid.column.Date'
     ],
 
     cls: 'lanista-measures-panel',
@@ -733,35 +732,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                         {
                             xtype: 'panel',
                             id: 'testsTab',
-                            title: 'My Tab',
-                            items: [
-                                {
-                                    xtype: 'dataview',
-                                    itemSelector: 'div',
-                                    itemTpl: Ext.create('Ext.XTemplate', 
-                                        '<tpl for=".">',
-                                        '  ',
-                                        '  <div class="lanista-testnode-item">',
-                                        '      ',
-                                        '  </div>',
-                                        '  ',
-                                        '</tpl>',
-                                        {
-                                            showScales: function(scale) {
-                                                var arrayScale = [],
-                                                    value = '';
-
-                                                arrayScale = scale.split('|');
-
-                                                for (var i = 0; i < arrayScale.length; i++){
-                                                    value = value + '<div class="lanista-testnode-scale">' + arrayScale[i] + '</div>';
-                                                }
-                                                return value;
-                                            }
-                                        }
-                                    )
-                                }
-                            ]
+                            title: 'My Tab'
                         }
                     ]
                 }

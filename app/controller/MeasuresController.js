@@ -649,14 +649,16 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         var controller = this,
             testTypesNodesStore = Ext.getStore('TestTypesNodesStore'),
             measuresPanel = controller.getMeasuresPanel(),
-            testGrid,
-            nodes,
             lang = Ext.ux.LanguageManager.lang,
             arrayScale = [],
             firstNode,
             arrayFields = [],
             nodesStore,
-            nodesModel;
+            nodesModel,
+            nodesData,
+            tpl,
+            tplText,
+            testView;
 
         testTypesNodesStore.removeFilter('testFilter');
         var filter = new Ext.util.Filter({
@@ -671,13 +673,11 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         firstNode = testTypesNodesStore.first();
         arrayScale = firstNode.data.scale_DE.split('|');
 
-        arrayFields[0] = {name: 'Name', type: 'string'};
-        arrayFields[1] = {name: 'Type', type: 'string'};
+        arrayFields[0] = {name: 'name', type: 'string'};
+        arrayFields[1] = {name: 'type', type: 'string'};
         for (var i = 0; i < arrayScale.length; i++ ){
             arrayFields[i + 2] = {name: 'Node' + i, type: 'string'};
         }
-
-
 
         Ext.define('NodesModel', {
             extend: 'Ext.data.Model',
@@ -687,53 +687,57 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             model: 'NodesModel'
         });
 
-        /*
-        arrayFields[0] = lang === 'DE' ? firstNode.data.name_DE :
-                         lang === 'EN' ? firstNode.data.name_EN :
-                         lang === 'ES' ? firstNode.data.name_ES : '';
-        arrayFields[1] = firstNode.data.type;
+        for (var i = 0; i < testTypesNodesStore.data.items.length; i++ ){
+            nodesData =  Ext.create('NodesModel');
+                nodesData.set('name',  lang === 'DE' ? testTypesNodesStore.data.items[i].data.name_DE :
+                                       lang === 'EN' ? testTypesNodesStore.data.items[i].data.name_EN :
+                                       lang === 'ES' ? testTypesNodesStore.data.items[i].data.name_ES : '');
 
-        for (var i = 0; i < arrayScale.length; i++ ){
-            arrayFields[i + 2] = arrayScale[i];
+                nodesData.set('type', testTypesNodesStore.data.items[i].data.type);
+
+                arrayScale = lang === 'DE' ? testTypesNodesStore.data.items[i].data.scale_DE.split('|') :
+                             lang === 'EN' ? testTypesNodesStore.data.items[i].data.scale_EN.split('|') :
+                             lang === 'ES' ? testTypesNodesStore.data.items[i].data.scale_ES.split('|') : '';
+                for (var j = 0; j < arrayScale.length; j++ ){
+                    nodesData.set(arrayFields[j + 2].name, arrayScale[j]);
+                }
+
+            nodesStore.add(nodesData);
         }
-        */
+
+        //Creating the Template
+        tplText =   '<tpl for=".">' +
+                    '<div class="lanista-test-item">' +
+                    '<div>{name}</div>';
+        for (i = 2; i < arrayFields.length; i++){
+            tplText = tplText + '<div>{'  + arrayFields[i].name + '}</div>';
+        }
+
+        tplText = tplText + '<tpl if="type == 2">';
+        for (i = 2; i < arrayFields.length; i++){
+            tplText = tplText + '<div>{'  + arrayFields[i].name + '}</div>';
+        }
+        tplText = tplText + '</tpl>';
+
+        tplText = tplText + '</div></tpl>';
+        var tpl = new Ext.XTemplate(tplText);
+
+        testView = Ext.create('Ext.view.View', {
+            store: nodesStore,
+            tpl: tpl,
+            itemSelector: 'div.lanista-test-item',
+            autoScroll: true
+        });
+
+        measuresPanel.down('#measureTabs').down('#testsTab').add(testView);
+        testView.refresh();
+        testView.show();
 
 
-        console.log('VALORES............');
-        console.log(nodesStore);
 
 
-
-
-
-
-
-
-        //nodes = testTypesNodesStore.data.items;
-        //testGrid = measuresPanel.down('#measureTabs').down('#testsTab');
-
-        /*for (var i = 0; i < nodes.length; i++){
-
-            Ext.create('Ext.grid.Panel', {
-                title: lang === 'DE' ? nodes[i].data.name_DE :
-                       lang === 'EN' ? nodes[i].data.name_EN :
-                       lang === 'ES' ? nodes[i].data.name_ES : '',
-                store: Ext.data.StoreManager.lookup('employeeStore'),
-                columns: [
-                    {text: 'First Name',  dataIndex:'firstname'},
-                    {text: 'Last Name',  dataIndex:'lastname'},
-                    {text: 'Hired Month',  dataIndex:'hired', xtype:'datecolumn', format:'M'},
-                    {text: 'Department (Yrs)', xtype:'templatecolumn', tpl:'{dep} ({seniority})'}
-                ],
-                width: 400,
-                forceFit: true,
-                renderTo: Ext.getBody()
-            });
-
-
-        }*/
-
-
+        console.log('VALORES...........');
+        console.log(testView);
     },
 
     init: function(application) {
