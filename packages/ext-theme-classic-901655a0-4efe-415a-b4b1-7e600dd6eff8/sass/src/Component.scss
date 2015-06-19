@@ -2210,6 +2210,27 @@ $base-gradient: "none";
 .notification-hidden{
     background-color: transparent!important;
 }
+
+//Test
+.lanista-test-item{
+    height: 130px;
+}
+
+.lanista-test-node{	
+    float: left;
+    border-style: solid!important;
+      border-width: 2px!important;
+      border-color: black;
+      height: 40px;
+}
+
+.lanista-test-sides{
+    float: left;
+}
+
+.lanista-test-rightside, .lanista-test-leftside{
+    height: 50px;
+}
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;
 $background-color: $button-default-background-color;

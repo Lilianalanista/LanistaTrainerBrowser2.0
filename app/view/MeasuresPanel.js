@@ -732,6 +732,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                         {
                             xtype: 'panel',
                             id: 'testsTab',
+                            shrinkWrapDock: 2,
                             title: 'My Tab'
                         }
                     ]

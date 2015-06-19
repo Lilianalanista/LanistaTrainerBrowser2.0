@@ -2245,6 +2245,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "testsTab",
+                        "overflowX": null,
+                        "overflowY": null,
+                        "shrinkWrapDock": 2,
                         "title": "My Tab"
                     },
                     "designerId": "6f15f263-1a89-45a3-9195-eac0b44170aa",

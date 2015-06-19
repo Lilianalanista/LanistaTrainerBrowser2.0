@@ -330,6 +330,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         measuresPanel.down('#measuresChat').show();
         measuresPanel.down('#measuresTable').hide();
 
+        controller.nodesValues = [];
         controller.getTestTypesNodes();
 
         measuresStore.removeFilter('caliperFilter');
@@ -658,7 +659,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             nodesData,
             tpl,
             tplText,
-            testView;
+            testView,
+            nodesWidth;
 
         testTypesNodesStore.removeFilter('testFilter');
         var filter = new Ext.util.Filter({
@@ -672,6 +674,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
         firstNode = testTypesNodesStore.first();
         arrayScale = firstNode.data.scale_DE.split('|');
+        nodesWidth = 630 / arrayScale.length;
 
         arrayFields[0] = {name: 'name', type: 'string'};
         arrayFields[1] = {name: 'type', type: 'string'};
@@ -708,15 +711,31 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         //Creating the Template
         tplText =   '<tpl for=".">' +
                     '<div class="lanista-test-item">' +
-                    '<div>{name}</div>';
-        for (i = 2; i < arrayFields.length; i++){
-            tplText = tplText + '<div>{'  + arrayFields[i].name + '}</div>';
-        }
+                    '<div class="lanista-test-title">{name}</div>';
 
         tplText = tplText + '<tpl if="type == 2">';
+        tplText = tplText + '<div class="lanista-test-rightside">';
+        tplText = tplText + '<div class="lanista-test-sides"> R </div>';
+        tplText = tplText + '<tpl else>';
+        tplText = tplText + '<div class="lanista-test-sides"> &nbsp; &nbsp; </div>';
+        tplText = tplText + '</tpl>';
+
+        tplText = tplText + '<div class="lanista-test-nodes1">';
         for (i = 2; i < arrayFields.length; i++){
-            tplText = tplText + '<div>{'  + arrayFields[i].name + '}</div>';
+            tplText = tplText + '<div class="lanista-test-node" value=' + i + ' node_id=' + i + ' style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
         }
+        tplText = tplText + '</div>';
+        tplText = tplText + '</div>';
+
+        tplText = tplText + '<tpl if="type == 2">';
+        tplText = tplText + '<div class="lanista-test-leftside">';
+        tplText = tplText + '<div class="lanista-test-sides"> L </div>';
+        tplText = tplText + '<div class="lanista-test-nodes2">';
+        for (i = 2; i < arrayFields.length; i++){
+            tplText = tplText + '<div class="lanista-test-node" style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
+        }
+        tplText = tplText + '</div>';
+        tplText = tplText + '</div>';
         tplText = tplText + '</tpl>';
 
         tplText = tplText + '</div></tpl>';
@@ -726,18 +745,58 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             store: nodesStore,
             tpl: tpl,
             itemSelector: 'div.lanista-test-item',
-            autoScroll: true
+            autoScroll: true,
+            dock: 'bottom',
+            height: 550,
+            listeners: {
+                afterrender: function(component, eOpts) {
+                    var el = component.el,
+                        itemRecord;
+                    el.on(
+                        'click', function(e,t) {
+                            itemRecord = component.getRecord(t);
+
+
+
+
+
+                            console.log('VALORES............');
+                            console.log(t);
+                            console.log(Ext.get(t));
+                            console.log(itemRecord);
+                            console.log(component);
+
+
+
+
+
+
+                            //controller.nodesValues
+
+                        },
+                        this, {delegate: '.lanista-test-node'});
+                    el.on(
+                        'mouseover', function(e,t) {
+                            el.removeCls('item-not-clicked');
+                            el.addCls('item-clicked');
+                                                   },
+                        this,{ delegate: '.lanista-test-node'});
+                    el.on(
+                        'mouseout', function(e,t) {
+
+                            el.removeCls('item-clicked');
+                            el.addCls('item-not-clicked');
+                                                  },
+                        this,{delegate: '.lanista-test-node'});
+               }
+            }
         });
 
-        measuresPanel.down('#measureTabs').down('#testsTab').add(testView);
+        //measuresPanel.down('#measureTabs').down('#testsTab').add(testView);
+        measuresPanel.down('#measureTabs').down('#testsTab').addDocked(testView);
         testView.refresh();
         testView.show();
 
-
-
-
-        console.log('VALORES...........');
-        console.log(testView);
     },
 
     init: function(application) {
