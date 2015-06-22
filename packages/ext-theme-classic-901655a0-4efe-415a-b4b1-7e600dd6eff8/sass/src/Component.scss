@@ -2216,7 +2216,7 @@ $base-gradient: "none";
     height: 130px;
 }
 
-.lanista-test-node{	
+.lanista-test-node{
     float: left;
     border-style: solid!important;
       border-width: 2px!important;
@@ -2230,6 +2230,10 @@ $base-gradient: "none";
 
 .lanista-test-rightside, .lanista-test-leftside{
     height: 50px;
+}
+
+.lanista-node-selected{
+    background-color: darkgray;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

@@ -660,7 +660,10 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             tpl,
             tplText,
             testView,
-            nodesWidth;
+            nodesWidth,
+            idNode,
+            k = 0,
+            oldIdNode = [];
 
         testTypesNodesStore.removeFilter('testFilter');
         var filter = new Ext.util.Filter({
@@ -678,6 +681,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
         arrayFields[0] = {name: 'name', type: 'string'};
         arrayFields[1] = {name: 'type', type: 'string'};
+
         for (var i = 0; i < arrayScale.length; i++ ){
             arrayFields[i + 2] = {name: 'Node' + i, type: 'string'};
         }
@@ -697,7 +701,12 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                                        lang === 'ES' ? testTypesNodesStore.data.items[i].data.name_ES : '');
 
                 nodesData.set('type', testTypesNodesStore.data.items[i].data.type);
-
+                nodesData.set('internalIdR', k);
+                k = k + 1;
+                if (testTypesNodesStore.data.items[i].data.type === 2){
+                    nodesData.set('internalIdL', k);
+                    k = k + 1;
+                }
                 arrayScale = lang === 'DE' ? testTypesNodesStore.data.items[i].data.scale_DE.split('|') :
                              lang === 'EN' ? testTypesNodesStore.data.items[i].data.scale_EN.split('|') :
                              lang === 'ES' ? testTypesNodesStore.data.items[i].data.scale_ES.split('|') : '';
@@ -722,7 +731,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
         tplText = tplText + '<div class="lanista-test-nodes1">';
         for (i = 2; i < arrayFields.length; i++){
-            tplText = tplText + '<div class="lanista-test-node" value=' + i + ' node_id=' + i + ' style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
+            tplText = tplText + '<div class="lanista-test-node" id={[values.internalIdR + "_1_"]}' + i + ' style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
         }
         tplText = tplText + '</div>';
         tplText = tplText + '</div>';
@@ -732,7 +741,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         tplText = tplText + '<div class="lanista-test-sides"> L </div>';
         tplText = tplText + '<div class="lanista-test-nodes2">';
         for (i = 2; i < arrayFields.length; i++){
-            tplText = tplText + '<div class="lanista-test-node" style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
+            tplText = tplText + '<div class="lanista-test-node" id={[values.internalIdL + "_2_"]}' + i + ' style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
         }
         tplText = tplText + '</div>';
         tplText = tplText + '</div>';
@@ -754,45 +763,33 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                         itemRecord;
                     el.on(
                         'click', function(e,t) {
-                            itemRecord = component.getRecord(t);
+                            idNode = Ext.get(t).id;
+                            controller.nodesValues[idNode.substr(0,idNode.indexOf("_"))] = (idNode.substr(idNode.lastIndexOf("_") + 1)) - 1;
 
+                            if (oldIdNode[idNode.substr(0,idNode.indexOf("_"))])
+                                oldIdNode[idNode.substr(0,idNode.indexOf("_"))].removeCls('lanista-node-selected');
+                            Ext.get(t).addCls('lanista-node-selected');
+                            oldIdNode[idNode.substr(0,idNode.indexOf("_"))] = Ext.get(t);
 
-
-
-
-                            console.log('VALORES............');
-                            console.log(t);
-                            console.log(Ext.get(t));
-                            console.log(itemRecord);
-                            console.log(component);
-
-
-
-
-
-
-                            //controller.nodesValues
-
-                        },
+                         },
                         this, {delegate: '.lanista-test-node'});
                     el.on(
                         'mouseover', function(e,t) {
                             el.removeCls('item-not-clicked');
                             el.addCls('item-clicked');
-                                                   },
+                         },
                         this,{ delegate: '.lanista-test-node'});
                     el.on(
                         'mouseout', function(e,t) {
 
                             el.removeCls('item-clicked');
                             el.addCls('item-not-clicked');
-                                                  },
+                        },
                         this,{delegate: '.lanista-test-node'});
                }
             }
         });
 
-        //measuresPanel.down('#measureTabs').down('#testsTab').add(testView);
         measuresPanel.down('#measureTabs').down('#testsTab').addDocked(testView);
         testView.refresh();
         testView.show();

@@ -10,7 +10,7 @@
     },
     "designerId": "901655a0-4efe-415a-b4b1-7e600dd6eff8",
     "storage": {
-        "needsCompile": false,
+        "needsCompile": true,
         "simple": {
             "pkgVersion": 1,
             "pkgPath": "packages"
@@ -2636,7 +2636,7 @@
                     "    height: 130px;",
                     "}",
                     "",
-                    ".lanista-test-node{\t",
+                    ".lanista-test-node{",
                     "    float: left;",
                     "    border-style: solid!important;",
                     "      border-width: 2px!important;",
@@ -2650,6 +2650,10 @@
                     "",
                     ".lanista-test-rightside, .lanista-test-leftside{",
                     "    height: 50px;",
+                    "}",
+                    "",
+                    ".lanista-node-selected{",
+                    "    background-color: darkgray;",
                     "}"
                 ]
             },
