@@ -2219,9 +2219,9 @@ $base-gradient: "none";
 .lanista-test-node{
     float: left;
     border-style: solid!important;
-      border-width: 2px!important;
-      border-color: black;
-      height: 40px;
+    border-width: 2px!important;
+    border-color: black;
+    height: 40px;
 }
 
 .lanista-test-sides{
@@ -2234,6 +2234,21 @@ $base-gradient: "none";
 
 .lanista-node-selected{
     background-color: darkgray;
+}
+
+.lanista-testnode-icon{
+    font-family: 'Lanista Icons';
+    font-size: 18px;
+    color: darkgray;
+}
+
+.lanista-testnode-icon{
+    float: left;
+}
+
+.lanista-test-comment input{
+    margin-left: 25px;
+    width: 595px;
 }
 $arrow-height: $button-large-arrow-height;
 $arrow-width: $button-large-arrow-width;

@@ -697,7 +697,6 @@
         },
         "1e317829-2f19-4cbf-896a-798df5232ab1": {
             "id": "1e317829-2f19-4cbf-896a-798df5232ab1",
-            "expanded": false,
             "cn": [
                 {
                     "id": "674ad016-c69f-4175-8bf5-9b657e2bd926"
@@ -958,7 +957,6 @@
         },
         "a0b0768f-a567-47c7-ae7b-4a38dd90a70b": {
             "id": "a0b0768f-a567-47c7-ae7b-4a38dd90a70b",
-            "expanded": false,
             "cn": [
                 {
                     "id": "2d5dea2b-0af6-4089-b888-0c4bfcd45295"
@@ -2343,7 +2341,6 @@
         },
         "bb7385a9-358b-4d94-b9e7-f0234cf2d424": {
             "id": "bb7385a9-358b-4d94-b9e7-f0234cf2d424",
-            "expanded": false,
             "cn": [
                 {
                     "id": "22b501d6-fc65-466a-9d0c-88cafce533a1"
@@ -3076,7 +3073,6 @@
         },
         "260d0b7c-3d84-46d4-908d-3196335a55ba": {
             "id": "260d0b7c-3d84-46d4-908d-3196335a55ba",
-            "expanded": false,
             "cn": [
                 {
                     "id": "89eae8ae-890a-4a28-8565-43f06c5c37f0"
@@ -3377,6 +3373,9 @@
                 },
                 {
                     "id": "62c5ba08-73fe-45d5-9cf5-043695441c5b"
+                },
+                {
+                    "id": "e215416c-267f-4eb6-a022-012388f3cbd4"
                 }
             ]
         },
@@ -3517,7 +3516,7 @@
     },
     "inspectorState": {
         "topInstance": "bfc39f89-dd40-4fa4-be5d-36466ecdedb9",
-        "selectedInstance": "62c5ba08-73fe-45d5-9cf5-043695441c5b"
+        "selectedInstance": "e215416c-267f-4eb6-a022-012388f3cbd4"
     },
     "codeState": {
         "topInstance": "bfc39f89-dd40-4fa4-be5d-36466ecdedb9"

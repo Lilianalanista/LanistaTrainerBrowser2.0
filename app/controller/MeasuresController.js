@@ -331,6 +331,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         measuresPanel.down('#measuresTable').hide();
 
         controller.nodesValues = [];
+        controller.nodesComments = [];
         controller.getTestTypesNodes();
 
         measuresStore.removeFilter('caliperFilter');
@@ -663,7 +664,11 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             nodesWidth,
             idNode,
             k = 0,
+            numComments = 0,
             oldIdNode = [];
+
+        controller.nodesValues = [];
+        controller.nodesComments = [];
 
         testTypesNodesStore.removeFilter('testFilter');
         var filter = new Ext.util.Filter({
@@ -701,8 +706,13 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                                        lang === 'ES' ? testTypesNodesStore.data.items[i].data.name_ES : '');
 
                 nodesData.set('type', testTypesNodesStore.data.items[i].data.type);
+
                 nodesData.set('internalIdR', k);
                 k = k + 1;
+
+                nodesData.set('commentsId', numComments);
+                numComments = numComments + 1;
+
                 if (testTypesNodesStore.data.items[i].data.type === 2){
                     nodesData.set('internalIdL', k);
                     k = k + 1;
@@ -717,37 +727,44 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             nodesStore.add(nodesData);
         }
 
+        controller.numNodos = k;
+        controller.numComments = numComments;
+
         //Creating the Template
-        tplText =   '<tpl for=".">' +
-                    '<div class="lanista-test-item">' +
-                    '<div class="lanista-test-title">{name}</div>';
-
-        tplText = tplText + '<tpl if="type == 2">';
-        tplText = tplText + '<div class="lanista-test-rightside">';
-        tplText = tplText + '<div class="lanista-test-sides"> R </div>';
-        tplText = tplText + '<tpl else>';
-        tplText = tplText + '<div class="lanista-test-sides"> &nbsp; &nbsp; </div>';
-        tplText = tplText + '</tpl>';
-
-        tplText = tplText + '<div class="lanista-test-nodes1">';
+        tplText =           '         <tpl for=".">' +
+                            '              <div class="lanista-test-item">' +
+                            '                      <div class="lanista-test-title">{name}</div>';
+        tplText = tplText + '                      <div class="lanista-test-rightside">';
+        tplText = tplText + '                           <tpl if="type == 2">';
+        tplText = tplText + '                                   <div class="lanista-test-sides"> R </div>';
+        tplText = tplText + '                                   <tpl else>';
+        tplText = tplText + '                                   <div class="lanista-test-sides"> &nbsp; &nbsp; </div>';
+        tplText = tplText + '                           </tpl>';
+        tplText = tplText + '                           <div class="lanista-test-nodes1">';
         for (i = 2; i < arrayFields.length; i++){
-            tplText = tplText + '<div class="lanista-test-node" id={[values.internalIdR + "_1_"]}' + i + ' style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
+            tplText = tplText + '                         <div class="lanista-test-node" id={[values.internalIdR + "_1_"]}' + i + ' style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
         }
-        tplText = tplText + '</div>';
-        tplText = tplText + '</div>';
+        tplText = tplText + '                           </div>';
+        tplText = tplText + '                     </div>';
 
-        tplText = tplText + '<tpl if="type == 2">';
-        tplText = tplText + '<div class="lanista-test-leftside">';
-        tplText = tplText + '<div class="lanista-test-sides"> L </div>';
-        tplText = tplText + '<div class="lanista-test-nodes2">';
+        tplText = tplText + '                     <tpl if="type == 2">';
+        tplText = tplText + '                       <div class="lanista-test-leftside">';
+        tplText = tplText + '                           <div class="lanista-test-sides"> L </div>';
+        tplText = tplText + '                           <div class="lanista-test-nodes2">';
         for (i = 2; i < arrayFields.length; i++){
-            tplText = tplText + '<div class="lanista-test-node" id={[values.internalIdL + "_2_"]}' + i + ' style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
+            tplText = tplText + '                         <div class="lanista-test-node" id={[values.internalIdL + "_2_"]}' + i + ' style="width: ' + nodesWidth + 'px;">{'  + arrayFields[i].name + '}</div>';
         }
-        tplText = tplText + '</div>';
-        tplText = tplText + '</div>';
-        tplText = tplText + '</tpl>';
+        tplText = tplText + '                           </div>';
+        tplText = tplText + '                       </div>';
+        tplText = tplText + '                     </tpl>';
 
-        tplText = tplText + '</div></tpl>';
+        tplText = tplText + '                     <div>';
+        tplText = tplText + '                        <div class="lanista-testnode-icon"> I </div> <div class="lanista-test-comment"> <input type="text" id={[values.commentsId + "_"]}' + i + '> </div>';
+        tplText = tplText + '                     </div>';
+
+        tplText = tplText + '              </div>';
+        tplText = tplText + '         </tpl>';
+
         var tpl = new Ext.XTemplate(tplText);
 
         testView = Ext.create('Ext.view.View', {
@@ -763,15 +780,14 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                         itemRecord;
                     el.on(
                         'click', function(e,t) {
-                            idNode = Ext.get(t).id;
-                            controller.nodesValues[idNode.substr(0,idNode.indexOf("_"))] = (idNode.substr(idNode.lastIndexOf("_") + 1)) - 1;
+                                idNode = Ext.get(t).id;
+                                controller.nodesValues[idNode.substr(0,idNode.indexOf("_"))] = (idNode.substr(idNode.lastIndexOf("_") + 1)) - 1;
 
-                            if (oldIdNode[idNode.substr(0,idNode.indexOf("_"))])
-                                oldIdNode[idNode.substr(0,idNode.indexOf("_"))].removeCls('lanista-node-selected');
-                            Ext.get(t).addCls('lanista-node-selected');
-                            oldIdNode[idNode.substr(0,idNode.indexOf("_"))] = Ext.get(t);
-
-                         },
+                                if (oldIdNode[idNode.substr(0,idNode.indexOf("_"))])
+                                    oldIdNode[idNode.substr(0,idNode.indexOf("_"))].removeCls('lanista-node-selected');
+                                Ext.get(t).addCls('lanista-node-selected');
+                                oldIdNode[idNode.substr(0,idNode.indexOf("_"))] = Ext.get(t);
+                            },
                         this, {delegate: '.lanista-test-node'});
                     el.on(
                         'mouseover', function(e,t) {
@@ -786,6 +802,14 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                             el.addCls('item-not-clicked');
                         },
                         this,{delegate: '.lanista-test-node'});
+
+                    el.on(
+                        'change', function(e,t) {
+                            Node = Ext.get(t);
+                            controller.nodesComments[Node.dom.children[0].id.substr(0,Node.dom.children[0].id.indexOf("_"))] = Node.dom.children[0].value;
+                              controller.testSave(type);
+                         },
+                        this,{delegate: '.lanista-test-comment'});
                }
             }
         });
@@ -793,6 +817,69 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         measuresPanel.down('#measureTabs').down('#testsTab').addDocked(testView);
         testView.refresh();
         testView.show();
+
+    },
+
+    testSave: function(type) {
+        var controller = this,
+            nodesText,
+            commentsText,
+            nodesArr = controller.nodesValues,
+            commentsArr = controller.nodesComments,
+            numNodos = controller.numNodos,
+            numComments = controller.numComments,
+            nodeValue = '',
+            commentsValue = '',
+            TestToSave,
+            user = localStorage.getItem("user_id");
+
+        for (var i = 0; i < numNodos - 1; i++){
+            nodeValue = nodesArr[i] ? nodeValue + nodesArr[i] + '|' : nodeValue + '|';
+        }
+        nodeValue = nodesArr[numNodos - 1] ? nodeValue + nodesArr[numNodos - 1] : nodeValue;
+
+        for (i = 0; i < numComments - 1; i++){
+            commentsValue = commentsArr[i] ? commentsValue + commentsArr[i] + '|' : commentsValue + '|';
+        }
+        commentsValue = commentsArr[numComments - 1] ? commentsValue + commentsArr[numComments - 1] : commentsValue;
+
+        Ext.define('TestModelSave', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'trainer_id', type: 'string'},
+                {name: 'test_results', type: 'string'},
+                {name: 'test_comments', type: 'string'},
+                {name: 'testtype', type: 'string'},
+                {name: 'customer_id', type: 'string'}
+            ],
+            proxy: {
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/testresultjson',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    root: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    root: 'records',
+                    allowSingle: false
+                },
+                headers: {
+                    user_id: localStorage.getItem("user_id")
+                }
+            }
+        });
+
+        TestToSave = Ext.create('TestModelSave', {
+            trainer_id   : user,
+            test_results : nodeValue,
+            test_comments  : commentsValue,
+            testtype: type,
+            customer_id: LanistaTrainer.app.currentCustomer
+        });
+        TestToSave.save();
+
+
 
     },
 
