@@ -28,6 +28,12 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         },
         {
             autoCreate: true,
+            ref: 'testPanel',
+            selector: 'testPanel',
+            xtype: 'testPanel'
+        },
+        {
+            autoCreate: true,
             ref: 'chartWindow',
             selector: 'chartWindow',
             xtype: 'chartWindow'
@@ -66,8 +72,20 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
     },
 
     onCloseMeasuresPanelButtonClick: function(button, e, eOpts) {
+        var controller = this;
+
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeMeasuresPanel', function() {
+
+
+
+
+            controller.testSave(controller.testType);
+
+
+
+
+
             LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);
         });
 
@@ -122,7 +140,13 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             });
             store.filters.add (filter);
             store.loadPage(1);
+        }else if ( newCard.id == 'testsTab') {
+            controller.searchCustomerTest();
         }
+
+
+
+
 
     },
 
@@ -332,6 +356,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
         controller.nodesValues = [];
         controller.nodesComments = [];
+        controller.testType = '';
         controller.getTestTypesNodes();
 
         measuresStore.removeFilter('caliperFilter');
@@ -651,6 +676,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         var controller = this,
             testTypesNodesStore = Ext.getStore('TestTypesNodesStore'),
             measuresPanel = controller.getMeasuresPanel(),
+            testPanel = controller.getTestPanel(),
             lang = Ext.ux.LanguageManager.lang,
             arrayScale = [],
             firstNode,
@@ -669,6 +695,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
         controller.nodesValues = [];
         controller.nodesComments = [];
+        controller.testType = type;
 
         testTypesNodesStore.removeFilter('testFilter');
         var filter = new Ext.util.Filter({
@@ -807,14 +834,14 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                         'change', function(e,t) {
                             Node = Ext.get(t);
                             controller.nodesComments[Node.dom.children[0].id.substr(0,Node.dom.children[0].id.indexOf("_"))] = Node.dom.children[0].value;
-                              controller.testSave(type);
+                              //controller.testSave(type);
                          },
                         this,{delegate: '.lanista-test-comment'});
                }
             }
         });
 
-        measuresPanel.down('#measureTabs').down('#testsTab').addDocked(testView);
+        testPanel.addDocked(testView);
         testView.refresh();
         testView.show();
 
@@ -854,6 +881,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             ],
             proxy: {
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/testresultjson',
+                type: 'ajax',
                 noCache: false,
                 reader: {
                     type: 'json',
@@ -875,11 +903,51 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             test_results : nodeValue,
             test_comments  : commentsValue,
             testtype: type,
-            customer_id: LanistaTrainer.app.currentCustomer
+            customer_id: LanistaTrainer.app.currentCustomer.data.id
         });
         TestToSave.save();
+        TestToSave.destroy();
 
 
+
+    },
+
+    searchCustomerTest: function() {
+
+
+        Ext.define('TestModelSearch', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'trainer_id', type: 'string'},
+                {name: 'test_results', type: 'string'},
+                {name: 'test_comments', type: 'string'},
+                {name: 'testtype', type: 'string'},
+                {name: 'customer_id', type: 'string'}
+            ]
+
+        });
+
+        nodesStore = Ext.create('Ext.data.Store', {
+            model: 'TestModelSearch',
+            proxy: {
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/testresultjson',
+                type: 'ajax',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    root: 'entries'
+                },
+                headers: {
+                    user_id: localStorage.getItem("user_id")
+                },
+                extraParams: {
+                        customer_id: LanistaTrainer.app.currentCustomer.data.id
+                }
+            }
+        });
+        nodesStore.load();
+
+        //Ext.ux.SessionManager.getUser()
 
     },
 

@@ -86,7 +86,8 @@ Ext.application({
         'MyExerciseInfoPanel',
         'MeasuresPanel',
         'ChartWindow',
-        'MyButton7'
+        'MyButton7',
+        'TestPanel'
     ],
     controllers: [
         'MainController',
