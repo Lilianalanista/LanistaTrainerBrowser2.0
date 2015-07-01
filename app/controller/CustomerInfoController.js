@@ -203,13 +203,24 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
 
     showCommands: function(callback) {
 
-        var controller = this;
+        var controller = this,
+            user = Ext.ux.SessionManager.getUser();
 
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });
 
-        //Adding bottoms into RightPanel
+        if (user.role !== '2' ){
+            //Adding bottoms into RightPanel
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.LOGGOUT,
+                    itemId: 'logoutButton',
+                    userAlias: 'logoutButton',
+                    glyph: '115@Lanista Icons' //s
+                })
+            );
+        }
 
 
     },

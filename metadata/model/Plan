@@ -194,6 +194,19 @@
                 "name": "planexercises"
             },
             "designerId": "f4c06e5a-9b68-4c24-9a43-523ffd29212b"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "person_id",
+                "type": "int"
+            },
+            "designerId": "85c7c250-4da3-4e54-a78e-4c6e39d1adac"
         }
     ]
 }

@@ -41,7 +41,8 @@ Ext.application({
         'Measures',
         'Circumferences',
         'TestTypesNodes',
-        'TestTypes'
+        'TestTypes',
+        'TestResults'
     ],
     stores: [
         'ExerciseInitialStore',
@@ -54,7 +55,8 @@ Ext.application({
         'MeasuresStore',
         'CircumferencesStore',
         'TestTypesNodesStore',
-        'TestTypesStore'
+        'TestTypesStore',
+        'TestResultsStore'
     ],
     views: [
         'MainViewport',
@@ -146,20 +148,65 @@ Ext.application({
                     scope: this
                 });
                 LanistaTrainer.app.setProxies();
-                LanistaTrainer.app.fireEvent('showDashboardPanel');
+                //LanistaTrainer.app.fireEvent('showDashboardPanel');
+
+                if (user.role === '2' )  //Only Role 2 means that it is a Trainer
+                    LanistaTrainer.app.fireEvent('showDashboardPanel');
+                else{  //It is a  Kunden
+                    Ext.Ajax.request({
+                        url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getuser',
+                        method: 'get',
+                        params: {id: user.id},
+                        headers: {user_id: user.id},
+                        failure : function(result, request){
+                            console.log( "There were problems in looking for user information" );
+                        },
+                        success: function(response, opts) {
+                            try {
+                                data = Ext.decode(response.responseText);
+                                ActiveCustomer = Ext.create('LanistaTrainer.model.Customer', {
+                                    id: data.user.id,
+                                    first_name: data.user.first_name,
+                                    last_name: data.user.last_name,
+                                    email: data.user.email,
+                                    street: data.user.street,
+                                    city: data.user.city,
+                                    zipcode: data.user.zipcode,
+                                    country: data.user.country,
+                                    note: data.user.note,
+                                    phone_nr: data.user.phone_nr,
+                                    birthday: data.user.birthday,
+                                    gender: data.user.gender,
+                                    deleted: data.user.deleted,
+                                    image: data.user.image,
+                                    last_change: data.user.last_change,
+                                    language: data.user.language,
+                                    sincronized: data.user.sincronized
+                                });
+                                    LanistaTrainer.app.currentCustomer = ActiveCustomer;
+                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
+                                    LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
+                            }
+                            catch( err ) {
+                                Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);
+                            }
+                        }
+                    });
+                }
             }
         });
     },
 
     setStandardButtons: function(backBotonId) {
-        var LeftPanel = Ext.ComponentQuery.query("viewport")[0].down("#leftCommandPanel");
+        var LeftPanel = Ext.ComponentQuery.query("viewport")[0].down("#leftCommandPanel"),
+            user = Ext.ux.SessionManager.getUser();
 
         LeftPanel.items.each(function (item) {
             item.hide();
         });
 
 
-        if ( !Ext.isEmpty(backBotonId) )
+        if ( !Ext.isEmpty(backBotonId) && (backBotonId !== 'closeCustomerExercisesPanelButton' || user.role === '2'))
         {	LeftPanel.add(
                 Ext.create('LanistaTrainer.view.LanistaButton', {
                     text: Ext.ux.LanguageManager.TranslationArray.CLOSE,
@@ -319,6 +366,23 @@ Ext.application({
             Ext.getStore('CircumferencesStore').setProxy(new Ext.data.proxy.Ajax({
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/bodymeasuresjson',
                 model: 'Circumferences',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    root: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    root: 'results'
+                },
+                headers: {
+                    user_id: userId
+                }
+            }));
+
+            Ext.getStore('TestResultsStore').setProxy(new Ext.data.proxy.Ajax({
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/testresultjson',
+                model: 'TestResults',
                 noCache: false,
                 reader: {
                     type: 'json',

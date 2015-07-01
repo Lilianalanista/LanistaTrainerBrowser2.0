@@ -349,10 +349,13 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             measuresPanel,
             mainStage	= controller.getMainStage(),
             measuresPanel = controller.getMeasuresPanel(),
-            measuresStore = Ext.getStore('MeasuresStore');
+            measuresStore = Ext.getStore('MeasuresStore'),
+            user = Ext.ux.SessionManager.getUser();
 
         measuresPanel.down('#measuresChat').show();
         measuresPanel.down('#measuresTable').hide();
+        if (user.role === '2' )
+            measuresPanel.down('#testsTab').show();
 
         controller.nodesValues = [];
         controller.nodesComments = [];
@@ -513,7 +516,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
     showCommands: function(callback) {
 
         var controller = this,
-            activeTab;
+            activeTab,
+            user = Ext.ux.SessionManager.getUser();
 
             activeTab = controller.getMeasuresPanel().down('#measureTabs').getActiveTab();
 
@@ -538,17 +542,19 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             );
         }
         else{
-            this.getRightCommandPanel().add(
-                Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
-                    itemId: 'newMeasureButton',
-                    cls: [
-                        'lanista-command-button',
-                        'lanista-command-button-green'
-                    ],
-                    glyph: '108@Lanista Icons' //l
-                })
-            );
+             if (user.role === '2' ){
+                this.getRightCommandPanel().add(
+                        Ext.create('LanistaTrainer.view.LanistaButton', {
+                            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
+                            itemId: 'newMeasureButton',
+                            cls: [
+                                'lanista-command-button',
+                                'lanista-command-button-green'
+                            ],
+                            glyph: '108@Lanista Icons' //l
+                        })
+                );
+             }
 
             this.getRightCommandPanel().add(
                 Ext.create('LanistaTrainer.view.LanistaButton', {
@@ -913,16 +919,24 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
     },
 
     searchCustomerTest: function() {
+        var controller = this,
+            measuresPanel = controller.getMeasuresPanel(),
+            viewTest = measuresPanel.down('#testView'),
+            TestResultsStore = Ext.getStore('TestResultsStore');
+
+        TestResultsStore.getProxy().setExtraParam( 'customer_id', LanistaTrainer.app.currentCustomer.data.id );
+        TestResultsStore.load();
 
 
-        Ext.define('TestModelSearch', {
+        /*Ext.define('TestModelSearch', {
             extend: 'Ext.data.Model',
             fields: [
                 {name: 'trainer_id', type: 'string'},
                 {name: 'test_results', type: 'string'},
                 {name: 'test_comments', type: 'string'},
                 {name: 'testtype', type: 'string'},
-                {name: 'customer_id', type: 'string'}
+                {name: 'customer_id', type: 'string'},
+                {name: 'test_date', type: 'string'}
             ]
 
         });
@@ -945,9 +959,18 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 }
             }
         });
-        nodesStore.load();
+
+        viewTest.store = nodesStore;
+        viewTest.itemSelector = 'div.lanista-testpanel-item';
+
+        nodesStore.load(function(records, operation, success) {
+            viewTest.refresh();
+            viewTest.show();
+        });
 
         //Ext.ux.SessionManager.getUser()
+        */
+
 
     },
 

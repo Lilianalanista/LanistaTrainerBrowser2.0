@@ -78,6 +78,10 @@ Ext.define('LanistaTrainer.model.Plan', {
         {
             name: 'public_template',
             type: 'int'
+        },
+        {
+            name: 'person_id',
+            type: 'int'
         }
     ],
 

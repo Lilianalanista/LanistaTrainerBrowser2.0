@@ -90,8 +90,56 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                             });
 
                             LanistaTrainer.app.setProxies();
-                            LanistaTrainer.app.fireEvent('showDashboardPanel');
-                    },
+
+
+                            if (user.role === '2' )  //Only Role 2 means that it is a Trainer
+                                LanistaTrainer.app.fireEvent('showDashboardPanel');
+                            else{  //It is a  Kunden
+                                Ext.Ajax.request({
+                                    url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getuser',
+                                    method: 'get',
+                                    params: {id: user.id},
+                                    headers: {user_id: user.id},
+                                    failure : function(result, request){
+                                        console.log( "There were problems in looking for user information" );
+                                    },
+                                    success: function(response, opts) {
+                                        try {
+                                            data = Ext.decode(response.responseText);
+                                            ActiveCustomer = Ext.create('LanistaTrainer.model.Customer', {
+                                                id: data.user.id,
+                                                first_name: data.user.first_name,
+                                                last_name: data.user.last_name,
+                                                email: data.user.email,
+                                                street: data.user.street,
+                                                city: data.user.city,
+                                                zipcode: data.user.zipcode,
+                                                country: data.user.country,
+                                                note: data.user.note,
+                                                phone_nr: data.user.phone_nr,
+                                                birthday: data.user.birthday,
+                                                gender: data.user.gender,
+                                                deleted: data.user.deleted,
+                                                image: data.user.image,
+                                                last_change: data.user.last_change,
+                                                language: data.user.language,
+                                                sincronized: data.user.sincronized
+                                            });
+
+                                            LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                                LanistaTrainer.app.currentCustomer = ActiveCustomer;
+                                                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
+                                                LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
+                                            });
+                                        }
+                                        catch( err ) {
+                                            Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);
+                                        }
+                                    }
+                                });
+                            }
+
+                    }, //End for success function
                                                  function (status) {
                                                      console.log("MARK 2");
                                                      console.log(status);
@@ -125,10 +173,14 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
     },
 
     onLogoutButtonClick: function(button, e, eOpts) {
+        var user = Ext.ux.SessionManager.getUser(),
+            event;
+
+        event = user.role === '2' ? 'closeUserInfoPanel' : 'closeCustomerInfoPanel';
 
         LanistaTrainer.app.fireEvent('hideStage', function () {
             LanistaTrainer.app.fireEvent('logoutUser', function () {
-               LanistaTrainer.app.fireEvent('closeUserInfoPanel', function() {
+               LanistaTrainer.app.fireEvent(event, function() {
                     localStorage.removeItem("user_id");
                     localStorage.removeItem("user_name");
                     localStorage.removeItem("password");

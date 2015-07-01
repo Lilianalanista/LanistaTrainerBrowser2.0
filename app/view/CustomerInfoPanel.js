@@ -561,6 +561,9 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
         document.getElementsByName("birthday")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_BIRTHDATE;
         document.getElementsByName("gender")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_GENDER;
 
+        if (user.role !== '2' )
+            component.down('#customer_companyContacts').hide();
+
 
         fields.each(function(field)
                         {field.on('change',function(f,n,o)

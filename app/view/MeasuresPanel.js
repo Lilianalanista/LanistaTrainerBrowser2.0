@@ -732,6 +732,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                         },
                         {
                             xtype: 'panel',
+                            hidden: true,
                             id: 'testsTab',
                             shrinkWrapDock: 2,
                             title: 'My Tab',
@@ -739,10 +740,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 {
                                     xtype: 'dataview',
                                     id: 'testView',
-                                    itemSelector: 'div',
-                                    itemTpl: [
-                                        '<>'
-                                    ]
+                                    tpl: [
+                                        '<tpl for=".">',
+                                        '  <div class="lanista-testpanel-item">',
+                                        '      <div class="lanista-test-panel-date">{test_date}</div>',
+                                        '  </div>  ',
+                                        '</tpl>'
+                                    ],
+                                    itemSelector: 'div.lanista-testpanel-item',
+                                    store: 'TestResultsStore'
                                 }
                             ]
                         }

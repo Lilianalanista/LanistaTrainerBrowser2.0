@@ -2244,6 +2244,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "hidden": true,
                         "id": "testsTab",
                         "overflowX": null,
                         "overflowY": null,
@@ -2270,24 +2271,29 @@
                             "codeClass": null,
                             "userConfig": {
                                 "id": "testView",
-                                "itemSelector": "div"
+                                "itemSelector": "div.lanista-testpanel-item",
+                                "store": "TestResultsStore"
                             },
                             "designerId": "69df6a56-4a34-42e2-a994-6f41924f59ff",
                             "cn": [
                                 {
                                     "type": "Ext.XTemplate",
                                     "reference": {
-                                        "name": "itemTpl",
+                                        "name": "tpl",
                                         "type": "object"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "designer|displayName": "itemTpl",
+                                        "designer|displayName": "tpl",
                                         "implHandler": [
-                                            "<>"
+                                            "<tpl for=\".\">",
+                                            "  <div class=\"lanista-testpanel-item\">",
+                                            "      <div class=\"lanista-test-panel-date\">{test_date}</div>",
+                                            "  </div>  ",
+                                            "</tpl>"
                                         ]
                                     },
-                                    "designerId": "80d6f2f3-ba5d-4f27-849e-27bac195627e"
+                                    "designerId": "1af7d099-d778-46f4-a563-b6465a7ab989"
                                 }
                             ]
                         }

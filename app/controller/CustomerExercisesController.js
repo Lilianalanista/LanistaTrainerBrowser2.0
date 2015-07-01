@@ -148,7 +148,9 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
     showCommands: function(callback) {
 
-        var controller = this;
+        var controller = this,
+            user = Ext.ux.SessionManager.getUser();
+
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });
@@ -177,14 +179,15 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             })
         );
 
-        controller.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.MENU_HISTORY,
-                itemId: 'showAnamnesisButton',
-                glyph: '76@Lanista Icons' //L
-            })
-        );
-
+        if (user.role === '2' ){
+            controller.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.MENU_HISTORY,
+                    itemId: 'showAnamnesisButton',
+                    glyph: '76@Lanista Icons' //L
+                })
+            );
+        }
 
 
     },
@@ -342,11 +345,15 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
     loadPlans: function(customerId) {
         var store = Ext.getStore('PlanStore'),
-            currentCustomer = LanistaTrainer.app.currentCustomer;
+            currentCustomer = LanistaTrainer.app.currentCustomer,
+            user = Ext.ux.SessionManager.getUser(),
+            filterProperty;
+
+        filterProperty = user.role === '2' ? 'customer_id' : 'person_id';
 
         store.clearGrouping();
         store.clearFilter();
-        store.filter ({property: 'customer_id', value: currentCustomer.data.id});
+        store.filter ({property: filterProperty, value: currentCustomer.data.id});
         store.sort( {
             direction: 'DESC',
             property: 'creation_date'

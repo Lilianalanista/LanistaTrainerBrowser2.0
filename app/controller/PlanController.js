@@ -605,7 +605,9 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             fieldset			= controller.getTrainingPlanOptions();
 
         mainStage.add(planOptionsPanel);
+
         LanistaTrainer.app.setStandardButtons('closePlanOptionsPanel');
+
         planOptionsPanel.on('hide', function(component) {
             component.destroy();
         }, self);
@@ -929,69 +931,83 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
     setPlanOptions: function() {
         var controller = this,
-            newOption;
+            newOption,
+            user = Ext.ux.SessionManager.getUser();
 
         planOptions = new Ext.menu.Menu(
             {
                 defaults: {
                     height: '50px',
                     width: '220px'
-                },
-                items:
-                [
-                    {text:	Ext.ux.LanguageManager.TranslationArray.BUTTON_ASSIGN_PLAN.toUpperCase(),
-                            handler: function () {
-                                        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
-                                        LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {
-                                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomersPanel';
-                                            LanistaTrainer.app.fireEvent( 'showCustomersPanel' );
-                                        });
-                            }
-                    },
-                    {text:  Ext.ux.LanguageManager.TranslationArray.SEND_EMAIL.toUpperCase(),
-                            handler: function () {
-                                        Ext.Ajax.request({
-                                            url: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/plan/sendmail",
-                                            method: 'post',
-                                            params: { plan_id: controller.plan.data.id },
-                                            headers: { user_id: localStorage.getItem("user_id") },
-                                            failure : function(response){
-                                                data = Ext.decode(response.responseText);
-                                                console.log ( data );
-                                                Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_PROBLEM, '', Ext.emptyFn );
-                                            },
-                                            success: function(response, opts) {
-                                                data = Ext.decode ( response.responseText);
-                                                if (data.success !== true)
-                                                {
-                                                    Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_PROBLEM, data.message, Ext.emptyFn);
-                                                } else {
-                                                    Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_PROBLEM, data.message, Ext.emptyFn);
-                                                    Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_SENT, '', Ext.emptyFn );
-                                                }
-                                            }
-                                        });
-                            }
-                    },
-                    {text:  Ext.ux.LanguageManager.TranslationArray.GENERATE_PDF.toUpperCase(),
-                            handler: function () {
-                                        window.open( Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() +"/tpmanager/plan/getpdf?plan_id=" + controller.plan.data.id );
-                            }
-                    }
-                ]
+                }
             }
         );
 
-        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === "CustomerExercisesPanel"){
-            newOption = {text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE.toUpperCase() + ' ' +
-                                Ext.ux.LanguageManager.TranslationArray.SAVE_AS_TEMPLATE.toUpperCase(),
-                                handler: function () {
-                                            LanistaTrainer.app.getController('PlanController').clonePlan('');
-                                        }
+        if (user.role === '2' ){
+            newOption = {text:	Ext.ux.LanguageManager.TranslationArray.BUTTON_ASSIGN_PLAN.toUpperCase(),
+                         handler: function () {
+                             LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+                             LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {
+                                 LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomersPanel';
+                                 LanistaTrainer.app.fireEvent( 'showCustomersPanel' );
+                             });
+                         }
                         };
-
             planOptions.add(newOption);
+
+            if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === "CustomerExercisesPanel"){
+                newOption = {text:  Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE.toUpperCase() + ' ' +
+                                    Ext.ux.LanguageManager.TranslationArray.SAVE_AS_TEMPLATE.toUpperCase(),
+                                    handler: function () {
+                                                LanistaTrainer.app.getController('PlanController').clonePlan('');
+                                            }
+                            };
+            }
+            planOptions.add(newOption);
+
         }
+
+        newOption = {text:  Ext.ux.LanguageManager.TranslationArray.SEND_EMAIL.toUpperCase(),
+                     handler: function () {
+                         Ext.Ajax.request({
+                             url: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/plan/sendmail",
+                             method: 'post',
+                             params: { plan_id: controller.plan.data.id },
+                             headers: { user_id: localStorage.getItem("user_id") },
+                             failure : function(response){
+                                 data = Ext.decode(response.responseText);
+                                 console.log ( data );
+                                 Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_PROBLEM, '', Ext.emptyFn );
+                             },
+                             success: function(response, opts) {
+                                 data = Ext.decode ( response.responseText);
+                                 if (data.success !== true)
+                                 {
+                                     Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_PROBLEM, data.message, Ext.emptyFn);
+                                 } else {
+                                     Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_PROBLEM, data.message, Ext.emptyFn);
+                                     Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_SENT, '', Ext.emptyFn );
+                                 }
+                             }
+                         });
+                     }
+                    };
+        if (user.role === '2' )
+            planOptions.insert(1,newOption);
+        else
+            planOptions.add(newOption);
+
+
+        newOption = {text:  Ext.ux.LanguageManager.TranslationArray.GENERATE_PDF.toUpperCase(),
+                            handler: function () {
+                                        window.open( Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() +"/tpmanager/plan/getpdf?plan_id=" + controller.plan.data.id );
+                            }
+                    };
+        if (user.role === '2' )
+            planOptions.insert(2,newOption);
+        else
+            planOptions.add(newOption);
+
         return planOptions;
 
 
