@@ -29,11 +29,12 @@
                     "    templatesPanel\t= controller.getTemplatesPanel(),",
                     "    mainStage\t= controller.getMainStage(),",
                     "    planStore = Ext.getStore('PlanStore'),",
-                    "    userId = localStorage.getItem(\"user_id\");",
+                    "    userId = localStorage.getItem(\"user_id\"),",
+                    "    dateToday = new Date();",
                     "",
-                    "//planStore.clearGrouping();",
-                    "//planStore.clearFilter();",
-                    "//planStore.getProxy().headers = {};",
+                    "planStore.clearGrouping();",
+                    "planStore.clearFilter();",
+                    "planStore.getProxy().headers = {};",
                     "",
                     "if (!Ext.ux.SessionManager.getIsLoggedIn())",
                     "    planStore.setProxy(new Ext.data.proxy.Ajax({",
@@ -47,7 +48,10 @@
                     "        writer: {",
                     "            type: 'json',",
                     "            root: 'results'",
-                    "        }",
+                    "        }/*,",
+                    "        extraParams: {",
+                    "            last_update: dateToday.getFullYear() + '-' + (dateToday.getMonth() +1) + '-' + dateToday.getDate()",
+                    "        }*/",
                     "    }));",
                     "else{",
                     "    planStore.setProxy(new Ext.data.proxy.Ajax({",
@@ -63,21 +67,13 @@
                     "            root: 'results'",
                     "        },",
                     "        headers: {",
-                    "                user_id: userId",
+                    "            user_id: userId",
                     "            }",
                     "    }));",
                     "}",
                     "",
                     "",
                     "//planStore.filter ({property: 'customer_id', value: '75'});",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "console.log(planStore);",
-                    "",
-                    "",
-                    "",
                     "",
                     "templatesPanel.down('#templatesView').bindStore(planStore);",
                     "planStore.load();",
@@ -426,6 +422,30 @@
                 "scope": "me"
             },
             "designerId": "0aa49870-ef8b-421f-8919-23d26b68c1ac"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #searchTemplatesButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onSearchTemplatesButtonClick",
+                "implHandler": [
+                    "Ext.Msg.alert (",
+                    "    '',",
+                    "    Ext.ux.LanguageManager.TranslationArray.FUNCTIONALITY_NOT_AVAILABLE,",
+                    "    null,",
+                    "    null",
+                    ");"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "da551d21-d586-4465-a54b-d95fac0c7fc2"
         }
     ]
 }

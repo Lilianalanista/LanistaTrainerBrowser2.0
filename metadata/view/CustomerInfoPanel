@@ -130,8 +130,8 @@
                             "userConfig": {
                                 "fn": "onCustomer_birthdateChange",
                                 "implHandler": [
-                                    "console.log(oldValue);",
-                                    "console.log(newValue);"
+                                    "//console.log(oldValue);",
+                                    "//console.log(newValue);"
                                 ],
                                 "name": "change",
                                 "scope": "me"
@@ -675,6 +675,8 @@
                     "",
                     "    });",
                     "",
+                    "",
+                    "fields.getByKey('customer_birthdate').setValue(Ext.Date.format(fields.getByKey('customer_birthdate').getValue(), 'Y-m-d'));",
                     "fields.getByKey('customer_language').bindStore(languagesStore);",
                     "fields.getByKey('customer_country').bindStore(countryStore);",
                     "fields.getByKey('customer_gender').bindStore(genderStore);",
@@ -708,8 +710,11 @@
                     "document.getElementsByName(\"birthday\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_BIRTHDATE;",
                     "document.getElementsByName(\"gender\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_GENDER;",
                     "",
-                    "if (user.role !== '2' )",
+                    "if (user.role !== '2' ){",
                     "    component.down('#customer_companyContacts').hide();",
+                    "    component.down('#customer_trainerGymName').show();",
+                    "    fields.getByKey('customer_trainerGym').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.PLAN_FROM_TRAINER);",
+                    "}",
                     "",
                     "",
                     "fields.each(function(field)",
@@ -764,6 +769,39 @@
                 "name": "id"
             },
             "designerId": "6f0943f7-364f-4416-ad9b-75a987c56b72"
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "lanista-user-fieldset",
+                "hidden": true,
+                "id": "customer_trainerGymName",
+                "title": null
+            },
+            "designerId": "f83c6015-e730-4c23-aaf5-8082c2d84f13",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-user-settings-field",
+                        "fieldLabel": "Label",
+                        "id": "customer_trainerGym",
+                        "layout|anchor": "100%",
+                        "name": "trainerGymName"
+                    },
+                    "designerId": "fb50748c-82f9-485a-b59a-3585f31e50e6"
+                }
+            ]
         }
     ]
 }

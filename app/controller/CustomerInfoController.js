@@ -47,6 +47,10 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
             selector: '#customer_personalData'
         },
         {
+            ref: 'customer_trainerGymName',
+            selector: '#customer_trainerGymName'
+        },
+        {
             ref: 'customer_companyContacts',
             selector: '#customer_companyContacts'
         }
@@ -117,14 +121,14 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
                     callback: function(record,event,success) {
                         if (success)
                         {
-                            var oldDate = record.data.birthday.split('-'),
+                            /*var oldDate = record.data.birthday.split('-'),
                                 newDate;
                             if (Ext.ux.LanguageManager.lang === 'EN')
                                 newDate = oldDate[1] + oldDate[0] + oldDate[2];
                             else
-                                newDate = oldDate[0] + oldDate[1] + oldDate[2];
+                                newDate = oldDate[0] + oldDate[1] + oldDate[2];*/
 
-                            record.data.birthday = newDate;
+                            record.data.birthday = Ext.Date.format(record.data.birthday, 'Y-m-d');
 
                             controller.getCustomerInfoPanel().loadRecord(record);
                             Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);
@@ -227,11 +231,24 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
 
     loadData: function() {
         var controller = this,
-            fieldset = controller.getCustomer_personalData();
+            fieldset = controller.getCustomer_personalData(),
+            user = Ext.ux.SessionManager.getUser(),
+            infoTrainer;
 
         fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PERSON_DATA);
         fieldset = controller.getCustomer_companyContacts();
         fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.ADDRESS);
+
+        if (user.role !== '2' ){
+            fieldset = controller.getCustomer_trainerGymName();
+            fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PLAN_FROM_TRAINER);
+
+            infoTrainer = LanistaTrainer.app.getController ('CustomerExercisesController').infotrainer;
+            fieldset.down('#customer_trainerGym').setValue(infoTrainer.first_name + ' ' + infoTrainer.last_name);
+        }
+
+        if (controller.getRightCommandPanel().down('#cancelSettingsCustomerButton'))
+            controller.getRightCommandPanel().down('#cancelSettingsCustomerButton').fireEvent('click');
 
         controller.getCustomerInfoPanel().getForm().findField('customer_email').focus();
     },

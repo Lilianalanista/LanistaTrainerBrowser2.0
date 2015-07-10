@@ -186,6 +186,22 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
                     xtype: 'hiddenfield',
                     id: 'customer_id',
                     name: 'id'
+                },
+                {
+                    xtype: 'fieldset',
+                    cls: 'lanista-user-fieldset',
+                    hidden: true,
+                    id: 'customer_trainerGymName',
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            anchor: '100%',
+                            cls: 'lanista-user-settings-field',
+                            id: 'customer_trainerGym',
+                            fieldLabel: 'Label',
+                            name: 'trainerGymName'
+                        }
+                    ]
                 }
             ],
             listeners: {
@@ -245,8 +261,8 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
     },
 
     onCustomer_birthdateChange: function(field, newValue, oldValue, eOpts) {
-        console.log(oldValue);
-        console.log(newValue);
+        //console.log(oldValue);
+        //console.log(newValue);
     },
 
     onUserInfoPanelAfterRender: function(component, eOpts) {
@@ -528,6 +544,8 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
 
             });
 
+
+        fields.getByKey('customer_birthdate').setValue(Ext.Date.format(fields.getByKey('customer_birthdate').getValue(), 'Y-m-d'));
         fields.getByKey('customer_language').bindStore(languagesStore);
         fields.getByKey('customer_country').bindStore(countryStore);
         fields.getByKey('customer_gender').bindStore(genderStore);
@@ -561,8 +579,11 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
         document.getElementsByName("birthday")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_BIRTHDATE;
         document.getElementsByName("gender")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_DATA_GENDER;
 
-        if (user.role !== '2' )
+        if (user.role !== '2' ){
             component.down('#customer_companyContacts').hide();
+            component.down('#customer_trainerGymName').show();
+            fields.getByKey('customer_trainerGym').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.PLAN_FROM_TRAINER);
+        }
 
 
         fields.each(function(field)

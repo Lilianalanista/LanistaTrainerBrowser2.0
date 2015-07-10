@@ -63,6 +63,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                         },
                         {
                             xtype: 'button',
+                            hidden: true,
                             id: 'showWarningsOption',
                             text: 'MyButton',
                             listeners: {
@@ -210,12 +211,17 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
     },
 
     onPlanSelectorButtonsAfterRender: function(component, eOpts) {
-        var XField = component.getX();
+        var XField = component.getX(),
+            user = Ext.ux.SessionManager.getUser();
             //YField = component.getY() + component.getHeight() - component.down('#showWarningsOption').getHeight();
             //YField = component.getY() + 142 - 21;
 
         component.down('#showPlansOption').setText(Ext.ux.LanguageManager.TranslationArray.PLANS);
         component.down('#showWarningsOption').setText(Ext.ux.LanguageManager.TranslationArray.WARNINGS + ' ' + '<span class="lanista-icon">W</span>');
+
+        if (user.role === '2' )
+            component.down('#showWarningsOption').show();
+
 
 
     },

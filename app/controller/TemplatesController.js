@@ -87,16 +87,26 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
         });
     },
 
+    onSearchTemplatesButtonClick: function(button, e, eOpts) {
+        Ext.Msg.alert (
+            '',
+            Ext.ux.LanguageManager.TranslationArray.FUNCTIONALITY_NOT_AVAILABLE,
+            null,
+            null
+        );
+    },
+
     onShowTemplatesPanel: function(callback) {
         var controller = this,
             templatesPanel	= controller.getTemplatesPanel(),
             mainStage	= controller.getMainStage(),
             planStore = Ext.getStore('PlanStore'),
-            userId = localStorage.getItem("user_id");
+            userId = localStorage.getItem("user_id"),
+            dateToday = new Date();
 
-        //planStore.clearGrouping();
-        //planStore.clearFilter();
-        //planStore.getProxy().headers = {};
+        planStore.clearGrouping();
+        planStore.clearFilter();
+        planStore.getProxy().headers = {};
 
         if (!Ext.ux.SessionManager.getIsLoggedIn())
             planStore.setProxy(new Ext.data.proxy.Ajax({
@@ -110,7 +120,10 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
                 writer: {
                     type: 'json',
                     root: 'results'
-                }
+                }/*,
+                extraParams: {
+                    last_update: dateToday.getFullYear() + '-' + (dateToday.getMonth() +1) + '-' + dateToday.getDate()
+                }*/
             }));
         else{
             planStore.setProxy(new Ext.data.proxy.Ajax({
@@ -126,21 +139,13 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
                     root: 'results'
                 },
                 headers: {
-                        user_id: userId
+                    user_id: userId
                     }
             }));
         }
 
 
         //planStore.filter ({property: 'customer_id', value: '75'});
-
-
-
-
-        console.log(planStore);
-
-
-
 
         templatesPanel.down('#templatesView').bindStore(planStore);
         planStore.load();
@@ -263,6 +268,9 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
             },
             "viewport #newTemplateButton": {
                 click: this.onNewTemplateButtonClick
+            },
+            "viewport #searchTemplatesButton": {
+                click: this.onSearchTemplatesButtonClick
             }
         });
 

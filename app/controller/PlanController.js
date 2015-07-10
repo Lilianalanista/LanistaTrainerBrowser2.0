@@ -437,7 +437,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             planExercisesStore = controller.plan.planexercises(),
             exerciseController = LanistaTrainer.app.getController ( 'ExerciseController' ),
             values,
-            record;
+            record,
+            userId = localStorage.getItem("user_id");
 
         controller.planname = planname;
         controller.getPlanPanel().down('planExercisesList').store = planExercisesStore;
@@ -455,7 +456,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     root: 'records'
                 },
                 headers: {
-                    user_id: localStorage.getItem("user_id")
+                    user_id: userId ? userId : ""
                 }
             }));
 
@@ -474,7 +475,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             var planPanel	= controller.getPlanPanel(),
                 mainStage	= controller.getMainStage(),
                 recordsArray = [],
-                tabActiveId = controller.currentDay || controller.getPlanPanel ().down ('tabpanel').child('#d1');
+                tabActiveId = controller.currentDay || controller.getPlanPanel ().down ('tabpanel').child('#d1'),
+                user = Ext.ux.SessionManager.getUser();
 
             planPanel.controller = controller;
             controller.createDayPanels ( controller.plan.data.days );
@@ -509,6 +511,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
             // *** 4 Callback
             if (callback instanceof Function) callback();
+
 
          });
 
@@ -709,6 +712,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             name : ( planname && planname.length > 1 ) ? planname : Ext.ux.LanguageManager.TranslationArray.PLAN_NAME_DEFAULT,
             template: currentClient ? 0 : 1,
             customer_id: currentClient ? currentClient.data.id : 0,
+            person_id: currentClient ? currentClient.data.id : 0,
             trainer_id: userId,
             creator_name: user.first_name + ' ' + user.last_name,
             duration: 12
@@ -796,21 +800,23 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             item.hide();
         });
 
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
-                itemId: 'addExerciseButton',
-                glyph: '108@Lanista Icons' //l
-            })
-        );
+        if (Ext.ux.SessionManager.getIsLoggedIn()){
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
+                    itemId: 'addExerciseButton',
+                    glyph: '108@Lanista Icons' //l
+                })
+            );
 
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_DEFAULT_EXER_CONF,
-                itemId: 'defaultValuesButton',
-                glyph: '74@Lanista Icons' //J
-            })
-        );
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_DEFAULT_EXER_CONF,
+                    itemId: 'defaultValuesButton',
+                    glyph: '74@Lanista Icons' //J
+                })
+            );
+        }
 
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
@@ -823,29 +829,32 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             })
         );
 
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.CHANGE_VALUE + ' / ' + Ext.ux.LanguageManager.TranslationArray.DELETE,
-                itemId: 'changeDeleteButton',
-                menu: controller.changeDeletePlan(),
-                menuButtonAlign: 'right',
-                style: 'float: left;',
-                glyph: '73@Lanista Icons' //I
-            })
-        );
+        if (Ext.ux.SessionManager.getIsLoggedIn()){
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.CHANGE_VALUE + ' / ' + Ext.ux.LanguageManager.TranslationArray.DELETE,
+                    itemId: 'changeDeleteButton',
+                    menu: controller.changeDeletePlan(),
+                    menuButtonAlign: 'right',
+                    style: 'float: left;',
+                    glyph: '73@Lanista Icons' //I
+                })
+            );
 
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.DELETE,
-                itemId: 'removePlanExercisesButton',
-                cls: [
-                    'lanista-command-button',
-                    'lanista-command-button-red'
-                ],
-                hidden: true,
-                glyph: '117@Lanista Icons' //u
-            })
-        );
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.DELETE,
+                    itemId: 'removePlanExercisesButton',
+                    cls: [
+                        'lanista-command-button',
+                        'lanista-command-button-red'
+                    ],
+                    hidden: true,
+                    glyph: '117@Lanista Icons' //u
+                })
+            );
+        }
+
 
 
 
@@ -943,7 +952,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             }
         );
 
-        if (user.role === '2' ){
+        if (user && user.role === '2' ){
             newOption = {text:	Ext.ux.LanguageManager.TranslationArray.BUTTON_ASSIGN_PLAN.toUpperCase(),
                          handler: function () {
                              LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
@@ -992,7 +1001,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                          });
                      }
                     };
-        if (user.role === '2' )
+        if (user && user.role === '2' )
             planOptions.insert(1,newOption);
         else
             planOptions.add(newOption);
@@ -1003,7 +1012,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                                         window.open( Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() +"/tpmanager/plan/getpdf?plan_id=" + controller.plan.data.id );
                             }
                     };
-        if (user.role === '2' )
+        if (user && user.role === '2' )
             planOptions.insert(2,newOption);
         else
             planOptions.add(newOption);
@@ -1032,7 +1041,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                                     LanistaTrainer.app.fireEvent( 'showPlanOptionsPanel' );
                                 });
                             }},
-                    {text:	Ext.ux.LanguageManager.TranslationArray.DELETE_PLAN.toUpperCase(),
+                    {text:	Ext.ux.LanguageManager.TranslationArray.BUTTON_DELETE_PLAN.toUpperCase(),
                             handler: function () {
                                 record = LanistaTrainer.app.getController ( 'PlanController' ).plan;
                                 Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_USER, record.data.name, function(button) {

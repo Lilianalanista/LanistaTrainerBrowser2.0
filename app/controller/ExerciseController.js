@@ -365,7 +365,15 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         // *** 2 Show the panel
         exercisePanel.show();
 
-        exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(3));
+        if ( currentPlan )
+            exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(3));
+        else{
+            if (Ext.ux.SessionManager.getIsLoggedIn())
+                exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(2));
+            else
+                exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(0));
+        }
+
         LanistaTrainer.app.fireEvent('showExerciseHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
 

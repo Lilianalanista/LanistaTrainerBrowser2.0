@@ -91,7 +91,6 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
 
                             LanistaTrainer.app.setProxies();
 
-
                             if (user.role === '2' )  //Only Role 2 means that it is a Trainer
                                 LanistaTrainer.app.fireEvent('showDashboardPanel');
                             else{  //It is a  Kunden

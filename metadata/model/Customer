@@ -148,6 +148,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dateFormat": null,
                 "name": "birthday",
                 "type": "date"
             },

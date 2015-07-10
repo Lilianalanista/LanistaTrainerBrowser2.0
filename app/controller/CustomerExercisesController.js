@@ -78,11 +78,11 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
     },
 
     onShowCustomerExercisesPanel: function(callback) {
-
         var controller = this,
             customerExercisesPanel	= controller.getCustomerExercisesPanel(),
             mainStage	= controller.getMainStage(),
-            newHeightProtocols = 0;
+            newHeightProtocols = 0,
+            user = Ext.ux.SessionManager.getUser();
 
         customerExercisesPanel.controller = controller;
         mainStage.add( customerExercisesPanel );
@@ -109,14 +109,47 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
         // PROTOCOLLS
         controller.loadProtocolls();
 
-        LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');
-        LanistaTrainer.app.fireEvent('showStage');
+        if (user.role !== '2' ){
+            //Searching for Training's Customer
+            Ext.Ajax.request({
+                url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/fetchcustomertrainers',
+                method: 'get',
+                params: {user_id: user.id},
+                headers: {user_id: user.id},
+                failure : function(result, request){
+                    console.log( "There were problems in looking for user information" );
+                },
+                success: function(response, opts) {
+                    try {
+                        data = Ext.decode(response.responseText);
+                        controller.infotrainer = data.entries[0];
 
-        // *** 4 Callback
-        if (callback instanceof Function) callback();
+                        LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');
+                        LanistaTrainer.app.fireEvent('showStage');
 
-        // *** 5 Load data
-        controller.loadData();
+                        // *** 4 Callback
+                        if (callback instanceof Function) callback();
+
+                        // *** 5 Load data
+                        controller.loadData();
+                    }
+                    catch( err ) {
+                        Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);
+                    }
+                }
+            });
+        }
+        else{
+            LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');
+            LanistaTrainer.app.fireEvent('showStage');
+
+            // *** 4 Callback
+            if (callback instanceof Function) callback();
+
+            // *** 5 Load data
+            controller.loadData();
+        }
+
     },
 
     onCloseCustomerExercisesPanel: function(callback) {
@@ -138,6 +171,42 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             record = LanistaTrainer.app.currentCustomer;
             divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer" id="showCustomerDataButton"><div class="lansita-header-customer-logo show-info-customer" id="showCustomerDataButton" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);"></div></div>';
             divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + record.data.last_name + '</span><br> <span class="first-name">' + record.data.first_name +'</span></div>';
+
+
+
+
+
+
+        divLogo = divLogo + " <div class='lanista-icon'>";
+        divLogo = divLogo + " <div> abcdefghijklmnopqrstuvwxyz ABCDEFGHIJQLMNOPQRSTUVWXYZ </div>";
+        divLogo = divLogo + " </div>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         controller.getMainViewport().down("#header").update({
             info: divLogo + divInfoCustomer,
