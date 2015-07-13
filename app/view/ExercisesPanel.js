@@ -129,7 +129,7 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
 
                 if (((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
                      (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')) &&
-                    (user && user.role !== '2'  && LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'CustomerExercisesPanel')
+                    (user && user.role !== '2'  && LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisesSelectionView')
                    )
                 {
                     itemId = [];

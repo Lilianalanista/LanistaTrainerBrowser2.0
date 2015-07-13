@@ -248,7 +248,7 @@
                     "    else",
                     "        exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(0));",
                     "}",
-                    "    ",
+                    "",
                     "LanistaTrainer.app.fireEvent('showExerciseHeaderUpdate');",
                     "LanistaTrainer.app.fireEvent('showStage');",
                     "",

@@ -173,7 +173,8 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
 
     onLogoutButtonClick: function(button, e, eOpts) {
         var user = Ext.ux.SessionManager.getUser(),
-            event;
+            event,
+            customer = LanistaTrainer.app.currentCustomer;
 
         event = user.role === '2' ? 'closeUserInfoPanel' : 'closeCustomerInfoPanel';
 
@@ -208,6 +209,9 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                     for(var i = 0; i < len; i++) {
                         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
                     }
+
+                   if (customer)
+                       LanistaTrainer.app.currentCustomer = null;
 
                     LanistaTrainer.app.fireEvent('showLoginPanel');
                });

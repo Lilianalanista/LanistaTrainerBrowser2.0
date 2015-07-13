@@ -447,7 +447,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             info = info + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>';
 
             controller.getMainViewport().down("#header").update({
-               info:  this.getExercisesPanel().headerInfo ?  this.getExercisesPanel().headerInfo + info : info,
+               info:  this.getExercisesPanel().headerInfo ?  this.getExercisesPanel().headerInfo + info : '<div class="exercises-header">&nbsp;</div>' + info, //*********
                title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
             });
         }
@@ -889,7 +889,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             language = Ext.ux.LanguageManager.lang,
             numOfFilters = store.filters.length,
             varSearch = seekValue,
-            records;
+            records,
+            user = Ext.ux.SessionManager.getUser();
 
         if (numOfFilters === 0 || numOfFilters === 1)
         {
@@ -955,7 +956,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         store.sort('name_' + language, 'ASC');
         store.loadPage(1);
         records = store.data.items;
-        if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')) {
+        if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
+            (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&
+            (user && user.role !== '2'  && LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisesSelectionView'))
+        {
             if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {
                 favorites = LanistaTrainer.app.getController ('FavoritesController').favorites.data.objects;
                 favoritesArray = favorites !== "" ? favorites.split(',') : [];
