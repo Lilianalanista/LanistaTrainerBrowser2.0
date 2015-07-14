@@ -17,16 +17,17 @@
     "designerId": "923f62d3-fd6b-41bd-be3f-305e51fa0622",
     "cn": [
         {
-            "type": "Ext.form.field.Text",
+            "type": "Ext.form.field.Number",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
+                "decimalSeparator": ",",
+                "enableKeyEvents": true,
                 "fieldLabel": null,
-                "id": "protocollKgValue",
-                "readOnly": true
+                "id": "protocollKgValue"
             },
             "designerId": "7fcdf50f-ea4a-4620-9820-1e7792df1d79"
         },

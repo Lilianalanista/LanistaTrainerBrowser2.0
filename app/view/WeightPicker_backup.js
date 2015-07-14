@@ -18,7 +18,7 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
     alias: 'widget.weightPicker',
 
     requires: [
-        'Ext.form.field.Number',
+        'Ext.form.field.Text',
         'Ext.button.Button',
         'Ext.container.Container'
     ],
@@ -34,10 +34,9 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'numberfield',
+                    xtype: 'textfield',
                     id: 'protocollKgValue',
-                    enableKeyEvents: true,
-                    decimalSeparator: ','
+                    readOnly: true
                 },
                 {
                     xtype: 'button',

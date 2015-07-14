@@ -1141,7 +1141,9 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         var controller = this,
             menuFilters = LanistaTrainer.app.getController('ExercisesController').showExercisesMenu(),
             myExercies = false,
-            store = Ext.getStore( 'ExerciseStore' );
+            store = Ext.getStore( 'ExerciseStore' ),
+            user = Ext.ux.SessionManager.getUser(),
+            tools;
 
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
@@ -1171,22 +1173,25 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             })
         );
 
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_OWN_EXERCISES,
-                itemId: 'showSelectionUserExercisesButton',
-                glyph: '97@Lanista Icons' //a
-            })
-        );
-        this.getRightCommandPanel().add(
-            Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_FAVORITES,
-                itemId: 'favoritesCustomersButton',
-                menu: LanistaTrainer.app.getController('ExercisesController').findFavoritesExercises(),
-                menuButtonAlign: 'right',
-                glyph: '122@Lanista Icons' //z
-            })
-        );
+        if (user.role === '2' ){
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_OWN_EXERCISES,
+                    itemId: 'showSelectionUserExercisesButton',
+                    glyph: '97@Lanista Icons' //a
+                })
+            );
+            this.getRightCommandPanel().add(
+                Ext.create('LanistaTrainer.view.LanistaButton', {
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_FAVORITES,
+                    itemId: 'favoritesCustomersButton',
+                    menu: LanistaTrainer.app.getController('ExercisesController').findFavoritesExercises(),
+                    menuButtonAlign: 'right',
+                    glyph: '122@Lanista Icons' //z
+                })
+            );
+        }
+
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
@@ -1208,6 +1213,64 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 ]
             })
         );
+
+        tools = new Ext.menu.Menu(
+            {
+                defaults: {
+                    height: '50px',
+                    width: '220px'
+                },
+                items:
+                [
+                    {text:   Ext.ux.LanguageManager.TranslationArray.MUSCLES,
+                     handler: function () {
+
+                         Ext.Msg.alert (
+                             '',
+                             Ext.ux.LanguageManager.TranslationArray.FUNCTIONALITY_NOT_AVAILABLE,
+                             null,
+                             null
+                         );
+
+                         return;
+
+                         LanistaTrainer.app.fireEvent('showTools', 'MUSCLES');
+                     }
+                    },
+                    {text:	 Ext.ux.LanguageManager.TranslationArray.SKELETON,
+                     handler: function () {
+
+                         Ext.Msg.alert (
+                             '',
+                             Ext.ux.LanguageManager.TranslationArray.FUNCTIONALITY_NOT_AVAILABLE,
+                             null,
+                             null
+                         );
+
+                         return;
+
+                         LanistaTrainer.app.fireEvent('showTools', 'SKELETON');
+                     }
+                    },
+                    {text:   Ext.ux.LanguageManager.TranslationArray.STOP_WATCH,
+                     handler: function () {
+
+                         Ext.Msg.alert (
+                             '',
+                             Ext.ux.LanguageManager.TranslationArray.FUNCTIONALITY_NOT_AVAILABLE,
+                             null,
+                             null
+                         );
+
+                         return;
+
+                         LanistaTrainer.app.fireEvent('showTools', 'STOP_WATCH');
+                     }
+                    }
+                ]
+            });
+
+        /*
         this.getLeftCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.TOOLS,
@@ -1221,6 +1284,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 ]
             })
         );
+        */
         this.getLeftCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_HELP,
@@ -1232,6 +1296,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 ]
             })
         );
+
+
     },
 
     init: function(application) {

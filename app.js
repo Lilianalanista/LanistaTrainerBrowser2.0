@@ -220,7 +220,7 @@ Ext.application({
             );
         }
 
-        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'LoginPanel' || (user && user.role === '2' )){
+        if ( LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'LoginPanel' ){
             tools = new Ext.menu.Menu(
             {
                 defaults: {

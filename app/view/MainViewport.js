@@ -320,8 +320,11 @@ Ext.define('LanistaTrainer.view.MainViewport', {
 
                    exerciseStore.loadPage(1);
                    records = exerciseStore.data.items;
+                   var user = Ext.ux.SessionManager.getUser();
                    exercisesPanel = LanistaTrainer.app.getController('ExercisesController').getExercisesPanel();
-                   if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')) {
+                   if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
+                        (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&
+                         (user.role === '2')) {
                        if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {
                            favorites = LanistaTrainer.app.getController ('FavoritesController').favorites.data.objects;
                            favoritesArray = favorites !== "" ? favorites.split(',') : [];
