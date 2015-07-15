@@ -27,41 +27,10 @@
                 "decimalSeparator": ",",
                 "enableKeyEvents": true,
                 "fieldLabel": null,
-                "id": "protocollKgValue"
+                "id": "protocollKgValue",
+                "selectOnFocus": true
             },
             "designerId": "7fcdf50f-ea4a-4620-9820-1e7792df1d79"
-        },
-        {
-            "type": "Ext.button.Button",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "id": "clearWeightEntryButton",
-                "text": null
-            },
-            "designerId": "80ad3723-1883-4f49-8441-1acb11786bf9",
-            "cn": [
-                {
-                    "type": "basiceventbinding",
-                    "reference": {
-                        "name": "listeners",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fn": "onClearWeightEntryButtonClick",
-                        "implHandler": [
-                            "button.up().setValue('0,00');"
-                        ],
-                        "name": "click",
-                        "scope": "me"
-                    },
-                    "designerId": "9d2707ec-1279-4891-9c83-e11cba2e152c"
-                }
-            ]
         },
         {
             "type": "Ext.container.Container",
@@ -498,6 +467,38 @@
                 "scope": "me"
             },
             "designerId": "9918564b-bc32-44c9-8c8c-ad930c3bc0b6"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "clearWeightEntryButton",
+                "text": null
+            },
+            "designerId": "42f90a97-95db-4e1f-9fb9-ad20d7152d3e",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onClearWeightEntryButtonClick",
+                        "implHandler": [
+                            "button.up().setValue('0,00');"
+                        ],
+                        "name": "click",
+                        "scope": "me"
+                    },
+                    "designerId": "9d2707ec-1279-4891-9c83-e11cba2e152c"
+                }
+            ]
         }
     ]
 }

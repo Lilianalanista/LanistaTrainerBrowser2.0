@@ -1030,7 +1030,7 @@ $base-gradient: "none";
 .lanista-trainingPicker {
     left: auto!important;
     right: 0px !important;
-    width: 320px !important;
+    //width: 320px !important;
     top: 0px !important;
     bottom: 0px !important;
     z-index: 10 !important;
@@ -1058,7 +1058,6 @@ $base-gradient: "none";
     height: 40px;
 }
 
-
 .lanista-trainingPicker .x-btn-group-default-framed {
     border-color: black!important;
 }
@@ -1070,6 +1069,22 @@ $base-gradient: "none";
     width: 260px!important;
     left: 22px!important;
 }
+
+//**********************************
+//New Object
+.lanista-trainingPicker .lanista-weights-rb input{
+    width: 13px!important;
+}
+
+.lanista-trainingPicker .lanista-weights-echrb .x-form-cb-wrap{
+    height: 25px;
+}
+
+.lanista-trainingPicker .lanista-weights-input input{
+    height: 35px!important;
+    width: 150px!important;
+}
+//**********************************
 
 .lanista-toolbar-training .x-btn-default-toolbar-small {
     width: 87px!important;

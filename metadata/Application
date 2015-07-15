@@ -86,7 +86,6 @@
             "Temporal",
             "ExercisePanel",
             "WeightPicker",
-            "TrainingPicker",
             "PlanExercisesList",
             "PlanPanel",
             "PlanOptionsPanel",
@@ -98,7 +97,8 @@
             "MeasuresPanel",
             "ChartWindow",
             "MyButton7",
-            "TestPanel"
+            "TestPanel",
+            "WeightsWindow"
         ]
     },
     "configAlternates": {

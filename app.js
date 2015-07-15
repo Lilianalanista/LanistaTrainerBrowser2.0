@@ -77,7 +77,6 @@ Ext.application({
         'Temporal',
         'ExercisePanel',
         'WeightPicker',
-        'TrainingPicker',
         'PlanExercisesList',
         'PlanPanel',
         'PlanOptionsPanel',
@@ -89,7 +88,8 @@ Ext.application({
         'MeasuresPanel',
         'ChartWindow',
         'MyButton7',
-        'TestPanel'
+        'TestPanel',
+        'WeightsWindow'
     ],
     controllers: [
         'MainController',

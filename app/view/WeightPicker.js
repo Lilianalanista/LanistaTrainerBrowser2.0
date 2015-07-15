@@ -19,8 +19,8 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
 
     requires: [
         'Ext.form.field.Number',
-        'Ext.button.Button',
-        'Ext.container.Container'
+        'Ext.container.Container',
+        'Ext.button.Button'
     ],
 
     cls: 'lanista-weightPicker',
@@ -37,17 +37,8 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
                     xtype: 'numberfield',
                     id: 'protocollKgValue',
                     enableKeyEvents: true,
+                    selectOnFocus: true,
                     decimalSeparator: ','
-                },
-                {
-                    xtype: 'button',
-                    id: 'clearWeightEntryButton',
-                    listeners: {
-                        click: {
-                            fn: me.onClearWeightEntryButtonClick,
-                            scope: me
-                        }
-                    }
                 },
                 me.processNumberpad({
                     xtype: 'container',
@@ -76,7 +67,17 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
                             scope: me
                         }
                     }
-                })
+                }),
+                {
+                    xtype: 'button',
+                    id: 'clearWeightEntryButton',
+                    listeners: {
+                        click: {
+                            fn: me.onClearWeightEntryButtonClick,
+                            scope: me
+                        }
+                    }
+                }
             ],
             listeners: {
                 afterrender: {
@@ -211,10 +212,6 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
         return config;
     },
 
-    onClearWeightEntryButtonClick: function(button, e, eOpts) {
-        button.up().setValue('0,00');
-    },
-
     onNumberpadAfterRender: function(component, eOpts) {
         el = component.el;
 
@@ -289,6 +286,10 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
 
     onWeightPickerHide: function(component, eOpts) {
         component.destroy ( );
+    },
+
+    onClearWeightEntryButtonClick: function(button, e, eOpts) {
+        button.up().setValue('0,00');
     },
 
     setValue: function(value) {
