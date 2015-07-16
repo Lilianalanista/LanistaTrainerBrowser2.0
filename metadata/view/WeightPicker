@@ -24,13 +24,15 @@
             },
             "codeClass": null,
             "userConfig": {
+                "cls": "lanista-weights-input",
                 "decimalSeparator": ",",
                 "enableKeyEvents": true,
                 "fieldLabel": null,
-                "id": "protocollKgValue",
+                "height": 35,
+                "id": "protocollKgValue1",
                 "selectOnFocus": true
             },
-            "designerId": "7fcdf50f-ea4a-4620-9820-1e7792df1d79"
+            "designerId": "2df52a0f-0065-4461-96ff-7a937eab0b8f"
         },
         {
             "type": "Ext.container.Container",

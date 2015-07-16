@@ -44,6 +44,12 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         },
         {
             autoCreate: true,
+            ref: 'weightsWindow',
+            selector: '#weightsWindow',
+            xtype: 'weightsWindow'
+        },
+        {
+            autoCreate: true,
             ref: 'videoWindow',
             selector: '#videoWindow',
             xtype: 'videoWindow'
@@ -145,7 +151,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     },
 
     onchangeProtollConfigurationButtonClick: function(button, e, eOpts) {
-
+        /*
         var weightPicker = Ext.create('LanistaTrainer.view.WeightPicker', {}),
             trainingPicker = Ext.create('LanistaTrainer.view.TrainingPicker', {}),
             controller = this,
@@ -166,6 +172,18 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             weightPicker.setRecord(controller.currentPlanExercise);
             trainingPicker.setRecord (controller.currentPlanExercise);
         }
+        */
+
+        var controller = this,
+            windowPanel = controller.getWeightsWindow(),
+            viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport'),
+            activeTab = controller.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab();
+
+        viewPort.add( windowPanel );
+        windowPanel.show ();
+        windowPanel.on ( 'hide', function ( component ) {
+            component.destroy ();
+        });
 
     },
 

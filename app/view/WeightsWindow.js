@@ -15,21 +15,22 @@
 
 Ext.define('LanistaTrainer.view.WeightsWindow', {
     extend: 'Ext.window.Window',
+    alias: 'widget.weightsWindow',
 
     requires: [
+        'Ext.form.FieldSet',
         'Ext.form.field.Number',
         'Ext.form.RadioGroup',
-        'Ext.form.field.Radio',
-        'Ext.button.Button',
-        'Ext.toolbar.Toolbar',
-        'Ext.container.ButtonGroup',
-        'Ext.form.FieldSet'
+        'Ext.form.field.Radio'
     ],
 
     height: 250,
-    width: 400,
+    id: 'weightsWindow',
+    width: 520,
+    resizable: false,
     bodyPadding: 10,
-    title: 'My Form',
+    expandOnShow: false,
+    modal: true,
 
     initComponent: function() {
         var me = this;
@@ -37,552 +38,92 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'container',
-                    setValue: function(value) {
-                        var unit = this.unit === 0 ? Ext.ux.LanguageManager.TranslationArray.REP : this.unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN,
-                            record;
-
-                        if (value && value !== 0) {
-                            this.down ( '#protocollTrainingValue' ).setValue(value + ' ' + unit);
-                        } else {
-                            this.down ( '#protocollTrainingValue' ).setValue('0 ' + unit);
-                        }
-
-                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DefaultPlanValuesPanel'){
-                            record =  [{rounds_min: Ext.ComponentQuery.query("viewport")[0].down('#setObjectLanista').getValue(),
-                                training: value,
-                            training_unit: this.unit}];
-                            LanistaTrainer.app.getController('PlanController').getDefaultPlanValuesPanel().update(record[0]);
-                        }
-
-                    },
-                    getValue: function() {
-
-                        var value = this.down ( '#protocollTrainingValue' ).getValue();
-                        return value.substring(0, value.indexOf(' '));
-                    },
-                    setRecord: function(record) {
-                        this.record = record;
-                        this.unit = record.training_unit;
-                        this.setValue ( record.training );
-
-                        if ( this.unit === 0 )
-                        this.down ('#repButton').fireEvent( 'click' );
-                        else if ( this.unit == 1 )
-                        this.down ('#secButton').fireEvent( 'click' );
-                        else
-                        this.down ('#minButton').fireEvent( 'click' );
-                    },
-                    mascara: function(d) {
-                        var pat = new Array(2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3),
-                            val2 = (d.getValue()+'').replace(".", ","),
-                            decimalSeparator = ',';
-
-                        if (val2.indexOf(decimalSeparator) == -1) val2 += this.decimalSeparator + '00';
-                        for(var z=0; z<val2.length; z++){
-                            if(isNaN(val2.charAt(z)) || val2.charAt(z) == "." || val2.charAt(z) == ","){
-                                if (val2.charAt(z) == ".") {
-                                    val2 = val2.replace(/\./g, '');
-                                }
-                                else{
-                                    letra = new RegExp(val2.charAt(z),"g");
-                                    val2 = val2.replace(letra,"");
-                                }
-                            }
-                        }
-                        val = '';
-                        val4 = 0;
-                        val3 = new Array();
-                        for(var s=0; s<pat.length; s++) {
-                            val4 = parseInt(val2.length) - parseInt(pat[s]);
-                            if (val4<0) {
-                                val3[s] = val2;
-                            } else {
-                                val3[s] = val2.substr(val4,pat[s]);
-                            }
-                            if(s ==0){
-                                valx = val3[s];
-                            } else{
-                                if(s ==1){
-                                    valx = val3[s] + "," + valx;
-                                } else {
-                                    if(val3[s] != "") {
-                                        valx = val3[s] + "." + valx;
-                                    }
-                                }
-                            }
-                            val2 = val2.substr(0, val4);
-                        }
-                        d.setValue(valx.replace(/^0+(?!\,|$)/, '') + " kg");
-                    },
-                    cls: 'lanista-trainingPicker',
-                    floating: true,
-                    id: 'trainingPicker',
-                    width: 800,
-                    layout: {
-                        type: 'vbox',
-                        align: 'stretch'
-                    },
+                    xtype: 'fieldset',
+                    id: 'weightKilos',
+                    title: 'My Fields',
                     items: [
                         {
-                            xtype: 'container',
-                            flex: 1,
-                            height: 120,
+                            xtype: 'numberfield',
+                            cls: 'lanista-weights-input',
+                            id: 'protocollKgValue',
+                            enableKeyEvents: true,
+                            selectOnFocus: true,
+                            decimalSeparator: ','
+                        }
+                    ]
+                },
+                {
+                    xtype: 'fieldset',
+                    id: 'weightMeasure',
+                    title: 'My Fields',
+                    items: [
+                        {
+                            xtype: 'numberfield',
+                            cls: 'lanista-weights-input',
+                            id: 'protocollTrainingValue',
+                            enableKeyEvents: true,
+                            allowExponential: false,
+                            autoStripChars: true,
+                            decimalSeparator: ','
+                        },
+                        {
+                            xtype: 'radiogroup',
+                            cls: 'lanista-weights-rb',
+                            height: 85,
+                            width: 150,
                             layout: {
-                                type: 'hbox',
+                                type: 'vbox',
                                 align: 'stretch'
                             },
                             items: [
                                 {
-                                    xtype: 'numberfield',
-                                    cls: 'lanista-weights-input',
-                                    height: 35,
-                                    id: 'protocollTrainingValue',
-                                    enableKeyEvents: true,
-                                    allowExponential: false,
-                                    autoStripChars: true,
-                                    decimalSeparator: ','
+                                    xtype: 'radiofield',
+                                    cls: 'lanista-weights-echrb',
+                                    height: 25,
+                                    name: 'rb1',
+                                    boxLabel: 'Rep.',
+                                    inputValue: '1'
                                 },
                                 {
-                                    xtype: 'numberfield',
-                                    cls: 'lanista-weights-input',
-                                    height: 35,
-                                    id: 'protocollKgValue1',
-                                    enableKeyEvents: true,
-                                    selectOnFocus: true,
-                                    decimalSeparator: ','
+                                    xtype: 'radiofield',
+                                    cls: 'lanista-weights-echrb',
+                                    height: 25,
+                                    name: 'rb2',
+                                    boxLabel: 'Min.',
+                                    inputValue: '2'
                                 },
                                 {
-                                    xtype: 'radiogroup',
-                                    cls: 'lanista-weights-rb',
-                                    width: 400,
-                                    layout: {
-                                        type: 'vbox',
-                                        align: 'stretch'
-                                    },
-                                    items: [
-                                        {
-                                            xtype: 'radiofield',
-                                            cls: 'lanista-weights-echrb',
-                                            height: 25,
-                                            name: 'rb1',
-                                            boxLabel: 'Rep.',
-                                            inputValue: '1'
-                                        },
-                                        {
-                                            xtype: 'radiofield',
-                                            cls: 'lanista-weights-echrb',
-                                            height: 25,
-                                            name: 'rb2',
-                                            boxLabel: 'Min.',
-                                            inputValue: '2'
-                                        },
-                                        {
-                                            xtype: 'radiofield',
-                                            cls: 'lanista-weights-echrb',
-                                            height: 25,
-                                            name: 'rb3',
-                                            boxLabel: 'Sec.',
-                                            inputValue: '3'
-                                        }
-                                    ]
+                                    xtype: 'radiofield',
+                                    cls: 'lanista-weights-echrb',
+                                    height: 25,
+                                    name: 'rb3',
+                                    boxLabel: 'Sec.',
+                                    inputValue: '3'
                                 }
                             ]
-                        },
-                        {
-                            xtype: 'button',
-                            cls: 'lanista-training-clear',
-                            hidden: true,
-                            id: 'clearTrainingtEntryButton',
-                            listeners: {
-                                click: {
-                                    fn: me.onClearTrainingEntryButtonClick,
-                                    scope: me
-                                }
-                            }
-                        },
-                        {
-                            xtype: 'toolbar',
-                            cls: 'lanista-toolbar-training',
-                            hidden: true,
-                            items: [
-                                {
-                                    xtype: 'buttongroup',
-                                    cls: 'lanista-buttongroup-traininghelp',
-                                    header: false,
-                                    columns: 3,
-                                    items: [
-                                        {
-                                            xtype: 'button',
-                                            height: 40,
-                                            id: 'repButton',
-                                            width: 85,
-                                            listeners: {
-                                                click: {
-                                                    fn: me.onRepButtonClick,
-                                                    scope: me
-                                                }
-                                            }
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            height: 40,
-                                            id: 'minButton',
-                                            width: 85,
-                                            listeners: {
-                                                click: {
-                                                    fn: me.onMinButtonClick,
-                                                    scope: me
-                                                }
-                                            }
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            height: 40,
-                                            id: 'secButton',
-                                            width: 85,
-                                            listeners: {
-                                                click: {
-                                                    fn: me.onSecButtonClick,
-                                                    scope: me
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        me.processNumberpadTraining({
-                            xtype: 'container',
-                            cls: 'numberpad',
-                            hidden: true,
-                            id: 'numberpadTraining',
-                            defaults: {
-                                cls: 'numberpad-button'
-                            },
-                            listeners: {
-                                afterrender: {
-                                    fn: me.onNumberpadTrainingAfterRender,
-                                    scope: me
-                                }
-                            }
-                        }),
-                        me.processTrainingHelpTrainingbuttons({
-                            xtype: 'container',
-                            cls: 'training-helpbuttons',
-                            hidden: true,
-                            id: 'trainingHelpTrainingbuttons',
-                            defaults: {
-                                cls: 'weight-option-button'
-                            },
-                            listeners: {
-                                afterrender: {
-                                    fn: me.onTrainingHelpTrainingbuttonsAfterRender,
-                                    scope: me
-                                }
-                            }
-                        }),
-                        {
-                            xtype: 'fieldset',
-                            cls: 'lanista-fieldset-protocolls',
-                            id: 'setFieldButtons',
-                            layout: 'hbox'
                         }
-                    ],
-                    listeners: {
-                        afterrender: {
-                            fn: me.onTrainingPickerAfterRender,
-                            scope: me
-                        },
-                        hide: {
-                            fn: me.onTrainingPickerHide,
-                            scope: me
-                        }
-                    }
+                    ]
+                },
+                {
+                    xtype: 'fieldset',
+                    id: 'weightBottons',
+                    title: 'My Fields'
                 }
-            ]
+            ],
+            listeners: {
+                afterrender: {
+                    fn: me.onWeightsWindowAfterRender,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
     },
 
-    processNumberpadTraining: function(config) {
-        config.items = [
-                            {
-                                html: '<div class="lanista-weight-item">1</div>',
-                                value: 1,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">2</div>',
-                                value: 2,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">3</div>',
-                                value: 3,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">4</div>',
-                                value: 4,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">5</div>',
-                                value: 5,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">6</div>',
-                                value: 6,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">7</div>',
-                                value: 7,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">8</div>',
-                                value: 8,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">9</div>',
-                                value: 9,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item"><-</div>',
-                                value: -1,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">0</div>',
-                                value: 0,
-                                style: ''
-                            },
-                            {
-                                html: '<div class="lanista-weight-item">00</div>',
-                                value: 00
-                            }
-                        ];
+    onWeightsWindowAfterRender: function(component, eOpts) {
 
-
-        return config;
-    },
-
-    processTrainingHelpTrainingbuttons: function(config) {
-        config.items = [
-                            {
-                                html: '<div class="lanista-traininghelp-item" value="-1" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'
-                            },
-                            {
-                                html: '1 '+Ext.ux.LanguageManager.TranslationArray.REP
-                            },
-                            {
-                                html: '<div class="lanista-traininghelp-item" value="1" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'
-                            },
-                            {
-                                html: '<div class="lanista-traininghelp-item" value="-2" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'
-                            },
-                            {
-                                html: '2 '+Ext.ux.LanguageManager.TranslationArray.REP
-                            },
-                            {
-                                html: '<div class="lanista-traininghelp-item" value="2" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'
-                            },
-                            {
-                                html: '<div class="lanista-traininghelp-item" value="-5" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'
-                            },
-                            {
-                                html: '5 '+Ext.ux.LanguageManager.TranslationArray.REP
-                            },
-                            {
-                                html: '<div class="lanista-traininghelp-item" value="5" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'
-                            },
-                            {
-                                html: '<div class="lanista-traininghelp-item" value="-10" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'
-                            },
-                            {
-                                html: '10 '+Ext.ux.LanguageManager.TranslationArray.REP
-                            },
-                            {
-                                html: '<div class="lanista-traininghelp-item" value="10" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'
-                            }
-                        ];
-        return config;
-    },
-
-    onClearTrainingEntryButtonClick: function(button, e, eOpts) {
-        button.up().setValue('0');
-    },
-
-    onRepButtonClick: function(button, e, eOpts) {
-        this.unit = 0;
-        this.down('#trainingHelpTrainingbuttons').removeAll();
-        this.down('#trainingHelpTrainingbuttons').add([
-            {html: '<div class="lanista-traininghelp-item" value="-1" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '1 '  + Ext.ux.LanguageManager.TranslationArray.REP},
-            {html: '<div class="lanista-traininghelp-item" value="1" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'},
-            {html: '<div class="lanista-traininghelp-item" value="-2" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '2 '  + Ext.ux.LanguageManager.TranslationArray.REP},
-            {html: '<div class="lanista-traininghelp-item" value="2" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'},
-            {html: '<div class="lanista-traininghelp-item" value="-5" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '5 '  + Ext.ux.LanguageManager.TranslationArray.REP},
-            {html: '<div class="lanista-traininghelp-item" value="5" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'},
-            {html: '<div class="lanista-traininghelp-item" value="-10" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '10 ' + Ext.ux.LanguageManager.TranslationArray.REP},
-            {html: '<div class="lanista-traininghelp-item" value="10" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'}
-        ]);
-        this.setValue(this.getValue());
-
-        if (this.selectedButton)
-        {
-            this.selectedButton.removeCls('button-selected-color');
-            this.selectedButton.addCls('button-unselected-color');
-        }
-        this.down('#repButton').removeCls('button-unselected-color');
-        this.down('#repButton').addCls('button-selected-color');
-
-        this.selectedButton = this.down('#repButton');
-        this.down('#repButton').focus();
-    },
-
-    onMinButtonClick: function(button, e, eOpts) {
-        this.unit = 2;
-        this.down('#trainingHelpTrainingbuttons').removeAll();
-        this.down('#trainingHelpTrainingbuttons').add([
-            {html: '<div class="lanista-traininghelp-item" value="-1" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '1 '  + Ext.ux.LanguageManager.TranslationArray.MIN},
-            {html: '<div class="lanista-traininghelp-item" value="1" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'},
-            {html: '<div class="lanista-traininghelp-item" value="-2" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '2 '  + Ext.ux.LanguageManager.TranslationArray.MIN},
-            {html: '<div class="lanista-traininghelp-item" value="2" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'},
-            {html: '<div class="lanista-traininghelp-item" value="-5" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '5 '  + Ext.ux.LanguageManager.TranslationArray.MIN},
-            {html: '<div class="lanista-traininghelp-item" value="5" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'},
-            {html: '<div class="lanista-traininghelp-item" value="-10" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '10 ' + Ext.ux.LanguageManager.TranslationArray.MIN},
-            {html: '<div class="lanista-traininghelp-item" value="10" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'}
-        ]);
-        this.setValue(this.getValue());
-
-        if (this.selectedButton)
-        {
-            this.selectedButton.removeCls('button-selected-color');
-            this.selectedButton.addCls('button-unselected-color');
-        }
-        this.down('#minButton').removeCls('button-unselected-color');
-        this.down('#minButton').addCls('button-selected-color');
-
-        this.selectedButton = this.down('#minButton');
-        this.down('#minButton').focus();
-    },
-
-    onSecButtonClick: function(button, e, eOpts) {
-        this.unit = 1;
-        this.down('#trainingHelpTrainingbuttons').removeAll();
-        this.down('#trainingHelpTrainingbuttons').add([
-            {html: '<div class="lanista-traininghelp-item" value="-1" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '1 '  + Ext.ux.LanguageManager.TranslationArray.SEC},
-            {html: '<div class="lanista-traininghelp-item" value="1" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'},
-            {html: '<div class="lanista-traininghelp-item" value="-2" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '2 '  + Ext.ux.LanguageManager.TranslationArray.SEC},
-            {html: '<div class="lanista-traininghelp-item" value="2" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'},
-            {html: '<div class="lanista-traininghelp-item" value="-5" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '5 '  + Ext.ux.LanguageManager.TranslationArray.SEC},
-            {html: '<div class="lanista-traininghelp-item" value="5" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'},
-            {html: '<div class="lanista-traininghelp-item" value="-10" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">T</div>'},
-            {html: '10 ' + Ext.ux.LanguageManager.TranslationArray.SEC},
-            {html: '<div class="lanista-traininghelp-item" value="10" style="font-family:Lanista Icons; color: #4aacd8; font-size: 32px;">U</div>'}
-        ]);
-        this.setValue(this.getValue());
-
-        if (this.selectedButton)
-        {
-            this.selectedButton.removeCls('button-selected-color');
-            this.selectedButton.addCls('button-unselected-color');
-        }
-        this.down('#secButton').removeCls('button-unselected-color');
-        this.down('#secButton').addCls('button-selected-color');
-
-        this.selectedButton = this.down('#secButton');
-        this.down('#secButton').focus();
-    },
-
-    onNumberpadTrainingAfterRender: function(component, eOpts) {
-        el = component.el;
-
-        el.on(
-            'click', function(e,t) {
-
-                var currentEntry = this.getValue();
-                var currentValue = currentEntry;
-                if (t.innerHTML != '&lt;-' && t.innerHTML != 'OK')
-                    this.setValue(parseFloat((currentValue === 0 ? '' : currentValue) + t.innerHTML));
-                else if (t.innerHTML == 'OK') {
-                    component.fireEvent('change', component.getValue());
-                    component.hide();
-                } else
-                    this.setValue(currentValue.substring(0, currentValue.length-1));
-            },
-            this, {delegate: '.lanista-weight-item'});
-        el.on(
-            'mouseover', function(e,t) {
-
-                                    el.removeCls('item-not-clicked');
-                                    el.addCls('item-clicked');
-
-                            },
-            this,{ delegate: '.lanista-weight-item'});
-        el.on(
-            'mouseout', function(e,t) {
-
-                                    el.removeCls('item-clicked');
-                                    el.addCls('item-not-clicked');
-
-                            },
-            this,{delegate: '.lanista-weight-item'});
-    },
-
-    onTrainingHelpTrainingbuttonsAfterRender: function(component, eOpts) {
-        el = component.el;
-
-        el.on(
-            'click', function(e,t) {
-                var amount = t.getAttribute('value');
-                var currentValue = parseInt(this.getValue()) + parseInt(amount);
-                this.setValue(currentValue > 0 ? currentValue : 0);
-            },
-            this, {delegate: '.lanista-traininghelp-item'});
-        el.on(
-            'mouseover', function(e,t) {
-
-                                    el.removeCls('item-not-clicked');
-                                    el.addCls('item-clicked');
-
-                            },
-            this,{ delegate: '.lanista-traininghelp-item'});
-        el.on(
-            'mouseout', function(e,t) {
-
-                                    el.removeCls('item-clicked');
-                                    el.addCls('item-not-clicked');
-
-                            },
-            this,{delegate: '.lanista-traininghelp-item'});
-    },
-
-    onTrainingPickerAfterRender: function(component, eOpts) {
-
-        this.down ( '#clearTrainingtEntryButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.BUTTON_RESET );
-        this.down ( '#repButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.REP );
-        this.down ( '#minButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.MIN );
-        this.down ( '#secButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.SEC );
-
-        this.down ( '#setFieldButtons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
+        this.down ( '#weightBottons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
                     itemId: 'saveProtocollButton',
                     glyph: '65@Lanista Icons', //A
                     cls: [
@@ -638,7 +179,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
 
 
         if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] !== 'DefaultPlanValuesPanel'){
-            this.down ( '#setFieldButtons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
+            this.down ( '#weightBottons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
                         itemId: 'closeProtocollButton',
                         glyph: '117@Lanista Icons', //u
                         cls: [
@@ -671,10 +212,6 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
             );
         }
 
-    },
-
-    onTrainingPickerHide: function(component, eOpts) {
-        component.destroy ( );
     }
 
 });

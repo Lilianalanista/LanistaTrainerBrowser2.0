@@ -1,0 +1,968 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 10,
+        "designer|userClassName": "WeightsWindow_II",
+        "height": 250,
+        "id": "weightsWindow1",
+        "layout": "fit",
+        "modal": true,
+        "title": "My Form",
+        "width": 400
+    },
+    "designerId": "4eb1115c-3e16-4d0e-886c-fd01a9b73579",
+    "cn": [
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "lanista-trainingPicker",
+                "container|align": "stretch",
+                "floating": true,
+                "height": null,
+                "id": "trainingPicker1",
+                "layout": "vbox",
+                "width": 800
+            },
+            "designerId": "af895f64-be6e-4b0f-b0d9-7ae7b68603a4",
+            "cn": [
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|align": "stretch",
+                        "height": 120,
+                        "layout": "hbox",
+                        "layout|flex": 1
+                    },
+                    "designerId": "d9a20fab-e470-498c-a4b3-b4f91a640e69",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Number",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowExponential": false,
+                                "autoStripChars": true,
+                                "cls": "lanista-weights-input",
+                                "decimalSeparator": ",",
+                                "enableKeyEvents": true,
+                                "fieldLabel": null,
+                                "height": 35,
+                                "id": "protocollTrainingValue1"
+                            },
+                            "designerId": "c31b7dbb-ae50-46f5-87e7-bf7258c865f1"
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "lanista-weights-input",
+                                "decimalSeparator": ",",
+                                "enableKeyEvents": true,
+                                "fieldLabel": null,
+                                "height": 35,
+                                "id": "protocollKgValue2",
+                                "selectOnFocus": true
+                            },
+                            "designerId": "90cf5c0a-1b91-4ec9-9b81-6ad438b96d8a"
+                        },
+                        {
+                            "type": "Ext.form.RadioGroup",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "lanista-weights-rb",
+                                "container|align": "stretch",
+                                "fieldLabel": null,
+                                "layout": "vbox",
+                                "width": 400
+                            },
+                            "designerId": "5c4b3e52-cfc6-4a02-a8af-e75913f74631",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "Rep.",
+                                        "cls": "lanista-weights-echrb",
+                                        "fieldLabel": null,
+                                        "height": 25,
+                                        "inputValue": "1",
+                                        "name": "rb1"
+                                    },
+                                    "designerId": "64157dc1-f93d-48e1-a1e9-494ad0fd8fa8"
+                                },
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "Min.",
+                                        "cls": "lanista-weights-echrb",
+                                        "fieldLabel": null,
+                                        "height": 25,
+                                        "inputValue": "2",
+                                        "name": "rb2"
+                                    },
+                                    "designerId": "1f957f3f-7796-400c-a9f5-9826bb8bee9f"
+                                },
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "Sec.",
+                                        "cls": "lanista-weights-echrb",
+                                        "fieldLabel": null,
+                                        "height": 25,
+                                        "inputValue": "3",
+                                        "name": "rb3"
+                                    },
+                                    "designerId": "1803e3ee-c447-4ae7-a62f-1d32b9d9d46e"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-training-clear",
+                        "hidden": true,
+                        "id": "clearTrainingtEntryButton1",
+                        "text": null
+                    },
+                    "designerId": "0377549f-646e-441b-8b74-d62fa38a4a7c",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onClearTrainingEntryButtonClick",
+                                "implHandler": [
+                                    "button.up().setValue('0');"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "designerId": "59e640b2-2c9e-49f2-b36b-ef739b9b5d97"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Toolbar",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-toolbar-training",
+                        "hidden": true
+                    },
+                    "designerId": "e8a694c1-753e-4e56-93be-88eb434d3cbb",
+                    "cn": [
+                        {
+                            "type": "Ext.container.ButtonGroup",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "lanista-buttongroup-traininghelp",
+                                "columns": 3,
+                                "header": false,
+                                "height": null,
+                                "layout|flex": null,
+                                "title": null,
+                                "width": null
+                            },
+                            "designerId": "1e48538d-0c95-49fd-bfac-1d0e70ba03ca",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": 40,
+                                        "id": "repButton1",
+                                        "text": null,
+                                        "width": 85
+                                    },
+                                    "designerId": "7f8d4324-641f-47a8-9319-36e5a46d208e",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onRepButtonClick",
+                                                "implHandler": [
+                                                    "this.unit = 0;",
+                                                    "this.down('#trainingHelpTrainingbuttons').removeAll();",
+                                                    "this.down('#trainingHelpTrainingbuttons').add([",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '1 '  + Ext.ux.LanguageManager.TranslationArray.REP},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '2 '  + Ext.ux.LanguageManager.TranslationArray.REP},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '5 '  + Ext.ux.LanguageManager.TranslationArray.REP},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '10 ' + Ext.ux.LanguageManager.TranslationArray.REP},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'}",
+                                                    "]);",
+                                                    "this.setValue(this.getValue());",
+                                                    "",
+                                                    "if (this.selectedButton)",
+                                                    "{",
+                                                    "    this.selectedButton.removeCls('button-selected-color');",
+                                                    "    this.selectedButton.addCls('button-unselected-color');",
+                                                    "}",
+                                                    "this.down('#repButton').removeCls('button-unselected-color');",
+                                                    "this.down('#repButton').addCls('button-selected-color');",
+                                                    "",
+                                                    "this.selectedButton = this.down('#repButton');",
+                                                    "this.down('#repButton').focus();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "10e82d8f-32f0-4c97-a5c5-eea15a1f9ca6"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": 40,
+                                        "id": "minButton1",
+                                        "text": null,
+                                        "width": 85
+                                    },
+                                    "designerId": "7e4e0515-4ccb-4acd-a543-3c8a75224105",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onMinButtonClick",
+                                                "implHandler": [
+                                                    "this.unit = 2;",
+                                                    "this.down('#trainingHelpTrainingbuttons').removeAll();",
+                                                    "this.down('#trainingHelpTrainingbuttons').add([",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '1 '  + Ext.ux.LanguageManager.TranslationArray.MIN},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '2 '  + Ext.ux.LanguageManager.TranslationArray.MIN},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '5 '  + Ext.ux.LanguageManager.TranslationArray.MIN},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '10 ' + Ext.ux.LanguageManager.TranslationArray.MIN},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'}",
+                                                    "]);",
+                                                    "this.setValue(this.getValue());",
+                                                    "",
+                                                    "if (this.selectedButton)",
+                                                    "{",
+                                                    "    this.selectedButton.removeCls('button-selected-color');",
+                                                    "    this.selectedButton.addCls('button-unselected-color');",
+                                                    "}",
+                                                    "this.down('#minButton').removeCls('button-unselected-color');",
+                                                    "this.down('#minButton').addCls('button-selected-color');",
+                                                    "",
+                                                    "this.selectedButton = this.down('#minButton');",
+                                                    "this.down('#minButton').focus();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "1726e6f5-ccfb-4e5d-b7a6-709883e8b361"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "height": 40,
+                                        "id": "secButton1",
+                                        "text": null,
+                                        "width": 85
+                                    },
+                                    "designerId": "836bc618-45a9-4309-a309-c50274a082cd",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onSecButtonClick",
+                                                "implHandler": [
+                                                    "this.unit = 1;",
+                                                    "this.down('#trainingHelpTrainingbuttons').removeAll();",
+                                                    "this.down('#trainingHelpTrainingbuttons').add([",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '1 '  + Ext.ux.LanguageManager.TranslationArray.SEC},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '2 '  + Ext.ux.LanguageManager.TranslationArray.SEC},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '5 '  + Ext.ux.LanguageManager.TranslationArray.SEC},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"-10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'},",
+                                                    "    {html: '10 ' + Ext.ux.LanguageManager.TranslationArray.SEC},",
+                                                    "    {html: '<div class=\"lanista-traininghelp-item\" value=\"10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'}",
+                                                    "]);",
+                                                    "this.setValue(this.getValue());",
+                                                    "",
+                                                    "if (this.selectedButton)",
+                                                    "{",
+                                                    "    this.selectedButton.removeCls('button-selected-color');",
+                                                    "    this.selectedButton.addCls('button-unselected-color');",
+                                                    "}",
+                                                    "this.down('#secButton').removeCls('button-unselected-color');",
+                                                    "this.down('#secButton').addCls('button-selected-color');",
+                                                    "",
+                                                    "this.selectedButton = this.down('#secButton');",
+                                                    "this.down('#secButton').focus();"
+                                                ],
+                                                "name": "click",
+                                                "scope": "me"
+                                            },
+                                            "designerId": "f5570f2a-b4e4-4732-802e-6922263ffbb5"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "numberpad",
+                        "defaults": [
+                            "{ ",
+                            "    cls: 'numberpad-button'",
+                            "}",
+                            "",
+                            ""
+                        ],
+                        "height": null,
+                        "hidden": true,
+                        "id": "numberpadTraining1"
+                    },
+                    "designerId": "61e86bbd-3c7f-4a74-b42b-fa99481ba544",
+                    "cn": [
+                        {
+                            "type": "processcfgfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "config"
+                                ],
+                                "fn": "processNumberpadTraining1",
+                                "implHandler": [
+                                    "config.items = [",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">1</div>',",
+                                    "                        value: 1,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">2</div>',",
+                                    "                        value: 2,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">3</div>',",
+                                    "                        value: 3,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">4</div>',",
+                                    "                        value: 4,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">5</div>',",
+                                    "                        value: 5,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">6</div>',",
+                                    "                        value: 6,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">7</div>',",
+                                    "                        value: 7,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">8</div>',",
+                                    "                        value: 8,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">9</div>',",
+                                    "                        value: 9,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\"><-</div>',",
+                                    "                        value: -1,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">0</div>',",
+                                    "                        value: 0,",
+                                    "                        style: ''",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-weight-item\">00</div>',",
+                                    "                        value: 00",
+                                    "                    }",
+                                    "                ];",
+                                    "",
+                                    "",
+                                    "return config;"
+                                ]
+                            },
+                            "designerId": "926bc2a3-d894-44f0-b757-e1823710c922"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onNumberpadTrainingAfterRender",
+                                "implHandler": [
+                                    "el = component.el;",
+                                    "",
+                                    "el.on(",
+                                    "    'click', function(e,t) {",
+                                    "",
+                                    "        var currentEntry = this.getValue();",
+                                    "        var currentValue = currentEntry;",
+                                    "        if (t.innerHTML != '&lt;-' && t.innerHTML != 'OK')",
+                                    "            this.setValue(parseFloat((currentValue === 0 ? '' : currentValue) + t.innerHTML));",
+                                    "        else if (t.innerHTML == 'OK') {",
+                                    "            component.fireEvent('change', component.getValue());",
+                                    "            component.hide();",
+                                    "        } else",
+                                    "            this.setValue(currentValue.substring(0, currentValue.length-1));",
+                                    "    },",
+                                    "    this, {delegate: '.lanista-weight-item'});",
+                                    "el.on(",
+                                    "    'mouseover', function(e,t) {",
+                                    "",
+                                    "                            el.removeCls('item-not-clicked');",
+                                    "                            el.addCls('item-clicked');",
+                                    "",
+                                    "                    },",
+                                    "    this,{ delegate: '.lanista-weight-item'});",
+                                    "el.on(",
+                                    "    'mouseout', function(e,t) {",
+                                    "",
+                                    "                            el.removeCls('item-clicked');",
+                                    "                            el.addCls('item-not-clicked');",
+                                    "",
+                                    "                    },",
+                                    "    this,{delegate: '.lanista-weight-item'});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "designerId": "5de77140-3ab3-4ef8-bbad-bc39076a9a23"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "training-helpbuttons",
+                        "defaults": [
+                            "{",
+                            "    cls: 'weight-option-button'",
+                            "}",
+                            "",
+                            ""
+                        ],
+                        "height": null,
+                        "hidden": true,
+                        "id": "trainingHelpTrainingbuttons1"
+                    },
+                    "designerId": "2631d677-2753-4ce1-98e9-2e5f01b43998",
+                    "cn": [
+                        {
+                            "type": "processcfgfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "config"
+                                ],
+                                "fn": "processTrainingHelpTrainingbuttons1",
+                                "implHandler": [
+                                    "config.items = [",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-traininghelp-item\" value=\"-1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '1 '+Ext.ux.LanguageManager.TranslationArray.REP",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-traininghelp-item\" value=\"1\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-traininghelp-item\" value=\"-2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '2 '+Ext.ux.LanguageManager.TranslationArray.REP",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-traininghelp-item\" value=\"2\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-traininghelp-item\" value=\"-5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '5 '+Ext.ux.LanguageManager.TranslationArray.REP",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-traininghelp-item\" value=\"5\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-traininghelp-item\" value=\"-10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">T</div>'",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '10 '+Ext.ux.LanguageManager.TranslationArray.REP",
+                                    "                    },",
+                                    "                    {",
+                                    "                        html: '<div class=\"lanista-traininghelp-item\" value=\"10\" style=\"font-family:Lanista Icons; color: #4aacd8; font-size: 32px;\">U</div>'",
+                                    "                    }",
+                                    "                ];",
+                                    "return config;"
+                                ]
+                            },
+                            "designerId": "c3cd7a9f-5e00-4c41-a39e-7ffcedd8494a"
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onTrainingHelpTrainingbuttonsAfterRender",
+                                "implHandler": [
+                                    "el = component.el;",
+                                    "",
+                                    "el.on(",
+                                    "    'click', function(e,t) {",
+                                    "        var amount = t.getAttribute('value');",
+                                    "        var currentValue = parseInt(this.getValue()) + parseInt(amount);",
+                                    "        this.setValue(currentValue > 0 ? currentValue : 0);",
+                                    "    },",
+                                    "    this, {delegate: '.lanista-traininghelp-item'});",
+                                    "el.on(",
+                                    "    'mouseover', function(e,t) {",
+                                    "",
+                                    "                            el.removeCls('item-not-clicked');",
+                                    "                            el.addCls('item-clicked');",
+                                    "",
+                                    "                    },",
+                                    "    this,{ delegate: '.lanista-traininghelp-item'});",
+                                    "el.on(",
+                                    "    'mouseout', function(e,t) {",
+                                    "",
+                                    "                            el.removeCls('item-clicked');",
+                                    "                            el.addCls('item-not-clicked');",
+                                    "",
+                                    "                    },",
+                                    "    this,{delegate: '.lanista-traininghelp-item'});"
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "designerId": "7300a710-188a-440e-a737-9c9c6f2576fd"
+                        }
+                    ]
+                },
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "value"
+                        ],
+                        "fn": "setValue",
+                        "implHandler": [
+                            "var unit = this.unit === 0 ? Ext.ux.LanguageManager.TranslationArray.REP : this.unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN,",
+                            "    record;",
+                            "",
+                            "if (value && value !== 0) {",
+                            "    this.down ( '#protocollTrainingValue' ).setValue(value + ' ' + unit);",
+                            "} else {",
+                            "    this.down ( '#protocollTrainingValue' ).setValue('0 ' + unit);",
+                            "}",
+                            "",
+                            "if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DefaultPlanValuesPanel'){",
+                            "    record =  [{rounds_min: Ext.ComponentQuery.query(\"viewport\")[0].down('#setObjectLanista').getValue(),",
+                            "                training: value,",
+                            "                training_unit: this.unit}];",
+                            "    LanistaTrainer.app.getController('PlanController').getDefaultPlanValuesPanel().update(record[0]);",
+                            "}",
+                            ""
+                        ]
+                    },
+                    "designerId": "9a57621f-ba4e-4e89-96a0-d00652d60fba"
+                },
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "getValue",
+                        "implHandler": [
+                            "",
+                            "var value = this.down ( '#protocollTrainingValue' ).getValue();",
+                            "return value.substring(0, value.indexOf(' '));"
+                        ]
+                    },
+                    "designerId": "322e4588-b49c-4dbe-8fb7-4bbc94684be3"
+                },
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "record"
+                        ],
+                        "fn": "setRecord",
+                        "implHandler": [
+                            "this.record = record;",
+                            "this.unit = record.training_unit;",
+                            "this.setValue ( record.training );",
+                            "",
+                            "if ( this.unit === 0 )",
+                            "    this.down ('#repButton').fireEvent( 'click' );",
+                            "else if ( this.unit == 1 )",
+                            "    this.down ('#secButton').fireEvent( 'click' );",
+                            "else",
+                            "    this.down ('#minButton').fireEvent( 'click' );"
+                        ]
+                    },
+                    "designerId": "3a46afc0-992f-4c46-ab7c-14f8d75ea24d"
+                },
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "d"
+                        ],
+                        "fn": "mascara",
+                        "implHandler": [
+                            "var pat = new Array(2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3),",
+                            "    val2 = (d.getValue()+'').replace(\".\", \",\"),",
+                            "    decimalSeparator = ',';",
+                            "",
+                            "if (val2.indexOf(decimalSeparator) == -1) val2 += this.decimalSeparator + '00';",
+                            "for(var z=0; z<val2.length; z++){",
+                            "    if(isNaN(val2.charAt(z)) || val2.charAt(z) == \".\" || val2.charAt(z) == \",\"){",
+                            "        if (val2.charAt(z) == \".\") {",
+                            "            val2 = val2.replace(/\\./g, '');",
+                            "        }",
+                            "        else{",
+                            "            letra = new RegExp(val2.charAt(z),\"g\");",
+                            "            val2 = val2.replace(letra,\"\");",
+                            "        }",
+                            "    }",
+                            "}",
+                            "val = '';",
+                            "val4 = 0;",
+                            "val3 = new Array();",
+                            "for(var s=0; s<pat.length; s++) {",
+                            "    val4 = parseInt(val2.length) - parseInt(pat[s]);",
+                            "    if (val4<0) {",
+                            "        val3[s] = val2;",
+                            "    } else {",
+                            "        val3[s] = val2.substr(val4,pat[s]);",
+                            "    }",
+                            "    if(s ==0){",
+                            "        valx = val3[s];",
+                            "    } else{",
+                            "        if(s ==1){",
+                            "            valx = val3[s] + \",\" + valx;",
+                            "        } else {",
+                            "            if(val3[s] != \"\") {",
+                            "                valx = val3[s] + \".\" + valx;",
+                            "            }",
+                            "        }",
+                            "    }",
+                            "    val2 = val2.substr(0, val4);",
+                            "}",
+                            "d.setValue(valx.replace(/^0+(?!\\,|$)/, '') + \" kg\");"
+                        ]
+                    },
+                    "designerId": "2adae8f9-7fed-4d0c-9f5f-f1bafe055fef"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTrainingPickerAfterRender",
+                        "implHandler": [
+                            "",
+                            "this.down ( '#clearTrainingtEntryButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.BUTTON_RESET );",
+                            "this.down ( '#repButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.REP );",
+                            "this.down ( '#minButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.MIN );",
+                            "this.down ( '#secButton' ).setText ( Ext.ux.LanguageManager.TranslationArray.SEC );",
+                            "",
+                            "this.down ( '#setFieldButtons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {",
+                            "            itemId: 'saveProtocollButton',",
+                            "            glyph: '65@Lanista Icons', //A",
+                            "            cls: [",
+                            "                'lanista-command-button',",
+                            "                'lanista-command-button-green',",
+                            "                'lanista-saveProtocollButton'",
+                            "            ],",
+                            "            listeners: {",
+                            "                click: {",
+                            "                    scope: this,",
+                            "                    fn: function(){",
+                            "                        var panelWeight,",
+                            "                            panelTraining = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#trainingPicker\"),",
+                            "                            infoProtocoll = [],",
+                            "                            valueWeight,",
+                            "                            setObjectLanista;",
+                            "",
+                            "                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){",
+                            "                            panelWeight = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#weightPicker\");",
+                            "                            valueWeight = panelWeight ? panelWeight.getValue() : 0;",
+                            "                            valueWeight = valueWeight !== 0 ? parseFloat(valueWeight.substring(0, valueWeight.indexOf(' ')).replace(\",\", \".\")) : 0;",
+                            "                            infoProtocoll[0] = valueWeight;",
+                            "                            infoProtocoll[1] = panelTraining.getValue();",
+                            "                            infoProtocoll[2] = panelTraining.unit;",
+                            "                            LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');",
+                            "                        }",
+                            "",
+                            "                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DefaultPlanValuesPanel'){",
+                            "                            setObjectLanista = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#setObjectLanista\");",
+                            "                            infoProtocoll[0] = setObjectLanista.getValue();",
+                            "                            infoProtocoll[1] = panelTraining.getValue();",
+                            "                            infoProtocoll[2] = panelTraining.unit;",
+                            "                            LanistaTrainer.app.fireEvent('defaultValuesChanged', infoProtocoll,'','');",
+                            "                        }",
+                            "",
+                            "                        if (panelWeight){",
+                            "                            panelWeight.removeAll();",
+                            "                            panelWeight.hide();",
+                            "                        }",
+                            "",
+                            "                        if (setObjectLanista){",
+                            "                            setObjectLanista.removeAll();",
+                            "                            setObjectLanista.hide();",
+                            "                        }",
+                            "",
+                            "                        panelTraining.removeAll();",
+                            "                        panelTraining.hide();",
+                            "                    }",
+                            "                }",
+                            "            }",
+                            "        })",
+                            ");",
+                            "",
+                            "",
+                            "if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] !== 'DefaultPlanValuesPanel'){",
+                            "    this.down ( '#setFieldButtons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {",
+                            "                itemId: 'closeProtocollButton',",
+                            "                glyph: '117@Lanista Icons', //u",
+                            "                cls: [",
+                            "                    'lanista-command-button',",
+                            "                    'lanista-command-button-red',",
+                            "                    'lanista-closeProtocollButton'",
+                            "                ],",
+                            "                listeners: {",
+                            "                    click: {",
+                            "                        scope: this,",
+                            "                        fn: function(){",
+                            "                            var panelWeight = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#weightPicker\"),",
+                            "                                panelTraining = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#trainingPicker\"),",
+                            "                                setObjectLanista = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#setObjectLanista\");",
+                            "",
+                            "                            if (setObjectLanista){",
+                            "                                setObjectLanista.hide();",
+                            "                                LanistaTrainer.app.fireEvent('defaultValuesChanged', '','','');",
+                            "                            }",
+                            "",
+                            "",
+                            "                            if (panelWeight)",
+                            "                                panelWeight.hide();",
+                            "",
+                            "                            panelTraining.hide();",
+                            "                        }",
+                            "                    }",
+                            "                }",
+                            "            })",
+                            "    );",
+                            "}",
+                            ""
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "designerId": "8932077c-c4c8-404e-b696-26b8f718adcb"
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "lanista-fieldset-protocolls",
+                        "container|align": null,
+                        "id": "setFieldButtons1",
+                        "layout": "hbox",
+                        "title": null
+                    },
+                    "designerId": "8c338d9c-fe97-463a-9c54-71a56e81155d"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onTrainingPickerHide",
+                        "implHandler": [
+                            "component.destroy ( );"
+                        ],
+                        "name": "hide",
+                        "scope": "me"
+                    },
+                    "designerId": "0132f743-a772-4a4f-8ff5-00f13c947e5c"
+                }
+            ]
+        }
+    ]
+}

@@ -35,7 +35,9 @@ Ext.define('LanistaTrainer.view.WeightPicker', {
             items: [
                 {
                     xtype: 'numberfield',
-                    id: 'protocollKgValue',
+                    cls: 'lanista-weights-input',
+                    height: 35,
+                    id: 'protocollKgValue1',
                     enableKeyEvents: true,
                     selectOnFocus: true,
                     decimalSeparator: ','

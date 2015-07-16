@@ -89,7 +89,8 @@ Ext.application({
         'ChartWindow',
         'MyButton7',
         'TestPanel',
-        'WeightsWindow'
+        'WeightsWindow',
+        'WeightsWindow_II'
     ],
     controllers: [
         'MainController',

@@ -88,11 +88,26 @@
             "codeClass": null,
             "userConfig": {
                 "autoCreate": true,
+                "ref": "weightsWindow",
+                "selector": "#weightsWindow",
+                "xtype": "weightsWindow"
+            },
+            "designerId": "3db90b85-831c-4641-b219-8477074637a8"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
                 "ref": "videoWindow",
                 "selector": "#videoWindow",
                 "xtype": "videoWindow"
             },
-            "designerId": "3db90b85-831c-4641-b219-8477074637a8"
+            "designerId": "d3ea30fe-c723-42c8-8328-70ed42038220"
         },
         {
             "type": "controlleraction",
@@ -626,7 +641,7 @@
                 "designer|targetType": "LanistaButton",
                 "fn": "onchangeProtollConfigurationButtonClick",
                 "implHandler": [
-                    "",
+                    "/*",
                     "var weightPicker = Ext.create('LanistaTrainer.view.WeightPicker', {}),",
                     "    trainingPicker = Ext.create('LanistaTrainer.view.TrainingPicker', {}),",
                     "    controller = this,",
@@ -647,6 +662,18 @@
                     "    weightPicker.setRecord(controller.currentPlanExercise);",
                     "    trainingPicker.setRecord (controller.currentPlanExercise);",
                     "}",
+                    "*/",
+                    "",
+                    "var controller = this,",
+                    "    windowPanel = controller.getWeightsWindow(),",
+                    "    viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport'),",
+                    "    activeTab = controller.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab();",
+                    "",
+                    "viewPort.add( windowPanel );",
+                    "windowPanel.show ();",
+                    "windowPanel.on ( 'hide', function ( component ) {",
+                    "    component.destroy ();",
+                    "});",
                     ""
                 ],
                 "name": "click",
