@@ -98,6 +98,7 @@
                         "container|align": "stretch",
                         "fieldLabel": null,
                         "height": 85,
+                        "id": "radioWeight",
                         "layout": "vbox",
                         "width": 150
                     },
@@ -115,8 +116,8 @@
                                 "cls": "lanista-weights-echrb",
                                 "fieldLabel": null,
                                 "height": 25,
-                                "inputValue": "1",
-                                "name": "rb1"
+                                "inputValue": "0",
+                                "name": "rb"
                             },
                             "designerId": "735d434b-0317-4a2b-b5ba-db899b8b08e9"
                         },
@@ -133,7 +134,7 @@
                                 "fieldLabel": null,
                                 "height": 25,
                                 "inputValue": "2",
-                                "name": "rb2"
+                                "name": "rb"
                             },
                             "designerId": "95f56daa-02b4-4ac0-b2cb-13ca6f238e3c"
                         },
@@ -149,8 +150,8 @@
                                 "cls": "lanista-weights-echrb",
                                 "fieldLabel": null,
                                 "height": 25,
-                                "inputValue": "3",
-                                "name": "rb3"
+                                "inputValue": "1",
+                                "name": "rb"
                             },
                             "designerId": "694fe841-2374-499e-ba67-2c3d55dfe7a6"
                         }
@@ -167,7 +168,7 @@
             "codeClass": null,
             "userConfig": {
                 "id": "weightBottons",
-                "title": "My Fields"
+                "title": null
             },
             "designerId": "809e9b5b-586e-4638-9247-bc5d32a144a1"
         },
@@ -199,7 +200,14 @@
                     "                            infoProtocoll = [],",
                     "                            valueWeight,",
                     "                            setObjectLanista;",
-                    "",
+                    "                        ",
+                    "                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){",
+                    "                            infoProtocoll[0] = component.down('#protocollKgValue').getValue();",
+                    "                            infoProtocoll[1] = component.down('#protocollTrainingValue').getValue();",
+                    "                            infoProtocoll[2] = component.down('#radioWeight').getValue().rb;",
+                    "                            LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');",
+                    "                        }",
+                    "                        ",
                     "                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){",
                     "                            panelWeight = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#weightPicker\");",
                     "                            valueWeight = panelWeight ? panelWeight.getValue() : 0;",
@@ -217,8 +225,10 @@
                     "                            infoProtocoll[2] = panelTraining.unit;",
                     "                            LanistaTrainer.app.fireEvent('defaultValuesChanged', infoProtocoll,'','');",
                     "                        }",
+                    "                        ",
+                    "                        component.close();",
                     "",
-                    "                        if (panelWeight){",
+                    "                        /*if (panelWeight){",
                     "                            panelWeight.removeAll();",
                     "                            panelWeight.hide();",
                     "                        }",
@@ -230,6 +240,7 @@
                     "",
                     "                        panelTraining.removeAll();",
                     "                        panelTraining.hide();",
+                    "                        */",
                     "                    }",
                     "                }",
                     "            }",

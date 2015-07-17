@@ -151,13 +151,14 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     },
 
     onchangeProtollConfigurationButtonClick: function(button, e, eOpts) {
-        /*
-        var weightPicker = Ext.create('LanistaTrainer.view.WeightPicker', {}),
-            trainingPicker = Ext.create('LanistaTrainer.view.TrainingPicker', {}),
-            controller = this,
+        var    controller = this,
             exercisePanel	= controller.getExercisePanel(),
-            activeTab = controller.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab ();
+            activeTab = controller.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab (),
+            record,
+            trainingUnit,
+            radio;
 
+        /*
         controller.getMainViewport().add(weightPicker);
         controller.getMainViewport().add(trainingPicker);
 
@@ -181,6 +182,52 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
         viewPort.add( windowPanel );
         windowPanel.show ();
+
+        if (activeTab.id === 'protocollsTabPanel'){
+            record = exercisePanel.down('#protocollPanel').protocollInformation;
+            windowPanel.down( "#protocollKgValue" ).setValue(record.weight);
+            windowPanel.down( "#protocollTrainingValue" ).setValue(record.training);
+            trainingUnit = record.training_unit;
+
+            //windowPanel.down( "#radioWeight" ).setValue(record.training_unit);
+
+
+
+            console.log('VALORES..........');
+            console.log(windowPanel.down( "#radioWeight" ));
+
+
+
+
+
+            switch (trainingUnit)
+            {
+                case 0:
+                    radio = windowPanel.down( "#radioWeight" ).getComponent('radio6');
+                    radio.setValue(true);
+                  windowPanel.down( "#radioWeight" ).setValue([true, false, false]);
+                  break;
+                case 1:
+                  windowPanel.down( "#radioWeight" ).setValue([false, true, false]);
+                  break;
+                case 2:
+                  windowPanel.down( "#radioWeight" ).setValue([false, false, true]);
+                  break;
+            }
+
+
+
+        }
+        else if (activeTab.id === 'configurationTabPanel'){
+            weightPicker.setRecord(controller.currentPlanExercise);
+            trainingPicker.setRecord (controller.currentPlanExercise);
+        }
+
+
+
+
+
+
         windowPanel.on ( 'hide', function ( component ) {
             component.destroy ();
         });

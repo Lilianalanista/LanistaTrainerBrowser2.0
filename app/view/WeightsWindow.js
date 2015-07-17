@@ -70,6 +70,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                             xtype: 'radiogroup',
                             cls: 'lanista-weights-rb',
                             height: 85,
+                            id: 'radioWeight',
                             width: 150,
                             layout: {
                                 type: 'vbox',
@@ -80,15 +81,15 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                     xtype: 'radiofield',
                                     cls: 'lanista-weights-echrb',
                                     height: 25,
-                                    name: 'rb1',
+                                    name: 'rb',
                                     boxLabel: 'Rep.',
-                                    inputValue: '1'
+                                    inputValue: '0'
                                 },
                                 {
                                     xtype: 'radiofield',
                                     cls: 'lanista-weights-echrb',
                                     height: 25,
-                                    name: 'rb2',
+                                    name: 'rb',
                                     boxLabel: 'Min.',
                                     inputValue: '2'
                                 },
@@ -96,9 +97,9 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                     xtype: 'radiofield',
                                     cls: 'lanista-weights-echrb',
                                     height: 25,
-                                    name: 'rb3',
+                                    name: 'rb',
                                     boxLabel: 'Sec.',
-                                    inputValue: '3'
+                                    inputValue: '1'
                                 }
                             ]
                         }
@@ -106,8 +107,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                 },
                 {
                     xtype: 'fieldset',
-                    id: 'weightBottons',
-                    title: 'My Fields'
+                    id: 'weightBottons'
                 }
             ],
             listeners: {
@@ -141,6 +141,13 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                     valueWeight,
                                     setObjectLanista;
 
+                                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){
+                                    infoProtocoll[0] = component.down('#protocollKgValue').getValue();
+                                    infoProtocoll[1] = component.down('#protocollTrainingValue').getValue();
+                                    infoProtocoll[2] = component.down('#radioWeight').getValue().rb;
+                                    LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');
+                                }
+
                                 if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
                                     panelWeight = Ext.ComponentQuery.query("viewport")[0].down("#weightPicker");
                                     valueWeight = panelWeight ? panelWeight.getValue() : 0;
@@ -159,7 +166,9 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                     LanistaTrainer.app.fireEvent('defaultValuesChanged', infoProtocoll,'','');
                                 }
 
-                                if (panelWeight){
+                                component.close();
+
+                                /*if (panelWeight){
                                     panelWeight.removeAll();
                                     panelWeight.hide();
                                 }
@@ -171,6 +180,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
 
                                 panelTraining.removeAll();
                                 panelTraining.hide();
+                                */
                             }
                         }
                     }
