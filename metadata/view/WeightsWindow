@@ -43,6 +43,8 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "allowExponential": false,
+                        "autoStripChars": true,
                         "cls": "lanista-weights-input",
                         "decimalSeparator": ",",
                         "enableKeyEvents": true,
@@ -75,6 +77,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "allowDecimals": false,
                         "allowExponential": false,
                         "autoStripChars": true,
                         "cls": "lanista-weights-input",
@@ -116,6 +119,7 @@
                                 "cls": "lanista-weights-echrb",
                                 "fieldLabel": null,
                                 "height": 25,
+                                "id": "rb_Rep",
                                 "inputValue": "0",
                                 "name": "rb"
                             },
@@ -133,6 +137,7 @@
                                 "cls": "lanista-weights-echrb",
                                 "fieldLabel": null,
                                 "height": 25,
+                                "id": "rb_Min",
                                 "inputValue": "2",
                                 "name": "rb"
                             },
@@ -150,6 +155,7 @@
                                 "cls": "lanista-weights-echrb",
                                 "fieldLabel": null,
                                 "height": 25,
+                                "id": "rb_Sec",
                                 "inputValue": "1",
                                 "name": "rb"
                             },
@@ -158,19 +164,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "type": "Ext.form.FieldSet",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "id": "weightBottons",
-                "title": null
-            },
-            "designerId": "809e9b5b-586e-4638-9247-bc5d32a144a1"
         },
         {
             "type": "basiceventbinding",
@@ -200,14 +193,18 @@
                     "                            infoProtocoll = [],",
                     "                            valueWeight,",
                     "                            setObjectLanista;",
-                    "                        ",
+                    "",
                     "                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){",
                     "                            infoProtocoll[0] = component.down('#protocollKgValue').getValue();",
                     "                            infoProtocoll[1] = component.down('#protocollTrainingValue').getValue();",
-                    "                            infoProtocoll[2] = component.down('#radioWeight').getValue().rb;",
-                    "                            LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');",
+                    "                            infoProtocoll[2] = parseInt(component.down('#radioWeight').getValue().rb);",
+                    "                            ",
+                    "                            LanistaTrainer.app.fireEvent('planExerciseRecordChanged', ",
+                    "                                                         infoProtocoll,",
+                    "                                                         component.down('#exerciseIndications').getValue(),",
+                    "                                                         component.down('#exerciseSets').getValue());",
                     "                        }",
-                    "                        ",
+                    "",
                     "                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){",
                     "                            panelWeight = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#weightPicker\");",
                     "                            valueWeight = panelWeight ? panelWeight.getValue() : 0;",
@@ -225,22 +222,8 @@
                     "                            infoProtocoll[2] = panelTraining.unit;",
                     "                            LanistaTrainer.app.fireEvent('defaultValuesChanged', infoProtocoll,'','');",
                     "                        }",
-                    "                        ",
+                    "",
                     "                        component.close();",
-                    "",
-                    "                        /*if (panelWeight){",
-                    "                            panelWeight.removeAll();",
-                    "                            panelWeight.hide();",
-                    "                        }",
-                    "",
-                    "                        if (setObjectLanista){",
-                    "                            setObjectLanista.removeAll();",
-                    "                            setObjectLanista.hide();",
-                    "                        }",
-                    "",
-                    "                        panelTraining.removeAll();",
-                    "                        panelTraining.hide();",
-                    "                        */",
                     "                    }",
                     "                }",
                     "            }",
@@ -261,32 +244,155 @@
                     "                    click: {",
                     "                        scope: this,",
                     "                        fn: function(){",
-                    "                            var panelWeight = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#weightPicker\"),",
-                    "                                panelTraining = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#trainingPicker\"),",
-                    "                                setObjectLanista = Ext.ComponentQuery.query(\"viewport\")[0].down(\"#setObjectLanista\");",
-                    "",
-                    "                            if (setObjectLanista){",
-                    "                                setObjectLanista.hide();",
-                    "                                LanistaTrainer.app.fireEvent('defaultValuesChanged', '','','');",
-                    "                            }",
-                    "",
-                    "",
-                    "                            if (panelWeight)",
-                    "                                panelWeight.hide();",
-                    "",
-                    "                            panelTraining.hide();",
+                    "                            component.close();",
                     "                        }",
                     "                    }",
                     "                }",
                     "            })",
                     "    );",
                     "}",
+                    "",
                     ""
                 ],
                 "name": "afterrender",
                 "scope": "me"
             },
             "designerId": "79c99bc6-a82b-4564-adc0-054c888596f0"
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "hidden": true,
+                "id": "weightIndications",
+                "title": "My Fields"
+            },
+            "designerId": "bc731efe-1b9a-49b0-8490-f42e0dc1ffaf",
+            "cn": [
+                {
+                    "type": "Ext.form.field.TextArea",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": null,
+                        "hidden": true,
+                        "id": "exerciseIndications",
+                        "layout|anchor": "100%"
+                    },
+                    "designerId": "e938943e-20f5-4601-b607-9c2bf94b9b55"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "hidden": true,
+                "id": "weightSets",
+                "title": "My Fields"
+            },
+            "designerId": "1b5abaff-287c-4d3e-af3e-14d7cf7f8da5",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowDecimals": false,
+                        "allowExponential": false,
+                        "autoStripChars": true,
+                        "fieldLabel": null,
+                        "hidden": true,
+                        "id": "exerciseSets",
+                        "layout|anchor": "100%"
+                    },
+                    "designerId": "884ea208-fa92-4ebf-aa7b-e62b7ced00e0"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "weightBottons",
+                "title": null
+            },
+            "designerId": "809e9b5b-586e-4638-9247-bc5d32a144a1"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "d"
+                ],
+                "fn": "funcMask",
+                "implHandler": [
+                    "var pat = new Array(2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3),",
+                    "    val2 = (d.getValue()+'').replace(\".\", \",\"),",
+                    "    decimalSeparator = ',';",
+                    "",
+                    "if (val2.indexOf(decimalSeparator) == -1) val2 += this.decimalSeparator + '00';",
+                    "for(var z=0; z<val2.length; z++){",
+                    "    if(isNaN(val2.charAt(z)) || val2.charAt(z) == \".\" || val2.charAt(z) == \",\"){",
+                    "        if (val2.charAt(z) == \".\") {",
+                    "            val2 = val2.replace(/\\./g, '');",
+                    "        }",
+                    "        else{",
+                    "            letra = new RegExp(val2.charAt(z),\"g\");",
+                    "            val2 = val2.replace(letra,\"\");",
+                    "        }",
+                    "    }",
+                    "}",
+                    "val = '';",
+                    "val4 = 0;",
+                    "val3 = new Array();",
+                    "for(var s=0; s<pat.length; s++) {",
+                    "    val4 = parseInt(val2.length) - parseInt(pat[s]);",
+                    "    if (val4<0) {",
+                    "        val3[s] = val2;",
+                    "    } else {",
+                    "        val3[s] = val2.substr(val4,pat[s]);",
+                    "    }",
+                    "    if(s ==0){",
+                    "        valx = val3[s];",
+                    "    } else{",
+                    "        if(s ==1){",
+                    "            valx = val3[s] + \",\" + valx;",
+                    "        } else {",
+                    "            if(val3[s] != \"\") {",
+                    "                valx = val3[s] + \".\" + valx;",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "    val2 = val2.substr(0, val4);",
+                    "}",
+                    "d.setValue(valx.replace(/^0+(?!\\,|$)/, ''));"
+                ]
+            },
+            "designerId": "901c3aed-81c6-4595-b0bf-2469d71166bb"
         }
     ]
 }

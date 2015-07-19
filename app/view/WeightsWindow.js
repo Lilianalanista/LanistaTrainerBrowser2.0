@@ -21,7 +21,8 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
         'Ext.form.FieldSet',
         'Ext.form.field.Number',
         'Ext.form.RadioGroup',
-        'Ext.form.field.Radio'
+        'Ext.form.field.Radio',
+        'Ext.form.field.TextArea'
     ],
 
     height: 250,
@@ -48,6 +49,8 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                             id: 'protocollKgValue',
                             enableKeyEvents: true,
                             selectOnFocus: true,
+                            allowExponential: false,
+                            autoStripChars: true,
                             decimalSeparator: ','
                         }
                     ]
@@ -62,6 +65,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                             cls: 'lanista-weights-input',
                             id: 'protocollTrainingValue',
                             enableKeyEvents: true,
+                            allowDecimals: false,
                             allowExponential: false,
                             autoStripChars: true,
                             decimalSeparator: ','
@@ -81,6 +85,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                     xtype: 'radiofield',
                                     cls: 'lanista-weights-echrb',
                                     height: 25,
+                                    id: 'rb_Rep',
                                     name: 'rb',
                                     boxLabel: 'Rep.',
                                     inputValue: '0'
@@ -89,6 +94,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                     xtype: 'radiofield',
                                     cls: 'lanista-weights-echrb',
                                     height: 25,
+                                    id: 'rb_Min',
                                     name: 'rb',
                                     boxLabel: 'Min.',
                                     inputValue: '2'
@@ -97,11 +103,43 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                     xtype: 'radiofield',
                                     cls: 'lanista-weights-echrb',
                                     height: 25,
+                                    id: 'rb_Sec',
                                     name: 'rb',
                                     boxLabel: 'Sec.',
                                     inputValue: '1'
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    xtype: 'fieldset',
+                    hidden: true,
+                    id: 'weightIndications',
+                    title: 'My Fields',
+                    items: [
+                        {
+                            xtype: 'textareafield',
+                            anchor: '100%',
+                            hidden: true,
+                            id: 'exerciseIndications'
+                        }
+                    ]
+                },
+                {
+                    xtype: 'fieldset',
+                    hidden: true,
+                    id: 'weightSets',
+                    title: 'My Fields',
+                    items: [
+                        {
+                            xtype: 'numberfield',
+                            anchor: '100%',
+                            hidden: true,
+                            id: 'exerciseSets',
+                            allowDecimals: false,
+                            allowExponential: false,
+                            autoStripChars: true
                         }
                     ]
                 },
@@ -144,8 +182,12 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                 if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){
                                     infoProtocoll[0] = component.down('#protocollKgValue').getValue();
                                     infoProtocoll[1] = component.down('#protocollTrainingValue').getValue();
-                                    infoProtocoll[2] = component.down('#radioWeight').getValue().rb;
-                                    LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');
+                                    infoProtocoll[2] = parseInt(component.down('#radioWeight').getValue().rb);
+
+                                    LanistaTrainer.app.fireEvent('planExerciseRecordChanged',
+                                                                 infoProtocoll,
+                                                                 component.down('#exerciseIndications').getValue(),
+                                                                 component.down('#exerciseSets').getValue());
                                 }
 
                                 if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
@@ -167,20 +209,6 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                 }
 
                                 component.close();
-
-                                /*if (panelWeight){
-                                    panelWeight.removeAll();
-                                    panelWeight.hide();
-                                }
-
-                                if (setObjectLanista){
-                                    setObjectLanista.removeAll();
-                                    setObjectLanista.hide();
-                                }
-
-                                panelTraining.removeAll();
-                                panelTraining.hide();
-                                */
                             }
                         }
                     }
@@ -201,20 +229,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                             click: {
                                 scope: this,
                                 fn: function(){
-                                    var panelWeight = Ext.ComponentQuery.query("viewport")[0].down("#weightPicker"),
-                                        panelTraining = Ext.ComponentQuery.query("viewport")[0].down("#trainingPicker"),
-                                        setObjectLanista = Ext.ComponentQuery.query("viewport")[0].down("#setObjectLanista");
-
-                                    if (setObjectLanista){
-                                        setObjectLanista.hide();
-                                        LanistaTrainer.app.fireEvent('defaultValuesChanged', '','','');
-                                    }
-
-
-                                    if (panelWeight)
-                                        panelWeight.hide();
-
-                                    panelTraining.hide();
+                                    component.close();
                                 }
                             }
                         }
@@ -222,6 +237,50 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
             );
         }
 
+
+    },
+
+    funcMask: function(d) {
+        var pat = new Array(2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3),
+            val2 = (d.getValue()+'').replace(".", ","),
+            decimalSeparator = ',';
+
+        if (val2.indexOf(decimalSeparator) == -1) val2 += this.decimalSeparator + '00';
+        for(var z=0; z<val2.length; z++){
+            if(isNaN(val2.charAt(z)) || val2.charAt(z) == "." || val2.charAt(z) == ","){
+                if (val2.charAt(z) == ".") {
+                    val2 = val2.replace(/\./g, '');
+                }
+                else{
+                    letra = new RegExp(val2.charAt(z),"g");
+                    val2 = val2.replace(letra,"");
+                }
+            }
+        }
+        val = '';
+        val4 = 0;
+        val3 = new Array();
+        for(var s=0; s<pat.length; s++) {
+            val4 = parseInt(val2.length) - parseInt(pat[s]);
+            if (val4<0) {
+                val3[s] = val2;
+            } else {
+                val3[s] = val2.substr(val4,pat[s]);
+            }
+            if(s ==0){
+                valx = val3[s];
+            } else{
+                if(s ==1){
+                    valx = val3[s] + "," + valx;
+                } else {
+                    if(val3[s] != "") {
+                        valx = val3[s] + "." + valx;
+                    }
+                }
+            }
+            val2 = val2.substr(0, val4);
+        }
+        d.setValue(valx.replace(/^0+(?!\,|$)/, ''));
     }
 
 });

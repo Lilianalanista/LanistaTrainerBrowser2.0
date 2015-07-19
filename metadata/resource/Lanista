@@ -10,7 +10,7 @@
     },
     "designerId": "901655a0-4efe-415a-b4b1-7e600dd6eff8",
     "storage": {
-        "needsCompile": true,
+        "needsCompile": false,
         "simple": {
             "pkgVersion": 1,
             "pkgPath": "packages"
@@ -1546,6 +1546,7 @@
                     "    min-height: 0;",
                     "    height: 35px!important;",
                     "    width: 132px!important;",
+                    "    line-height: 36px;",
                     "}",
                     "",
                     "#weightsWindow .x-border-box *{",

@@ -151,29 +151,12 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     },
 
     onchangeProtollConfigurationButtonClick: function(button, e, eOpts) {
-        var    controller = this,
+        var controller = this,
             exercisePanel	= controller.getExercisePanel(),
             activeTab = controller.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab (),
             record,
             trainingUnit,
             radio;
-
-        /*
-        controller.getMainViewport().add(weightPicker);
-        controller.getMainViewport().add(trainingPicker);
-
-        weightPicker.show ();
-        trainingPicker.show ();
-
-        if (activeTab.id === 'protocollsTabPanel'){
-            weightPicker.setRecord ( exercisePanel.down('#protocollPanel').protocollInformation);
-            trainingPicker.setRecord ( exercisePanel.down('#protocollPanel').protocollInformation);
-        }
-        else if (activeTab.id === 'configurationTabPanel'){
-            weightPicker.setRecord(controller.currentPlanExercise);
-            trainingPicker.setRecord (controller.currentPlanExercise);
-        }
-        */
 
         var controller = this,
             windowPanel = controller.getWeightsWindow(),
@@ -181,52 +164,45 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             activeTab = controller.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab();
 
         viewPort.add( windowPanel );
+        if (activeTab.id === 'configurationTabPanel' )
+            windowPanel.setHeight( 500 );
+
         windowPanel.show ();
 
-        if (activeTab.id === 'protocollsTabPanel'){
-            record = exercisePanel.down('#protocollPanel').protocollInformation;
-            windowPanel.down( "#protocollKgValue" ).setValue(record.weight);
-            windowPanel.down( "#protocollTrainingValue" ).setValue(record.training);
-            trainingUnit = record.training_unit;
+        record = activeTab.id === 'protocollsTabPanel' ? exercisePanel.down('#protocollPanel').protocollInformation :
+                 activeTab.id === 'configurationTabPanel' ? controller.currentPlanExercise : '';
 
-            //windowPanel.down( "#radioWeight" ).setValue(record.training_unit);
+        windowPanel.down( "#protocollKgValue" ).setValue(record.weight);
+        windowPanel.down( "#protocollTrainingValue" ).setValue(record.training);
+        trainingUnit = record.training_unit;
 
-
-
-            console.log('VALORES..........');
-            console.log(windowPanel.down( "#radioWeight" ));
-
-
-
-
-
-            switch (trainingUnit)
-            {
-                case 0:
-                    radio = windowPanel.down( "#radioWeight" ).getComponent('radio6');
-                    radio.setValue(true);
-                  windowPanel.down( "#radioWeight" ).setValue([true, false, false]);
-                  break;
-                case 1:
-                  windowPanel.down( "#radioWeight" ).setValue([false, true, false]);
-                  break;
-                case 2:
-                  windowPanel.down( "#radioWeight" ).setValue([false, false, true]);
-                  break;
-            }
-
-
-
-        }
-        else if (activeTab.id === 'configurationTabPanel'){
-            weightPicker.setRecord(controller.currentPlanExercise);
-            trainingPicker.setRecord (controller.currentPlanExercise);
+        switch (trainingUnit)
+        {
+            case 0:
+                radio = Ext.getCmp('rb_Rep');
+                radio.setValue(true);
+                break;
+            case 1:
+                radio = Ext.getCmp('rb_Sec');
+                radio.setValue(true);
+                break;
+            case 2:
+                radio = Ext.getCmp('rb_Min');
+                radio.setValue(true);
+                break;
         }
 
+        if (activeTab.id === 'configurationTabPanel' ){
+            windowPanel.down( "#weightIndications" ).show();
+            windowPanel.down( "#exerciseIndications" ).show();
+            windowPanel.down( "#weightSets" ).show();
+            windowPanel.down( "#exerciseSets" ).show();
 
+            windowPanel.down( "#exerciseIndications" ).setValue(record.description);
+            windowPanel.down( "#exerciseSets" ).setValue(record.rounds_min);
+        }
 
-
-
+        windowPanel.down ( '#protocollKgValue' ).focus();
 
         windowPanel.on ( 'hide', function ( component ) {
             component.destroy ();
@@ -646,7 +622,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             itemId: 'changeProtollConfigurationButton',
             glyph: '120@Lanista Icons' //x
         });
-        var indicationsButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+
+        /*var indicationsButton = Ext.create('LanistaTrainer.view.LanistaButton', {
             text:  Ext.ux.LanguageManager.TranslationArray.PLAN_EXERCISE_DESCRIPTION,
             itemId: 'indicationsButton',
             glyph: '73@Lanista Icons' //I
@@ -657,7 +634,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             itemId: 'changeSetsButton',
             glyph: '74@Lanista Icons' //J
 
-        });
+        });*/
 
         controller.getRightCommandPanel().add(
             changeButton

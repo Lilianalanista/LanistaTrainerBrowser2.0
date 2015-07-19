@@ -118,6 +118,48 @@ Ext.define('LanistaTrainer.view.WeightsWindow_II', {
                         }
                         d.setValue(valx.replace(/^0+(?!\,|$)/, '') + " kg");
                     },
+                    MyFunction17: function(d) {
+                        var pat = new Array(2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3),
+                            val2 = (d.getValue()+'').replace(".", ","),
+                            decimalSeparator = ',';
+
+                        if (val2.indexOf(decimalSeparator) == -1) val2 += this.decimalSeparator + '00';
+                        for(var z=0; z<val2.length; z++){
+                            if(isNaN(val2.charAt(z)) || val2.charAt(z) == "." || val2.charAt(z) == ","){
+                                if (val2.charAt(z) == ".") {
+                                    val2 = val2.replace(/\./g, '');
+                                }
+                                else{
+                                    letra = new RegExp(val2.charAt(z),"g");
+                                    val2 = val2.replace(letra,"");
+                                }
+                            }
+                        }
+                        val = '';
+                        val4 = 0;
+                        val3 = new Array();
+                        for(var s=0; s<pat.length; s++) {
+                            val4 = parseInt(val2.length) - parseInt(pat[s]);
+                            if (val4<0) {
+                                val3[s] = val2;
+                            } else {
+                                val3[s] = val2.substr(val4,pat[s]);
+                            }
+                            if(s ==0){
+                                valx = val3[s];
+                            } else{
+                                if(s ==1){
+                                    valx = val3[s] + "," + valx;
+                                } else {
+                                    if(val3[s] != "") {
+                                        valx = val3[s] + "." + valx;
+                                    }
+                                }
+                            }
+                            val2 = val2.substr(0, val4);
+                        }
+                        d.setValue(valx.replace(/^0+(?!\,|$)/, '') + " kg");
+                    },
                     cls: 'lanista-trainingPicker',
                     floating: true,
                     id: 'trainingPicker1',
