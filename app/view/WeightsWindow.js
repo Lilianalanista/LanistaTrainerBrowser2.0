@@ -25,11 +25,11 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
         'Ext.form.field.TextArea'
     ],
 
-    height: 250,
+    height: 285,
     id: 'weightsWindow',
-    width: 520,
+    width: 505,
     resizable: false,
-    bodyPadding: 10,
+    header: false,
     expandOnShow: false,
     modal: true,
 
@@ -48,7 +48,6 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                             cls: 'lanista-weights-input',
                             id: 'protocollKgValue',
                             enableKeyEvents: true,
-                            selectOnFocus: true,
                             allowExponential: false,
                             autoStripChars: true,
                             decimalSeparator: ','
@@ -58,7 +57,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                 {
                     xtype: 'fieldset',
                     id: 'weightMeasure',
-                    title: 'My Fields',
+                    title: ' ',
                     items: [
                         {
                             xtype: 'numberfield',
@@ -114,20 +113,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                 },
                 {
                     xtype: 'fieldset',
-                    hidden: true,
-                    id: 'weightIndications',
-                    title: 'My Fields',
-                    items: [
-                        {
-                            xtype: 'textareafield',
-                            anchor: '100%',
-                            hidden: true,
-                            id: 'exerciseIndications'
-                        }
-                    ]
-                },
-                {
-                    xtype: 'fieldset',
+                    cls: 'lanista-weights-input',
                     hidden: true,
                     id: 'weightSets',
                     title: 'My Fields',
@@ -145,7 +131,17 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                 },
                 {
                     xtype: 'fieldset',
-                    id: 'weightBottons'
+                    hidden: true,
+                    id: 'weightIndications',
+                    title: 'My Fields',
+                    items: [
+                        {
+                            xtype: 'textareafield',
+                            anchor: '100%',
+                            hidden: true,
+                            id: 'exerciseIndications'
+                        }
+                    ]
                 }
             ],
             listeners: {
@@ -153,17 +149,33 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                     fn: me.onWeightsWindowAfterRender,
                     scope: me
                 }
-            }
+            },
+            dockedItems: [
+                {
+                    xtype: 'fieldset',
+                    dock: 'bottom',
+                    id: 'weightBottons'
+                }
+            ]
         });
 
         me.callParent(arguments);
     },
 
     onWeightsWindowAfterRender: function(component, eOpts) {
+        component.down('#weightKilos').setTitle(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);
+        component.down('#weightMeasure').setTitle(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_UNIT);
+        component.down('#weightSets').setTitle(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS);
+        component.down('#weightIndications').setTitle(Ext.ux.LanguageManager.TranslationArray.COUTCHER_NOTES);
+
+        component.down('#rb_Rep').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.REP );
+        component.down('#rb_Min').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.SEC);
+        component.down('#rb_Sec').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.MIN);
 
         this.down ( '#weightBottons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
                     itemId: 'saveProtocollButton',
                     glyph: '65@Lanista Icons', //A
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE,
                     cls: [
                         'lanista-command-button',
                         'lanista-command-button-green',
@@ -180,14 +192,14 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                     setObjectLanista;
 
                                 if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){
-                                    infoProtocoll[0] = component.down('#protocollKgValue').getValue();
-                                    infoProtocoll[1] = component.down('#protocollTrainingValue').getValue();
-                                    infoProtocoll[2] = parseInt(component.down('#radioWeight').getValue().rb);
+                                    infoProtocoll[0] = !component.down('#protocollKgValue').getValue() ? 0 : component.down('#protocollKgValue').getValue();
+                                    infoProtocoll[1] = !component.down('#protocollTrainingValue').getValue() ? 0 : component.down('#protocollTrainingValue').getValue();
+                                    infoProtocoll[2] = !parseInt(component.down('#radioWeight').getValue().rb) ? 0 : parseInt(component.down('#radioWeight').getValue().rb);
 
                                     LanistaTrainer.app.fireEvent('planExerciseRecordChanged',
                                                                  infoProtocoll,
                                                                  component.down('#exerciseIndications').getValue(),
-                                                                 component.down('#exerciseSets').getValue());
+                                                                 !component.down('#exerciseSets').getValue() ? 0 : component.down('#exerciseSets').getValue());
                                 }
 
                                 if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
@@ -219,6 +231,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
         if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] !== 'DefaultPlanValuesPanel'){
             this.down ( '#weightBottons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
                         itemId: 'closeProtocollButton',
+                        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_CANCEL,
                         glyph: '117@Lanista Icons', //u
                         cls: [
                             'lanista-command-button',

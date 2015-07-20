@@ -6,16 +6,17 @@
     },
     "codeClass": null,
     "userConfig": {
-        "bodyPadding": 10,
+        "bodyPadding": null,
         "designer|userAlias": "weightsWindow",
         "designer|userClassName": "WeightsWindow",
         "expandOnShow": false,
-        "height": 250,
+        "header": false,
+        "height": 285,
         "id": "weightsWindow",
         "modal": true,
         "resizable": false,
         "title": null,
-        "width": 520
+        "width": 505
     },
     "configAlternates": {
         "resizable": "boolean"
@@ -49,8 +50,7 @@
                         "decimalSeparator": ",",
                         "enableKeyEvents": true,
                         "fieldLabel": null,
-                        "id": "protocollKgValue",
-                        "selectOnFocus": true
+                        "id": "protocollKgValue"
                     },
                     "designerId": "1890491a-33d9-4f4d-9784-f5eb4128a64e"
                 }
@@ -65,7 +65,7 @@
             "codeClass": null,
             "userConfig": {
                 "id": "weightMeasure",
-                "title": "My Fields"
+                "title": " "
             },
             "designerId": "8abb716c-0a03-48db-bff1-84e24b90bd23",
             "cn": [
@@ -175,10 +175,19 @@
             "userConfig": {
                 "fn": "onWeightsWindowAfterRender",
                 "implHandler": [
+                    "component.down('#weightKilos').setTitle(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);",
+                    "component.down('#weightMeasure').setTitle(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_UNIT);",
+                    "component.down('#weightSets').setTitle(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS);",
+                    "component.down('#weightIndications').setTitle(Ext.ux.LanguageManager.TranslationArray.COUTCHER_NOTES);",
+                    "",
+                    "component.down('#rb_Rep').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.REP );",
+                    "component.down('#rb_Min').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.SEC);",
+                    "component.down('#rb_Sec').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.MIN);",
                     "",
                     "this.down ( '#weightBottons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {",
                     "            itemId: 'saveProtocollButton',",
                     "            glyph: '65@Lanista Icons', //A",
+                    "            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE,",
                     "            cls: [",
                     "                'lanista-command-button',",
                     "                'lanista-command-button-green',",
@@ -195,14 +204,14 @@
                     "                            setObjectLanista;",
                     "",
                     "                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){",
-                    "                            infoProtocoll[0] = component.down('#protocollKgValue').getValue();",
-                    "                            infoProtocoll[1] = component.down('#protocollTrainingValue').getValue();",
-                    "                            infoProtocoll[2] = parseInt(component.down('#radioWeight').getValue().rb);",
-                    "                            ",
-                    "                            LanistaTrainer.app.fireEvent('planExerciseRecordChanged', ",
+                    "                            infoProtocoll[0] = !component.down('#protocollKgValue').getValue() ? 0 : component.down('#protocollKgValue').getValue();",
+                    "                            infoProtocoll[1] = !component.down('#protocollTrainingValue').getValue() ? 0 : component.down('#protocollTrainingValue').getValue();",
+                    "                            infoProtocoll[2] = !parseInt(component.down('#radioWeight').getValue().rb) ? 0 : parseInt(component.down('#radioWeight').getValue().rb);",
+                    "",
+                    "                            LanistaTrainer.app.fireEvent('planExerciseRecordChanged',",
                     "                                                         infoProtocoll,",
                     "                                                         component.down('#exerciseIndications').getValue(),",
-                    "                                                         component.down('#exerciseSets').getValue());",
+                    "                                                         !component.down('#exerciseSets').getValue() ? 0 : component.down('#exerciseSets').getValue());",
                     "                        }",
                     "",
                     "                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){",
@@ -234,6 +243,7 @@
                     "if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] !== 'DefaultPlanValuesPanel'){",
                     "    this.down ( '#weightBottons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {",
                     "                itemId: 'closeProtocollButton',",
+                    "                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_CANCEL,",
                     "                glyph: '117@Lanista Icons', //u",
                     "                cls: [",
                     "                    'lanista-command-button',",
@@ -258,6 +268,42 @@
                 "scope": "me"
             },
             "designerId": "79c99bc6-a82b-4564-adc0-054c888596f0"
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "lanista-weights-input",
+                "height": null,
+                "hidden": true,
+                "id": "weightSets",
+                "title": "My Fields"
+            },
+            "designerId": "1b5abaff-287c-4d3e-af3e-14d7cf7f8da5",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "allowDecimals": false,
+                        "allowExponential": false,
+                        "autoStripChars": true,
+                        "fieldLabel": null,
+                        "hidden": true,
+                        "id": "exerciseSets",
+                        "layout|anchor": "100%"
+                    },
+                    "designerId": "884ea208-fa92-4ebf-aa7b-e62b7ced00e0"
+                }
+            ]
         },
         {
             "type": "Ext.form.FieldSet",
@@ -293,45 +339,12 @@
         {
             "type": "Ext.form.FieldSet",
             "reference": {
-                "name": "items",
+                "name": "dockedItems",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "hidden": true,
-                "id": "weightSets",
-                "title": "My Fields"
-            },
-            "designerId": "1b5abaff-287c-4d3e-af3e-14d7cf7f8da5",
-            "cn": [
-                {
-                    "type": "Ext.form.field.Number",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "allowDecimals": false,
-                        "allowExponential": false,
-                        "autoStripChars": true,
-                        "fieldLabel": null,
-                        "hidden": true,
-                        "id": "exerciseSets",
-                        "layout|anchor": "100%"
-                    },
-                    "designerId": "884ea208-fa92-4ebf-aa7b-e62b7ced00e0"
-                }
-            ]
-        },
-        {
-            "type": "Ext.form.FieldSet",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
+                "dock": "bottom",
                 "id": "weightBottons",
                 "title": null
             },

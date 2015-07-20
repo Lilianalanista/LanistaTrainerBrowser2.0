@@ -156,7 +156,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             activeTab = controller.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab (),
             record,
             trainingUnit,
-            radio;
+            radio,
+            user = Ext.ux.SessionManager.getUser();
 
         var controller = this,
             windowPanel = controller.getWeightsWindow(),
@@ -164,8 +165,10 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             activeTab = controller.getExercisePanel ().down ( '#exercisePanelContent' ).getActiveTab();
 
         viewPort.add( windowPanel );
-        if (activeTab.id === 'configurationTabPanel' )
-            windowPanel.setHeight( 500 );
+        if (activeTab.id === 'configurationTabPanel' ){
+            windowPanel.setHeight( 340 );
+            windowPanel.setWidth( 680 );
+        }
 
         windowPanel.show ();
 
@@ -193,12 +196,17 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         }
 
         if (activeTab.id === 'configurationTabPanel' ){
-            windowPanel.down( "#weightIndications" ).show();
-            windowPanel.down( "#exerciseIndications" ).show();
+            if (user.role === '2' ){
+                windowPanel.down( "#weightIndications" ).show();
+                windowPanel.down( "#exerciseIndications" ).show();
+                windowPanel.down( "#exerciseIndications" ).setValue(record.description);
+                windowPanel.setHeight( 340 );
+            }
+            else
+                windowPanel.setHeight( 300 );
+
             windowPanel.down( "#weightSets" ).show();
             windowPanel.down( "#exerciseSets" ).show();
-
-            windowPanel.down( "#exerciseIndications" ).setValue(record.description);
             windowPanel.down( "#exerciseSets" ).setValue(record.rounds_min);
         }
 
