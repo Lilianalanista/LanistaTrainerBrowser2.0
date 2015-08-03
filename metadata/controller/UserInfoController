@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "8aa47e56-b9b4-457d-a6cc-7d7799fc4e81"
         },
         {
@@ -36,6 +37,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "b9da4fe6-7c74-4f99-93ab-27e1787caaae"
         },
         {
@@ -49,6 +51,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "4d4a21cb-24e8-4e5d-adea-03f8831d9ed3"
         },
         {
@@ -62,6 +65,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "6c7def38-7258-46ca-80a4-e424fe598f65"
         },
         {
@@ -77,6 +81,7 @@
                 "selector": "#userInfoPanel",
                 "xtype": "userInfoPanel"
             },
+            "name": "userInfoPanel",
             "designerId": "144a620d-b107-480c-93a8-6c951bda3e37"
         },
         {
@@ -90,6 +95,7 @@
                 "ref": "user_personalData",
                 "selector": "#user_personalData"
             },
+            "name": "user_personalData",
             "designerId": "b8619f69-02cf-464f-99c2-987d1aa5868e"
         },
         {
@@ -103,6 +109,7 @@
                 "ref": "user_companyContacts",
                 "selector": "#user_companyContacts"
             },
+            "name": "user_companyContacts",
             "designerId": "53141497-3e3d-4eb0-851c-2cf454ace112"
         },
         {
@@ -116,6 +123,7 @@
                 "ref": "user_LicenseData",
                 "selector": "#user_LicenseData"
             },
+            "name": "user_LicenseData",
             "designerId": "3e541cfb-0fb5-45cd-afc8-37260e1e1459"
         },
         {
@@ -161,6 +169,7 @@
                 "name": "showUserInfoPanel",
                 "scope": "this"
             },
+            "name": "onShowUserInfoPanel",
             "designerId": "5fcc4fca-0ca7-4036-b179-204af67cc374"
         },
         {
@@ -191,6 +200,7 @@
                 "name": "closeUserInfoPanel",
                 "scope": "this"
             },
+            "name": "onCloseUserInfoPanel",
             "designerId": "cb24653f-86d5-4f4d-9485-bcc639308b49"
         },
         {
@@ -218,6 +228,7 @@
                 "name": "showUserInfoHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowUserInfoHeaderUpdate",
             "designerId": "712b4263-1c96-4059-8896-2a2528b100cc"
         },
         {
@@ -261,6 +272,7 @@
                     ""
                 ]
             },
+            "name": "showCommands",
             "designerId": "a832d82f-5c02-4254-bfce-8c53710d248d"
         },
         {
@@ -283,6 +295,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowUserInfoPanelButton",
             "designerId": "7e8770ae-dd04-447a-b62b-a0d7c64746ff"
         },
         {
@@ -306,6 +319,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseUserInfoPanelButton",
             "designerId": "b78279d6-29ac-4d04-97f9-ec2e45a490be"
         },
         {
@@ -330,6 +344,7 @@
                     "controller.getUserInfoPanel().getForm().findField('email').focus();"
                 ]
             },
+            "name": "loadData",
             "designerId": "ab0dfe42-5361-4638-9066-6c398b1dafe4"
         },
         {
@@ -374,6 +389,7 @@
                     "if (callBack instanceof Function) callBack();"
                 ]
             },
+            "name": "loadCurrentUser",
             "designerId": "e7a6f91d-a73f-4596-84b8-86942c0d3fdd"
         },
         {
@@ -396,6 +412,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCancelSettingsButtonClick",
             "designerId": "527c11a9-2411-43a5-a29e-26330a5a36c7"
         },
         {
@@ -487,6 +504,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onSaveSettingsButtonClick",
             "designerId": "e139a946-e748-4fd4-8493-7e891f8a9bb9"
         }
     ]

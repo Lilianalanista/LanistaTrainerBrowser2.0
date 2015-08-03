@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "chartWindow",
+        "designer|userClassName": "ChartWindowViewModel"
+    },
+    "designerId": "631d8001-194c-4f1f-a169-d1617760cfcf"
+}

@@ -39,15 +39,15 @@
                     "if (!Ext.ux.SessionManager.getIsLoggedIn())",
                     "    planStore.setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',",
-                    "        model: 'Plan',",
+                    "        model: 'LanistaTrainer.model.Plan',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
-                    "            root: 'entries'",
+                    "            rootProperty: 'entries'",
                     "        },",
                     "        writer: {",
                     "            type: 'json',",
-                    "            root: 'results'",
+                    "            rootProperty: 'results'",
                     "        }/*,",
                     "        extraParams: {",
                     "            last_update: dateToday.getFullYear() + '-' + (dateToday.getMonth() +1) + '-' + dateToday.getDate()",
@@ -56,15 +56,15 @@
                     "else{",
                     "    planStore.setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',",
-                    "        model: 'Plan',",
+                    "        model: 'LanistaTrainer.model.Plan',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
-                    "            root: 'entries'",
+                    "            rootProperty: 'entries'",
                     "        },",
                     "        writer: {",
                     "            type: 'json',",
-                    "            root: 'results'",
+                    "            rootProperty: 'results'",
                     "        },",
                     "        headers: {",
                     "            user_id: userId",
@@ -119,6 +119,7 @@
                 "name": "showTemplatesPanel",
                 "scope": "this"
             },
+            "name": "onShowTemplatesPanel",
             "designerId": "d015d8bd-2ae9-4d3e-ac98-7743a3486d35"
         },
         {
@@ -149,6 +150,7 @@
                 "name": "closeTemplatesPanel",
                 "scope": "this"
             },
+            "name": "onCloseTemplatesPanel",
             "designerId": "43a10d19-b274-4888-b6ab-5e179eae762f"
         },
         {
@@ -172,6 +174,7 @@
                 "name": "showTemplatesHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowTemplatesHeaderUpdate",
             "designerId": "8ec6ce60-049e-4492-84f9-57f308317479"
         },
         {
@@ -221,6 +224,7 @@
                     ");"
                 ]
             },
+            "name": "showCommands",
             "designerId": "246ba341-ffe9-4c19-a768-c2a384e2a376"
         },
         {
@@ -245,6 +249,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowTemplatesPanelButtonClick",
             "designerId": "0746b288-c25f-43b2-8962-b6ddc63df002"
         },
         {
@@ -269,6 +274,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseTemplatesPanelButtonClick",
             "designerId": "51adcc79-593e-4222-bc01-9044b09ea9d0"
         },
         {
@@ -284,6 +290,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "16959bf4-591e-4a79-9b38-9fb9e6008d69"
         },
         {
@@ -299,6 +306,7 @@
                 "selector": "templatesPanel",
                 "xtype": "templatesPanel"
             },
+            "name": "templatesPanel",
             "designerId": "8152a411-e066-4aed-a1dd-f4887bd5e54f"
         },
         {
@@ -312,6 +320,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "0a07f2ad-9d9b-474c-85ba-9b8a1e4a054f"
         },
         {
@@ -325,6 +334,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "02151c19-3114-4d2a-9e81-1f4fbbc19233"
         },
         {
@@ -338,6 +348,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "d7ee0cc0-412b-4a54-8dba-296feb6766ad"
         },
         {
@@ -351,6 +362,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "1da13181-97b7-4a8d-bce3-6665e994badb"
         },
         {
@@ -375,6 +387,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onNextTemplatesClick",
             "designerId": "eee1c94d-96a9-4694-859e-84c1a7574d64"
         },
         {
@@ -399,6 +412,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onPreviousTemplatesClick",
             "designerId": "eb3fcd84-8267-4b77-a602-d70ed892b6f8"
         },
         {
@@ -421,6 +435,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onNewTemplateButtonClick",
             "designerId": "0aa49870-ef8b-421f-8919-23d26b68c1ac"
         },
         {
@@ -445,6 +460,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onSearchTemplatesButtonClick",
             "designerId": "da551d21-d586-4465-a54b-d95fac0c7fc2"
         }
     ]

@@ -31,6 +31,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowLanguagesPanelButtonClick",
             "designerId": "e24bd665-af25-467c-bae3-6ad7640df162"
         },
         {
@@ -64,6 +65,7 @@
                 "name": "changeLanguage",
                 "scope": "this"
             },
+            "name": "onChangeLanguage",
             "designerId": "44af204d-7e44-492b-8319-564f899e3e33"
         }
     ]

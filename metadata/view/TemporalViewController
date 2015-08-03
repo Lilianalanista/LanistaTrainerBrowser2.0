@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "temporal",
+        "designer|userClassName": "TemporalViewController"
+    },
+    "designerId": "d6266384-1c2f-486c-b4d9-430ea8efe587"
+}

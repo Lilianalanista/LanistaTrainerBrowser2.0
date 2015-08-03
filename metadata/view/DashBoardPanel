@@ -17,7 +17,12 @@
         "title": null,
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "b9eb068c-5951-4785-bcf3-01af1d6813c0",
+    "viewControllerInstanceId": "882de213-34cd-4d90-bc77-35819a346169",
+    "viewModelInstanceId": "391f1d75-f210-4c81-8d95-bdfeddf41d7f",
     "cn": [
         {
             "type": "Ext.container.Container",
@@ -30,6 +35,10 @@
                 "container|align": "stretch",
                 "id": "customersContainer",
                 "layout": "hbox"
+            },
+            "name": "MyContainer5",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "3699dc26-13da-4dfd-9010-ef774d6f3324",
             "cn": [
@@ -44,8 +53,10 @@
                         "html": null,
                         "id": "titlesCustomersAlerts"
                     },
+                    "name": "MyContainer6",
                     "configAlternates": {
-                        "html": "string"
+                        "html": "string",
+                        "scrollable": "boolean"
                     },
                     "designerId": "5a860faf-db07-48e9-b253-dbb5e790d8f1",
                     "cn": [
@@ -58,6 +69,10 @@
                             "codeClass": null,
                             "userConfig": {
                                 "id": "titles"
+                            },
+                            "name": "MyContainer7",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "7a1c7f6a-0fd3-4e98-81ee-164344920438",
                             "cn": [
@@ -83,6 +98,7 @@
                                             "</div>"
                                         ]
                                     },
+                                    "name": "tpl2",
                                     "designerId": "1f06353d-461b-428e-ab24-a709a62479a8"
                                 }
                             ]
@@ -101,6 +117,10 @@
                                 "id": "notificationsBotton",
                                 "text": null
                             },
+                            "name": "MyButton1",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "aced2e5c-932f-4001-b9f7-e3286fa9b93d"
                         },
                         {
@@ -111,8 +131,14 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "cls": "notification-hidden",
+                                "cls": [
+                                    "notification-hidden"
+                                ],
                                 "id": "notificationContainer"
+                            },
+                            "name": "MyContainer8",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "88739ab0-cd50-407c-87c9-de1721626ac2",
                             "cn": [
@@ -129,6 +155,7 @@
                                             "<div class=\"lanista-notification-dashboard\">{notifications}</div>"
                                         ]
                                     },
+                                    "name": "tpl3",
                                     "designerId": "6b879d7d-900c-431f-ab8c-711536bb668a"
                                 },
                                 {
@@ -339,6 +366,7 @@
                                         "name": "afterrender",
                                         "scope": "me"
                                     },
+                                    "name": "onNotificationContainerAfterRender",
                                     "designerId": "b76f4173-370b-409b-968b-333fabd6efab"
                                 }
                             ]
@@ -354,8 +382,11 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "customers",
-                        "layout": "fit",
-                        "overflowX": null
+                        "layout": "fit"
+                    },
+                    "name": "MyContainer9",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "ec07da40-9ab3-4916-986d-017cb2dda15c",
                     "cn": [
@@ -367,10 +398,14 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "autoScroll": true,
                                 "container|align": "stretch",
                                 "id": "birthdayCustomers",
-                                "layout": "hbox"
+                                "layout": "hbox",
+                                "scrollable": true
+                            },
+                            "name": "MyContainer10",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "7bf935e7-d928-493b-84ac-a7e63fcb601e",
                             "cn": [
@@ -455,6 +490,7 @@
                                         "name": "afterrender",
                                         "scope": "me"
                                     },
+                                    "name": "onBirthdayCustomersAfterRender",
                                     "designerId": "0fb2b94d-3169-4515-8430-992641f1d24b"
                                 }
                             ]
@@ -467,10 +503,14 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "autoScroll": true,
                                 "container|align": "stretch",
                                 "id": "activeCustomers",
-                                "layout": "hbox"
+                                "layout": "hbox",
+                                "scrollable": true
+                            },
+                            "name": "MyContainer11",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "c5fca25d-b048-41ec-af09-f4b3302c2c02",
                             "cn": [
@@ -555,6 +595,7 @@
                                         "name": "afterrender",
                                         "scope": "me"
                                     },
+                                    "name": "onActiveCustomersAfterRender",
                                     "designerId": "1c74a6ee-fb83-4917-b783-acf1c20e03b9"
                                 }
                             ]
@@ -575,6 +616,10 @@
                 "id": "plansContainer",
                 "layout": "hbox"
             },
+            "name": "MyContainer12",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
             "designerId": "5a5f4cc6-cd79-4ff7-a3af-775d436eefa4",
             "cn": [
                 {
@@ -586,6 +631,10 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "titlesPlans"
+                    },
+                    "name": "MyContainer13",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "ba378fe0-3d22-4bb7-9e3a-ce4deb5d513c",
                     "cn": [
@@ -611,6 +660,7 @@
                                     "</div>"
                                 ]
                             },
+                            "name": "tpl4",
                             "designerId": "c8bd27b2-0db6-4155-91fc-f50d20b4e50d"
                         }
                     ]
@@ -627,6 +677,10 @@
                         "id": "plans",
                         "layout": "hbox"
                     },
+                    "name": "MyContainer14",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "a2caaf6f-0051-4b39-a24b-921c6845329b",
                     "cn": [
                         {
@@ -637,10 +691,14 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "autoScroll": true,
                                 "id": "plansToExpire",
                                 "layout": null,
-                                "layout|flex": 1
+                                "layout|flex": 1,
+                                "scrollable": true
+                            },
+                            "name": "MyContainer15",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "2d9fc89f-00b3-46b0-97c8-70e458014c77",
                             "cn": [
@@ -727,8 +785,8 @@
                                             "                            trainer_id: userId,",
                                             "                            creator_name: data.plan.creator_name,",
                                             "                            creation_date: data.plan.creation_date,",
-                                            "                            changed_date: data.plan.changed_date,",
-                                            "                            public_template: data.plan.public",
+                                            "                            changed_date: data.plan.changed_date",
+                                            "                            //public_template: data.plan.public",
                                             "                        });",
                                             "",
                                             "                        LanistaTrainer.app.fireEvent('closeDashBoardPanel', function() {",
@@ -761,6 +819,7 @@
                                         "name": "afterrender",
                                         "scope": "me"
                                     },
+                                    "name": "onPlansToExpireAfterRender",
                                     "designerId": "2de5d65e-a51e-401c-b4c8-7c565754fe29"
                                 }
                             ]
@@ -773,9 +832,13 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "autoScroll": true,
                                 "id": "planExpired",
-                                "layout|flex": 1
+                                "layout|flex": 1,
+                                "scrollable": true
+                            },
+                            "name": "MyContainer16",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "ce7aaf3d-da27-4064-a1c2-504352ff4735",
                             "cn": [
@@ -810,7 +873,7 @@
                                             "                success: function(response, opts) {",
                                             "                    try {",
                                             "                        data = Ext.decode(response.responseText);",
-                                            "                        ",
+                                            "",
                                             "                        //looking for the customer whom belong the exercise",
                                             "                        Ext.Ajax.request({",
                                             "                        url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getuser',",
@@ -842,7 +905,7 @@
                                             "                                    language: data1.user.language,",
                                             "                                    sincronized: data1.user.sincronized",
                                             "                                });",
-                                            "        ",
+                                            "",
                                             "                                    LanistaTrainer.app.currentCustomer = ActiveCustomer;",
                                             "                            }",
                                             "                            catch( err ) {",
@@ -850,7 +913,7 @@
                                             "                            }",
                                             "                          }",
                                             "                        });",
-                                            "                        ",
+                                            "",
                                             "                        Plan = Ext.create('LanistaTrainer.model.Plan', {",
                                             "                            id: data.plan.id,",
                                             "                            template: data.plan.template,",
@@ -862,8 +925,8 @@
                                             "                            trainer_id: userId,",
                                             "                            creator_name: data.plan.creator_name,",
                                             "                            creation_date: data.plan.creation_date,",
-                                            "                            changed_date: data.plan.changed_date,",
-                                            "                            public_template: data.plan.public",
+                                            "                            changed_date: data.plan.changed_date",
+                                            "                            //public_template: data.plan.public",
                                             "                        });",
                                             "",
                                             "                        LanistaTrainer.app.fireEvent('closeDashBoardPanel', function() {",
@@ -896,6 +959,7 @@
                                         "name": "afterrender",
                                         "scope": "me"
                                     },
+                                    "name": "onPlanExpiredAfterRender",
                                     "designerId": "95f67884-70a3-48eb-a2e6-c4a04e2b9b80"
                                 }
                             ]

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "setObjectLanista",
+        "designer|userClassName": "SetObjectLanistaViewModel"
+    },
+    "designerId": "a5121f00-8292-4524-b384-ba3a4354fc78"
+}

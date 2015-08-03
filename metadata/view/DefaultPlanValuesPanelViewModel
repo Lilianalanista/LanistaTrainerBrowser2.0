@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "defaultPlanValuesPanel",
+        "designer|userClassName": "DefaultPlanValuesPanelViewModel"
+    },
+    "designerId": "82d92661-e7ce-4fc6-b87b-9d65d2a1a9ff"
+}

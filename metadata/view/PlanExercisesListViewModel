@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "planExercisesList",
+        "designer|userClassName": "PlanExercisesListViewModel"
+    },
+    "designerId": "1c2c8502-1636-473d-a947-6ebce588d59d"
+}

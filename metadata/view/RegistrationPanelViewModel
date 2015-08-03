@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "registrationPanel",
+        "designer|userClassName": "RegistrationPanelViewModel"
+    },
+    "designerId": "85700143-4b35-4ebc-84eb-faf30a782814"
+}

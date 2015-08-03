@@ -7,7 +7,9 @@
     "codeClass": null,
     "userConfig": {
         "border": false,
-        "cls": "lanista-image-panel-settings",
+        "cls": [
+            "lanista-image-panel-settings"
+        ],
         "designer|userAlias": "imagePanel",
         "designer|userClassName": "ImagePanel",
         "height": 250,
@@ -15,5 +17,10 @@
         "title": null,
         "width": 400
     },
-    "designerId": "975aa94b-a3ff-4b2c-ba02-e0519374848e"
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
+    "designerId": "975aa94b-a3ff-4b2c-ba02-e0519374848e",
+    "viewControllerInstanceId": "5a57905c-6a9d-42ff-a3a0-0d64756747c7",
+    "viewModelInstanceId": "eeaff734-26c7-4423-8993-0e084f4be3b2"
 }

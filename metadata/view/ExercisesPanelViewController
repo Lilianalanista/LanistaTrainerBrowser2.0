@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "exercisesPanelViewController",
+        "designer|userClassName": "ExercisesPanelViewController"
+    },
+    "designerId": "ee96ef36-f3bd-46be-85ca-210796d5008b"
+}

@@ -1,59 +1,59 @@
 @font-face {
-  font-family: "Harabara Bold";
-  src:  url('fonts/lanista/Harabara.ttf') format('truetype'),
+    font-family: "Harabara Bold";
+    src:  url('fonts/lanista/Harabara.ttf') format('truetype'),
         url('fonts/lanista/Harabara.otf') format('opentype'),f
         url('fonts/lanista/Harabara.woff') format('woff'),
         url('fonts/lanista/Harabara.eot') format('embedded-opentype');
 }
 
 @font-face {
-  font-family: "Roboto Light";
-  src:  url('fonts/lanista/Roboto-Light.ttf') format('truetype');
+    font-family: "Roboto Light";
+    src:  url('fonts/lanista/Roboto-Light.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Roboto Medium";
-  src:  url('fonts/lanista/Roboto-Medium.ttf') format('truetype');
+    font-family: "Roboto Medium";
+    src:  url('fonts/lanista/Roboto-Medium.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Roboto Black";
-  src:  url('fonts/lanista/Roboto-Black.ttf') format('truetype');
+    font-family: "Roboto Black";
+    src:  url('fonts/lanista/Roboto-Black.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "League Gothic";
-  src:  url('fonts/lanista/League-Gothic.ttf') format('truetype');
+    font-family: "League Gothic";
+    src:  url('fonts/lanista/League-Gothic.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Avenir LT Std";
-  src:  url('fonts/lanista/AvenirLTStd-Roman.woff') format('truetype');
+    font-family: "Avenir LT Std";
+    src:  url('fonts/lanista/AvenirLTStd-Roman.woff') format('truetype');
 }
 
 @font-face {
-  font-family: "Avenir LT Light";
-  src:  url('fonts/lanista/AvenirLTLight-Roman.woff') format('truetype');
+    font-family: "Avenir LT Light";
+    src:  url('fonts/lanista/AvenirLTLight-Roman.woff') format('truetype');
 }
 
 
 @font-face {
-  font-family: "Lanista Icons";
-  src:  url('fonts/lanista/Lanista-2-0.woff') format('truetype');
+    font-family: "Lanista Icons";
+    src:  url('fonts/lanista/Lanista-2-0.woff') format('truetype');
 }
 
 @font-face {
-  font-family: "Bebas Neue";
-  src:  url('fonts/lanista/BebasNeue-webfont.woff') format('truetype');
+    font-family: "Bebas Neue";
+    src:  url('fonts/lanista/BebasNeue-webfont.woff') format('truetype');
 }
 
 $font-family: 'Roboto Light';
 //@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:900);
 @font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 900;
-  src: local('Source Sans Pro Black'), local('SourceSansPro-Black'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGC7eGk4PJkA83J1AXCmgUfc.woff) format('woff');
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Source Sans Pro Black'), local('SourceSansPro-Black'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGC7eGk4PJkA83J1AXCmgUfc.woff) format('woff');
 }
 
 $list-active-gradient: "none";
@@ -91,14 +91,14 @@ $base-gradient: "none";
 }
 
 .header-title {
-	float: left;
-	padding-top: 31px;
-	font-family: "Roboto Black";
-	text-transform: uppercase;
-	font-size: 25px;
-	line-height: 33px;
-	letter-spacing: -1px;
-	color: rgba(0,0,0,0.2);
+    float: left;
+    padding-top: 31px;
+    font-family: "Roboto Black";
+    text-transform: uppercase;
+    font-size: 25px;
+    line-height: 33px;
+    letter-spacing: -1px;
+    color: rgba(0,0,0,0.2);
 }
 
 
@@ -112,57 +112,57 @@ $base-gradient: "none";
 }
 
 .lansita-header-customer-logo-not-found {
-	width: 100px;
-	height: 100px;
-	float: right;
-	border-radius: 50%;
-	border-style: solid!important;
-	border-width: 4px!important;
-	border-color: #34acfb;
-	margin-top: 20px;
-	margin-left: 10px;
-	background-color: #34acfb;
+    width: 100px;
+    height: 100px;
+    float: right;
+    border-radius: 50%;
+    border-style: solid!important;
+    border-width: 4px!important;
+    border-color: #34acfb;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: #34acfb;
 }
 
 .lansita-header-customer-logo-not-found:before {
-	font-family: "Lanista Icons";
-	content: "o";
-	text-align: center;
-	color: white;
-	font-size: 60px;
-	line-height: 92px;
-	display: block;
+    font-family: "Lanista Icons";
+    content: "o";
+    text-align: center;
+    color: white;
+    font-size: 60px;
+    line-height: 92px;
+    display: block;
 }
 
 .lansita-header-customer-image-not-found {
-	width: 100px;
-	height: 100px;
-	float: right;
-	border-radius: 50%;
-	border-style: solid!important;
-	border-width: 4px!important;
-	border-color: #34acfb;
-	margin-top: 20px;
-	margin-left: 10px;
-	background-color: #34acfb;
+    width: 100px;
+    height: 100px;
+    float: right;
+    border-radius: 50%;
+    border-style: solid!important;
+    border-width: 4px!important;
+    border-color: #34acfb;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: #34acfb;
 }
 
 .lansita-header-customer-image-not-found:before {
-	font-family: "Lanista Icons";
-	content: "j";
-	text-align: center;
-	color: white;
-	font-size: 60px;
-	line-height: 92px;
-	display: block;
+    font-family: "Lanista Icons";
+    content: "j";
+    text-align: center;
+    color: white;
+    font-size: 60px;
+    line-height: 92px;
+    display: block;
 }
 
 .lansita-header-customer-name {
-	margin-top: 35px;
+    margin-top: 35px;
 }
 
 .lansita-header-customer-name .last-name {
-	text-transform: uppercase;
+    text-transform: uppercase;
     font-family: "Roboto Black";
     letter-spacing: -1px;
     font-size: 40px;
@@ -234,14 +234,14 @@ $base-gradient: "none";
 }
 
 .lanista-command-panel, #mainStage {
-	-webkit-transition: opacity 0.5s ease-in-out;
+    -webkit-transition: opacity 0.5s ease-in-out;
 }
 
 .lanista-command-button {
-	height: 100px!important;
-	margin-left: 7px;
-	padding: 0px!important;
-	color: rgb(74,172,216);
+    height: 100px!important;
+    margin-left: 7px;
+    padding: 0px!important;
+    color: rgb(74,172,216);
     background-image: none;
     background-color: transparent;
     border: 0;
@@ -286,11 +286,11 @@ $base-gradient: "none";
 
 .lanista-command-button .x-btn-glyph {
     height: 70px!important;
-	width: 70px!important;
-	border-style: solid!important;
-	border-width: 4px!important;
-	border-color: rgb(74,172,216);
-	border-radius: 50%;
+    width: 70px!important;
+    border-style: solid!important;
+    border-width: 4px!important;
+    border-color: rgb(74,172,216);
+    border-radius: 50%;
     font-size: 30px;
     line-height: 60px;
     color: rgb(74,172,216);
@@ -352,7 +352,7 @@ $base-gradient: "none";
 }
 
 .lanista-guest .x-btn-glyph, .lanista-guest .x-btn-inner {
-	border-color: white;
+    border-color: white;
     color: white!important;
 }
 
@@ -361,15 +361,15 @@ $base-gradient: "none";
 }
 
 .lanista-guest .lanista-command-panel .x-btn-inner {
-	top: 52px;
+    top: 52px;
 }
 
 .lanista-guest .lanista-command-panel .two-lines .x-btn-inner {
-	top: 62px;
+    top: 62px;
 }
 
 .lanista-guest #header {
-	background-color: transparent!important;
+    background-color: transparent!important;
 }
 
 //Login Area
@@ -429,7 +429,13 @@ $base-gradient: "none";
 }
 
 #bottonPanel .x-panel-body {
-    padding: 0 20%;
+    padding: 0 7%;
+}
+
+#bottonPanel .lanista-command-button{
+    //width: 50%;
+    width: 180px;
+    height: 197px!important;
 }
 
 .x-help-panel {
@@ -466,6 +472,13 @@ $base-gradient: "none";
 
 .item-not-clicked {
     cursor: default;
+}
+
+//Exercises Panel
+//#exercisesPanel .x-panel-default{
+#exercisesPanel .x-panel-body-default{
+    top: 95px!important;
+    //padding-top: 100px;
 }
 
 //User Settings
@@ -540,45 +553,45 @@ $base-gradient: "none";
 
 //Customer List
 .customer-list-background {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	font-family: "Lanista Icons";
-	text-align: center;
-	font-size: 60px;
-	line-height: 92px;
-	background-color: #34acfb;
-	color: white;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: -100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    font-family: "Lanista Icons";
+    text-align: center;
+    font-size: 60px;
+    line-height: 92px;
+    background-color: #34acfb;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -100px;
 }
 
 .customer-list-image {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	margin-right: auto;
-	margin-left: auto;
-	z-index: 1;
-	position: relative;
-	background-size: cover;
-	border-style: solid!important;
-	border-width: 4px!important;
-	border-color: #34acfb;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    z-index: 1;
+    position: relative;
+    background-size: cover;
+    border-style: solid!important;
+    border-width: 4px!important;
+    border-color: #34acfb;
 }
 
 .customer-item {
-	text-align: center;
+    text-align: center;
     float: left;
     width: 205px;
     height: 190px;
 }
 
 .customer-list-lastname {
-	font-family: "Avenir LT Std";
-	text-transform: uppercase;
-	font-weight: bold;
+    font-family: "Avenir LT Std";
+    text-transform: uppercase;
+    font-weight: bold;
     font-size:130%;
 }
 
@@ -587,7 +600,7 @@ $base-gradient: "none";
 }
 
 .exercises-header, .customer-header {
-	margin-top: 18px!important;
+    margin-top: 18px!important;
 }
 
 .header-filter {
@@ -680,16 +693,16 @@ $base-gradient: "none";
 }
 
 /*.x-grid-with-row-lines .x-grid-table {
-    width:  215px!important;
-    height:  0px!important;
+width:  215px!important;
+height:  0px!important;
 }
 
 .x-grid-group-hd {
-    border-color: transparent!important;
+border-color: transparent!important;
 }
 
 .x-grid-with-row-lines .x-grid-td {
-    font-size: 18px;
+font-size: 18px;
 }
 */
 
@@ -821,7 +834,7 @@ $base-gradient: "none";
 }
 
 .lanista-exercise-panel-content {
-   top: 220px!important;
+    top: 220px!important;
 }
 
 .lanista-exercise-planpanel{
@@ -830,8 +843,8 @@ $base-gradient: "none";
 }
 
 .exercise-description  {
-   margin-left: 325px;
-   font-size: 18px;
+    margin-left: 325px;
+    font-size: 18px;
 }
 
 .exercise-coaching-key, .exercise-errors {
@@ -1039,7 +1052,7 @@ $base-gradient: "none";
 }
 
 .lanista-trainingPicker .x-toolbar-default {
-     height: 53px!important;
+    height: 53px!important;
     border-color: transparent;
     border-width: 1px;
     background-image: none;
@@ -1047,11 +1060,11 @@ $base-gradient: "none";
 }
 
 .lanista-trainingPicker .lanista-buttongroup-traininghelp {
-     width: 200px!important;
+    width: 200px!important;
 }
 
 .lanista-trainingPicker .x-box-target {
-     height: 49px!important;
+    height: 49px!important;
 }
 
 .lanista-training-clear .x-btn-button {
@@ -1085,10 +1098,10 @@ $base-gradient: "none";
     margin-left: 21px;
 }
 
-#weightKilos .x-fieldset-header-text, #weightMeasure .x-fieldset-header-text, #weightSets .x-fieldset-header-text, #weightSets .x-fieldset-header-text, #weightIndications .x-fieldset-header-text{	
+#weightKilos .x-fieldset-header-text, #weightMeasure .x-fieldset-header-text, #weightSets .x-fieldset-header-text, #weightSets .x-fieldset-header-text, #weightIndications .x-fieldset-header-text{
     font: normal 12px/14px Roboto Light;
     font-size: 14px;
-}    
+}
 
 #weightKilos .x-form-item-body, #weightMeasure .x-form-item-body, #weightSets .x-form-item-body{
     left: 10px;
@@ -1169,7 +1182,7 @@ $base-gradient: "none";
     left: 19px!important;
     width: 449px!important;
     top: 10px;
-} 
+}
 
 #exerciseIndications{
     width: 400px!important;
@@ -1916,7 +1929,7 @@ $base-gradient: "none";
 }
 
 #customersContainer .x-box-inner, .x-box-target{
-     width: 100%;
+    width: 100%;
 }
 
 #plansContainer{
@@ -2091,7 +2104,7 @@ $base-gradient: "none";
 }
 
 .lanista-expire{
-      padding-bottom: 5px;
+    padding-bottom: 5px;
 }
 
 .lanista-dashboard-text-exp{
@@ -2111,9 +2124,9 @@ $base-gradient: "none";
 }
 
 .lanista-birthday-lastname{
-  font-family: "Roboto Light";
-  text-transform: uppercase;
-  font-weight: bold;
+    font-family: "Roboto Light";
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .lanista-toexpire-plan .lanista-dashboard-name{
@@ -2129,58 +2142,58 @@ $base-gradient: "none";
 }
 
 #titlesPlans span{
-  height: 27% !important;
-  //margin: 0px 10px 0px 0px !important;
-  padding-bottom: 5px;
-  color: white;
-  width: 100%;
+    height: 27% !important;
+    //margin: 0px 10px 0px 0px !important;
+    padding-bottom: 5px;
+    color: white;
+    width: 100%;
 }
 
 .title-component{
-  height: 100%;
-  background: #e6e6e6;
-  padding: 15px 10px 10px 10px!important;
+    height: 100%;
+    background: #e6e6e6;
+    padding: 15px 10px 10px 10px!important;
 }
 
 .top-component, .botton-component{
-  height: 50%;
-  width: 100%;
-  float: left;
-  padding: 10px;
-  line-height: 13px;
+    height: 50%;
+    width: 100%;
+    float: left;
+    padding: 10px;
+    line-height: 13px;
 }
 
 .top-component div:first-child, .botton-component div:first-child{
-  font-size: 15px;
-  color: #98BA10;
-  background-image: -webkit-linear-gradient(92deg, #e0be00, #417711);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-animation: hue 60s infinite linear;
+    font-size: 15px;
+    color: #98BA10;
+    background-image: -webkit-linear-gradient(92deg, #e0be00, #417711);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: hue 60s infinite linear;
 }
 
 .top-component div:last-child, .botton-component div:last-child{
-  font-family: "Roboto Black";
-  font-size: 18px;
-  text-transform: uppercase;
-  -webkit-font-smoothing: antialiased;
-  letter-spacing: -1px;
-  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
+    font-family: "Roboto Black";
+    font-size: 18px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -1px;
+    text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
 }
 
 .botton-component div:first-child {
-  color: #17ACC5;
-  background-image: -webkit-linear-gradient(92deg, #60b0a3, #4786ba);
+    color: #17ACC5;
+    background-image: -webkit-linear-gradient(92deg, #60b0a3, #4786ba);
 }
 
 #titlesPlans .top-component div:first-child {
-  color: #C59E17;
-  background-image: -webkit-linear-gradient(92deg, #417711, #dc4225);
+    color: #C59E17;
+    background-image: -webkit-linear-gradient(92deg, #417711, #dc4225);
 }
 
 #titlesPlans .botton-component div:first-child {
-  color: #6B17C5;
-  background-image: -webkit-linear-gradient(92deg, #292484, #417711);
+    color: #6B17C5;
+    background-image: -webkit-linear-gradient(92deg, #292484, #417711);
 }
 
 #dashboardNotificationsButton{
@@ -2192,11 +2205,11 @@ $base-gradient: "none";
 }
 
 #titles{
-  background: #e6e6e6;
-  padding: 15px -1px 10px 10px!important;
-  padding: 0px;
-  height: 140px;
-  color: white;
+    background: #e6e6e6;
+    padding: 15px -1px 10px 10px!important;
+    padding: 0px;
+    height: 140px;
+    color: white;
 }
 
 #notificationsBotton{
@@ -2205,28 +2218,28 @@ $base-gradient: "none";
 }
 
 #titlesCustomersAlerts #notificationsBotton .x-btn-glyph{
-  font-family: Lanista Icons;
-  border-style: none!important;
-  font-size: 80px;
-  color: #FDB825;
-  border-color: #FDB825;
-  line-height: 90px;
+    font-family: Lanista Icons;
+    border-style: none!important;
+    font-size: 80px;
+    color: #FDB825;
+    border-color: #FDB825;
+    line-height: 90px;
 }
 
 #notificationContainer{
-  float: left;
-  margin-top: 48px;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  background-image: none;
-  background-color: #4aacd8;
-  border: none;
-  color: white;
-  font-size: 14px;
-  text-align: center;
-  font-family: Roboto Medium;
+    float: left;
+    margin-top: 48px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-image: none;
+    background-color: #4aacd8;
+    border: none;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    font-family: Roboto Medium;
 }
 
 .lanista-notification-window{
@@ -2253,18 +2266,18 @@ $base-gradient: "none";
 }
 
 .lanista-notification-footer{
-  bottom: 0px;
-  position: relative;
-  background-color: darkgrey;
-  //background-color: #ebebeb;
-  height: 35px;
-  line-height: 35px;
-  text-align: center;
-  color: white;
-  //color: #A8A8A8;
-  font-family: Roboto Black;
-  -webkit-font-smoothing: antialiased;
-  padding-right: 0px;
+    bottom: 0px;
+    position: relative;
+    background-color: darkgrey;
+    //background-color: #ebebeb;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: white;
+    //color: #A8A8A8;
+    font-family: Roboto Black;
+    -webkit-font-smoothing: antialiased;
+    padding-right: 0px;
 }
 
 .lanista-notification-window .x-item-selected{
@@ -2388,109 +2401,3 @@ $base-gradient: "none";
     width: 200px!important;
 }
 
-$arrow-height: $button-large-arrow-height;
-$arrow-width: $button-large-arrow-width;
-$background-color: $button-default-background-color;
-$background-color-disabled: $button-default-background-color-disabled;
-$background-color-focus: $button-default-background-color-focus;
-$background-color-over: $button-default-background-color-over;
-$background-color-pressed: $button-default-background-color-pressed;
-$background-gradient: $button-default-background-gradient;
-$background-gradient-disabled: $button-default-background-gradient-disabled;
-$background-gradient-focus: $button-default-background-gradient-focus;
-$background-gradient-over: $button-default-background-gradient-over;
-$background-gradient-pressed: $button-default-background-gradient-pressed;
-$border-color: $button-default-border-color;
-$border-color-disabled: $button-default-border-color-disabled;
-$border-color-focus: $button-default-border-color-focus;
-$border-color-over: $button-default-border-color-over;
-$border-color-pressed: $button-default-border-color-pressed;
-$border-radius: $button-large-border-radius;
-$border-width: $button-large-border-width;
-$color: $button-default-color;
-$color-disabled: $button-default-color-disabled;
-$color-focus: $button-default-color-focus;
-$color-over: $button-default-color-over;
-$color-pressed: $button-default-color-pressed;
-$font-family: $button-large-font-family;
-$font-family-disabled: $button-large-font-family-disabled;
-$font-family-focus: $button-large-font-family-focus;
-$font-family-over: $button-large-font-family-over;
-$font-family-pressed: $button-large-font-family-pressed;
-$font-size: $button-large-font-size;
-$font-size-disabled: $button-large-font-size-disabled;
-$font-size-focus: $button-large-font-size-focus;
-$font-size-over: $button-large-font-size-over;
-$font-size-pressed: $button-large-font-size-pressed;
-$font-weight: $button-large-font-weight;
-$font-weight-disabled: $button-large-font-weight-disabled;
-$font-weight-focus: $button-large-font-weight-focus;
-$font-weight-over: $button-large-font-weight-over;
-$font-weight-pressed: $button-large-font-weight-pressed;
-$glyph-color: $button-default-glyph-color;
-$glyph-opacity: $button-default-glyph-opacity;
-$icon-size: $button-large-icon-size;
-$include-split-noline-arrows: false;
-$include-split-over-arrows: $button-include-split-over-arrows;
-$include-ui-menu-arrows: $button-include-ui-menu-arrows;
-$include-ui-split-arrows: $button-include-ui-split-arrows;
-$inner-opacity-disabled: $button-inner-opacity-disabled;
-$opacity-disabled: $button-opacity-disabled;
-$padding: $button-large-padding;
-$split-height: $button-large-split-height;
-$split-width: $button-large-split-width;
-$text-padding: $button-large-text-padding;
-
-@include extjs-button-ui($ui:"untitled-ui-1-large",
-$arrow-height: $arrow-height,
-$arrow-width: $arrow-width,
-$background-color: $background-color,
-$background-color-disabled: $background-color-disabled,
-$background-color-focus: $background-color-focus,
-$background-color-over: $background-color-over,
-$background-color-pressed: $background-color-pressed,
-$background-gradient: $background-gradient,
-$background-gradient-disabled: $background-gradient-disabled,
-$background-gradient-focus: $background-gradient-focus,
-$background-gradient-over: $background-gradient-over,
-$background-gradient-pressed: $background-gradient-pressed,
-$border-color: $border-color,
-$border-color-disabled: $border-color-disabled,
-$border-color-focus: $border-color-focus,
-$border-color-over: $border-color-over,
-$border-color-pressed: $border-color-pressed,
-$border-radius: $border-radius,
-$border-width: $border-width,
-$color: $color,
-$color-disabled: $color-disabled,
-$color-focus: $color-focus,
-$color-over: $color-over,
-$color-pressed: $color-pressed,
-$font-family: $font-family,
-$font-family-disabled: $font-family-disabled,
-$font-family-focus: $font-family-focus,
-$font-family-over: $font-family-over,
-$font-family-pressed: $font-family-pressed,
-$font-size: $font-size,
-$font-size-disabled: $font-size-disabled,
-$font-size-focus: $font-size-focus,
-$font-size-over: $font-size-over,
-$font-size-pressed: $font-size-pressed,
-$font-weight: $font-weight,
-$font-weight-disabled: $font-weight-disabled,
-$font-weight-focus: $font-weight-focus,
-$font-weight-over: $font-weight-over,
-$font-weight-pressed: $font-weight-pressed,
-$glyph-color: $glyph-color,
-$glyph-opacity: $glyph-opacity,
-$icon-size: $icon-size,
-$include-split-noline-arrows: $include-split-noline-arrows,
-$include-split-over-arrows: $include-split-over-arrows,
-$include-ui-menu-arrows: $include-ui-menu-arrows,
-$include-ui-split-arrows: $include-ui-split-arrows,
-$inner-opacity-disabled: $inner-opacity-disabled,
-$opacity-disabled: $opacity-disabled,
-$padding: $padding,
-$split-height: $split-height,
-$split-width: $split-width,
-$text-padding: $text-padding);

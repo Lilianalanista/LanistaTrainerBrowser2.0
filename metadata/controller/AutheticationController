@@ -169,6 +169,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onLoginButtonClick",
             "designerId": "6038646c-653a-4e27-ba40-7a37ea024b87"
         },
         {
@@ -233,6 +234,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onLogoutButtonClick",
             "designerId": "808a12fa-bcba-4e0f-9465-1c68b859d0c1"
         },
         {
@@ -266,6 +268,7 @@
                 "name": "loginUser",
                 "scope": "this"
             },
+            "name": "onLoginUser",
             "designerId": "77a295bd-ba54-48c4-a693-d995ce8a716c"
         },
         {
@@ -290,6 +293,7 @@
                 "name": "logoutUser",
                 "scope": "this"
             },
+            "name": "onLogoutUser",
             "designerId": "8973cf80-9eb4-443f-a386-df1a54c577a5"
         },
         {
@@ -305,6 +309,7 @@
                 "selector": "loginPanel",
                 "xtype": "loginPanel"
             },
+            "name": "loginPanel",
             "designerId": "194c27df-71e9-4622-ab1c-23ad60d078c3"
         }
     ]

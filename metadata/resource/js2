@@ -7,7 +7,8 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "js2",
-        "url": "resources/js/plupload.full.min.js"
+        "url": "resources/js/plupload.full.min.js",
+        "x-compile": true
     },
     "designerId": "a0fed613-9acb-429b-8d2c-61073012fc86"
 }

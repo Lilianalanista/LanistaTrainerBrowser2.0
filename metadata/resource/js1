@@ -7,7 +7,8 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "js1",
-        "url": "resources/js/jquery-2.0.3.min.js"
+        "url": "resources/js/jquery-2.0.3.min.js",
+        "x-compile": true
     },
     "designerId": "f38904b5-a2e9-4805-b000-557a157721c0"
 }

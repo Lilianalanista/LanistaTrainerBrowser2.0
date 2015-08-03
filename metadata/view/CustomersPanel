@@ -22,9 +22,12 @@
         "width": 400
     },
     "configAlternates": {
-        "style": "string"
+        "style": "string",
+        "scrollable": "boolean"
     },
     "designerId": "48392689-f462-4834-9fae-83d1892e53f7",
+    "viewControllerInstanceId": "b0c56164-68c5-4e7e-837b-988f729a7e87",
+    "viewModelInstanceId": "f1eeafb6-3a05-46bc-9d61-7b9c88c49b6b",
     "cn": [
         {
             "type": "Ext.view.View",
@@ -34,12 +37,18 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "tpl-gpclg44s",
+                "cls": [
+                    "tpl-gpclg44s"
+                ],
                 "height": 250,
                 "id": "viewCustomers",
                 "itemSelector": "div.customer-item",
                 "store": "CustomerStore",
                 "width": 400
+            },
+            "name": "MyView1",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "bf64ca82-bbb6-496d-a66f-e63a2f38bcf7",
             "cn": [
@@ -58,6 +67,7 @@
                         "name": "hide",
                         "scope": "me"
                     },
+                    "name": "onDataviewHide",
                     "designerId": "bf8c60e6-b6fe-45d8-8430-811f1c865efc"
                 },
                 {
@@ -82,6 +92,7 @@
                             ""
                         ]
                     },
+                    "name": "tpl14",
                     "designerId": "face26eb-0ad9-4df2-bb62-04acc63c3d68"
                 },
                 {
@@ -126,6 +137,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onViewCustomersAfterRender",
                     "designerId": "62cada44-dd67-47b6-875f-49b5ec204843"
                 },
                 {
@@ -186,6 +198,7 @@
                         "name": "itemclick",
                         "scope": "me"
                     },
+                    "name": "onViewCustomersItemClick",
                     "designerId": "358dfdc2-582b-4cd7-87c4-a8b93e8ac62c"
                 },
                 {
@@ -227,6 +240,7 @@
                         "name": "viewready",
                         "scope": "me"
                     },
+                    "name": "onViewCustomersViewReady",
                     "designerId": "d39fa161-1536-4a64-928b-5094a8c933e5"
                 }
             ]
@@ -244,6 +258,10 @@
                 "id": "previousCustomers",
                 "type": "left"
             },
+            "name": "MyTool2",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
             "designerId": "7ae7981c-4ee8-48ea-a9f9-2dfc13565045"
         },
         {
@@ -258,6 +276,10 @@
                 "designer|displayName": "",
                 "id": "nextCustomers",
                 "type": "right"
+            },
+            "name": "MyTool3",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "edabaaaa-ec97-472b-a4d0-9872a2a963d5"
         }

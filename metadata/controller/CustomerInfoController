@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "a91a7bac-f86b-490e-b228-69c2d10b95bd"
         },
         {
@@ -36,6 +37,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "a94b393e-0768-40e3-a7b7-39b6e110f038"
         },
         {
@@ -49,6 +51,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "ad17d11a-b9b7-4c5a-b68c-01d461d1a9a9"
         },
         {
@@ -62,6 +65,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "27777be5-f439-4494-81ca-23f6c626d142"
         },
         {
@@ -77,6 +81,7 @@
                 "selector": "#customerInfoPanel",
                 "xtype": "customerInfoPanel"
             },
+            "name": "customerInfoPanel",
             "designerId": "781a71bc-5792-48c7-8a78-9ea05e66871c"
         },
         {
@@ -90,6 +95,7 @@
                 "ref": "customer_personalData",
                 "selector": "#customer_personalData"
             },
+            "name": "customer_personalData",
             "designerId": "fdb954db-b18a-43e4-a449-8dbf0c14eeb8"
         },
         {
@@ -104,6 +110,7 @@
                 "selector": "#customer_trainerGymName",
                 "xtype": null
             },
+            "name": "customer_trainerGymName",
             "designerId": "97ef85b5-4c30-486d-995a-587532846854"
         },
         {
@@ -117,6 +124,7 @@
                 "ref": "customer_companyContacts",
                 "selector": "#customer_companyContacts"
             },
+            "name": "customer_companyContacts",
             "designerId": "afa42826-c0aa-437c-84d6-4969e8343d70"
         },
         {
@@ -166,6 +174,7 @@
                 "name": "showCustomerInfoPanel",
                 "scope": "this"
             },
+            "name": "onShowCustomerInfoPanel",
             "designerId": "36c47d0f-66dc-4098-81f6-d82fa831df04"
         },
         {
@@ -196,6 +205,7 @@
                 "name": "closeCustomerInfoPanel",
                 "scope": "this"
             },
+            "name": "onCloseCustomerInfoPanel",
             "designerId": "ee4e7c53-4ac1-4ebe-934a-f380508bdf16"
         },
         {
@@ -224,6 +234,7 @@
                 "name": "showCustomerInfoHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowCustomerInfoHeaderUpdate",
             "designerId": "93985d27-b803-43ba-830c-93c5f645a1ac"
         },
         {
@@ -262,6 +273,7 @@
                     ""
                 ]
             },
+            "name": "showCommands",
             "designerId": "2d945cd3-8280-4d99-9d12-f7fa0c757fa7"
         },
         {
@@ -284,6 +296,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowCustomerInfoPanelButton",
             "designerId": "e21eebb0-5b0c-4b21-8a89-bcfb45f8ebfe"
         },
         {
@@ -307,6 +320,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseCustomerInfoPanelButton",
             "designerId": "13a392d0-73fc-4b63-b809-a89c995d46b4"
         },
         {
@@ -342,6 +356,7 @@
                     "controller.getCustomerInfoPanel().getForm().findField('customer_email').focus();"
                 ]
             },
+            "name": "loadData",
             "designerId": "847f981c-3427-4c98-9ca0-fb46c314bd6e"
         },
         {
@@ -386,6 +401,7 @@
                     "if (callBack instanceof Function) callBack();"
                 ]
             },
+            "name": "loadCurrentUser",
             "designerId": "d0bd4c8e-ed9a-4b91-94a9-f6f4ade5e489"
         },
         {
@@ -407,6 +423,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCancelSettingsButtonClick",
             "designerId": "56a6d7eb-fb32-4a6a-a2e5-a8be3121f59c"
         },
         {
@@ -448,11 +465,11 @@
                     "            noCache: false,",
                     "            reader: {",
                     "                type: 'json',",
-                    "                root: 'entries'",
+                    "                rootProperty: 'entries'",
                     "            },",
                     "            writer: {",
                     "                type: 'json',",
-                    "                root: 'records',",
+                    "                rootProperty: 'records',",
                     "                allowSingle: false",
                     "            },",
                     "            headers: {",
@@ -488,6 +505,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onSaveSettingsButtonClick",
             "designerId": "9e7eaf74-bcc7-486a-8919-1a21bc7d398a"
         }
     ]

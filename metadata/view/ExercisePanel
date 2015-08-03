@@ -6,7 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": "lanista-exercise-panel",
+        "cls": [
+            "lanista-exercise-panel"
+        ],
         "container|align": "stretch",
         "designer|userAlias": "exercisePanel",
         "designer|userClassName": "ExercisePanel",
@@ -16,7 +18,12 @@
         "title": null,
         "width": null
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "760477f7-1a9e-486b-b65e-c999cd4ad142",
+    "viewControllerInstanceId": "be6ff264-a96f-423a-8462-9f8fbc95b164",
+    "viewModelInstanceId": "2c18940d-54c5-435b-8366-65d091acfb9d",
     "cn": [
         {
             "type": "Ext.panel.Panel",
@@ -26,9 +33,15 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-exercise-panel-header",
+                "cls": [
+                    "lanista-exercise-panel-header"
+                ],
                 "id": "exercisePanelHeader",
                 "layout|flex": 1
+            },
+            "name": "MyPanel3",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "c38a8474-3de0-4343-9b26-1e31ddd37527",
             "cn": [
@@ -51,6 +64,7 @@
                             "</div>"
                         ]
                     },
+                    "name": "tpl6",
                     "designerId": "6f43478b-dd35-432e-9b3a-1c4d67a36dc9"
                 }
             ]
@@ -63,141 +77,21 @@
             },
             "codeClass": null,
             "userConfig": {
-                "activeTab": null,
-                "cls": "lanista-exercise-panel-content",
+                "cls": [
+                    "lanista-exercise-panel-content"
+                ],
                 "height": null,
                 "id": "exercisePanelContent",
                 "layout|flex": 1,
                 "plain": true,
                 "width": null
             },
+            "name": "MyTabPanel",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
             "designerId": "73b9c0b4-8acc-4674-a848-be7a8f5a67f3",
             "cn": [
-                {
-                    "type": "Ext.panel.Panel",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "height": null,
-                        "id": "info",
-                        "title": "Info"
-                    },
-                    "designerId": "3d5af9f8-e856-4993-bdf0-a78a4bcf3b1d",
-                    "cn": [
-                        {
-                            "type": "Ext.tab.Tab",
-                            "reference": {
-                                "name": "tabConfig",
-                                "type": "object"
-                            },
-                            "codeClass": null,
-                            "designerId": "77ec7cce-9f7f-4661-9948-db571731c73b"
-                        },
-                        {
-                            "type": "Ext.XTemplate",
-                            "reference": {
-                                "name": "tpl",
-                                "type": "object"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "tpl",
-                                "implHandler": [
-                                    "<div class=\"exercise-description\">",
-                                    "    <div class=\"exercise-coaching-key\"><span><b>{[Ext.ux.LanguageManager.TranslationArray.EXECUTION]}</b></span><br>{[this.strLines(values[\"coatchingnotes_\"+Ext.ux.LanguageManager.lang])]}</div>",
-                                    "    <div class=\"exercise-errors\"><span><b>{[Ext.ux.LanguageManager.TranslationArray.POSSIBLE_ERRORS]}</b></span><br>{[this.strLines(values[\"mistakes_\"+Ext.ux.LanguageManager.lang])]}</div>",
-                                    "</div>",
-                                    ""
-                                ]
-                            },
-                            "designerId": "838c5c6f-7727-4ef2-8ad3-12e05fe7dc25",
-                            "cn": [
-                                {
-                                    "type": "templatefunction",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|params": [
-                                            "value"
-                                        ],
-                                        "fn": "strLines",
-                                        "implHandler": [
-                                            "var returnValue = '',",
-                                            "    strSplit = [];",
-                                            "",
-                                            "try{",
-                                            "    if(value.indexOf(\"\\n\") !== -1)",
-                                            "        returnValue = value.split( \"\\n\" ).join( \"<br>\" );",
-                                            "    else",
-                                            "        returnValue = value.split( \"||\" ).join( \"<br>\" );",
-                                            "}",
-                                            "catch(e){",
-                                            "    for (var i = 0; i < value.length; i++){",
-                                            "        strSplit = value[i].split(\",\");",
-                                            "        for (var j = 0; j < strSplit.length; j++) {",
-                                            "            returnValue = returnValue + strSplit[j].trim().substr(0,1).toUpperCase() + strSplit[j].trim().substr(1) + '<br>';",
-                                            "        }",
-                                            "        strSplit = [];",
-                                            "    }",
-                                            "}",
-                                            "",
-                                            "return returnValue;"
-                                        ]
-                                    },
-                                    "designerId": "4c21c64a-73e7-47ef-89af-abaab7204da1"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "basiceventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onInfoAfterRender",
-                                "implHandler": [
-                                    ""
-                                ],
-                                "name": "afterrender",
-                                "scope": "me"
-                            },
-                            "designerId": "572838c4-dee9-4b33-82ed-35d4c9518269"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.panel.Panel",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "hidden": true,
-                        "id": "alternatives",
-                        "title": "Alternatives"
-                    },
-                    "designerId": "25500a83-1bb9-4b96-a126-833a49992aa6",
-                    "cn": [
-                        {
-                            "type": "Ext.tab.Tab",
-                            "reference": {
-                                "name": "tabConfig",
-                                "type": "object"
-                            },
-                            "codeClass": null,
-                            "designerId": "d90e1be8-f4fe-4f55-a1ec-73084339b490"
-                        }
-                    ]
-                },
                 {
                     "type": "processcfgfunction",
                     "reference": {
@@ -225,6 +119,7 @@
                             "return config;"
                         ]
                     },
+                    "name": "processExercisePanelContent",
                     "designerId": "f8425521-de37-4cb2-bde9-b36ecf9a2f14"
                 },
                 {
@@ -235,172 +130,17 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-protocolls-tab-panel",
-                        "container|align": "stretch",
-                        "hidden": true,
-                        "id": "protocollsTabPanel",
-                        "layout": "hbox",
-                        "title": "Protocolls"
-                    },
-                    "designerId": "3230152e-3889-40a9-a825-564b8f40cef1",
-                    "cn": [
-                        {
-                            "type": "Ext.tab.Tab",
-                            "reference": {
-                                "name": "tabConfig",
-                                "type": "object"
-                            },
-                            "codeClass": null,
-                            "designerId": "6d4e16b2-60cc-45bf-b2ea-4f2fa27d2b0b"
-                        },
-                        {
-                            "type": "Ext.panel.Panel",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "cls": "lanista-protocoll-panel",
-                                "id": "protocollPanel",
-                                "layout|flex": null,
-                                "title": null,
-                                "width": 850
-                            },
-                            "designerId": "bf3e8e95-a4ea-494d-8f4d-cf19976459bc",
-                            "cn": [
-                                {
-                                    "type": "Ext.XTemplate",
-                                    "reference": {
-                                        "name": "tpl",
-                                        "type": "object"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "designer|displayName": "tpl",
-                                        "implHandler": [
-                                            "<div class=\"protocoll-configuration\">{weight} Kg. x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>"
-                                        ]
-                                    },
-                                    "designerId": "22429008-ef88-4883-a4b4-0f29780f7a56"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Ext.grid.Panel",
-                            "reference": {
-                                "name": "dockedItems",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "disableSelection": true,
-                                "dock": "right",
-                                "emptyText": "This exercise is not protocolled",
-                                "header": false,
-                                "hideHeaders": true,
-                                "id": "exerciseProtocolls",
-                                "layout|flex": 1,
-                                "title": "My Grid Panel",
-                                "width": 230
-                            },
-                            "designerId": "013a79ff-7066-4b5a-b251-a8731474f2d1",
-                            "cn": [
-                                {
-                                    "type": "Ext.grid.column.Template",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "border": false,
-                                        "cls": "lanista-exercise-protocolls",
-                                        "dataIndex": "string",
-                                        "defaultWidth": 0,
-                                        "enableColumnHide": false,
-                                        "hideable": false,
-                                        "id": "rowProtocolls",
-                                        "menuDisabled": true,
-                                        "resizable": false,
-                                        "tdCls": "lanista-exercises-protocolls-td",
-                                        "text": null,
-                                        "weight": 0
-                                    },
-                                    "designerId": "3331d321-260a-4a59-bb0f-395689f5d95a",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.XTemplate",
-                                            "reference": {
-                                                "name": "tpl",
-                                                "type": "object"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|displayName": "tpl",
-                                                "implHandler": [
-                                                    "<div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {#}: {weight} Kg x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>"
-                                                ]
-                                            },
-                                            "designerId": "b8310a5f-8587-41fc-bb08-dd1602341532"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.grid.View",
-                                    "reference": {
-                                        "name": "viewConfig",
-                                        "type": "object"
-                                    },
-                                    "codeClass": null,
-                                    "designerId": "49af3a1e-7c3c-4ced-bf9b-0663a3b0fda1"
-                                },
-                                {
-                                    "type": "Ext.grid.feature.Grouping",
-                                    "reference": {
-                                        "name": "features",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "collapsible": false
-                                    },
-                                    "designerId": "7ad3d56b-43ac-4f43-954b-875d81a384d4",
-                                    "cn": [
-                                        {
-                                            "type": "Ext.XTemplate",
-                                            "reference": {
-                                                "name": "groupHeaderTpl",
-                                                "type": "object"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|displayName": "groupHeaderTpl",
-                                                "implHandler": [
-                                                    "<div class=\"lanista-group-grid-exercise\"> {name} </div>"
-                                                ]
-                                            },
-                                            "designerId": "a2092c92-8f59-4e4a-ba4f-cbdd0225a12b"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.panel.Panel",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "cls": "lanista-configuration-tabpanel",
+                        "cls": [
+                            "lanista-configuration-tabpanel"
+                        ],
                         "hidden": true,
                         "id": "configurationTabPanel",
                         "layout": "fit",
                         "title": "Exercise Configuration"
+                    },
+                    "name": "MyPanel4",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "aecc59da-f5a6-4e38-b5a9-4dc28e85f22f",
                     "cn": [
@@ -411,6 +151,10 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "name": "TabConfig",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "e6c83737-188f-43b5-b80d-aa558d48213b"
                         },
                         {
@@ -425,6 +169,10 @@
                                 "id": "configurationPanel",
                                 "title": null,
                                 "width": 650
+                            },
+                            "name": "MyPanel5",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "c4a0bcb0-9a70-4dc9-ad37-345131f823db",
                             "cn": [
@@ -442,6 +190,7 @@
                                             "<div class=\"protocoll-description\">{[values.description ? values.description : Ext.ux.LanguageManager.TranslationArray.NO_PLAN_EXERCISE_DESCRIPTION]}</div>"
                                         ]
                                     },
+                                    "name": "tpl7",
                                     "designerId": "67c745ab-e706-4d53-b53b-f6089b6b6177"
                                 },
                                 {
@@ -456,6 +205,10 @@
                                         "hidden": true,
                                         "id": "exerciseDescriptionInputPanel"
                                     },
+                                    "name": "MyTextArea",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "28311d6c-a344-4abb-9853-4671cbd916f9"
                                 },
                                 {
@@ -469,6 +222,10 @@
                                         "fieldLabel": null,
                                         "hidden": true,
                                         "id": "setInput"
+                                    },
+                                    "name": "MyNumberField",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "19011a6c-7305-4c49-8c3d-7acb881b5dba"
                                 }
@@ -486,14 +243,29 @@
                     "userConfig": {
                         "fn": "onExercisePanelContentAfterRender",
                         "implHandler": [
-                            "component.down('#info').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_INFO  );",
-                            "component.down('#protocollsTabPanel').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLLS   );",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "//******************************",
+                            "//Por ahora......",
+                            "//component.down('#info').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_INFO  );",
+                            "",
+                            "",
+                            "",
+                            "//******************************",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "//component.down('#protocollsTabPanel').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLLS   );",
                             "component.down('#configurationTabPanel').setTitle( Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT + ' / '",
                             "                                                  + Ext.ux.LanguageManager.TranslationArray.REP );"
                         ],
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onExercisePanelContentAfterRender",
                     "designerId": "c8edc7f6-9a04-4c51-b9f5-d8fb8a9800ce"
                 }
             ]

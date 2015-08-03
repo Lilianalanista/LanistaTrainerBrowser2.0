@@ -6,7 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": "lanista-plan-panel",
+        "cls": [
+            "lanista-plan-panel"
+        ],
         "container|align": "stretch",
         "designer|userAlias": "planPanel",
         "designer|userClassName": "PlanPanel",
@@ -19,7 +21,12 @@
         "title": null,
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "a0646267-15df-4b81-8420-1c61b5811101",
+    "viewControllerInstanceId": "250a8805-24ef-4d12-8de3-c4af744f59d9",
+    "viewModelInstanceId": "d4f629b9-c559-42c9-94f2-35eab872e3c9",
     "cn": [
         {
             "type": "processcfgfunction",
@@ -61,7 +68,8 @@
                     "            {",
                     "                xtype: 'planExercisesList',",
                     "                id: 'd1',",
-                    "                title: Ext.ux.LanguageManager.TranslationArray.DAY + ' 1'",
+                    "                //title: Ext.ux.LanguageManager.TranslationArray.DAY + ' 1'",
+                    "                title: ' 1'",
                     "            },",
                     "            {",
                     "                xtype: 'container',",
@@ -103,6 +111,7 @@
                     "];"
                 ]
             },
+            "name": "processPlanPanel",
             "designerId": "98da6111-f8c0-44c2-96a9-c33ab44d3f1e"
         },
         {
@@ -127,6 +136,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onPlanPanelAfterRender",
             "designerId": "d755c6ca-6554-46b1-9943-83e056bddf31"
         }
     ]

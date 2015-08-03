@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "temporal",
+        "designer|userClassName": "TemporalViewModel"
+    },
+    "designerId": "c1b416b4-e9a1-4c24-b511-4e5253b86fb0"
+}

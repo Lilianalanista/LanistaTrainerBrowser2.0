@@ -1,8 +1,48 @@
 {
    "name": "LanistaTrainer",
-   "requires": [],
+   "requires": [
+      "sencha-charts"
+   ],
    "id": "fd3eac1a-0c81-4892-8906-0a5336d8d595",
    "resources": [
       "resources/css/app.css"
-   ]
+   ],
+   "theme": "ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8",
+   "js": [
+      {
+         "path": "resources/js/stopwatch.js",
+         "x-compile": true
+      },
+      {
+         "path": "resources/js/jquery-2.0.3.min.js",
+         "x-compile": true
+      },
+      {
+         "path": "resources/js/plupload.full.min.js",
+         "x-compile": true
+      },
+      {
+         "path": "resources/js/jquery.Jcrop.min.js",
+         "x-compile": true
+      },
+      {
+         "path": "lib/LanguageManager.js",
+         "requireSdk": true,
+         "x-compile": true
+      },
+      {
+         "path": "app.js",
+         "bundle": true
+      }
+   ],
+   "css": [
+      {
+         "path": "bootstrap.css",
+         "bootstrap": true
+      },
+      {
+         "path": "resources/css/app.css"
+      }
+   ],
+   "classpath": "${app.dir}/app,${app.dir}/resources/js/,${app.dir}/lib/"
 }

@@ -7,8 +7,9 @@
     "codeClass": null,
     "userConfig": {
         "border": false,
-        "cls": "lanista-user-info-panel",
-        "defaultAlign": "c-c",
+        "cls": [
+            "lanista-user-info-panel"
+        ],
         "designer|userAlias": "planOptionsPanel",
         "designer|userClassName": "PlanOptionsPanel",
         "header": false,
@@ -21,9 +22,12 @@
         "width": 400
     },
     "configAlternates": {
-        "style": "string"
+        "style": "string",
+        "scrollable": "boolean"
     },
     "designerId": "64f9ea40-4158-43ef-bf20-d7470e626a56",
+    "viewControllerInstanceId": "64cf0c38-e1a3-4d16-966c-59cc92677d87",
+    "viewModelInstanceId": "be0cd0db-503a-4e81-9886-4a2f590029dd",
     "cn": [
         {
             "type": "Ext.form.FieldSet",
@@ -34,11 +38,16 @@
             "codeClass": null,
             "userConfig": {
                 "border": true,
-                "cls": "lanista-user-fieldset",
-                "defaultAlign": "c-c",
+                "cls": [
+                    "lanista-user-fieldset"
+                ],
                 "height": 384,
                 "id": "trainingPlanOptions",
                 "title": null
+            },
+            "name": "MyFieldSet7",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "f5a5db06-ffa5-487b-b6d5-abe1315f635f",
             "cn": [
@@ -50,13 +59,19 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
                         "id": "planName",
                         "layout|anchor": "100%",
                         "name": "name",
                         "selectOnFocus": true
+                    },
+                    "name": "MyTextField20",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "a14d9adc-543d-4cf8-b724-fc8d045d83e3"
                 },
@@ -68,12 +83,18 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
                         "id": "planDuration",
                         "layout|anchor": "100%",
                         "name": "duration"
+                    },
+                    "name": "MyTextField21",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "5c2639f2-f1ff-4803-b74c-df9ddab45af8"
                 },
@@ -85,12 +106,18 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
                         "id": "planDescription",
                         "layout|anchor": "100%",
                         "name": "description"
+                    },
+                    "name": "MyTextArea2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "85220ac1-83bb-4c9c-8afa-966cf04a1a7d"
                 }
@@ -153,6 +180,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onPlanOptionsPanelAfterRender",
             "designerId": "46f55843-f830-4253-8013-22045fc7485a"
         }
     ]

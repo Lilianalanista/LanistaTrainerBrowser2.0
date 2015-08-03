@@ -1,20 +1,3 @@
-/*
-This file is part of Ext JS 4.2
-
-Copyright (c) 2011-2013 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial
-Software License Agreement provided with the Software or, alternatively, in accordance with the
-terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department
-at http://www.sencha.com/contact.
-
-Build date: 2013-05-16 14:36:50 (f9be68accb407158ba2b1be2c226a6ce1f649314)
-*/
 /**
  * Pedoman translasi:
  * http://id.wikisource.org/wiki/Panduan_Pembakuan_Istilah,_Pelaksanaan_Instruksi_Presiden_Nomor_2_Tahun_2001_Tentang_Penggunaan_Komputer_Dengan_Aplikasi_Komputer_Berbahasa_Indonesia
@@ -280,7 +263,7 @@ Ext.define("Ext.locale.id.grid.header.Container", {
 });
 
 Ext.define("Ext.locale.id.grid.GroupingFeature", {
-    override: "Ext.grid.GroupingFeature",
+    override: "Ext.grid.feature.Grouping",
     emptyGroupText: '(Kosong)',
     groupByText: 'Kelompokkan Berdasar Field Ini',
     showGroupsText: 'Tampil Dalam Kelompok'
@@ -307,4 +290,3 @@ Ext.define("Ext.locale.id.window.MessageBox", {
 Ext.define("Ext.locale.id.Component", {	
     override: "Ext.Component"
 });
-

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "weightswindow_ii",
+        "designer|userClassName": "WeightsWindow_IIViewController"
+    },
+    "designerId": "f443a34a-c835-4eaa-acdc-3a0e4d49a37b"
+}

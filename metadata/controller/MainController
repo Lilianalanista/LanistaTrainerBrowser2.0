@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "2c31514e-620d-4f0d-83c0-fd698a173678"
         },
         {
@@ -36,6 +37,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "08031f00-28ff-4d7d-bdf0-ad2a9fae06fe"
         },
         {
@@ -49,6 +51,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "1c2fdd0f-e670-43c1-b22b-abf2d1da65ad"
         },
         {
@@ -62,6 +65,7 @@
                 "ref": "lanistaStage",
                 "selector": "#lanistaStage"
             },
+            "name": "lanistaStage",
             "designerId": "d1a8c04b-2e78-4988-b116-62f7b529c6f7"
         },
         {
@@ -98,6 +102,7 @@
                 "name": "hideStage",
                 "scope": "this"
             },
+            "name": "onHideStage",
             "designerId": "559e775a-5859-47df-9920-c2108e32d69b"
         },
         {
@@ -131,6 +136,7 @@
                 "name": "showStage",
                 "scope": "this"
             },
+            "name": "onShowStage",
             "designerId": "d928606f-b887-4922-8070-b8420825c873"
         },
         {
@@ -186,6 +192,7 @@
                 "name": "showSavePanel",
                 "scope": "this"
             },
+            "name": "onShowSavePanel",
             "designerId": "10663f79-f66b-4b3f-8c18-6eee21483bcc"
         }
     ]

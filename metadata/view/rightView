@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "designer|userAlias": "rightview",
         "designer|userClassName": "rightView",
         "height": 250,
         "id": "rightView",
@@ -14,7 +15,12 @@
         "store": null,
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "cb771e34-01f3-4053-9728-66bbe12ab562",
+    "viewControllerInstanceId": "44ae285a-c582-497e-bca2-ba0038bbb51b",
+    "viewModelInstanceId": "7d2b7ffe-2862-4961-9826-6e9f997abb10",
     "cn": [
         {
             "type": "Ext.XTemplate",
@@ -31,6 +37,7 @@
                     "</tpl>"
                 ]
             },
+            "name": "tpl18",
             "designerId": "b55e9c52-ae24-4cec-b4c9-5fa1e0b73dcc"
         }
     ]

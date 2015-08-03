@@ -96,6 +96,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onHelpButtonClick",
             "designerId": "dcf9bf6e-47a5-4172-b33d-7a40e2500d03"
         },
         {
@@ -111,6 +112,7 @@
                 "selector": "helpPanel",
                 "xtype": "helpPanel"
             },
+            "name": "helpPanel",
             "designerId": "2bb46dcd-1fd4-478d-ba8e-f737bb8c7809"
         },
         {
@@ -124,6 +126,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "357ae812-3a52-4a83-8b1c-44f12c375072"
         },
         {
@@ -137,6 +140,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "d1082375-035a-4538-8438-3b4d1bb5bf21"
         }
     ]

@@ -7,7 +7,8 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "js3",
-        "url": "resources/js/jquery.Jcrop.min.js"
+        "url": "resources/js/jquery.Jcrop.min.js",
+        "x-compile": true
     },
     "designerId": "b552b4ae-4667-4960-81c7-e743820e0817"
 }

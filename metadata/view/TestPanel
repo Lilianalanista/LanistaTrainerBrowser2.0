@@ -13,7 +13,12 @@
         "title": null,
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "103ffafa-d504-412f-a3de-28eed1b344de",
+    "viewControllerInstanceId": "d0be2260-bffc-4d9d-954e-38dd7f401d63",
+    "viewModelInstanceId": "3e6b2f92-9358-4718-85d9-8ab0b672fbb8",
     "cn": [
         {
             "type": "Ext.tab.Panel",
@@ -25,6 +30,10 @@
             "userConfig": {
                 "activeTab": 0,
                 "id": "testTab"
+            },
+            "name": "MyTabPanel4",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "2aeae963-a583-4b4d-a564-61cdde5eb461",
             "cn": [
@@ -39,6 +48,10 @@
                         "id": "infoTab",
                         "title": "Tab 1"
                     },
+                    "name": "MyPanel22",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "be51780e-8fde-49a8-b5b2-da073c8e96c5",
                     "cn": [
                         {
@@ -48,6 +61,10 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "name": "TabConfig14",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "37c3b9b2-c6b1-44e1-867b-92d39bdedbbc"
                         }
                     ]
@@ -63,6 +80,10 @@
                         "id": "contentTab",
                         "title": "Tab 2"
                     },
+                    "name": "MyPanel23",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "0b3585f5-3c01-4df2-8ec4-40d9a927256d",
                     "cn": [
                         {
@@ -72,6 +93,10 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "name": "TabConfig15",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "05cb77ea-e033-47df-9101-8be2eb7a9406"
                         }
                     ]
@@ -87,6 +112,10 @@
                         "id": "protocolsTab",
                         "title": "Tab 3"
                     },
+                    "name": "MyPanel24",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "12369271-6f62-49e6-826e-648efc9337ef",
                     "cn": [
                         {
@@ -96,6 +125,10 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "name": "TabConfig16",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "a7c401a6-a3f8-44f4-966e-bdfb9e0ebec0"
                         }
                     ]

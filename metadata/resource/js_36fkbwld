@@ -1,0 +1,17 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "defer": false,
+        "designer|userClassName": "js_36fkbwld",
+        "requireSdk": true,
+        "url": "lib/LanguageManager.js",
+        "x-compile": true
+    },
+    "name": "js4",
+    "designerId": "3725c9a7-17e1-431e-924d-b8897ccf4b32"
+}

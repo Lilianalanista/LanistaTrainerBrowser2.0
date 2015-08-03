@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "weightsWindow",
+        "designer|userClassName": "WeightsWindowViewModel"
+    },
+    "designerId": "372a7959-1d56-48ec-b50c-c09f9415eddd"
+}

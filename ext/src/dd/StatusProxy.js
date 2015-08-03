@@ -1,23 +1,6 @@
-/*
-This file is part of Ext JS 4.2
-
-Copyright (c) 2011-2013 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial
-Software License Agreement provided with the Software or, alternatively, in accordance with the
-terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department
-at http://www.sencha.com/contact.
-
-Build date: 2013-05-16 14:36:50 (f9be68accb407158ba2b1be2c226a6ce1f649314)
-*/
 /**
- * A specialized floating Component that supports a drop status icon, {@link Ext.Layer} styles
- * and auto-repair.  This is the default drag proxy used by all Ext.dd components.
+ * A specialized floating Component that supports a drop status icon and auto-repair.
+ * This is the default drag proxy used by all Ext.dd components.
  */
 Ext.define('Ext.dd.StatusProxy', {
     extend: 'Ext.Component',
@@ -28,11 +11,13 @@ Ext.define('Ext.dd.StatusProxy', {
     ],
 
     renderTpl: [
-        '<div class="' + Ext.baseCSSPrefix + 'dd-drop-icon"></div>' +
-        '<div id="{id}-ghost" class="' + Ext.baseCSSPrefix + 'dd-drag-ghost"></div>'
+        '<div class="' + Ext.baseCSSPrefix + 'dd-drop-icon" role="presentation"></div>' +
+        '<div id="{id}-ghost" data-ref="ghost" class="' + Ext.baseCSSPrefix + 'dd-drag-ghost" role="presentation"></div>'
     ],
     
     repairCls: Ext.baseCSSPrefix + 'dd-drag-repair',
+    
+    ariaRole: 'presentation',
 
     /**
      * Creates new StatusProxy.
@@ -92,7 +77,7 @@ Ext.define('Ext.dd.StatusProxy', {
         me.el.replaceCls(clsPrefix + me.dropAllowed, clsPrefix + me.dropNotAllowed);
         me.dropStatus = me.dropNotAllowed;
         if (clearGhost) {
-            me.ghost.update('');
+            me.ghost.setHtml('');
         }
     },
 
@@ -103,9 +88,9 @@ Ext.define('Ext.dd.StatusProxy', {
      */
     update : function(html){
         if (typeof html == "string") {
-            this.ghost.update(html);
+            this.ghost.setHtml(html);
         } else {
-            this.ghost.update("");
+            this.ghost.setHtml('');
             html.style.margin = "0";
             this.ghost.dom.appendChild(html);
         }
@@ -117,7 +102,7 @@ Ext.define('Ext.dd.StatusProxy', {
 
     /**
      * Returns the ghost element
-     * @return {Ext.Element} el
+     * @return {Ext.dom.Element} el
      */
     getGhost : function(){
         return this.ghost;
@@ -145,10 +130,10 @@ Ext.define('Ext.dd.StatusProxy', {
     },
 
     /**
-     * Force the Layer to sync its shadow and shim positions to the element
+     * Force the Element to sync its shadow and shim positions
      */
     sync : function(){
-        this.el.sync();
+        this.el.syncUnderlays();
     },
 
     /**
@@ -166,7 +151,7 @@ Ext.define('Ext.dd.StatusProxy', {
         me.scope = scope;
         if (xy && me.animRepair !== false) {
             me.el.addCls(me.repairCls);
-            me.el.hideUnders(true);
+            me.el.setUnderlaysVisible(false);
             me.anim = me.el.animate({
                 duration: me.repairDuration || 500,
                 easing: 'ease-out',

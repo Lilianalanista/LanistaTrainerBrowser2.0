@@ -22,6 +22,7 @@
             "userConfig": {
                 "url": "/tpmanager/user/testtypesjson"
             },
+            "name": "MyAjaxProxy7",
             "designerId": "1fdd7c2a-cac5-4f38-8576-6827ca9c4338",
             "cn": [
                 {
@@ -31,6 +32,7 @@
                         "type": "object"
                     },
                     "codeClass": null,
+                    "name": "MyJsonReader6",
                     "designerId": "3326c69b-cb7a-469b-8a27-1d8587e4150a"
                 }
             ]

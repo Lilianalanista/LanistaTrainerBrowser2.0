@@ -6,19 +6,26 @@
     },
     "codeClass": null,
     "userConfig": {
-        "autoScroll": true,
-        "cls": "lanista-exercise-planpanel",
+        "cls": [
+            "lanista-exercise-planpanel"
+        ],
         "designer|userAlias": "planExercisesList",
         "designer|userClassName": "PlanExercisesList",
         "height": 250,
         "id": "planExercisesList",
         "itemCls": "lanista-plan-exercise",
         "itemSelector": "div",
+        "scrollable": true,
         "selectedItemCls": "lanista-plan-exercise-selected",
         "store": "PlanExerciseStore",
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "a0b0768f-a567-47c7-ae7b-4a38dd90a70b",
+    "viewControllerInstanceId": "7dc4a224-b3fc-47f9-ab85-28b073f56afa",
+    "viewModelInstanceId": "1c2c8502-1636-473d-a947-6ebce588d59d",
     "cn": [
         {
             "type": "Ext.XTemplate",
@@ -45,6 +52,7 @@
                     ""
                 ]
             },
+            "name": "tpl21",
             "designerId": "2d5dea2b-0af6-4089-b888-0c4bfcd45295"
         },
         {
@@ -122,6 +130,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onPlanExercisesListAfterRender",
             "designerId": "6815226b-cf34-44e7-8289-c2d47ff6746f"
         },
         {
@@ -165,6 +174,7 @@
                 "name": "viewready",
                 "scope": "me"
             },
+            "name": "onPlanExercisesListViewReady",
             "designerId": "804732bc-1eb1-483c-86ff-a7efe9d627e1"
         },
         {
@@ -223,6 +233,7 @@
                     ""
                 ]
             },
+            "name": "markDeleteExercises",
             "designerId": "cab5dafd-ba0e-40ca-ade9-cc51cf72177e"
         }
     ]

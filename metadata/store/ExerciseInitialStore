@@ -26,6 +26,7 @@
                 "noCache": false,
                 "url": "resources/data/exercises.json"
             },
+            "name": "MyAjaxProxy4",
             "designerId": "1f5ad69c-1fd7-4c87-b6ed-6201dee1f4c8"
         }
     ]

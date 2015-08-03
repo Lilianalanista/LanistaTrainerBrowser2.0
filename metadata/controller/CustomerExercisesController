@@ -101,6 +101,7 @@
                 "name": "showCustomerExercisesPanel",
                 "scope": "this"
             },
+            "name": "onShowCustomerExercisesPanel",
             "designerId": "83a91829-dc3b-4aca-8988-33ccb305c8f0"
         },
         {
@@ -131,6 +132,7 @@
                 "name": "closeCustomerExercisesPanel",
                 "scope": "this"
             },
+            "name": "onCloseCustomerExercisesPanel",
             "designerId": "e7f6fa02-926a-4e17-94a3-b0ffacb92f23"
         },
         {
@@ -153,9 +155,9 @@
                     "",
                     "",
                     "",
-                    "divLogo = divLogo + \" <div class='lanista-icon'>\";",
-                    "divLogo = divLogo + \" <div> abcdefghijklmnopqrstuvwxyz ABCDEFGHIJQLMNOPQRSTUVWXYZ </div>\";",
-                    "divLogo = divLogo + \" </div>\";",
+                    "//divLogo = divLogo + \" <div class='lanista-icon'>\";",
+                    "//divLogo = divLogo + \" <div> abcdefghijklmnopqrstuvwxyz ABCDEFGHIJQLMNOPQRSTUVWXYZ </div>\";",
+                    "//divLogo = divLogo + \" </div>\";",
                     "",
                     "",
                     "",
@@ -193,6 +195,7 @@
                 "name": "showCustomerExercisesHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowCustomerExercisesHeaderUpdate",
             "designerId": "8fb5381f-fe6c-4b1b-a66b-203c1dea5548"
         },
         {
@@ -208,6 +211,7 @@
                 "selector": "customerExercisesPanel",
                 "xtype": "customerExercisesPanel"
             },
+            "name": "customerExercisesPanel",
             "designerId": "48ebc517-2e1c-49e1-9953-2248e9b74335"
         },
         {
@@ -221,6 +225,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "948421b8-5103-48fd-8292-fe7d2dc48680"
         },
         {
@@ -234,6 +239,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "b1afd817-0401-4a3f-87d3-485053f6bb45"
         },
         {
@@ -247,6 +253,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "e15d0c16-f326-4c8a-aba5-391a7caa6cb2"
         },
         {
@@ -260,6 +267,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "43c305d3-75b0-4833-b9a7-cf53de923838"
         },
         {
@@ -320,6 +328,7 @@
                     ""
                 ]
             },
+            "name": "showCommands",
             "designerId": "aadf43a1-580a-4c4f-8328-66a96ac8122d"
         },
         {
@@ -343,6 +352,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowCustomerExercisesPanelButtonClick",
             "designerId": "088453fd-3350-4364-8a19-86727658430a"
         },
         {
@@ -375,6 +385,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseCustomerExercisesPanelButtonClick",
             "designerId": "3acdee6f-a2de-4ed2-b3ee-b8b44cd9dea3"
         },
         {
@@ -390,6 +401,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "e5358008-192e-4deb-bbd2-4ffc5da9bfce"
         },
         {
@@ -522,6 +534,7 @@
                     ""
                 ]
             },
+            "name": "loadProtocolls",
             "designerId": "dd3df9fe-60c1-48e8-a5fd-6d27d54fcb23"
         },
         {
@@ -537,6 +550,7 @@
                     "LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');"
                 ]
             },
+            "name": "setHeader",
             "designerId": "72072d4d-6d4e-4758-a15c-1fdd96d56bf0"
         },
         {
@@ -574,6 +588,7 @@
                     ");"
                 ]
             },
+            "name": "prompPlanNameRequest",
             "designerId": "f20ecc43-3ebe-4f44-964d-4b5da643fbae"
         },
         {
@@ -597,6 +612,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onNewPlanButtonClick",
             "designerId": "ffd9fab7-2d6c-4983-890e-92abb36c25a2"
         },
         {
@@ -631,6 +647,7 @@
                     ""
                 ]
             },
+            "name": "loadPlans",
             "designerId": "1af6779b-2526-4944-b981-3c554a202405"
         }
     ]

@@ -8,7 +8,9 @@
     "userConfig": {
         "bodyPadding": null,
         "border": false,
-        "cls": "lanista-form",
+        "cls": [
+            "lanista-form"
+        ],
         "designer|userAlias": "loginPanel",
         "designer|userClassName": "LoginPanel",
         "header": false,
@@ -20,9 +22,12 @@
         "width": 802
     },
     "configAlternates": {
-        "style": "string"
+        "style": "string",
+        "scrollable": "boolean"
     },
     "designerId": "3b736aa7-734f-4eb4-9c3b-de035ba6d14a",
+    "viewControllerInstanceId": "4afbf490-68e9-49b3-8283-d84577e30e86",
+    "viewModelInstanceId": "b3800ba8-0b3e-410a-9d0c-6f20a8e9829b",
     "cn": [
         {
             "type": "basiceventbinding",
@@ -48,6 +53,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onLoginPanelAfterRender",
             "designerId": "ef8aca09-9037-4bf0-b86f-20245de6f812"
         },
         {
@@ -58,7 +64,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "container-group",
+                "cls": [
+                    "container-group"
+                ],
                 "container|pack": "center",
                 "container|padding": 20,
                 "dock": null,
@@ -67,8 +75,10 @@
                 "padding": null,
                 "style": null
             },
+            "name": "MyContainer3",
             "configAlternates": {
-                "style": "string"
+                "style": "string",
+                "scrollable": "boolean"
             },
             "designerId": "40d3f29c-9d71-42aa-9fc1-33f8fea9508b",
             "cn": [
@@ -88,6 +98,10 @@
                         "title": "",
                         "width": null
                     },
+                    "name": "MyPanel2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "c5b0627a-38d1-4b47-916e-2f5a8870108e"
                 },
                 {
@@ -98,7 +112,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "login-buttons-container",
+                        "cls": [
+                            "login-buttons-container"
+                        ],
                         "container|align": "stretch",
                         "container|padding": 40,
                         "id": "formContainer",
@@ -107,8 +123,10 @@
                         "style": "background-color: rgba(255,255,255,0.4);",
                         "width": 200
                     },
+                    "name": "MyContainer4",
                     "configAlternates": {
-                        "style": "string"
+                        "style": "string",
+                        "scrollable": "boolean"
                     },
                     "designerId": "67a36997-a904-43d3-870d-87450d517b78",
                     "cn": [
@@ -125,6 +143,10 @@
                                 "id": "loginTitle",
                                 "text": null
                             },
+                            "name": "MyLabel1",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "76f67e70-55a7-4bc7-93a1-97a7004059df"
                         },
                         {
@@ -136,12 +158,18 @@
                             "codeClass": null,
                             "userConfig": {
                                 "border": 0,
-                                "cls": "fieldset-login",
+                                "cls": [
+                                    "fieldset-login"
+                                ],
                                 "height": null,
                                 "id": "fieldSetGroup",
                                 "layout|flex": 1,
                                 "padding": null,
                                 "title": ""
+                            },
+                            "name": "MyFieldSet",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "d72c69d3-d2de-46cd-a349-1dcac6515c70",
                             "cn": [
@@ -165,6 +193,10 @@
                                         "queryMode": "local",
                                         "tabIndex": 1
                                     },
+                                    "name": "MyComboBox",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "8c3ceea1-f2e8-4f29-9a3b-51742dc5cb6f",
                                     "cn": [
                                         {
@@ -184,6 +216,7 @@
                                                 "name": "keypress",
                                                 "scope": "me"
                                             },
+                                            "name": "onEmailKeypress",
                                             "designerId": "91bedf05-8538-4244-af49-5633bb8f8bff"
                                         },
                                         {
@@ -199,6 +232,7 @@
                                                     "autocomplete=\"on\""
                                                 ]
                                             },
+                                            "name": "tpl1",
                                             "designerId": "61468549-06fd-40d2-99e9-572571e32e96"
                                         }
                                     ]
@@ -218,6 +252,10 @@
                                         "layout|anchor": "100%",
                                         "name": "password",
                                         "tabIndex": 2
+                                    },
+                                    "name": "MyTextField",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "25797736-9a89-4c7f-bfe9-22d9c218108f",
                                     "cn": [
@@ -239,6 +277,7 @@
                                                 "name": "keypress",
                                                 "scope": "me"
                                             },
+                                            "name": "onPasswordKeypress",
                                             "designerId": "4fbdb1d9-aff2-4297-b912-9449697cfd55"
                                         }
                                     ]
@@ -257,6 +296,10 @@
                                 "id": "infologinButton",
                                 "layout|flex": 1,
                                 "text": null
+                            },
+                            "name": "MyButton",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "a9b1cb96-1b85-46c9-9efe-b6e56627967c"
                         }

@@ -82,6 +82,7 @@
                 "name": "showMeasuresPanel",
                 "scope": "this"
             },
+            "name": "onShowMeasuresPanel",
             "designerId": "f5b7b91f-753b-494d-9d8a-f29a97987ff7"
         },
         {
@@ -112,6 +113,7 @@
                 "name": "closeMeasuresPanel",
                 "scope": "this"
             },
+            "name": "onCloseMeasuresPanel",
             "designerId": "a0663461-a2da-429e-9792-15d9827b54f5"
         },
         {
@@ -135,6 +137,7 @@
                 "name": "showMeasuresHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowMeasuresHeaderUpdate",
             "designerId": "1a33481f-73df-471d-8b43-c4faa7c75f5e"
         },
         {
@@ -165,6 +168,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowMeasuresPanelButtonClick",
             "designerId": "d4819218-9cf1-4011-a1a8-10962ddc0765"
         },
         {
@@ -201,6 +205,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseMeasuresPanelButtonClick",
             "designerId": "812c3407-3455-4f67-b0b9-5aa87272c3c7"
         },
         {
@@ -216,6 +221,7 @@
                 "selector": "measuresPanel",
                 "xtype": "measuresPanel"
             },
+            "name": "measuresPanel",
             "designerId": "334937f3-d9c2-40cc-8cb6-84b7a361755f"
         },
         {
@@ -231,6 +237,7 @@
                 "selector": "testPanel",
                 "xtype": "testPanel"
             },
+            "name": "testPanel",
             "designerId": "3045a4ed-bd4f-4f75-accd-eb0502d4e43b"
         },
         {
@@ -246,6 +253,7 @@
                 "selector": "chartWindow",
                 "xtype": "chartWindow"
             },
+            "name": "chartWindow",
             "designerId": "e1221d42-4656-4259-8e2d-5961ddd9b955"
         },
         {
@@ -259,6 +267,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "b6257adc-f755-4be7-9e89-6c4c136d8863"
         },
         {
@@ -272,6 +281,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "1abd5f4d-5139-4862-9120-0cdb00e09877"
         },
         {
@@ -285,6 +295,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "b3241564-e142-4299-8836-0a5b6d89873c"
         },
         {
@@ -298,6 +309,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "aee02bb4-beb6-42a7-b525-d5e044276dc4"
         },
         {
@@ -371,6 +383,7 @@
                 "name": "tabchange",
                 "scope": "me"
             },
+            "name": "onTabpanelTabChange",
             "designerId": "da3763c6-daba-4c3d-ac62-f7eba20ea367"
         },
         {
@@ -404,6 +417,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onchartTableButtonClick",
             "designerId": "8361af0c-858c-4ff7-bb42-a43f8410ebfe"
         },
         {
@@ -460,6 +474,7 @@
                     "});"
                 ]
             },
+            "name": "showForm",
             "designerId": "b246e619-f06a-42d8-95f5-011999c7e0a1"
         },
         {
@@ -568,6 +583,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onSaveMeasuresButtonClick",
             "designerId": "19839fa0-45e8-417a-9a5f-7dcb86c6be18"
         },
         {
@@ -595,6 +611,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCancelMeasureButtonClick",
             "designerId": "a6bab74c-5e12-466f-bc2d-0022ec269983"
         },
         {
@@ -653,6 +670,7 @@
                     ");"
                 ]
             },
+            "name": "showCommandsForm",
             "designerId": "3f647ab6-df9c-4d4b-af4f-0e0769f29129"
         },
         {
@@ -720,6 +738,7 @@
                     "}"
                 ]
             },
+            "name": "showCommands",
             "designerId": "048deebf-e2bc-43c1-9fb8-f9b84f4432d8"
         },
         {
@@ -735,6 +754,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "ee867c14-dece-4d74-992c-a3e809f540ae"
         },
         {
@@ -817,6 +837,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onDeleteMeasureButtonClick",
             "designerId": "378aec0f-0a15-4f56-8fa8-d3b30cd7482f"
         },
         {
@@ -836,6 +857,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onNewMeasureButtonClick",
             "designerId": "ac65a741-3b40-43cb-ab57-3753cbd3b251"
         },
         {
@@ -921,6 +943,7 @@
                     "});"
                 ]
             },
+            "name": "getTestTypesNodes",
             "designerId": "fac0cad5-34ed-4f6e-a685-8f58f2bd468c"
         },
         {
@@ -966,6 +989,7 @@
                     "return menu;"
                 ]
             },
+            "name": "menuTest",
             "designerId": "0f3ab09e-6310-48f1-8291-2149a70242a8"
         },
         {
@@ -1156,6 +1180,7 @@
                     ""
                 ]
             },
+            "name": "showTest",
             "designerId": "62c5ba08-73fe-45d5-9cf5-043695441c5b"
         },
         {
@@ -1235,6 +1260,7 @@
                     ""
                 ]
             },
+            "name": "testSave",
             "designerId": "e215416c-267f-4eb6-a022-012388f3cbd4"
         },
         {
@@ -1302,6 +1328,7 @@
                     ""
                 ]
             },
+            "name": "searchCustomerTest",
             "designerId": "8ef3cefb-386c-408b-af4a-a90822e9829b"
         }
     ]

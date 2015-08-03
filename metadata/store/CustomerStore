@@ -33,6 +33,7 @@
                 ],
                 "url": "/tpmanager/user/json"
             },
+            "name": "MyAjaxProxy",
             "designerId": "eec306b5-eda2-4ad9-adc0-8321c33ba190",
             "cn": [
                 {
@@ -43,8 +44,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "root": "entries"
+                        "rootProperty": "entries"
                     },
+                    "name": "MyJsonReader",
                     "designerId": "5d3068ab-094e-428e-9cba-bcf3a3e68c88"
                 }
             ]

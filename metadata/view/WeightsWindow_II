@@ -7,6 +7,7 @@
     "codeClass": null,
     "userConfig": {
         "bodyPadding": 10,
+        "designer|userAlias": "weightswindow_ii",
         "designer|userClassName": "WeightsWindow_II",
         "height": 250,
         "id": "weightsWindow1",
@@ -15,7 +16,12 @@
         "title": "My Form",
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "4eb1115c-3e16-4d0e-886c-fd01a9b73579",
+    "viewControllerInstanceId": "f443a34a-c835-4eaa-acdc-3a0e4d49a37b",
+    "viewModelInstanceId": "0109aa0a-60d6-464d-8cb7-4aa04de433d9",
     "cn": [
         {
             "type": "Ext.panel.Panel",
@@ -25,13 +31,19 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-trainingPicker",
+                "cls": [
+                    "lanista-trainingPicker"
+                ],
                 "container|align": "stretch",
                 "floating": true,
                 "height": null,
                 "id": "trainingPicker1",
                 "layout": "vbox",
                 "width": 800
+            },
+            "name": "MyPanel17",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "af895f64-be6e-4b0f-b0d9-7ae7b68603a4",
             "cn": [
@@ -48,6 +60,10 @@
                         "layout": "hbox",
                         "layout|flex": 1
                     },
+                    "name": "MyContainer22",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "d9a20fab-e470-498c-a4b3-b4f91a640e69",
                     "cn": [
                         {
@@ -60,12 +76,18 @@
                             "userConfig": {
                                 "allowExponential": false,
                                 "autoStripChars": true,
-                                "cls": "lanista-weights-input",
+                                "cls": [
+                                    "lanista-weights-input"
+                                ],
                                 "decimalSeparator": ",",
                                 "enableKeyEvents": true,
                                 "fieldLabel": null,
                                 "height": 35,
                                 "id": "protocollTrainingValue1"
+                            },
+                            "name": "MyNumberField6",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "c31b7dbb-ae50-46f5-87e7-bf7258c865f1"
                         },
@@ -77,13 +99,19 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "cls": "lanista-weights-input",
+                                "cls": [
+                                    "lanista-weights-input"
+                                ],
                                 "decimalSeparator": ",",
                                 "enableKeyEvents": true,
                                 "fieldLabel": null,
                                 "height": 35,
                                 "id": "protocollKgValue2",
                                 "selectOnFocus": true
+                            },
+                            "name": "MyNumberField7",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "90cf5c0a-1b91-4ec9-9b81-6ad438b96d8a"
                         },
@@ -95,11 +123,17 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "cls": "lanista-weights-rb",
+                                "cls": [
+                                    "lanista-weights-rb"
+                                ],
                                 "container|align": "stretch",
                                 "fieldLabel": null,
                                 "layout": "vbox",
                                 "width": 400
+                            },
+                            "name": "MyRadioGroup1",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "5c4b3e52-cfc6-4a02-a8af-e75913f74631",
                             "cn": [
@@ -112,11 +146,17 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "boxLabel": "Rep.",
-                                        "cls": "lanista-weights-echrb",
+                                        "cls": [
+                                            "lanista-weights-echrb"
+                                        ],
                                         "fieldLabel": null,
                                         "height": 25,
                                         "inputValue": "1",
                                         "name": "rb1"
+                                    },
+                                    "name": "MyRadio3",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "64157dc1-f93d-48e1-a1e9-494ad0fd8fa8"
                                 },
@@ -129,11 +169,17 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "boxLabel": "Min.",
-                                        "cls": "lanista-weights-echrb",
+                                        "cls": [
+                                            "lanista-weights-echrb"
+                                        ],
                                         "fieldLabel": null,
                                         "height": 25,
                                         "inputValue": "2",
                                         "name": "rb2"
+                                    },
+                                    "name": "MyRadio4",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "1f957f3f-7796-400c-a9f5-9826bb8bee9f"
                                 },
@@ -146,11 +192,17 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "boxLabel": "Sec.",
-                                        "cls": "lanista-weights-echrb",
+                                        "cls": [
+                                            "lanista-weights-echrb"
+                                        ],
                                         "fieldLabel": null,
                                         "height": 25,
                                         "inputValue": "3",
                                         "name": "rb3"
+                                    },
+                                    "name": "MyRadio5",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "1803e3ee-c447-4ae7-a62f-1d32b9d9d46e"
                                 }
@@ -171,6 +223,10 @@
                         "id": "clearTrainingtEntryButton1",
                         "text": null
                     },
+                    "name": "MyButton8",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "0377549f-646e-441b-8b74-d62fa38a4a7c",
                     "cn": [
                         {
@@ -188,6 +244,7 @@
                                 "name": "click",
                                 "scope": "me"
                             },
+                            "name": "onClearTrainingEntryButtonClick",
                             "designerId": "59e640b2-2c9e-49f2-b36b-ef739b9b5d97"
                         }
                     ]
@@ -200,8 +257,14 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-toolbar-training",
+                        "cls": [
+                            "lanista-toolbar-training"
+                        ],
                         "hidden": true
+                    },
+                    "name": "MyToolbar1",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "e8a694c1-753e-4e56-93be-88eb434d3cbb",
                     "cn": [
@@ -213,13 +276,19 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "cls": "lanista-buttongroup-traininghelp",
+                                "cls": [
+                                    "lanista-buttongroup-traininghelp"
+                                ],
                                 "columns": 3,
                                 "header": false,
                                 "height": null,
                                 "layout|flex": null,
                                 "title": null,
                                 "width": null
+                            },
+                            "name": "MyButtonGroup",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "1e48538d-0c95-49fd-bfac-1d0e70ba03ca",
                             "cn": [
@@ -235,6 +304,10 @@
                                         "id": "repButton1",
                                         "text": null,
                                         "width": 85
+                                    },
+                                    "name": "MyButton9",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "7f8d4324-641f-47a8-9319-36e5a46d208e",
                                     "cn": [
@@ -280,6 +353,7 @@
                                                 "name": "click",
                                                 "scope": "me"
                                             },
+                                            "name": "onRepButtonClick",
                                             "designerId": "10e82d8f-32f0-4c97-a5c5-eea15a1f9ca6"
                                         }
                                     ]
@@ -296,6 +370,10 @@
                                         "id": "minButton1",
                                         "text": null,
                                         "width": 85
+                                    },
+                                    "name": "MyButton10",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "7e4e0515-4ccb-4acd-a543-3c8a75224105",
                                     "cn": [
@@ -341,6 +419,7 @@
                                                 "name": "click",
                                                 "scope": "me"
                                             },
+                                            "name": "onMinButtonClick",
                                             "designerId": "1726e6f5-ccfb-4e5d-b7a6-709883e8b361"
                                         }
                                     ]
@@ -357,6 +436,10 @@
                                         "id": "secButton1",
                                         "text": null,
                                         "width": 85
+                                    },
+                                    "name": "MyButton11",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "836bc618-45a9-4309-a309-c50274a082cd",
                                     "cn": [
@@ -402,6 +485,7 @@
                                                 "name": "click",
                                                 "scope": "me"
                                             },
+                                            "name": "onSecButtonClick",
                                             "designerId": "f5570f2a-b4e4-4732-802e-6922263ffbb5"
                                         }
                                     ]
@@ -418,7 +502,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "numberpad",
+                        "cls": [
+                            "numberpad"
+                        ],
                         "defaults": [
                             "{ ",
                             "    cls: 'numberpad-button'",
@@ -429,6 +515,10 @@
                         "height": null,
                         "hidden": true,
                         "id": "numberpadTraining1"
+                    },
+                    "name": "MyContainer23",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "61e86bbd-3c7f-4a74-b42b-fa99481ba544",
                     "cn": [
@@ -511,6 +601,7 @@
                                     "return config;"
                                 ]
                             },
+                            "name": "processNumberpadTraining1",
                             "designerId": "926bc2a3-d894-44f0-b757-e1823710c922"
                         },
                         {
@@ -559,6 +650,7 @@
                                 "name": "afterrender",
                                 "scope": "me"
                             },
+                            "name": "onNumberpadTrainingAfterRender",
                             "designerId": "5de77140-3ab3-4ef8-bbad-bc39076a9a23"
                         }
                     ]
@@ -571,7 +663,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "training-helpbuttons",
+                        "cls": [
+                            "training-helpbuttons"
+                        ],
                         "defaults": [
                             "{",
                             "    cls: 'weight-option-button'",
@@ -582,6 +676,10 @@
                         "height": null,
                         "hidden": true,
                         "id": "trainingHelpTrainingbuttons1"
+                    },
+                    "name": "MyContainer24",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "2631d677-2753-4ce1-98e9-2e5f01b43998",
                     "cn": [
@@ -639,6 +737,7 @@
                                     "return config;"
                                 ]
                             },
+                            "name": "processTrainingHelpTrainingbuttons1",
                             "designerId": "c3cd7a9f-5e00-4c41-a39e-7ffcedd8494a"
                         },
                         {
@@ -680,6 +779,7 @@
                                 "name": "afterrender",
                                 "scope": "me"
                             },
+                            "name": "onTrainingHelpTrainingbuttonsAfterRender",
                             "designerId": "7300a710-188a-440e-a737-9c9c6f2576fd"
                         }
                     ]
@@ -715,6 +815,7 @@
                             ""
                         ]
                     },
+                    "name": "setValue",
                     "designerId": "9a57621f-ba4e-4e89-96a0-d00652d60fba"
                 },
                 {
@@ -732,6 +833,7 @@
                             "return value.substring(0, value.indexOf(' '));"
                         ]
                     },
+                    "name": "getValue",
                     "designerId": "322e4588-b49c-4dbe-8fb7-4bbc94684be3"
                 },
                 {
@@ -759,6 +861,7 @@
                             "    this.down ('#minButton').fireEvent( 'click' );"
                         ]
                     },
+                    "name": "setRecord",
                     "designerId": "3a46afc0-992f-4c46-ab7c-14f8d75ea24d"
                 },
                 {
@@ -816,6 +919,7 @@
                             "d.setValue(valx.replace(/^0+(?!\\,|$)/, '') + \" kg\");"
                         ]
                     },
+                    "name": "mascara",
                     "designerId": "2adae8f9-7fed-4d0c-9f5f-f1bafe055fef"
                 },
                 {
@@ -873,6 +977,7 @@
                             "d.setValue(valx.replace(/^0+(?!\\,|$)/, '') + \" kg\");"
                         ]
                     },
+                    "name": "MyFunction17",
                     "designerId": "1b68670e-241d-4195-8963-5aa638c954f4"
                 },
                 {
@@ -984,6 +1089,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onTrainingPickerAfterRender",
                     "designerId": "8932077c-c4c8-404e-b696-26b8f718adcb"
                 },
                 {
@@ -994,11 +1100,17 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-fieldset-protocolls",
+                        "cls": [
+                            "lanista-fieldset-protocolls"
+                        ],
                         "container|align": null,
                         "id": "setFieldButtons1",
                         "layout": "hbox",
                         "title": null
+                    },
+                    "name": "MyFieldSet13",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "8c338d9c-fe97-463a-9c54-71a56e81155d"
                 },
@@ -1017,6 +1129,7 @@
                         "name": "hide",
                         "scope": "me"
                     },
+                    "name": "onTrainingPickerHide",
                     "designerId": "0132f743-a772-4a4f-8ff5-00f13c947e5c"
                 }
             ]

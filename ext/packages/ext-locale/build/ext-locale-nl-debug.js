@@ -1,20 +1,3 @@
-/*
-This file is part of Ext JS 4.2
-
-Copyright (c) 2011-2013 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial
-Software License Agreement provided with the Software or, alternatively, in accordance with the
-terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department
-at http://www.sencha.com/contact.
-
-Build date: 2013-05-16 14:36:50 (f9be68accb407158ba2b1be2c226a6ce1f649314)
-*/
 /**
  * List compiled by mystix on the extjs.com forums.
  * Thank you Mystix!
@@ -144,7 +127,6 @@ Ext.define("Ext.locale.nl.form.field.Text", {
 
 Ext.define("Ext.locale.nl.form.field.Number", {
     override: "Ext.form.field.Number",
-    decimalSeparator: ",",
     decimalPrecision: 2,
     minText: 'De minimale waarde van dit veld is {0}',
     maxText: 'De maximale waarde van dit veld is {0}',
@@ -267,7 +249,7 @@ Ext.define("Ext.locale.nl.grid.header.Container", {
 });
 
 Ext.define("Ext.locale.nl.grid.GroupingFeature", {
-    override: "Ext.grid.GroupingFeature",
+    override: "Ext.grid.feature.Grouping",
     emptyGroupText: '(Geen)',
     groupByText: 'Dit veld groeperen',
     showGroupsText: 'Toon in groepen'
@@ -313,4 +295,3 @@ Ext.define("Ext.locale.nl.window.MessageBox", {
 Ext.define("Ext.locale.nl.Component", {	
     override: "Ext.Component"
 });
-

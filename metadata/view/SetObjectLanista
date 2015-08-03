@@ -6,14 +6,21 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": "lanista-setobject-lanista",
+        "cls": [
+            "lanista-setobject-lanista"
+        ],
         "designer|userAlias": "setObjectLanista",
         "designer|userClassName": "SetObjectLanista",
         "height": null,
         "id": "setObjectLanista",
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "780a0f57-5d29-4010-b8fa-eed33da60b87",
+    "viewControllerInstanceId": "88537bbf-3776-487e-983f-c503c67deb6a",
+    "viewModelInstanceId": "a5121f00-8292-4524-b384-ba3a4354fc78",
     "cn": [
         {
             "type": "basicfunction",
@@ -35,6 +42,7 @@
                     ""
                 ]
             },
+            "name": "setValue",
             "designerId": "905ac98a-7fb0-4ea1-85ee-beda4381f426"
         },
         {
@@ -52,6 +60,7 @@
                     "return value;"
                 ]
             },
+            "name": "getValue",
             "designerId": "af30afcb-4a44-4ed2-90d0-7915c904f81d"
         },
         {
@@ -70,6 +79,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onSetObjectLanistaRender",
             "designerId": "fb508802-289c-4856-aed6-9a4bdfd255d4"
         },
         {
@@ -87,6 +97,7 @@
                 "name": "hide",
                 "scope": "me"
             },
+            "name": "onSetObjectLanistaHide",
             "designerId": "e168e7a1-186e-4d0e-895c-3a03a15cff41"
         },
         {
@@ -97,7 +108,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-setrounds",
+                "cls": [
+                    "lanista-setrounds"
+                ],
                 "fieldLabel": null,
                 "height": 20,
                 "id": "setRounds",
@@ -105,6 +118,10 @@
                 "useTips": false,
                 "value": 3,
                 "width": 400
+            },
+            "name": "MySlider",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "0b2a7c18-90b6-4587-a018-99c1715cec2e",
             "cn": [
@@ -126,6 +143,7 @@
                         "name": "change",
                         "scope": "me"
                     },
+                    "name": "onSetRoundsChange",
                     "designerId": "97873c48-a21d-4f50-9ee8-63f5abd9f2f6"
                 }
             ]

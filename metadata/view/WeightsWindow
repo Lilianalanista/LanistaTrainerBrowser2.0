@@ -19,9 +19,12 @@
         "width": 505
     },
     "configAlternates": {
-        "resizable": "boolean"
+        "resizable": "boolean",
+        "scrollable": "boolean"
     },
     "designerId": "e3253e1b-0104-4f87-b2fb-3834c1c1ead7",
+    "viewControllerInstanceId": "ccdd0340-891b-4687-880e-eb6494b4cc01",
+    "viewModelInstanceId": "372a7959-1d56-48ec-b50c-c09f9415eddd",
     "cn": [
         {
             "type": "Ext.form.FieldSet",
@@ -33,6 +36,10 @@
             "userConfig": {
                 "id": "weightKilos",
                 "title": "My Fields"
+            },
+            "name": "MyFieldSet8",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "32ff0edd-1772-4d21-8fe7-46e77666eb43",
             "cn": [
@@ -46,11 +53,17 @@
                     "userConfig": {
                         "allowExponential": false,
                         "autoStripChars": true,
-                        "cls": "lanista-weights-input",
+                        "cls": [
+                            "lanista-weights-input"
+                        ],
                         "decimalSeparator": ",",
                         "enableKeyEvents": true,
                         "fieldLabel": null,
                         "id": "protocollKgValue"
+                    },
+                    "name": "MyNumberField3",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "1890491a-33d9-4f4d-9784-f5eb4128a64e"
                 }
@@ -67,6 +80,10 @@
                 "id": "weightMeasure",
                 "title": " "
             },
+            "name": "MyFieldSet9",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
             "designerId": "8abb716c-0a03-48db-bff1-84e24b90bd23",
             "cn": [
                 {
@@ -80,12 +97,18 @@
                         "allowDecimals": false,
                         "allowExponential": false,
                         "autoStripChars": true,
-                        "cls": "lanista-weights-input",
+                        "cls": [
+                            "lanista-weights-input"
+                        ],
                         "decimalSeparator": ",",
                         "enableKeyEvents": true,
                         "fieldLabel": null,
                         "id": "protocollTrainingValue",
                         "width": null
+                    },
+                    "name": "MyNumberField4",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "ee3f5893-159e-4ac0-b980-542517f96aa4"
                 },
@@ -97,13 +120,19 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-weights-rb",
+                        "cls": [
+                            "lanista-weights-rb"
+                        ],
                         "container|align": "stretch",
                         "fieldLabel": null,
                         "height": 85,
                         "id": "radioWeight",
                         "layout": "vbox",
                         "width": 150
+                    },
+                    "name": "MyRadioGroup",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "799f88c3-00a2-4cd5-ba24-11dbddb40ebb",
                     "cn": [
@@ -116,12 +145,18 @@
                             "codeClass": null,
                             "userConfig": {
                                 "boxLabel": "Rep.",
-                                "cls": "lanista-weights-echrb",
+                                "cls": [
+                                    "lanista-weights-echrb"
+                                ],
                                 "fieldLabel": null,
                                 "height": 25,
                                 "id": "rb_Rep",
                                 "inputValue": "0",
                                 "name": "rb"
+                            },
+                            "name": "MyRadio",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "735d434b-0317-4a2b-b5ba-db899b8b08e9"
                         },
@@ -134,12 +169,18 @@
                             "codeClass": null,
                             "userConfig": {
                                 "boxLabel": "Min.",
-                                "cls": "lanista-weights-echrb",
+                                "cls": [
+                                    "lanista-weights-echrb"
+                                ],
                                 "fieldLabel": null,
                                 "height": 25,
                                 "id": "rb_Min",
                                 "inputValue": "2",
                                 "name": "rb"
+                            },
+                            "name": "MyRadio1",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "95f56daa-02b4-4ac0-b2cb-13ca6f238e3c"
                         },
@@ -152,12 +193,18 @@
                             "codeClass": null,
                             "userConfig": {
                                 "boxLabel": "Sec.",
-                                "cls": "lanista-weights-echrb",
+                                "cls": [
+                                    "lanista-weights-echrb"
+                                ],
                                 "fieldLabel": null,
                                 "height": 25,
                                 "id": "rb_Sec",
                                 "inputValue": "1",
                                 "name": "rb"
+                            },
+                            "name": "MyRadio2",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "694fe841-2374-499e-ba67-2c3d55dfe7a6"
                         }
@@ -267,6 +314,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onWeightsWindowAfterRender",
             "designerId": "79c99bc6-a82b-4564-adc0-054c888596f0"
         },
         {
@@ -277,11 +325,17 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-weights-input",
+                "cls": [
+                    "lanista-weights-input"
+                ],
                 "height": null,
                 "hidden": true,
                 "id": "weightSets",
                 "title": "My Fields"
+            },
+            "name": "MyFieldSet10",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "1b5abaff-287c-4d3e-af3e-14d7cf7f8da5",
             "cn": [
@@ -301,6 +355,10 @@
                         "id": "exerciseSets",
                         "layout|anchor": "100%"
                     },
+                    "name": "MyNumberField5",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "884ea208-fa92-4ebf-aa7b-e62b7ced00e0"
                 }
             ]
@@ -317,6 +375,10 @@
                 "id": "weightIndications",
                 "title": "My Fields"
             },
+            "name": "MyFieldSet11",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
             "designerId": "bc731efe-1b9a-49b0-8490-f42e0dc1ffaf",
             "cn": [
                 {
@@ -331,6 +393,10 @@
                         "hidden": true,
                         "id": "exerciseIndications",
                         "layout|anchor": "100%"
+                    },
+                    "name": "MyTextArea3",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "e938943e-20f5-4601-b607-9c2bf94b9b55"
                 }
@@ -347,6 +413,10 @@
                 "dock": "bottom",
                 "id": "weightBottons",
                 "title": null
+            },
+            "name": "MyFieldSet12",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "809e9b5b-586e-4638-9247-bc5d32a144a1"
         },
@@ -405,6 +475,7 @@
                     "d.setValue(valx.replace(/^0+(?!\\,|$)/, ''));"
                 ]
             },
+            "name": "funcMask",
             "designerId": "901c3aed-81c6-4595-b0bf-2469d71166bb"
         }
     ]

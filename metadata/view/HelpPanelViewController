@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "helpPanel",
+        "designer|userClassName": "HelpPanelViewController"
+    },
+    "designerId": "ff930f59-b8cf-4ca3-90e1-41cd51951b87"
+}

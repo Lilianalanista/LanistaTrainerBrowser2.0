@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "myExerciseInfoPanel",
+        "designer|userClassName": "MyExerciseInfoPanelViewModel"
+    },
+    "designerId": "7d982fe6-745c-48ef-a2b2-cb3257d382a0"
+}

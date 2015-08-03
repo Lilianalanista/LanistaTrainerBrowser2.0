@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "imagePanel",
+        "designer|userClassName": "ImagePanelViewModel"
+    },
+    "designerId": "eeaff734-26c7-4423-8993-0e084f4be3b2"
+}

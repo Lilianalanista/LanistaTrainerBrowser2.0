@@ -20,7 +20,12 @@
         "title": null,
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "1a25ee7d-39cf-4c13-b9dc-cd6973d85792",
+    "viewControllerInstanceId": "36337c40-3fb6-44c8-a3e9-ca787089f8a6",
+    "viewModelInstanceId": "e67dc17e-586b-46ef-ab47-cb75f7a65173",
     "cn": [
         {
             "type": "Ext.view.View",
@@ -33,6 +38,10 @@
                 "id": "templatesView",
                 "itemSelector": "div.lanista-template-item",
                 "store": null
+            },
+            "name": "MyView3",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "dddc5e8b-26b2-4812-ac23-42168cdeffa2",
             "cn": [
@@ -60,6 +69,7 @@
                             "</tpl> "
                         ]
                     },
+                    "name": "tpl17",
                     "designerId": "98bae520-e037-4625-ae2c-a2ba5a807f0a"
                 },
                 {
@@ -77,6 +87,7 @@
                         "name": "hide",
                         "scope": "me"
                     },
+                    "name": "onTemplatesViewHide",
                     "designerId": "5ef4619e-b8e1-4de7-8e87-52407dd56705"
                 },
                 {
@@ -163,6 +174,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onTemplatesViewAfterRender",
                     "designerId": "20868d42-d7d4-4a5b-9cf5-fca920a548de"
                 },
                 {
@@ -188,6 +200,7 @@
                         "name": "itemclick",
                         "scope": "me"
                     },
+                    "name": "onTemplatesViewItemClick",
                     "designerId": "5a0dfcc8-afa4-42f9-80d2-c77eb8a7b309"
                 }
             ]
@@ -205,6 +218,10 @@
                 "id": "previousTemplates",
                 "type": "left"
             },
+            "name": "MyTool4",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
             "designerId": "570169bc-d1bf-48b4-96bf-b63eb73ebd7d"
         },
         {
@@ -219,6 +236,10 @@
                 "designer|displayName": "",
                 "id": "nextTemplates",
                 "type": "right"
+            },
+            "name": "MyTool5",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "87ac4e9c-f84e-4c07-8cd9-6657913f21cc"
         }

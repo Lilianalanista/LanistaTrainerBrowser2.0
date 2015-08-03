@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "registrationPanel",
+        "designer|userClassName": "RegistrationPanelViewController"
+    },
+    "designerId": "9ad17764-4130-4f88-aa71-0e4788128646"
+}

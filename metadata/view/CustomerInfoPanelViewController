@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "customerInfoPanel",
+        "designer|userClassName": "CustomerInfoPanelViewController"
+    },
+    "designerId": "8393d314-b2e3-4481-86eb-1f41c2d0f530"
+}

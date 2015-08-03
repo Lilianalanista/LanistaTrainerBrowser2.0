@@ -6,12 +6,12 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": "x-help-panel",
+        "cls": [
+            "x-help-panel"
+        ],
         "container|align": "stretch",
-        "defaultAlign": "c-c",
         "designer|userAlias": "helpPanel",
         "designer|userClassName": "HelpPanel",
-        "floating": true,
         "height": 450,
         "id": "helpPanel",
         "layout": "hbox",
@@ -21,9 +21,12 @@
         "width": 1100
     },
     "configAlternates": {
-        "style": "string"
+        "style": "string",
+        "scrollable": "boolean"
     },
     "designerId": "b96b856b-77f6-4a65-8405-0b13d4ac2d13",
+    "viewControllerInstanceId": "ff930f59-b8cf-4ca3-90e1-41cd51951b87",
+    "viewModelInstanceId": "1f3f662e-b130-4a3c-82af-72757140b31a",
     "cn": [
         {
             "type": "basiceventbinding",
@@ -53,6 +56,7 @@
                 "name": "show",
                 "scope": "me"
             },
+            "name": "onHelpPanelShow",
             "designerId": "2b59e4f9-18a1-49cc-896a-0bed09fdbcb8"
         },
         {
@@ -77,6 +81,7 @@
                 "name": "beforeclose",
                 "scope": "me"
             },
+            "name": "onHelpPanelBeforeClose",
             "designerId": "56d251f5-6a6c-4843-8dfa-dd157d2bd1b6"
         },
         {
@@ -87,16 +92,18 @@
             },
             "codeClass": null,
             "userConfig": {
-                "autoScroll": true,
                 "dock": null,
                 "header": false,
                 "html": "Loading...",
                 "id": "sideHelpPanel",
                 "layout|flex": 1,
+                "scrollable": true,
                 "title": null
             },
+            "name": "MyPanel14",
             "configAlternates": {
-                "html": "string"
+                "html": "string",
+                "scrollable": "boolean"
             },
             "designerId": "2e649e54-6aa4-48b9-915b-7ced91f58a07"
         },
@@ -108,16 +115,18 @@
             },
             "codeClass": null,
             "userConfig": {
-                "autoScroll": true,
                 "dock": null,
                 "header": false,
                 "html": "Loading...",
                 "id": "sideTutorialPanel",
                 "layout|flex": 1,
+                "scrollable": true,
                 "title": null
             },
+            "name": "MyPanel15",
             "configAlternates": {
-                "html": "string"
+                "html": "string",
+                "scrollable": "boolean"
             },
             "designerId": "920f62be-5bf8-4ffd-b422-7592f51816ca"
         }

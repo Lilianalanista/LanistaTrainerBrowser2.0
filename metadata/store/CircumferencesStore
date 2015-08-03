@@ -28,6 +28,7 @@
                 ],
                 "url": "/tpmanager/user/bodymeasuresjson"
             },
+            "name": "MyAjaxProxy2",
             "designerId": "3502d0f6-d4f3-491a-9d9d-e6deef9a37a3",
             "cn": [
                 {
@@ -38,8 +39,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "root": "entries"
+                        "rootProperty": "entries"
                     },
+                    "name": "MyJsonReader2",
                     "designerId": "d5b5be87-13be-40d8-a8a6-712c36495cd2"
                 },
                 {
@@ -50,8 +52,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "root": "results"
+                        "rootProperty": "results"
                     },
+                    "name": "MyJsonWriter1",
                     "designerId": "2123feed-fb8f-45fd-91db-120e2b2c7f50"
                 }
             ]

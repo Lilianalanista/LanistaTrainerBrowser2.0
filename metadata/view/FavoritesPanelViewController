@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "favoritesPanel",
+        "designer|userClassName": "FavoritesPanelViewController"
+    },
+    "designerId": "7c1a084f-c423-46bf-88a6-dc21c94b3b46"
+}

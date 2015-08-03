@@ -69,7 +69,6 @@
         ],
         "views": [
             "MainViewport",
-            "ExercisesPanel",
             "LanistaButton",
             "rightView",
             "LoginPanel",
@@ -84,7 +83,6 @@
             "CustomerInfoPanel",
             "CustomerExercisesPanel",
             "Temporal",
-            "ExercisePanel",
             "WeightPicker",
             "PlanExercisesList",
             "PlanPanel",
@@ -102,6 +100,7 @@
             "WeightsWindow_II"
         ]
     },
+    "name": "Application",
     "configAlternates": {
         "panels": "array",
         "currentCustomer": "object"
@@ -209,6 +208,7 @@
                     "});"
                 ]
             },
+            "name": "launch",
             "designerId": "540e0df4-6911-4642-bb43-5792b95099a5",
             "customConfigs": [
                 {
@@ -341,6 +341,7 @@
                     ""
                 ]
             },
+            "name": "setStandardButtons",
             "designerId": "68a9a979-8c81-47ec-990d-290a250418c3"
         },
         {
@@ -360,7 +361,7 @@
                     "{",
                     "    Ext.getStore('CustomerStore').setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/json',",
-                    "        model: 'Customer',",
+                    "        model: 'LanistaTrainer.model.Customer',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
@@ -373,7 +374,7 @@
                     "",
                     "    Ext.getStore('ProtocollStore').setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/exerciseprotocoll/json',",
-                    "        model: 'Protocoll',",
+                    "        model: 'LanistaTrainer.model.Protocoll',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
@@ -390,7 +391,7 @@
                     "",
                     "    Ext.getStore('PlanStore').setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',",
-                    "        model: 'Plan',",
+                    "        model: 'LanistaTrainer.model.Plan',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
@@ -407,7 +408,7 @@
                     "",
                     "    Ext.getStore('FavoritesStore').setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/favorites/json',",
-                    "        model: 'Favorites',",
+                    "        model: 'LanistaTrainer.model.Favorites',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
@@ -424,7 +425,7 @@
                     "",
                     "     Ext.getStore('MeasuresStore').setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/weightjson',",
-                    "        model: 'Measures',",
+                    "        model: 'LanistaTrainer.model.Measures',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
@@ -441,7 +442,7 @@
                     "",
                     "    Ext.getStore('CircumferencesStore').setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/bodymeasuresjson',",
-                    "        model: 'Circumferences',",
+                    "        model: 'LanistaTrainer.model.Circumferences',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
@@ -458,7 +459,7 @@
                     "",
                     "    Ext.getStore('TestResultsStore').setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/testresultjson',",
-                    "        model: 'TestResults',",
+                    "        model: 'LanistaTrainer.model.TestResults',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
@@ -477,6 +478,7 @@
                     ""
                 ]
             },
+            "name": "setProxies",
             "designerId": "4b0733de-d84b-4332-ace2-3d8a17523dde"
         }
     ]

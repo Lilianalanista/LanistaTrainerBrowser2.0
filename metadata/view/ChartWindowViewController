@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "chartWindow",
+        "designer|userClassName": "ChartWindowViewController"
+    },
+    "designerId": "412274a9-8b73-4672-b89a-e8b862b568e1"
+}

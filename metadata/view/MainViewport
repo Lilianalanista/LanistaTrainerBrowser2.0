@@ -6,14 +6,18 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": null,
         "designer|initialView": true,
         "designer|userAlias": "mainViewport",
         "designer|userClassName": "MainViewport",
         "id": "mainViewport",
         "layout": "fit"
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "8dbc66f3-5106-43e9-a072-6fde27e9cdbe",
+    "viewControllerInstanceId": "e724563f-7bb5-4dba-a951-09f965a52b35",
+    "viewModelInstanceId": "aa21170b-7ec6-4ae3-bc02-2b7fde31110e",
     "cn": [
         {
             "type": "Ext.Component",
@@ -28,8 +32,10 @@
                 "maxHeight": 100,
                 "style": "z-index:1; background-color: rgba(227,227,227,0.7)"
             },
+            "name": "MyComponent",
             "configAlternates": {
-                "style": "string"
+                "style": "string",
+                "scrollable": "boolean"
             },
             "designerId": "e4ca5265-dd1d-4e14-92b8-9ef52397c440",
             "cn": [
@@ -50,6 +56,7 @@
                             "<div class=\"header-info\">{info}</div>"
                         ]
                     },
+                    "name": "tpl",
                     "designerId": "ac5cc1e4-41a4-4f10-a291-632bcc415a9e"
                 },
                 {
@@ -223,9 +230,9 @@
                             "",
                             "           exerciseStore.loadPage(1);",
                             "           records = exerciseStore.data.items;",
-                            "           var user = Ext.ux.SessionManager.getUser(); ",
+                            "           var user = Ext.ux.SessionManager.getUser();",
                             "           exercisesPanel = LanistaTrainer.app.getController('ExercisesController').getExercisesPanel();",
-                            "           if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') && ",
+                            "           if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&",
                             "                (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&",
                             "                 (user.role === '2')) {",
                             "               if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {",
@@ -293,6 +300,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onHeaderAfterRender",
                     "designerId": "0b0260d4-27a4-459f-b652-a63953293b65"
                 }
             ]
@@ -305,7 +313,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "",
                 "container|align": "stretch",
                 "container|pack": "center",
                 "id": "lanistaStage",
@@ -313,8 +320,10 @@
                 "style": "top:0!important;position: absolute;",
                 "width": 150
             },
+            "name": "MyContainer",
             "configAlternates": {
-                "style": "string"
+                "style": "string",
+                "scrollable": "boolean"
             },
             "designerId": "fe9426cf-3beb-4cb6-ac03-7c99102bdb83",
             "cn": [
@@ -328,7 +337,9 @@
                     "userConfig": {
                         "animCollapse": true,
                         "border": false,
-                        "cls": "lanista-command-panel",
+                        "cls": [
+                            "lanista-command-panel"
+                        ],
                         "collapseDirection": "right",
                         "collapsed": false,
                         "collapsedCls": null,
@@ -346,8 +357,10 @@
                         "titleCollapse": true,
                         "width": 88
                     },
+                    "name": "MyPanel",
                     "configAlternates": {
-                        "style": "string"
+                        "style": "string",
+                        "scrollable": "boolean"
                     },
                     "designerId": "76e57de7-2e0b-4cf6-9ab6-6f7721c3ba18"
                 },
@@ -366,10 +379,14 @@
                         "shrinkWrap": 1,
                         "width": null
                     },
+                    "name": "MySplitter",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "b9f59694-4d64-4761-af84-3a5ae16f1ba8"
                 },
                 {
-                    "type": "Ext.container.Container",
+                    "type": "Ext.panel.Panel",
                     "reference": {
                         "name": "items",
                         "type": "array"
@@ -380,6 +397,10 @@
                         "id": "mainStage",
                         "layout": "card",
                         "layout|flex": 1
+                    },
+                    "name": "MyPanel2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "89ed8e73-3879-42f8-b569-573e21ad4a0f"
                 },
@@ -394,6 +415,10 @@
                         "collapsible": true,
                         "id": "splitterRight"
                     },
+                    "name": "MySplitter1",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "a2ac503f-d0a7-4b58-b0dc-a6f617617c3e"
                 },
                 {
@@ -406,7 +431,9 @@
                     "userConfig": {
                         "animCollapse": true,
                         "border": false,
-                        "cls": "lanista-command-panel",
+                        "cls": [
+                            "lanista-command-panel"
+                        ],
                         "collapseDirection": "left",
                         "collapsed": false,
                         "collapsible": true,
@@ -425,8 +452,10 @@
                         "titleCollapse": null,
                         "width": 88
                     },
+                    "name": "MyPanel1",
                     "configAlternates": {
-                        "style": "string"
+                        "style": "string",
+                        "scrollable": "boolean"
                     },
                     "designerId": "7a55967d-79bf-4330-ba90-1215fac38338"
                 }
@@ -440,9 +469,15 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-copyright",
+                "cls": [
+                    "lanista-copyright"
+                ],
                 "height": 20,
                 "id": "lanistaCopyRights"
+            },
+            "name": "MyContainer2",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "1267684a-b539-4c35-95b1-a5fb59c82388",
             "cn": [
@@ -454,10 +489,16 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-copyrights-text",
+                        "cls": [
+                            "lanista-copyrights-text"
+                        ],
                         "html": "<span>Lanista</span> Trainingssoftware &#169; 2012. All rights reserved.",
                         "itemId": "strCopyRights",
                         "text": null
+                    },
+                    "name": "MyLabel",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "edba9a1d-361f-4dd2-9533-38685bfd7889"
                 }
@@ -482,6 +523,7 @@
                 "name": "resize",
                 "scope": "me"
             },
+            "name": "onMainViewportResize",
             "designerId": "c8950e18-c1f1-4399-937a-6b7101fb43a2"
         },
         {
@@ -513,6 +555,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onMainViewportAfterRender",
             "designerId": "3a04ee6f-42b7-4edb-89f2-c20d2c115853"
         }
     ]

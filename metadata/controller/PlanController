@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "8b37e158-2337-4267-b002-8cba77818e63"
         },
         {
@@ -38,6 +39,7 @@
                 "selector": "exercisesPanel",
                 "xtype": "exercisesPanel"
             },
+            "name": "exercisesPanel",
             "designerId": "b6d28ef6-c59e-46f0-a692-edcf1c4dc27e"
         },
         {
@@ -51,6 +53,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "a37712e7-d056-4d73-8ec7-2a9fff12675d"
         },
         {
@@ -64,6 +67,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "2d90f5a6-a52b-448f-9912-37fe80dfbeba"
         },
         {
@@ -77,6 +81,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "0c02d580-9306-41f1-8a3d-385438c461c3"
         },
         {
@@ -92,6 +97,7 @@
                 "selector": "#planPanel",
                 "xtype": "planPanel"
             },
+            "name": "planPanel",
             "designerId": "083c8fad-bfb1-4f3e-bc8e-673e562572dc"
         },
         {
@@ -107,6 +113,7 @@
                 "selector": "#planOptionsPanel",
                 "xtype": "planOptionsPanel"
             },
+            "name": "planOptionsPanel",
             "designerId": "eb64cc1c-5404-45b6-ad78-2fff325a352c"
         },
         {
@@ -120,6 +127,7 @@
                 "ref": "trainingPlanOptions",
                 "selector": "#trainingPlanOptions"
             },
+            "name": "trainingPlanOptions",
             "designerId": "c83ef194-2bea-44e7-9722-613f6bf3ff19"
         },
         {
@@ -135,6 +143,7 @@
                 "selector": "#defaultPlanValuesPanel",
                 "xtype": "defaultPlanValuesPanel"
             },
+            "name": "defaultPlanValuesPanel",
             "designerId": "528a27e1-98f8-4b1e-92e0-7c265b7c58e3"
         },
         {
@@ -166,6 +175,7 @@
                 "name": "closePlanPanel",
                 "scope": "this"
             },
+            "name": "onClosePlanPanel",
             "designerId": "7492bbfd-0def-48f0-a5bd-db7e812eda7c"
         },
         {
@@ -194,15 +204,15 @@
                     "",
                     "planExercisesStore.setProxy(new Ext.data.proxy.Ajax({",
                     "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',",
-                    "        model: 'PlanExercise',",
+                    "        model: 'LanistaTrainer.model.PlanExercise',",
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
-                    "            root: 'entries'",
+                    "            rootProperty: 'entries'",
                     "        },",
                     "        writer: {",
                     "            type: 'json',",
-                    "            root: 'records'",
+                    "            rootProperty: 'records'",
                     "        },",
                     "        headers: {",
                     "            user_id: userId ? userId : \"\"",
@@ -253,6 +263,7 @@
                     "        controller.training_unit = record.training_unit;",
                     "    }",
                     "",
+                    "    planPanel.down ('tabbar').items.items[0].setText(Ext.ux.LanguageManager.TranslationArray.DAY + ' 1');",
                     "    planPanel.down ('tabpanel').setActiveTab(tabActiveId);",
                     "    planPanel.down ('tabpanel').getActiveTab().getEl().setHeight(planPanel.down ('tabpanel').getActiveTab().el.dom.clientHeight - 45);",
                     "",
@@ -268,6 +279,7 @@
                 "name": "showPlanPanel",
                 "scope": "this"
             },
+            "name": "onShowPlanPanel",
             "designerId": "b9fd5ec6-f156-4497-a8e3-81997946d79f"
         },
         {
@@ -315,6 +327,7 @@
                 "name": "showPlanHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowPlanHeaderUpdate",
             "designerId": "a4e3ea5e-37d9-455d-a8af-afdd412f7fb0"
         },
         {
@@ -380,6 +393,7 @@
                 "name": "showExerciseSelectionView",
                 "scope": "this"
             },
+            "name": "onShowExerciseSelectionView",
             "designerId": "6ce49db2-f8bf-4dd3-a81e-28076da631e0"
         },
         {
@@ -438,6 +452,7 @@
                 "name": "showPlanOptionsPanel",
                 "scope": "this"
             },
+            "name": "onShowPlanOptionsPanel",
             "designerId": "deea0c7d-9e85-40a2-9ad8-fa1baaa829a9"
         },
         {
@@ -515,6 +530,7 @@
                 "name": "showDefaultPlanValuesPanel",
                 "scope": "this"
             },
+            "name": "onShowDefaultPlanValuesPanel",
             "designerId": "a64c2aef-6263-4b80-8362-de817b5da02d"
         },
         {
@@ -575,6 +591,7 @@
                 "name": "createPlan",
                 "scope": "this"
             },
+            "name": "onCreatePlan",
             "designerId": "469caf1e-1bde-4b35-b062-cddeaa970e4b"
         },
         {
@@ -607,6 +624,7 @@
                 "name": "closeExercisesSelectionView",
                 "scope": "this"
             },
+            "name": "onCloseExercisesSelectionView",
             "designerId": "8e91b87d-c320-44a6-9cda-2d3caa3ee88b"
         },
         {
@@ -639,6 +657,7 @@
                 "name": "closeGenericPanel",
                 "scope": "this"
             },
+            "name": "onCloseGenericPanel",
             "designerId": "e3e5084a-0664-4318-bb53-0c9b1bf798ca"
         },
         {
@@ -671,6 +690,7 @@
                 "name": "defaultValuesChanged",
                 "scope": "this"
             },
+            "name": "onDefaultValuesChanged",
             "designerId": "27384b00-36d9-4533-af8b-22404478a9fc"
         },
         {
@@ -700,7 +720,7 @@
                     "            glyph: '108@Lanista Icons' //l",
                     "        })",
                     "    );",
-                    "    ",
+                    "",
                     "    this.getRightCommandPanel().add(",
                     "        Ext.create('LanistaTrainer.view.LanistaButton', {",
                     "            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_DEFAULT_EXER_CONF,",
@@ -732,7 +752,7 @@
                     "            glyph: '73@Lanista Icons' //I",
                     "        })",
                     "    );",
-                    "    ",
+                    "",
                     "    this.getRightCommandPanel().add(",
                     "        Ext.create('LanistaTrainer.view.LanistaButton', {",
                     "            text: Ext.ux.LanguageManager.TranslationArray.DELETE,",
@@ -753,6 +773,7 @@
                     ""
                 ]
             },
+            "name": "showCommands",
             "designerId": "1d82cff0-19ac-4c98-be3b-f6eaadb80802"
         },
         {
@@ -788,6 +809,7 @@
                     "}"
                 ]
             },
+            "name": "createDayPanels",
             "designerId": "f637c063-cfcc-421e-a0fb-8dc8919d8397"
         },
         {
@@ -855,6 +877,7 @@
                     ""
                 ]
             },
+            "name": "populateTabsExercisesByDay",
             "designerId": "ccb9ac2e-7eb8-48c2-b193-e790406c863a"
         },
         {
@@ -892,6 +915,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onClosePlanPanelButtonClick",
             "designerId": "7c76e167-c921-4951-8404-6c37f3952934"
         },
         {
@@ -927,6 +951,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onAddExerciseButtonClick",
             "designerId": "fd00ea2f-ebc6-4c20-9c46-336b8d01efb3"
         },
         {
@@ -1051,6 +1076,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseExercisesSelectionViewButtonClick",
             "designerId": "8df30e8b-e969-46ce-b4c0-8efcbecc07b2"
         },
         {
@@ -1066,6 +1092,7 @@
                     "LanistaTrainer.app.fireEvent('showPlanHeaderUpdate');"
                 ]
             },
+            "name": "setHeader",
             "designerId": "0eabe6d6-cb36-4886-bf2a-290cd77e0000"
         },
         {
@@ -1162,6 +1189,7 @@
                     ""
                 ]
             },
+            "name": "setPlanOptions",
             "designerId": "a872ee23-5dc8-46ec-9f8f-2e4fbf02d5ef"
         },
         {
@@ -1226,6 +1254,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onSavePlanOptionsButtonClick",
             "designerId": "76e25979-dd16-4798-9720-7b91e18e1500"
         },
         {
@@ -1249,6 +1278,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCancelPlanOptionsButtonClick",
             "designerId": "9b06db18-d196-4888-8fd2-d1b89758ac5a"
         },
         {
@@ -1273,6 +1303,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onClosePlanOptionsPanelButton",
             "designerId": "b90bdbd6-0c6c-47d5-8000-20d6f9ec246f"
         },
         {
@@ -1323,6 +1354,7 @@
                     ""
                 ]
             },
+            "name": "changeDeletePlan",
             "designerId": "da853362-9ddc-4c71-82fc-adc6b44f2a52"
         },
         {
@@ -1338,6 +1370,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "b3691cac-ccdb-4fbd-8c98-0fd0fb5bb158"
         },
         {
@@ -1362,6 +1395,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onDefaultValuesButtonClick",
             "designerId": "38babf04-e3cf-4102-aa8f-3a59e734b29b"
         },
         {
@@ -1386,6 +1420,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseDefaultPlanValuesPanelClick",
             "designerId": "3f2a6cc9-849e-453b-b863-e03caaa8a26b"
         },
         {
@@ -1413,6 +1448,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onDefaultValuesClick",
             "designerId": "a45c0b4e-0884-4a97-8215-7cd8d6159930"
         },
         {
@@ -1469,6 +1505,7 @@
                     "});"
                 ]
             },
+            "name": "clonePlan",
             "designerId": "36495919-acaf-412a-8922-04d10692db5f"
         },
         {
@@ -1524,6 +1561,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onRemovePlanExercisesButtonClick",
             "designerId": "4d853a45-af4a-4d4e-95fa-b0ff424270f0"
         },
         {
@@ -1567,6 +1605,7 @@
                     "});"
                 ]
             },
+            "name": "deleteItemView",
             "designerId": "ff98c559-74cd-4706-95c9-f366a874c313"
         },
         {
@@ -1646,6 +1685,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowSelectionUserExercisesButtonClick",
             "designerId": "cb831011-2dab-495c-9f94-600aea54c496"
         },
         {
@@ -1820,6 +1860,7 @@
                     ""
                 ]
             },
+            "name": "showCommandsExercises",
             "designerId": "b47b248e-d449-4183-9988-3df5e034264c"
         }
     ]

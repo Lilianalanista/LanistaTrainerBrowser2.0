@@ -19,7 +19,8 @@
         "text": "command"
     },
     "configAlternates": {
-        "style": "string"
+        "style": "string",
+        "scrollable": "boolean"
     },
     "designerId": "344b529d-2d82-4128-951d-0047d5044e5c",
     "customConfigs": [
@@ -29,6 +30,8 @@
             "type": "string"
         }
     ],
+    "viewControllerInstanceId": "9007031d-bb13-4533-a05d-96766bf89fe4",
+    "viewModelInstanceId": "ab965c46-07ef-422c-896e-96ae014b57c4",
     "cn": [
         {
             "type": "basiceventbinding",
@@ -59,6 +62,7 @@
                 "name": "mouseover",
                 "scope": "me"
             },
+            "name": "onButtonMouseOver",
             "designerId": "45e1fb35-182d-4462-908f-4db804a8b930"
         },
         {
@@ -89,6 +93,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onButtonAfterRender",
             "designerId": "45eabcc4-ab3c-476b-b843-13400be22dcd"
         },
         {
@@ -112,6 +117,7 @@
                 "name": "mouseout",
                 "scope": "me"
             },
+            "name": "onButtonMouseOut",
             "designerId": "690643af-5317-4d62-aa29-45a61e14d9c7"
         },
         {
@@ -146,6 +152,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onButtonClick",
             "designerId": "ddde4452-2021-4bcf-8922-a1aaf21cb7ac"
         },
         {
@@ -163,6 +170,7 @@
                 "name": "hide",
                 "scope": "me"
             },
+            "name": "onButtonHide",
             "designerId": "386392d6-50d1-4828-aa21-ff8253038387"
         }
     ]

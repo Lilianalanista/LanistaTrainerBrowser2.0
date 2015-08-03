@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "loginPanel",
+        "designer|userClassName": "LoginPanelViewController"
+    },
+    "designerId": "4afbf490-68e9-49b3-8283-d84577e30e86"
+}

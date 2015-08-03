@@ -1,20 +1,3 @@
-/*
-This file is part of Ext JS 4.2
-
-Copyright (c) 2011-2013 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial
-Software License Agreement provided with the Software or, alternatively, in accordance with the
-terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department
-at http://www.sencha.com/contact.
-
-Build date: 2013-05-16 14:36:50 (f9be68accb407158ba2b1be2c226a6ce1f649314)
-*/
 /**
  * @private
  */
@@ -25,10 +8,13 @@ Ext.define('Ext.grid.header.DragZone', {
     maxProxyWidth: 120,
 
     constructor: function(headerCt) {
-        this.headerCt = headerCt;
-        this.ddGroup =  this.getDDGroup();
-        this.callParent([headerCt.el]);
-        this.proxy.el.addCls(Ext.baseCSSPrefix + 'grid-col-dd');
+        var me = this;
+        
+        me.headerCt = headerCt;
+        me.ddGroup =  me.getDDGroup();
+        me.autoGroup = true;
+        me.callParent([headerCt.el]);
+        me.proxy.el.addCls(Ext.baseCSSPrefix + 'grid-col-dd');
     },
     
     getDDGroup: function() {
@@ -45,7 +31,8 @@ Ext.define('Ext.grid.header.DragZone', {
                 headerCmp = Ext.getCmp(header.id);
                 if (!this.headerCt.dragging && headerCmp.draggable && !(headerCmp.isOnLeftEdge(e) || headerCmp.isOnRightEdge(e))) {
                     ddel = document.createElement('div');
-                    ddel.innerHTML = Ext.getCmp(header.id).text;
+                    ddel.role = 'presentation';
+                    ddel.innerHTML = headerCmp.text;
                     return {
                         ddel: ddel,
                         header: headerCmp
@@ -62,6 +49,7 @@ Ext.define('Ext.grid.header.DragZone', {
 
     onInitDrag: function() {
         this.headerCt.dragging = true;
+        this.headerCt.hideMenu();
         this.callParent(arguments);
     },
 

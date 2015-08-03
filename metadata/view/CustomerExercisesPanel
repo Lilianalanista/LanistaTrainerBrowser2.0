@@ -6,9 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "autoScroll": true,
         "border": false,
-        "cls": "lanista-customerexercises-panel",
+        "cls": [
+            "lanista-customerexercises-panel"
+        ],
         "container|align": "stretch",
         "designer|userAlias": "customerExercisesPanel",
         "designer|userClassName": "CustomerExercisesPanel",
@@ -17,10 +18,16 @@
         "height": 580,
         "id": "customerExercisesPanel",
         "layout": "hbox",
+        "scrollable": true,
         "title": null,
         "width": 809
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "5d37b0c7-cd7b-47a4-ba76-021716e9e6ee",
+    "viewControllerInstanceId": "75703f79-717f-42f8-8abe-7479afe3f472",
+    "viewModelInstanceId": "e3a2ecff-dc94-4c7b-be8a-5cef9bcd14c9",
     "cn": [
         {
             "type": "Ext.container.Container",
@@ -30,10 +37,16 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "option-buttons",
+                "cls": [
+                    "option-buttons"
+                ],
                 "id": "planSelectorButtons",
                 "layout": null,
                 "layout|flex": 1
+            },
+            "name": "MyContainer17",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "ea230807-99a9-4ad2-8bb9-2b560934c010",
             "cn": [
@@ -48,6 +61,10 @@
                         "cls": "option-active",
                         "id": "showPlansOption",
                         "text": "MyButton"
+                    },
+                    "name": "MyButton2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "e7f53ebb-2faf-4e19-b2b7-586e55434638",
                     "cn": [
@@ -77,6 +94,7 @@
                                 "name": "click",
                                 "scope": "me"
                             },
+                            "name": "onShowPlansOptionClick",
                             "designerId": "f6a32ea2-0ef8-493c-903a-eac4ccd0b3d5"
                         }
                     ]
@@ -93,6 +111,10 @@
                         "hidden": true,
                         "id": "showWarningsOption",
                         "text": "MyButton"
+                    },
+                    "name": "MyButton3",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "56e1f459-7768-4025-8ea6-4831194b2a03",
                     "cn": [
@@ -120,6 +142,7 @@
                                 "name": "click",
                                 "scope": "me"
                             },
+                            "name": "onShowWarningsOptionClick",
                             "designerId": "7f78ddf1-c124-4030-b91d-915811d4bbe4"
                         }
                     ]
@@ -151,6 +174,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onPlanSelectorButtonsAfterRender",
                     "designerId": "ec22e481-90d7-4a07-9cac-43db5554f1fd"
                 }
             ]
@@ -163,11 +187,17 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-list-container",
+                "cls": [
+                    "lanista-list-container"
+                ],
                 "height": null,
                 "id": "listsContainer",
                 "layout": "fit",
                 "layout|flex": 1
+            },
+            "name": "MyContainer18",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "f4ae9db5-9e3f-430b-a842-bb05a28af975",
             "cn": [
@@ -179,9 +209,10 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "autoScroll": true,
                         "border": false,
-                        "cls": "lanista-grid-plans-customer",
+                        "cls": [
+                            "lanista-grid-plans-customer"
+                        ],
                         "enableColumnHide": false,
                         "enableColumnMove": false,
                         "enableColumnResize": false,
@@ -192,9 +223,13 @@
                         "minHeight": null,
                         "renderTo": null,
                         "rowLines": false,
+                        "scrollable": true,
                         "store": "PlanStore",
-                        "syncRowHeight": false,
                         "title": null
+                    },
+                    "name": "MyGridPanel1",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "5e08d8f9-6263-4cee-836e-0de2af8c252a",
                     "cn": [
@@ -216,6 +251,10 @@
                                 "text": null,
                                 "width": 430
                             },
+                            "name": "MyTemplateColumn1",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "80e73ef9-5d76-4e47-8a28-cc0715a3874a",
                             "cn": [
                                 {
@@ -236,6 +275,7 @@
                                             ""
                                         ]
                                     },
+                                    "name": "tpl15",
                                     "designerId": "697ddcda-0629-481b-95c6-148cc2e6727d"
                                 }
                             ]
@@ -322,6 +362,7 @@
                                 "name": "afterrender",
                                 "scope": "me"
                             },
+                            "name": "onGridPlansAfterRender",
                             "designerId": "327b7c28-d399-47ac-9a9c-d98309f45741"
                         },
                         {
@@ -347,6 +388,7 @@
                                     "return config;"
                                 ]
                             },
+                            "name": "processGridPlans",
                             "designerId": "041dd8e6-1246-4fca-9b4b-2b957e588706"
                         }
                     ]
@@ -363,6 +405,10 @@
                         "itemSelector": "div",
                         "minHeight": null
                     },
+                    "name": "MyView2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "ca9a7d1f-2e96-4de3-9eb6-b720dc3f2b45",
                     "cn": [
                         {
@@ -378,6 +424,7 @@
                                     "<div>{title} {creation_date}</div>"
                                 ]
                             },
+                            "name": "tpl16",
                             "designerId": "283341a8-45b7-4286-bfac-8bfd6524995f"
                         }
                     ]
@@ -401,6 +448,7 @@
                         "name": "resize",
                         "scope": "me"
                     },
+                    "name": "onListsContainerResize",
                     "designerId": "11fe14ea-03b1-4ed8-b9ad-9a97f5efe863"
                 }
             ]
@@ -417,6 +465,10 @@
                 "itemId": "customerCurrentData",
                 "layout|flex": 1
             },
+            "name": "MyComponent1",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
             "designerId": "2462e0d3-7a28-4b28-ba89-a292bd2b1086"
         },
         {
@@ -427,7 +479,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "protocolls-panel",
+                "cls": [
+                    "protocolls-panel"
+                ],
                 "container|align": "stretch",
                 "dock": "bottom",
                 "height": 480,
@@ -435,7 +489,11 @@
                 "itemId": "customerProtocolls",
                 "layout": "hbox",
                 "layout|flex": 1,
-                "overflowX": "auto"
+                "scrollable": true
+            },
+            "name": "MyContainer19",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "91a75130-cea1-4ebe-9ac4-bd639345ef74"
         },
@@ -480,6 +538,7 @@
                     "});"
                 ]
             },
+            "name": "deletePlan",
             "designerId": "582aa0bc-8b51-4345-8e87-74a76737caab"
         }
     ]

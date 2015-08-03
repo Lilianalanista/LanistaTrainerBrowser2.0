@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "729ff64a-4397-47e7-aa12-1628f2f472c2"
         },
         {
@@ -36,6 +37,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "987ec33b-3b25-4898-af61-59c2b9442fe1"
         },
         {
@@ -49,6 +51,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "7911d5bb-447c-4deb-b060-5722110b2e9c"
         },
         {
@@ -62,6 +65,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "8154209f-c41e-49a8-90c5-1504fc479246"
         },
         {
@@ -77,6 +81,7 @@
                 "selector": "#dashBoardPanel",
                 "xtype": "dashBoardPanel"
             },
+            "name": "dashBoardPanel",
             "designerId": "1d67c2f3-5ce8-421e-9844-0d3abd78ef45"
         },
         {
@@ -108,6 +113,7 @@
                 "name": "showDashBoardPanel",
                 "scope": "this"
             },
+            "name": "onShowDashBoardPanel",
             "designerId": "ee542d08-300e-45ba-9086-69db31eb30cf"
         },
         {
@@ -138,6 +144,7 @@
                 "name": "closeDashBoardPanel",
                 "scope": "this"
             },
+            "name": "onCloseDashBoardPanel",
             "designerId": "af005e76-6327-4a96-bd49-2ac626c54ccd"
         },
         {
@@ -166,6 +173,7 @@
                 "name": "showDashBoardHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowDashBoardHeaderUpdate",
             "designerId": "25d6a991-ecba-46c7-a17a-90cb5359ee05"
         },
         {
@@ -214,6 +222,7 @@
                 "name": "displayDashBoard",
                 "scope": "this"
             },
+            "name": "onDisplayDashBoard",
             "designerId": "47b97486-e22a-4018-aa21-76e8b6325557"
         },
         {
@@ -267,6 +276,7 @@
                     ""
                 ]
             },
+            "name": "showCommands",
             "designerId": "32b2b0ae-42d2-4c60-a858-4e12f9ed4db0"
         },
         {
@@ -289,6 +299,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowDashBoardButtonPanelClick",
             "designerId": "5a8c5e79-76d0-49c9-bccc-0587b99d3ad1"
         },
         {
@@ -312,6 +323,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseDashBoardButtonPanelClick",
             "designerId": "27226ac9-f1a0-4190-bffe-d5b2d443dc26"
         },
         {
@@ -327,6 +339,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "20a317cd-9e24-4134-aa0b-1ac69eb21d14"
         },
         {
@@ -374,7 +387,7 @@
                     "         noCache: false,",
                     "         reader: {",
                     "             type: 'json',",
-                    "             root: 'entries'",
+                    "             rootProperty: 'entries'",
                     "         }",
                     "     }",
                     " });",
@@ -409,6 +422,7 @@
                     ""
                 ]
             },
+            "name": "getBirthdayCustomers",
             "designerId": "a2275f3e-9e71-452e-a159-7b4f2bc45f71"
         },
         {
@@ -455,7 +469,7 @@
                     "         noCache: false,",
                     "         reader: {",
                     "             type: 'json',",
-                    "             root: 'entries'",
+                    "             rootProperty: 'entries'",
                     "         }",
                     "     }",
                     " });",
@@ -491,6 +505,7 @@
                     ""
                 ]
             },
+            "name": "getActiveCustomers",
             "designerId": "caae6ef6-1d67-4389-b278-23eb222e3fbe"
         },
         {
@@ -546,7 +561,7 @@
                     "         noCache: false,",
                     "         reader: {",
                     "             type: 'json',",
-                    "             root: 'entries'",
+                    "             rootProperty: 'entries'",
                     "         }",
                     "     }",
                     " });",
@@ -622,6 +637,7 @@
                     ""
                 ]
             },
+            "name": "getPlansToExpire",
             "designerId": "9f76f503-813f-4b7f-b6d6-c3f24389c116"
         },
         {
@@ -670,7 +686,7 @@
                     "         noCache: false,",
                     "         reader: {",
                     "             type: 'json',",
-                    "             root: 'entries'",
+                    "             rootProperty: 'entries'",
                     "         }",
                     "     }",
                     " });",
@@ -738,7 +754,7 @@
                     "                                          Ext.ux.LanguageManager.TranslationArray.WEEKS.substr( 0, Ext.ux.LanguageManager.TranslationArray.WEEKS.length - 1 ) :",
                     "                                          records[i].data.duration + ' ' + Ext.ux.LanguageManager.TranslationArray.WEEKS,",
                     "                                plan_id: records[i].data.plan_id,",
-                    "                                expired_days: Ext.ux.LanguageManager.lang === 'EN' ? ",
+                    "                                expired_days: Ext.ux.LanguageManager.lang === 'EN' ?",
                     "                                              totalPeriod + ' ' + Ext.ux.LanguageManager.TranslationArray.DASHBOARD_PLANS_FROM_STRING :",
                     "                                              Ext.ux.LanguageManager.TranslationArray.DASHBOARD_PLANS_FROM_STRING  + ' ' + totalPeriod",
                     "                            });",
@@ -748,6 +764,7 @@
                     ""
                 ]
             },
+            "name": "getPlansExpired",
             "designerId": "00058e13-d336-40f5-80a2-83ff4a848ccc"
         },
         {
@@ -790,7 +807,7 @@
                     "         noCache: false,",
                     "         reader: {",
                     "             type: 'json',",
-                    "             root: 'entries'",
+                    "             rootProperty: 'entries'",
                     "         }",
                     "     }",
                     " });",
@@ -812,6 +829,7 @@
                     ""
                 ]
             },
+            "name": "getNotificactions",
             "designerId": "1cd99da0-a297-4640-a550-684f1b8154c8"
         },
         {
@@ -840,6 +858,7 @@
                     ""
                 ]
             },
+            "name": "calcPeriodo",
             "designerId": "8a6d1940-e481-4707-ae25-88fda2a610f9"
         }
     ]

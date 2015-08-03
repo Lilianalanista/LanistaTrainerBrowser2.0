@@ -6,10 +6,11 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": "stop-watch",
+        "cls": [
+            "stop-watch"
+        ],
         "designer|userAlias": "stopWatch",
         "designer|userClassName": "StopWatch",
-        "floating": true,
         "height": 200,
         "id": "stopWatch",
         "resizable": false,
@@ -19,9 +20,12 @@
     },
     "configAlternates": {
         "style": "string",
-        "resizable": "boolean"
+        "resizable": "boolean",
+        "scrollable": "boolean"
     },
     "designerId": "f247031b-2e01-4366-bbd5-e45a9d3b58ad",
+    "viewControllerInstanceId": "b00342ad-477e-401b-9daa-694cfc8c978c",
+    "viewModelInstanceId": "282a6f06-d497-45bb-9864-93f669ca83e3",
     "cn": [
         {
             "type": "Ext.form.field.ComboBox",
@@ -33,6 +37,10 @@
             "userConfig": {
                 "fieldLabel": "Label",
                 "id": "user_language1"
+            },
+            "name": "MyComboBox6",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "c4980a51-69ed-4be0-b90c-9a936173e277"
         },
@@ -48,6 +56,10 @@
                 "height": 50,
                 "id": "swToolBottom"
             },
+            "name": "MyToolbar",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
             "designerId": "a990f8d8-6e82-4d03-824b-0c166b45f1d4",
             "cn": [
                 {
@@ -62,6 +74,10 @@
                         "layout|flex": null,
                         "text": "START"
                     },
+                    "name": "MyButton4",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "47a9cb41-b2d9-4aa7-9989-260ac155d894"
                 },
                 {
@@ -75,6 +91,10 @@
                         "id": "resetStopWatch",
                         "layout|flex": null,
                         "text": "RESET"
+                    },
+                    "name": "MyButton5",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "acda1303-a227-4187-84f9-4c8354db9937"
                 }

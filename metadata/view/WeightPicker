@@ -6,7 +6,9 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": "lanista-weightPicker",
+        "cls": [
+            "lanista-weightPicker"
+        ],
         "designer|userAlias": "weightPicker",
         "designer|userClassName": "WeightPicker",
         "floating": true,
@@ -14,7 +16,12 @@
         "id": "weightPicker",
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "923f62d3-fd6b-41bd-be3f-305e51fa0622",
+    "viewControllerInstanceId": "856c89fb-cf52-4455-b440-2d39ab7d427e",
+    "viewModelInstanceId": "3509fbad-9da6-4750-a43d-758fd108cba8",
     "cn": [
         {
             "type": "Ext.form.field.Number",
@@ -24,13 +31,19 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-weights-input",
+                "cls": [
+                    "lanista-weights-input"
+                ],
                 "decimalSeparator": ",",
                 "enableKeyEvents": true,
                 "fieldLabel": null,
                 "height": 35,
                 "id": "protocollKgValue1",
                 "selectOnFocus": true
+            },
+            "name": "MyNumberField2",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "2df52a0f-0065-4461-96ff-7a937eab0b8f"
         },
@@ -42,7 +55,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "numberpad",
+                "cls": [
+                    "numberpad"
+                ],
                 "defaults": [
                     "{ ",
                     "    cls: 'numberpad-button'",
@@ -52,6 +67,10 @@
                 ],
                 "height": null,
                 "id": "numberpad"
+            },
+            "name": "MyContainer20",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "062bfc61-fdce-483b-bafd-a4435e73938f",
             "cn": [
@@ -134,6 +153,7 @@
                             "return config;"
                         ]
                     },
+                    "name": "processNumberpad",
                     "designerId": "0635d817-d268-403e-af01-e76871d798be"
                 },
                 {
@@ -181,6 +201,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onNumberpadAfterRender",
                     "designerId": "1e6ad9cd-39a4-4934-b4cb-dc5fb302dec8"
                 }
             ]
@@ -193,7 +214,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "training-helpbuttons",
+                "cls": [
+                    "training-helpbuttons"
+                ],
                 "defaults": [
                     "{",
                     "    cls: 'weight-option-button'",
@@ -203,6 +226,10 @@
                 ],
                 "height": null,
                 "id": "trainingHelpbuttons"
+            },
+            "name": "MyContainer21",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "25ba70a1-cc12-4aa0-98be-1123e91e286b",
             "cn": [
@@ -269,6 +296,7 @@
                             "return config;"
                         ]
                     },
+                    "name": "processTrainingHelpbuttons",
                     "designerId": "c7092ced-6d8c-4f5e-a4a5-5c66c63b4479"
                 },
                 {
@@ -314,6 +342,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onTrainingHelpbuttonsAfterRender",
                     "designerId": "0496c5dc-e283-477f-9a25-32a17698a067"
                 }
             ]
@@ -340,6 +369,7 @@
                     "}"
                 ]
             },
+            "name": "setValue",
             "designerId": "fb8a02e3-506d-4547-98f3-34b1549f95b9"
         },
         {
@@ -355,6 +385,7 @@
                     "return this.down ( '#protocollKgValue' ).getValue();"
                 ]
             },
+            "name": "getValue",
             "designerId": "9ad3ad2d-1176-42b7-961e-88f1ca4cf258"
         },
         {
@@ -375,6 +406,7 @@
                     ""
                 ]
             },
+            "name": "setRecord",
             "designerId": "02f40e15-ebc9-4091-bca8-3a1217201e0b"
         },
         {
@@ -432,6 +464,7 @@
                     "d.setValue(valx.replace(/^0+(?!\\,|$)/, '') + \" kg\");"
                 ]
             },
+            "name": "mascara",
             "designerId": "0c59cb48-7665-47aa-ad31-a6c5e04f9536"
         },
         {
@@ -451,6 +484,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onWeightPickerAfterRender",
             "designerId": "753923a1-248a-4148-9682-a4de5437d5ad"
         },
         {
@@ -468,6 +502,7 @@
                 "name": "hide",
                 "scope": "me"
             },
+            "name": "onWeightPickerHide",
             "designerId": "9918564b-bc32-44c9-8c8c-ad930c3bc0b6"
         },
         {
@@ -480,6 +515,10 @@
             "userConfig": {
                 "id": "clearWeightEntryButton",
                 "text": null
+            },
+            "name": "MyButton6",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "42f90a97-95db-4e1f-9fb9-ad20d7152d3e",
             "cn": [
@@ -498,6 +537,7 @@
                         "name": "click",
                         "scope": "me"
                     },
+                    "name": "onClearWeightEntryButtonClick",
                     "designerId": "9d2707ec-1279-4891-9c83-e11cba2e152c"
                 }
             ]

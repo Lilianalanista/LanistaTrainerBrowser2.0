@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "952fb24a-997f-4ca9-9329-e7a16828a185"
         },
         {
@@ -36,6 +37,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "ecdf004a-7276-4167-97b7-c1a215a005c7"
         },
         {
@@ -49,6 +51,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "a2906b4c-5d2d-4235-9364-40c8fa2c7a8e"
         },
         {
@@ -62,6 +65,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "027c7090-da31-497b-a2ea-970e86fa3893"
         },
         {
@@ -77,6 +81,7 @@
                 "selector": "#myExerciseInfoPanel",
                 "xtype": "myExerciseInfoPanel"
             },
+            "name": "myExerciseInfoPanel",
             "designerId": "1665b44f-1afa-4e9c-9c5c-ead666ce43c1"
         },
         {
@@ -91,6 +96,7 @@
                 "selector": "#myExercise_configuration",
                 "xtype": null
             },
+            "name": "myExercise_configuration",
             "designerId": "1e36641d-db75-4143-8ecb-b2b38d662c4c"
         },
         {
@@ -139,6 +145,7 @@
                 "name": "showMyExerciseInfoPanel",
                 "scope": "this"
             },
+            "name": "onShowMyExerciseInfoPanel",
             "designerId": "1b8f2395-db5e-452d-b45c-5731158ab1af"
         },
         {
@@ -169,6 +176,7 @@
                 "name": "closeMyExerciseInfoPanel",
                 "scope": "this"
             },
+            "name": "onCloseMyExerciseInfoPanel",
             "designerId": "a08aa541-f697-42dc-b94a-05d64bfa4b52"
         },
         {
@@ -199,6 +207,7 @@
                 "name": "showMyExerciseInfoHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowMyExerciseInfoHeaderUpdate",
             "designerId": "9df9c65c-e31f-480e-9325-cd448fec754c"
         },
         {
@@ -224,6 +233,7 @@
                     ""
                 ]
             },
+            "name": "showCommands",
             "designerId": "757966f5-0c62-44ba-91e9-ee414697ba40"
         },
         {
@@ -246,6 +256,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowMyExerciseInfoButton",
             "designerId": "a5a86a80-c62a-4a95-ba55-41f031e97900"
         },
         {
@@ -280,6 +291,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseMyExerciseInfoPanelButton",
             "designerId": "911c0c08-52b0-42e4-9dc8-219d9ffb56e4"
         },
         {
@@ -339,6 +351,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "e1a76eda-f8ee-4196-be52-6a390581ec20"
         },
         {
@@ -359,6 +372,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCancelSettingsButtonClick",
             "designerId": "58fdccd6-b0ea-4576-b4f3-1fe658f0be5f"
         },
         {
@@ -465,6 +479,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onSaveSettingsButtonClick",
             "designerId": "c1f1d5da-e5e5-4d58-935c-2a37e1c02692"
         }
     ]

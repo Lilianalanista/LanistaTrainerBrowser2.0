@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "11515390-f4bd-4560-968c-88a0c48a9541"
         },
         {
@@ -36,6 +37,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "d165ea93-537e-459c-a5e1-5f867d61bc9e"
         },
         {
@@ -49,6 +51,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "26c5c282-c226-4946-9ebd-ce9bee93e67d"
         },
         {
@@ -62,6 +65,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "7e31afd4-0ae4-4378-b79f-d22e24e3e49c"
         },
         {
@@ -77,6 +81,7 @@
                 "selector": "#exercisePanel",
                 "xtype": "exercisePanel"
             },
+            "name": "exercisePanel",
             "designerId": "3766444b-ab43-4b2b-93e1-f9fb47bf0d8d"
         },
         {
@@ -92,6 +97,7 @@
                 "selector": "#weightsWindow",
                 "xtype": "weightsWindow"
             },
+            "name": "weightsWindow",
             "designerId": "3db90b85-831c-4641-b219-8477074637a8"
         },
         {
@@ -107,6 +113,7 @@
                 "selector": "#videoWindow",
                 "xtype": "videoWindow"
             },
+            "name": "videoWindow",
             "designerId": "d3ea30fe-c723-42c8-8328-70ed42038220"
         },
         {
@@ -143,11 +150,11 @@
                     "        noCache: false,",
                     "        reader: {",
                     "            type: 'json',",
-                    "            root: 'entries'",
+                    "            rootProperty: 'entries'",
                     "        },",
                     "        writer: {",
                     "            type: 'json',",
-                    "            root: 'records',",
+                    "            rootProperty: 'records',",
                     "            allowSingle: false",
                     "        },",
                     "        headers: {",
@@ -167,6 +174,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onsendProtocollButtonClick",
             "designerId": "359d115f-c79b-427e-a2bf-445071b38ca6"
         },
         {
@@ -198,6 +206,33 @@
                     "controller.setActiveItemNew();",
                     "",
                     "var currentPlan = LanistaTrainer.app.getController ( 'PlanController' ).plan;",
+                    "",
+                    "exercisePanel.addCls('md-show');",
+                    "mainStage.add( exercisePanel );",
+                    "mainStage.getLayout().setActiveItem(\"exercisePanel\",'1');",
+                    "",
+                    "exercisePanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons('closeExercisePanelButton');",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "exercisePanel.show();",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "//*********************************************************************************",
+                    "/*",
+                    "",
+                    "",
+                    "",
+                    "",
                     "if ( currentPlan ) {",
                     "    controller.currentPlanExercise.training = controller.currentPlanExercise.training_min;",
                     "    controller.currentPlanExercise.weight = controller.currentPlanExercise.weight_min;",
@@ -206,8 +241,6 @@
                     "}",
                     "",
                     "if ( LanistaTrainer.app.currentCustomer ) {",
-                    "    exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.show();",
-                    "",
                     "    // get user protocolls",
                     "    var protocollsStore = Ext.getStore( \"ProtocollStore\" );",
                     "",
@@ -226,7 +259,9 @@
                     "    });",
                     "",
                     "    protocollsStore.load (function (records) {",
-                    "        exercisePanel.down('#exerciseProtocolls').reconfigure(protocollsStore);",
+                    "        var exercisePanel\t= controller.getExercisePanel();",
+                    "",
+                    "        exercisePanel.down('#exercisePanelContent').down('#protocollsTabPanel').down('#exerciseProtocolls').reconfigure(protocollsStore);",
                     "        if ( protocollsStore.data && protocollsStore.data.items.length > 0 ) {",
                     "            exercisePanel.down('#protocollPanel').protocollInformation = protocollsStore.data.items[0].data;",
                     "            exercisePanel.down('#protocollPanel').update (protocollsStore.data.items[0].data);",
@@ -238,31 +273,52 @@
                     "        }",
                     "   });",
                     "",
+                    "   //exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.show();",
                     "}",
+                    "else",
+                    "    exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.hide();",
                     "",
-                    "exercisePanel.addCls('md-show');",
-                    "mainStage.add( exercisePanel );",
-                    "mainStage.getLayout().setActiveItem(\"exercisePanel\",'1');",
                     "",
-                    "exercisePanel.on('hide', function(component) {",
-                    "    component.destroy();",
-                    "}, controller);",
                     "",
-                    "// **** 1 create the commands",
-                    "LanistaTrainer.app.setStandardButtons('closeExercisePanelButton');",
-                    "this.showCommands();",
                     "",
-                    "// *** 2 Show the panel",
-                    "exercisePanel.show();",
                     "",
-                    "if ( currentPlan )",
-                    "    exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(3));",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "if ( currentPlan ){",
+                    "    //exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(3));",
+                    "    exercisePanel.down('#exercisePanelContent').setActiveTab(3);",
+                    "    controller.showExerciseConfigurationsCommands();",
+                    "}",
                     "else{",
-                    "    if (Ext.ux.SessionManager.getIsLoggedIn())",
-                    "        exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(2));",
-                    "    else",
-                    "        exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(0));",
+                    "    if (Ext.ux.SessionManager.getIsLoggedIn()){",
+                    "        //exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(2));",
+                    "        exercisePanel.down('#exercisePanelContent').setActiveTab(2);",
+                    "        controller.showConfigTabCommands();",
+                    "    }",
+                    "    else{",
+                    "        //exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(0));",
+                    "        exercisePanel.down('#exercisePanelContent').setActiveTab(0);",
+                    "        controller.showInfoTabCommands();",
+                    "    }",
                     "}",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "*/",
+                    "//*********************************************************************************",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
                     "",
                     "LanistaTrainer.app.fireEvent('showExerciseHeaderUpdate');",
                     "LanistaTrainer.app.fireEvent('showStage');",
@@ -276,6 +332,7 @@
                 "name": "showExercisePanel",
                 "scope": "this"
             },
+            "name": "onShowExercisePanel",
             "designerId": "b7e11416-822c-48c9-9af2-6e16a3113f7b"
         },
         {
@@ -306,6 +363,7 @@
                 "name": "closeExercisePanel",
                 "scope": "this"
             },
+            "name": "onCloseExercisePanel",
             "designerId": "7e059891-b0d1-42f2-94d5-77be9f459db6"
         },
         {
@@ -336,6 +394,7 @@
                 "name": "showExerciseHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowExerciseHeaderUpdate",
             "designerId": "cdabd1c1-d1c0-4431-95d3-fc3c1eb85b61"
         },
         {
@@ -412,6 +471,7 @@
                 "name": "planExerciseRecordChanged",
                 "scope": "this"
             },
+            "name": "onPlanExerciseRecordChanged",
             "designerId": "04b60a01-57a8-4246-81a1-b24750896683"
         },
         {
@@ -427,12 +487,12 @@
                 "fn": "onTabpanelTabChange",
                 "implHandler": [
                     "var controller = this;",
-                    "if ( newCard.id == 'info' ) {",
+                    "if ( newCard.id === 'info' ) {",
                     "    controller.showInfoTabCommands();",
                     "}",
-                    "else if ( newCard.id == 'protocollsTabPanel' ) {",
+                    "else if ( newCard.id === 'protocollsTabPanel' ) {",
                     "    controller.showConfigTabCommands();",
-                    "} else if ( newCard.id == 'configurationTabPanel' ) {",
+                    "} else if ( newCard.id === 'configurationTabPanel' ) {",
                     "    console.log ( \"SHOW CONFIGURATION COMMANDS\" );",
                     "    controller.showExerciseConfigurationsCommands();",
                     "} else {",
@@ -445,6 +505,7 @@
                 "name": "tabchange",
                 "scope": "me"
             },
+            "name": "onTabpanelTabChange",
             "designerId": "480210a6-8122-49b7-963c-46b9d09b3be4"
         },
         {
@@ -477,6 +538,7 @@
                     ""
                 ]
             },
+            "name": "showCommands",
             "designerId": "fd6c9d72-16de-45e3-a9d9-7a588fddf3f8"
         },
         {
@@ -492,6 +554,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "4def836f-6d06-4af9-a71d-d885c66f98d2"
         },
         {
@@ -538,6 +601,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseExercisePanelButtonClick",
             "designerId": "a63a4abb-23ad-4785-ba69-7f020d28f70c"
         },
         {
@@ -624,9 +688,11 @@
                     "    }",
                     "    return false;",
                     "    }",
-                    "});"
+                    "});",
+                    ""
                 ]
             },
+            "name": "setActiveItemNew",
             "designerId": "b5b533c3-e5b1-4518-be66-32b9e514527f"
         },
         {
@@ -710,6 +776,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onchangeProtollConfigurationButtonClick",
             "designerId": "2f60565c-bffa-4360-ac56-d4e2285d8524"
         },
         {
@@ -751,6 +818,7 @@
                     "    changeButton",
                     ");",
                     "",
+                    "/*",
                     "controller.getRightCommandPanel().add(",
                     "    indicationsButton",
                     ");",
@@ -758,9 +826,11 @@
                     "controller.getRightCommandPanel().add(",
                     "    changeSetsButton",
                     ");",
+                    "*/",
                     ""
                 ]
             },
+            "name": "showExerciseConfigurationsCommands",
             "designerId": "a58ed111-e1d3-4d87-8857-650fbca3a2b4"
         },
         {
@@ -804,6 +874,7 @@
                     ");"
                 ]
             },
+            "name": "showConfigTabCommands",
             "designerId": "4c6cfb18-faec-4674-b9b6-ae9b7c3d00a2"
         },
         {
@@ -825,6 +896,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onIndicationsButtonClick",
             "designerId": "27c3cfc1-51a3-40d7-98f5-5fedb69c768d"
         },
         {
@@ -848,6 +920,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onSaveIndicationsButtonClick",
             "designerId": "9ff6c697-f455-4a18-827f-750da9e91a80"
         },
         {
@@ -871,6 +944,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onSaveSetInputButtonClick",
             "designerId": "2cf52dcc-8aff-4bbb-bd91-93ee669d7771"
         },
         {
@@ -892,6 +966,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCancelIndicationsButtonClick",
             "designerId": "bc137c7c-96e7-4892-883b-1e99ec96db06"
         },
         {
@@ -913,6 +988,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCancelSetInputButton",
             "designerId": "ec8022b6-4afe-47ce-a0b3-02afefbdb128"
         },
         {
@@ -944,6 +1020,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onVideoButtonClick",
             "designerId": "5639abae-b80b-4dd1-ad61-8d639784053c"
         },
         {
@@ -965,6 +1042,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onChangeSetsButtonClick",
             "designerId": "bccc70a4-76d0-40a2-b4c3-6cb5b36b569a"
         },
         {
@@ -1023,6 +1101,7 @@
                     ""
                 ]
             },
+            "name": "showInfoTabCommands",
             "designerId": "a2264994-03d9-4c87-b661-916b4c7a945b"
         },
         {
@@ -1046,6 +1125,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onChangeOwnExerciseButtonClick",
             "designerId": "83f8b834-4cda-40a5-9bfd-298d65899622"
         },
         {
@@ -1089,7 +1169,7 @@
                     "            },",
                     "            writer: {",
                     "                type: 'json',",
-                    "                root: 'records',",
+                    "                rootProperty: 'records',",
                     "                allowSingle: false",
                     "            },",
                     "            headers: {",
@@ -1121,6 +1201,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onDeleteOwnExerciseButtonClick",
             "designerId": "06e458e0-80d1-4583-b6b9-1419667daaed"
         }
     ]

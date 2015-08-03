@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "89eae8ae-890a-4a28-8565-43f06c5c37f0"
         },
         {
@@ -36,6 +37,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "82a1380c-d440-4306-8bc1-83023c29a372"
         },
         {
@@ -49,6 +51,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "6cac3958-4c99-4f56-af2c-e1339d3aa235"
         },
         {
@@ -62,6 +65,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "ec9114ec-acd1-432a-b179-ecc9904365d2"
         },
         {
@@ -77,6 +81,7 @@
                 "selector": "#customersPanel",
                 "xtype": "customersPanel"
             },
+            "name": "CustomersPanel",
             "designerId": "939e5abd-5a4c-4f7f-aeda-58c9d25dba2e"
         },
         {
@@ -162,6 +167,7 @@
                 "name": "showCustomersPanel",
                 "scope": "this"
             },
+            "name": "onShowCustomersPanel",
             "designerId": "89b316fc-0076-4148-b595-50fa81575e90"
         },
         {
@@ -192,6 +198,7 @@
                 "name": "closeCustomersPanel",
                 "scope": "this"
             },
+            "name": "onCloseCustomersPanel",
             "designerId": "3384dfc6-f806-45fb-a506-ef140a59272a"
         },
         {
@@ -230,6 +237,7 @@
                 "name": "showCustomersHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowCustomersHeaderUpdate",
             "designerId": "37f0a97a-7311-4c44-b31b-a10f82506dfd"
         },
         {
@@ -264,11 +272,11 @@
                     "                    noCache: false,",
                     "                    reader: {",
                     "                        type: 'json',",
-                    "                        root: 'entries'",
+                    "                        rootProperty: 'entries'",
                     "                    },",
                     "                    writer: {",
                     "                        type: 'json',",
-                    "                        root: 'records',",
+                    "                        rootProperty: 'records',",
                     "                        allowSingle: false",
                     "                    },",
                     "                    headers: {",
@@ -301,6 +309,7 @@
                 "name": "promtEmailRequest",
                 "scope": "this"
             },
+            "name": "onPromtEmailRequest",
             "designerId": "7d7d9690-c073-498d-b35e-763de2142bcc"
         },
         {
@@ -370,6 +379,7 @@
                     ""
                 ]
             },
+            "name": "showCommands",
             "designerId": "0dd2bad3-97aa-40cc-85f5-7f500c5cbf72"
         },
         {
@@ -392,6 +402,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onShowCustomersPanelButtonClick",
             "designerId": "d61452d4-c844-4761-aaac-ca9cda7682dc"
         },
         {
@@ -430,6 +441,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseCustomersPanelButtonClick",
             "designerId": "8db57166-4451-4df8-83e2-a228e469ea48"
         },
         {
@@ -445,6 +457,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "5dbfa6ec-d069-43b6-9b15-04acc30bd576"
         },
         {
@@ -469,6 +482,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onNextCustomers",
             "designerId": "05834b88-df7d-4b4b-97a5-ccba0e0a5a2b"
         },
         {
@@ -493,6 +507,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onPreviousCustomers",
             "designerId": "fa8ca7fd-dc26-4c44-9a13-058bc4b9928f"
         },
         {
@@ -514,6 +529,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onNewCustomerButtonClick",
             "designerId": "17e281df-3088-4d00-a334-23dbe579efa1"
         },
         {
@@ -549,6 +565,7 @@
                     ""
                 ]
             },
+            "name": "searchRecently",
             "designerId": "7ae9c014-ceb8-4087-8081-bcaf9dede8b6"
         },
         {
@@ -568,6 +585,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onRecentCustomersButtonClick",
             "designerId": "b33fd409-d69a-40a4-a866-36d275cee18d"
         },
         {
@@ -649,6 +667,7 @@
                     "return tools;"
                 ]
             },
+            "name": "showCustomerSearchMenu",
             "designerId": "ecc5bb84-2378-4413-b69a-0ab6207aad78"
         },
         {
@@ -782,6 +801,7 @@
                     ""
                 ]
             },
+            "name": "searchCustomerByText",
             "designerId": "bebe78a3-0590-407f-ae1b-d120dc787bb6"
         }
     ]

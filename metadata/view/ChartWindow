@@ -6,24 +6,29 @@
     },
     "codeClass": null,
     "userConfig": {
-        "autoScroll": true,
         "border": false,
-        "cls": "lanista-chart-measures-window",
+        "cls": [
+            "lanista-chart-measures-window"
+        ],
         "designer|userAlias": "chartWindow",
         "designer|userClassName": "ChartWindow",
         "height": 510,
         "id": "chartWindow",
         "modal": true,
         "resizable": false,
+        "scrollable": true,
         "style": null,
         "title": null,
         "width": 400
     },
     "configAlternates": {
         "style": "string",
-        "resizable": "boolean"
+        "resizable": "boolean",
+        "scrollable": "boolean"
     },
     "designerId": "a0cd69a2-903f-4fe6-852f-76950324f9a6",
+    "viewControllerInstanceId": "412274a9-8b73-4672-b89a-e8b862b568e1",
+    "viewModelInstanceId": "631d8001-194c-4f1f-a169-d1617760cfcf",
     "cn": [
         {
             "type": "basiceventbinding",
@@ -40,6 +45,7 @@
                 "name": "hide",
                 "scope": "me"
             },
+            "name": "onChartWindowHide",
             "designerId": "00b5cd30-4d34-4574-87bc-b9e58176491b"
         },
         {
@@ -50,7 +56,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "autoScroll": true,
                 "bodyPadding": 10,
                 "defaults": [
                     "{\tenableKeyEvents: true,",
@@ -58,7 +63,12 @@
                     "}"
                 ],
                 "id": "measuresTabForm",
+                "scrollable": true,
                 "title": null
+            },
+            "name": "MyForm",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "8557a07c-f92d-4b76-a0e5-212f6ef29369",
             "cn": [
@@ -76,6 +86,10 @@
                         "layout|anchor": "100%",
                         "name": "record_date_local"
                     },
+                    "name": "MyDateField1",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "409784fb-3fc1-4511-9c87-c15f49e71ee4"
                 },
                 {
@@ -90,6 +104,10 @@
                         "id": "weight",
                         "layout|anchor": "100%",
                         "name": "weight"
+                    },
+                    "name": "MyTextField23",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "46a6e1e2-d4b5-4c91-9360-5e54aadcde51"
                 },
@@ -106,6 +124,10 @@
                         "layout|anchor": "100%",
                         "name": "trizeps"
                     },
+                    "name": "MyTextField24",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "524d401e-3050-4fe0-826e-aba938afcd2b"
                 },
                 {
@@ -120,6 +142,10 @@
                         "id": "scapula",
                         "layout|anchor": "100%",
                         "name": "scapula"
+                    },
+                    "name": "MyTextField25",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "e7c88edd-0fe1-4e5c-b718-a74318896614"
                 },
@@ -136,6 +162,10 @@
                         "layout|anchor": "100%",
                         "name": "auxiliar"
                     },
+                    "name": "MyTextField26",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "bf6b16be-005e-44c4-b441-9f42f372f13a"
                 },
                 {
@@ -150,6 +180,10 @@
                         "id": "chest",
                         "layout|anchor": "100%",
                         "name": "chest"
+                    },
+                    "name": "MyTextField27",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "8e75c61d-f590-4073-83b5-8eba58a9203c"
                 },
@@ -166,6 +200,10 @@
                         "layout|anchor": "100%",
                         "name": "sprailium"
                     },
+                    "name": "MyTextField28",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "5c7f82a8-5ed3-4642-ba6a-40227897f974"
                 },
                 {
@@ -180,6 +218,10 @@
                         "id": "abs",
                         "layout|anchor": "100%",
                         "name": "abs"
+                    },
+                    "name": "MyTextField29",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "7aad981f-e105-42ed-8272-8355ef3a2421"
                 },
@@ -196,6 +238,10 @@
                         "layout|anchor": "100%",
                         "name": "quads"
                     },
+                    "name": "MyTextField30",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "5d66ff7e-f435-4f03-9cba-ff30be2568ed"
                 },
                 {
@@ -210,6 +256,10 @@
                         "id": "futrex",
                         "layout|anchor": "100%",
                         "name": "futrex"
+                    },
+                    "name": "MyTextField31",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "9cd9fa0b-0ed3-4252-9a04-ae64ed1ea693"
                 },
@@ -226,6 +276,10 @@
                         "layout|anchor": "100%",
                         "name": "height"
                     },
+                    "name": "MyTextField32",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "1af7c526-04b7-4256-8ce4-5a6305864b59"
                 },
                 {
@@ -240,6 +294,10 @@
                         "id": "note",
                         "layout|anchor": "100%",
                         "name": "note"
+                    },
+                    "name": "MyTextArea6",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "648a7ca7-07b4-4e77-80a4-884dc6f061ea"
                 },
@@ -257,6 +315,10 @@
                         "layout|anchor": "100%",
                         "name": "percentage",
                         "readOnly": true
+                    },
+                    "name": "MyTextField33",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "26558174-211a-4e47-884d-edf66a497e8c"
                 },
@@ -384,6 +446,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onMeasuresTabFormAfterRender",
                     "designerId": "f2e3ccf0-dffb-44d1-834a-d973b5e7ac55"
                 },
                 {
@@ -401,6 +464,7 @@
                         "name": "hide",
                         "scope": "me"
                     },
+                    "name": "onMeasuresTabFormHide",
                     "designerId": "2eb7c946-f266-4928-ad0c-0c0d9a80affc"
                 }
             ]
@@ -413,10 +477,14 @@
             },
             "codeClass": null,
             "userConfig": {
-                "autoScroll": true,
                 "bodyPadding": 10,
                 "id": "circumferencesTabForm",
+                "scrollable": true,
                 "title": null
+            },
+            "name": "MyForm1",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "a6c73804-6a2c-44fc-858b-31d8f6c326c2",
             "cn": [
@@ -435,6 +503,7 @@
                         "name": "hide",
                         "scope": "me"
                     },
+                    "name": "onCircumferencesTabFormHide",
                     "designerId": "9cc9c531-e868-4a22-a2ab-cc5d83d52f06"
                 },
                 {
@@ -450,6 +519,10 @@
                         "id": "record_date_local_circ",
                         "layout|anchor": "100%",
                         "name": "record_date_local_circ"
+                    },
+                    "name": "MyDateField2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "b87bb493-6415-47c9-9979-298a07415d0f"
                 },
@@ -468,6 +541,10 @@
                         "layout|anchor": "100%",
                         "name": "record_date"
                     },
+                    "name": "MyDateField3",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "290ea325-1c01-4f5a-a508-9a3f0b96b12f"
                 },
                 {
@@ -482,6 +559,10 @@
                         "id": "arm_left",
                         "layout|anchor": "100%",
                         "name": "arm_left"
+                    },
+                    "name": "MyTextField34",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "34058fa4-452e-4352-8420-6b574ee06e7a"
                 },
@@ -498,6 +579,10 @@
                         "layout|anchor": "100%",
                         "name": "arm_right"
                     },
+                    "name": "MyTextField35",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "aaed332c-fdbe-4351-a299-36af2ee26e0b"
                 },
                 {
@@ -512,6 +597,10 @@
                         "id": "chest_circ",
                         "layout|anchor": "100%",
                         "name": "chest_circ"
+                    },
+                    "name": "MyTextField36",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "5abc123f-9c0c-45fe-bb9b-7671ec0c5bbf"
                 },
@@ -529,6 +618,10 @@
                         "layout|anchor": "100%",
                         "name": "chest"
                     },
+                    "name": "MyTextField37",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "a2ca866d-5ab7-46e9-9c8e-ac870b15bf35"
                 },
                 {
@@ -543,6 +636,10 @@
                         "id": "waist",
                         "layout|anchor": "100%",
                         "name": "waist"
+                    },
+                    "name": "MyTextField38",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "a41eecdc-e5e7-497d-b40c-2e1e8121d124"
                 },
@@ -559,6 +656,10 @@
                         "layout|anchor": "100%",
                         "name": "umbilical"
                     },
+                    "name": "MyTextField39",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "e81036b9-5b10-460f-9d95-acc3208ed65e"
                 },
                 {
@@ -573,6 +674,10 @@
                         "id": "spina_ilica_ant",
                         "layout|anchor": "100%",
                         "name": "spina_ilica_ant"
+                    },
+                    "name": "MyTextField40",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "3e2b57cb-295b-4e0c-9077-04914b1c7911"
                 },
@@ -589,6 +694,10 @@
                         "layout|anchor": "100%",
                         "name": "wide_hips"
                     },
+                    "name": "MyTextField41",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "f6b3d099-f243-4f35-90df-140c326c3931"
                 },
                 {
@@ -603,6 +712,10 @@
                         "id": "quads_left",
                         "layout|anchor": "100%",
                         "name": "quads_left"
+                    },
+                    "name": "MyTextField42",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "5e0c92da-2a6b-4e89-8c6d-210936fa2e7e"
                 },
@@ -619,6 +732,10 @@
                         "layout|anchor": "100%",
                         "name": "quads_right"
                     },
+                    "name": "MyTextField43",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "1080027e-8a81-46e3-a52c-b5b1629faed5"
                 },
                 {
@@ -633,6 +750,10 @@
                         "id": "note_circ",
                         "layout|anchor": "100%",
                         "name": "note_circ"
+                    },
+                    "name": "MyTextField44",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "2059493c-309f-4dec-ae64-38010b1f64ae"
                 },
@@ -649,6 +770,10 @@
                         "id": null,
                         "layout|anchor": "100%",
                         "name": "note"
+                    },
+                    "name": "MyTextArea7",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "43e448d8-1510-465a-98c2-832706a73f0e"
                 },
@@ -737,6 +862,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onCircumferencesTabFormAfterRender",
                     "designerId": "b3324d31-11c3-48d9-8302-7b098ca9456c"
                 }
             ]
@@ -753,6 +879,10 @@
                 "dock": "bottom",
                 "id": "buttonContainerMes",
                 "layout": "hbox"
+            },
+            "name": "MyContainer26",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "0a9b3c15-8cac-4872-9bcf-11de25d51ede"
         }

@@ -1,20 +1,3 @@
-/*
-This file is part of Ext JS 4.2
-
-Copyright (c) 2011-2013 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial
-Software License Agreement provided with the Software or, alternatively, in accordance with the
-terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department
-at http://www.sencha.com/contact.
-
-Build date: 2013-05-16 14:36:50 (f9be68accb407158ba2b1be2c226a6ce1f649314)
-*/
 /**
  * Provides attractive and customizable tooltips for any element. The QuickTips
  * singleton is used to configure and manage tooltips globally for multiple elements
@@ -130,10 +113,17 @@ Ext.define('Ext.tip.QuickTipManager', {
                 Ext.onReady(function(){
                     Ext.tip.QuickTipManager.init(autoRender, config);
                 });
-                return;
+                return false;
             }
 
-            var tipConfig = Ext.apply({ disabled: me.disabled, id: 'ext-quicktips-tip' }, config),
+            var tipConfig = Ext.apply({
+                //<debug>
+                // tell the spec runner to ignore this element when checking if the dom is clean 
+                sticky: true,
+                //</debug>
+                disabled: me.disabled,
+                id: 'ext-quicktips-tip'
+            }, config),
                 className = tipConfig.className,
                 xtype = tipConfig.xtype;
 
@@ -254,7 +244,7 @@ Ext.define('Ext.tip.QuickTipManager', {
 
     /**
      * Removes any registered quick tip from the target element and destroys it.
-     * @param {String/HTMLElement/Ext.Element} el The element from which the quick tip
+     * @param {String/HTMLElement/Ext.dom.Element} el The element from which the quick tip
      * is to be removed or ID of the element.
      */
     unregister : function(){

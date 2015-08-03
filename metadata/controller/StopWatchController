@@ -36,6 +36,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onStartStopWatch",
             "designerId": "1816d8af-4a26-4b69-b929-a0b48f9fdc8d"
         },
         {
@@ -57,6 +58,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onResetStopWatch",
             "designerId": "85cf47d1-d287-4a7d-88f6-fef538a12e09"
         },
         {
@@ -76,6 +78,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseStopWatch",
             "designerId": "d14dfcd7-6594-4d79-a0dd-74e643c767a9"
         },
         {
@@ -112,6 +115,7 @@
                 "name": "showStopWatch",
                 "scope": "this"
             },
+            "name": "onShowStopWatch",
             "designerId": "5da6e53e-0329-42bf-bd09-1606e777e929"
         },
         {
@@ -127,6 +131,7 @@
                 "selector": "stopWatch",
                 "xtype": "stopWatch"
             },
+            "name": "stopWatch",
             "designerId": "c7787400-0dc5-476b-9f70-b19a8ac85a7c"
         },
         {
@@ -140,6 +145,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "61d3e3c3-0704-45db-94e3-f79ff06ad661"
         }
     ]

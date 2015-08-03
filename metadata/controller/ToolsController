@@ -30,6 +30,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onToolsButtonClick",
             "designerId": "8f72e1ad-6198-4d40-8f2c-a9d912e8a911"
         },
         {
@@ -56,6 +57,7 @@
                 "name": "showTools",
                 "scope": "this"
             },
+            "name": "onShowTools",
             "designerId": "65d575d8-657f-46ff-a352-203bd2a7f861"
         }
     ]

@@ -6,25 +6,29 @@
     },
     "codeClass": null,
     "userConfig": {
-        "autoScroll": true,
         "border": false,
-        "cls": "lanista-user-info-panel",
-        "defaultAlign": "c-c",
+        "cls": [
+            "lanista-user-info-panel"
+        ],
         "designer|userAlias": "userInfoPanel",
         "designer|userClassName": "UserInfoPanel",
         "header": false,
         "height": 250,
         "id": "userInfoPanel",
         "layout": "auto",
+        "scrollable": true,
         "style": "padding-top: 100px; height: 500px;",
         "title": null,
         "trackResetOnLoad": true,
         "width": 400
     },
     "configAlternates": {
-        "style": "string"
+        "style": "string",
+        "scrollable": "boolean"
     },
     "designerId": "28c2c65d-74fd-41c4-92b9-9a7c196bd07b",
+    "viewControllerInstanceId": "d8749ac0-f1d9-4ce0-877f-02004183fceb",
+    "viewModelInstanceId": "806141d0-8a16-4143-b531-97c3e099932a",
     "cn": [
         {
             "type": "Ext.form.FieldSet",
@@ -35,10 +39,15 @@
             "codeClass": null,
             "userConfig": {
                 "border": true,
-                "cls": "lanista-user-fieldset",
-                "defaultAlign": "c-c",
+                "cls": [
+                    "lanista-user-fieldset"
+                ],
                 "id": "user_personalData",
                 "title": null
+            },
+            "name": "MyFieldSet1",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "2274c207-a353-435c-a9c9-abfac131c6aa",
             "cn": [
@@ -50,7 +59,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "emptyText": null,
                         "enableKeyEvents": true,
                         "fieldLabel": "Email:",
@@ -63,6 +74,10 @@
                         "validateOnChange": false,
                         "width": null
                     },
+                    "name": "MyTextField1",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "118bb5bd-0589-44b4-b64c-db2226791b91"
                 },
                 {
@@ -73,7 +88,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Email:",
                         "hideEmptyLabel": false,
@@ -82,6 +99,10 @@
                         "name": "first_name",
                         "validateOnBlur": false,
                         "validateOnChange": false
+                    },
+                    "name": "MyTextField2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "dcf09911-b6a8-4ea6-be08-1b4b279736e4"
                 },
@@ -93,7 +114,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Email:",
                         "hideEmptyLabel": false,
@@ -102,6 +125,10 @@
                         "name": "last_name",
                         "validateOnBlur": false,
                         "validateOnChange": false
+                    },
+                    "name": "MyTextField3",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "7ffe6554-b171-49df-b9e2-cf9f91e57b83"
                 },
@@ -113,7 +140,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "editable": false,
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
@@ -121,6 +150,10 @@
                         "layout|anchor": "100%",
                         "name": "language",
                         "valueField": null
+                    },
+                    "name": "MyComboBox1",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "1045e33d-3b21-4c14-8fce-073b379e7081",
                     "cn": [
@@ -151,6 +184,7 @@
                                     "return config;"
                                 ]
                             },
+                            "name": "processLanguage",
                             "designerId": "0f4cff90-d729-47d0-be25-55a7040d0296"
                         }
                     ]
@@ -166,11 +200,16 @@
             "codeClass": null,
             "userConfig": {
                 "border": true,
-                "cls": "lanista-user-fieldset",
-                "defaultAlign": "c-c",
+                "cls": [
+                    "lanista-user-fieldset"
+                ],
                 "height": 390,
                 "id": "user_companyContacts",
                 "title": null
+            },
+            "name": "MyFieldSet2",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "a29b3bd2-6c20-4df2-8fa2-84f358080d2e",
             "cn": [
@@ -182,12 +221,18 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
                         "id": "company_name",
                         "layout|anchor": "100%",
                         "name": "company_name"
+                    },
+                    "name": "MyTextField4",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "eaa4137d-5003-41b5-b57c-650b19fac77a"
                 },
@@ -199,12 +244,18 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
                         "id": "phone_nr",
                         "layout|anchor": "100%",
                         "name": "phone_nr"
+                    },
+                    "name": "MyTextField5",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "2a0a8d16-8472-49f5-a9a2-91dc8a84e6f8"
                 },
@@ -216,12 +267,18 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
                         "id": "website",
                         "layout|anchor": "100%",
                         "name": "website"
+                    },
+                    "name": "MyTextField6",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "caad46be-2d91-4c9b-b532-6211725d6fd0"
                 },
@@ -234,7 +291,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "autoRender": true,
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "displayField": null,
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
@@ -249,6 +308,10 @@
                         "typeAhead": true,
                         "typeAheadDelay": null,
                         "valueField": null
+                    },
+                    "name": "MyComboBox2",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "6ac9aceb-c57d-4906-81bb-d1f2b8746d16",
                     "cn": [
@@ -281,6 +344,7 @@
                                     "return config;"
                                 ]
                             },
+                            "name": "processCountry",
                             "designerId": "1180f5e9-3be8-48db-8381-94378a400252"
                         }
                     ]
@@ -293,12 +357,18 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
                         "id": "zipcode",
                         "layout|anchor": "100%",
                         "name": "zipcode"
+                    },
+                    "name": "MyTextField7",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "d39f98fc-6776-4627-8377-72a13577be5c"
                 },
@@ -310,12 +380,18 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
                         "id": "street",
                         "layout|anchor": "100%",
                         "name": "street"
+                    },
+                    "name": "MyTextField8",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "89d0d10c-09b5-4bf4-a01e-aba36ae5d0c3"
                 },
@@ -327,12 +403,18 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "enableKeyEvents": true,
                         "fieldLabel": "Label",
                         "id": "city",
                         "layout|anchor": "100%",
                         "name": "city"
+                    },
+                    "name": "MyTextField9",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "583fe3bc-07e5-429b-b6b0-33964d9b6bf9"
                 }
@@ -710,6 +792,7 @@
                 "name": "afterrender",
                 "scope": "me"
             },
+            "name": "onUserInfoPanelAfterRender",
             "designerId": "1c3c6a2c-7fdd-401c-aff0-f9ca90cd1ff2"
         },
         {
@@ -721,12 +804,17 @@
             "codeClass": null,
             "userConfig": {
                 "border": true,
-                "cls": "lanista-user-fieldset",
-                "defaultAlign": "c-c",
+                "cls": [
+                    "lanista-user-fieldset"
+                ],
                 "designer|displayName": "user_LicenseData",
                 "height": 160,
                 "id": "user_LicenseData",
                 "title": null
+            },
+            "name": "MyFieldSet3",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "38115873-5f67-46ad-8ded-db2bdacca2c8",
             "cn": [
@@ -738,13 +826,19 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "disabled": true,
                         "fieldLabel": "Label",
                         "id": "user_licenseStatus",
                         "layout|anchor": "100%",
                         "name": "user_licenseStatus",
                         "readOnly": true
+                    },
+                    "name": "MyTextField10",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "818a6d65-6f93-4b62-846c-77109ca941ca"
                 },
@@ -756,13 +850,19 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "cls": "lanista-user-settings-field",
+                        "cls": [
+                            "lanista-user-settings-field"
+                        ],
                         "disabled": true,
                         "fieldLabel": "Label",
                         "id": "user_licenseValidity",
                         "layout|anchor": "100%",
                         "name": "user_licenseValidity",
                         "readOnly": true
+                    },
+                    "name": "MyTextField11",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "107d2ed2-1de9-4937-82e9-7b5069125784"
                 }
@@ -779,6 +879,10 @@
                 "fieldLabel": null,
                 "id": "id",
                 "name": "id"
+            },
+            "name": "MyHiddenField",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "e6a529d1-eead-4aa9-8698-63b459a3d094"
         }

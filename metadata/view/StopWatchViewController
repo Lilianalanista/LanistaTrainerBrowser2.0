@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "stopWatch",
+        "designer|userClassName": "StopWatchViewController"
+    },
+    "designerId": "b00342ad-477e-401b-9daa-694cfc8c978c"
+}

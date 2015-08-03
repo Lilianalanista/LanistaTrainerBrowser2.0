@@ -6,25 +6,20 @@
     },
     "codeClass": null,
     "userConfig": {
-        "border": false,
-        "defaultDockWeights": [
-            "{\"top\":{\"render\":1,\"visual\":1},\"left\":{\"render\":3,\"visual\":5},\"right\":{\"render\":5,\"visual\":7},\"bottom\":{\"render\":7,\"visual\":3}}"
-        ],
+        "closeAction": null,
+        "controller": null,
         "designer|userAlias": "exercisesPanel",
         "designer|userClassName": "ExercisesPanel",
         "frameHeader": false,
         "headerPosition": "bottom",
         "height": 250,
-        "id": "ExercisesPanel",
-        "layout": "fit",
-        "style": "padding-top: 120px;",
+        "id": "exercisesPanel",
         "title": null,
         "width": 400
     },
-    "configAlternates": {
-        "style": "string"
-    },
-    "designerId": "7b6b8165-f918-4dba-af71-f1183b637161",
+    "designerId": "aa89f94c-06f3-4926-bc83-e15dfd25119d",
+    "viewControllerInstanceId": "ee96ef36-f3bd-46be-85ca-210796d5008b",
+    "viewModelInstanceId": "442984ea-9f22-448f-a9f5-f679cd118770",
     "cn": [
         {
             "type": "Ext.view.View",
@@ -34,32 +29,16 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-exercises-view",
-                "height": 250,
+                "cls": [
+                    "lanista-view-exercises"
+                ],
+                "controller": null,
                 "id": "viewExercises",
-                "itemSelector": "div.exercise-item",
-                "store": "ExerciseStore",
-                "width": 400
+                "itemSelector": "div.exercise-item"
             },
-            "designerId": "63d9f1d0-5c39-4b4b-9e0b-ad40ac21845e",
+            "name": "MyView1",
+            "designerId": "7eec56c7-3b2b-405d-91aa-340d66ee410e",
             "cn": [
-                {
-                    "type": "basiceventbinding",
-                    "reference": {
-                        "name": "listeners",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fn": "onDataviewHide",
-                        "implHandler": [
-                            "component.destroy();"
-                        ],
-                        "name": "hide",
-                        "scope": "me"
-                    },
-                    "designerId": "8748aa00-4b07-42dd-a5ab-c7984367a747"
-                },
                 {
                     "type": "Ext.XTemplate",
                     "reference": {
@@ -74,15 +53,34 @@
                             "  <div class=\"lanista-x-exercise\">",
                             "  <div class=\"exercise-item\">",
                             "\t  <div class=\"lanista-icon lanista-item-delete\"></div>",
-                            "      <div class=\"exercise-list-img exercise-list-img-right\" style=\"background-image: url({[(values.ext_id && values.ext_id.indexOf (\"CUST\") == -1) ? (\"resources/images/previews/\"+values.ext_id+\"_1\") : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \"/tpmanager/img/s/\"+values.ext_id+\"_1\")]}.jpg?_dc={[Ext.Date.now()]});\"></div>",
-                            "      <div class=\"exercise-list-img exercise-list-img-left\" style=\"background-image: url({[(values.ext_id && values.ext_id.indexOf (\"CUST\") == -1) ? (\"resources/images/previews/\"+values.ext_id+\"_2\") : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + \"/tpmanager/img/s/\"+values.ext_id+\"_2\")]}.jpg?_dc={[Ext.Date.now()]});\"></div>",
+                            "      <div class=\"exercise-list-img exercise-list-img-right\" style=\"background-image: url({[(values.ext_id && values.ext_id.indexOf ('CUST') == -1) ? ('resources/images/previews/'+values.ext_id+'_1') : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/s/'+values.ext_id+'_1')]}.jpg?_dc={[Ext.Date.now()]});\"></div>",
+                            "      <div class=\"exercise-list-img exercise-list-img-left\" style=\"background-image: url({[(values.ext_id && values.ext_id.indexOf ('CUST') == -1) ? ('resources/images/previews/'+values.ext_id+'_2') : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/s/'+values.ext_id+'_2')]}.jpg?_dc={[Ext.Date.now()]});\"></div>",
                             "      <div class=\"exercise-list-text\">{[values[\"name_\" + Ext.ux.LanguageManager.lang]]}</div>",
                             "  </div>",
                             "  </div>",
                             "</tpl>"
                         ]
                     },
-                    "designerId": "b3fb943d-fed0-4f83-91dc-3b3ff9ea4253"
+                    "name": "tpl",
+                    "designerId": "c5d8e92d-3528-48ec-b2be-903175b5ae5d"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onViewExercisesHide",
+                        "implHandler": [
+                            "    component.destroy();"
+                        ],
+                        "name": "hide",
+                        "scope": "me"
+                    },
+                    "name": "onViewExercisesHide",
+                    "designerId": "26338e28-a219-49dc-850c-ac5750b5bf11"
                 },
                 {
                     "type": "basiceventbinding",
@@ -94,6 +92,7 @@
                     "userConfig": {
                         "fn": "onViewExercisesAfterRender",
                         "implHandler": [
+                            "",
                             "var itemRecord,",
                             "    el = component.el,",
                             "    itemId = [],",
@@ -162,12 +161,15 @@
                             "                                    el.removeCls('item-clicked');",
                             "                                    el.addCls('item-not-clicked');",
                             "                              },",
-                            "    this,{delegate: '.exercise-item'});"
+                            "    this,{delegate: '.exercise-item'});",
+                            "",
+                            ""
                         ],
                         "name": "afterrender",
                         "scope": "me"
                     },
-                    "designerId": "988e0455-9993-491f-8c24-837d9d9a43e7"
+                    "name": "onViewExercisesAfterRender",
+                    "designerId": "e4237694-b05c-49c8-a8fe-b5bd4f92106d"
                 },
                 {
                     "type": "basiceventbinding",
@@ -179,6 +181,7 @@
                     "userConfig": {
                         "fn": "onViewExercisesViewReady",
                         "implHandler": [
+                            "",
                             "var records = dataview.store.data.items,",
                             "    panel = LanistaTrainer.app.getController ('ExercisesController').getExercisesPanel(),",
                             "    favorites,",
@@ -229,7 +232,8 @@
                         "name": "viewready",
                         "scope": "me"
                     },
-                    "designerId": "7b6f5240-f855-4a04-8d04-139fd18ce6e8"
+                    "name": "onViewExercisesViewReady",
+                    "designerId": "22449a04-c836-4f97-a607-84b65e48e3a3"
                 },
                 {
                     "type": "basiceventbinding",
@@ -241,6 +245,7 @@
                     "userConfig": {
                         "fn": "onViewExercisesItemClick",
                         "implHandler": [
+                            "",
                             "var favorites = \"\",",
                             "    favoritesArray = [],",
                             "    pos;",
@@ -277,7 +282,8 @@
                         "name": "itemclick",
                         "scope": "me"
                     },
-                    "designerId": "9d98f3a9-4e75-4819-80b3-081dccf4790e"
+                    "name": "onViewExercisesItemClick",
+                    "designerId": "f85f0bad-b0b0-4a9f-badd-cf619aa185ea"
                 }
             ]
         },
@@ -289,12 +295,11 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|createAlias": "",
-                "designer|displayName": "previousExercises",
                 "id": "previousExercises",
-                "type": "left"
+                "type": "prev"
             },
-            "designerId": "cd9765fc-65b5-44d0-83c7-ca280f596e2b"
+            "name": "MyTool",
+            "designerId": "645d183f-c4e8-4bc7-b53c-9dddc016cf73"
         },
         {
             "type": "Ext.panel.Tool",
@@ -304,12 +309,11 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|createAlias": "",
-                "designer|displayName": "",
                 "id": "nextExercises",
-                "type": "right"
+                "type": "next"
             },
-            "designerId": "87be644a-8db7-445a-92b8-8f9fc872fd1d"
+            "name": "MyTool1",
+            "designerId": "13d4c522-9235-44e9-9633-69eb0f928520"
         }
     ]
 }

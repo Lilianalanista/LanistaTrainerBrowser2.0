@@ -27,6 +27,7 @@
                 ],
                 "url": "/tpmanager/favorites/json"
             },
+            "name": "MyAjaxProxy5",
             "designerId": "e7db49ca-7a8c-4850-bab8-22f67280c392",
             "cn": [
                 {
@@ -37,8 +38,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "root": "entries"
+                        "rootProperty": "entries"
                     },
+                    "name": "MyJsonReader4",
                     "designerId": "4f39d1e0-efba-40a6-a7cd-05c07eaa5ef8"
                 },
                 {
@@ -49,8 +51,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "root": "results"
+                        "rootProperty": "results"
                     },
+                    "name": "MyJsonWriter2",
                     "designerId": "f9f66231-f2f4-441f-a428-7691bfbf87c9"
                 }
             ]

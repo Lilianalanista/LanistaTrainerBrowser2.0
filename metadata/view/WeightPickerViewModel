@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "weightPicker",
+        "designer|userClassName": "WeightPickerViewModel"
+    },
+    "designerId": "3509fbad-9da6-4750-a43d-758fd108cba8"
+}

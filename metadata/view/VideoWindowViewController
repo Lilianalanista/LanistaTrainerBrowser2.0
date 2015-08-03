@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "videoWindow",
+        "designer|userClassName": "VideoWindowViewController"
+    },
+    "designerId": "246b6cb2-7fd4-42fb-a378-ae672c8dd26b"
+}

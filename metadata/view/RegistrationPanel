@@ -13,5 +13,10 @@
         "title": null,
         "width": 400
     },
-    "designerId": "927250fa-d17c-4f23-8f4a-d75936bd89c4"
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
+    "designerId": "927250fa-d17c-4f23-8f4a-d75936bd89c4",
+    "viewControllerInstanceId": "9ad17764-4130-4f88-aa71-0e4788128646",
+    "viewModelInstanceId": "85700143-4b35-4ebc-84eb-faf30a782814"
 }

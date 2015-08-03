@@ -6,14 +6,21 @@
     },
     "codeClass": null,
     "userConfig": {
-        "cls": "lanista-measures-panel",
+        "cls": [
+            "lanista-measures-panel"
+        ],
         "designer|userAlias": "measuresPanel",
         "designer|userClassName": "MeasuresPanel",
         "height": 250,
         "id": "measuresPanel",
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "ab357bfa-7d40-4fb3-9c13-b7704892bf1e",
+    "viewControllerInstanceId": "cdcde150-7578-4b7e-9286-5babc5188073",
+    "viewModelInstanceId": "3ee8d4ba-28fa-4b43-ab94-62e7c68f32a7",
     "cn": [
         {
             "type": "Ext.tab.Panel",
@@ -25,6 +32,10 @@
             "userConfig": {
                 "activeTab": 0,
                 "id": "measureTabs"
+            },
+            "name": "MyTabPanel3",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "db4155d3-f8db-48d1-b48f-69568cfdead0",
             "cn": [
@@ -39,6 +50,10 @@
                         "id": "measuresTab",
                         "title": "My Tab"
                     },
+                    "name": "MyPanel18",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "096b2705-c025-4405-b798-b9ddedb1540b",
                     "cn": [
                         {
@@ -48,25 +63,32 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "name": "TabConfig10",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "485d78ce-d48a-4936-a337-032d35c64ed1"
                         },
                         {
-                            "type": "Ext.chart.Chart",
+                            "type": "Ext.chart.CartesianChart",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "animate": [
-                                    "true"
-                                ],
                                 "height": 550,
                                 "id": "",
-                                "insetPadding": 20,
+                                "insetPadding": [
+                                    "20"
+                                ],
                                 "itemId": "measuresChat",
                                 "store": "MeasuresStore",
                                 "width": 1200
+                            },
+                            "name": "LineChart",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "8effbda2-ff67-4279-9f1c-c8f5f013787e",
                             "isBuiltIn": true,
@@ -81,9 +103,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
@@ -91,6 +110,7 @@
                                             "weight"
                                         ]
                                     },
+                                    "name": "MyLineSeries",
                                     "designerId": "2c42bbc3-f162-4b2e-8ddb-a9200e4ecece",
                                     "cn": [
                                         {
@@ -114,6 +134,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries2",
                                             "designerId": "2146ecef-8bfc-48be-afd4-9027e6fc0017"
                                         }
                                     ]
@@ -126,15 +147,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "height"
                                         ]
                                     },
+                                    "name": "MyLineSeries1",
                                     "designerId": "4601a20d-4855-417f-9b81-945d294b374e",
                                     "cn": [
                                         {
@@ -159,6 +178,7 @@
                                                     ""
                                                 ]
                                             },
+                                            "name": "processMyLineSeries1",
                                             "designerId": "69f65c8f-29bb-4f45-b1f9-3be8a3aa71f4"
                                         }
                                     ]
@@ -171,9 +191,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
@@ -181,6 +198,7 @@
                                             "futrex"
                                         ]
                                     },
+                                    "name": "MyLineSeries2",
                                     "designerId": "8db5440d-97b4-4cab-9aa4-fa0044882e46",
                                     "cn": [
                                         {
@@ -205,6 +223,7 @@
                                                     ""
                                                 ]
                                             },
+                                            "name": "processMyLineSeries21",
                                             "designerId": "eccf430e-f0e5-4615-ab12-b1156504b1c1"
                                         }
                                     ]
@@ -217,9 +236,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "right"
-                                        ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
@@ -227,6 +243,7 @@
                                             "percentage"
                                         ]
                                     },
+                                    "name": "MyLineSeries3",
                                     "designerId": "e441753b-b7e1-4942-9576-52da84c1c8dd",
                                     "cn": [
                                         {
@@ -251,6 +268,7 @@
                                                     ""
                                                 ]
                                             },
+                                            "name": "processMyLineSeries3",
                                             "designerId": "0f62aff2-82ea-4b23-b1a3-0eaaabdf87cb"
                                         }
                                     ]
@@ -263,17 +281,16 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "adjustEnd": false,
                                         "dateFormat": "d-m-Y",
                                         "fields": [
                                             "record_date"
                                         ],
-                                        "position": "bottom",
                                         "step": [
                                             " [Ext.Date.MONTH, 3]"
                                         ],
                                         "title": null
                                     },
+                                    "name": "MyTimeAxis",
                                     "designerId": "e63f75a1-5340-4d33-a000-2c6789c01225"
                                 },
                                 {
@@ -284,7 +301,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "adjustMaximumByMajorUnit": true,
                                         "fields": [
                                             "weight",
                                             "height",
@@ -292,8 +308,11 @@
                                         ],
                                         "maximum": null,
                                         "minimum": 0,
-                                        "title": "Numeric Axis"
+                                        "title": [
+                                            "Numeric Axis"
+                                        ]
                                     },
+                                    "name": "MyNumericAxis",
                                     "designerId": "6f5855a2-f526-4f72-94dd-acf681e457f4"
                                 },
                                 {
@@ -304,15 +323,17 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "adjustMaximumByMajorUnit": true,
                                         "fields": [
                                             "percentage"
                                         ],
                                         "maximum": null,
                                         "minimum": 0,
                                         "position": "right",
-                                        "title": "Numeric Axis"
+                                        "title": [
+                                            "Numeric Axis"
+                                        ]
                                     },
+                                    "name": "MyNumericAxis1",
                                     "designerId": "c9d7d7d6-c3ca-4837-84a7-7a715d7a66ed"
                                 },
                                 {
@@ -322,8 +343,9 @@
                                         "type": "object"
                                     },
                                     "codeClass": null,
-                                    "userConfig": {
-                                        "position": "top"
+                                    "name": "MyLegend",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "4debf0f2-76b3-4979-a5f3-a1a3c97ea7ee"
                                 }
@@ -352,15 +374,23 @@
                                 "title": null,
                                 "width": 1200
                             },
+                            "name": "MyGridPanel3",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "dbf4ef7f-7e3c-49cc-afad-ed64636d97e4",
                             "cn": [
                                 {
-                                    "type": "Ext.grid.View",
+                                    "type": "Ext.view.Table",
                                     "reference": {
                                         "name": "viewConfig",
                                         "type": "object"
                                     },
                                     "codeClass": null,
+                                    "name": "MyGridView2",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "a1ed4612-642d-49a6-95df-63fde9e74fef"
                                 },
                                 {
@@ -377,6 +407,10 @@
                                         "format": "d-m-y",
                                         "text": null
                                     },
+                                    "name": "MyDateColumn",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "425b1824-7463-4cb1-ae08-7e7f06492ad7"
                                 },
                                 {
@@ -391,6 +425,10 @@
                                         "dataIndex": "height",
                                         "flex": 1,
                                         "text": null
+                                    },
+                                    "name": "MyColumn1",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "860a52ef-94e0-4ac2-88d3-b343f1840eb2",
                                     "cn": [
@@ -409,6 +447,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender",
                                             "designerId": "17ad85da-6f61-4523-9147-7ae242380d03"
                                         }
                                     ]
@@ -425,6 +464,10 @@
                                         "dataIndex": "weight",
                                         "flex": 1,
                                         "text": null
+                                    },
+                                    "name": "MyColumn2",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "c56bea3b-d0d3-4527-a1d4-1e724d56a625",
                                     "cn": [
@@ -443,6 +486,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender2",
                                             "designerId": "d21e20eb-91e0-4da0-8756-88b79f20df59"
                                         }
                                     ]
@@ -462,6 +506,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn3",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "669f6110-d2d7-4935-b3f8-879888ac1262",
                                     "cn": [
                                         {
@@ -479,6 +527,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender1",
                                             "designerId": "8e40a846-de79-48ed-a60e-1fc0e82f8692"
                                         }
                                     ]
@@ -495,6 +544,10 @@
                                         "dataIndex": "percentage",
                                         "flex": 1,
                                         "text": null
+                                    },
+                                    "name": "MyColumn4",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "3aec8e60-414a-4f78-9b3e-fd8540e138d6",
                                     "cn": [
@@ -513,6 +566,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender3",
                                             "designerId": "caef65b8-1288-4f1c-af64-20dc2ea35013"
                                         }
                                     ]
@@ -532,6 +586,7 @@
                                         "name": "itemclick",
                                         "scope": "me"
                                     },
+                                    "name": "onMeasuresTableItemClick",
                                     "designerId": "81c7b9bf-685d-49ed-a948-b9e113ccec6f"
                                 }
                             ]
@@ -549,6 +604,10 @@
                         "id": "caliperTab",
                         "title": "My Tab"
                     },
+                    "name": "MyPanel19",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "d4e0abfd-c152-4712-bcf9-c9e30a5057bb",
                     "cn": [
                         {
@@ -558,25 +617,32 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "name": "TabConfig11",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "5d8c9745-7eea-4c1a-8ce7-56aa6fd17fe9"
                         },
                         {
-                            "type": "Ext.chart.Chart",
+                            "type": "Ext.chart.CartesianChart",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "animate": [
-                                    "true"
-                                ],
                                 "height": 550,
                                 "id": null,
-                                "insetPadding": 20,
+                                "insetPadding": [
+                                    "20"
+                                ],
                                 "itemId": "measuresChat",
                                 "store": "MeasuresStore",
                                 "width": 1200
+                            },
+                            "name": "LineChart1",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "d4cd73c5-2ca6-4efb-bb7a-e5149eb16810",
                             "isBuiltIn": true,
@@ -591,9 +657,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
@@ -601,6 +664,7 @@
                                             "trizeps"
                                         ]
                                     },
+                                    "name": "MyLineSeries4",
                                     "designerId": "1ec5febe-b80a-4314-9fae-a6c49a82e537",
                                     "cn": [
                                         {
@@ -624,6 +688,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries4",
                                             "designerId": "5bf74a90-a1c1-466e-a2c4-5d3f0fe5e800"
                                         }
                                     ]
@@ -636,9 +701,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
@@ -646,6 +708,7 @@
                                             "scapula"
                                         ]
                                     },
+                                    "name": "MyLineSeries5",
                                     "designerId": "112962ac-75e3-4e8e-96b8-9e47753a0773",
                                     "cn": [
                                         {
@@ -669,6 +732,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries5",
                                             "designerId": "6a212cbf-7865-412b-867a-6ef090f25f02"
                                         }
                                     ]
@@ -681,9 +745,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
@@ -691,6 +752,7 @@
                                             "auxiliar"
                                         ]
                                     },
+                                    "name": "MyLineSeries6",
                                     "designerId": "11ba5bf6-401f-4b11-9637-cc04d53ca72f",
                                     "cn": [
                                         {
@@ -714,6 +776,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries6",
                                             "designerId": "6748461a-3925-416e-a7f1-43e2463cd655"
                                         }
                                     ]
@@ -726,15 +789,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "chest"
                                         ]
                                     },
+                                    "name": "MyLineSeries7",
                                     "designerId": "8c56d037-8a0f-45b6-9e43-ea39893caafc",
                                     "cn": [
                                         {
@@ -758,6 +819,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries7",
                                             "designerId": "dfed153e-df20-4ec4-a207-91f4fced26c6"
                                         }
                                     ]
@@ -770,15 +832,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "sprailium"
                                         ]
                                     },
+                                    "name": "MyLineSeries8",
                                     "designerId": "cd2d7065-1192-49a5-a7d6-fcecca8d0dee",
                                     "cn": [
                                         {
@@ -802,6 +862,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries8",
                                             "designerId": "93c777c6-39b8-4e63-850b-f13017f8463e"
                                         }
                                     ]
@@ -814,15 +875,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "abs"
                                         ]
                                     },
+                                    "name": "MyLineSeries9",
                                     "designerId": "3b41f0a3-56cf-43df-8955-14f8a17aa797",
                                     "cn": [
                                         {
@@ -846,6 +905,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries9",
                                             "designerId": "56967ea8-d9fe-4879-9330-3b8df6ad4562"
                                         }
                                     ]
@@ -858,15 +918,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "quads"
                                         ]
                                     },
+                                    "name": "MyLineSeries10",
                                     "designerId": "2619de57-c11e-4a81-a828-ed968d461c71",
                                     "cn": [
                                         {
@@ -890,6 +948,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries10",
                                             "designerId": "10a2dbbe-7c72-4cb9-b78d-cccaec000f32"
                                         }
                                     ]
@@ -902,17 +961,16 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "adjustEnd": false,
                                         "dateFormat": "d-m-Y",
                                         "fields": [
                                             "record_date"
                                         ],
-                                        "position": "bottom",
                                         "step": [
                                             " [Ext.Date.MONTH, 3]"
                                         ],
                                         "title": null
                                     },
+                                    "name": "MyTimeAxis1",
                                     "designerId": "0772b723-bd25-4c81-aff5-fa3f0612abba"
                                 },
                                 {
@@ -923,7 +981,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "adjustMaximumByMajorUnit": true,
                                         "fields": [
                                             "trizeps",
                                             "scapula",
@@ -935,8 +992,11 @@
                                         ],
                                         "maximum": null,
                                         "minimum": 0,
-                                        "title": "Numeric Axis"
+                                        "title": [
+                                            "Numeric Axis"
+                                        ]
                                     },
+                                    "name": "MyNumericAxis2",
                                     "designerId": "088edf56-7baa-4989-8b87-dc86a0d73cbc"
                                 },
                                 {
@@ -946,8 +1006,9 @@
                                         "type": "object"
                                     },
                                     "codeClass": null,
-                                    "userConfig": {
-                                        "position": "top"
+                                    "name": "MyLegend1",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "8bfebdf5-da76-4db9-bdc7-463788e61039"
                                 }
@@ -976,15 +1037,23 @@
                                 "title": null,
                                 "width": 1200
                             },
+                            "name": "MyGridPanel4",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "65d7305a-478a-4831-bdb3-a7e64e6d3854",
                             "cn": [
                                 {
-                                    "type": "Ext.grid.View",
+                                    "type": "Ext.view.Table",
                                     "reference": {
                                         "name": "viewConfig",
                                         "type": "object"
                                     },
                                     "codeClass": null,
+                                    "name": "MyGridView3",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "b58b4ca3-ed16-4a6f-9962-887d0c46bdcb"
                                 },
                                 {
@@ -1001,6 +1070,10 @@
                                         "format": "d-m-y",
                                         "text": null
                                     },
+                                    "name": "MyDateColumn1",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "f7b940b7-3463-458b-a353-019267230013"
                                 },
                                 {
@@ -1015,6 +1088,10 @@
                                         "dataIndex": "trizeps",
                                         "flex": 1,
                                         "text": null
+                                    },
+                                    "name": "MyColumn5",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "f456547b-2439-4bb9-94b7-daea8fa5d06a",
                                     "cn": [
@@ -1033,6 +1110,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender4",
                                             "designerId": "bae8a030-8175-49ae-9ed4-7f5477de4a12"
                                         }
                                     ]
@@ -1049,6 +1127,10 @@
                                         "dataIndex": "scapula",
                                         "flex": 1,
                                         "text": null
+                                    },
+                                    "name": "MyColumn6",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "0d0f4877-3060-47e7-a874-c5b696a7796b",
                                     "cn": [
@@ -1067,6 +1149,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender21",
                                             "designerId": "6805e961-e5b0-40d9-b96d-b7f863383dd4"
                                         }
                                     ]
@@ -1086,6 +1169,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn7",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "6a1df8fa-5bb2-4267-aa73-f47fe3ac6231",
                                     "cn": [
                                         {
@@ -1103,6 +1190,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender11",
                                             "designerId": "fe2bec6b-0530-4271-afdb-e32d4d60f0fa"
                                         }
                                     ]
@@ -1122,6 +1210,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn8",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "9ff9d147-3f08-418c-b18a-143c1f1c0cb5",
                                     "cn": [
                                         {
@@ -1139,6 +1231,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender1114",
                                             "designerId": "57e8a12b-41e8-45a2-b32f-731fcf37f8f4"
                                         }
                                     ]
@@ -1158,6 +1251,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn9",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "4a00e381-1824-4860-82b9-4367a2c69ee6",
                                     "cn": [
                                         {
@@ -1175,6 +1272,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender1113",
                                             "designerId": "621e7565-612d-4e57-8931-3b4c40170462"
                                         }
                                     ]
@@ -1194,6 +1292,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn10",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "db3494d7-9f0d-45a1-8775-7ffc8bbae9a3",
                                     "cn": [
                                         {
@@ -1211,6 +1313,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender1112",
                                             "designerId": "14a58d39-839a-4306-bb06-cd8149319ebb"
                                         }
                                     ]
@@ -1230,6 +1333,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn11",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "cf85ba33-2a64-464f-beb5-ac11a2059309",
                                     "cn": [
                                         {
@@ -1247,6 +1354,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender111",
                                             "designerId": "cc5512df-7b87-4f92-8ed8-20f80a651e81"
                                         }
                                     ]
@@ -1266,6 +1374,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn12",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "0a8ba599-882d-48ef-bf2c-0d2c4e3b928c",
                                     "cn": [
                                         {
@@ -1283,6 +1395,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender1111",
                                             "designerId": "15bdd504-67f8-460c-9154-6ee60757c98e"
                                         }
                                     ]
@@ -1299,6 +1412,10 @@
                                         "dataIndex": "percentage",
                                         "flex": 1,
                                         "text": null
+                                    },
+                                    "name": "MyColumn13",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "a9908a9d-b188-4218-a0dd-9807925cb2f2",
                                     "cn": [
@@ -1317,6 +1434,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender31",
                                             "designerId": "f4161940-1e5d-4f3f-88ef-1350795d1e92"
                                         }
                                     ]
@@ -1336,6 +1454,7 @@
                                         "name": "itemclick",
                                         "scope": "me"
                                     },
+                                    "name": "onMeasuresTableItemClick1",
                                     "designerId": "5819b06f-84c5-4811-8e24-152859ac46b8"
                                 }
                             ]
@@ -1353,6 +1472,10 @@
                         "id": "circumferencesTab",
                         "title": "My Tab"
                     },
+                    "name": "MyPanel20",
+                    "configAlternates": {
+                        "scrollable": "boolean"
+                    },
                     "designerId": "07151673-5012-4c2d-9ede-439a4def9174",
                     "cn": [
                         {
@@ -1362,25 +1485,32 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "name": "TabConfig12",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "165d764f-1403-4f6f-bbf8-8af36bb88a30"
                         },
                         {
-                            "type": "Ext.chart.Chart",
+                            "type": "Ext.chart.CartesianChart",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "animate": [
-                                    "true"
-                                ],
                                 "height": 550,
                                 "id": null,
-                                "insetPadding": 20,
+                                "insetPadding": [
+                                    "20"
+                                ],
                                 "itemId": "measuresChat",
                                 "store": "CircumferencesStore",
                                 "width": 1200
+                            },
+                            "name": "LineChart2",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "8c8c2c49-3ef3-4efc-8f33-ecead5fdfbdf",
                             "isBuiltIn": true,
@@ -1395,9 +1525,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
@@ -1405,6 +1532,7 @@
                                             "arm_left"
                                         ]
                                     },
+                                    "name": "MyLineSeries11",
                                     "designerId": "3dba3dbb-cc4d-4749-a27f-f30c05c1c198",
                                     "cn": [
                                         {
@@ -1428,6 +1556,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries4",
                                             "designerId": "2bbeb5d1-e739-4438-a293-6e83f78aa9bf"
                                         }
                                     ]
@@ -1440,9 +1569,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
@@ -1450,6 +1576,7 @@
                                             "arm_right"
                                         ]
                                     },
+                                    "name": "MyLineSeries12",
                                     "designerId": "a37923e1-ea83-45f9-8d79-7142c0009d57",
                                     "cn": [
                                         {
@@ -1473,6 +1600,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries5",
                                             "designerId": "4a4411f4-9a27-4377-afa2-ffb79546647a"
                                         }
                                     ]
@@ -1485,9 +1613,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "designer|createAlias": null,
                                         "smooth": 3,
                                         "xField": "record_date",
@@ -1495,6 +1620,7 @@
                                             "chest"
                                         ]
                                     },
+                                    "name": "MyLineSeries13",
                                     "designerId": "f344bbc9-3277-43b3-81bc-eeb1af619a3b",
                                     "cn": [
                                         {
@@ -1518,6 +1644,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries6",
                                             "designerId": "bc806fba-c773-4f27-84b3-99235f769c9a"
                                         }
                                     ]
@@ -1530,15 +1657,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "waist"
                                         ]
                                     },
+                                    "name": "MyLineSeries14",
                                     "designerId": "cabf10bf-b84c-4778-9fb7-28698811773a",
                                     "cn": [
                                         {
@@ -1562,6 +1687,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries7",
                                             "designerId": "0969d07d-59fc-416d-ac43-f7cad0e4ce35"
                                         }
                                     ]
@@ -1574,15 +1700,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "umbilical"
                                         ]
                                     },
+                                    "name": "MyLineSeries15",
                                     "designerId": "279ec127-c204-42e4-9c80-258fdf6c91c0",
                                     "cn": [
                                         {
@@ -1606,6 +1730,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries8",
                                             "designerId": "4423e14d-0133-4f0f-b869-fba919b3a438"
                                         }
                                     ]
@@ -1618,15 +1743,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "ilica_ant"
                                         ]
                                     },
+                                    "name": "MyLineSeries16",
                                     "designerId": "d0f33b0a-43c6-4cda-a7e6-6cc3a8c88c74",
                                     "cn": [
                                         {
@@ -1650,6 +1773,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries9",
                                             "designerId": "323f7e55-16ee-462c-a477-36d164a53111"
                                         }
                                     ]
@@ -1662,15 +1786,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "hips"
                                         ]
                                     },
+                                    "name": "MyLineSeries17",
                                     "designerId": "21d6a44b-0c38-4ca5-aa35-a23b2c9ecee6",
                                     "cn": [
                                         {
@@ -1694,6 +1816,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries10",
                                             "designerId": "cefd7d81-fb7a-4540-bf8b-61d99dd4e39c"
                                         }
                                     ]
@@ -1706,15 +1829,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "quads_left"
                                         ]
                                     },
+                                    "name": "MyLineSeries18",
                                     "designerId": "ad25f0b1-dbe1-4c02-9b70-4a1ded62ae89",
                                     "cn": [
                                         {
@@ -1738,6 +1859,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries10",
                                             "designerId": "fff4a697-51c9-4bad-b7cb-c3ef1c8e886b"
                                         }
                                     ]
@@ -1750,15 +1872,13 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "axis": [
-                                            "left"
-                                        ],
                                         "smooth": 3,
                                         "xField": "record_date",
                                         "yField": [
                                             "quads_right"
                                         ]
                                     },
+                                    "name": "MyLineSeries19",
                                     "designerId": "5ddb6bab-7b4b-4d39-8a7c-7b958b8f7c4f",
                                     "cn": [
                                         {
@@ -1782,6 +1902,7 @@
                                                     "return config;"
                                                 ]
                                             },
+                                            "name": "processMyLineSeries10",
                                             "designerId": "89517a9f-3ebb-47a4-95b1-a1b807a0a9eb"
                                         }
                                     ]
@@ -1794,17 +1915,16 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "adjustEnd": false,
                                         "dateFormat": "d-m-Y",
                                         "fields": [
                                             "record_date"
                                         ],
-                                        "position": "bottom",
                                         "step": [
                                             " [Ext.Date.MONTH, 3]"
                                         ],
                                         "title": null
                                     },
+                                    "name": "MyTimeAxis2",
                                     "designerId": "291be506-3f44-4026-82e0-5714f51ba712"
                                 },
                                 {
@@ -1815,7 +1935,6 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "adjustMaximumByMajorUnit": true,
                                         "fields": [
                                             "arm_left",
                                             "arm_right",
@@ -1829,8 +1948,11 @@
                                         ],
                                         "maximum": null,
                                         "minimum": 0,
-                                        "title": "Numeric Axis"
+                                        "title": [
+                                            "Numeric Axis"
+                                        ]
                                     },
+                                    "name": "MyNumericAxis3",
                                     "designerId": "088f0946-0364-4de4-a657-6254497a38a3"
                                 },
                                 {
@@ -1840,8 +1962,9 @@
                                         "type": "object"
                                     },
                                     "codeClass": null,
-                                    "userConfig": {
-                                        "position": "top"
+                                    "name": "MyLegend2",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "53b303e4-3641-4fc0-b39f-481fa5b41e8c"
                                 }
@@ -1870,15 +1993,23 @@
                                 "title": null,
                                 "width": 1200
                             },
+                            "name": "MyGridPanel5",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "dd2a1b92-901a-4607-85ca-b1787583502d",
                             "cn": [
                                 {
-                                    "type": "Ext.grid.View",
+                                    "type": "Ext.view.Table",
                                     "reference": {
                                         "name": "viewConfig",
                                         "type": "object"
                                     },
                                     "codeClass": null,
+                                    "name": "MyGridView4",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "d241defc-e056-49ce-996f-16495f0c4397"
                                 },
                                 {
@@ -1895,6 +2026,10 @@
                                         "format": "d-m-y",
                                         "text": null
                                     },
+                                    "name": "MyDateColumn2",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "ca4b18be-a9e4-4db5-9032-cc906e1f31c2"
                                 },
                                 {
@@ -1909,6 +2044,10 @@
                                         "dataIndex": "arm_left",
                                         "flex": 1,
                                         "text": null
+                                    },
+                                    "name": "MyColumn14",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "4c77412c-e4ac-42e5-be3b-3fb99cf204d0",
                                     "cn": [
@@ -1927,6 +2066,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender41",
                                             "designerId": "5e46c7bd-7169-4885-9894-f5c0c6400799"
                                         }
                                     ]
@@ -1943,6 +2083,10 @@
                                         "dataIndex": "arm_right",
                                         "flex": 1,
                                         "text": null
+                                    },
+                                    "name": "MyColumn15",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "62fe2312-1d97-412d-89eb-c010c980b920",
                                     "cn": [
@@ -1961,6 +2105,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender211",
                                             "designerId": "5a6e20db-0002-4fc6-943d-090118f8c25d"
                                         }
                                     ]
@@ -1980,6 +2125,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn16",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "7621f232-9c47-4431-a231-aa3222c4d117",
                                     "cn": [
                                         {
@@ -1997,6 +2146,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender112",
                                             "designerId": "0ab0ca7b-2e04-4e4d-af9f-80a2e1453717"
                                         }
                                     ]
@@ -2016,6 +2166,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn17",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "93c50123-4c09-4545-948a-95662aff8222",
                                     "cn": [
                                         {
@@ -2033,6 +2187,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender11141",
                                             "designerId": "3a536198-4177-4788-91bb-5c066a2020a2"
                                         }
                                     ]
@@ -2052,6 +2207,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn18",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "dcb71271-434b-4dfa-b964-0a09dddcd966",
                                     "cn": [
                                         {
@@ -2069,6 +2228,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender11131",
                                             "designerId": "42674fcc-9fb4-4a94-9e3a-5296091e1b67"
                                         }
                                     ]
@@ -2088,6 +2248,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn19",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "b4ba4dec-a70c-40b4-956c-f04f580a228c",
                                     "cn": [
                                         {
@@ -2105,6 +2269,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender11121",
                                             "designerId": "d5768777-e396-4d8d-bcb9-95848baedbd4"
                                         }
                                     ]
@@ -2124,6 +2289,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn20",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "fafaab37-1f6e-4808-8f96-c419fa1c9aa7",
                                     "cn": [
                                         {
@@ -2141,6 +2310,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender1115",
                                             "designerId": "feb0b12d-c960-4124-94a0-cd9aa7879e6c"
                                         }
                                     ]
@@ -2160,6 +2330,10 @@
                                         "resizable": false,
                                         "text": null
                                     },
+                                    "name": "MyColumn21",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "56bd6125-b5c6-497f-a1f7-771fe1b0f723",
                                     "cn": [
                                         {
@@ -2177,6 +2351,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender11111",
                                             "designerId": "5e77c053-cfce-4a1e-9023-5aaf2ba4e90b"
                                         }
                                     ]
@@ -2193,6 +2368,10 @@
                                         "dataIndex": "quads_right",
                                         "flex": 1,
                                         "text": null
+                                    },
+                                    "name": "MyColumn22",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
                                     },
                                     "designerId": "5d680b79-7859-41e7-9cef-a853c6262798",
                                     "cn": [
@@ -2211,6 +2390,7 @@
                                                 "name": "afterrender",
                                                 "scope": "me"
                                             },
+                                            "name": "onGridcolumnAfterRender311",
                                             "designerId": "223f50a4-88a4-476d-bf6f-88a5cb9ec6ef"
                                         }
                                     ]
@@ -2230,6 +2410,7 @@
                                         "name": "itemclick",
                                         "scope": "me"
                                     },
+                                    "name": "onMeasuresTableItemClick11",
                                     "designerId": "05dd38b2-6b7d-43d6-a8e2-b37bd6e4c2de"
                                 }
                             ]
@@ -2246,10 +2427,14 @@
                     "userConfig": {
                         "hidden": true,
                         "id": "testsTab",
-                        "overflowX": null,
-                        "overflowY": null,
-                        "shrinkWrapDock": 2,
+                        "shrinkWrapDock": [
+                            "2"
+                        ],
                         "title": "My Tab"
+                    },
+                    "name": "MyPanel21",
+                    "configAlternates": {
+                        "scrollable": "boolean"
                     },
                     "designerId": "6f15f263-1a89-45a3-9195-eac0b44170aa",
                     "cn": [
@@ -2260,6 +2445,10 @@
                                 "type": "object"
                             },
                             "codeClass": null,
+                            "name": "TabConfig13",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
                             "designerId": "cfc3b888-49ae-41e1-a363-558b9bfb2228"
                         },
                         {
@@ -2273,6 +2462,10 @@
                                 "id": "testView",
                                 "itemSelector": "div.lanista-testpanel-item",
                                 "store": "TestResultsStore"
+                            },
+                            "name": "MyView5",
+                            "configAlternates": {
+                                "scrollable": "boolean"
                             },
                             "designerId": "69df6a56-4a34-42e2-a994-6f41924f59ff",
                             "cn": [
@@ -2293,6 +2486,7 @@
                                             "</tpl>"
                                         ]
                                     },
+                                    "name": "tpl25",
                                     "designerId": "1af7d099-d778-46f4-a563-b6465a7ab989"
                                 }
                             ]
@@ -2316,6 +2510,7 @@
                 "name": "hide",
                 "scope": "me"
             },
+            "name": "onMeasuresPanelHide",
             "designerId": "3f9069a2-8bf3-4e8a-a118-f0a3d606c153"
         }
     ]

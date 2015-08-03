@@ -18,7 +18,12 @@
         "title": null,
         "width": 400
     },
+    "configAlternates": {
+        "scrollable": "boolean"
+    },
     "designerId": "ff22472d-8c6c-4268-a8cb-265c66884e7e",
+    "viewControllerInstanceId": "1cdc0f70-0f85-4c20-83ad-0025d13de880",
+    "viewModelInstanceId": "82d92661-e7ce-4fc6-b87b-9d65d2a1a9ff",
     "cn": [
         {
             "type": "Ext.XTemplate",
@@ -35,6 +40,7 @@
                     "</div>"
                 ]
             },
+            "name": "tpl23",
             "designerId": "7bd45188-8b08-4323-92f4-6da0caab7a73"
         }
     ]

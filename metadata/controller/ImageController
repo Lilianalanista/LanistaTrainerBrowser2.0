@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "8442db92-164d-42e9-84b5-a996bedcaec6"
         },
         {
@@ -36,6 +37,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "9b986e37-5624-4250-985f-9b483fb4e2ba"
         },
         {
@@ -49,6 +51,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "c20c11a3-37e2-4903-bed4-fd18b7b39eb5"
         },
         {
@@ -62,6 +65,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "47d6b06c-cc28-4f25-96a7-924b255949f5"
         },
         {
@@ -77,6 +81,7 @@
                 "selector": "#imagePanel",
                 "xtype": "imagePanel"
             },
+            "name": "imagePanel",
             "designerId": "4fb5f8e4-1c39-42f9-9737-8db51f3a7582"
         },
         {
@@ -237,6 +242,7 @@
                 "name": "showImagePanel",
                 "scope": "this"
             },
+            "name": "onShowImagePanel",
             "designerId": "9e8304a2-a920-4c5f-87f1-25864312ef95"
         },
         {
@@ -272,6 +278,7 @@
                 "name": "closeImagePanel",
                 "scope": "this"
             },
+            "name": "onCloseImagePanel",
             "designerId": "fa965aea-1fc7-4356-b5ed-4b0ea816c830"
         },
         {
@@ -295,6 +302,7 @@
                 "name": "showImageHeaderUpdate",
                 "scope": "this"
             },
+            "name": "onShowImageHeaderUpdate",
             "designerId": "4f7d54d7-94d1-4db5-8e2e-247c97da9a84"
         },
         {
@@ -373,6 +381,7 @@
                 "name": "uploadFile",
                 "scope": "this"
             },
+            "name": "onUploadFile",
             "designerId": "75e23db3-622c-4a0d-83b7-dc9b81edb90b"
         },
         {
@@ -397,6 +406,7 @@
                 "name": "imageLoadingComplete",
                 "scope": "this"
             },
+            "name": "onImageLoadingComplete",
             "designerId": "58b9c8a0-371f-4db0-9068-98ab690c3758"
         },
         {
@@ -425,6 +435,7 @@
                     ""
                 ]
             },
+            "name": "showCommands",
             "designerId": "58872082-f233-4f26-b5af-459c614e94b9"
         },
         {
@@ -528,6 +539,7 @@
                     ""
                 ]
             },
+            "name": "setImage",
             "designerId": "b7504715-673f-412a-af04-9968087a4111"
         },
         {
@@ -576,6 +588,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onRotateImageButtonClick",
             "designerId": "c60c8bed-de34-4a5f-801a-24b9b167d58f"
         },
         {
@@ -598,6 +611,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCloseImagePanelButtonClick",
             "designerId": "3298e332-3580-47be-9124-ffefaa80fdcc"
         },
         {
@@ -669,6 +683,7 @@
                 "name": "click",
                 "scope": "me"
             },
+            "name": "onCropImageButtonClick",
             "designerId": "51d635a9-191b-4e1d-8b4f-49de67afd348"
         },
         {
@@ -684,6 +699,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "8f986184-f8e2-40a5-b636-781fd676275e"
         }
     ]

@@ -23,6 +23,7 @@
                 "ref": "mainStage",
                 "selector": "#mainStage"
             },
+            "name": "mainStage",
             "designerId": "f62db686-c1a1-4bf2-9daf-d8a96a6f81c4"
         },
         {
@@ -36,6 +37,7 @@
                 "ref": "rightCommandPanel",
                 "selector": "#rightCommandPanel"
             },
+            "name": "rightCommandPanel",
             "designerId": "780e0182-a92c-4865-982c-a73d475686de"
         },
         {
@@ -49,6 +51,7 @@
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
+            "name": "leftCommandPanel",
             "designerId": "233daeb6-753d-49f0-99ee-cc8ea6e591ca"
         },
         {
@@ -62,6 +65,7 @@
                 "ref": "mainViewport",
                 "selector": "mainViewport"
             },
+            "name": "mainViewport",
             "designerId": "e2f87468-3d12-4203-89b4-5cf16eae688e"
         },
         {
@@ -77,6 +81,7 @@
                 "selector": "loginPanel",
                 "xtype": "loginPanel"
             },
+            "name": "loginPanel",
             "designerId": "bc0b5d57-ad31-4054-8542-dfc0581e477b"
         },
         {
@@ -101,12 +106,14 @@
                     "",
                     "controller.getMainViewport().addCls(\"lanista-guest\");",
                     "",
+                    "loginPanel.on('hide', function(component) {",
+                    "    //component.fireEvent('destroy','',this);",
+                    "    component.destroy();",
+                    "}, this);",
+                    "",
                     "LanistaTrainer.app.panels[0] = 'LoginPanel';",
                     "mainStage.add( loginPanel );",
-                    "",
-                    "loginPanel.on('hide', function(component) {",
-                    "    component.destroy();",
-                    "}, controller);",
+                    "mainStage.getLayout().setActiveItem(\"loginPanel\");",
                     "",
                     "// **** 1 create the commands",
                     "LanistaTrainer.app.setStandardButtons();",
@@ -123,18 +130,22 @@
                     "    i = i + 1;",
                     "}",
                     "",
-                    "// Define the model for Cookies",
-                    "Ext.regModel('Cookies', {",
-                    "    fields: [",
-                    "        {type: 'string', name: 'email'}",
-                    "    ]",
-                    "});",
+                    "if (!Ext.getStore(\"CookiesStore\")){",
+                    "    // Define the model for Cookies",
+                    "    Ext.define('Cookies', {",
+                    "        extend: 'Ext.data.Model',",
+                    "        fields: [",
+                    "            {type: 'string', name: 'email'}",
+                    "        ]",
+                    "    });",
                     "",
-                    "// The data store holding the states",
-                    "var store = Ext.create('Ext.data.Store', {",
-                    "    model: 'Cookies',",
-                    "    data: emailCookies",
-                    "});",
+                    "    // The data store holding the states",
+                    "    var store = Ext.create('Ext.data.Store', {",
+                    "        id: 'CookiesStore',",
+                    "        model: 'Cookies',",
+                    "        data: emailCookies",
+                    "    });",
+                    "}",
                     "",
                     "loginPanel.getComponent('containerGroup').getComponent('formContainer').getComponent('fieldSetGroup').getComponent('user_email').store = store;",
                     "",
@@ -157,6 +168,7 @@
                 "name": "showLoginPanel",
                 "scope": "this"
             },
+            "name": "onShowLoginPanel",
             "designerId": "cfdd3480-a683-443a-8238-6d5c2c86530b"
         },
         {
@@ -189,6 +201,7 @@
                 "name": "closeLoginPanel",
                 "scope": "this"
             },
+            "name": "onCloseLoginPanel",
             "designerId": "739d0eaf-9afb-496c-a631-652dc6dcae09"
         },
         {
@@ -222,6 +235,7 @@
                 "name": "setFieldsFocus",
                 "scope": "this"
             },
+            "name": "onSetFieldSFocus",
             "designerId": "d9c86e15-4aac-4e77-afe3-6086ad3379d2"
         },
         {
@@ -300,6 +314,7 @@
                     "this.getLoginPanel().doLayout();"
                 ]
             },
+            "name": "showCommands",
             "designerId": "530b2fb7-5f54-4448-8426-7f38f1221689"
         },
         {
@@ -315,6 +330,7 @@
                     ""
                 ]
             },
+            "name": "loadData",
             "designerId": "e3a219d2-3949-4061-871a-caf4d113369e"
         },
         {
@@ -391,6 +407,7 @@
                     "return languages;"
                 ]
             },
+            "name": "listLanguages",
             "designerId": "660aec4c-fb86-4489-af9e-104640a33b26"
         }
     ]

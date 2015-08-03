@@ -23,9 +23,12 @@
         "width": 400
     },
     "configAlternates": {
-        "style": "string"
+        "style": "string",
+        "scrollable": "boolean"
     },
     "designerId": "53867acf-58a7-45dd-8151-07bb4b75c49e",
+    "viewControllerInstanceId": "7c1a084f-c423-46bf-88a6-dc21c94b3b46",
+    "viewModelInstanceId": "f8cbad2f-eebd-4048-a260-463a8034de9b",
     "cn": [
         {
             "type": "Ext.view.View",
@@ -35,12 +38,18 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": "lanista-view-favorites",
+                "cls": [
+                    "lanista-view-favorites"
+                ],
                 "height": 250,
                 "id": "viewFavorites",
                 "itemSelector": "div.customer-item",
                 "store": null,
                 "width": 400
+            },
+            "name": "MyView4",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "70473733-6c32-44da-bcb5-2d8018b1d026",
             "cn": [
@@ -59,6 +68,7 @@
                         "name": "hide",
                         "scope": "me"
                     },
+                    "name": "onDataviewHide1",
                     "designerId": "1e459bb3-ded8-482e-b0aa-bf7dd8bb5017"
                 },
                 {
@@ -83,6 +93,7 @@
                             ""
                         ]
                     },
+                    "name": "tpl22",
                     "designerId": "c6271d74-916f-4b2a-bf38-3062dca4c1ce"
                 },
                 {
@@ -254,6 +265,7 @@
                         "name": "afterrender",
                         "scope": "me"
                     },
+                    "name": "onViewFavoritesAfterRender1",
                     "designerId": "85d288e6-e782-4ac3-a869-fdfee4d8c42f"
                 },
                 {
@@ -290,6 +302,7 @@
                         "name": "itemclick",
                         "scope": "me"
                     },
+                    "name": "onViewFavoritesItemClick1",
                     "designerId": "fe7a93ce-f847-4f6b-831e-40dc8db3341d"
                 }
             ]
@@ -307,6 +320,10 @@
                 "id": "previousFavorites",
                 "type": "left"
             },
+            "name": "MyTool6",
+            "configAlternates": {
+                "scrollable": "boolean"
+            },
             "designerId": "c2924540-408d-4b06-8de5-58b19c242551"
         },
         {
@@ -321,6 +338,10 @@
                 "designer|displayName": "",
                 "id": "nextFavorites",
                 "type": "right"
+            },
+            "name": "MyTool7",
+            "configAlternates": {
+                "scrollable": "boolean"
             },
             "designerId": "e2b780d5-2817-40f4-94a7-5c4399cf0833"
         },
@@ -381,6 +402,7 @@
                     ""
                 ]
             },
+            "name": "markDeleteFavorites",
             "designerId": "c48d283b-685d-44a9-8bc4-ad80f0a71b3b"
         }
     ]

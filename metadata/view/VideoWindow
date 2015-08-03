@@ -8,7 +8,9 @@
     "userConfig": {
         "border": false,
         "closable": false,
-        "cls": "lanista-video-window",
+        "cls": [
+            "lanista-video-window"
+        ],
         "designer|userAlias": "videoWindow",
         "designer|userClassName": "VideoWindow",
         "draggable": false,
@@ -22,9 +24,12 @@
     },
     "configAlternates": {
         "style": "string",
-        "resizable": "boolean"
+        "resizable": "boolean",
+        "scrollable": "boolean"
     },
     "designerId": "000f2be1-80ed-41a1-9723-79c3c0b44412",
+    "viewControllerInstanceId": "246b6cb2-7fd4-42fb-a378-ae672c8dd26b",
+    "viewModelInstanceId": "29b1beb2-6bf5-4862-9bcc-91f969c31fb9",
     "cn": [
         {
             "type": "basiceventbinding",
@@ -41,6 +46,7 @@
                 "name": "hide",
                 "scope": "me"
             },
+            "name": "onVideoWindowHide",
             "designerId": "8603caf3-deef-4fea-a27f-1df95ef50046"
         }
     ]
