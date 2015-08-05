@@ -92,7 +92,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
     onNextExercisesClick: function(tool, e, owner, eOpts) {
         var store = Ext.getStore("ExerciseStore"),
-            totalPages = Math.ceil(store.proxy.filterRecords/store.pageSize),
+            filterRecords = (store.filterRecords && store.filterRecords > 0) ? store.filterRecords : store.proxy.filterRecords,
+            totalPages = Math.ceil(filterRecords/store.pageSize),
             itemNode;
 
         console.log('totalPages: ' + totalPages);
@@ -443,6 +444,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                             Ext.Array.sort(allRecords, Ext.util.Sorter.createComparator(sorters));
                         }
 
+
+
                         for (i = operation.getStart() || 0; i < length; i++) {
                             record = allRecords[i];
                             valid = true;
@@ -454,7 +457,6 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                         break;
                                 }
                             }
-
                             if (valid) {
                                 records.push(record);
                                 validCount++;
@@ -464,6 +466,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                             //    break;
                             //}
                         }
+
                     }
 
                 }
@@ -488,37 +491,37 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         }));
 
         Ext.getStore('ExerciseStore').load({
-        	callback: function(records, operation, success) {
+            callback: function(records, operation, success) {
                 console.log("RECORDS " + records.length);
-        		if (records.length === 0) {
-        			Ext.getStore('ExerciseInitialStore').load({
-        				callback: function(records, operation, success) {
-        					var data = records;
-        					var record = null;
-        					for (var i = 0; i < records.length; i++) {
-        						record = records[i].copy(records[i].data.id);
+                if (records.length === 0) {
+                    Ext.getStore('ExerciseInitialStore').load({
+                        callback: function(records, operation, success) {
+                            var data = records;
+                            var record = null;
+                            for (var i = 0; i < records.length; i++) {
+                                record = records[i].copy(records[i].data.id);
                                 record.dirty = true;
-        						Ext.getStore('ExerciseStore').add(record);
-        					}
-        					Ext.getStore('ExerciseStore').sync();
+                                Ext.getStore('ExerciseStore').add(record);
+                            }
+                            Ext.getStore('ExerciseStore').sync();
                             Ext.getStore('ExerciseInitialStore').removeAll();
                             Ext.getStore('ExerciseStore').loadPage(1);
                             if (afterLoadCallback instanceof Function) {
-        						afterLoadCallback();
-        					}
-        				},
-        					scope: this
-        			});
-        		} else {
+                                afterLoadCallback();
+                            }
+                        },
+                        scope: this
+                    });
+                } else {
                     setTimeout(function()
-                    {
-                        console.log("EXERCISES JUST CHARGED ");
-                        Ext.getStore('ExerciseStore').loadPage(1);
-                        afterLoadCallback();
-                    }, 500);
-        		}
-        	},
-        	scope: this
+                               {
+                                   console.log("EXERCISES JUST CHARGED ");
+                                   Ext.getStore('ExerciseStore').loadPage(1);
+                                   afterLoadCallback();
+                               }, 500);
+                }
+            },
+            scope: this
         });
     },
 
@@ -528,19 +531,20 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
              totalPages = "",
              filter = "",
              controller = this,
-             numOfExercises = store.proxy.filterRecords,
+             numOfExercises = (store.filterRecords && store.filterRecords > 0) ? store.filterRecords : store.proxy.filterRecords,
              totalPages = Math.ceil(numOfExercises/store.pageSize),
              searchByTextObj,
              searchText = controller.textToSearch,
              info;
 
         if (store.filters.items.length > 2){
-            filter = ((Ext.isNumber(store.filters.items[1].value)) && (store.filters.items[1].textOptSel) ? '<div class="filterTitle"><span>Musclegruppe  </span> </div> <div class="filterText">' + store.filters.items[1].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[0].value)) && (store.filters.items[0].textOptSel) ? '<div class="filterTitle"><span> Übungstyp </span> </div> <div class="filterText">'+store.filters.items[0].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[2].value)) && (store.filters.items[2].textOptSel)  ? '<div class="filterTitle"><span> Zusätze  </span> </div> <div class="filterText">' + store.filters.items[2].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '');
+            filter = ((Ext.isNumber(store.filters.items[1].getValue())) && (store.filters.items[1].textOptSel) ? '<div class="filterTitle"><span>Musclegruppe  </span> </div> <div class="filterText">' + store.filters.items[1].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[0].getValue())) && (store.filters.items[0].textOptSel) ? '<div class="filterTitle"><span> Übungstyp </span> </div> <div class="filterText">'+store.filters.items[0].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.indexOfKey('machineAux'))) && (store.filters.items[2].textOptSel)  ? '<div class="filterTitle"><span> Zusätze  </span> </div> <div class="filterText">' + store.filters.items[2].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '');
         }
 
         searchByTextObj = store.filters.findBy( function(item, key) {
             return (key === 'filterByWord');
         });
+
         if (searchByTextObj)
             filter = filter ? filter + '<div class="filterTitle"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + '</span></div>  <div class="filterText">' + searchText.toUpperCase() + '</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '<div class="filterTitle"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_TEXT_SEARCH + '</span></div>  <div class="filterText">' + searchText.toUpperCase() + '</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>';
 
@@ -1003,7 +1007,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             numOfFilters = store.filters.length,
             varSearch = seekValue,
             records,
-            user = Ext.ux.SessionManager.getUser();
+            user = Ext.ux.SessionManager.getUser(),
+            filterFunction;
 
         if (numOfFilters === 0 || numOfFilters === 1)
         {
@@ -1021,20 +1026,6 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 root: 'data',
                 exactMatch: true
             }));
-
-            var filterFunction = new Ext.util.Filter({
-                id: 'machine',
-                filterFn: function(item){
-                    if (Ext.isEmpty(this.serchValue)) return true;
-                    for (var i = 0; i < item.data.addition.length; i++) {
-                        if (item.data.addition[i] ==  this.serchValue)
-                            return true;
-                    }
-                    return false;
-                }
-            });
-
-            store.filters.insert(2,filterFunction);
         }
 
         var seekValue1 = "";
@@ -1057,9 +1048,20 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 store.filters.items[0].setValue(seekValue1);
                 break;
             case 3://By Addtion
-                store.filters.items[2].textOptSel = text;
-                store.filters.items[2].setValue(seekValue1);
-                store.filters.items[2].serchValue = seekValue1;
+                store.filters.removeAtKey('machineAux');
+                filterFunction = new Ext.util.Filter({
+                    id: 'machineAux',
+                    textOptSel: text,
+                    filterFn: function(item){
+                        if (Ext.isEmpty(seekValue1)) return true;
+                        for (var i = 0; i < item.data.addition.length; i++) {
+                            if (item.data.addition[i] ==  seekValue1)
+                                return true;
+                        }
+                        return false;
+                    }
+                });
+                store.filter(filterFunction);
                 break;
             default:
                 //
@@ -1069,6 +1071,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         store.sort('name_' + language, 'ASC');
         store.loadPage(1);
         records = store.data.items;
+        store.filterRecords = records.length;
         if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
             (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&
             (user && user.role !== '2'  && LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisesSelectionView'))
@@ -1159,7 +1162,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             //The Exercises filters are copied to the InitialExerciseStore to search the words
             exerciseStoreFilter.filter(current_filters);
             exerciseStoreFilter.removeFilter('filterByWord');
-            exerciseStoreFilter.filters.add (filterFunction);
+
+            //exerciseStoreFilter.filters.add (filterFunction);
+            exerciseStoreFilter.filter(filterFunction);
+
             exerciseStoreFilter.load({
                 callback: function(records, operation, success) {
                     if (searchList.length > 0){
@@ -1193,10 +1199,14 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                             return (result && result.length > 0);
                                         }
                                     });
-                                    exerciseStore.filters.add(filterFunction);
+
+                                    //exerciseStore.filters.add(filterFunction);
+                                    exerciseStore.filter(filterFunction);
 
                                     exerciseStore.loadPage(1);
                                     records = exerciseStore.data.items;
+                                    exerciseStore.filterRecords = records.length;
+
                                     if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
                                         (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&
                                         (user.role === '2' )) {

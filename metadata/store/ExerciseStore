@@ -8,8 +8,6 @@
     "userConfig": {
         "designer|userClassName": "ExerciseStore",
         "model": "ExerciseModel",
-        "remoteFilter": true,
-        "remoteSort": true,
         "storeId": "ExerciseStore"
     },
     "designerId": "7a310724-974e-4711-a167-473c89ee2ce9"

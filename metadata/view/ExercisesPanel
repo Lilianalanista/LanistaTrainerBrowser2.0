@@ -50,14 +50,14 @@
                         "designer|displayName": "tpl",
                         "implHandler": [
                             "<tpl for=\".\">",
-                            "  <div class=\"lanista-x-exercise\">",
-                            "  <div class=\"exercise-item\">",
-                            "\t  <div class=\"lanista-icon lanista-item-delete\"></div>",
-                            "      <div class=\"exercise-list-img exercise-list-img-right\" style=\"background-image: url({[(values.ext_id && values.ext_id.indexOf ('CUST') == -1) ? ('resources/images/previews/'+values.ext_id+'_1') : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/s/'+values.ext_id+'_1')]}.jpg?_dc={[Ext.Date.now()]});\"></div>",
-                            "      <div class=\"exercise-list-img exercise-list-img-left\" style=\"background-image: url({[(values.ext_id && values.ext_id.indexOf ('CUST') == -1) ? ('resources/images/previews/'+values.ext_id+'_2') : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/s/'+values.ext_id+'_2')]}.jpg?_dc={[Ext.Date.now()]});\"></div>",
-                            "      <div class=\"exercise-list-text\">{[values[\"name_\" + Ext.ux.LanguageManager.lang]]}</div>",
-                            "  </div>",
-                            "  </div>",
+                            "    <div class=\"lanista-x-exercise\">",
+                            "        <div class=\"exercise-item\">",
+                            "            <div class=\"lanista-icon lanista-item-delete\"></div>",
+                            "            <div class=\"exercise-list-img exercise-list-img-right\" style=\"background-image: url({[(values.ext_id && values.ext_id.indexOf ('CUST') == -1) ? ('resources/images/previews/'+values.ext_id+'_1') : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/s/'+values.ext_id+'_1')]}.jpg);\"></div>",
+                            "            <div class=\"exercise-list-img exercise-list-img-left\" style=\"background-image: url({[(values.ext_id && values.ext_id.indexOf ('CUST') == -1) ? ('resources/images/previews/'+values.ext_id+'_2') : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/s/'+values.ext_id+'_2')]}.jpg);\"></div>",
+                            "            <div class=\"exercise-list-text\">{[values[\"name_\" + Ext.ux.LanguageManager.lang]]}</div>",
+                            "        </div>",
+                            "    </div>",
                             "</tpl>"
                         ]
                     },
