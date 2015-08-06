@@ -157,41 +157,41 @@ Ext.define('LanistaTrainer.view.MainViewport', {
         //***************************************************************
         el.on(
             'click', function(e,t) {
-                                    if ( t.id === 'showPersonalDataButton' ) //Trainer
-                                    {
-                                        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
-                                            el.addCls('item-not-clicked');
-                                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'UserInfoPanel';
-                                            LanistaTrainer.app.fireEvent('showUserInfoPanel');
-                                        });
-                                    }
-                                    if ( t.id === 'showCustomerDataButton' ) //Customer
-                                    {
-                                        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
-                                            el.addCls('item-not-clicked');
-                                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerInfoPanel';
-                                            LanistaTrainer.app.fireEvent('showCustomerInfoPanel');
-                                        });
-                                    }
+                if ( t.id === 'showPersonalDataButton' ) //Trainer
+                {
+                    LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                        el.addCls('item-not-clicked');
+                        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'UserInfoPanel';
+                        LanistaTrainer.app.fireEvent('showUserInfoPanel');
+                    });
+                }
+                if ( t.id === 'showCustomerDataButton' ) //Customer
+                {
+                    LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                        el.addCls('item-not-clicked');
+                        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerInfoPanel';
+                        LanistaTrainer.app.fireEvent('showCustomerInfoPanel');
+                    });
+                }
             },
             this, {delegate: '.show-info-customer'});
         el.on(
             'mouseover', function(e,t) {
-                                if ( t.id === 'showPersonalDataButton' || t.id === 'showCustomerDataButton' )
-                                {
-                                    el.removeCls('item-not-clicked');
-                                    el.addCls('item-clicked');
-                                }
-                            },
+                if ( t.id === 'showPersonalDataButton' || t.id === 'showCustomerDataButton' )
+                {
+                    el.removeCls('item-not-clicked');
+                    el.addCls('item-clicked');
+                }
+            },
             this,{ delegate: '.show-info-customer'});
         el.on(
             'mouseout', function(e,t) {
-                                if ( t.id === 'showPersonalDataButton' || t.id === 'showCustomerDataButton' )
-                                {
-                                    el.removeCls('item-clicked');
-                                    el.addCls('item-not-clicked');
-                                }
-                            },
+                if ( t.id === 'showPersonalDataButton' || t.id === 'showCustomerDataButton' )
+                {
+                    el.removeCls('item-clicked');
+                    el.addCls('item-not-clicked');
+                }
+            },
             this,{delegate: '.show-info-customer'});
 
 
@@ -225,21 +225,21 @@ Ext.define('LanistaTrainer.view.MainViewport', {
         },this,{delegate: '.lansita-header-customer-photo'});
         el.on(
             'mouseover', function(e,t) {
-                                if ( t.id === 'changeUserPhoto' || t.id === 'changeCustomerPhoto')
-                                {
-                                    el.removeCls('item-not-clicked');
-                                    el.addCls('item-clicked');
-                                }
-                            },
+                if ( t.id === 'changeUserPhoto' || t.id === 'changeCustomerPhoto')
+                {
+                    el.removeCls('item-not-clicked');
+                    el.addCls('item-clicked');
+                }
+            },
             this,{ delegate: '.lansita-header-customer-photo'});
         el.on(
             'mouseout', function(e,t) {
-                                if ( t.id === 'changeUserPhoto' || t.id === 'changeCustomerPhoto')
-                                {
-                                    el.removeCls('item-clicked');
-                                    el.addCls('item-not-clicked');
-                                }
-                            },
+                if ( t.id === 'changeUserPhoto' || t.id === 'changeCustomerPhoto')
+                {
+                    el.removeCls('item-clicked');
+                    el.addCls('item-not-clicked');
+                }
+            },
             this,{delegate: '.lansita-header-customer-photo'});
 
 
@@ -248,38 +248,38 @@ Ext.define('LanistaTrainer.view.MainViewport', {
         //***************************************************************
 
         el.on('click',function(e,t) {
-                                if ( t.id === 'changeUserLogo' )
-                                {
-                                    el.addCls('item-not-clicked');
-                                    var image = Ext.create('Ext.Img', {
-                                                    src: server + root + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg',
-                                                    renderTo: Ext.getBody(),
-                                                    hidden: true,
-                                                    width: 0,
-                                                    height: 0
-                                                });
-                                    lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];
-                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';
-                                    LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/user/uploadphoto',  {type: 'logo'}, function() {});
-                                }
+            if ( t.id === 'changeUserLogo' )
+            {
+                el.addCls('item-not-clicked');
+                var image = Ext.create('Ext.Img', {
+                    src: server + root + '/tpmanager/img/p/'+ localStorage.getItem("user_id") + '_logo.jpg',
+                    renderTo: Ext.getBody(),
+                    hidden: true,
+                    width: 0,
+                    height: 0
+                });
+                lastPanel = LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1];
+                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ImagePanel';
+                LanistaTrainer.app.fireEvent('showImagePanel', image, lastPanel, server + root + '/tpmanager/user/uploadphoto',  {type: 'logo'}, function() {});
+            }
         },this,{delegate: '.lansita-header-customer-logo'});
         el.on(
             'mouseover', function(e,t) {
-                                if ( t.id === 'changeUserLogo' )
-                                {
-                                    el.removeCls('item-not-clicked');
-                                    el.addCls('item-clicked');
-                                }
-                            },
+                if ( t.id === 'changeUserLogo' )
+                {
+                    el.removeCls('item-not-clicked');
+                    el.addCls('item-clicked');
+                }
+            },
             this,{ delegate: '.lansita-header-customer-logo'});
         el.on(
             'mouseout', function(e,t) {
-                                if ( t.id === 'changeUserLogo' )
-                                {
-                                    el.removeCls('item-clicked');
-                                    el.addCls('item-not-clicked');
-                                }
-                            },
+                if ( t.id === 'changeUserLogo' )
+                {
+                    el.removeCls('item-clicked');
+                    el.addCls('item-not-clicked');
+                }
+            },
             this,{delegate: '.lansita-header-customer-logo'});
 
 
@@ -288,68 +288,68 @@ Ext.define('LanistaTrainer.view.MainViewport', {
         //***************************************************************
 
         el.on('click',function(e,t) {
-                if ( t.id === 'deleteSearchFilter' )
-                {
-                    var exerciseStore = Ext.getStore('ExerciseStore');
-                    switch(Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim()) {
-                        case 'Musclegruppe':
-                            LanistaTrainer.app.getController ( 'ExercisesController' ).showFilteredExercises('', 1, this.text);
-                            break;
-                        case 'Übungstyp':
-                            LanistaTrainer.app.getController ( 'ExercisesController' ).showFilteredExercises('', 2, this.text);
-                            break;
-                        case 'Zusätze':
-                            LanistaTrainer.app.getController ( 'ExercisesController' ).showFilteredExercises('', 3, this.text);
-                            break;
-                    }
-                    if ( Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim().toUpperCase().indexOf('TEXT') !== -1 )
-                        exerciseStore.removeFilter('filterByWord');
+            if ( t.id === 'deleteSearchFilter' )
+            {
+                var exerciseStore = Ext.getStore('ExerciseStore');
+                switch(Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim()) {
+                    case 'Musclegruppe':
+                        LanistaTrainer.app.getController ( 'ExercisesController' ).showFilteredExercises('', 1, this.text);
+                        break;
+                    case 'Übungstyp':
+                        LanistaTrainer.app.getController ( 'ExercisesController' ).showFilteredExercises('', 2, this.text);
+                        break;
+                    case 'Zusätze':
+                        LanistaTrainer.app.getController ( 'ExercisesController' ).showFilteredExercises('', 3, this.text);
+                        break;
+                }
+                if ( Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim().toUpperCase().indexOf('TEXT') !== -1 )
+                    exerciseStore.removeFilter('filterByWord');
 
-                   exerciseStore.loadPage(1);
-                   records = exerciseStore.data.items;
-                   exerciseStore.filterRecords = records.length;
+                exerciseStore.loadPage(1);
+                records = exerciseStore.data.items;
+                exerciseStore.filterRecords = records.length;
 
-                   var user = Ext.ux.SessionManager.getUser();
-                   exercisesPanel = LanistaTrainer.app.getController('ExercisesController').getExercisesPanel();
-                   if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
-                        (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&
-                         (user.role === '2')) {
-                       if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {
-                           favorites = LanistaTrainer.app.getController ('FavoritesController').favorites.data.objects;
-                           favoritesArray = favorites !== "" ? favorites.split(',') : [];
+                var user = Ext.ux.SessionManager.getUser();
+                exercisesPanel = LanistaTrainer.app.getController('ExercisesController').getExercisesPanel();
+                if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
+                    (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&
+                    (user.role === '2')) {
+                    if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {
+                        favorites = LanistaTrainer.app.getController ('FavoritesController').favorites.data.objects;
+                        favoritesArray = favorites !== "" ? favorites.split(',') : [];
 
-                           if (favoritesArray.length > 0 ){
-                               for (var i = 0; i < records.length ; i++) {
-                                   for (var j = 0; j < favoritesArray.length; j++) {
-                                       if (Number(favoritesArray[j]) === Number(records[i].data.id)) {
-                                           break;
-                                       }
-                                   }
-
-                                   if (j !== favoritesArray.length){
-                                       itemNode = exercisesPanel.down('#viewExercises').getNode(records[i]);
-                                       Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
-                                   }
-                               }
-                           }
-                       }
-                       else{
+                        if (favoritesArray.length > 0 ){
                             for (var i = 0; i < records.length ; i++) {
-                                for(var j = 0; j < exercisesPanel.selection.length; j++) {
-                                    if(exercisesPanel.selection[j][0] === records[i].data.id) {
+                                for (var j = 0; j < favoritesArray.length; j++) {
+                                    if (Number(favoritesArray[j]) === Number(records[i].data.id)) {
                                         break;
                                     }
                                 }
-                                if (j !== exercisesPanel.selection.length){
+
+                                if (j !== favoritesArray.length){
                                     itemNode = exercisesPanel.down('#viewExercises').getNode(records[i]);
                                     Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                 }
                             }
-                       }
-                   }
-                   LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
+                        }
+                    }
+                    else{
+                        for (var i = 0; i < records.length ; i++) {
+                            for(var j = 0; j < exercisesPanel.selection.length; j++) {
+                                if(exercisesPanel.selection[j][0] === records[i].data.id) {
+                                    break;
+                                }
+                            }
+                            if (j !== exercisesPanel.selection.length){
+                                itemNode = exercisesPanel.down('#viewExercises').getNode(records[i]);
+                                Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                            }
+                        }
+                    }
                 }
-            },
+                LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
+            }
+        },
               this,{delegate: '.lanista-delete-search'});
         el.on(
             'mouseover', function(e,t) {
@@ -361,7 +361,7 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                     Ext.get(t).addCls('lanista-color-delete');
                 }
             },
-                this,{ delegate: '.lanista-delete-search'});
+            this,{ delegate: '.lanista-delete-search'});
         el.on(
             'mouseout', function(e,t) {
                 if ( t.id === 'deleteSearchFilter' )

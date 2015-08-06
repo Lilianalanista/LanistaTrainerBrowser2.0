@@ -1137,39 +1137,39 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             new_filters = [],
             indexFilter,
             records,
-            user;
+            user,
+            recordsExercises;
 
         var exerciseStoreFilter = Ext.create('Ext.data.Store', {
-             model: 'LanistaTrainer.model.ExerciseModel'
-         });
+            model: 'LanistaTrainer.model.ExerciseModel'
+        });
+        recordsExercises = exerciseStore.data.items;
+        exerciseStoreFilter.insert(0,recordsExercises);
 
         var filterFunction = new Ext.util.Filter({
-                filterFn: function(item){
-                    nameValue = lang === 'ES' ? item.data.name_ES : lang === 'EN' ? item.data.name_EN : item.data.name_DE;
-                    result = nameValue.match(re);
-                    if ( result && result.length > 0 ) {
-                        for (var i = 0; i < result.length; i++){
-                            if (searchList.indexOf(result[i]) == -1)
-                                searchList.push(result[i]);
-                        }
+            filterFn: function(item){
+                nameValue = lang === 'ES' ? item.data.name_ES : lang === 'EN' ? item.data.name_EN : item.data.name_DE;
+                result = nameValue.match(re);
+                if ( result && result.length > 0 ) {
+                    for (var i = 0; i < result.length; i++){
+                        if (searchList.indexOf(result[i]) == -1)
+                            searchList.push(result[i]);
                     }
-                    return (result && result.length > 0);
                 }
-            });
+                return (result && result.length > 0);
+            }
+        });
 
         if (textToSearch && textToSearch.length) {
             exerciseStoreFilter.clearFilter();
-            //The Exercises filters are copied to the InitialExerciseStore to search the words
             exerciseStoreFilter.filter(current_filters);
             exerciseStoreFilter.removeFilter('filterByWord');
-
-            //exerciseStoreFilter.filters.add (filterFunction);
             exerciseStoreFilter.filter(filterFunction);
 
-            exerciseStoreFilter.load({
-                callback: function(records, operation, success) {
+            //exerciseStoreFilter.load({
+            //    callback: function(records, operation, success) {
                     if (searchList.length > 0){
-                            exercisesMenu = controller.getRightCommandPanel().getComponent('searchButton').menu;
+                        exercisesMenu = controller.getRightCommandPanel().getComponent('searchButton').menu;
 
                         if (!Ext.ComponentManager.get('recommendatiosContextMenu')){
                             contextMenu = Ext.create('Ext.menu.Menu', {
@@ -1258,15 +1258,16 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                             contextMenu.removeAll();
                             contextMenu.add(searchList);
                         }
-                            controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
+                        controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
 
                     }
                     else{  //searchList.length === 0
-                        Ext.ComponentManager.get('recommendatiosContextMenu').hide();
+                        if (Ext.ComponentManager.get('recommendatiosContextMenu'))
+                            Ext.ComponentManager.get('recommendatiosContextMenu').hide();
                         controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
                     }
-                }
-            });
+                //}
+           // });
         }
 
 
