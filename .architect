@@ -3830,7 +3830,7 @@
                 }
             ]
         },
-        "resource": false,
+        "resource": true,
         "f0206f51-1d2e-4633-bbc5-fb00924663a5": {
             "id": "f0206f51-1d2e-4633-bbc5-fb00924663a5"
         },
@@ -3874,7 +3874,7 @@
     },
     "inspectorState": {
         "topInstance": "52ded827-c29d-4d9f-8209-c4791844ebf6",
-        "selectedInstance": "3cd9420b-1657-49d2-ad1c-5b86529fcb95"
+        "selectedInstance": "f3c98974-e437-437c-b5d4-6ea676002b7e"
     },
     "editMode": "code",
     "userSettings": {}

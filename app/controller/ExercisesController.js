@@ -98,8 +98,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
         console.log('totalPages: ' + totalPages);
 
-        if (Ext.getStore("ExerciseStore").currentPage < totalPages)
-        {
+        //if (Ext.getStore("ExerciseStore").currentPage < totalPages)
+        //{
             store.nextPage({
                 scope: this,
                 callback: function(records, operation, success) {
@@ -142,7 +142,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 }
             });
             LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
-        }
+        //}
     },
 
     onPreviousExercisesClick: function(tool, e, owner, eOpts) {
@@ -388,10 +388,6 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
     onLoadExercises: function(afterLoadCallback) {
 
         var controller = this;
-
-        //Ext.getStore('ExerciseStore').$configStrict = false;
-        //Ext.getStore('ExerciseStore').getProxy().$configStrict = false;
-
         Ext.getStore('ExerciseStore').setProxy(new Ext.data.proxy.LocalStorage({
             $configStrict: false,
             type: 'localstorage',
@@ -405,7 +401,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                     Model = me.getModel(),
                     validCount = 0,
                     recordCreator = operation.getRecordCreator(),
-                    filters, sorters, limit, filterLen, valid, record, ids, length, data, id, i, j;
+                    filters, sorters, limit, filterLen, valid, record, ids, length, data, id, i, j,
+                    recordsFilterLimit = [],
+                    initLimit,
+                    storeExercises;
 
                 if (me.isHierarchical) {
                     records = me.getTreeData();
@@ -413,6 +412,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                     ids = me.getIds();
                     length = ids.length;
                     id = operation.getId();
+
                     //read a single record
                     if (id) {
                         data = me.getRecord(id);
@@ -426,8 +426,10 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                             success = false;
                         }
                     } else {
-                        sorters = operation.getSorters();
-                        filters = operation.getFilters();
+                        storeExercises = Ext.getStore('ExerciseStore');
+                        sorters = storeExercises.getSorters();
+                        filters = storeExercises.getFilters();
+
                         limit = operation.getLimit();
                         allRecords = [];
 
@@ -444,39 +446,36 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                             Ext.Array.sort(allRecords, Ext.util.Sorter.createComparator(sorters));
                         }
 
-
-
-                        for (i = operation.getStart() || 0; i < length; i++) {
+                        for (i = 0; i < length; i++) {
                             record = allRecords[i];
                             valid = true;
 
-                            if (filters && filters.length === 3) {
+                            if (filters && filters.length > 0) {
                                 for (j = 0, filterLen = filters.length; j < filterLen; j++) {
-                                    valid = filters[j].filter(record);
+                                    valid = filters.items[j].filter(record);
                                     if (!valid)
                                         break;
                                 }
                             }
                             if (valid) {
-                                records.push(record);
-                                validCount++;
+                                recordsFilterLimit.push(record);
                             }
-
-                            //if (limit && validCount === limit) {
-                            //    break;
-                            //}
                         }
+                        me.filterRecords = recordsFilterLimit.length;
 
+                        for (i = operation.getStart() || 0; i < recordsFilterLimit.length; i++) {
+                            record = recordsFilterLimit[i];
+                            records.push(record);
+                            validCount++;
+
+                            if (limit && validCount === limit) {
+                                break;
+                            }
+                        }
                     }
-
                 }
 
                 me.allRecords = allRecords.length;
-                if (filters && filters.length === 3)
-                    me.filterRecords = records.length;
-                else
-                    me.filterRecords = allRecords.length;
-
                 if (success) {
                     operation.setResultSet(new Ext.data.ResultSet({
                         records: records,
@@ -484,11 +483,14 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                         loaded : true
                     }));
                     operation.setSuccessful(true);
+
+
                 } else {
                     operation.setException('Unable to load records');
                 }
             }
         }));
+
 
         Ext.getStore('ExerciseStore').load({
             callback: function(records, operation, success) {
@@ -531,14 +533,14 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
              totalPages = "",
              filter = "",
              controller = this,
-             numOfExercises = (store.filterRecords && store.filterRecords > 0) ? store.filterRecords : store.proxy.filterRecords,
+             numOfExercises = store.proxy.filterRecords,
              totalPages = Math.ceil(numOfExercises/store.pageSize),
              searchByTextObj,
              searchText = controller.textToSearch,
              info;
 
-        if (store.filters.items.length > 2){
-            filter = ((Ext.isNumber(store.filters.items[1].getValue())) && (store.filters.items[1].textOptSel) ? '<div class="filterTitle"><span>Musclegruppe  </span> </div> <div class="filterText">' + store.filters.items[1].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[0].getValue())) && (store.filters.items[0].textOptSel) ? '<div class="filterTitle"><span> Übungstyp </span> </div> <div class="filterText">'+store.filters.items[0].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.indexOfKey('machineAux'))) && (store.filters.items[2].textOptSel)  ? '<div class="filterTitle"><span> Zusätze  </span> </div> <div class="filterText">' + store.filters.items[2].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '');
+        if (store.filters.items.length > 0){
+            filter = ((Ext.isNumber(store.filters.items[1].getValue())) && (store.filters.items[1].textOptSel) ? '<div class="filterTitle"><span>Musclegruppe  </span> </div> <div class="filterText">' + store.filters.items[1].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[0].getValue())) && (store.filters.items[0].textOptSel) ? '<div class="filterTitle"><span> Übungstyp </span> </div> <div class="filterText">'+store.filters.items[0].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((store.filters.indexOfKey('machineAux') !== -1) && (store.filters.items[2].textOptSel)  ? '<div class="filterTitle"><span> Zusätze  </span> </div> <div class="filterText">' + store.filters.items[2].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '');
         }
 
         searchByTextObj = store.filters.findBy( function(item, key) {
@@ -719,6 +721,14 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                 keydown: {
                                     element: 'el',
                                     fn: function(e, textfield, eOpts){
+                                        if(e.keyCode === 27){
+                                            if (Ext.ComponentManager.get('recommendatiosContextMenu')){
+                                                Ext.ComponentManager.get('recommendatiosContextMenu').removeAll();
+                                                Ext.ComponentManager.get('recommendatiosContextMenu').hide();
+                                            }
+                                            container.getRightCommandPanel().getComponent('searchButton').menu.hide();
+                                            return;
+                                        }
                                         if (textfield.value.length > 1)
                                             container.searchWordExercisesByText(textfield.value);
                                         else{
@@ -1168,106 +1178,106 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
             //exerciseStoreFilter.load({
             //    callback: function(records, operation, success) {
-                    if (searchList.length > 0){
-                        exercisesMenu = controller.getRightCommandPanel().getComponent('searchButton').menu;
+            if (searchList.length > 0){
+                exercisesMenu = controller.getRightCommandPanel().getComponent('searchButton').menu;
 
-                        if (!Ext.ComponentManager.get('recommendatiosContextMenu')){
-                            contextMenu = Ext.create('Ext.menu.Menu', {
-                                items: searchList,
-                                shadow: true,
-                                width: 100,
-                                height: (searchList.length * 20) < 200 ? searchList.length * 20 : 200,
-                                autoscroll: true,
-                                cls: 'menu-lanista-button',
-                                id: 'recommendatiosContextMenu'
+                if (!Ext.ComponentManager.get('recommendatiosContextMenu')){
+                    contextMenu = Ext.create('Ext.menu.Menu', {
+                        items: searchList,
+                        shadow: true,
+                        width: 100,
+                        height: (searchList.length * 20) < 200 ? searchList.length * 20 : 200,
+                        autoscroll: true,
+                        cls: 'menu-lanista-button',
+                        id: 'recommendatiosContextMenu'
+                    });
+                    contextMenu.on('hide', function(component) {
+                        controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').setValue('');
+                        component.destroy();
+                    }, controller);
+                    contextMenu.on('click', function(menu, item, e, eOpts) {
+                        if (item){
+                            exerciseStore.removeFilter('filterByWord');
+                            re = new RegExp("\\w*"+item.text+"\\w*", "gi");
+                            user = Ext.ux.SessionManager.getUser();
+
+                            filterFunction = new Ext.util.Filter({
+                                id: 'filterByWord',
+                                filterFn: function(itemValue){
+                                    nameValue = lang === 'ES' ? itemValue.data.name_ES : lang === 'EN' ? itemValue.data.name_EN : itemValue.data.name_DE;
+                                    result = nameValue.match(re);
+                                    return (result && result.length > 0);
+                                }
                             });
-                            contextMenu.on('hide', function(component) {
-                                controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').setValue('');
-                                component.destroy();
-                            }, controller);
-                            contextMenu.on('click', function(menu, item, e, eOpts) {
-                                if (item){
-                                    exerciseStore.removeFilter('filterByWord');
-                                    re = new RegExp("\\w*"+item.text+"\\w*", "gi");
-                                    user = Ext.ux.SessionManager.getUser();
 
-                                    filterFunction = new Ext.util.Filter({
-                                        id: 'filterByWord',
-                                        filterFn: function(itemValue){
-                                            nameValue = lang === 'ES' ? itemValue.data.name_ES : lang === 'EN' ? itemValue.data.name_EN : itemValue.data.name_DE;
-                                            result = nameValue.match(re);
-                                            return (result && result.length > 0);
-                                        }
-                                    });
+                            //exerciseStore.filters.add(filterFunction);
+                            exerciseStore.filter(filterFunction);
 
-                                    //exerciseStore.filters.add(filterFunction);
-                                    exerciseStore.filter(filterFunction);
+                            exerciseStore.loadPage(1);
+                            records = exerciseStore.data.items;
+                            exerciseStore.filterRecords = records.length;
 
-                                    exerciseStore.loadPage(1);
-                                    records = exerciseStore.data.items;
-                                    exerciseStore.filterRecords = records.length;
+                            if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
+                                (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&
+                                (user.role === '2' )) {
+                                if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {
+                                    favorites = LanistaTrainer.app.getController ('FavoritesController').favorites.data.objects;
+                                    favoritesArray = favorites !== "" ? favorites.split(',') : [];
 
-                                    if ((LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
-                                        (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel') &&
-                                        (user.role === '2' )) {
-                                        if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] === 'FavoritesPanel')) {
-                                            favorites = LanistaTrainer.app.getController ('FavoritesController').favorites.data.objects;
-                                            favoritesArray = favorites !== "" ? favorites.split(',') : [];
-
-                                            if (favoritesArray.length > 0 ){
-                                                for (i = 0; i < records.length ; i++) {
-                                                    for ( j = 0; j < favoritesArray.length; j++) {
-                                                        if (Number(favoritesArray[j]) === Number(records[i].data.id)) {
-                                                            break;
-                                                        }
-                                                    }
-
-                                                    if (j !== favoritesArray.length){
-                                                        itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
-                                                        Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
-                                                    }
+                                    if (favoritesArray.length > 0 ){
+                                        for (i = 0; i < records.length ; i++) {
+                                            for ( j = 0; j < favoritesArray.length; j++) {
+                                                if (Number(favoritesArray[j]) === Number(records[i].data.id)) {
+                                                    break;
                                                 }
                                             }
-                                        }
-                                        else{
-                                            for (var k = 0; k < records.length ; k++) {
-                                                for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
-                                                    if(this.getExercisesPanel().selection[j][0] === records[k].data.id) {
-                                                        break;
-                                                    }
-                                                }
-                                                if (j !== this.getExercisesPanel().selection.length){
-                                                    itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[k]);
-                                                    Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
-                                                }
+
+                                            if (j !== favoritesArray.length){
+                                                itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
+                                                Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                             }
                                         }
                                     }
-
-                                    controller.textToSearch = item.text;
-                                    LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
-
-                                    contextMenu.hide();
-                                    exercisesMenu.hide();
                                 }
-                            }, controller);
-                            contextMenu.showAt(exercisesMenu.getX() - contextMenu.width, exercisesMenu.getY() - (contextMenu.height / 2));
-                        }
-                        else{
-                            contextMenu = Ext.ComponentManager.get('recommendatiosContextMenu');
-                            contextMenu.removeAll();
-                            contextMenu.add(searchList);
-                        }
-                        controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
+                                else{
+                                    for (var k = 0; k < records.length ; k++) {
+                                        for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
+                                            if(this.getExercisesPanel().selection[j][0] === records[k].data.id) {
+                                                break;
+                                            }
+                                        }
+                                        if (j !== this.getExercisesPanel().selection.length){
+                                            itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[k]);
+                                            Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
+                                        }
+                                    }
+                                }
+                            }
 
-                    }
-                    else{  //searchList.length === 0
-                        if (Ext.ComponentManager.get('recommendatiosContextMenu'))
-                            Ext.ComponentManager.get('recommendatiosContextMenu').hide();
-                        controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
-                    }
-                //}
-           // });
+                            controller.textToSearch = item.text;
+                            LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
+
+                            contextMenu.hide();
+                            exercisesMenu.hide();
+                        }
+                    }, controller);
+                    contextMenu.showAt(exercisesMenu.getX() - contextMenu.width, exercisesMenu.getY() - (contextMenu.height / 2));
+                }
+                else{
+                    contextMenu = Ext.ComponentManager.get('recommendatiosContextMenu');
+                    contextMenu.removeAll();
+                    contextMenu.add(searchList);
+                }
+                controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
+
+            }
+            else{  //searchList.length === 0
+                if (Ext.ComponentManager.get('recommendatiosContextMenu'))
+                    Ext.ComponentManager.get('recommendatiosContextMenu').hide();
+                controller.getRightCommandPanel().getComponent('searchButton').menu.getComponent('searchText').focus();
+            }
+            //}
+            // });
         }
 
 
