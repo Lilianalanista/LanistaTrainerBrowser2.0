@@ -124,10 +124,14 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
         var el = dataview.el,
             controller = LanistaTrainer.app.getController ('PlanController'),
             activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
-            selectionTab = controller.selectionsTab[controller.currentDay.id.substring(1)];
+            selectionTab;
+
+        if (!controller.currentDay) return;
+
+        selectionTab = controller.selectionsTab[controller.currentDay.id.substring(1)];
 
         if (activeTab.id === el.id){
-            //Looking for items that must be deleted and they are deleted
+            //Looking for items that must be deleted and deleting them
             for (var j = 0; j < selectionTab.length; j++){
                 if (selectionTab[j][3] === 'd'){
                     for (var k = 0; k < dataview.recordsArray.length; k++){

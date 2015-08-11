@@ -1,7 +1,8 @@
 {
    "name": "LanistaTrainer",
    "requires": [
-      "sencha-charts"
+      "sencha-charts",
+      "ext-locale"
    ],
    "id": "fd3eac1a-0c81-4892-8906-0a5336d8d595",
    "resources": [

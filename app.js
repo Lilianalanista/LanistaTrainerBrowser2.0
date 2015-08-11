@@ -88,7 +88,9 @@ Ext.application({
         'MyButton7',
         'TestPanel',
         'WeightsWindow',
-        'WeightsWindow_II'
+        'WeightsWindow_II',
+        'ExercisePanel',
+        'ExercisesPanel'
     ],
     controllers: [
         'MainController',
@@ -128,7 +130,8 @@ Ext.application({
             else
             {
                 var user = Ext.ux.SessionManager.getUser(),
-                    url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
+                    //url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
+                    url = 'ext/packages/ext-locale/build/ext-locale-' + user.language.toLowerCase() + '.js';
 
                 if (user.language != Ext.ux.LanguageManager.lang)
                     LanistaTrainer.app.fireEvent('changeLanguage', user.language, false);
@@ -319,7 +322,7 @@ Ext.application({
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 headers: {
                     user_id: userId
@@ -332,11 +335,11 @@ Ext.application({
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 writer: {
                     type: 'json',
-                    root: 'results'
+                    rootProperty: 'results'
                 },
                 headers: {
                     user_id: userId
@@ -349,11 +352,11 @@ Ext.application({
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 writer: {
                     type: 'json',
-                    root: 'results'
+                    rootProperty: 'results'
                 },
                 headers: undefined //{
                     //user_id: userId
@@ -366,11 +369,11 @@ Ext.application({
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 writer: {
                     type: 'json',
-                    root: 'results'
+                    rootProperty: 'results'
                 },
                 headers: {
                     user_id: userId
@@ -383,11 +386,11 @@ Ext.application({
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 writer: {
                     type: 'json',
-                    root: 'results'
+                    rootProperty: 'results'
                 },
                 headers: {
                     user_id: userId
@@ -400,11 +403,11 @@ Ext.application({
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 writer: {
                     type: 'json',
-                    root: 'results'
+                    rootProperty: 'results'
                 },
                 headers: {
                     user_id: userId
@@ -417,11 +420,11 @@ Ext.application({
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 writer: {
                     type: 'json',
-                    root: 'results'
+                    rootProperty: 'results'
                 },
                 headers: {
                     user_id: userId

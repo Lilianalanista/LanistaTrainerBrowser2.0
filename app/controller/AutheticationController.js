@@ -80,7 +80,8 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                             }
 
                             var user = Ext.ux.SessionManager.getUser(),
-                                url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
+                                //url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
+                                url = 'ext/packages/ext-locale/build/ext-locale-' + user.language.toLowerCase() + '.js';
 
                             if (user.language != Ext.ux.LanguageManager.lang)
                                 LanistaTrainer.app.fireEvent('changeLanguage', user.language, false);

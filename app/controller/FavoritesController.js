@@ -163,7 +163,7 @@ Ext.define('LanistaTrainer.controller.FavoritesController', {
             filterFunction,
             favoritesIds = [];
 
-        favoritesPanel.controller = controller;
+        favoritesPanel.workController = controller.getModuleClassName();
         mainStage.add( favoritesPanel );
         controller.favorites = favoriteRecord;
         controller.favoritesStoreName = store;

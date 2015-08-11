@@ -242,7 +242,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             myExercies = false,
             user = Ext.ux.SessionManager.getUser();
 
-        //exercisesPanel.controller = controller;
+        exercisesPanel.workController = controller.getModuleClassName();
         var viewportXCapacity	= Math.floor(mainStage.getEl().getWidth(true)/187);
         var viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/177) * viewportXCapacity;
 

@@ -83,7 +83,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             newHeightProtocols = 0,
             user = Ext.ux.SessionManager.getUser();
 
-        customerExercisesPanel.controller = controller;
+        customerExercisesPanel.workController = controller.getModuleClassName();
         mainStage.add( customerExercisesPanel );
 
         customerExercisesPanel.on('hide', function(component) {
@@ -295,7 +295,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
                 //for ( var i = 0; i < groups.length && i < 7; i++ ) {
                 for ( var i = 0; i < groups.length; i++ ) {
-                        dataGridStore = groups[i].children;
+                        dataGridStore = groups.items[i].items;
                         gridStore = null;
                         gridStore = Ext.create('Ext.data.Store', {
                             model: 'LanistaTrainer.model.Protocoll',
@@ -323,7 +323,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                                         toFrontOnShow: true,
                                                         dataIndex: 'string',
                                                         menuDisabled: true,
-                                                        text: groups[i].name
+                                                        text: groups.items[i].getGroupKey()
                                                     }
                                                  ],
                                         viewConfig: {
@@ -349,14 +349,15 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                                 ],
                                         listeners: {
                                                         groupclick: function(view, node, group, e, eOpts) {
-                                                            var Exercise = Ext.ModelManager.getModel('LanistaTrainer.model.ExerciseModel'),
+                                                            //var Exercise = Ext.ModelManager.getModel('LanistaTrainer.model.ExerciseModel'),
+                                                            var Exercise = Ext.create('LanistaTrainer.model.ExerciseModel'),
                                                                 protocolls = null,
                                                                 protocollsData = null;
 
 
-                                                            for ( var i = 0; i < view.store.groups.length; i++ ) {
-                                                                if (view.store.groups.items[i].key === parseInt(group)) {
-                                                                    protocollsData = view.store.groups.items[i];
+                                                            for ( var i = 0; i < view.store.getGroups().length; i++ ) {
+                                                                if (view.store.getGroups().items[i].getGroupKey() === group) {
+                                                                    protocollsData = view.store.getGroups().items[i];
                                                                     break;
                                                                 }
                                                             }

@@ -235,15 +235,15 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         el.on('mouseover',function(e,t){
             Ext.get(t).removeCls('item-not-clicked');
             Ext.get(t).addCls('item-clicked');
-            Ext.get(t).down('.lanista-delete-plan').setHTML('u');
+            Ext.get(t).down('.lanista-delete-plan').setHtml('u');
             Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
             Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
         },
              this, {delegate: '.lanista-item-plans'});
 
         el.on('mouseout',function(e,t){
-            Ext.get(t).down('.lanista-delete-plan').setHTML('');
-            Ext.get(t).down('.lanista-delete-plan').setHTML('');
+            Ext.get(t).down('.lanista-delete-plan').setHtml('');
+            Ext.get(t).down('.lanista-delete-plan').setHtml('');
             Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
             Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
         },
@@ -275,7 +275,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
              this, {delegate: '.lanista-delete-plan'});
 
         el.on('mouseout',function(e,t){
-            Ext.get(t).setHTML('');
+            Ext.get(t).setHtml('');
             Ext.get(t).removeCls('lanista-color-plan-delete');
             Ext.get(t).addCls('lanista-color-plan-no-delete');
 

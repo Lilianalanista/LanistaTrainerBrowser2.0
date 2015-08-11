@@ -460,6 +460,14 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         controller.planname = planname;
         controller.getPlanPanel().down('planExercisesList').store = planExercisesStore;
 
+
+
+
+        //planExercisesStore.filter([{property : 'plan_id',value: controller.plan.id}]);
+
+
+
+
         planExercisesStore.setProxy(new Ext.data.proxy.Ajax({
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
                 model: 'LanistaTrainer.model.PlanExercise',
@@ -495,7 +503,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 tabActiveId = controller.currentDay || controller.getPlanPanel ().down ('tabpanel').child('#d1'),
                 user = Ext.ux.SessionManager.getUser();
 
-            planPanel.controller = controller;
+            planPanel.workController = controller.getModuleClassName();
             controller.createDayPanels ( controller.plan.data.days );
 
             mainStage.add( planPanel );

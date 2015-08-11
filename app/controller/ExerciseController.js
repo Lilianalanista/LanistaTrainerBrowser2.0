@@ -154,12 +154,12 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             if (controller.getMainStage().getLayout().getActiveItem().id === 'customerExercisesPanel')
             {
                 controller.getMainStage().getLayout().getActiveItem().down('#customerProtocolls').removeAll(true);
-                controller.getController(controller.getMainStage().getLayout().getActiveItem().controller.id).loadProtocolls();
+                controller.getController(controller.getMainStage().getLayout().getActiveItem().workController).loadProtocolls();
             }
 
             LanistaTrainer.app.setStandardButtons('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] + 'Button');
-            controller.getController(controller.getMainStage().getLayout().getActiveItem().controller.id).showCommands();
-            controller.getController(controller.getMainStage().getLayout().getActiveItem().controller.id).setHeader();
+            controller.getController(controller.getMainStage().getLayout().getActiveItem().workController).showCommands();
+            controller.getController(controller.getMainStage().getLayout().getActiveItem().workController).setHeader();
             controller.getMainStage().getLayout().getActiveItem().removeCls ('blured');
 
 
@@ -400,17 +400,6 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         // *** 2 Show the panel
         exercisePanel.show();
 
-
-
-
-
-
-        //*********************************************************************************
-        /*
-
-
-
-
         if ( currentPlan ) {
             controller.currentPlanExercise.training = controller.currentPlanExercise.training_min;
             controller.currentPlanExercise.weight = controller.currentPlanExercise.weight_min;
@@ -456,17 +445,6 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         else
             exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.hide();
 
-
-
-
-
-
-
-
-
-
-
-
         if ( currentPlan ){
             //exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(3));
             exercisePanel.down('#exercisePanelContent').setActiveTab(3);
@@ -484,19 +462,6 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                 controller.showInfoTabCommands();
             }
         }
-
-
-
-
-
-
-        */
-        //*********************************************************************************
-
-
-
-
-
 
         LanistaTrainer.app.fireEvent('showExerciseHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');
