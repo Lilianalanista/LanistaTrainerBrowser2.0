@@ -232,7 +232,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                                 language: 'EN',
                                 birthday: '01/01/1980'
                             });
-                        customerModel.setProxy(new Ext.data.proxy.Ajax({
+                        customerModel.proxy = new Ext.data.proxy.Ajax({
                             url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/json',
                             noCache: false,
                             reader: {
@@ -247,8 +247,8 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                             headers: {
                                 user_id: userId
                             }
-                        }));
-                        customerModel.save({
+                        });
+                        LanistaTrainer.app.getController('MainController').saveModel(customerModel, {
                             callback: function(record,event,success) {
                                 if (success)
                                 {

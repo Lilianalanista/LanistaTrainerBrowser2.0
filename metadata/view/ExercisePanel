@@ -257,7 +257,7 @@
                                 ],
                                 "id": "protocollPanel",
                                 "layout|flex": null,
-                                "title": "My Panel",
+                                "title": null,
                                 "width": 850
                             },
                             "name": "MyPanel2",

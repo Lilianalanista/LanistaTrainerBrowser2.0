@@ -503,6 +503,26 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 tabActiveId = controller.currentDay || controller.getPlanPanel ().down ('tabpanel').child('#d1'),
                 user = Ext.ux.SessionManager.getUser();
 
+
+
+
+
+
+
+            console.log('Valores....');
+            console.log(records);
+
+
+
+
+
+
+
+
+
+
+
+
             planPanel.workController = controller.getModuleClassName();
             controller.createDayPanels ( controller.plan.data.days );
 
@@ -569,7 +589,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
         planPanel.down ('#planHeader').update(controller.plan.data);
         if (!controller.plan.data.description)
-            Ext.get('planHeaderDescription').setHTML('No description available');
+            Ext.get('planHeaderDescription').setHtml('No description available');
 
         controller.getMainViewport().down("#header").update({
             info: divLogo + divInfoCustomer,
@@ -744,9 +764,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             duration: 12
         });
 
-        newPlan.setProxy(new Ext.data.proxy.Ajax({
+        //newPlan.setProxy(new Ext.data.proxy.Ajax({
+        newPlan.proxy = new Ext.data.proxy.Ajax({
             url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
-            model: 'Plan',
+            model: 'LanistaTrainer.model.Plan',
             noCache: false,
             reader: {
                 type: 'json',
@@ -760,7 +781,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             headers: {
                 user_id: userId
             }
-        }));
+        });
 
         newPlan.save (
             {

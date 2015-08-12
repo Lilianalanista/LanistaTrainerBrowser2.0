@@ -131,7 +131,6 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                             '<div class="protocoll-configuration">{weight} Kg. x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>\''
                                         ],
                                         width: 850,
-                                        title: 'My Panel',
                                         dockedItems: [
                                             {
                                                 xtype: 'gridpanel',
