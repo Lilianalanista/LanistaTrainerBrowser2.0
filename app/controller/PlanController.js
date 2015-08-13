@@ -158,17 +158,17 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 training_min: controller.training_min
             });
 
-            newPlanExercise.setProxy(new Ext.data.proxy.Ajax({
+            newPlanExercise.proxy = new Ext.data.proxy.Ajax({
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
-                model: 'PlanExercise',
+                model: 'LanistaTrainer.model.PlanExercise',
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 writer: {
                     type: 'json',
-                    root: 'records',
+                    rootProperty: 'records',
                     allowSingle: false
                 },
                 api: {
@@ -180,10 +180,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 headers: {
                     user_id: userId
                 }
-            }));
+            });
 
             if (selection[i][3] !== 'd'){ //'d' indicates that the record must be deleted
-                newPlanExercise.save ();
+                LanistaTrainer.app.getController('MainController').saveModel(newPlanExercise);
                 selection[i][2] = 1; // To mark record as saved on server
             }
         }
@@ -192,26 +192,25 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 if ( currentDay > controller.plan.data.days ) {
                     controller.plan.set ( 'days', currentDay );
 
-                    controller.plan.setProxy(new Ext.data.proxy.Ajax({
+                    controller.plan.proxy = new Ext.data.proxy.Ajax({
                         url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
-                        model: 'Plan',
+                        model: 'LanistaTrainer.model.Plan',
                         noCache: false,
                         reader: {
                             type: 'json',
-                            root: 'entries'
+                            rootProperty: 'entries'
                         },
                         writer: {
                             type: 'json',
-                            root: 'records',
+                            rootProperty: 'records',
                             allowSingle: false
                         },
                         headers: {
                             user_id: userId
                         }
-                    }));
+                    });
 
-
-                    controller.plan.save ({
+                    LanistaTrainer.app.getController('MainController').saveModel(controller.plan.save, {
                         callback: function( changedPlan, operation, success ) {
                             console.log ( changedPlan );
                             LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
@@ -460,13 +459,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         controller.planname = planname;
         controller.getPlanPanel().down('planExercisesList').store = planExercisesStore;
 
-
-
-
-        //planExercisesStore.filter([{property : 'plan_id',value: controller.plan.id}]);
-
-
-
+        if (controller.plan.id)
+            planExercisesStore.filter([{property : 'plan_id',value: controller.plan.id}]);
 
         planExercisesStore.setProxy(new Ext.data.proxy.Ajax({
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
@@ -502,26 +496,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 recordsArray = [],
                 tabActiveId = controller.currentDay || controller.getPlanPanel ().down ('tabpanel').child('#d1'),
                 user = Ext.ux.SessionManager.getUser();
-
-
-
-
-
-
-
-            console.log('Valores....');
-            console.log(records);
-
-
-
-
-
-
-
-
-
-
-
 
             planPanel.workController = controller.getModuleClassName();
             controller.createDayPanels ( controller.plan.data.days );
@@ -627,22 +601,27 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         }
         store.sort('name_' + Ext.ux.LanguageManager.lang, 'ASC');
 
-        exercisesPanel.selection = this.selectionsTab[this.currentDay.id.substring(1)];
-        mainStage.add(exercisesPanel);
+        exercisesPanel.down('#viewExercises').bindStore(store);
+        store.load(function() {
+            exercisesPanel.selection = self.selectionsTab[self.currentDay.id.substring(1)];
+            mainStage.add(exercisesPanel);
 
-        this.showCommandsExercises();
-        exercisesPanel.on('hide', function(component) {
-            component.destroy();
-        }, self);
+            self.showCommandsExercises();
+            exercisesPanel.on('hide', function(component) {
+                component.destroy();
+            }, self);
 
-        exercisesPanel.headerInfo = '<div class="exercises-header">' + Ext.ux.LanguageManager.TranslationArray.TRAINING_PLAN + ': ' + this.plan.data.name + '</div>';
-        exercisesPanel.headerTitle = Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES;
-        exercisesPanel.show();
+            //exercisesPanel.down('#viewExercises').bindStore(store);
+            exercisesPanel.headerInfo = '<div class="exercises-header">' + Ext.ux.LanguageManager.TranslationArray.TRAINING_PLAN + ': ' + self.plan.data.name + '</div>';
+            exercisesPanel.headerTitle = Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES;
+            exercisesPanel.show();
 
-        LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
-        LanistaTrainer.app.fireEvent('showStage');
+            LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
+            LanistaTrainer.app.fireEvent('showStage');
 
-        if ( callback instanceof Function ) callback();
+            if ( callback instanceof Function ) callback();
+        });
+
     },
 
     onShowPlanOptionsPanel: function(callback) {
@@ -1161,9 +1140,9 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
         PlanExercise.data = data;
         PlanExercise.phantom = false;
-        PlanExercise.setProxy(new Ext.data.proxy.Ajax({
+        PlanExercise.proxy = new Ext.data.proxy.Ajax({
             url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
-            model: 'PlanExercise',
+            model: 'LanistaTrainer.model.PlanExercise',
             noCache: false,
             api: {
                 create: undefined,
@@ -1177,11 +1156,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             headers: {
                 user_id: userId
             }
-        }));
+        });
 
-        PlanExercise.destroy ({
+        LanistaTrainer.app.getController('MainController').eraseModel(PlanExercise);
+        /*PlanExercise.destroy ({
             action: 'destroy'
         });
+        */
     },
 
     showCommandsExercises: function() {

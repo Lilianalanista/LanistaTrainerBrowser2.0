@@ -251,6 +251,32 @@
             },
             "name": "saveModel",
             "designerId": "44aa746d-c7b2-4e16-b14e-f727deae5bfd"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "model",
+                    "options"
+                ],
+                "fn": "eraseModel",
+                "implHandler": [
+                    "var me = model;",
+                    "",
+                    "    me.erasing = true;",
+                    "    me.drop();",
+                    "",
+                    "    delete me.erasing;",
+                    "    return this.saveModel(me, options);"
+                ]
+            },
+            "name": "eraseModel",
+            "designerId": "f8eb568e-41e4-48a7-bd22-b23ca4f5a01d"
         }
     ]
 }

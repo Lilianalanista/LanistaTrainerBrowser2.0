@@ -201,7 +201,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         windowPanel.show ();
 
         record = activeTab.id === 'protocollsTabPanel' ? exercisePanel.down('#protocollPanel').protocollInformation :
-                 activeTab.id === 'configurationTabPanel' ? controller.currentPlanExercise : '';
+        activeTab.id === 'configurationTabPanel' ? controller.currentPlanExercise : '';
 
         windowPanel.down( "#protocollKgValue" ).setValue(record.weight);
         windowPanel.down( "#protocollTrainingValue" ).setValue(record.training);
@@ -427,7 +427,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             });
 
             protocollsStore.load (function (records) {
-                var exercisePanel	= controller.getExercisePanel();
+                var exercisePanel	= controller.getExercisePanel(),
+                    protocoll = null;
 
                 exercisePanel.down('#exercisePanelContent').down('#protocollsTabPanel').down('#exerciseProtocolls').reconfigure(protocollsStore);
                 if ( protocollsStore.data && protocollsStore.data.items.length > 0 ) {
@@ -435,9 +436,16 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                     exercisePanel.down('#protocollPanel').update (protocollsStore.data.items[0].data);
                 } else {
                     // USE THE EXERCISE CONFIGURATION
-                    console.log ( "USING EXERCISE CONFIGURATION");
-                    exercisePanel.down('#protocollPanel').protocollInformation = controller.currentPlanExercise;
-                    exercisePanel.down('#protocollPanel').update ( controller.currentPlanExercise );
+                    protocoll = Ext.create('LanistaTrainer.model.Protocoll', {
+                        exercise_id: record.data.id,
+                        weight: '0',
+                        training: '0',
+                        training_unit: '0',
+                        execution_date: '1900-01-01'
+                    });
+
+                    exercisePanel.down('#protocollPanel').protocollInformation = protocoll.data;
+                    exercisePanel.down('#protocollPanel').update ( protocoll );
                 }
            });
 
@@ -511,7 +519,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             controller = this,
             planController = LanistaTrainer.app.getController ('PlanController'),
             activeTabPlan = planController.getPlanPanel().down('tabpanel').getActiveTab(),
-            planExercise;
+            planExercise,
+            protocollInformation;
 
         if ( currentPanel.id == 'protocollsTabPanel' ) {
             currentPanel.down('#protocollPanel').protocollInformation.weight = weightTrainingValues[0];
@@ -520,7 +529,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             currentPanel.down('#protocollPanel').update(currentPanel.down('#protocollPanel').protocollInformation);
         }
         else if ( currentPanel.id == 'configurationTabPanel' ) {
-            var currPlanExercise = controller.currentPlanExercise;
+            var currPlanExercise = controller.currentPlanExercise,
+                localPanel = this.getExercisePanel();
 
             if (weightTrainingValues){
                 currPlanExercise.weight_min = weightTrainingValues[0];
@@ -539,26 +549,31 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             controller.currentPlanExercise = currPlanExercise;
             currentPanel.down('#configurationPanel').update ( currPlanExercise );
 
+            localPanel.down('#protocollPanel').protocollInformation.weight = weightTrainingValues[0];
+            localPanel.down('#protocollPanel').protocollInformation.training = weightTrainingValues[1];
+            localPanel.down('#protocollPanel').protocollInformation.training_unit = weightTrainingValues[2];
+            localPanel.down('#protocollPanel').update(localPanel.down('#protocollPanel').protocollInformation);
+
             planExercise = Ext.create('LanistaTrainer.model.PlanExercise');
             planExercise.data = currPlanExercise;
-            planExercise.setProxy(new Ext.data.proxy.Ajax({
+            planExercise.proxy = new Ext.data.proxy.Ajax({
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
-                model: 'PlanExercise',
+                model: 'LanistaTrainer.model.PlanExercise',
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 writer: {
                     type: 'json',
-                    root: 'records',
+                    rootProperty: 'records',
                     allowSingle: false
                 },
                 headers: {
                     user_id: userId
                 }
-            }));
-            planExercise.save ();
+            });
+            LanistaTrainer.app.getController('MainController').saveModel(planExercise);
         }
 
     },

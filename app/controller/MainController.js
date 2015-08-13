@@ -142,6 +142,16 @@ Ext.define('LanistaTrainer.controller.MainController', {
             return operation;
     },
 
+    eraseModel: function(model, options) {
+        var me = model;
+
+            me.erasing = true;
+            me.drop();
+
+            delete me.erasing;
+            return this.saveModel(me, options);
+    },
+
     init: function(application) {
         application.on({
             hideStage: {

@@ -63,8 +63,8 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
         el.on(
             'click', function(e,t) {
                 var controller = LanistaTrainer.app.getController ('PlanController'),
-                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
-                    Exercise = Ext.ModelManager.getModel('LanistaTrainer.model.ExerciseModel');
+                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab();
+                    //Exercise = Ext.ModelManager.getModel('LanistaTrainer.model.ExerciseModel');
 
                 for (var i = 0; i < activeTab.el.dom.childNodes.length; i++)
                 {
@@ -75,7 +75,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                     itemRecord = activeTab.recordsArray[internalItemId];
 
                 itemRecord.internalId = internalItemId;
-                Exercise.load(itemRecord.exercise_id !== 0 ? itemRecord.exercise_id : parseInt(itemRecord.user_exercise_id) + ini, {
+                LanistaTrainer.model.ExerciseModel.load(itemRecord.exercise_id !== 0 ? itemRecord.exercise_id : parseInt(itemRecord.user_exercise_id) + ini, {
                     success: function( exercise ) {
                         LanistaTrainer.app.getController('PlanController').getPlanPanel().addCls ('blured');
                         LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
@@ -105,7 +105,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
             'mouseover', function(e,t) {
                 Ext.get(t).removeCls('item-not-clicked');
                 Ext.get(t).addCls('item-clicked');
-                Ext.get(t).down('.exercise-list-delete').setHTML('u');
+                Ext.get(t).down('.exercise-list-delete').setHtml('u');
                 Ext.get(t).addCls('exercise-apply-delete');
             },
             this,{ delegate: '.lanista-plan-exercise'});
@@ -114,7 +114,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
             'mouseout', function(e,t) {
                 Ext.get(t).removeCls('item-clicked');
                 Ext.get(t).addCls('item-not-clicked');
-                Ext.get(t).down('.exercise-list-delete').setHTML('');
+                Ext.get(t).down('.exercise-list-delete').setHtml('');
                 Ext.get(t).removeCls('exercise-apply-delete');
             },
             this,{delegate: '.lanista-plan-exercise'});

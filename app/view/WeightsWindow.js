@@ -163,85 +163,85 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
         component.down('#weightIndications').setTitle(Ext.ux.LanguageManager.TranslationArray.COUTCHER_NOTES);
 
         component.down('#rb_Rep').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.REP );
-        component.down('#rb_Min').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.SEC);
-        component.down('#rb_Sec').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.MIN);
+        component.down('#rb_Min').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.MIN);
+        component.down('#rb_Sec').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.SEC);
 
         this.down ( '#weightBottons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
-                    itemId: 'saveProtocollButton',
-                    glyph: '65@Lanista Icons', //A
-                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE,
-                    cls: [
-                        'lanista-command-button',
-                        'lanista-command-button-green',
-                        'lanista-saveProtocollButton'
-                    ],
-                    listeners: {
-                        click: {
-                            scope: this,
-                            fn: function(){
-                                var panelWeight,
-                                    panelTraining = Ext.ComponentQuery.query("viewport")[0].down("#trainingPicker"),
-                                    infoProtocoll = [],
-                                    valueWeight,
-                                    setObjectLanista;
+            itemId: 'saveProtocollButton',
+            glyph: '65@Lanista Icons', //A
+            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SAVE,
+            cls: [
+                'lanista-command-button',
+                'lanista-command-button-green',
+                'lanista-saveProtocollButton'
+            ],
+            listeners: {
+                click: {
+                    scope: this,
+                    fn: function(){
+                        var panelWeight,
+                            panelTraining = Ext.ComponentQuery.query("viewport")[0].down("#trainingPicker"),
+                            infoProtocoll = [],
+                            valueWeight,
+                            setObjectLanista;
 
-                                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){
-                                    infoProtocoll[0] = !component.down('#protocollKgValue').getValue() ? 0 : component.down('#protocollKgValue').getValue();
-                                    infoProtocoll[1] = !component.down('#protocollTrainingValue').getValue() ? 0 : component.down('#protocollTrainingValue').getValue();
-                                    infoProtocoll[2] = !parseInt(component.down('#radioWeight').getValue().rb) ? 0 : parseInt(component.down('#radioWeight').getValue().rb);
+                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){
+                            infoProtocoll[0] = !component.down('#protocollKgValue').getValue() ? 0 : component.down('#protocollKgValue').getValue();
+                            infoProtocoll[1] = !component.down('#protocollTrainingValue').getValue() ? 0 : component.down('#protocollTrainingValue').getValue();
+                            infoProtocoll[2] = !parseInt(component.down('#radioWeight').getValue().rb) ? 0 : parseInt(component.down('#radioWeight').getValue().rb);
 
-                                    LanistaTrainer.app.fireEvent('planExerciseRecordChanged',
-                                                                 infoProtocoll,
-                                                                 component.down('#exerciseIndications').getValue(),
-                                                                 !component.down('#exerciseSets').getValue() ? 0 : component.down('#exerciseSets').getValue());
-                                }
-
-                                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
-                                    panelWeight = Ext.ComponentQuery.query("viewport")[0].down("#weightPicker");
-                                    valueWeight = panelWeight ? panelWeight.getValue() : 0;
-                                    valueWeight = valueWeight !== 0 ? parseFloat(valueWeight.substring(0, valueWeight.indexOf(' ')).replace(",", ".")) : 0;
-                                    infoProtocoll[0] = valueWeight;
-                                    infoProtocoll[1] = panelTraining.getValue();
-                                    infoProtocoll[2] = panelTraining.unit;
-                                    LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');
-                                }
-
-                                if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DefaultPlanValuesPanel'){
-                                    setObjectLanista = Ext.ComponentQuery.query("viewport")[0].down("#setObjectLanista");
-                                    infoProtocoll[0] = setObjectLanista.getValue();
-                                    infoProtocoll[1] = panelTraining.getValue();
-                                    infoProtocoll[2] = panelTraining.unit;
-                                    LanistaTrainer.app.fireEvent('defaultValuesChanged', infoProtocoll,'','');
-                                }
-
-                                component.close();
-                            }
+                            LanistaTrainer.app.fireEvent('planExerciseRecordChanged',
+                                                         infoProtocoll,
+                                                         component.down('#exerciseIndications').getValue(),
+                                                         !component.down('#exerciseSets').getValue() ? 0 : component.down('#exerciseSets').getValue());
                         }
+
+                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
+                            panelWeight = Ext.ComponentQuery.query("viewport")[0].down("#weightPicker");
+                            valueWeight = panelWeight ? panelWeight.getValue() : 0;
+                            valueWeight = valueWeight !== 0 ? parseFloat(valueWeight.substring(0, valueWeight.indexOf(' ')).replace(",", ".")) : 0;
+                            infoProtocoll[0] = valueWeight;
+                            infoProtocoll[1] = panelTraining.getValue();
+                            infoProtocoll[2] = panelTraining.unit;
+                            LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');
+                        }
+
+                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DefaultPlanValuesPanel'){
+                            setObjectLanista = Ext.ComponentQuery.query("viewport")[0].down("#setObjectLanista");
+                            infoProtocoll[0] = setObjectLanista.getValue();
+                            infoProtocoll[1] = panelTraining.getValue();
+                            infoProtocoll[2] = panelTraining.unit;
+                            LanistaTrainer.app.fireEvent('defaultValuesChanged', infoProtocoll,'','');
+                        }
+
+                        component.close();
                     }
-                })
-        );
+                }
+            }
+        })
+                                          );
 
 
         if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] !== 'DefaultPlanValuesPanel'){
             this.down ( '#weightBottons' ).add(  Ext.create('LanistaTrainer.view.LanistaButton', {
-                        itemId: 'closeProtocollButton',
-                        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_CANCEL,
-                        glyph: '117@Lanista Icons', //u
-                        cls: [
-                            'lanista-command-button',
-                            'lanista-command-button-red',
-                            'lanista-closeProtocollButton'
-                        ],
-                        listeners: {
-                            click: {
-                                scope: this,
-                                fn: function(){
-                                    component.close();
-                                }
-                            }
+                itemId: 'closeProtocollButton',
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_CANCEL,
+                glyph: '117@Lanista Icons', //u
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-red',
+                    'lanista-closeProtocollButton'
+                ],
+                listeners: {
+                    click: {
+                        scope: this,
+                        fn: function(){
+                            component.close();
                         }
-                    })
-            );
+                    }
+                }
+            })
+                                              );
         }
 
 

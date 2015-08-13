@@ -308,9 +308,7 @@
                                         ],
                                         "maximum": null,
                                         "minimum": 0,
-                                        "title": [
-                                            "Numeric Axis"
-                                        ]
+                                        "title": null
                                     },
                                     "name": "MyNumericAxis",
                                     "designerId": "6f5855a2-f526-4f72-94dd-acf681e457f4"
@@ -329,9 +327,7 @@
                                         "maximum": null,
                                         "minimum": 0,
                                         "position": "right",
-                                        "title": [
-                                            "Numeric Axis"
-                                        ]
+                                        "title": null
                                     },
                                     "name": "MyNumericAxis1",
                                     "designerId": "c9d7d7d6-c3ca-4837-84a7-7a715d7a66ed"

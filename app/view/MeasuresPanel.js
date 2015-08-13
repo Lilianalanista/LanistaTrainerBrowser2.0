@@ -121,7 +121,6 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                     'futrex'
                                                 ],
                                                 minimum: 0,
-                                                title: 'Numeric Axis',
                                                 position: 'bottom'
                                             },
                                             {
@@ -130,8 +129,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                     'percentage'
                                                 ],
                                                 minimum: 0,
-                                                position: 'right',
-                                                title: 'Numeric Axis'
+                                                position: 'right'
                                             }
                                         ],
                                         legend: {
