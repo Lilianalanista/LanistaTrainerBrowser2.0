@@ -141,38 +141,15 @@
                         "cls": [
                             "lanista-user-settings-field"
                         ],
-                        "fieldLabel": null,
+                        "editable": false,
+                        "fieldLabel": "Label",
                         "format": "d M, Y",
                         "id": "customer_birthdate",
                         "layout|anchor": "100%",
                         "name": "birthday"
                     },
                     "name": "MyDateField",
-                    "configAlternates": {
-                        "scrollable": "boolean"
-                    },
-                    "designerId": "3c7ff5a8-1326-40e4-8cb2-786adb9f72a3",
-                    "cn": [
-                        {
-                            "type": "basiceventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onCustomer_birthdateChange",
-                                "implHandler": [
-                                    "//console.log(oldValue);",
-                                    "//console.log(newValue);"
-                                ],
-                                "name": "change",
-                                "scope": "me"
-                            },
-                            "name": "onCustomer_birthdateChange",
-                            "designerId": "cd61785e-0ba3-4403-ba5d-9b68a0952465"
-                        }
-                    ]
+                    "designerId": "4dd5c6fa-e2fe-4dc3-aa29-1344e1830415"
                 },
                 {
                     "type": "Ext.form.field.ComboBox",

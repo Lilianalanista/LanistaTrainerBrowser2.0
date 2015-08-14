@@ -141,7 +141,7 @@
             "designerId": "61dd1881-07d4-46af-97a3-1f5947cf1460"
         },
         {
-            "type": "Ext.data.field.Date",
+            "type": "Ext.data.field.String",
             "reference": {
                 "name": "fields",
                 "type": "array"
@@ -150,7 +150,7 @@
             "userConfig": {
                 "name": "birthday"
             },
-            "name": "MyDate",
+            "name": "MyString9",
             "designerId": "65e4f570-6ff9-47ba-8aa1-ac1d6b863dc1"
         },
         {

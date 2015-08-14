@@ -120,7 +120,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                                         tpl: [
                                             '<div class="lanista-item-plans">',
                                             '    <div class="lanista-name-plan">{name}</div> ',
-                                            '    <div class="lanista-delete-plan lanista-icon"></div>',
+                                            '    <div class="lanista-delete-plan lanista-icon lanista-delete_icon_dot">...</div>',
                                             '    <div class="lanista-createdate-plan">{creation_date:date("Y-m-d")}</div>',
                                             '</div>',
                                             ''
@@ -242,8 +242,8 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
              this, {delegate: '.lanista-item-plans'});
 
         el.on('mouseout',function(e,t){
-            Ext.get(t).down('.lanista-delete-plan').setHtml('');
-            Ext.get(t).down('.lanista-delete-plan').setHtml('');
+            Ext.get(t).down('.lanista-delete-plan').setHtml('...');
+            Ext.get(t).down('.lanista-delete-plan').setHtml('...');
             Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
             Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
         },
@@ -267,6 +267,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
              this, {delegate: '.lanista-delete-plan'});
 
         el.on('mouseover',function(e,t){
+            Ext.get(t).setHtml('u');
             Ext.get(t).removeCls('item-not-clicked');
             Ext.get(t).addCls('item-clicked');
             Ext.get(t).removeCls('lanista-color-plan-no-delete');
@@ -275,7 +276,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
              this, {delegate: '.lanista-delete-plan'});
 
         el.on('mouseout',function(e,t){
-            Ext.get(t).setHtml('');
+            Ext.get(t).setHtml('...');
             Ext.get(t).removeCls('lanista-color-plan-delete');
             Ext.get(t).addCls('lanista-color-plan-no-delete');
 
@@ -301,9 +302,9 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
 
         Plan.data = data;
         Plan.phantom = false;
-        Plan.setProxy(new Ext.data.proxy.Ajax({
+        Plan.proxy = new Ext.data.proxy.Ajax({
             url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
-            model: 'Plan',
+            model: 'LanistaTrainer.model.Plan',
             noCache: false,
             api: {
                 create: undefined,
@@ -317,11 +318,16 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
             headers: {
                 user_id: userId
             }
-        }));
-
-        Plan.destroy ({
-            action: 'destroy'
         });
+
+
+        LanistaTrainer.app.getController('MainController').eraseModel(Plan);
+
+
+        //Plan.destroy ({
+        //    action: 'destroy'
+        //});
+
     }
 
 });

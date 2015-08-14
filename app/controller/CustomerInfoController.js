@@ -75,13 +75,16 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
             server = Ext.ux.ConfigManager.getServer(),
             root = Ext.ux.ConfigManager.getRoot() + '/tpmanager/',
             form_data = controller.getCustomerInfoPanel().getValues(),
-            email = form_data.email;
+            email = form_data.email,
+            localRecord,
+            recordCustomer,
+            birthDate;
 
         if (email === '')
         {
-                Ext.Msg.alert('Email waren leer', 'Versuche es noch mal !', function() {
-                    controller.getCustomerInfoPanel().getForm().findField('email').focus();
-                });
+            Ext.Msg.alert('Email waren leer', 'Versuche es noch mal !', function() {
+                controller.getCustomerInfoPanel().getForm().findField('email').focus();
+            });
         } else
         {
             var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -93,8 +96,19 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
             } else
             {
                 controller.getCustomerInfoPanel().updateRecord();
-                controller.getCustomerInfoPanel().getRecord().setProxy(new Ext.data.proxy.Ajax({
+                localRecord = controller.getCustomerInfoPanel().getRecord();
+
+                recordCustomer = Ext.create('LanistaTrainer.model.Customer');
+                recordCustomer.data = localRecord.getData();
+
+                dateAux = controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getFullYear() + '-' +
+                          parseInt(controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getMonth() + 1).toString() + '-' +
+                          controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getDate();
+
+                recordCustomer.data.birthday = dateAux;
+                recordCustomer.proxy = new Ext.data.proxy.Ajax({
                     url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/json',
+                    model: 'LanistaTrainer.model.Customer',
                     noCache: false,
                     reader: {
                         type: 'json',
@@ -108,21 +122,23 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
                     headers: {
                         user_id: localStorage.getItem("user_id")
                     }
-                }));
+                });
 
-                controller.getCustomerInfoPanel().getRecord().save({
+                LanistaTrainer.app.getController('MainController').saveModel(recordCustomer, {
                     callback: function(record,event,success) {
+                        var recordValue;
                         if (success)
                         {
                             /*var oldDate = record.data.birthday.split('-'),
-                                newDate;
-                            if (Ext.ux.LanguageManager.lang === 'EN')
-                                newDate = oldDate[1] + oldDate[0] + oldDate[2];
-                            else
-                                newDate = oldDate[0] + oldDate[1] + oldDate[2];*/
+                                    newDate;
+                                if (Ext.ux.LanguageManager.lang === 'EN')
+                                    newDate = oldDate[1] + oldDate[0] + oldDate[2];
+                                else
+                                    newDate = oldDate[0] + oldDate[1] + oldDate[2];*/
 
-                            record.data.birthday = Ext.Date.format(record.data.birthday, 'Y-m-d');
-
+                            recordValue = record.data.birthday;
+                            recordValue = recordValue.substr(3,2) + '-' + recordValue.substr(0,2) + '-' + recordValue.substr(6,4);
+                            record.data.birthday = recordValue;
                             controller.getCustomerInfoPanel().loadRecord(record);
                             Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);
                             controller.showCommands();

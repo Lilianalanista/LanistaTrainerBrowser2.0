@@ -92,11 +92,10 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
                                 anchor: '100%',
                                 cls: 'lanista-user-settings-field',
                                 id: 'customer_birthdate',
+                                fieldLabel: 'Label',
                                 name: 'birthday',
-                                format: 'd M, Y',
-                                listeners: {
-                                    change: 'onCustomer_birthdateChange'
-                                }
+                                editable: false,
+                                format: 'd M, Y'
                             },
                             me.processCustomer_gender({
                                 xtype: 'combobox',
@@ -252,11 +251,6 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
         config.displayField = 'text';
 
         return config;
-    },
-
-    onCustomer_birthdateChange: function(field, newValue, oldValue, eOpts) {
-        //console.log(oldValue);
-        //console.log(newValue);
     },
 
     onUserInfoPanelAfterRender: function(component, eOpts) {

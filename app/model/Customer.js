@@ -65,7 +65,7 @@ Ext.define('LanistaTrainer.model.Customer', {
             name: 'phone_nr'
         },
         {
-            type: 'date',
+            type: 'string',
             name: 'birthday'
         },
         {

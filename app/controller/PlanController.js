@@ -1159,10 +1159,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         });
 
         LanistaTrainer.app.getController('MainController').eraseModel(PlanExercise);
-        /*PlanExercise.destroy ({
-            action: 'destroy'
-        });
-        */
     },
 
     showCommandsExercises: function() {

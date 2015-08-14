@@ -93,8 +93,8 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                 for (var i = 0; i < activeTab.el.dom.childNodes.length; i++){
                     activeTab.el.dom.childNodes[i].internalId = i;
                 }
-                if (!t.parentNode.classList.contains('lanista-list-itemrounded-deleting'))
-                    t.parentNode.className = t.parentNode.className + ' lanista-list-itemrounded-deleting';
+                //if (!t.parentNode.classList.contains('lanista-list-itemrounded-deleting'))
+                //    t.parentNode.className = t.parentNode.className + ' lanista-list-itemrounded-deleting';
 
                 var internalItemId = Ext.get(t).dom.parentNode.internalId;
                 this.markDeleteExercises(t, internalItemId);
@@ -103,19 +103,19 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
 
         el.on(
             'mouseover', function(e,t) {
-                Ext.get(t).removeCls('item-not-clicked');
-                Ext.get(t).addCls('item-clicked');
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
                 Ext.get(t).down('.exercise-list-delete').setHtml('u');
-                Ext.get(t).addCls('exercise-apply-delete');
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' exercise-apply-delete';
             },
             this,{ delegate: '.lanista-plan-exercise'});
 
         el.on(
             'mouseout', function(e,t) {
-                Ext.get(t).removeCls('item-clicked');
-                Ext.get(t).addCls('item-not-clicked');
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-not-clicked';
                 Ext.get(t).down('.exercise-list-delete').setHtml('');
-                Ext.get(t).removeCls('exercise-apply-delete');
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/exercise-apply-delete/gi,'');
             },
             this,{delegate: '.lanista-plan-exercise'});
     },
