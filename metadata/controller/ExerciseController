@@ -98,7 +98,7 @@
                 "xtype": "weightsWindow"
             },
             "name": "weightsWindow",
-            "designerId": "3db90b85-831c-4641-b219-8477074637a8"
+            "designerId": "c36e7260-bfe5-46ce-9b13-9a272cacc409"
         },
         {
             "type": "controllerref",

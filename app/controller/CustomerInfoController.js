@@ -102,8 +102,8 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
                 recordCustomer.data = localRecord.getData();
 
                 dateAux = controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getFullYear() + '-' +
-                          parseInt(controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getMonth() + 1).toString() + '-' +
-                          controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getDate();
+                    parseInt(controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getMonth() + 1).toString() + '-' +
+                    controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getDate();
 
                 recordCustomer.data.birthday = dateAux;
                 recordCustomer.proxy = new Ext.data.proxy.Ajax({

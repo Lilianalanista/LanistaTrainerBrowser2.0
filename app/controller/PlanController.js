@@ -44,6 +44,11 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             autoCreate: true,
             selector: '#defaultPlanValuesPanel',
             xtype: 'defaultPlanValuesPanel'
+        },
+        weightsWindow: {
+            autoCreate: true,
+            selector: '#weightsWindow',
+            xtype: 'weightsWindow'
         }
     },
 
@@ -245,25 +250,25 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
         controller.planname = fields.getByKey('planName').getValue();
 
-        controller.plan.setProxy(new Ext.data.proxy.Ajax({
+        controller.plan.proxy = new Ext.data.proxy.Ajax({
             url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
-            model: 'Plan',
+            model: 'LanistaTrainer.model.Plan',
             noCache: false,
             reader: {
                 type: 'json',
-                root: 'entries'
+                rootProperty: 'entries'
             },
             writer: {
                 type: 'json',
-                root: 'records',
+                rootProperty: 'records',
                 allowSingle: false
             },
             headers: {
                 user_id: userId
             }
-        }));
+        });
 
-        controller.plan.save ({
+        LanistaTrainer.app.getController('MainController').saveModel(controller.plan, {
             callback: function( changedPlan, operation, success ) {
                 if (success){
                     Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.TRAINING_PLAN + ": " + changedPlan.data.name, function() {planOptionsPanel.getForm().findField('planName').focus();});
@@ -300,11 +305,51 @@ Ext.define('LanistaTrainer.controller.PlanController', {
     },
 
     onDefaultValuesButtonClick: function(button, e, eOpts) {
-        LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {
-            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'DefaultPlanValuesPanel';
-            LanistaTrainer.app.fireEvent( 'showDefaultPlanValuesPanel' );
-        });
+        var controller = this,
+            record,
+            trainingUnit,
+            radio,
+            windowPanel = controller.getWeightsWindow(),
+            viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport');
 
+        viewPort.add( windowPanel );
+        windowPanel.show ();
+
+        record = [{rounds_min: controller.rounds_min,
+                   training: controller.training_min,
+                   training_unit: controller.training_unit,
+                   weight_min: controller.weight_min}];
+
+        windowPanel.down( "#protocollTrainingValue" ).setValue(record[0].training);
+        trainingUnit = record[0].training_unit;
+
+        switch (trainingUnit)
+        {
+            case 0:
+                radio = Ext.getCmp('rb_Rep');
+                radio.setValue(true);
+                break;
+            case 1:
+                radio = Ext.getCmp('rb_Sec');
+                radio.setValue(true);
+                break;
+            case 2:
+                radio = Ext.getCmp('rb_Min');
+                radio.setValue(true);
+                break;
+        }
+
+        windowPanel.down( "#protocollKgValue" ).setValue(record[0].weight_min);
+        windowPanel.down( "#protocollKgValue" ).hide();
+        windowPanel.down( "#weightKilos" ).hide();
+        windowPanel.down( "#weightSets" ).show();
+        windowPanel.down( "#exerciseSets" ).show();
+        windowPanel.down( "#exerciseSets" ).setValue(record[0].rounds_min);
+        windowPanel.down ( '#protocollTrainingValue' ).focus();
+
+        windowPanel.on ( 'hide', function ( component ) {
+            component.destroy ();
+        });
 
     },
 
@@ -521,6 +566,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 controller.rounds_min = record.rounds_min;
                 controller.training_min = record.training_min;
                 controller.training_unit = record.training_unit;
+                controller.weight_min = record.weight_min;
             }
 
             planPanel.down ('tabbar').items.items[0].setText(Ext.ux.LanguageManager.TranslationArray.DAY + ' 1');

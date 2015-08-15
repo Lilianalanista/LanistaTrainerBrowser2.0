@@ -31,7 +31,6 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
     },
     height: 285,
     id: 'weightsWindow',
-    resizable: false,
     width: 505,
     header: false,
     expandOnShow: false,
@@ -185,7 +184,8 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                             valueWeight,
                             setObjectLanista;
 
-                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){
+                        if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel' ||
+                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
                             infoProtocoll[0] = !component.down('#protocollKgValue').getValue() ? 0 : component.down('#protocollKgValue').getValue();
                             infoProtocoll[1] = !component.down('#protocollTrainingValue').getValue() ? 0 : component.down('#protocollTrainingValue').getValue();
                             infoProtocoll[2] = !parseInt(component.down('#radioWeight').getValue().rb) ? 0 : parseInt(component.down('#radioWeight').getValue().rb);
@@ -196,6 +196,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                                                          !component.down('#exerciseSets').getValue() ? 0 : component.down('#exerciseSets').getValue());
                         }
 
+                        /*
                         if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
                             panelWeight = Ext.ComponentQuery.query("viewport")[0].down("#weightPicker");
                             valueWeight = panelWeight ? panelWeight.getValue() : 0;
@@ -205,6 +206,7 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                             infoProtocoll[2] = panelTraining.unit;
                             LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');
                         }
+                        */
 
                         if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'DefaultPlanValuesPanel'){
                             setObjectLanista = Ext.ComponentQuery.query("viewport")[0].down("#setObjectLanista");
