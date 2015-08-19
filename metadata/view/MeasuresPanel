@@ -79,9 +79,6 @@
                             "userConfig": {
                                 "height": 550,
                                 "id": "",
-                                "insetPadding": [
-                                    "20"
-                                ],
                                 "itemId": "measuresChat",
                                 "store": "MeasuresStore",
                                 "width": 1200
@@ -104,13 +101,39 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
-                                        "smooth": 3,
+                                        "highlight": true,
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
+                                        "marker": [
+                                            "{",
+                                            "    type: 'square'",
+                                            "}",
+                                            ""
+                                        ],
+                                        "smooth": null,
+                                        "title": [
+                                            "Weight"
+                                        ],
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' Kg.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "weight"
                                         ]
                                     },
                                     "name": "MyLineSeries",
+                                    "configAlternates": {
+                                        "highlight": "boolean"
+                                    },
                                     "designerId": "2c42bbc3-f162-4b2e-8ddb-a9200e4ecece",
                                     "cn": [
                                         {
@@ -124,17 +147,17 @@
                                                 "designer|params": [
                                                     "config"
                                                 ],
-                                                "fn": "processMyLineSeries2",
+                                                "fn": "processWeight",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
                                                 ]
                                             },
-                                            "name": "processMyLineSeries2",
+                                            "name": "processWeight",
                                             "designerId": "2146ecef-8bfc-48be-afd4-9027e6fc0017"
                                         }
                                     ]
@@ -147,13 +170,35 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "smooth": 3,
+                                        "highlight": true,
+                                        "marker": [
+                                            "{",
+                                            "    type: 'triangle'",
+                                            "}"
+                                        ],
+                                        "smooth": null,
+                                        "title": [
+                                            "Height"
+                                        ],
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "height"
                                         ]
                                     },
                                     "name": "MyLineSeries1",
+                                    "configAlternates": {
+                                        "highlight": "boolean"
+                                    },
                                     "designerId": "4601a20d-4855-417f-9b81-945d294b374e",
                                     "cn": [
                                         {
@@ -167,18 +212,18 @@
                                                 "designer|params": [
                                                     "config"
                                                 ],
-                                                "fn": "processMyLineSeries1",
+                                                "fn": "processHeight",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;",
                                                     ""
                                                 ]
                                             },
-                                            "name": "processMyLineSeries1",
+                                            "name": "processHeight",
                                             "designerId": "69f65c8f-29bb-4f45-b1f9-3be8a3aa71f4"
                                         }
                                     ]
@@ -192,13 +237,35 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
-                                        "smooth": 3,
+                                        "highlight": true,
+                                        "marker": [
+                                            "{",
+                                            "    type: 'arrow'",
+                                            "}"
+                                        ],
+                                        "smooth": null,
+                                        "title": [
+                                            "Futrex"
+                                        ],
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' %');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "futrex"
                                         ]
                                     },
                                     "name": "MyLineSeries2",
+                                    "configAlternates": {
+                                        "highlight": "boolean"
+                                    },
                                     "designerId": "8db5440d-97b4-4cab-9aa4-fa0044882e46",
                                     "cn": [
                                         {
@@ -212,18 +279,18 @@
                                                 "designer|params": [
                                                     "config"
                                                 ],
-                                                "fn": "processMyLineSeries21",
+                                                "fn": "processFutrex",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;",
                                                     ""
                                                 ]
                                             },
-                                            "name": "processMyLineSeries21",
+                                            "name": "processFutrex",
                                             "designerId": "eccf430e-f0e5-4615-ab12-b1156504b1c1"
                                         }
                                     ]
@@ -237,13 +304,35 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
-                                        "smooth": 3,
+                                        "highlight": true,
+                                        "marker": [
+                                            "{",
+                                            "    type: 'cross'",
+                                            "}"
+                                        ],
+                                        "smooth": null,
+                                        "title": [
+                                            "Percentage"
+                                        ],
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' %');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "percentage"
                                         ]
                                     },
                                     "name": "MyLineSeries3",
+                                    "configAlternates": {
+                                        "highlight": "boolean"
+                                    },
                                     "designerId": "e441753b-b7e1-4942-9576-52da84c1c8dd",
                                     "cn": [
                                         {
@@ -257,18 +346,18 @@
                                                 "designer|params": [
                                                     "config"
                                                 ],
-                                                "fn": "processMyLineSeries3",
+                                                "fn": "processPercentage",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;",
                                                     ""
                                                 ]
                                             },
-                                            "name": "processMyLineSeries3",
+                                            "name": "processPercentage",
                                             "designerId": "0f62aff2-82ea-4b23-b1a3-0eaaabdf87cb"
                                         }
                                     ]
@@ -286,7 +375,7 @@
                                             "record_date"
                                         ],
                                         "step": [
-                                            " [Ext.Date.MONTH, 3]"
+                                            " [Ext.Date.DAY, 90]"
                                         ],
                                         "title": null
                                     },
@@ -302,16 +391,19 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "fields": [
-                                            "weight",
-                                            "height",
-                                            "futrex"
+                                            "percentage"
                                         ],
+                                        "grid": true,
                                         "maximum": null,
                                         "minimum": 0,
+                                        "position": "right",
                                         "title": null
                                     },
-                                    "name": "MyNumericAxis",
-                                    "designerId": "6f5855a2-f526-4f72-94dd-acf681e457f4"
+                                    "name": "MyNumericAxis1",
+                                    "configAlternates": {
+                                        "grid": "boolean"
+                                    },
+                                    "designerId": "c9d7d7d6-c3ca-4837-84a7-7a715d7a66ed"
                                 },
                                 {
                                     "type": "Ext.chart.axis.Numeric",
@@ -322,15 +414,21 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "fields": [
-                                            "percentage"
+                                            "weight",
+                                            "height",
+                                            "futrex"
                                         ],
+                                        "grid": true,
                                         "maximum": null,
                                         "minimum": 0,
-                                        "position": "right",
+                                        "position": "left",
                                         "title": null
                                     },
-                                    "name": "MyNumericAxis1",
-                                    "designerId": "c9d7d7d6-c3ca-4837-84a7-7a715d7a66ed"
+                                    "name": "MyNumericAxis",
+                                    "configAlternates": {
+                                        "grid": "boolean"
+                                    },
+                                    "designerId": "818bf438-f5ec-4464-bf27-bfcdcf20a265"
                                 },
                                 {
                                     "type": "Ext.chart.Legend",
@@ -339,11 +437,125 @@
                                         "type": "object"
                                     },
                                     "codeClass": null,
-                                    "name": "MyLegend",
-                                    "configAlternates": {
-                                        "scrollable": "boolean"
+                                    "userConfig": {
+                                        "alwaysOnTop": [
+                                            "true"
+                                        ],
+                                        "border": true,
+                                        "defaultAlign": "t-t",
+                                        "itemSelector": null,
+                                        "liquidLayout": true
                                     },
-                                    "designerId": "4debf0f2-76b3-4979-a5f3-a1a3c97ea7ee"
+                                    "name": "MyLegend3",
+                                    "designerId": "5252d7c7-8d13-4325-9a3d-67d3c968e63e",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLegend3",
+                                                "implHandler": [
+                                                    "config.docked = 'top';",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "name": "processMyLegend3",
+                                            "designerId": "35e1518a-6932-4444-b56a-3e3c24f8dd8b"
+                                        },
+                                        {
+                                            "type": "Ext.XTemplate",
+                                            "reference": {
+                                                "name": "tpl",
+                                                "type": "object"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|displayName": "tpl",
+                                                "implHandler": [
+                                                    "<div class=\"x-legend-container\">",
+                                                    "    <tpl for=\".\">",
+                                                    "        <div class=\"x-legend-item\">",
+                                                    "            <span class=\"x-legend-item-marker {[ values.disabled ? Ext.baseCSSPrefix + 'legend-inactive' : '' ]}\" ",
+                                                    "                style=\"background:{mark};\">",
+                                                    "            </span>{name}",
+                                                    "        </div>",
+                                                    "    </tpl>",
+                                                    "</div>"
+                                                ]
+                                            },
+                                            "name": "tpl",
+                                            "designerId": "f858b186-f119-4a5b-acaf-8c8a19e56cad"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "processcfgfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "config"
+                                        ],
+                                        "fn": "processMeasuresChat",
+                                        "implHandler": [
+                                            "config.plugins =  {",
+                                            "        ptype: 'chartitemevents',",
+                                            "        moveEvents: true",
+                                            "    };",
+                                            "",
+                                            "",
+                                            "return config;"
+                                        ]
+                                    },
+                                    "name": "processMeasuresChat",
+                                    "designerId": "5e7b5cc2-2ef6-4c50-917e-c0975a88f554"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onMeasuresChatAfterRender",
+                                        "implHandler": [
+                                            "var el = component.el;",
+                                            "",
+                                            "component.series[0].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_BODYWEIGHT.toUpperCase());",
+                                            "component.series[1].setTitle(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE.toUpperCase());",
+                                            "component.series[2].setTitle(Ext.ux.LanguageManager.TranslationArray.BODY_FAT.toUpperCase());",
+                                            "component.series[3].setTitle(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());",
+                                            "",
+                                            "el.on(",
+                                            "    'mouseover', function(e,t) {",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');",
+                                            "    },",
+                                            "    this,{ delegate: '.x-legend-item'});",
+                                            "",
+                                            "el.on(",
+                                            "    'mouseout', function(e,t) {",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-not-clicked';",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');",
+                                            "    },",
+                                            "    this,{delegate: '.x-legend-item'});"
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onMeasuresChatAfterRender",
+                                    "designerId": "b78c21c0-0c48-49e7-a990-2ac9571fedf7"
                                 }
                             ]
                         },
@@ -398,16 +610,43 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "align": "center",
+                                        "cls": [
+                                            "lanista-grid-record-date-measures"
+                                        ],
                                         "dataIndex": "record_date",
+                                        "draggable": false,
+                                        "enableColumnHide": false,
                                         "flex": 1,
                                         "format": "d-m-y",
+                                        "hideable": false,
+                                        "resizable": false,
                                         "text": null
                                     },
                                     "name": "MyDateColumn",
                                     "configAlternates": {
                                         "scrollable": "boolean"
                                     },
-                                    "designerId": "425b1824-7463-4cb1-ae08-7e7f06492ad7"
+                                    "designerId": "425b1824-7463-4cb1-ae08-7e7f06492ad7",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onDatecolumnAfterRender",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.DATE.toUpperCase());"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "name": "onDatecolumnAfterRender",
+                                            "designerId": "c5a01485-227a-4b18-81d5-1d8b575d687c"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.grid.column.Column",
@@ -438,7 +677,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -477,7 +716,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender2",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -518,7 +757,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender1",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_FAT); "
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_FAT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -557,7 +796,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender3",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -654,7 +893,20 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "trizeps"
@@ -677,8 +929,8 @@
                                                 "fn": "processMyLineSeries4",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -698,7 +950,20 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "scapula"
@@ -721,8 +986,8 @@
                                                 "fn": "processMyLineSeries5",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -742,7 +1007,20 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "auxiliar"
@@ -765,8 +1043,8 @@
                                                 "fn": "processMyLineSeries6",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -785,7 +1063,20 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "chest"
@@ -808,8 +1099,8 @@
                                                 "fn": "processMyLineSeries7",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -828,7 +1119,20 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "sprailium"
@@ -851,8 +1155,8 @@
                                                 "fn": "processMyLineSeries8",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -871,7 +1175,20 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "abs"
@@ -894,8 +1211,8 @@
                                                 "fn": "processMyLineSeries9",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -914,7 +1231,20 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "quads"
@@ -937,8 +1267,8 @@
                                                 "fn": "processMyLineSeries10",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -988,9 +1318,8 @@
                                         ],
                                         "maximum": null,
                                         "minimum": 0,
-                                        "title": [
-                                            "Numeric Axis"
-                                        ]
+                                        "position": "left",
+                                        "title": null
                                     },
                                     "name": "MyNumericAxis2",
                                     "designerId": "088edf56-7baa-4989-8b87-dc86a0d73cbc"
@@ -1006,7 +1335,94 @@
                                     "configAlternates": {
                                         "scrollable": "boolean"
                                     },
-                                    "designerId": "8bfebdf5-da76-4db9-bdc7-463788e61039"
+                                    "designerId": "8bfebdf5-da76-4db9-bdc7-463788e61039",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLegend1",
+                                                "implHandler": [
+                                                    "config.docked = 'top';",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "name": "processMyLegend1",
+                                            "designerId": "a65bed9d-5f30-461f-824d-c1d66e30a4e7"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "processcfgfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "config"
+                                        ],
+                                        "fn": "processMeasuresChat1",
+                                        "implHandler": [
+                                            "config.plugins =  {",
+                                            "    ptype: 'chartitemevents',",
+                                            "    moveEvents: true",
+                                            "};",
+                                            "",
+                                            "return config;"
+                                        ]
+                                    },
+                                    "name": "processMeasuresChat1",
+                                    "designerId": "ea816583-3c49-4acb-8966-c18f6c63681d"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onMeasuresChatAfterRender1",
+                                        "implHandler": [
+                                            "var el = component.el;",
+                                            "",
+                                            "component.series[0].setTitle(Ext.ux.LanguageManager.TranslationArray.TRICEPS.toUpperCase());",
+                                            "component.series[1].setTitle(Ext.ux.LanguageManager.TranslationArray.SCAPULA.toUpperCase());",
+                                            "component.series[2].setTitle(Ext.ux.LanguageManager.TranslationArray.ARMPIT.toUpperCase());",
+                                            "component.series[3].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase());",
+                                            "component.series[4].setTitle(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT.toUpperCase());",
+                                            "component.series[5].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_AB.toUpperCase());",
+                                            "component.series[6].setTitle(Ext.ux.LanguageManager.TranslationArray.QUADS.toUpperCase());",
+                                            "",
+                                            "el.on(",
+                                            "    'mouseover', function(e,t) {",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');",
+                                            "    },",
+                                            "    this,{ delegate: '.x-legend-item'});",
+                                            "",
+                                            "el.on(",
+                                            "    'mouseout', function(e,t) {",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-not-clicked';",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');",
+                                            "    },",
+                                            "    this,{delegate: '.x-legend-item'});",
+                                            ""
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onMeasuresChatAfterRender1",
+                                    "designerId": "af5a1e74-f00c-4eed-bd26-381e2ed5c18b"
                                 }
                             ]
                         },
@@ -1061,16 +1477,43 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "align": "center",
+                                        "cls": [
+                                            "lanista-grid-record-date-measures"
+                                        ],
                                         "dataIndex": "record_date",
+                                        "draggable": false,
+                                        "enableColumnHide": false,
                                         "flex": 1,
                                         "format": "d-m-y",
+                                        "hideable": false,
+                                        "resizable": false,
                                         "text": null
                                     },
                                     "name": "MyDateColumn1",
                                     "configAlternates": {
                                         "scrollable": "boolean"
                                     },
-                                    "designerId": "f7b940b7-3463-458b-a353-019267230013"
+                                    "designerId": "f7b940b7-3463-458b-a353-019267230013",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onDatecolumnAfterRender1",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.DATE.toUpperCase());"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "name": "onDatecolumnAfterRender1",
+                                            "designerId": "ceee99ec-fee4-4484-95a5-494d38953e9a"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.grid.column.Column",
@@ -1101,7 +1544,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender4",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.TRICEPS);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.TRICEPS.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1140,7 +1583,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender21",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.SCAPULA);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.SCAPULA.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1181,7 +1624,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender11",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ARMPIT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ARMPIT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1222,7 +1665,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender1114",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1263,7 +1706,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender1113",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1304,7 +1747,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender1112",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_AB);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_AB.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1345,7 +1788,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender111",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.QUADS);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.QUADS.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1386,7 +1829,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender1111",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.SUM);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.SUM.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1425,7 +1868,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender31",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1522,7 +1965,20 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "arm_left"
@@ -1545,8 +2001,8 @@
                                                 "fn": "processMyLineSeries4",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -1566,7 +2022,20 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "arm_right"
@@ -1589,8 +2058,8 @@
                                                 "fn": "processMyLineSeries5",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -1610,7 +2079,20 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "chest"
@@ -1633,8 +2115,8 @@
                                                 "fn": "processMyLineSeries6",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -1653,7 +2135,20 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "waist"
@@ -1676,8 +2171,8 @@
                                                 "fn": "processMyLineSeries7",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -1696,7 +2191,20 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "umbilical"
@@ -1719,8 +2227,8 @@
                                                 "fn": "processMyLineSeries8",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -1739,10 +2247,23 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
-                                            "ilica_ant"
+                                            "spina_ilica_ant"
                                         ]
                                     },
                                     "name": "MyLineSeries16",
@@ -1762,8 +2283,8 @@
                                                 "fn": "processMyLineSeries9",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -1782,10 +2303,23 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
-                                            "hips"
+                                            "wide_hips"
                                         ]
                                     },
                                     "name": "MyLineSeries17",
@@ -1805,8 +2339,8 @@
                                                 "fn": "processMyLineSeries10",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -1825,7 +2359,20 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "quads_left"
@@ -1848,8 +2395,8 @@
                                                 "fn": "processMyLineSeries10",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -1868,7 +2415,20 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "marker": [
+                                            "true"
+                                        ],
                                         "smooth": 3,
+                                        "tooltip": [
+                                            "{",
+                                            "    trackMouse: true,",
+                                            "    style: 'background: #fff',",
+                                            "    renderer: function(storeItem, item) {",
+                                            "        var title = item.series.getTitle();",
+                                            "        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');",
+                                            "    }",
+                                            "}"
+                                        ],
                                         "xField": "record_date",
                                         "yField": [
                                             "quads_right"
@@ -1891,8 +2451,8 @@
                                                 "fn": "processMyLineSeries10",
                                                 "implHandler": [
                                                     "config.listeners = {",
-                                                    "    itemclick : function(item) {",
-                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);",
+                                                    "    itemclick : function(series, item, event, Opts) {",
+                                                    "        LanistaTrainer.app.getController('MeasuresController').showForm(item.record);",
                                                     "    }",
                                                     "};",
                                                     "return config;"
@@ -1944,6 +2504,7 @@
                                         ],
                                         "maximum": null,
                                         "minimum": 0,
+                                        "position": "left",
                                         "title": [
                                             "Numeric Axis"
                                         ]
@@ -1962,7 +2523,102 @@
                                     "configAlternates": {
                                         "scrollable": "boolean"
                                     },
-                                    "designerId": "53b303e4-3641-4fc0-b39f-481fa5b41e8c"
+                                    "designerId": "53b303e4-3641-4fc0-b39f-481fa5b41e8c",
+                                    "cn": [
+                                        {
+                                            "type": "processcfgfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "config"
+                                                ],
+                                                "fn": "processMyLegend2",
+                                                "implHandler": [
+                                                    "config.docked = 'top';",
+                                                    "return config;"
+                                                ]
+                                            },
+                                            "name": "processMyLegend2",
+                                            "designerId": "b5cda0d8-914a-4151-b2d9-de184d5faa9e"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "processcfgfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "config"
+                                        ],
+                                        "fn": "processMeasuresChat2",
+                                        "implHandler": [
+                                            "config.plugins =  {",
+                                            "        ptype: 'chartitemevents',",
+                                            "        moveEvents: true",
+                                            "    };",
+                                            "return config;"
+                                        ]
+                                    },
+                                    "name": "processMeasuresChat2",
+                                    "designerId": "3f400ccd-1e5a-4ab4-9677-6db61cc0b46f"
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onMeasuresChatAfterRender2",
+                                        "implHandler": [
+                                            "var el = component.el;",
+                                            "",
+                                            "component.series[0].setTitle(Ext.ux.LanguageManager.TranslationArray.ARM_LEFT.toUpperCase());",
+                                            "component.series[1].setTitle(Ext.ux.LanguageManager.TranslationArray.ARM_RIGHT.toUpperCase());",
+                                            "component.series[2].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase());",
+                                            "component.series[3].setTitle(Ext.ux.LanguageManager.TranslationArray.WAIST.toUpperCase());",
+                                            "component.series[4].setTitle(Ext.ux.LanguageManager.TranslationArray.NAVEL.toUpperCase());",
+                                            "component.series[5].setTitle(Ext.ux.LanguageManager.TranslationArray.SPINE.toUpperCase());",
+                                            "component.series[6].setTitle(Ext.ux.LanguageManager.TranslationArray.HIP.toUpperCase());",
+                                            "component.series[7].setTitle(Ext.ux.LanguageManager.TranslationArray.THING_LEFT.toUpperCase());",
+                                            "component.series[8].setTitle(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT.toUpperCase());",
+                                            "",
+                                            "el.on(",
+                                            "    'click', function(e,t) {",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');",
+                                            "    },",
+                                            "    this,{ delegate: '.x-legend-item'});",
+                                            "",
+                                            "el.on(",
+                                            "    'mouseover', function(e,t) {",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');",
+                                            "    },",
+                                            "    this,{ delegate: '.x-legend-item'});",
+                                            "",
+                                            "el.on(",
+                                            "    'mouseout', function(e,t) {",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-not-clicked';",
+                                            "        Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');",
+                                            "    },",
+                                            "    this,{delegate: '.x-legend-item'});",
+                                            ""
+                                        ],
+                                        "name": "afterrender",
+                                        "scope": "me"
+                                    },
+                                    "name": "onMeasuresChatAfterRender2",
+                                    "designerId": "afd75b37-f57a-46b6-ab1b-9e51e80c62c4"
                                 }
                             ]
                         },
@@ -2017,16 +2673,43 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "align": "center",
+                                        "cls": [
+                                            "lanista-grid-record-date-measures"
+                                        ],
                                         "dataIndex": "record_date",
+                                        "draggable": false,
+                                        "enableColumnHide": false,
                                         "flex": 1,
                                         "format": "d-m-y",
+                                        "hideable": false,
+                                        "resizable": false,
                                         "text": null
                                     },
                                     "name": "MyDateColumn2",
                                     "configAlternates": {
                                         "scrollable": "boolean"
                                     },
-                                    "designerId": "ca4b18be-a9e4-4db5-9032-cc906e1f31c2"
+                                    "designerId": "ca4b18be-a9e4-4db5-9032-cc906e1f31c2",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onDatecolumnAfterRender2",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.DATE.toUpperCase());"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "name": "onDatecolumnAfterRender2",
+                                            "designerId": "410b85f9-00d1-4503-b409-44080f9308db"
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "Ext.grid.column.Column",
@@ -2057,7 +2740,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender41",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_LEFT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_LEFT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -2096,7 +2779,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender211",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_RIGHT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_RIGHT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -2137,7 +2820,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender112",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -2178,7 +2861,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender11141",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.WAIST);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.WAIST.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -2219,7 +2902,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender11131",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.NAVEL);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.NAVEL.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -2260,7 +2943,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender11121",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -2301,7 +2984,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender1115",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.HIP);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.HIP.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -2342,7 +3025,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender11111",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.THING_LEFT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.THING_LEFT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -2381,7 +3064,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender311",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT);"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -2410,6 +3093,26 @@
                                     "designerId": "05dd38b2-6b7d-43d6-a8e2-b37bd6e4c2de"
                                 }
                             ]
+                        },
+                        {
+                            "type": "processcfgfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "config"
+                                ],
+                                "fn": "processCircumferencesTab",
+                                "implHandler": [
+                                    "",
+                                    "return config;"
+                                ]
+                            },
+                            "name": "processCircumferencesTab",
+                            "designerId": "348c1535-d4e8-419d-abcd-91652bb934d8"
                         }
                     ]
                 },

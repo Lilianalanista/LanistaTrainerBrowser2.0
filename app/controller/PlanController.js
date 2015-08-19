@@ -215,7 +215,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                         }
                     });
 
-                    LanistaTrainer.app.getController('MainController').saveModel(controller.plan.save, {
+                    LanistaTrainer.app.getController('MainController').saveModel(controller.plan, {
                         callback: function( changedPlan, operation, success ) {
                             console.log ( changedPlan );
                             LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
@@ -317,8 +317,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
         record = [{rounds_min: controller.rounds_min,
                    training: controller.training_min,
-                   training_unit: controller.training_unit,
-                   weight_min: controller.weight_min}];
+                   training_unit: controller.training_unit}];
 
         windowPanel.down( "#protocollTrainingValue" ).setValue(record[0].training);
         trainingUnit = record[0].training_unit;
@@ -339,7 +338,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 break;
         }
 
-        windowPanel.down( "#protocollKgValue" ).setValue(record[0].weight_min);
         windowPanel.down( "#protocollKgValue" ).hide();
         windowPanel.down( "#weightKilos" ).hide();
         windowPanel.down( "#weightSets" ).show();
@@ -566,7 +564,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 controller.rounds_min = record.rounds_min;
                 controller.training_min = record.training_min;
                 controller.training_unit = record.training_unit;
-                controller.weight_min = record.weight_min;
             }
 
             planPanel.down ('tabbar').items.items[0].setText(Ext.ux.LanguageManager.TranslationArray.DAY + ' 1');
@@ -789,18 +786,17 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             duration: 12
         });
 
-        //newPlan.setProxy(new Ext.data.proxy.Ajax({
         newPlan.proxy = new Ext.data.proxy.Ajax({
             url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/plan/json',
             model: 'LanistaTrainer.model.Plan',
             noCache: false,
             reader: {
                 type: 'json',
-                root: 'entries'
+                rootProperty: 'entries'
             },
             writer: {
                 type: 'json',
-                root: 'records',
+                rootProperty: 'records',
                 allowSingle: false
             },
             headers: {
@@ -808,7 +804,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             }
         });
 
-        newPlan.save (
+        LanistaTrainer.app.getController('MainController').saveModel(newPlan,
             {
                 callback: function ( record ){
                     LanistaTrainer.app.getController ( 'PlanController' ).plan = record;
@@ -858,11 +854,12 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             controller.training_min = defaultValues[1];
             controller.training_unit = defaultValues[2];
         }
-
+        /*
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeGenericPanel', controller.getDefaultPlanValuesPanel(), function() {
             LanistaTrainer.app.fireEvent('showPlanPanel', LanistaTrainer.app.getController ( 'PlanController' ).planname);
         });
+        */
     },
 
     showCommands: function(callback) {

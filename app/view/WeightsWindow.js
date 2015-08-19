@@ -185,15 +185,22 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                             setObjectLanista;
 
                         if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel' ||
-                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
-                            infoProtocoll[0] = !component.down('#protocollKgValue').getValue() ? 0 : component.down('#protocollKgValue').getValue();
+                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel')
+                        {
                             infoProtocoll[1] = !component.down('#protocollTrainingValue').getValue() ? 0 : component.down('#protocollTrainingValue').getValue();
                             infoProtocoll[2] = !parseInt(component.down('#radioWeight').getValue().rb) ? 0 : parseInt(component.down('#radioWeight').getValue().rb);
 
-                            LanistaTrainer.app.fireEvent('planExerciseRecordChanged',
-                                                         infoProtocoll,
-                                                         component.down('#exerciseIndications').getValue(),
-                                                         !component.down('#exerciseSets').getValue() ? 0 : component.down('#exerciseSets').getValue());
+                            if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'ExercisePanel'){
+                                infoProtocoll[0] = !component.down('#protocollKgValue').getValue() ? 0 : component.down('#protocollKgValue').getValue();
+                                LanistaTrainer.app.fireEvent('planExerciseRecordChanged',
+                                                             infoProtocoll,
+                                                             component.down('#exerciseIndications').getValue(),
+                                                             !component.down('#exerciseSets').getValue() ? 0 : component.down('#exerciseSets').getValue());
+                            }
+                            if (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1] === 'PlanPanel'){
+                                infoProtocoll[0] = !component.down('#exerciseSets').getValue() ? 0 : component.down('#exerciseSets').getValue();
+                                LanistaTrainer.app.fireEvent('defaultValuesChanged', infoProtocoll);
+                            }
                         }
 
                         /*
@@ -204,6 +211,8 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
                             infoProtocoll[0] = valueWeight;
                             infoProtocoll[1] = panelTraining.getValue();
                             infoProtocoll[2] = panelTraining.unit;
+
+
                             LanistaTrainer.app.fireEvent('planExerciseRecordChanged', infoProtocoll,'','');
                         }
                         */

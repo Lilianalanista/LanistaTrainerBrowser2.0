@@ -26724,3 +26724,44 @@ font-size: 18px;
 
 #protocollPanel {
   left: 369px!important; }
+
+.lanista-grid-record-date-measures .x-column-header-text {
+  background-image: none; }
+
+.lanista-grid-record-date-measures {
+  background-image: none!important;
+  background-color: transparent!important; }
+
+.x-legend-container {
+  height: 30px;
+  border: 1px solid #ccc; }
+
+.x-legend-item {
+  padding: .8em 1em .8em 1.8em;
+  color: #333;
+  background: rgba(255, 255, 255, 0);
+  max-width: 16em;
+  min-width: 0;
+  font-size: 11px;
+  font-family: helvetica,arial,verdana,sans-serif;
+  line-height: 11px;
+  font-weight: 300;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  float: left;
+  width: 107px;
+  border-left: 1px solid rgba(204, 204, 204, 0.5); }
+
+.x-legend-item:first-child {
+  border-left: 0; }
+
+.x-legend-item-marker {
+  position: absolute;
+  width: .8em;
+  height: .8em;
+  border-radius: .4em;
+  box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0, rgba(0, 0, 0, 0.4) 0 1px 0 inset;
+  left: .7em;
+  top: .85em; }

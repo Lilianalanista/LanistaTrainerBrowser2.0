@@ -25,10 +25,10 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         'Ext.chart.series.Line',
         'Ext.chart.axis.Time',
         'Ext.chart.Legend',
+        'Ext.XTemplate',
         'Ext.grid.Panel',
         'Ext.view.Table',
-        'Ext.grid.column.Date',
-        'Ext.XTemplate'
+        'Ext.grid.column.Date'
     ],
 
     viewModel: {
@@ -58,46 +58,96 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 id: 'measuresTab',
                                 title: 'My Tab',
                                 items: [
-                                    {
+                                    me.processMeasuresChat({
                                         xtype: 'cartesian',
                                         height: 550,
                                         id: '',
                                         itemId: 'measuresChat',
                                         width: 1200,
-                                        insetPadding: 20,
                                         store: 'MeasuresStore',
                                         series: [
-                                            me.processMyLineSeries2({
+                                            me.processWeight({
                                                 type: 'line',
+                                                highlight: true,
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
+                                                marker: {
+                                                    type: 'square'
+                                                },
+                                                title: 'Weight',
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' Kg.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'weight'
-                                                ],
-                                                smooth: 3
+                                                ]
                                             }),
-                                            me.processMyLineSeries1({
+                                            me.processHeight({
                                                 type: 'line',
+                                                highlight: true,
+                                                marker: {
+                                                    type: 'triangle'
+                                                },
+                                                title: 'Height',
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'height'
-                                                ],
-                                                smooth: 3
+                                                ]
                                             }),
-                                            me.processMyLineSeries21({
+                                            me.processFutrex({
                                                 type: 'line',
+                                                highlight: true,
+                                                marker: {
+                                                    type: 'arrow'
+                                                },
+                                                title: 'Futrex',
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' %');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'futrex'
-                                                ],
-                                                smooth: 3
+                                                ]
                                             }),
-                                            me.processMyLineSeries3({
+                                            me.processPercentage({
                                                 type: 'line',
+                                                highlight: true,
+                                                marker: {
+                                                    type: 'cross'
+                                                },
+                                                title: 'Percentage',
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' %');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'percentage'
-                                                ],
-                                                smooth: 3
+                                                ]
                                             })
                                         ],
                                         axes: [
@@ -108,10 +158,19 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 ],
                                                 dateFormat: 'd-m-Y',
                                                 step: [
-                                                    Ext.Date.MONTH,
-                                                    3
+                                                    Ext.Date.DAY,
+                                                    90
                                                 ],
                                                 position: 'bottom'
+                                            },
+                                            {
+                                                type: 'numeric',
+                                                fields: [
+                                                    'percentage'
+                                                ],
+                                                grid: true,
+                                                minimum: 0,
+                                                position: 'right'
                                             },
                                             {
                                                 type: 'numeric',
@@ -120,22 +179,33 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                     'height',
                                                     'futrex'
                                                 ],
+                                                grid: true,
                                                 minimum: 0,
-                                                position: 'bottom'
-                                            },
-                                            {
-                                                type: 'numeric',
-                                                fields: [
-                                                    'percentage'
-                                                ],
-                                                minimum: 0,
-                                                position: 'right'
+                                                position: 'left'
                                             }
                                         ],
-                                        legend: {
-                                            xtype: 'legend'
+                                        legend: me.processMyLegend3({
+                                            xtype: 'legend',
+                                            alwaysOnTop: true,
+                                            border: true,
+                                            defaultAlign: 't-t',
+                                            liquidLayout: true,
+                                            tpl: [
+                                                '<div class="x-legend-container">',
+                                                '    <tpl for=".">',
+                                                '        <div class="x-legend-item">',
+                                                '            <span class="x-legend-item-marker {[ values.disabled ? Ext.baseCSSPrefix + \'legend-inactive\' : \'\' ]}" ',
+                                                '                style="background:{mark};">',
+                                                '            </span>{name}',
+                                                '        </div>',
+                                                '    </tpl>',
+                                                '</div>'
+                                            ]
+                                        }),
+                                        listeners: {
+                                            afterrender: 'onMeasuresChatAfterRender'
                                         }
-                                    },
+                                    }),
                                     {
                                         xtype: 'gridpanel',
                                         height: 550,
@@ -153,10 +223,18 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         columns: [
                                             {
                                                 xtype: 'datecolumn',
+                                                cls: 'lanista-grid-record-date-measures',
+                                                draggable: false,
+                                                resizable: false,
+                                                enableColumnHide: false,
                                                 align: 'center',
                                                 dataIndex: 'record_date',
+                                                hideable: false,
                                                 flex: 1,
-                                                format: 'd-m-y'
+                                                format: 'd-m-y',
+                                                listeners: {
+                                                    afterrender: 'onDatecolumnAfterRender'
+                                                }
                                             },
                                             {
                                                 xtype: 'gridcolumn',
@@ -208,7 +286,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 id: 'caliperTab',
                                 title: 'My Tab',
                                 items: [
-                                    {
+                                    me.processMeasuresChat1({
                                         xtype: 'cartesian',
                                         height: 550,
                                         itemId: 'measuresChat',
@@ -218,6 +296,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         series: [
                                             me.processMyLineSeries4({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'trizeps'
@@ -226,6 +313,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries5({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'scapula'
@@ -234,6 +330,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries6({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'auxiliar'
@@ -242,6 +347,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries7({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'chest'
@@ -250,6 +364,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries8({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'sprailium'
@@ -258,6 +381,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries9({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'abs'
@@ -266,6 +398,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries10({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'quads'
@@ -298,14 +439,16 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                     'quads'
                                                 ],
                                                 minimum: 0,
-                                                title: 'Numeric Axis',
-                                                position: 'bottom'
+                                                position: 'left'
                                             }
                                         ],
-                                        legend: {
+                                        legend: me.processMyLegend1({
                                             xtype: 'legend'
+                                        }),
+                                        listeners: {
+                                            afterrender: 'onMeasuresChatAfterRender1'
                                         }
-                                    },
+                                    }),
                                     {
                                         xtype: 'gridpanel',
                                         height: 550,
@@ -323,10 +466,18 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         columns: [
                                             {
                                                 xtype: 'datecolumn',
+                                                cls: 'lanista-grid-record-date-measures',
+                                                draggable: false,
+                                                resizable: false,
+                                                enableColumnHide: false,
                                                 align: 'center',
                                                 dataIndex: 'record_date',
+                                                hideable: false,
                                                 flex: 1,
-                                                format: 'd-m-y'
+                                                format: 'd-m-y',
+                                                listeners: {
+                                                    afterrender: 'onDatecolumnAfterRender1'
+                                                }
                                             },
                                             {
                                                 xtype: 'gridcolumn',
@@ -428,12 +579,12 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                     }
                                 ]
                             },
-                            {
+                            me.processCircumferencesTab({
                                 xtype: 'panel',
                                 id: 'circumferencesTab',
                                 title: 'My Tab',
                                 items: [
-                                    {
+                                    me.processMeasuresChat2({
                                         xtype: 'cartesian',
                                         height: 550,
                                         itemId: 'measuresChat',
@@ -443,6 +594,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         series: [
                                             me.processMyLineSeries4({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'arm_left'
@@ -451,6 +611,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries5({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'arm_right'
@@ -459,6 +628,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries6({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'chest'
@@ -467,6 +645,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries7({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'waist'
@@ -475,6 +662,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries8({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'umbilical'
@@ -483,22 +679,49 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries9({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
-                                                    'ilica_ant'
+                                                    'spina_ilica_ant'
                                                 ],
                                                 smooth: 3
                                             }),
                                             me.processMyLineSeries10({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
-                                                    'hips'
+                                                    'wide_hips'
                                                 ],
                                                 smooth: 3
                                             }),
                                             me.processMyLineSeries10({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'quads_left'
@@ -507,6 +730,15 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries10({
                                                 type: 'line',
+                                                marker: true,
+                                                tooltip: {
+                                                    trackMouse: true,
+                                                    style: 'background: #fff',
+                                                    renderer: function(storeItem, item) {
+                                                        var title = item.series.getTitle();
+                                                        this.setHtml(title + ': ' + storeItem.get(item.series.getYField()) + ' cm.');
+                                                    }
+                                                },
                                                 xField: 'record_date',
                                                 yField: [
                                                     'quads_right'
@@ -541,14 +773,17 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                     'quads_right'
                                                 ],
                                                 minimum: 0,
-                                                title: 'Numeric Axis',
-                                                position: 'bottom'
+                                                position: 'left',
+                                                title: 'Numeric Axis'
                                             }
                                         ],
-                                        legend: {
+                                        legend: me.processMyLegend2({
                                             xtype: 'legend'
+                                        }),
+                                        listeners: {
+                                            afterrender: 'onMeasuresChatAfterRender2'
                                         }
-                                    },
+                                    }),
                                     {
                                         xtype: 'gridpanel',
                                         height: 550,
@@ -566,10 +801,18 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         columns: [
                                             {
                                                 xtype: 'datecolumn',
+                                                cls: 'lanista-grid-record-date-measures',
+                                                draggable: false,
+                                                resizable: false,
+                                                enableColumnHide: false,
                                                 align: 'center',
                                                 dataIndex: 'record_date',
+                                                hideable: false,
                                                 flex: 1,
-                                                format: 'd-m-y'
+                                                format: 'd-m-y',
+                                                listeners: {
+                                                    afterrender: 'onDatecolumnAfterRender2'
+                                                }
                                             },
                                             {
                                                 xtype: 'gridcolumn',
@@ -670,7 +913,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         }
                                     }
                                 ]
-                            },
+                            }),
                             {
                                 xtype: 'panel',
                                 hidden: true,
@@ -703,49 +946,64 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         return me.callParent([config]);
     },
 
-    processMyLineSeries2: function(config) {
+    processWeight: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
     },
 
-    processMyLineSeries1: function(config) {
+    processHeight: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
-            }
-        };
-        return config;
-
-    },
-
-    processMyLineSeries21: function(config) {
-        config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
 
     },
 
-    processMyLineSeries3: function(config) {
+    processFutrex: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
 
+    },
+
+    processPercentage: function(config) {
+        config.listeners = {
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
+            }
+        };
+        return config;
+
+    },
+
+    processMyLegend3: function(config) {
+        config.docked = 'top';
+        return config;
+    },
+
+    processMeasuresChat: function(config) {
+        config.plugins =  {
+                ptype: 'chartitemevents',
+                moveEvents: true
+            };
+
+
+        return config;
     },
 
     processMyLineSeries4: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -753,8 +1011,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries5: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -762,8 +1020,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries6: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -771,8 +1029,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries7: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -780,8 +1038,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries8: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -789,8 +1047,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries9: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -798,17 +1056,31 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries10: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
     },
 
+    processMyLegend1: function(config) {
+        config.docked = 'top';
+        return config;
+    },
+
+    processMeasuresChat1: function(config) {
+        config.plugins =  {
+            ptype: 'chartitemevents',
+            moveEvents: true
+        };
+
+        return config;
+    },
+
     processMyLineSeries4: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -816,8 +1088,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries5: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -825,8 +1097,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries6: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -834,8 +1106,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries7: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -843,8 +1115,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries8: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -852,8 +1124,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries9: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -861,8 +1133,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries10: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -870,8 +1142,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries10: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
@@ -879,107 +1151,223 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     processMyLineSeries10: function(config) {
         config.listeners = {
-            itemclick : function(item) {
-                LanistaTrainer.app.getController('MeasuresController').showForm(item.storeItem);
+            itemclick : function(series, item, event, Opts) {
+                LanistaTrainer.app.getController('MeasuresController').showForm(item.record);
             }
         };
         return config;
+    },
+
+    processMyLegend2: function(config) {
+        config.docked = 'top';
+        return config;
+    },
+
+    processMeasuresChat2: function(config) {
+        config.plugins =  {
+                ptype: 'chartitemevents',
+                moveEvents: true
+            };
+        return config;
+    },
+
+    processCircumferencesTab: function(config) {
+
+        return config;
+    },
+
+    onMeasuresChatAfterRender: function(component, eOpts) {
+        var el = component.el;
+
+        component.series[0].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_BODYWEIGHT.toUpperCase());
+        component.series[1].setTitle(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE.toUpperCase());
+        component.series[2].setTitle(Ext.ux.LanguageManager.TranslationArray.BODY_FAT.toUpperCase());
+        component.series[3].setTitle(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());
+
+        el.on(
+            'mouseover', function(e,t) {
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
+            },
+            this,{ delegate: '.x-legend-item'});
+
+        el.on(
+            'mouseout', function(e,t) {
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-not-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');
+            },
+            this,{delegate: '.x-legend-item'});
+    },
+
+    onDatecolumnAfterRender: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.DATE.toUpperCase());
     },
 
     onGridcolumnAfterRender: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE.toUpperCase());
     },
 
     onGridcolumnAfterRender2: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());
     },
 
     onGridcolumnAfterRender1: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_FAT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_FAT.toUpperCase());
     },
 
     onGridcolumnAfterRender3: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());
     },
 
     onMeasuresTableItemClick: function(dataview, record, item, index, e, eOpts) {
         LanistaTrainer.app.getController('MeasuresController').showForm(record);
     },
 
+    onMeasuresChatAfterRender1: function(component, eOpts) {
+        var el = component.el;
+
+        component.series[0].setTitle(Ext.ux.LanguageManager.TranslationArray.TRICEPS.toUpperCase());
+        component.series[1].setTitle(Ext.ux.LanguageManager.TranslationArray.SCAPULA.toUpperCase());
+        component.series[2].setTitle(Ext.ux.LanguageManager.TranslationArray.ARMPIT.toUpperCase());
+        component.series[3].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase());
+        component.series[4].setTitle(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT.toUpperCase());
+        component.series[5].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_AB.toUpperCase());
+        component.series[6].setTitle(Ext.ux.LanguageManager.TranslationArray.QUADS.toUpperCase());
+
+        el.on(
+            'mouseover', function(e,t) {
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
+            },
+            this,{ delegate: '.x-legend-item'});
+
+        el.on(
+            'mouseout', function(e,t) {
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-not-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');
+            },
+            this,{delegate: '.x-legend-item'});
+
+    },
+
+    onDatecolumnAfterRender1: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.DATE.toUpperCase());
+    },
+
     onGridcolumnAfterRender4: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.TRICEPS);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.TRICEPS.toUpperCase());
     },
 
     onGridcolumnAfterRender21: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.SCAPULA);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.SCAPULA.toUpperCase());
     },
 
     onGridcolumnAfterRender11: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.ARMPIT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ARMPIT.toUpperCase());
     },
 
     onGridcolumnAfterRender1114: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase());
     },
 
     onGridcolumnAfterRender1113: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT.toUpperCase());
     },
 
     onGridcolumnAfterRender1112: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_AB);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_AB.toUpperCase());
     },
 
     onGridcolumnAfterRender111: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.QUADS);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.QUADS.toUpperCase());
     },
 
     onGridcolumnAfterRender1111: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.SUM);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.SUM.toUpperCase());
     },
 
     onGridcolumnAfterRender31: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());
     },
 
     onMeasuresTableItemClick1: function(dataview, record, item, index, e, eOpts) {
         LanistaTrainer.app.getController('MeasuresController').showForm(record);
     },
 
+    onMeasuresChatAfterRender2: function(component, eOpts) {
+        var el = component.el;
+
+        component.series[0].setTitle(Ext.ux.LanguageManager.TranslationArray.ARM_LEFT.toUpperCase());
+        component.series[1].setTitle(Ext.ux.LanguageManager.TranslationArray.ARM_RIGHT.toUpperCase());
+        component.series[2].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase());
+        component.series[3].setTitle(Ext.ux.LanguageManager.TranslationArray.WAIST.toUpperCase());
+        component.series[4].setTitle(Ext.ux.LanguageManager.TranslationArray.NAVEL.toUpperCase());
+        component.series[5].setTitle(Ext.ux.LanguageManager.TranslationArray.SPINE.toUpperCase());
+        component.series[6].setTitle(Ext.ux.LanguageManager.TranslationArray.HIP.toUpperCase());
+        component.series[7].setTitle(Ext.ux.LanguageManager.TranslationArray.THING_LEFT.toUpperCase());
+        component.series[8].setTitle(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT.toUpperCase());
+
+        el.on(
+            'click', function(e,t) {
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
+            },
+            this,{ delegate: '.x-legend-item'});
+
+        el.on(
+            'mouseover', function(e,t) {
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
+            },
+            this,{ delegate: '.x-legend-item'});
+
+        el.on(
+            'mouseout', function(e,t) {
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-not-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');
+            },
+            this,{delegate: '.x-legend-item'});
+
+    },
+
+    onDatecolumnAfterRender2: function(component, eOpts) {
+        component.setText(Ext.ux.LanguageManager.TranslationArray.DATE.toUpperCase());
+    },
+
     onGridcolumnAfterRender41: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_LEFT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_LEFT.toUpperCase());
     },
 
     onGridcolumnAfterRender211: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_RIGHT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ARM_RIGHT.toUpperCase());
     },
 
     onGridcolumnAfterRender112: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.FILTER_CHEST.toUpperCase());
     },
 
     onGridcolumnAfterRender11141: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.WAIST);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.WAIST.toUpperCase());
     },
 
     onGridcolumnAfterRender11131: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.NAVEL);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.NAVEL.toUpperCase());
     },
 
     onGridcolumnAfterRender11121: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.ILIAC_CREAT.toUpperCase());
     },
 
     onGridcolumnAfterRender1115: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.HIP);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.HIP.toUpperCase());
     },
 
     onGridcolumnAfterRender11111: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.THING_LEFT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.THING_LEFT.toUpperCase());
     },
 
     onGridcolumnAfterRender311: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT);
+        component.setText(Ext.ux.LanguageManager.TranslationArray.THING_RIGHT.toUpperCase());
     },
 
     onMeasuresTableItemClick11: function(dataview, record, item, index, e, eOpts) {

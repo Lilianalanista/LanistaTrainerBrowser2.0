@@ -359,7 +359,7 @@ Ext.application({
                     rootProperty: 'results'
                 },
                 headers: undefined //{
-                    //user_id: userId
+                //user_id: userId
                 //}
             }));
 
@@ -380,7 +380,7 @@ Ext.application({
                 }
             }));
 
-             Ext.getStore('MeasuresStore').setProxy(new Ext.data.proxy.Ajax({
+            Ext.getStore('MeasuresStore').setProxy(new Ext.data.proxy.Ajax({
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/weightjson',
                 model: 'LanistaTrainer.model.Measures',
                 noCache: false,

@@ -8,6 +8,7 @@
     "userConfig": {
         "designer|userClassName": "MeasuresStore",
         "model": "Measures",
+        "remoteFilter": true,
         "storeId": "MeasuresStore"
     },
     "designerId": "014328b8-ffc9-40db-acee-8d71443f68e5",

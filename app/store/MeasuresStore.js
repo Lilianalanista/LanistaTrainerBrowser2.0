@@ -27,6 +27,7 @@ Ext.define('LanistaTrainer.store.MeasuresStore', {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
+            remoteFilter: true,
             storeId: 'MeasuresStore',
             model: 'LanistaTrainer.model.Measures',
             proxy: {

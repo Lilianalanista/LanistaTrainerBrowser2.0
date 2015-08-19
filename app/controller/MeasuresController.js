@@ -92,7 +92,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
 
 
-            controller.testSave(controller.testType);
+           // controller.testSave(controller.testType);
 
 
 
@@ -116,32 +116,37 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             store.removeFilter('caliperFilter');
             filterFunction = new Ext.util.Filter({
                 id:'measuresFilter',
-                property: "user_id", value: LanistaTrainer.app.currentCustomer.data.id,
-                filterFn: function(item){
-                    return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
-                }
+                property: "user_id", value: LanistaTrainer.app.currentCustomer.data.id
             });
             store.filters.add (filterFunction);
-            store.loadPage(1);
+            store.load(function(records, operation, success) {
+                var recordsAux;
+                recordsAux = records.filter( function(item){
+                    return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
+                });
+                Ext.getStore('MeasuresStore').loadRecords(recordsAux);
+                tabPanel.down('#measuresChat').redraw();
+            });
+
         }else if ( newCard.id == 'caliperTab' ) {
             store = Ext.getStore('MeasuresStore');
             store.removeFilter('measuresFilter');
             store.removeFilter('caliperFilter');
             filterFunction = new Ext.util.Filter({
                 id:'caliperFilter',
-                property: "user_id", value: LanistaTrainer.app.currentCustomer.data.id,
-                filterFn: function(item){
-                    return (item.data.trizeps   !== 0 ||
-                            item.data.scapula   !== 0 ||
-                            item.data.auxiliar  !== 0 ||
-                            item.data.chest     !== 0 ||
-                            item.data.sprailium !== 0 ||
-                            item.data.abs       !== 0 ||
-                            item.data.quads     !== 0 );
-                }
+                property: "user_id", value: LanistaTrainer.app.currentCustomer.data.id
             });
             store.filters.add (filterFunction);
-            store.loadPage(1);
+            store.load(function(records, operation, success) {
+                var recordsAux;
+                recordsAux = records.filter( function(item){
+                    return (item.data.trizeps !== 0 || item.data.scapula !== 0 || item.data.auxiliar !== 0 ||
+                            item.data.chest !== 0 || item.data.sprailium !== 0 || item.data.abs !== 0 || item.data.quads !== 0);
+                });
+                Ext.getStore('MeasuresStore').loadRecords(recordsAux);
+                tabPanel.down('#measuresChat').redraw();
+            });
+
         }else if ( newCard.id == 'circumferencesTab') {
             store = Ext.getStore('CircumferencesStore');
             store.removeFilter('circumFilter');
@@ -377,17 +382,25 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         measuresStore.removeFilter('caliperFilter');
         filterFunction = new Ext.util.Filter({
             id:'measuresFilter',
-            property: "user_id", value: LanistaTrainer.app.currentCustomer.data.id,
-            filterFn: function(item){
-                return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
-            }
+            property: "user_id", value: LanistaTrainer.app.currentCustomer.data.id
         });
+
         measuresStore.filters.add (filterFunction);
-        measuresStore.sort( {
-            direction: 'DESC',
-            property: 'record_date'
-        });
+        measuresStore.proxy.setHeaders({user_role: user.role,
+                                        user_id: user.id});
+
+        Ext.getStore('CircumferencesStore').proxy.setHeaders({user_role: user.role,
+                                                              user_id: user.id});
+
+        Ext.getStore('CircumferencesStore').sort([
+            { property: 'record_date',  direction: 'DESC' }
+        ]);
+        measuresStore.sort([
+            { property: 'record_date',  direction: 'DESC' }
+        ]);
+
         measuresStore.load(function(records, operation, success) {
+            measuresPanel.fireEvent('tabchange');
             mainStage.add( measuresPanel );
             measuresPanel.on('hide', function(component) {
                 component.destroy();
@@ -399,6 +412,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
             // *** 2 Show the panel
             measuresPanel.show();
+
+            measuresPanel.down ('tabbar').items.items[0].setText(Ext.ux.LanguageManager.TranslationArray.DAY + ' 1');
 
             LanistaTrainer.app.fireEvent('showMeasuresHeaderUpdate');
             LanistaTrainer.app.fireEvent('showStage');
@@ -442,33 +457,98 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             viewPort = LanistaTrainer.app.getController('MainController').getLanistaStage().up('mainViewport'),
             activeTab = controller.getMeasuresPanel().down('#measureTabs').getActiveTab(),
             storeMeasures,
-            recordMeasures;
+            recordMeasures,
+            fields,
+            user;
 
         controller.showCommandsForm();
         controller.item = item ? item : '';
 
-         switch(activeTab.id) {
+        switch(activeTab.id) {
             case 'measuresTab':
-                     if (item)
-                        windowPanel.down('#measuresTabForm').loadRecord(item);
+                if (item)
+                    windowPanel.down('#measuresTabForm').loadRecord(item);
 
-                     windowPanel.down('#circumferencesTabForm').hide();
-                     windowPanel.setHeight(510);
-                     break;
+                windowPanel.down('#circumferencesTabForm').hide();
+
+                user = Ext.ux.SessionManager.getUser();
+                if (user.role !== '2' ){
+                    fields = windowPanel.down('#measuresTabForm').getForm().getFields();
+
+                    fields.getByKey('record_date_local').editable = false;
+                    fields.getByKey('record_date_local').disable();
+                    fields.getByKey('trizeps').editable = false;
+                    fields.getByKey('scapula').editable = false;
+                    fields.getByKey('auxiliar').editable = false;
+                    fields.getByKey('chest').editable = false;
+                    fields.getByKey('sprailium').editable = false;
+                    fields.getByKey('abs').editable = false;
+                    fields.getByKey('quads').editable = false;
+                    fields.getByKey('percentage').editable = false;
+                    fields.getByKey('weight').editable = false;
+                    fields.getByKey('height').editable = false;
+                    fields.getByKey('futrex').editable = false;
+                    fields.getByKey('note').editable = false;
+                    fields.getByKey('percentage').editable = false;
+                }
+
+                windowPanel.setHeight(510);
+                break;
             case 'caliperTab':
-                     if (item)
-                        windowPanel.down('#measuresTabForm').loadRecord(item);
+                if (item)
+                    windowPanel.down('#measuresTabForm').loadRecord(item);
 
-                     windowPanel.down('#circumferencesTabForm').hide();
-                     windowPanel.setHeight(610);
-                     break;
+                windowPanel.down('#circumferencesTabForm').hide();
+
+                user = Ext.ux.SessionManager.getUser();
+                if (user.role !== '2' ){
+                    fields = windowPanel.down('#measuresTabForm').getForm().getFields();
+
+                    fields.getByKey('record_date_local').editable = false;
+                    fields.getByKey('record_date_local').disable();
+                    fields.getByKey('trizeps').editable = false;
+                    fields.getByKey('scapula').editable = false;
+                    fields.getByKey('auxiliar').editable = false;
+                    fields.getByKey('chest').editable = false;
+                    fields.getByKey('sprailium').editable = false;
+                    fields.getByKey('abs').editable = false;
+                    fields.getByKey('quads').editable = false;
+                    fields.getByKey('percentage').editable = false;
+                    fields.getByKey('weight').editable = false;
+                    fields.getByKey('height').editable = false;
+                    fields.getByKey('futrex').editable = false;
+                    fields.getByKey('note').editable = false;
+                    fields.getByKey('percentage').editable = false;
+                }
+
+                windowPanel.setHeight(610);
+                break;
             case 'circumferencesTab':
-                     if (item)
-                        windowPanel.down('#circumferencesTabForm').loadRecord(item);
+                if (item)
+                    windowPanel.down('#circumferencesTabForm').loadRecord(item);
 
-                     windowPanel.down('#measuresTabForm').hide();
-                     windowPanel.setHeight(660);
-                     break;
+                windowPanel.down('#measuresTabForm').hide();
+
+                user = Ext.ux.SessionManager.getUser();
+                if (user.role !== '2' ){
+                    fields = windowPanel.down('#circumferencesTabForm').getForm().getFields();
+
+                    fields.getByKey('record_date_local_circ').editable = false;
+                    fields.getByKey('record_date_local_circ').disable();
+                    fields.getByKey('arm_left').editable = false;
+                    fields.getByKey('arm_right').editable = false;
+                    fields.getByKey('chest_circ').editable = false;
+                    fields.getByKey('waist').editable = false;
+                    fields.getByKey('umbilical').editable = false;
+                    fields.getByKey('spina_ilica_ant').editable = false;
+                    fields.getByKey('wide_hips').editable = false;
+                    fields.getByKey('quads_left').editable = false;
+                    fields.getByKey('quads_right').editable = false;
+                    fields.getByKey('note_circ').editable = false;
+                }
+
+                windowPanel.setHeight(660);
+                break;
         }
 
         viewPort.add( windowPanel );
@@ -480,11 +560,16 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
     showCommandsForm: function() {
         var controller = LanistaTrainer.app.getController('MeasuresController'),
-            windowPanelFrame = controller.getChartWindow().down('#buttonContainerMes');
+            windowPanelFrame = controller.getChartWindow().down('#buttonContainerMes'),
+            user;
 
         windowPanelFrame.items.each(function (item) {
             item.hide();
         });
+
+        user = Ext.ux.SessionManager.getUser();
+        if (user.role !== '2' )
+            return;
 
         windowPanelFrame.add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
@@ -903,11 +988,11 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 noCache: false,
                 reader: {
                     type: 'json',
-                    root: 'entries'
+                    rootProperty: 'entries'
                 },
                 writer: {
                     type: 'json',
-                    root: 'records',
+                    rootProperty: 'records',
                     allowSingle: false
                 },
                 headers: {
@@ -923,8 +1008,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             testtype: type,
             customer_id: LanistaTrainer.app.currentCustomer.data.id
         });
-        TestToSave.save();
-        TestToSave.destroy();
+        LanistaTrainer.app.getController('MainController').saveModel(TestToSave);
+        LanistaTrainer.app.getController('MainController').eraseModel(TestToSave);
 
 
 
