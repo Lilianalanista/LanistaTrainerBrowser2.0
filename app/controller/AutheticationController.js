@@ -62,90 +62,90 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                     });
                 } else {
                     LanistaTrainer.app.fireEvent('loginUser', email, password, function (data) {
-                            LanistaTrainer.app.getController('LoginController').getMainViewport().down("#header").el.dom.children[0].innerHTML = '';
-                            Ext.ux.SessionManager.loadLastUser();
+                        LanistaTrainer.app.getController('LoginController').getMainViewport().down("#header").el.dom.children[0].innerHTML = '';
+                        Ext.ux.SessionManager.loadLastUser();
 
-                            //Setting new Cookie
-                            while (thereAreCook){
-                                cookie = Ext.util.Cookies.get('userLanista' + i);
-                                if (cookie){
-                                    if (cookie.trim() === email.trim())
-                                        thereAreCook = false;
-                                }
-                                else{
-                                    Ext.util.Cookies.set("userLanista" + (i), email);
+                        //Setting new Cookie
+                        while (thereAreCook){
+                            cookie = Ext.util.Cookies.get('userLanista' + i);
+                            if (cookie){
+                                if (cookie.trim() === email.trim())
                                     thereAreCook = false;
-                                }
-                                i = i + 1;
                             }
+                            else{
+                                Ext.util.Cookies.set("userLanista" + (i), email);
+                                thereAreCook = false;
+                            }
+                            i = i + 1;
+                        }
 
-                            var user = Ext.ux.SessionManager.getUser(),
-                                //url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
-                                url = 'ext/packages/ext-locale/build/ext-locale-' + user.language.toLowerCase() + '.js';
+                        var user = Ext.ux.SessionManager.getUser(),
+                            //url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
+                            url = 'lib/ext-locale/ext-locale-' + user.language.toLowerCase() + '.js';
 
-                            if (user.language != Ext.ux.LanguageManager.lang)
-                                LanistaTrainer.app.fireEvent('changeLanguage', user.language, false);
+                        if (user.language != Ext.ux.LanguageManager.lang)
+                            LanistaTrainer.app.fireEvent('changeLanguage', user.language, false);
 
+                        Ext.Ajax.request({
+                            url: url,
+                            success: function(response) {
+                                eval(response.responseText);
+                                console.log("Language was changed");
+                            },
+                            failure: function(response) {
+                                console.log("Language couldn't be changed");
+                            },
+                            scope: this
+                        });
+
+                        LanistaTrainer.app.setProxies();
+
+                        if (user.role === '2' )  //Only Role 2 means that it is a Trainer
+                            LanistaTrainer.app.fireEvent('showDashboardPanel');
+                        else{  //It is a  Kunden
                             Ext.Ajax.request({
-                                url: url,
-                                success: function(response) {
-                                    eval(response.responseText);
-                                    console.log("Language was changed");
+                                url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getuser',
+                                method: 'get',
+                                params: {id: user.id},
+                                headers: {user_id: user.id},
+                                failure : function(result, request){
+                                    console.log( "There were problems in looking for user information" );
                                 },
-                                failure: function(response) {
-                                    console.log("Language couldn't be changed");
-                                },
-                                scope: this
-                            });
+                                success: function(response, opts) {
+                                    try {
+                                        data = Ext.decode(response.responseText);
+                                        ActiveCustomer = Ext.create('LanistaTrainer.model.Customer', {
+                                            id: data.user.id,
+                                            first_name: data.user.first_name,
+                                            last_name: data.user.last_name,
+                                            email: data.user.email,
+                                            street: data.user.street,
+                                            city: data.user.city,
+                                            zipcode: data.user.zipcode,
+                                            country: data.user.country,
+                                            note: data.user.note,
+                                            phone_nr: data.user.phone_nr,
+                                            birthday: data.user.birthday,
+                                            gender: data.user.gender,
+                                            deleted: data.user.deleted,
+                                            image: data.user.image,
+                                            last_change: data.user.last_change,
+                                            language: data.user.language,
+                                            sincronized: data.user.sincronized
+                                        });
 
-                            LanistaTrainer.app.setProxies();
-
-                            if (user.role === '2' )  //Only Role 2 means that it is a Trainer
-                                LanistaTrainer.app.fireEvent('showDashboardPanel');
-                            else{  //It is a  Kunden
-                                Ext.Ajax.request({
-                                    url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/getuser',
-                                    method: 'get',
-                                    params: {id: user.id},
-                                    headers: {user_id: user.id},
-                                    failure : function(result, request){
-                                        console.log( "There were problems in looking for user information" );
-                                    },
-                                    success: function(response, opts) {
-                                        try {
-                                            data = Ext.decode(response.responseText);
-                                            ActiveCustomer = Ext.create('LanistaTrainer.model.Customer', {
-                                                id: data.user.id,
-                                                first_name: data.user.first_name,
-                                                last_name: data.user.last_name,
-                                                email: data.user.email,
-                                                street: data.user.street,
-                                                city: data.user.city,
-                                                zipcode: data.user.zipcode,
-                                                country: data.user.country,
-                                                note: data.user.note,
-                                                phone_nr: data.user.phone_nr,
-                                                birthday: data.user.birthday,
-                                                gender: data.user.gender,
-                                                deleted: data.user.deleted,
-                                                image: data.user.image,
-                                                last_change: data.user.last_change,
-                                                language: data.user.language,
-                                                sincronized: data.user.sincronized
-                                            });
-
-                                            LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
-                                                LanistaTrainer.app.currentCustomer = ActiveCustomer;
-                                                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
-                                                LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
-                                            });
-                                        }
-                                        catch( err ) {
-                                            Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);
-                                        }
+                                        LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                            LanistaTrainer.app.currentCustomer = ActiveCustomer;
+                                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
+                                            LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
+                                        });
                                     }
-                                });
-                            }
+                                    catch( err ) {
+                                        Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);
+                                    }
+                                }
+                            });
+                        }
 
                     }, //End for success function
                                                  function (status) {

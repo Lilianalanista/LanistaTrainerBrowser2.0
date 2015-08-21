@@ -152,6 +152,11 @@ Ext.define('LanistaTrainer.controller.MainController', {
             return this.saveModel(me, options);
     },
 
+    capitalizeFirstLetter: function(text) {
+            return text.charAt(0).toUpperCase() + text.slice(1);
+
+    },
+
     init: function(application) {
         application.on({
             hideStage: {

@@ -422,7 +422,6 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             protocollsStore.group( 'execution_date_day','DESC');
             protocollsStore.sort( {
                 direction: 'DESC',
-                //property: 'execution_date_day'
                 property: 'id'
             });
 
@@ -451,22 +450,23 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
            exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.show();
         }
-        //else
-        //    exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.hide();
 
         if ( currentPlan ){
-            //exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(3));
-            exercisePanel.down('#exercisePanelContent').setActiveTab(2);
-            controller.showExerciseConfigurationsCommands();
+            if (!Ext.ux.SessionManager.getIsLoggedIn()){
+                exercisePanel.down('#exercisePanelContent').setActiveTab(0);
+                controller.showInfoTabCommands();
+            }
+            else{
+                exercisePanel.down('#exercisePanelContent').setActiveTab(2);
+                controller.showExerciseConfigurationsCommands();
+            }
         }
         else{
             if (Ext.ux.SessionManager.getIsLoggedIn()){
-                //exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(2));
                 exercisePanel.down('#exercisePanelContent').setActiveTab(1);
                 controller.showConfigTabCommands();
             }
             else{
-                //exercisePanel.down('#exercisePanelContent').fireEvent('tabchange', exercisePanel, exercisePanel.down('#exercisePanelContent').setActiveTab(0));
                 exercisePanel.down('#exercisePanelContent').setActiveTab(0);
                 controller.showInfoTabCommands();
             }
@@ -682,38 +682,19 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             item.hide();
         });
 
+        if (!Ext.ux.SessionManager.getIsLoggedIn())
+            return;
+
         var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {
             text:  Ext.ux.LanguageManager.TranslationArray.CONFIGURE_PROTOCOLL,
             itemId: 'changeProtollConfigurationButton',
             glyph: '120@Lanista Icons' //x
         });
 
-        /*var indicationsButton = Ext.create('LanistaTrainer.view.LanistaButton', {
-            text:  Ext.ux.LanguageManager.TranslationArray.PLAN_EXERCISE_DESCRIPTION,
-            itemId: 'indicationsButton',
-            glyph: '73@Lanista Icons' //I
-
-        });
-        var changeSetsButton = Ext.create('LanistaTrainer.view.LanistaButton', {
-            text:  Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS_CONFIG,
-            itemId: 'changeSetsButton',
-            glyph: '74@Lanista Icons' //J
-
-        });*/
-
         controller.getRightCommandPanel().add(
             changeButton
         );
 
-        /*
-        controller.getRightCommandPanel().add(
-            indicationsButton
-        );
-
-        controller.getRightCommandPanel().add(
-            changeSetsButton
-        );
-        */
 
     },
 

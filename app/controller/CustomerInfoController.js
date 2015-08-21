@@ -250,7 +250,7 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
 
         if (user.role !== '2' ){
             fieldset = controller.getCustomer_trainerGymName();
-            fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.PLAN_FROM_TRAINER);
+            fieldset.setTitle (Ext.ux.LanguageManager.TranslationArray.COACH);
 
             infoTrainer = LanistaTrainer.app.getController ('CustomerExercisesController').infotrainer;
             fieldset.down('#customer_trainerGym').setValue(infoTrainer.first_name + ' ' + infoTrainer.last_name);

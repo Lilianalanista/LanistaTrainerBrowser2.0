@@ -97,13 +97,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
         // *** 2 Show the panel
         customerExercisesPanel.show();
 
-
         // PLANS
         controller.loadPlans();
-
-        // WARNINGS
-
-        // HEADER
 
         // PROTOCOLLS
         controller.loadProtocolls();
@@ -233,7 +228,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
         controller.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLLS,
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLL,
                 itemId: 'showExercisesPanelButton',
                 glyph: '78@Lanista Icons' //N
             })
@@ -241,7 +236,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
         controller.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.BODY_DATA,
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_MEASURES,
                 itemId: 'showMeasuresPanelButton',
                 glyph: '75@Lanista Icons' //M
             })

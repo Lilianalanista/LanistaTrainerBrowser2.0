@@ -1,0 +1,349 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "registerController",
+        "designer|userClassName": "RegisterController",
+        "id": null
+    },
+    "designerId": "273d92fa-f47b-404a-bea3-4ca170838bd7",
+    "cn": [
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onShowRegisterPanel",
+                "implHandler": [
+                    "var controller = this,",
+                    "    registrationPanel\t= controller.getRegisterPanel(),",
+                    "    mainStage\t= controller.getMainStage();",
+                    "",
+                    "mainStage.add( registrationPanel );",
+                    "",
+                    "registrationPanel.on('hide', function(component) {",
+                    "    component.destroy();",
+                    "}, controller);",
+                    "",
+                    "",
+                    "// **** 1 create the commands",
+                    "LanistaTrainer.app.setStandardButtons('closeRegisterPanelButton');",
+                    "this.showCommands();",
+                    "",
+                    "// *** 2 Show the panel",
+                    "registrationPanel.show();",
+                    "/*controller.getMainView().down(\"#header\").setData({",
+                    "    info: '',",
+                    "    title: '-'+ Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()}",
+                    "                                                  );",
+                    "*/",
+                    "",
+                    "controller.getMainViewport().down(\"#header\").update({",
+                    "    info: '' }",
+                    ");",
+                    "",
+                    "//controller.fnChargeFilters(this);",
+                    "",
+                    "LanistaTrainer.app.fireEvent('showStage');",
+                    "",
+                    "// *** 4 Callback",
+                    "if (callback instanceof Function) callback();",
+                    "",
+                    "// *** 5 Load data",
+                    "controller.loadData();",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "ShowRegisterPanel",
+                "scope": "this"
+            },
+            "name": "onShowRegisterPanel",
+            "designerId": "4f9d890f-5585-42f4-b6c9-e8200d5a82cd"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "onCloseRegisterPanel",
+                "implHandler": [
+                    "var controller = this;",
+                    "LanistaTrainer.app.fireEvent('hideStage', function () {",
+                    "    controller.getRightCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getLeftCommandPanel().items.each(function (item) {",
+                    "        item.hide();",
+                    "    });",
+                    "    controller.getRegisterPanel().hide();",
+                    "    if (callback instanceof Function) callback();",
+                    "});"
+                ],
+                "name": "closeRegisterPanel",
+                "scope": "this"
+            },
+            "name": "onCloseRegisterPanel",
+            "designerId": "af67bc69-9dd2-4d7c-8a41-69481f85e2c0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback"
+                ],
+                "fn": "showCommands",
+                "implHandler": [
+                    "var controller = this;",
+                    "",
+                    "controller.getRightCommandPanel().items.each(function (item) {",
+                    "    item.hide();",
+                    "});",
+                    "",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.FORM_SEND,",
+                    "        itemId: 'sendRegisterButton',",
+                    "        glyph: '100@Lanista Icons' //d",
+                    "    })",
+                    ");",
+                    "",
+                    "/*",
+                    "this.getRightCommandPanel().add(",
+                    "    Ext.create('LanistaTrainer.view.LanistaButton', {",
+                    "        text: Ext.ux.LanguageManager.TranslationArray.MENU_LOGIN,",
+                    "        itemId: 'loginButton',",
+                    "        userAlias: 'loginButton',",
+                    "        glyph: '101@Lanista Icons' //e",
+                    "    })",
+                    ");",
+                    "*/",
+                    ""
+                ]
+            },
+            "name": "showCommands",
+            "designerId": "73b9966e-4758-4e32-b3c6-6c23b66cb2e2"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #showRegisterPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onShowRegisterPanelButtonClick",
+                "implHandler": [
+                    "LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {",
+                    "    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'RegisterPanel';",
+                    "    LanistaTrainer.app.fireEvent('showRegisterPanel');",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "name": "onShowRegisterPanelButtonClick",
+            "designerId": "e564c718-ae83-433d-9d3e-b9bf163acfd7"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #closeRegisterPanelButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onCloseRegisterPanelButtonClick",
+                "implHandler": [
+                    "LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "LanistaTrainer.app.fireEvent('closeRegisterPanel', function() {",
+                    "    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
+                    "});",
+                    "",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "name": "onCloseRegisterPanelButtonClick",
+            "designerId": "b996574f-0298-46a4-81e7-d6e7792a4b20"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "viewport #sendRegisterButton",
+                "designer|targetType": "LanistaButton",
+                "fn": "onSendRegisterButtonClick",
+                "implHandler": [
+                    "var controller = this,",
+                    "    form_data = controller.getRegisterPanel().getValues();",
+                    "",
+                    "Ext.Ajax.request({",
+                    "    url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/registercustomer',",
+                    "    method: 'post',",
+                    "    params: {email: form_data.emailAdresse1,",
+                    "             email_confirmation: form_data.emailAdresse2,",
+                    "             password: form_data.passwordReg,",
+                    "             role: 2,",
+                    "             language: form_data.customer_languageReg",
+                    "            },",
+                    "    failure : function(result, request){",
+                    "        console.log( \"There were problems in looking for user information\" );",
+                    "    },",
+                    "    success: function(response, opts) {",
+                    "        try {",
+                    "            data = Ext.decode(response.responseText);",
+                    "            if (!data.success){",
+                    "                if (data.error === -1){",
+                    "                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_REGISTRAION_PROB_1, ",
+                    "                              Ext.ux.LanguageManager.TranslationArray.MSG_REGISTRATION_ERROR, Ext.emptyFn);",
+                    "                }",
+                    "                else{",
+                    "                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_REGISTRAION_PROB_1, ",
+                    "                              Ext.ux.LanguageManager.TranslationArray.MSG_REGISTRAION_PROB_2, Ext.emptyFn);                }",
+                    "            }",
+                    "            else{",
+                    "                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_REGISTRATION_OK_1, ",
+                    "                              Ext.ux.LanguageManager.TranslationArray.MSG_REGISTRATION_OK_2, Ext.emptyFn);",
+                    "                LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);",
+                    "                LanistaTrainer.app.fireEvent('closeRegisterPanel', function() {",
+                    "                    LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);",
+                    "                });",
+                    "            }",
+                    "        }",
+                    "        catch( err ) {",
+                    "            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_REGISTRAION_PROB_1, ",
+                    "                          Ext.ux.LanguageManager.TranslationArray.MSG_REGISTRATION_ERROR, Ext.emptyFn);",
+                    "        }",
+                    "    }",
+                    "});"
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "name": "onSendRegisterButtonClick",
+            "designerId": "1b75ce58-5e55-4c78-be09-f5a23b4ccaf9"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadData",
+                "implHandler": [
+                    ""
+                ]
+            },
+            "name": "loadData",
+            "designerId": "2b7934b1-5b47-430b-8978-f32431a7e4a0"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "registerPanel",
+                "selector": "registerPanel",
+                "xtype": "registerpanel"
+            },
+            "name": "registerPanel",
+            "designerId": "5db07165-e688-49d8-8e1a-623425dbeeb6"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainStage",
+                "selector": "#mainStage"
+            },
+            "name": "mainStage",
+            "designerId": "6fc4e49e-d321-459b-a640-81933bd6c887"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "rightCommandPanel",
+                "selector": "#rightCommandPanel"
+            },
+            "name": "rightCommandPanel",
+            "designerId": "b27082db-4fe0-4f66-9241-d5b884c7a656"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainViewport",
+                "selector": "mainViewport"
+            },
+            "name": "mainViewport",
+            "designerId": "8d7f2c7d-29f3-4eea-9d4f-bd0c2154f431"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "leftCommandPanel",
+                "selector": "#leftCommandPanel"
+            },
+            "name": "leftCommandPanel",
+            "designerId": "41190554-b920-4b77-a0d4-e87b6e3b7f89"
+        }
+    ]
+}

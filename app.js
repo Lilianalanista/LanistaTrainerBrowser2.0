@@ -64,7 +64,6 @@ Ext.application({
         'rightView',
         'LoginPanel',
         'TemplatesPanel',
-        'RegistrationPanel',
         'StopWatch',
         'HelpPanel',
         'DashBoardPanel',
@@ -90,14 +89,15 @@ Ext.application({
         'WeightsWindow',
         'WeightsWindow_II',
         'ExercisePanel',
-        'ExercisesPanel'
+        'ExercisesPanel',
+        'RegisterPanel'
     ],
     controllers: [
         'MainController',
         'LoginController',
         'ExercisesController',
         'TemplatesController',
-        'RegistrationController',
+        'RegisterController',
         'LanguagesController',
         'AutheticationController',
         'StopWatchController',
@@ -131,7 +131,7 @@ Ext.application({
             {
                 var user = Ext.ux.SessionManager.getUser(),
                     //url = 'ext/locale/ext-lang-' + user.language.toLowerCase() + '.js';
-                    url = 'ext/packages/ext-locale/build/ext-locale-' + user.language.toLowerCase() + '.js';
+                    url = 'lib/ext-locale/ext-locale-' + user.language.toLowerCase() + '.js';
 
                 if (user.language != Ext.ux.LanguageManager.lang)
                     LanistaTrainer.app.fireEvent('changeLanguage', user.language, false);

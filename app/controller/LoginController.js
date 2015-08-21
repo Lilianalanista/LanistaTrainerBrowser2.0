@@ -89,7 +89,7 @@ Ext.define('LanistaTrainer.controller.LoginController', {
 
         controller.getMainViewport().down("#header").update({
             info: '' }
-        );
+                                                           );
 
         controller.getMainViewport().down("#header").el.dom.children[0].innerHTML = 'Lanista';
 
@@ -166,7 +166,7 @@ Ext.define('LanistaTrainer.controller.LoginController', {
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_REGISTRATION,
-                itemId: 'showRegistrationPanelButton',
+                itemId: 'showRegisterPanelButton',
                 cls: [
                     'lanista-command-button',
                     'two-lines'

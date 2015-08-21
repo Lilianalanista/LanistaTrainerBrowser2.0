@@ -124,7 +124,19 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 recordsAux = records.filter( function(item){
                     return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
                 });
-                Ext.getStore('MeasuresStore').loadRecords(recordsAux);
+
+
+                Ext.getStore('MeasuresStore').removeAll();
+                Ext.getStore('MeasuresStore').add(records);
+
+
+
+                console.log('Valores.....');
+                console.log(Ext.getStore('MeasuresStore'));
+
+
+
+                //Ext.getStore('MeasuresStore').loadRecords(recordsAux);
                 tabPanel.down('#measuresChat').redraw();
             });
 
@@ -143,6 +155,19 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                     return (item.data.trizeps !== 0 || item.data.scapula !== 0 || item.data.auxiliar !== 0 ||
                             item.data.chest !== 0 || item.data.sprailium !== 0 || item.data.abs !== 0 || item.data.quads !== 0);
                 });
+
+
+
+
+
+
+
+
+
+
+
+
+
                 Ext.getStore('MeasuresStore').loadRecords(recordsAux);
                 tabPanel.down('#measuresChat').redraw();
             });
@@ -363,7 +388,6 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
     onShowMeasuresPanel: function(callback) {
         var controller = this,
-            measuresPanel,
             mainStage	= controller.getMainStage(),
             measuresPanel = controller.getMeasuresPanel(),
             measuresStore = Ext.getStore('MeasuresStore'),
@@ -400,11 +424,14 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         ]);
 
         measuresStore.load(function(records, operation, success) {
-            measuresPanel.fireEvent('tabchange');
             mainStage.add( measuresPanel );
             measuresPanel.on('hide', function(component) {
                 component.destroy();
             }, controller);
+
+            Ext.getStore('MeasuresStore').removeAll();
+            Ext.getStore('MeasuresStore').add(records);
+            measuresPanel.down('#measuresChat').redraw();
 
             // **** 1 create the commands
             LanistaTrainer.app.setStandardButtons('closeMeasuresPanelButton');
@@ -413,7 +440,9 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             // *** 2 Show the panel
             measuresPanel.show();
 
-            measuresPanel.down ('tabbar').items.items[0].setText(Ext.ux.LanguageManager.TranslationArray.DAY + ' 1');
+            measuresPanel.down ('tabbar').items.items[0].setText(Ext.ux.LanguageManager.TranslationArray.BODY_DATA);
+            measuresPanel.down ('tabbar').items.items[1].setText(Ext.ux.LanguageManager.TranslationArray.CALIPER);
+            measuresPanel.down ('tabbar').items.items[2].setText(Ext.ux.LanguageManager.TranslationArray.VOLUMES);
 
             LanistaTrainer.app.fireEvent('showMeasuresHeaderUpdate');
             LanistaTrainer.app.fireEvent('showStage');
@@ -442,11 +471,18 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
     },
 
     onShowMeasuresHeaderUpdate: function() {
-        var controller = this;
+        var controller = this,
+            record = LanistaTrainer.app.currentCustomer,
+            divLogo = '',
+            divInfoCustomer = '';
+
+            divLogo = '<div class="lansita-header-customer-image-not-found"><div class="lansita-header-customer-logo" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);"></div></div>';
+            divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + record.data.last_name + '</span><br> <span class="first-name">' + record.data.first_name +'</span></div>';
+
         if (this.getMeasuresPanel() && !this.getMeasuresPanel().isHidden()) {
             controller.getMainViewport().down("#header").update({
-               info: '',
-               title: ''
+               info: divLogo + divInfoCustomer,
+               title: Ext.ux.LanguageManager.TranslationArray.BUTTON_MEASURES
             });
         }
     },

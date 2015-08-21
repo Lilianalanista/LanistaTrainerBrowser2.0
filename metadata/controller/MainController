@@ -277,6 +277,26 @@
             },
             "name": "eraseModel",
             "designerId": "f8eb568e-41e4-48a7-bd22-b23ca4f5a01d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "text"
+                ],
+                "fn": "capitalizeFirstLetter",
+                "implHandler": [
+                    "    return text.charAt(0).toUpperCase() + text.slice(1);",
+                    ""
+                ]
+            },
+            "name": "capitalizeFirstLetter",
+            "designerId": "15f4978e-75e5-4dc2-b0d9-4ad0e95cf7fe"
         }
     ]
 }

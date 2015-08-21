@@ -24793,7 +24793,7 @@ a.x-color-picker-item:hover {
 
 @font-face {
   font-family: "Harabara Bold";
-  src: url("fonts/lanista/Harabara.ttf") format("truetype"), url("fonts/lanista/Harabara.otf") format("opentype"), f url("fonts/lanista/Harabara.woff") format("woff"), url("fonts/lanista/Harabara.eot") format("embedded-opentype"); }
+  src: url("fonts/lanista/Harabara.ttf") format("truetype"), url("fonts/lanista/Harabara.woff") format("woff"), url("fonts/lanista/Harabara.eot") format("embedded-opentype"); }
 
 @font-face {
   font-family: "Roboto Light";
@@ -24985,13 +24985,19 @@ a.x-color-picker-item:hover {
   -webkit-transition: opacity 0.5s ease-in-out; }
 
 .lanista-command-button {
-  height: 100px!important;
+  height: 105px!important;
   margin-left: 7px;
   padding: 0px!important;
   color: #4aacd8;
   background-image: none;
   background-color: transparent;
-  border: 0; }
+  border: 0;
+  width: 75px; }
+
+.x-btn-over.x-btn-default-small {
+  border-color: transparent!important;
+  background-image: none!important;
+  background-color: transparent!important; }
 
 .lanista-command-button .x-btn-inner {
   white-space: inherit; }
@@ -25016,7 +25022,8 @@ a.x-color-picker-item:hover {
 
 .lanista-command-button .x-btn-button {
   height: 100px!important;
-  width: 73px!important; }
+  width: 73px!important;
+  vertical-align: top!important; }
 
 .lanista-command-button .x-btn-glyph {
   height: 70px!important;
@@ -25032,7 +25039,7 @@ a.x-color-picker-item:hover {
 
 .lanista-command-button .x-btn-inner {
   line-height: 16px;
-  top: 70px;
+  top: 56px;
   font-size: 13px;
   position: relative;
   width: 70px;
@@ -25046,7 +25053,9 @@ a.x-color-picker-item:hover {
   -webkit-font-smoothing: antialiased;
   color: #4aacd8;
   padding-left: 0;
-  padding-right: 0; }
+  padding-right: 0;
+  left: -69px;
+  height: 35px; }
 
 .lanista-command-button .x-btn-arrow {
   padding-right: 0px; }
@@ -25130,19 +25139,21 @@ a.x-color-picker-item:hover {
   background-color: rgba(255, 255, 255, 0.2); }
 
 #bottonPanel .x-btn-inner {
-  top: 155px!important;
+  top: 130px!important;
   font-size: 26px;
   width: 150px;
   height: 80px;
   line-height: 25px;
-  white-space: initial; }
+  white-space: initial;
+  left: -148px; }
 
 #bottonPanel .x-panel-body {
-  padding: 0 7%; }
+  padding: 0 18%; }
 
 #bottonPanel .lanista-command-button {
-  width: 180px;
-  height: 197px!important; }
+  width: 152px;
+  height: 250px!important;
+  margin-left: 0px; }
 
 .x-help-panel {
   background-color: rgba(255, 255, 255, 0.9);
@@ -26765,3 +26776,11 @@ font-size: 18px;
   box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0, rgba(0, 0, 0, 0.4) 0 1px 0 inset;
   left: .7em;
   top: .85em; }
+
+#registerPanel {
+  top: 200px; }
+
+.lanista-register-welcome .x-fieldset-header-text {
+  font-size: x-large;
+  height: 35px;
+  line-height: 30px; }

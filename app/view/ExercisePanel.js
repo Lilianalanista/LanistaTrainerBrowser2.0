@@ -235,9 +235,10 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
     },
 
     onExercisePanelContentAfterRender: function(component, eOpts) {
-        component.down('#info').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_INFO  );
-        component.down('#protocollsTabPanel').setTitle( Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLLS   );
-        component.down('#configurationTabPanel').setTitle( Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT + ' / ' + Ext.ux.LanguageManager.TranslationArray.REP );
+        component.down('#info').setTitle( LanistaTrainer.app.getController('MainController').capitalizeFirstLetter(Ext.ux.LanguageManager.TranslationArray.BUTTON_INFO));
+        component.down('#protocollsTabPanel').setTitle( LanistaTrainer.app.getController('MainController').capitalizeFirstLetter(Ext.ux.LanguageManager.TranslationArray.BUTTON_PROTOCOLL));
+        component.down('#configurationTabPanel').setTitle( LanistaTrainer.app.getController('MainController').capitalizeFirstLetter(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT) + ' / ' +
+                                                           LanistaTrainer.app.getController('MainController').capitalizeFirstLetter(Ext.ux.LanguageManager.TranslationArray.REP ));
     }
 
 });
