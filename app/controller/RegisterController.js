@@ -63,6 +63,8 @@ Ext.define('LanistaTrainer.controller.RegisterController', {
         var controller = this,
             form_data = controller.getRegisterPanel().getValues();
 
+        if (!controller.verifyFields()) return;
+
         Ext.Ajax.request({
             url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/registercustomer',
             method: 'post',
@@ -109,6 +111,8 @@ Ext.define('LanistaTrainer.controller.RegisterController', {
             registrationPanel	= controller.getRegisterPanel(),
             mainStage	= controller.getMainStage();
 
+        controller.getMainViewport().addCls("lanista-registration");
+
         mainStage.add( registrationPanel );
 
         registrationPanel.on('hide', function(component) {
@@ -122,17 +126,8 @@ Ext.define('LanistaTrainer.controller.RegisterController', {
 
         // *** 2 Show the panel
         registrationPanel.show();
-        /*controller.getMainView().down("#header").setData({
-            info: '',
-            title: '-'+ Ext.ux.LanguageManager.TranslationArray.CUST_MENU_SETUP.toUpperCase()}
-                                                          );
-        */
 
-        controller.getMainViewport().down("#header").update({
-            info: '' }
-        );
-
-        //controller.fnChargeFilters(this);
+        controller.getMainViewport().down("#header").el.dom.children[0].innerHTML = 'Lanista';
 
         LanistaTrainer.app.fireEvent('showStage');
 
@@ -191,6 +186,99 @@ Ext.define('LanistaTrainer.controller.RegisterController', {
 
     loadData: function() {
 
+    },
+
+    verifyFields: function() {
+        var controller = this,
+            form = controller.getRegisterPanel(),
+            form_data = form.getValues(),
+            email = form_data.emailAdresse1,
+            email2 = form_data.emailAdresse2,
+            password = form_data.passwordReg,
+            password2 = form_data.passwordReg1,
+            language = form_data.customer_languageReg,
+            agb = form.items.items[0].items.items[1].items.items[5].value,
+            reg;
+
+            if (email === '' || password === ''){
+                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_EMPTY_TEXT, Ext.ux.LanguageManager.TranslationArray.MSG_TRY_AGAIN, function() {
+                    if (email === '')
+                        document.getElementsByName("emailAdresse1")[0].focus();
+                    else
+                        document.getElementsByName("passwordReg")[0].focus();
+
+                });
+              return false;
+            }
+
+            if (email2 === ''){
+                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_SYNC_ERROR_2.trim().substr(0,1).toUpperCase() +
+                              Ext.ux.LanguageManager.TranslationArray.MSG_SYNC_ERROR_2.trim().substr(1),
+                                      Ext.ux.LanguageManager.TranslationArray.USER_EMAIL_REP, function() {
+                                          document.getElementsByName("emailAdresse2")[0].focus();
+                                      });
+                return false;
+            }
+
+            if (password2 === ''){
+                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_SYNC_ERROR_2.trim().substr(0,1).toUpperCase() +
+                              Ext.ux.LanguageManager.TranslationArray.MSG_SYNC_ERROR_2.trim().substr(1),
+                                      Ext.ux.LanguageManager.TranslationArray.MSG_PASSWORD_CONFIRMATION_ERROR_2, function() {
+                                          document.getElementsByName("passwordReg1")[0].focus();
+                                      });
+                return false;
+            }
+
+            if (!agb){
+                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_AGREE_LA_1,
+                              Ext.ux.LanguageManager.TranslationArray.MSG_AGREE_LA_2);
+                return false;
+            }
+
+            reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if (reg.test(email) === false) {
+                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_INVALID_1, Ext.ux.LanguageManager.TranslationArray.MSG_TRY_AGAIN,function(){
+                    document.getElementsByName("emailAdresse1")[0].focus();
+                });
+                return false;
+            }
+
+            if (reg.test(email2) === false) {
+                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_INVALID_1, Ext.ux.LanguageManager.TranslationArray.MSG_TRY_AGAIN, function() {
+                    document.getElementsByName("emailAdresse2")[0].focus();
+                });
+                return false;
+            }
+
+            if (password.lenght < 6){
+                Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_PASSWORD_CONFIRMATION_ERROR_1,
+                              Ext.ux.LanguageManager.TranslationArray.MSG_PASSWORD_CONFIRMATION_ERROR_2, function() {
+                                  document.getElementsByName("passwordReg")[0].focus();
+                              });
+                return false;
+            }
+
+            if (email !== email2){
+                //Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_PASSWORD_CONFIRMATION_ERROR_1,
+                //              Ext.ux.LanguageManager.TranslationArray.MSG_PASSWORD_CONFIRMATION_ERROR_2);
+                Ext.Msg.alert('La dirección de correo de confirmación no coincide con la dirección de correo indicada',
+                              Ext.ux.LanguageManager.TranslationArray.MSG_TRY_AGAIN, function() {
+                                  document.getElementsByName("emailAdresse1")[0].focus();
+                              });
+                return false;
+            }
+
+            if (password !== password2){
+                //Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_PASSWORD_CONFIRMATION_ERROR_1,
+                //              Ext.ux.LanguageManager.TranslationArray.MSG_PASSWORD_CONFIRMATION_ERROR_2);
+                Ext.Msg.alert('El password de confirmación no coincide con el password indicado',
+                              Ext.ux.LanguageManager.TranslationArray.MSG_TRY_AGAIN, function() {
+                                  document.getElementsByName("passwordReg")[0].focus();
+                              });
+                return false;
+            }
+
+            return true;
     },
 
     init: function(application) {

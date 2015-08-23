@@ -19,6 +19,7 @@ Ext.define('LanistaTrainer.view.RegisterPanel', {
 
     requires: [
         'LanistaTrainer.view.RegisterPanelViewModel',
+        'Ext.form.field.Display',
         'Ext.form.FieldSet',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Checkbox'
@@ -27,6 +28,7 @@ Ext.define('LanistaTrainer.view.RegisterPanel', {
     viewModel: {
         type: 'registerpanel'
     },
+    cls: '.lanista-registration',
     height: 250,
     id: 'registerPanel',
     width: 400,
@@ -42,53 +44,61 @@ Ext.define('LanistaTrainer.view.RegisterPanel', {
             config = {
                 items: [
                     {
-                        xtype: 'fieldset',
+                        xtype: 'container',
                         cls: 'lanista-register-welcome',
-                        id: 'fieldSetReg',
-                        title: 'My Fields',
+                        id: 'containerSetReg',
                         items: [
                             {
-                                xtype: 'combobox',
-                                id: 'emailAdresse1',
-                                fieldLabel: 'Label',
-                                name: 'emailAdresse1'
+                                xtype: 'displayfield',
+                                cls: 'lanista-label-welcome',
+                                id: 'welcomeLabel',
+                                value: 'Display Field'
                             },
                             {
-                                xtype: 'combobox',
-                                id: 'emailAdresse2',
-                                fieldLabel: 'Label',
-                                name: 'emailAdresse2'
-                            },
-                            {
-                                xtype: 'textfield',
-                                id: 'passwordReg',
-                                fieldLabel: 'Label',
-                                name: 'passwordReg',
-                                inputType: 'password'
-                            },
-                            {
-                                xtype: 'textfield',
-                                id: 'passwordReg1',
-                                fieldLabel: 'Label',
-                                name: 'passwordReg1',
-                                inputType: 'password'
-                            },
-                            me.processCustomer_languageReg({
-                                xtype: 'combobox',
-                                anchor: '100%',
-                                cls: 'lanista-user-settings-field',
-                                id: 'customer_languageReg',
-                                fieldLabel: 'Label',
-                                name: 'customer_languageReg',
-                                editable: false,
-                                enableKeyEvents: true
-                            }),
-                            {
-                                xtype: 'checkboxfield',
-                                anchor: '100%',
-                                id: 'agb',
-                                name: 'agb',
-                                boxLabel: 'Box Label'
+                                xtype: 'fieldset',
+                                cls: 'lanista-fieldset_register',
+                                items: [
+                                    {
+                                        xtype: 'combobox',
+                                        cls: 'lanista-field-register',
+                                        id: 'emailAdresse1',
+                                        name: 'emailAdresse1'
+                                    },
+                                    {
+                                        xtype: 'combobox',
+                                        cls: 'lanista-field-register',
+                                        id: 'emailAdresse2',
+                                        name: 'emailAdresse2'
+                                    },
+                                    {
+                                        xtype: 'textfield',
+                                        cls: 'lanista-field-register',
+                                        id: 'passwordReg',
+                                        name: 'passwordReg',
+                                        inputType: 'password'
+                                    },
+                                    {
+                                        xtype: 'textfield',
+                                        cls: 'lanista-field-register',
+                                        id: 'passwordReg1',
+                                        name: 'passwordReg1',
+                                        inputType: 'password'
+                                    },
+                                    me.processCustomer_languageReg({
+                                        xtype: 'combobox',
+                                        cls: 'lanista-field-register',
+                                        id: 'customer_languageReg',
+                                        name: 'customer_languageReg',
+                                        editable: false,
+                                        enableKeyEvents: true
+                                    }),
+                                    {
+                                        xtype: 'checkboxfield',
+                                        id: 'agb',
+                                        name: 'agb',
+                                        boxLabel: 'Box Label'
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -119,7 +129,8 @@ Ext.define('LanistaTrainer.view.RegisterPanel', {
             var languagesStore,
                 fields = component.getForm().getFields();
 
-            component.down('#fieldSetReg').setTitle(Ext.ux.LanguageManager.TranslationArray.FORM_TITLE_REGISTER);
+            //component.down('#welcomeLabel').setHtml(component.strLines(Ext.ux.LanguageManager.TranslationArray.FORM_TITLE_REGISTER));
+            component.down('#welcomeLabel').setHtml(Ext.ux.LanguageManager.TranslationArray.FORM_TITLE_REGISTER);
 
             languagesStore = Ext.create('Ext.data.Store', {
                              fields: ['image', 'LanguageName', 'IdLanguage'],
@@ -131,14 +142,16 @@ Ext.define('LanistaTrainer.view.RegisterPanel', {
              });
             fields.getByKey('customer_languageReg').bindStore(languagesStore);
             languagesStore.load();
-
+            fields.getByKey('customer_languageReg').setValue(Ext.ux.LanguageManager.getLanguage());
+        /*
             fields.getByKey('emailAdresse1').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.USER_EMAIL);
             fields.getByKey('passwordReg').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD);
             fields.getByKey('passwordReg1').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD_CONFIRMATION);
             fields.getByKey('emailAdresse2').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.USER_EMAIL_REP);
             fields.getByKey('customer_languageReg').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_LANGUAGE);
             fields.getByKey('agb').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.FORM_LABEL_LA);
-
+        */
+            fields.getByKey('agb').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.FORM_LABEL_LA);
             document.getElementsByName("emailAdresse1")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_EMAIL;
             document.getElementsByName("passwordReg")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD;
             document.getElementsByName("passwordReg1")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD_CONFIRMATION;
@@ -146,6 +159,38 @@ Ext.define('LanistaTrainer.view.RegisterPanel', {
             document.getElementsByName("customer_languageReg")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_LANGUAGE;
             //document.getElementsByName("agb")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.COMPANY_PHONE_NR;
 
+    },
+
+    strLines: function(value) {
+        var returnValue = '',
+            strSplit = [];
+            strSplitII = [];
+
+            if (Ext.isArray(value)){
+                for (var i = 0; i < value.length; i++){
+                    strSplit = value[i].split(",");
+                    for (var j = 0; j < strSplit.length; j++) {
+                        strSplitII = strSplit[j].split("<br>");
+                        for (var k = 0; k < strSplitII.length; k++) {
+                            returnValue = returnValue + strSplitII[k].trim().substr(0,1).toUpperCase() + strSplitII[k].trim().substr(1) + '.<br>';
+                        }
+                        strSplitII = [];
+                    }
+                    strSplit = [];
+                }
+            }
+            else{
+                strSplit = value.split(",");
+                for (var j = 0; j < strSplit.length; j++) {
+                    strSplitII = strSplit[j].split("<br>");
+                    for (var k = 0; k < strSplitII.length; k++) {
+                        returnValue = returnValue + strSplitII[k].trim().substr(0,1).toUpperCase() + strSplitII[k].trim().substr(1) + '.<br>';
+                    }
+                    strSplitII = [];
+                }
+            }
+
+            return returnValue;
     }
 
 });

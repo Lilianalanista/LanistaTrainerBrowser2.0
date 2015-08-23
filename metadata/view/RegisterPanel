@@ -7,6 +7,9 @@
     "codeClass": null,
     "userConfig": {
         "bodyPadding": 10,
+        "cls": [
+            ".lanista-registration"
+        ],
         "designer|userAlias": "registerpanel",
         "designer|userClassName": "RegisterPanel",
         "height": 250,
@@ -20,7 +23,7 @@
     "viewModelInstanceId": "46c97e0d-09a1-4568-970c-82f6807e09cd",
     "cn": [
         {
-            "type": "Ext.form.FieldSet",
+            "type": "Ext.container.Container",
             "reference": {
                 "name": "items",
                 "type": "array"
@@ -30,80 +33,13 @@
                 "cls": [
                     "lanista-register-welcome"
                 ],
-                "id": "fieldSetReg",
-                "title": "My Fields"
+                "id": "containerSetReg"
             },
-            "name": "MyFieldSet15",
+            "name": "MyContainer",
             "designerId": "18a973d9-1083-4bd9-a6e3-a551b7cc1b10",
             "cn": [
                 {
-                    "type": "Ext.form.field.ComboBox",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fieldLabel": "Label",
-                        "id": "emailAdresse1",
-                        "layout|anchor": null,
-                        "name": "emailAdresse1"
-                    },
-                    "name": "MyComboBox12",
-                    "designerId": "cb8ab4b2-9f95-4341-a79f-3f7a54b79248"
-                },
-                {
-                    "type": "Ext.form.field.ComboBox",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fieldLabel": "Label",
-                        "id": "emailAdresse2",
-                        "layout|anchor": null,
-                        "name": "emailAdresse2"
-                    },
-                    "name": "MyComboBox11",
-                    "designerId": "9986e422-bfd9-4c7e-a0af-6c1af7196c42"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fieldLabel": "Label",
-                        "id": "passwordReg",
-                        "inputType": "password",
-                        "layout|anchor": null,
-                        "name": "passwordReg"
-                    },
-                    "name": "MyTextField45",
-                    "designerId": "162b106d-c51f-493e-b9e5-5cfd11a53b83"
-                },
-                {
-                    "type": "Ext.form.field.Text",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "fieldLabel": "Label",
-                        "id": "passwordReg1",
-                        "inputType": "password",
-                        "layout|anchor": null,
-                        "name": "passwordReg1"
-                    },
-                    "name": "MyTextField",
-                    "designerId": "db6c06fb-5f8d-48ad-a83c-4046ba68f7b3"
-                },
-                {
-                    "type": "Ext.form.field.ComboBox",
+                    "type": "Ext.form.field.Display",
                     "reference": {
                         "name": "items",
                         "type": "array"
@@ -111,70 +47,183 @@
                     "codeClass": null,
                     "userConfig": {
                         "cls": [
-                            "lanista-user-settings-field"
+                            "lanista-label-welcome"
                         ],
-                        "editable": false,
-                        "enableKeyEvents": true,
-                        "fieldLabel": "Label",
-                        "id": "customer_languageReg",
-                        "layout|anchor": "100%",
-                        "name": "customer_languageReg",
-                        "valueField": null
+                        "fieldLabel": null,
+                        "id": "welcomeLabel",
+                        "value": "Display Field"
                     },
-                    "name": "MyComboBox",
-                    "configAlternates": {
-                        "scrollable": "boolean"
-                    },
-                    "designerId": "5f6b9f96-7a3d-463a-944f-9b3292b791b1",
-                    "cn": [
-                        {
-                            "type": "processcfgfunction",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|params": [
-                                    "config"
-                                ],
-                                "fn": "processCustomer_languageReg",
-                                "implHandler": [
-                                    "var server =\t'http://' + window.location.host,",
-                                    "    root =\t\tExt.ux.ConfigManager.getRoot() + '/LanistaTrainerBrowser2.0/';",
-                                    "",
-                                    "config.tpl = Ext.create(\"Ext.XTemplate\",",
-                                    "                        '<tpl for=\".\"><div class=\"x-boundlist-item\"><img src=' + server + root + 'resources/images/flags/{image} /> {LanguageName}</div></tpl>');",
-                                    "",
-                                    "config.displayTpl = Ext.create(\"Ext.XTemplate\",",
-                                    "                               '<tpl for=\".\">{LanguageName}</tpl>');",
-                                    "",
-                                    "config.valueField = 'IdLanguage';",
-                                    "",
-                                    "return config;"
-                                ]
-                            },
-                            "name": "processCustomer_languageReg",
-                            "designerId": "0f75ae25-107a-459a-a31c-79443b281b3f"
-                        }
-                    ]
+                    "name": "MyDisplayField",
+                    "designerId": "f3967734-2726-4de5-82ca-f1587a4e13c6"
                 },
                 {
-                    "type": "Ext.form.field.Checkbox",
+                    "type": "Ext.form.FieldSet",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "boxLabel": "Box Label",
-                        "fieldLabel": null,
-                        "id": "agb",
-                        "layout|anchor": "100%",
-                        "name": "agb"
+                        "cls": [
+                            "lanista-fieldset_register"
+                        ],
+                        "title": null
                     },
-                    "name": "MyCheckbox",
-                    "designerId": "9d57578d-cb30-4272-8035-00f101322071"
+                    "name": "MyFieldSet",
+                    "designerId": "0dfa5857-7f5a-4a28-a930-7fcb637b88df",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "lanista-field-register"
+                                ],
+                                "fieldLabel": null,
+                                "id": "emailAdresse1",
+                                "layout|anchor": null,
+                                "name": "emailAdresse1"
+                            },
+                            "name": "MyComboBox12",
+                            "designerId": "cb8ab4b2-9f95-4341-a79f-3f7a54b79248"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "lanista-field-register"
+                                ],
+                                "fieldLabel": null,
+                                "id": "emailAdresse2",
+                                "layout|anchor": null,
+                                "name": "emailAdresse2"
+                            },
+                            "name": "MyComboBox11",
+                            "designerId": "9986e422-bfd9-4c7e-a0af-6c1af7196c42"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "lanista-field-register"
+                                ],
+                                "fieldLabel": null,
+                                "id": "passwordReg",
+                                "inputType": "password",
+                                "layout|anchor": null,
+                                "name": "passwordReg"
+                            },
+                            "name": "MyTextField45",
+                            "designerId": "162b106d-c51f-493e-b9e5-5cfd11a53b83"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "lanista-field-register"
+                                ],
+                                "fieldLabel": null,
+                                "id": "passwordReg1",
+                                "inputType": "password",
+                                "layout|anchor": null,
+                                "name": "passwordReg1"
+                            },
+                            "name": "MyTextField",
+                            "designerId": "db6c06fb-5f8d-48ad-a83c-4046ba68f7b3"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "lanista-field-register"
+                                ],
+                                "editable": false,
+                                "enableKeyEvents": true,
+                                "fieldLabel": null,
+                                "id": "customer_languageReg",
+                                "layout|anchor": null,
+                                "name": "customer_languageReg",
+                                "valueField": null
+                            },
+                            "name": "MyComboBox",
+                            "configAlternates": {
+                                "scrollable": "boolean"
+                            },
+                            "designerId": "5f6b9f96-7a3d-463a-944f-9b3292b791b1",
+                            "cn": [
+                                {
+                                    "type": "processcfgfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "config"
+                                        ],
+                                        "fn": "processCustomer_languageReg",
+                                        "implHandler": [
+                                            "var server =\t'http://' + window.location.host,",
+                                            "    root =\t\tExt.ux.ConfigManager.getRoot() + '/LanistaTrainerBrowser2.0/';",
+                                            "",
+                                            "config.tpl = Ext.create(\"Ext.XTemplate\",",
+                                            "                        '<tpl for=\".\"><div class=\"x-boundlist-item\"><img src=' + server + root + 'resources/images/flags/{image} /> {LanguageName}</div></tpl>');",
+                                            "",
+                                            "config.displayTpl = Ext.create(\"Ext.XTemplate\",",
+                                            "                               '<tpl for=\".\">{LanguageName}</tpl>');",
+                                            "",
+                                            "config.valueField = 'IdLanguage';",
+                                            "",
+                                            "return config;"
+                                        ]
+                                    },
+                                    "name": "processCustomer_languageReg",
+                                    "designerId": "0f75ae25-107a-459a-a31c-79443b281b3f"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "Box Label",
+                                "fieldLabel": null,
+                                "id": "agb",
+                                "name": "agb"
+                            },
+                            "name": "MyCheckbox",
+                            "designerId": "9d57578d-cb30-4272-8035-00f101322071"
+                        }
+                    ]
                 }
             ]
         },
@@ -191,7 +240,8 @@
                     "    var languagesStore,",
                     "        fields = component.getForm().getFields();",
                     "",
-                    "    component.down('#fieldSetReg').setTitle(Ext.ux.LanguageManager.TranslationArray.FORM_TITLE_REGISTER);",
+                    "    //component.down('#welcomeLabel').setHtml(component.strLines(Ext.ux.LanguageManager.TranslationArray.FORM_TITLE_REGISTER));",
+                    "    component.down('#welcomeLabel').setHtml(Ext.ux.LanguageManager.TranslationArray.FORM_TITLE_REGISTER);",
                     "",
                     "    languagesStore = Ext.create('Ext.data.Store', {",
                     "                     fields: ['image', 'LanguageName', 'IdLanguage'],",
@@ -203,14 +253,16 @@
                     "     });",
                     "    fields.getByKey('customer_languageReg').bindStore(languagesStore);",
                     "    languagesStore.load();",
-                    "",
+                    "    fields.getByKey('customer_languageReg').setValue(Ext.ux.LanguageManager.getLanguage());",
+                    "/*",
                     "    fields.getByKey('emailAdresse1').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.USER_EMAIL);",
                     "    fields.getByKey('passwordReg').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD);",
                     "    fields.getByKey('passwordReg1').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD_CONFIRMATION);",
                     "    fields.getByKey('emailAdresse2').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.USER_EMAIL_REP);",
                     "    fields.getByKey('customer_languageReg').setFieldLabel(Ext.ux.LanguageManager.TranslationArray.FORM_CUSTOMER_LANGUAGE);",
                     "    fields.getByKey('agb').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.FORM_LABEL_LA);",
-                    "",
+                    "*/",
+                    "    fields.getByKey('agb').setBoxLabel(Ext.ux.LanguageManager.TranslationArray.FORM_LABEL_LA);",
                     "    document.getElementsByName(\"emailAdresse1\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_EMAIL;",
                     "    document.getElementsByName(\"passwordReg\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD;",
                     "    document.getElementsByName(\"passwordReg1\")[0].placeholder = Ext.ux.LanguageManager.TranslationArray.USER_PASSWORD_CONFIRMATION;",
@@ -224,6 +276,53 @@
             },
             "name": "onRegisterPanelAfterRender",
             "designerId": "b21596f9-bf52-4bf8-913b-1b91ab107e1c"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "value"
+                ],
+                "fn": "strLines",
+                "implHandler": [
+                    "var returnValue = '',",
+                    "    strSplit = [];",
+                    "    strSplitII = [];",
+                    "",
+                    "    if (Ext.isArray(value)){",
+                    "        for (var i = 0; i < value.length; i++){",
+                    "            strSplit = value[i].split(\",\");",
+                    "            for (var j = 0; j < strSplit.length; j++) {",
+                    "                strSplitII = strSplit[j].split(\"<br>\");",
+                    "                for (var k = 0; k < strSplitII.length; k++) {",
+                    "                    returnValue = returnValue + strSplitII[k].trim().substr(0,1).toUpperCase() + strSplitII[k].trim().substr(1) + '.<br>';",
+                    "                }",
+                    "                strSplitII = [];",
+                    "            }",
+                    "            strSplit = [];",
+                    "        }",
+                    "    }",
+                    "    else{",
+                    "        strSplit = value.split(\",\");",
+                    "        for (var j = 0; j < strSplit.length; j++) {",
+                    "            strSplitII = strSplit[j].split(\"<br>\");",
+                    "            for (var k = 0; k < strSplitII.length; k++) {",
+                    "                returnValue = returnValue + strSplitII[k].trim().substr(0,1).toUpperCase() + strSplitII[k].trim().substr(1) + '.<br>';",
+                    "            }",
+                    "            strSplitII = [];",
+                    "        }",
+                    "    }",
+                    "",
+                    "    return returnValue;"
+                ]
+            },
+            "name": "strLines",
+            "designerId": "1f5a3bc3-77ff-4603-b83e-cbad6ddc7c82"
         }
     ]
 }
