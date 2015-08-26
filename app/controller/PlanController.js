@@ -805,13 +805,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         });
 
         LanistaTrainer.app.getController('MainController').saveModel(newPlan,
-            {
-                callback: function ( record ){
-                    LanistaTrainer.app.getController ( 'PlanController' ).plan = record;
-                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
-                    LanistaTrainer.app.fireEvent( 'showPlanPanel', planname);
-                }
-            });
+                                                                     {
+                                                                         callback: function ( record ){
+                                                                             LanistaTrainer.app.getController ( 'PlanController' ).plan = record;
+                                                                             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                                                                             LanistaTrainer.app.fireEvent( 'showPlanPanel', planname);
+                                                                         }
+                                                                     });
     },
 
     onCloseExercisesSelectionView: function(callback) {
@@ -960,9 +960,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             ini = 4000;
 
         for ( var i = 1; i < tabPanel.items.length; i++ ) {
-            results = Ext.Array.filter(records, function(item) {
+            results = records.filter(function(item) {
                 return item.data.day === i;
             });
+
             tab = tabPanel.child('#d' + i);
             for ( var j = 0; j < results.length; j++ ) {
                 recordsArray.push(results[j].data);
@@ -1113,7 +1114,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     {text:	Ext.ux.LanguageManager.TranslationArray.BUTTON_DELETE_PLAN.toUpperCase(),
                             handler: function () {
                                 record = LanistaTrainer.app.getController ( 'PlanController' ).plan;
-                                Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_USER, record.data.name, function(button) {
+                                Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_PLAN, record.data.name, function(button) {
                                     if (button == 'yes') {
                                         customerExerPanel = LanistaTrainer.app.getController ('CustomerExercisesController').getCustomerExercisesPanel();
                                         customerExerPanel.deletePlan(record.data);

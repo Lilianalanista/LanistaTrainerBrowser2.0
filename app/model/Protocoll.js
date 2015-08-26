@@ -83,6 +83,16 @@ Ext.define('LanistaTrainer.model.Protocoll', {
 
             },
             name: 'exercise_id_forgroup'
+        },
+        {
+            type: 'int',
+            convert: function(v, rec) {
+                return parseInt(rec.data.execution_date.substr(11,2) +
+                rec.data.execution_date.substr(14,2) +
+                rec.data.execution_date.substr(17,2)) + '.' +
+                rec.data.exercise_id_forgroup;
+            },
+            name: 'forSortExercise'
         }
     ]
 });

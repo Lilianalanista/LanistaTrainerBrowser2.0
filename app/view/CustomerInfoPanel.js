@@ -257,6 +257,7 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
 
         var fields = component.getForm().getFields(),
             user = Ext.ux.SessionManager.getUser(),
+            dataBirthday,
 
             languagesStore = Ext.create('Ext.data.Store', {
                              fields: ['image', 'LanguageName', 'IdLanguage'],
@@ -532,8 +533,6 @@ Ext.define('LanistaTrainer.view.CustomerInfoPanel', {
 
             });
 
-
-        fields.getByKey('customer_birthdate').setValue(Ext.Date.format(fields.getByKey('customer_birthdate').getValue(), 'Y-m-d'));
         fields.getByKey('customer_language').bindStore(languagesStore);
         fields.getByKey('customer_country').bindStore(countryStore);
         fields.getByKey('customer_gender').bindStore(genderStore);

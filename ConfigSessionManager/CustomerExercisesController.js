@@ -267,7 +267,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             currentCustomer = LanistaTrainer.app.currentCustomer,
             TplColums = new Ext.XTemplate(
                 '<div class="lansita-header-customer-name">',
-                '    <span class="weight"> {weight} Kg / {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span>',
+                '    <span class="weight"> {weight} Kg / {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span>',
                 '</div>'
             ),
             numRows;
@@ -286,42 +286,18 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             var groups = protocollsStore.getGroups (),
                 dailyGrid = null,
                 dataGridStore = null,
-                gridStore = null,
-                gridStoreNew = null,
-                groupsFromDate,
-                numForSort,
-                dataStoreNew = [],
-                dataTemp;
+                gridStore = null;
 
             for ( var i = 0; i < groups.length && i < 20; i++ ) {
-                //for ( var i = 0; i < groups.length; i++ ) {
+            //for ( var i = 0; i < groups.length; i++ ) {
                 dataGridStore = groups.items[i].items;
                 gridStore = null;
                 gridStore = Ext.create('Ext.data.Store', {
                     model: 'LanistaTrainer.model.Protocoll',
                     data:	dataGridStore,
-                    groupField: 'exercise_id_forgroup',
-                    sorters: [{property: 'execution_date', direction: 'ASC'}]
+                    groupField: 'exercise_id_forgroup'//,
+                    //autoLoad: true
                 });
-
-                groupsFromDate = gridStore.getGroups();
-                if (groupsFromDate.length){
-                    for ( var j = 0; j < groupsFromDate.length; j++ ) {
-                        dataTemp = groupsFromDate.items[j].items;
-                        if (dataTemp.length > 1){
-                            for ( var k = 0; k < dataTemp.length; k++ ) {
-                                dataTemp[k].data.forSortExercise = dataTemp[0].data.forSortExercise;
-                                dataStoreNew.push(dataTemp[k]);
-                            }
-                        }
-                        else{
-                            dataTemp[0].data.forSortExercise =  dataTemp[0].data.forSortExercise;
-                            dataStoreNew.push(dataTemp[0]);
-                        }
-                    }
-                }
-                gridStore.setData(dataStoreNew);
-                gridStore.setGroupField('forSortExercise');
 
                 dailyGrid =  Ext.create('Ext.grid.Panel', {
                     border: false,
@@ -355,11 +331,11 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                         {
                             ftype: 'grouping',
                             groupHeaderTpl: [
-                                 '<tpl for=".">',
-                                '     <input class="lanista-img-protocolls img-right" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id]}_1.jpg" >',
-                                '     <input class="lanista-img-protocolls img-left" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id]}_2.jpg" ></div>',
+                                '<tpl for=".">',
+                                '     <input class="lanista-img-protocolls img-right" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_1.jpg" >',
+                                '     <input class="lanista-img-protocolls img-left" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"] === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"]).ext_id]}_2.jpg" ></div>',
                                 '     <tpl for="children">',
-                                '           <p class="lanista-protocolls-weight-p" align="left"><span class="lanista-protocolls-weight"> {data.weight} Kg / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
+                                '           <p class="lanista-protocolls-weight-p" align="left"><span class="lanista-protocolls-weight"> {data.weight} Kg / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
                                 '      </tpl>',
                                 '</tpl>'
                             ],
@@ -368,6 +344,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                     ],
                     listeners: {
                         groupclick: function(view, node, group, e, eOpts) {
+                            //var Exercise = Ext.ModelManager.getModel('LanistaTrainer.model.ExerciseModel'),
                             var Exercise = Ext.create('LanistaTrainer.model.ExerciseModel'),
                                 protocolls = null,
                                 protocollsData = null;
@@ -384,8 +361,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                 data : protocollsData.items
                             });
 
-                            LanistaTrainer.model.ExerciseModel.load(group.substr(group.indexOf(".") + 1), {
-                                //Exercise.load(group, {
+                            LanistaTrainer.model.ExerciseModel.load(group, {
+                            //Exercise.load(group, {
                                 success: function( exercise ) {
                                     controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
                                     LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
@@ -399,7 +376,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                 });
                 protocollsPanel.insert ( i, dailyGrid );
             }
-        });
+        }
+                            );
 
 
     },

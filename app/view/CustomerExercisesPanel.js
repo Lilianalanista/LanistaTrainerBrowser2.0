@@ -42,13 +42,11 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         type: 'hbox',
         align: 'stretch'
     },
-    dockedItems: [
+    items: [
         {
             xtype: 'container',
             flex: 1,
-            dock: 'bottom',
             cls: 'protocolls-panel',
-            height: 480,
             itemId: 'customerProtocolls',
             scrollable: true,
             layout: {
@@ -61,97 +59,110 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
     initConfig: function(instanceConfig) {
         var me = this,
             config = {
-                items: [
+                dockedItems: [
                     {
                         xtype: 'container',
                         flex: 1,
-                        cls: 'option-buttons',
-                        id: 'planSelectorButtons',
+                        dock: 'top',
+                        cls: 'lanista-customer-exercises-header',
+                        height: 250,
+                        layout: {
+                            type: 'hbox',
+                            align: 'stretch'
+                        },
                         items: [
                             {
-                                xtype: 'button',
-                                cls: 'option-active',
-                                id: 'showPlansOption',
-                                text: 'MyButton',
-                                listeners: {
-                                    click: 'onShowPlansOptionClick'
-                                }
-                            },
-                            {
-                                xtype: 'button',
-                                hidden: true,
-                                id: 'showWarningsOption',
-                                text: 'MyButton',
-                                listeners: {
-                                    click: 'onShowWarningsOptionClick'
-                                }
-                            }
-                        ],
-                        listeners: {
-                            afterrender: 'onPlanSelectorButtonsAfterRender'
-                        }
-                    },
-                    {
-                        xtype: 'container',
-                        flex: 1,
-                        cls: 'lanista-list-container',
-                        id: 'listsContainer',
-                        layout: 'fit',
-                        items: [
-                            me.processGridPlans({
-                                xtype: 'gridpanel',
-                                border: false,
-                                cls: 'lanista-grid-plans-customer',
-                                id: 'gridPlans',
-                                scrollable: true,
-                                header: false,
-                                enableColumnHide: false,
-                                enableColumnMove: false,
-                                enableColumnResize: false,
-                                hideHeaders: true,
-                                rowLines: false,
-                                store: 'PlanStore',
-                                columns: [
+                                xtype: 'container',
+                                flex: 1,
+                                cls: 'option-buttons',
+                                id: 'planSelectorButtons',
+                                items: [
                                     {
-                                        xtype: 'templatecolumn',
-                                        border: false,
-                                        draggable: false,
-                                        resizable: false,
-                                        tpl: [
-                                            '<div class="lanista-item-plans">',
-                                            '    <div class="lanista-name-plan">{name}</div> ',
-                                            '    <div class="lanista-delete-plan lanista-icon lanista-delete_icon_dot">...</div>',
-                                            '    <div class="lanista-createdate-plan">{creation_date:date("Y-m-d")}</div>',
-                                            '</div>',
-                                            ''
-                                        ],
-                                        width: 430,
-                                        dataIndex: 'string',
-                                        hideable: false,
-                                        menuDisabled: true
+                                        xtype: 'button',
+                                        cls: 'option-active',
+                                        id: 'showPlansOption',
+                                        text: 'MyButton',
+                                        listeners: {
+                                            click: 'onShowPlansOptionClick'
+                                        }
+                                    },
+                                    {
+                                        xtype: 'button',
+                                        hidden: true,
+                                        id: 'showWarningsOption',
+                                        text: 'MyButton',
+                                        listeners: {
+                                            click: 'onShowWarningsOptionClick'
+                                        }
                                     }
                                 ],
                                 listeners: {
-                                    afterrender: 'onGridPlansAfterRender'
+                                    afterrender: 'onPlanSelectorButtonsAfterRender'
                                 }
-                            }),
+                            },
                             {
-                                xtype: 'dataview',
-                                itemId: 'warnings',
-                                itemSelector: 'div',
-                                itemTpl: [
-                                    '<div>{title} {creation_date}</div>'
-                                ]
+                                xtype: 'container',
+                                flex: 1,
+                                cls: 'lanista-list-container',
+                                id: 'listsContainer',
+                                layout: 'fit',
+                                items: [
+                                    me.processGridPlans({
+                                        xtype: 'gridpanel',
+                                        border: false,
+                                        cls: 'lanista-grid-plans-customer',
+                                        id: 'gridPlans',
+                                        scrollable: true,
+                                        header: false,
+                                        enableColumnHide: false,
+                                        enableColumnMove: false,
+                                        enableColumnResize: false,
+                                        hideHeaders: true,
+                                        rowLines: false,
+                                        store: 'PlanStore',
+                                        columns: [
+                                            {
+                                                xtype: 'templatecolumn',
+                                                border: false,
+                                                draggable: false,
+                                                resizable: false,
+                                                tpl: [
+                                                    '<div class="lanista-item-plans">',
+                                                    '    <div class="lanista-name-plan">{name}</div> ',
+                                                    '    <div class="lanista-delete-plan lanista-icon lanista-delete_icon_dot">...</div>',
+                                                    '    <div class="lanista-createdate-plan">{creation_date:date("Y-m-d")}</div>',
+                                                    '</div>',
+                                                    ''
+                                                ],
+                                                width: 430,
+                                                dataIndex: 'string',
+                                                hideable: false,
+                                                menuDisabled: true
+                                            }
+                                        ],
+                                        listeners: {
+                                            afterrender: 'onGridPlansAfterRender'
+                                        }
+                                    }),
+                                    {
+                                        xtype: 'dataview',
+                                        itemId: 'warnings',
+                                        itemSelector: 'div',
+                                        itemTpl: [
+                                            '<div>{title} {creation_date}</div>'
+                                        ]
+                                    }
+                                ],
+                                listeners: {
+                                    resize: 'onListsContainerResize'
+                                }
+                            },
+                            {
+                                xtype: 'component',
+                                flex: 1,
+                                itemId: 'customerCurrentData'
                             }
-                        ],
-                        listeners: {
-                            resize: 'onListsContainerResize'
-                        }
-                    },
-                    {
-                        xtype: 'component',
-                        flex: 1,
-                        itemId: 'customerCurrentData'
+                        ]
                     }
                 ]
             };
@@ -256,7 +267,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
 
         el.on('click',function(e,t){
             record = component.getView().getRecord(component.getView().getSelectedNodes()[0]);
-            Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_USER, record.data.name, function(button) {
+            Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_PLAN, record.data.name, function(button) {
                     if (button == 'yes') {
                         customerExerPanel = LanistaTrainer.app.getController ('CustomerExercisesController').getCustomerExercisesPanel();
                         customerExerPanel.deletePlan(record.data);

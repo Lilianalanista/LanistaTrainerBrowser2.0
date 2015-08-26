@@ -445,6 +445,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
                     exercisePanel.down('#protocollPanel').protocollInformation = protocoll.data;
                     exercisePanel.down('#protocollPanel').update ( protocoll );
+                    exercisePanel.down('#protocollPanel').down('#exerciseProtocolls').emptyText = Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT;
                 }
            });
 

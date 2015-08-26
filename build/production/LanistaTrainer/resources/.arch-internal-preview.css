@@ -25141,17 +25141,17 @@ a.x-color-picker-item:hover {
 #bottonPanel .x-btn-inner {
   top: 130px!important;
   font-size: 26px;
-  width: 150px;
-  height: 80px;
+  width: 186px;
+  height: 88px;
   line-height: 25px;
   white-space: initial;
-  left: -148px; }
+  left: -163px; }
 
 #bottonPanel .x-panel-body {
   padding: 0 18%; }
 
 #bottonPanel .lanista-command-button {
-  width: 152px;
+  width: 165px;
   height: 250px!important;
   margin-left: 0px; }
 
@@ -25961,7 +25961,8 @@ font-size: 18px;
   margin-left: 0;
   width: 455px!important;
   margin-top: 110px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  left: 494px; }
 
 .option-buttons {
   margin-top: 110px;
@@ -26776,3 +26777,63 @@ font-size: 18px;
   box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0, rgba(0, 0, 0, 0.4) 0 1px 0 inset;
   left: .7em;
   top: .85em; }
+
+.lanista-registration #lanistaStage {
+  background-image: url(../resources/images/login-background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 200px 43px #424242 inset; }
+
+#registerPanel {
+  top: 225px; }
+
+.lanista-register-welcome .lanista-label-welcome {
+  font-size: x-large;
+  height: 35px;
+  line-height: 30px;
+  left: 65px;
+  top: 43px;
+  color: #686868; }
+
+.lanista-register-welcome {
+  width: 625px!important;
+  height: 425px;
+  margin-left: auto;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin-right: auto; }
+
+.lanista-registration #header {
+  background-color: transparent!important; }
+
+.lanista-registration .header-logo {
+  font-family: "Harabara Bold"!important; }
+
+.lanista-registration .lanista-command-button .x-btn-glyph {
+  border-color: ghostwhite!important;
+  color: ghostwhite!important; }
+
+.lanista-registration .lanista-command-button .x-btn-inner {
+  color: ghostwhite!important; }
+
+.lanista-field-register {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.lanista-register-welcome .x-fieldset-default {
+  border: none!important;
+  top: 45px;
+  padding-left: 30px;
+  padding-right: 30px; }
+
+#agb {
+  padding-left: 31px; }
+
+.login-buttons-container .x-box-inner {
+  overflow: initial; }
+
+.lanista-customerexercises-panel {
+  overflow: initial; }
+
+#customerExercisesPanel .x-panel-body-default {
+  top: 250px; }

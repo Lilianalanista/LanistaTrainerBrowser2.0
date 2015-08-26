@@ -1453,6 +1453,7 @@ font-size: 18px;
     width: 455px!important;
     margin-top: 110px;
     margin-bottom: 10px;
+    left: 494px;
 }
 
 .option-buttons {
@@ -2534,17 +2535,13 @@ font-size: 18px;
     overflow: initial;
 }
 
-//#bottonPanel .lanista-command-button
-//    width: 180px;
+.lanista-customerexercises-panel{
+    overflow: initial;
+}
 
-
-//#bottonPanel .x-btn-inner
-//width: 170px;
-//    height: 88px;
-//left: -154px;
-
-
-
+#customerExercisesPanel .x-panel-body-default{
+    top: 250px;
+}
 
 
 

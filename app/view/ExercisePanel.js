@@ -128,7 +128,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                         cls: 'lanista-protocoll-panel',
                                         id: 'protocollPanel',
                                         tpl: [
-                                            '<div class="protocoll-configuration">{weight} Kg. x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>\''
+                                            '<div class="protocoll-configuration">{weight} Kg x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>\''
                                         ],
                                         width: 850,
                                         dockedItems: [
@@ -187,7 +187,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                         dock: 'right',
                                         id: 'configurationPanel',
                                         tpl: [
-                                            '<div class="protocoll-configuration">{weight} Kg. x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]} {rounds_min} {[values.rounds_min > 1 ? Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS : Ext.ux.LanguageManager.TranslationArray.SET]}</div>',
+                                            '<div class="protocoll-configuration">{weight} Kg x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]} {rounds_min} {[values.rounds_min > 1 ? Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_SETS : Ext.ux.LanguageManager.TranslationArray.SET]}</div>',
                                             '<div class="protocoll-description">{[values.description ? values.description : Ext.ux.LanguageManager.TranslationArray.NO_PLAN_EXERCISE_DESCRIPTION]}</div>'
                                         ],
                                         width: 650,

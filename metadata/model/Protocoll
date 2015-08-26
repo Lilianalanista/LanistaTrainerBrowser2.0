@@ -237,6 +237,44 @@
                     "designerId": "b0335715-d0a0-406a-979f-eaa5cfcba8ff"
                 }
             ]
+        },
+        {
+            "type": "Ext.data.field.Integer",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "forSortExercise"
+            },
+            "name": "MyInteger1",
+            "designerId": "e63b928d-50a7-40a1-95e0-259b3fe5e377",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "                return parseInt(rec.data.execution_date.substr(11,2) + ",
+                            "                                rec.data.execution_date.substr(14,2) + ",
+                            "                                rec.data.execution_date.substr(17,2)) + '.' +",
+                            "                                rec.data.exercise_id_forgroup;"
+                        ]
+                    },
+                    "name": "convert",
+                    "designerId": "ac4e7c81-fd4b-4b0b-9157-4050b7a9f789"
+                }
+            ]
         }
     ]
 }

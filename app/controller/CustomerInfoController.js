@@ -140,6 +140,13 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
                             recordValue = recordValue.substr(3,2) + '-' + recordValue.substr(0,2) + '-' + recordValue.substr(6,4);
                             record.data.birthday = recordValue;
                             controller.getCustomerInfoPanel().loadRecord(record);
+
+
+
+                            Ext.getCmp("customer_birthdate").setValue( new Date(user.birthday) );
+
+
+
                             Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);
                             controller.showCommands();
                         }
@@ -156,7 +163,8 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
 
         var controller = this;
         var customerInfoPanel	= controller.getCustomerInfoPanel();
-        var mainStage	= controller.getMainStage();
+        var mainStage	= controller.getMainStage(),
+            user = Ext.ux.SessionManager.getUser();
 
         mainStage.add( customerInfoPanel );
 
@@ -171,6 +179,8 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
         // *** 2 Show the panel
         customerInfoPanel.loadRecord(LanistaTrainer.app.currentCustomer);
         customerInfoPanel.show();
+
+        Ext.getCmp("customer_birthdate").setValue( new Date(user.birthday) );
 
         LanistaTrainer.app.fireEvent('showCustomerInfoHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');

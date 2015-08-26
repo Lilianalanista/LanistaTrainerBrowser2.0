@@ -278,19 +278,24 @@ Ext.application({
                     }
                 ]
             });
-            LeftPanel.add(
-                Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.TOOLS,
-                    itemId: 'toolsButton',
-                    menu: tools,
-                    menuButtonAlign: 'left',
-                    glyph: '102@Lanista Icons', //f
-                    cls: [
-                        'lanista-command-button',
-                        'lanista-command-button-violet'
-                    ]
-                })
-            );
+
+
+            /*******  Temporal change !!!!!
+                LeftPanel.add(
+                    Ext.create('LanistaTrainer.view.LanistaButton', {
+                        text: Ext.ux.LanguageManager.TranslationArray.TOOLS,
+                        itemId: 'toolsButton',
+                        menu: tools,
+                        menuButtonAlign: 'left',
+                        glyph: '102@Lanista Icons', //f
+                        cls: [
+                            'lanista-command-button',
+                            'lanista-command-button-violet'
+                        ]
+                    })
+                );
+            */
+
         }
 
             LeftPanel.add(
