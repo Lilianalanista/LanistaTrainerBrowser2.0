@@ -1313,25 +1313,13 @@ font-size: 18px;
 }
 
 .plan-header-attribute {
-    width: 50%;
+    width: 30%;
     float: left;
 }
 
 .plan-header-value {
     float: right;
-    width: 50%;
-    text-align: right;
-    font-family: 'Roboto Medium';
-}
-
-.plan-header-attribute {
-    width: 50%;
-    float: left;
-}
-
-.plan-header-value {
-    float: right;
-    width: 50%;
+    width: 70%;
     text-align: right;
     font-family: 'Roboto Medium';
 }
@@ -2549,13 +2537,9 @@ font-size: 18px;
     top: 250px;
 }
 
-.x-grid-empty{
-    font: normal 15px Roboto Light!important;
+#exerciseProtocolls .x-grid-view{
+    font: normal 17px Roboto Light!important;
+    top: 10px;
 }
-
-.lanista-protocoll-panel .x-panel-body-default{
-    height: 100%;
-}
-
 
 

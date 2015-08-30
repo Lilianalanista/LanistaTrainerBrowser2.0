@@ -256,6 +256,7 @@
                                     "lanista-protocoll-panel"
                                 ],
                                 "id": "protocollPanel",
+                                "layout": "fit",
                                 "layout|flex": 1,
                                 "title": null,
                                 "width": 850
@@ -280,117 +281,136 @@
                                     "designerId": "6babdccf-77d5-4dfe-8a8c-f46393740d60"
                                 },
                                 {
-                                    "type": "Ext.grid.Panel",
+                                    "type": "Ext.container.Container",
                                     "reference": {
-                                        "name": "items",
+                                        "name": "dockedItems",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
-                                        "disableSelection": true,
-                                        "dock": null,
-                                        "emptyText": "This exercise is not protocolled",
-                                        "header": false,
-                                        "hideHeaders": true,
-                                        "id": "exerciseProtocolls",
-                                        "reserveScrollbar": true,
-                                        "scrollable": true,
-                                        "title": null,
-                                        "width": 230
+                                        "cls": [
+                                            "lanista-container-protocolls"
+                                        ],
+                                        "dock": "right",
+                                        "height": "100%",
+                                        "id": "protocollsContainer",
+                                        "layout": "fit"
                                     },
-                                    "name": "MyGridPanel",
-                                    "configAlternates": {
-                                        "scrollable": "boolean"
-                                    },
-                                    "designerId": "5da51f36-620f-4366-b464-872a7a32884f",
+                                    "name": "MyContainer",
+                                    "designerId": "ba44b05e-1d35-499f-af80-266ec505c07a",
                                     "cn": [
                                         {
-                                            "type": "Ext.view.Table",
+                                            "type": "Ext.grid.Panel",
                                             "reference": {
-                                                "name": "viewConfig",
-                                                "type": "object"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "deferEmptyText": false
-                                            },
-                                            "name": "MyTable",
-                                            "designerId": "090c0a21-7cf8-4a70-8c9e-2a9b2c5b1438"
-                                        },
-                                        {
-                                            "type": "Ext.grid.column.Template",
-                                            "reference": {
-                                                "name": "columns",
+                                                "name": "items",
                                                 "type": "array"
                                             },
                                             "codeClass": null,
                                             "userConfig": {
-                                                "border": false,
-                                                "cls": [
-                                                    "lanista-exercise-protocolls"
-                                                ],
-                                                "dataIndex": "string",
-                                                "defaultWidth": 0,
-                                                "enableColumnHide": false,
-                                                "hideable": false,
-                                                "id": "rowProtocolls",
-                                                "menuDisabled": true,
-                                                "resizable": false,
-                                                "tdCls": "lanista-exercises-protocolls-td",
-                                                "text": null,
-                                                "weight": 0
+                                                "disableSelection": true,
+                                                "emptyText": "Empty Text",
+                                                "header": false,
+                                                "hideHeaders": true,
+                                                "id": "exerciseProtocolls",
+                                                "scrollable": true,
+                                                "title": null,
+                                                "width": 230
                                             },
-                                            "name": "MyTemplateColumn",
-                                            "designerId": "27b8be60-72c8-4e30-86f4-5ee81ebec409",
+                                            "name": "MyGridPanel",
+                                            "configAlternates": {
+                                                "scrollable": "boolean"
+                                            },
+                                            "designerId": "5da51f36-620f-4366-b464-872a7a32884f",
                                             "cn": [
                                                 {
-                                                    "type": "Ext.XTemplate",
+                                                    "type": "Ext.view.Table",
                                                     "reference": {
-                                                        "name": "tpl",
+                                                        "name": "viewConfig",
                                                         "type": "object"
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "designer|displayName": "tpl",
-                                                        "implHandler": [
-                                                            "<tpl for=\".\">",
-                                                            "    <div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {idNum}: &nbsp; {weight} Kg &nbsp; x &nbsp; {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>",
-                                                            "</tpl>"
-                                                        ]
+                                                        "deferEmptyText": null
                                                     },
-                                                    "name": "tpl",
-                                                    "designerId": "63248cea-6ab3-4826-8391-eeee236b5e86"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Ext.grid.feature.Grouping",
-                                            "reference": {
-                                                "name": "features",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "collapsible": false
-                                            },
-                                            "name": "MyGroupingFeature",
-                                            "designerId": "478723c5-62c2-4e69-94e5-de739d08dd2a",
-                                            "cn": [
+                                                    "name": "MyTable",
+                                                    "designerId": "090c0a21-7cf8-4a70-8c9e-2a9b2c5b1438"
+                                                },
                                                 {
-                                                    "type": "Ext.XTemplate",
+                                                    "type": "Ext.grid.column.Template",
                                                     "reference": {
-                                                        "name": "groupHeaderTpl",
-                                                        "type": "object"
+                                                        "name": "columns",
+                                                        "type": "array"
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "designer|displayName": "groupHeaderTpl",
-                                                        "implHandler": [
-                                                            "<div class=\"lanista-group-grid-exercise\"> {name} </div>"
-                                                        ]
+                                                        "border": false,
+                                                        "cls": [
+                                                            "lanista-exercise-protocolls"
+                                                        ],
+                                                        "dataIndex": "string",
+                                                        "defaultWidth": 0,
+                                                        "enableColumnHide": false,
+                                                        "hideable": false,
+                                                        "id": "rowProtocolls",
+                                                        "menuDisabled": true,
+                                                        "resizable": false,
+                                                        "tdCls": "lanista-exercises-protocolls-td",
+                                                        "text": null,
+                                                        "weight": 0
                                                     },
-                                                    "name": "groupHeaderTpl",
-                                                    "designerId": "788f454d-c449-482b-9d3c-6a58a7a82281"
+                                                    "name": "MyTemplateColumn",
+                                                    "designerId": "27b8be60-72c8-4e30-86f4-5ee81ebec409",
+                                                    "cn": [
+                                                        {
+                                                            "type": "Ext.XTemplate",
+                                                            "reference": {
+                                                                "name": "tpl",
+                                                                "type": "object"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "designer|displayName": "tpl",
+                                                                "implHandler": [
+                                                                    "<tpl for=\".\">",
+                                                                    "    <div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {idNum}: &nbsp; {weight} Kg &nbsp; x &nbsp; {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>",
+                                                                    "</tpl>"
+                                                                ]
+                                                            },
+                                                            "name": "tpl",
+                                                            "designerId": "63248cea-6ab3-4826-8391-eeee236b5e86"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "Ext.grid.feature.Grouping",
+                                                    "reference": {
+                                                        "name": "features",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "collapsible": false
+                                                    },
+                                                    "name": "MyGroupingFeature",
+                                                    "designerId": "478723c5-62c2-4e69-94e5-de739d08dd2a",
+                                                    "cn": [
+                                                        {
+                                                            "type": "Ext.XTemplate",
+                                                            "reference": {
+                                                                "name": "groupHeaderTpl",
+                                                                "type": "object"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "designer|displayName": "groupHeaderTpl",
+                                                                "implHandler": [
+                                                                    "<div class=\"lanista-group-grid-exercise\"> {name} </div>"
+                                                                ]
+                                                            },
+                                                            "name": "groupHeaderTpl",
+                                                            "designerId": "788f454d-c449-482b-9d3c-6a58a7a82281"
+                                                        }
+                                                    ]
                                                 }
                                             ]
                                         }

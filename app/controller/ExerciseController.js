@@ -410,6 +410,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         LanistaTrainer.app.setStandardButtons('closeExercisePanelButton');
         this.showCommands();
 
+        exercisePanel.down('#protocollPanel').down('#exerciseProtocolls').emptyText = Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT;
+
         // *** 2 Show the panel
         exercisePanel.show();
 
@@ -465,15 +467,15 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                     protocoll = Ext.create('LanistaTrainer.model.Protocoll', {
                         exercise_id: record.data.id,
                         weight: '0',
-                        training: '0',
+                        training: '12',
                         training_unit: '0',
                         execution_date: '1900-01-01'
                     });
 
                     exercisePanel.down('#protocollPanel').protocollInformation = protocoll.data;
                     exercisePanel.down('#protocollPanel').update ( protocoll );
-                    exercisePanel.down('#protocollPanel').down('#exerciseProtocolls').emptyText = Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT;
-                    exercisePanel.down('#protocollPanel').down('#exerciseProtocolls').deferEmptyText = Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT;
+                    Ext.getCmp('exercisePanel').down('#exerciseProtocolls').getView().emptyText = Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT;
+                    Ext.getCmp('exercisePanel').down('#exerciseProtocolls').getView().refresh();
                 }
             });
 

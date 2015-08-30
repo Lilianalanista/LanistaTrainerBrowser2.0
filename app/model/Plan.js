@@ -57,7 +57,11 @@ Ext.define('LanistaTrainer.model.Plan', {
         },
         {
             type: 'string',
-            name: 'creator_name'
+            name: 'creator_first_name'
+        },
+        {
+            type: 'string',
+            name: 'creator_last_name'
         },
         {
             type: 'date',

@@ -132,47 +132,54 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                             '<div class="protocoll-configuration">{weight} Kg x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>\''
                                         ],
                                         width: 850,
-                                        items: [
+                                        layout: 'fit',
+                                        dockedItems: [
                                             {
-                                                xtype: 'gridpanel',
-                                                id: 'exerciseProtocolls',
-                                                scrollable: true,
-                                                width: 230,
-                                                header: false,
-                                                disableSelection: true,
-                                                emptyText: 'This exercise is not protocolled',
-                                                hideHeaders: true,
-                                                reserveScrollbar: true,
-                                                viewConfig: {
-                                                    deferEmptyText: false
-                                                },
-                                                columns: [
+                                                xtype: 'container',
+                                                dock: 'right',
+                                                cls: 'lanista-container-protocolls',
+                                                height: '100%',
+                                                id: 'protocollsContainer',
+                                                layout: 'fit',
+                                                items: [
                                                     {
-                                                        xtype: 'templatecolumn',
-                                                        border: false,
-                                                        cls: 'lanista-exercise-protocolls',
-                                                        id: 'rowProtocolls',
-                                                        resizable: false,
-                                                        tpl: [
-                                                            '<tpl for=".">',
-                                                            '    <div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {idNum}: &nbsp; {weight} Kg &nbsp; x &nbsp; {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>',
-                                                            '</tpl>'
+                                                        xtype: 'gridpanel',
+                                                        id: 'exerciseProtocolls',
+                                                        scrollable: true,
+                                                        width: 230,
+                                                        header: false,
+                                                        disableSelection: true,
+                                                        emptyText: 'Empty Text',
+                                                        hideHeaders: true,
+                                                        columns: [
+                                                            {
+                                                                xtype: 'templatecolumn',
+                                                                border: false,
+                                                                cls: 'lanista-exercise-protocolls',
+                                                                id: 'rowProtocolls',
+                                                                resizable: false,
+                                                                tpl: [
+                                                                    '<tpl for=".">',
+                                                                    '    <div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {idNum}: &nbsp; {weight} Kg &nbsp; x &nbsp; {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>',
+                                                                    '</tpl>'
+                                                                ],
+                                                                weight: 0,
+                                                                defaultWidth: 0,
+                                                                enableColumnHide: false,
+                                                                dataIndex: 'string',
+                                                                hideable: false,
+                                                                menuDisabled: true,
+                                                                tdCls: 'lanista-exercises-protocolls-td'
+                                                            }
                                                         ],
-                                                        weight: 0,
-                                                        defaultWidth: 0,
-                                                        enableColumnHide: false,
-                                                        dataIndex: 'string',
-                                                        hideable: false,
-                                                        menuDisabled: true,
-                                                        tdCls: 'lanista-exercises-protocolls-td'
-                                                    }
-                                                ],
-                                                features: [
-                                                    {
-                                                        ftype: 'grouping',
-                                                        collapsible: false,
-                                                        groupHeaderTpl: [
-                                                            '<div class="lanista-group-grid-exercise"> {name} </div>'
+                                                        features: [
+                                                            {
+                                                                ftype: 'grouping',
+                                                                collapsible: false,
+                                                                groupHeaderTpl: [
+                                                                    '<div class="lanista-group-grid-exercise"> {name} </div>'
+                                                                ]
+                                                            }
                                                         ]
                                                     }
                                                 ]

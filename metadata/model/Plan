@@ -122,10 +122,23 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "creator_name"
+                "name": "creator_first_name"
             },
             "name": "MyString17",
             "designerId": "a9450808-fa3b-42e5-9637-8f1849a18ce4"
+        },
+        {
+            "type": "Ext.data.field.String",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "creator_last_name"
+            },
+            "name": "MyString52",
+            "designerId": "321ce463-87c4-424d-a7c2-a2352354a3b7"
         },
         {
             "type": "Ext.data.field.Date",
