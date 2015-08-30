@@ -256,7 +256,7 @@
                                     "lanista-protocoll-panel"
                                 ],
                                 "id": "protocollPanel",
-                                "layout|flex": null,
+                                "layout|flex": 1,
                                 "title": null,
                                 "width": 850
                             },
@@ -282,21 +282,26 @@
                                 {
                                     "type": "Ext.grid.Panel",
                                     "reference": {
-                                        "name": "dockedItems",
+                                        "name": "items",
                                         "type": "array"
                                     },
                                     "codeClass": null,
                                     "userConfig": {
                                         "disableSelection": true,
-                                        "dock": "right",
+                                        "dock": null,
                                         "emptyText": "This exercise is not protocolled",
                                         "header": false,
                                         "hideHeaders": true,
                                         "id": "exerciseProtocolls",
+                                        "reserveScrollbar": true,
+                                        "scrollable": true,
                                         "title": null,
                                         "width": 230
                                     },
                                     "name": "MyGridPanel",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
                                     "designerId": "5da51f36-620f-4366-b464-872a7a32884f",
                                     "cn": [
                                         {
@@ -306,6 +311,9 @@
                                                 "type": "object"
                                             },
                                             "codeClass": null,
+                                            "userConfig": {
+                                                "deferEmptyText": false
+                                            },
                                             "name": "MyTable",
                                             "designerId": "090c0a21-7cf8-4a70-8c9e-2a9b2c5b1438"
                                         },
@@ -345,7 +353,9 @@
                                                     "userConfig": {
                                                         "designer|displayName": "tpl",
                                                         "implHandler": [
-                                                            "<div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {#}: {weight} Kg x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>"
+                                                            "<tpl for=\".\">",
+                                                            "    <div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {idNum}: &nbsp; {weight} Kg &nbsp; x &nbsp; {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>",
+                                                            "</tpl>"
                                                         ]
                                                     },
                                                     "name": "tpl",

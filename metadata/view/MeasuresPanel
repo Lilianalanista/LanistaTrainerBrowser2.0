@@ -13,6 +13,10 @@
         "designer|userClassName": "MeasuresPanel",
         "height": 250,
         "id": "measuresPanel",
+        "requires": [
+            "Ext.chart.interactions.Abstract",
+            "Ext.chart.interactions.ItemHighlight"
+        ],
         "width": 400
     },
     "configAlternates": {
@@ -77,6 +81,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
+                                "dock": null,
                                 "height": 550,
                                 "id": "",
                                 "itemId": "measuresChat",

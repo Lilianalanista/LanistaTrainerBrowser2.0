@@ -47,11 +47,15 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
             xtype: 'container',
             flex: 1,
             cls: 'protocolls-panel',
+            height: 200,
             itemId: 'customerProtocolls',
             scrollable: true,
             layout: {
                 type: 'hbox',
                 align: 'stretch'
+            },
+            listeners: {
+                afterrender: 'onCustomerProtocollsAfterRender'
             }
         }
     ],
@@ -305,6 +309,21 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         left = left.replace('px', '');
         left = left - 1;
         component.el.dom.style.left = left + 'px';
+    },
+
+    onCustomerProtocollsAfterRender: function(component, eOpts) {
+        /*
+            //Getting the ScrollView
+            var sw = component.getScrollable().scrollView;
+
+            //Updating the vertical scrollbar size
+            sw.indicators.vertical.setSize(component.getHeight());
+
+            //Show the indicators
+            sw.showIndicators();
+        */
+        component.getScrollable().scrollTo(5, 10);
+
     },
 
     deletePlan: function(data) {

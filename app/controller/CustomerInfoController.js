@@ -101,11 +101,11 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
                 recordCustomer = Ext.create('LanistaTrainer.model.Customer');
                 recordCustomer.data = localRecord.getData();
 
-                dateAux = controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getFullYear() + '-' +
+                /*dateAux = controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getFullYear() + '-' +
                     parseInt(controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getMonth() + 1).toString() + '-' +
                     controller.getCustomerInfoPanel().getForm().getFields( ).items[3].value.getDate();
 
-                recordCustomer.data.birthday = dateAux;
+                recordCustomer.data.birthday = recordCustomer.data.birthday;*/
                 recordCustomer.proxy = new Ext.data.proxy.Ajax({
                     url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/user/json',
                     model: 'LanistaTrainer.model.Customer',
@@ -126,28 +126,48 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
 
                 LanistaTrainer.app.getController('MainController').saveModel(recordCustomer, {
                     callback: function(record,event,success) {
-                        var recordValue;
+                        var recordValue,
+                            birthdayCustomer,
+                            user = Ext.ux.SessionManager.getUser();
+
                         if (success)
                         {
-                            /*var oldDate = record.data.birthday.split('-'),
-                                    newDate;
-                                if (Ext.ux.LanguageManager.lang === 'EN')
-                                    newDate = oldDate[1] + oldDate[0] + oldDate[2];
-                                else
-                                    newDate = oldDate[0] + oldDate[1] + oldDate[2];*/
-
-                            recordValue = record.data.birthday;
-                            recordValue = recordValue.substr(3,2) + '-' + recordValue.substr(0,2) + '-' + recordValue.substr(6,4);
-                            record.data.birthday = recordValue;
                             controller.getCustomerInfoPanel().loadRecord(record);
 
+                            birthdayCustomer = record.data.birthday;
+                            if (birthdayCustomer) {
+                                //birthdayCustomer = Ext.Date.parseDate( new Date(birthdayCustomer.substr(6,4), birthdayCustomer.substr(3,2), birthdayCustomer.substr(0,2)), "Y-m-d H:i:s" );
+                                birthdayCustomer = new Date(parseInt(birthdayCustomer.substr(6,4)), parseInt(birthdayCustomer.substr(3,2)) - 1, parseInt(birthdayCustomer.substr(0,2)));
+                                if (isNaN(birthdayCustomer)) {
+                                    birthdayCustomer = '';
+                                }
+                            }
+                            Ext.getCmp("customer_birthdate").setValue( new Date(birthdayCustomer) );
 
+                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, data.message, Ext.emptyFn);
 
-                            Ext.getCmp("customer_birthdate").setValue( new Date(user.birthday) );
+                            if (user.role !== '2' ){
+                                localStorage.setItem("birthday", record.data.birthday ? record.data.birthday : '');
+                                localStorage.setItem("email", record.data.email ? record.data.email : '');
+                                localStorage.setItem("language", record.data.language ? record.data.language : '');
+                                localStorage.setItem("first_name", record.data.first_name ? record.data.first_name : '');
+                                localStorage.setItem("last_name", record.data.last_name ? record.data.last_name : '');
+                                localStorage.setItem("country", record.data.country ? record.data.country : '');
+                                localStorage.setItem("zipcode", record.data.zipcode ? record.data.zipcode : '');
+                                localStorage.setItem("city", record.data.city ? record.data.city : '');
+                                localStorage.setItem("street", record.data.street ? record.data.street : '');
+                                localStorage.setItem("gender", record.data.gender ? record.data.gender : '');
+                                localStorage.setItem("phone_nr", record.data.phone_nr ? record.data.phone_nr : '');
 
+                                Ext.ux.SessionManager.loadLastUser();
 
+                                if (record.data.language != Ext.ux.LanguageManager.lang) {
+                                    Ext.Msg.alert ('', Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE,  function() {
+                                        LanistaTrainer.app.fireEvent('changeLanguage', record.data.language, true);
+                                    });
+                                }
+                            }
 
-                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);
                             controller.showCommands();
                         }
                         else
@@ -164,7 +184,7 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
         var controller = this;
         var customerInfoPanel	= controller.getCustomerInfoPanel();
         var mainStage	= controller.getMainStage(),
-            user = Ext.ux.SessionManager.getUser();
+            birthdayCustomer;
 
         mainStage.add( customerInfoPanel );
 
@@ -180,7 +200,15 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
         customerInfoPanel.loadRecord(LanistaTrainer.app.currentCustomer);
         customerInfoPanel.show();
 
-        Ext.getCmp("customer_birthdate").setValue( new Date(user.birthday) );
+        birthdayCustomer = LanistaTrainer.app.currentCustomer.data.birthday;
+        if (birthdayCustomer) {
+            birthdayCustomer = Ext.Date.parseDate( birthdayCustomer, "Y-m-d H:i:s" );
+            if (isNaN(birthdayCustomer)) {
+                birthdayCustomer = '';
+            }
+        }
+        Ext.getCmp("customer_birthdate").setValue( new Date(birthdayCustomer) );
+        //Ext.getCmp("customer_birthdate").setValue( new Date(user.birthday) );
 
         LanistaTrainer.app.fireEvent('showCustomerInfoHeaderUpdate');
         LanistaTrainer.app.fireEvent('showStage');

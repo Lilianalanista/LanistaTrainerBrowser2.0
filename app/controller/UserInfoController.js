@@ -80,9 +80,9 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
 
         if (email === '')
         {
-                Ext.Msg.alert('Email waren leer', 'Versuche es noch mal !', function() {
-                    controller.getUserInfoPanel().getForm().findField('email').focus();
-                });
+            Ext.Msg.alert('Email waren leer', 'Versuche es noch mal !', function() {
+                controller.getUserInfoPanel().getForm().findField('email').focus();
+            });
         } else
         {
             var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;

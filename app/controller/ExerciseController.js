@@ -122,8 +122,20 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
         LanistaTrainer.app.getController('MainController').saveModel(newProtocoll, {
             callback: function( protocoll ) {
+                var groups,
+                    itemsFromGroup;
+
                 var storeProtocolls = controller.getExercisePanel ().down ('#exerciseProtocolls').getStore();
-                storeProtocolls.load ();
+                storeProtocolls.load (function (records) {
+                    groups = storeProtocolls.getGroups();
+                    for ( var i = 0; i < groups.length; i++ ) {
+                        itemsFromGroup = groups.items[i].items;
+                        for ( var j = 0; j < itemsFromGroup.length; j++ ) {
+                            itemsFromGroup[j].data.idNum = j + 1;
+                        }
+                    }
+                    controller.getExercisePanel().down ('#exerciseProtocolls').reconfigure(storeProtocolls);
+                });
             }
         });
 
@@ -420,14 +432,29 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                 protocollsStore.filter ([ {property :'user_exercise_id', value: parseInt(record.data.id) - ini} , {property:'user_id', value: LanistaTrainer.app.currentCustomer.data.id} ]);
 
             protocollsStore.group( 'execution_date_day','DESC');
+            /*
             protocollsStore.sort( {
                 direction: 'DESC',
                 property: 'id'
             });
-
+            */
+            protocollsStore.sort( {
+                direction: 'ASC',
+                property: 'execution_date'
+            });
             protocollsStore.load (function (records) {
                 var exercisePanel	= controller.getExercisePanel(),
-                    protocoll = null;
+                    protocoll = null,
+                    groups,
+                    itemsFromGroup;
+
+                groups = protocollsStore.getGroups();
+                for ( var i = 0; i < groups.length; i++ ) {
+                    itemsFromGroup = groups.items[i].items;
+                    for ( var j = 0; j < itemsFromGroup.length; j++ ) {
+                        itemsFromGroup[j].data.idNum = j + 1;
+                    }
+                }
 
                 exercisePanel.down('#exercisePanelContent').down('#protocollsTabPanel').down('#exerciseProtocolls').reconfigure(protocollsStore);
                 if ( protocollsStore.data && protocollsStore.data.items.length > 0 ) {
@@ -446,10 +473,11 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                     exercisePanel.down('#protocollPanel').protocollInformation = protocoll.data;
                     exercisePanel.down('#protocollPanel').update ( protocoll );
                     exercisePanel.down('#protocollPanel').down('#exerciseProtocolls').emptyText = Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT;
+                    exercisePanel.down('#protocollPanel').down('#exerciseProtocolls').deferEmptyText = Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT;
                 }
-           });
+            });
 
-           exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.show();
+            exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.show();
         }
 
         if ( currentPlan ){

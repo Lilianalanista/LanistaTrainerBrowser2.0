@@ -26725,6 +26725,9 @@ font-size: 18px;
   margin-left: 25px;
   width: 595px; }
 
+#exerciseProtocolls {
+  float: right; }
+
 #exerciseProtocolls .x-grid-with-row-lines .x-grid-table {
   width: 200px!important; }
 
@@ -26733,9 +26736,6 @@ font-size: 18px;
 
 #exerciseProtocolls table {
   width: 200px!important; }
-
-#protocollPanel {
-  left: 369px!important; }
 
 .lanista-grid-record-date-measures .x-column-header-text {
   background-image: none; }
@@ -26837,3 +26837,9 @@ font-size: 18px;
 
 #customerExercisesPanel .x-panel-body-default {
   top: 250px; }
+
+.x-grid-empty {
+  font: normal 15px Roboto Light!important; }
+
+.lanista-protocoll-panel .x-panel-body-default {
+  height: 100%; }

@@ -26,7 +26,8 @@ Ext.define('Ext.ux.SessionManager', {
                 if (data.error == 0) {
                 	self._isLoggedIn = true;
                     if (data.birthday) {
-                        var birthday = new Date(data.birthday.substring(0, 10));
+                        //var birthday = new Date(data.birthday.substring(0, 10));
+                        var birthday = Ext.Date.parseDate( data.birthday, "Y-m-d H:i:s" );
                         if (isNaN(birthday)) {
                             data.birthday = '';
                         } else {

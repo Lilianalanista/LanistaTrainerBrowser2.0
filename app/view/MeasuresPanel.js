@@ -28,7 +28,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         'Ext.XTemplate',
         'Ext.grid.Panel',
         'Ext.view.Table',
-        'Ext.grid.column.Date'
+        'Ext.grid.column.Date',
+        'Ext.chart.interactions.Abstract',
+        'Ext.chart.interactions.ItemHighlight'
     ],
 
     viewModel: {

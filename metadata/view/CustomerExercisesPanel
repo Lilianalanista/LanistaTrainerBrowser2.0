@@ -506,7 +506,7 @@
                 ],
                 "container|align": "stretch",
                 "dock": null,
-                "height": null,
+                "height": 200,
                 "id": null,
                 "itemId": "customerProtocolls",
                 "layout": "hbox",
@@ -517,7 +517,38 @@
             "configAlternates": {
                 "scrollable": "boolean"
             },
-            "designerId": "91a75130-cea1-4ebe-9ac4-bd639345ef74"
+            "designerId": "91a75130-cea1-4ebe-9ac4-bd639345ef74",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onCustomerProtocollsAfterRender",
+                        "implHandler": [
+                            "/*",
+                            "    //Getting the ScrollView",
+                            "    var sw = component.getScrollable().scrollView;",
+                            "",
+                            "    //Updating the vertical scrollbar size",
+                            "    sw.indicators.vertical.setSize(component.getHeight());",
+                            "",
+                            "    //Show the indicators",
+                            "    sw.showIndicators();",
+                            "*/",
+                            "component.getScrollable().scrollTo(5, 10);",
+                            ""
+                        ],
+                        "name": "afterrender",
+                        "scope": "me"
+                    },
+                    "name": "onCustomerProtocollsAfterRender",
+                    "designerId": "fa0b07eb-2403-40cb-bc68-71d5423f046d"
+                }
+            ]
         },
         {
             "type": "basicfunction",

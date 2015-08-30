@@ -125,22 +125,27 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                 items: [
                                     {
                                         xtype: 'panel',
+                                        flex: 1,
                                         cls: 'lanista-protocoll-panel',
                                         id: 'protocollPanel',
                                         tpl: [
                                             '<div class="protocoll-configuration">{weight} Kg x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>\''
                                         ],
                                         width: 850,
-                                        dockedItems: [
+                                        items: [
                                             {
                                                 xtype: 'gridpanel',
-                                                dock: 'right',
                                                 id: 'exerciseProtocolls',
+                                                scrollable: true,
                                                 width: 230,
                                                 header: false,
                                                 disableSelection: true,
                                                 emptyText: 'This exercise is not protocolled',
                                                 hideHeaders: true,
+                                                reserveScrollbar: true,
+                                                viewConfig: {
+                                                    deferEmptyText: false
+                                                },
                                                 columns: [
                                                     {
                                                         xtype: 'templatecolumn',
@@ -149,7 +154,9 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                                         id: 'rowProtocolls',
                                                         resizable: false,
                                                         tpl: [
-                                                            '<div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {#}: {weight} Kg x {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>'
+                                                            '<tpl for=".">',
+                                                            '    <div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {idNum}: &nbsp; {weight} Kg &nbsp; x &nbsp; {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>',
+                                                            '</tpl>'
                                                         ],
                                                         weight: 0,
                                                         defaultWidth: 0,

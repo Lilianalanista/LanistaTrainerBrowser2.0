@@ -589,6 +589,7 @@ ONLINE_1: 'Estás conectado.',
 ONLINE_2: 'Tus datos están sincronizados.',
 OFFLINE_1: 'Error de conexión',
 OFFLINE_2: 'Los datos de tu cliente podrían estar incompletos',
-MEASURE_ALREADY_EXIST: 'Una medición para el día seleccionado ya existe y ha sido cargada'
+MEASURE_ALREADY_EXIST: 'Una medición para el día seleccionado ya existe y ha sido cargada',
+MSG_DELETE_PLAN: '¿Estás seguro de que deseas borrar el plan?'
 };
 
