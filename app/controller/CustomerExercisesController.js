@@ -144,6 +144,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             controller.loadData();
         }
 
+        Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.setHeight(Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.dom.clientHeight - 20);
+
     },
 
     onCloseCustomerExercisesPanel: function(callback) {

@@ -511,12 +511,9 @@
                 "itemId": "customerProtocolls",
                 "layout": "hbox",
                 "layout|flex": 1,
-                "scrollable": true
+                "scrollable": "x"
             },
             "name": "MyContainer19",
-            "configAlternates": {
-                "scrollable": "boolean"
-            },
             "designerId": "91a75130-cea1-4ebe-9ac4-bd639345ef74",
             "cn": [
                 {

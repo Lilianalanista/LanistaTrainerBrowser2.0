@@ -531,18 +531,20 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
     onShowSearchHeaderUpdate: function() {
         var store = Ext.getStore('ExerciseStore'),
-             page = store.currentPage,
-             totalPages = "",
-             filter = "",
-             controller = this,
-             numOfExercises = store.proxy.filterRecords,
-             totalPages = Math.ceil(numOfExercises/store.pageSize),
-             searchByTextObj,
-             searchText = controller.textToSearch,
-             info;
+            page = store.currentPage,
+            totalPages = "",
+            filter = "",
+            controller = this,
+            numOfExercises = store.proxy.filterRecords,
+            totalPages = Math.ceil(numOfExercises/store.pageSize),
+            searchByTextObj,
+            searchText = controller.textToSearch,
+            info;
 
         if (store.filters.items.length > 0){
-            filter = ((Ext.isNumber(store.filters.items[1].getValue())) && (store.filters.items[1].textOptSel) ? '<div class="filterTitle"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES + '</span> </div> <div class="filterText">' + store.filters.items[1].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[0].getValue())) && (store.filters.items[0].textOptSel) ? '<div class="filterTitle"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_TYPE + ' </span> </div> <div class="filterText">'+store.filters.items[0].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((store.filters.indexOfKey('machineAux') !== -1) && (store.filters.items[2].textOptSel)  ? '<div class="filterTitle"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_ADDITIVES + ' </span> </div> <div class="filterText">' + store.filters.items[2].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '');
+            filter = ((Ext.isNumber(store.filters.items[1].getValue())) && (store.filters.items[1].textOptSel) ? '<div class="filterTitle lanista-filter-muscles"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_MUSCLES + '</span> </div> <div class="filterText">' + store.filters.items[1].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[0].getValue())) && (store.filters.items[0].textOptSel) ? '<div class="filterTitle lanista-filter-exercisetype"> <span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_TYPE + ' </span> </div> <div class="filterText">'+store.filters.items[0].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((store.filters.indexOfKey('machineAux') !== -1) && (store.filters.items[2].textOptSel)  ? ' <div class="filterTitle lanista-filter-aditives"><span>' + Ext.ux.LanguageManager.TranslationArray.FILTER_ADDITIVES + ' </div> </span> <div class="filterText">' + store.filters.items[2].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '');
+            //filter = (store.filters.items[1].textOptSel ? 'Musclegruppe: '+store.filters.items[1].textOptSel+'<br>' : '') + (store.filters.items[0].textOptSel ? ' Übungstyp: '+store.filters.items[0].textOptSel+'<br>' : '') + (store.filters.items[2].textOptSel ? ' Zusätze: '+store.filters.items[2].textOptSel+'<br>' : '');
+            //filter = ((Ext.isNumber(store.filters.items[1].getValue())) && (store.filters.items[1].textOptSel) ? '<div class="filterTitle"><span>  Musclegruppe </span> </div> <div class="filterText">' + store.filters.items[1].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((Ext.isNumber(store.filters.items[0].getValue())) && (store.filters.items[0].textOptSel) ? '<div class="filterTitle"><span> Übungstyp </span> </div> <div class="filterText">'+store.filters.items[0].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '') + ((store.filters.indexOfKey('machineAux') !== -1) && (store.filters.items[2].textOptSel)  ? '<div class="filterTitle"><span> Zusätze </span> </div> <div class="filterText">' + store.filters.items[2].textOptSel+'</div> <div class="lanista-delete-search lanista-icon" id="deleteSearchFilter">&nbsp;u</div>' : '');
         }
 
         searchByTextObj = store.filters.findBy( function(item, key) {
@@ -554,16 +556,16 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
         if (this.getExercisesPanel() && !this.getExercisesPanel().isHidden()) {
             if ( (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'DashboardPanel') &&
-                 (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')     &&
-                 (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'FavoritesPanel'))
+                (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'LoginPanel')     &&
+                (LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 2] !== 'FavoritesPanel'))
                 info = '<div class="exercises-header"><div class="header-filter lanista-exercise-filter-plan">';
             else
                 info = '<div class="exercises-header"><div class="header-filter">';
             info = info + filter + '</div>' + numOfExercises + ' ' + Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase() + '<br><span class="header-subtitle">' + Ext.ux.LanguageManager.TranslationArray.PAGE + ' '+ page +' ' + Ext.ux.LanguageManager.TranslationArray.VON + ' '+totalPages+'</span></div>';
 
             controller.getMainViewport().down("#header").update({
-               info:  this.getExercisesPanel().headerInfo ?  this.getExercisesPanel().headerInfo + info : '<div class="exercises-header">&nbsp;</div>' + info, //*********
-               title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
+                info:  this.getExercisesPanel().headerInfo ?  this.getExercisesPanel().headerInfo + info : '<div class="exercises-header">&nbsp;</div>' + info, //*********
+                title: this.getExercisesPanel().headerTitle ? this.getExercisesPanel().headerTitle : Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase()
             });
         }
     },

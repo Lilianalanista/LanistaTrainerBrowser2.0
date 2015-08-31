@@ -288,8 +288,8 @@ Ext.define('LanistaTrainer.view.MainViewport', {
         //***************************************************************
 
         el.on('click',function(e,t) {
-            if ( t.id === 'deleteSearchFilter' )
-            {
+            //if ( t.id === 'deleteSearchFilter' )
+            //{
                 var exerciseStore = Ext.getStore('ExerciseStore');
                 switch(Ext.get(t).dom.previousElementSibling.previousElementSibling.innerText.trim()) {
                     case 'Musclegruppe':
@@ -348,17 +348,29 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                     }
                 }
                 LanistaTrainer.app.fireEvent('showSearchHeaderUpdate');
-            }
+            //}
         },
               this,{delegate: '.lanista-delete-search'});
         el.on(
             'mouseover', function(e,t) {
                 //if ( t.id === 'deleteSearchFilter' )
                 //{
-                    el.removeCls('item-not-clicked');
-                    el.addCls('item-clicked');
-                    Ext.get(t).removeCls('lanista-color-no-delete');
-                    Ext.get(t).addCls('lanista-color-delete');
+
+
+                //Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
+                //Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
+
+
+
+                el.dom.className = el.dom.className.replace(/item-not-clicked/gi,'');
+                el.dom.className = el.dom.className + ' item-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/lanista-color-no-delete/gi,'');
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' lanista-color-delete';
+
+                    //el.removeCls('item-not-clicked');
+                    //el.addCls('item-clicked');
+                    //Ext.get(t).removeCls('lanista-color-no-delete');
+                    //Ext.get(t).addCls('lanista-color-delete');
                 //}
             },
             this,{ delegate: '.lanista-delete-search'});
@@ -366,10 +378,28 @@ Ext.define('LanistaTrainer.view.MainViewport', {
             'mouseout', function(e,t) {
                 //if ( t.id === 'deleteSearchFilter' )
                 //{
-                    el.removeCls('item-clicked');
-                    el.addCls('item-not-clicked');
-                    Ext.get(t).addCls('lanista-color-no-delete');
-                    Ext.get(t).removeCls('lanista-color-delete');
+
+
+
+
+                //Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
+                //Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
+
+
+
+                el.dom.className = el.dom.className.replace(/item-clicked/gi,'');
+                el.dom.className = el.dom.className + ' item-not-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' lanista-color-no-delete';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/lanista-color-delete/gi,'');
+
+
+
+
+
+                    //el.removeCls('item-clicked');
+                    //el.addCls('item-not-clicked');
+                    //Ext.get(t).addCls('lanista-color-no-delete');
+                    //Ext.get(t).removeCls('lanista-color-delete');
                 //}
             },
             this,{delegate: '.lanista-delete-search'});
@@ -378,11 +408,17 @@ Ext.define('LanistaTrainer.view.MainViewport', {
     },
 
     onMainViewportResize: function(component, width, height, oldWidth, oldHeight, eOpts) {
+        var customerExercisesPanel;
+
         component.down('#lanistaCopyRights').setY(component.el.dom.clientHeight - 40);
 
         if (LanistaTrainer.app.getController('PlanController').getPlanPanel().down ('tabpanel').getActiveTab().el)
             LanistaTrainer.app.getController('PlanController').getPlanPanel().down ('tabpanel').getActiveTab().getEl().setHeight(LanistaTrainer.app.getController('PlanController').getPlanPanel().down ('tabpanel').getActiveTab().el.dom.clientHeight - 45);
 
+        customerExercisesPanel = LanistaTrainer.app.getController('CustomerExercisesController').getCustomerExercisesPanel();
+
+        if (Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el)
+            Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.setHeight(Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.dom.clientHeight - 20);
     },
 
     onMainViewportAfterRender: function(component, eOpts) {

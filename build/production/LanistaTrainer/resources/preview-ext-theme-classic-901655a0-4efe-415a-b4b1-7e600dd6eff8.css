@@ -25847,22 +25847,12 @@ font-size: 18px;
   font-family: 'Roboto Light'; }
 
 .plan-header-attribute {
-  width: 50%;
+  width: 30%;
   float: left; }
 
 .plan-header-value {
   float: right;
-  width: 50%;
-  text-align: right;
-  font-family: 'Roboto Medium'; }
-
-.plan-header-attribute {
-  width: 50%;
-  float: left; }
-
-.plan-header-value {
-  float: right;
-  width: 50%;
+  width: 70%;
   text-align: right;
   font-family: 'Roboto Medium'; }
 
@@ -26725,6 +26715,9 @@ font-size: 18px;
   margin-left: 25px;
   width: 595px; }
 
+#exerciseProtocolls {
+  float: right; }
+
 #exerciseProtocolls .x-grid-with-row-lines .x-grid-table {
   width: 200px!important; }
 
@@ -26733,9 +26726,6 @@ font-size: 18px;
 
 #exerciseProtocolls table {
   width: 200px!important; }
-
-#protocollPanel {
-  left: 369px!important; }
 
 .lanista-grid-record-date-measures .x-column-header-text {
   background-image: none; }
@@ -26836,4 +26826,9 @@ font-size: 18px;
   overflow: initial; }
 
 #customerExercisesPanel .x-panel-body-default {
-  top: 250px; }
+  top: 250px;
+  z-index: 10!important; }
+
+#exerciseProtocolls .x-grid-view {
+  font: normal 17px Roboto Light!important;
+  top: 10px; }

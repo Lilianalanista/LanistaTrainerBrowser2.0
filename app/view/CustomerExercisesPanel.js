@@ -49,7 +49,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
             cls: 'protocolls-panel',
             height: 200,
             itemId: 'customerProtocolls',
-            scrollable: true,
+            scrollable: 'x',
             layout: {
                 type: 'hbox',
                 align: 'stretch'

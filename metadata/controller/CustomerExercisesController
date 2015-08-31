@@ -91,6 +91,8 @@
                     "    // *** 5 Load data",
                     "    controller.loadData();",
                     "}",
+                    "",
+                    "Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.setHeight(Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.dom.clientHeight - 20);",
                     ""
                 ],
                 "name": "showCustomerExercisesPanel",
