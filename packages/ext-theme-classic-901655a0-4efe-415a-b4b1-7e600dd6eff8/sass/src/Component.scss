@@ -237,7 +237,7 @@ $base-gradient: "none";
 }
 
 .lanista-command-button {
-    height: 105px!important;
+    height: 113px!important;
     margin-left: 7px;
     padding: 0px!important;
     color: rgb(74,172,216);
@@ -254,7 +254,7 @@ $base-gradient: "none";
 }
 
 .lanista-command-button .x-btn-inner{
-    white-space: inherit;
+    white-space: initial!important;
 }
 
 //Red button

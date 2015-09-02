@@ -534,7 +534,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             divInfoCustomer = '';
 
         if (record) {
-            divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer" id="showCustomerDataButton"><div class="lansita-header-customer-logo show-info-customer" id="showCustomerDataButton" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);"></div></div>';
+            divLogo = '<div class="lansita-header-customer-image-not-found show-info-customer1" id="showCustomerDataButton"><div class="lansita-header-customer-logo show-info-customer" id="showCustomerDataButton" style="background-image: url(' + Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/img/p/'+ record.data.id + '_photo.jpg);"></div></div>';
             divInfoCustomer = '<div class="lansita-header-customer-name"> <span class="last-name">' + record.data.last_name + '</span><br> <span class="first-name">' + record.data.first_name +'</span></div>';
         }
         controller.getMainViewport().down("#header").update({

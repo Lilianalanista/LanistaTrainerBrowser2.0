@@ -24985,7 +24985,7 @@ a.x-color-picker-item:hover {
   -webkit-transition: opacity 0.5s ease-in-out; }
 
 .lanista-command-button {
-  height: 105px!important;
+  height: 113px!important;
   margin-left: 7px;
   padding: 0px!important;
   color: #4aacd8;
@@ -25000,7 +25000,7 @@ a.x-color-picker-item:hover {
   background-color: transparent!important; }
 
 .lanista-command-button .x-btn-inner {
-  white-space: inherit; }
+  white-space: initial!important; }
 
 .lanista-command-button-red .x-btn-inner, .lanista-command-button-red .x-btn-glyph {
   color: #f73b3e !important; }

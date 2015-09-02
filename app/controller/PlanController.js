@@ -589,7 +589,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             title = '';
 
         if (!record){
-            title = "<div class='lanista-header-template-name'>" + Ext.ux.LanguageManager.TranslationArray.TEMPLATE_NAME + "</div>";
+            //title = "<div class='lanista-header-template-name'>" + Ext.ux.LanguageManager.TranslationArray.TEMPLATE_NAME + "</div>";
+            title = "";
             divLogo = "<div class='lanista-header-template'><div class='lanista-header-plan-name'>" + controller.planname +
                 "</div> <div class='lanista-header-plan-duration'>"  + Ext.ux.LanguageManager.TranslationArray.FORM_PLAN_TIME  + ': &nbsp;' +
                 controller.plan.data.duration + ' ' +
@@ -890,7 +891,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
-                text: Ext.ux.LanguageManager.TranslationArray.SHARE_PLAN,
+                text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PLAN_OPTIONS,
                 itemId: 'sharePlanButton',
                 menu: controller.setPlanOptions(),
                 menuButtonAlign: 'right',
@@ -902,7 +903,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         if (Ext.ux.SessionManager.getIsLoggedIn()){
             this.getRightCommandPanel().add(
                 Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.CHANGE_VALUE + ' / ' + Ext.ux.LanguageManager.TranslationArray.DELETE,
+                    text: Ext.ux.LanguageManager.TranslationArray.CHANGE + ' / ' + Ext.ux.LanguageManager.TranslationArray.DELETE,
                     itemId: 'changeDeleteButton',
                     menu: controller.changeDeletePlan(),
                     menuButtonAlign: 'right',
