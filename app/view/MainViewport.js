@@ -41,7 +41,7 @@ Ext.define('LanistaTrainer.view.MainViewport', {
             style: 'z-index:1; background-color: rgba(227,227,227,0.7)',
             tpl: [
                 '<div class="header-logo">',
-                '	p',
+                '    p',
                 '</div>',
                 '<div class="header-title">{title}</div>',
                 '<div class="header-info">{info}</div>'

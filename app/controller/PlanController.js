@@ -381,7 +381,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             exercisesToDeleteArray = [],
             internalItemId;
 
-        Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.DELETE.toUpperCase(), Ext.ux.LanguageManager.TranslationArray.MSG_FAVORITES_REMOVE_ITEMS, function(button) {
+        Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.DELETE.toUpperCase(), Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_PLAN_EXERCISE, function(button) {
             if (button == 'yes') {
                 exercisesToDelete = new String(exercisesToDelete);
                 if (exercisesToDelete.valueOf()){

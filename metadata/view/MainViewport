@@ -50,7 +50,7 @@
                         "designer|displayName": "tpl",
                         "implHandler": [
                             "<div class=\"header-logo\">",
-                            "\tp",
+                            "    p",
                             "</div>",
                             "<div class=\"header-title\">{title}</div>",
                             "<div class=\"header-info\">{info}</div>"
