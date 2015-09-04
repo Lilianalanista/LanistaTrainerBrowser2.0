@@ -57,15 +57,48 @@ Ext.define('LanistaTrainer.view.PlanPanel', {
                 itemId: 'planHeader',
                 cls: 'lanista-headerplan-panel',
                 maxHeight: 100,
-                tpl: [
-                    '<div class="plan-header-description" id="planHeaderDescription">{description}</div>',
+                tpl: Ext.create('Ext.XTemplate',
+                    '<div class="plan-header-description" id="planHeaderDescription"> {[this.strLines(values["description"])]} </div>',
                     '<div class="plan-header-info">',
                     '   <div class="plan-header-attribute">{[Ext.ux.LanguageManager.TranslationArray.CREATED_AT]}:</div><div class="plan-header-value">{[Ext.Date.format ( values.creation_date, \'d, M Y\' )]}</div>',
                     '   <div class="plan-header-attribute">{[Ext.ux.LanguageManager.TranslationArray.PLAN_FROM ]}:</div><div class="plan-header-value">{creator_first_name}&nbsp;{creator_last_name}</div>',
                     '	<div class="dashboard-customer-background" style="customer-image">a</div>',
                     '	<div class="plan-header-customer-info" style="background-image: url({[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/p/" + values.trainer_id + "_photo.jpg"]});"></div>',
-                    '</div>'
-                ]
+                    '</div>',
+                                {
+                                    strLines: function(value) {
+                                        var returnValue = '',
+                                            strSplit = [];
+                                        strSplitII = [];
+
+                                        if (Ext.isArray(value)){
+                                            for (var i = 0; i < value.length; i++){
+                                                strSplit = value[i].split(",");
+                                                for (var j = 0; j < strSplit.length; j++) {
+                                                    strSplitII = strSplit[j].split("||");
+                                                    for (var k = 0; k < strSplitII.length; k++) {
+                                                        returnValue = returnValue + strSplitII[k].trim().substr(0,1).toUpperCase() + strSplitII[k].trim().substr(1) + '<br>';
+                                                    }
+                                                    strSplitII = [];
+                                                }
+                                                strSplit = [];
+                                            }
+                                        }
+                                        else{
+                                            strSplit = value.split(",");
+                                            for (var j = 0; j < strSplit.length; j++) {
+                                                strSplitII = strSplit[j].split("||");
+                                                for (var k = 0; k < strSplitII.length; k++) {
+                                                    returnValue = returnValue + strSplitII[k].trim().substr(0,1).toUpperCase() + strSplitII[k].trim().substr(1) + '<br>';
+                                                }
+                                                strSplitII = [];
+                                            }
+                                        }
+
+                                        return returnValue;
+                                    }
+                                }
+                ),
             },
             {
                 xtype: 'tabpanel',

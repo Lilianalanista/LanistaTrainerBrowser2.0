@@ -84,6 +84,9 @@
                                 "dock": null,
                                 "height": 550,
                                 "id": "",
+                                "insetPadding": [
+                                    "{\"top\":10,\"left\":10,\"right\":10,\"bottom\":10}"
+                                ],
                                 "itemId": "measuresChat",
                                 "store": "MeasuresStore",
                                 "width": 1200
@@ -106,17 +109,15 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "fill": false,
                                         "highlight": true,
                                         "highlightCfg": [
                                             "{scaling: 2}"
                                         ],
                                         "marker": [
-                                            "{",
-                                            "    type: 'square'",
-                                            "}",
-                                            ""
+                                            "true"
                                         ],
-                                        "smooth": null,
+                                        "smooth": 3,
                                         "title": [
                                             "Weight"
                                         ],
@@ -176,12 +177,13 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "highlight": true,
-                                        "marker": [
-                                            "{",
-                                            "    type: 'triangle'",
-                                            "}"
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
                                         ],
-                                        "smooth": null,
+                                        "marker": [
+                                            "true"
+                                        ],
+                                        "smooth": 3,
                                         "title": [
                                             "Height"
                                         ],
@@ -243,12 +245,13 @@
                                     "userConfig": {
                                         "designer|createAlias": null,
                                         "highlight": true,
-                                        "marker": [
-                                            "{",
-                                            "    type: 'arrow'",
-                                            "}"
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
                                         ],
-                                        "smooth": null,
+                                        "marker": [
+                                            "true"
+                                        ],
+                                        "smooth": 3,
                                         "title": [
                                             "Futrex"
                                         ],
@@ -310,12 +313,13 @@
                                     "userConfig": {
                                         "designer|createAlias": null,
                                         "highlight": true,
-                                        "marker": [
-                                            "{",
-                                            "    type: 'cross'",
-                                            "}"
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
                                         ],
-                                        "smooth": null,
+                                        "marker": [
+                                            "true"
+                                        ],
+                                        "smooth": 3,
                                         "title": [
                                             "Percentage"
                                         ],
@@ -898,6 +902,9 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -955,6 +962,9 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -1012,6 +1022,9 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -1068,6 +1081,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -1124,6 +1140,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -1180,6 +1199,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -1236,6 +1258,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -1970,6 +1995,9 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -2027,6 +2055,9 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -2084,6 +2115,9 @@
                                     "codeClass": null,
                                     "userConfig": {
                                         "designer|createAlias": null,
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -2140,6 +2174,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -2196,6 +2233,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -2252,6 +2292,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -2308,6 +2351,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -2364,6 +2410,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],
@@ -2420,6 +2469,9 @@
                                     },
                                     "codeClass": null,
                                     "userConfig": {
+                                        "highlightCfg": [
+                                            "{scaling: 2}"
+                                        ],
                                         "marker": [
                                             "true"
                                         ],

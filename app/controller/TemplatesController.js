@@ -71,7 +71,19 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
     },
 
     onNextTemplatesClick: function(tool, e, owner, eOpts) {
-        var store = Ext.getStore("TemplatesStore");
+        var store = Ext.getStore("PlanStore");
+
+
+
+
+        console.log('STORE......');
+        console.log(store);
+
+
+
+
+
+
 
         if (store.getTotalCount() >= store.pageSize){
             store.nextPage();
@@ -80,9 +92,9 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
     },
 
     onPreviousTemplatesClick: function(tool, e, owner, eOpts) {
-        if (Ext.getStore("TemplatesStore").currentPage > 1)
+        if (Ext.getStore("PlanStore").currentPage > 1)
         {
-            var store = Ext.getStore("TemplatesStore");
+            var store = Ext.getStore("PlanStore");
             store.previousPage();
             LanistaTrainer.app.fireEvent('showTemplatesHeaderUpdate');
         }

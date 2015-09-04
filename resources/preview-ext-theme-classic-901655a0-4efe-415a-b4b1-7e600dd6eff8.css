@@ -26162,7 +26162,8 @@ font-size: 18px;
   height: 177px;
   overflow: visible;
   display: inline-block;
-  transition: 100ms linear 0s; }
+  transition: 100ms linear 0s;
+  float: left; }
 
 .plan-duration {
   font-family: 'Roboto Medium';

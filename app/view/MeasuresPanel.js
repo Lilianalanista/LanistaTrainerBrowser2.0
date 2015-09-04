@@ -66,6 +66,12 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         id: '',
                                         itemId: 'measuresChat',
                                         width: 1200,
+                                        insetPadding: {
+                                            top: 10,
+                                            left: 10,
+                                            right: 10,
+                                            bottom: 10
+                                        },
                                         store: 'MeasuresStore',
                                         series: [
                                             me.processWeight({
@@ -74,9 +80,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 highlightCfg: {
                                                     scaling: 2
                                                 },
-                                                marker: {
-                                                    type: 'square'
-                                                },
+                                                marker: true,
                                                 title: 'Weight',
                                                 tooltip: {
                                                     trackMouse: true,
@@ -89,14 +93,17 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 xField: 'record_date',
                                                 yField: [
                                                     'weight'
-                                                ]
+                                                ],
+                                                fill: false,
+                                                smooth: 3
                                             }),
                                             me.processHeight({
                                                 type: 'line',
                                                 highlight: true,
-                                                marker: {
-                                                    type: 'triangle'
+                                                highlightCfg: {
+                                                    scaling: 2
                                                 },
+                                                marker: true,
                                                 title: 'Height',
                                                 tooltip: {
                                                     trackMouse: true,
@@ -109,14 +116,16 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 xField: 'record_date',
                                                 yField: [
                                                     'height'
-                                                ]
+                                                ],
+                                                smooth: 3
                                             }),
                                             me.processFutrex({
                                                 type: 'line',
                                                 highlight: true,
-                                                marker: {
-                                                    type: 'arrow'
+                                                highlightCfg: {
+                                                    scaling: 2
                                                 },
+                                                marker: true,
                                                 title: 'Futrex',
                                                 tooltip: {
                                                     trackMouse: true,
@@ -129,14 +138,16 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 xField: 'record_date',
                                                 yField: [
                                                     'futrex'
-                                                ]
+                                                ],
+                                                smooth: 3
                                             }),
                                             me.processPercentage({
                                                 type: 'line',
                                                 highlight: true,
-                                                marker: {
-                                                    type: 'cross'
+                                                highlightCfg: {
+                                                    scaling: 2
                                                 },
+                                                marker: true,
                                                 title: 'Percentage',
                                                 tooltip: {
                                                     trackMouse: true,
@@ -149,7 +160,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 xField: 'record_date',
                                                 yField: [
                                                     'percentage'
-                                                ]
+                                                ],
+                                                smooth: 3
                                             })
                                         ],
                                         axes: [
@@ -298,6 +310,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         series: [
                                             me.processMyLineSeries4({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -315,6 +330,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries5({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -332,6 +350,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries6({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -349,6 +370,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries7({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -366,6 +390,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries8({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -383,6 +410,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries9({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -400,6 +430,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries10({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -596,6 +629,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         series: [
                                             me.processMyLineSeries4({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -613,6 +649,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries5({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -630,6 +669,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries6({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -647,6 +689,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries7({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -664,6 +709,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries8({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -681,6 +729,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries9({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -698,6 +749,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries10({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -715,6 +769,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries10({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
@@ -732,6 +789,9 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             }),
                                             me.processMyLineSeries10({
                                                 type: 'line',
+                                                highlightCfg: {
+                                                    scaling: 2
+                                                },
                                                 marker: true,
                                                 tooltip: {
                                                     trackMouse: true,
