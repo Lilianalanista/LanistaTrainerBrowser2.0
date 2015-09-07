@@ -1278,7 +1278,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
     },
 
     onGridcolumnAfterRender3: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());
+        component.setText(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());
     },
 
     onMeasuresTableItemClick: function(dataview, record, item, index, e, eOpts) {
@@ -1349,7 +1349,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
     },
 
     onGridcolumnAfterRender31: function(component, eOpts) {
-        component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());
+        component.setText(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());
     },
 
     onMeasuresTableItemClick1: function(dataview, record, item, index, e, eOpts) {

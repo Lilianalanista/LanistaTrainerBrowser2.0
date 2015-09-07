@@ -805,7 +805,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender3",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"
@@ -1898,7 +1898,7 @@
                                             "userConfig": {
                                                 "fn": "onGridcolumnAfterRender31",
                                                 "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());"
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());"
                                                 ],
                                                 "name": "afterrender",
                                                 "scope": "me"

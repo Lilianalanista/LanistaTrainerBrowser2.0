@@ -125,16 +125,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                     return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
                 });
 
-
                 Ext.getStore('MeasuresStore').removeAll();
                 Ext.getStore('MeasuresStore').add(records);
-
-
-
-                console.log('Valores.....');
-                console.log(Ext.getStore('MeasuresStore'));
-
-
 
                 //Ext.getStore('MeasuresStore').loadRecords(recordsAux);
                 tabPanel.down('#measuresChat').redraw();
@@ -156,18 +148,6 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                             item.data.chest !== 0 || item.data.sprailium !== 0 || item.data.abs !== 0 || item.data.quads !== 0);
                 });
 
-
-
-
-
-
-
-
-
-
-
-
-
                 Ext.getStore('MeasuresStore').loadRecords(recordsAux);
                 tabPanel.down('#measuresChat').redraw();
             });
@@ -186,10 +166,6 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             controller.searchCustomerTest();
         }
 
-
-
-
-
     },
 
     onchartTableButtonClick: function(button, e, eOpts) {
@@ -200,10 +176,12 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             activeTab = measuresPanel.down('#measureTabs').getActiveTab();
 
         if (!controller.currentPanel.get(activeTab.id) || controller.currentPanel.get(activeTab.id) === 'table'){
+            controller.getRightCommandPanel().down('#chartTableButton').setText(Ext.ux.LanguageManager.TranslationArray.BUTTON_SHOW_TABLE);
             activeTab.down('#measuresChat').show();
             activeTab.down('#measuresTable').hide();
         }
         else{
+            controller.getRightCommandPanel().down('#chartTableButton').setText(Ext.ux.LanguageManager.TranslationArray.BUTTON_SHOW_CHART);
             activeTab.down('#measuresChat').hide();
             activeTab.down('#measuresTable').show();
         }
@@ -662,7 +640,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         if (activeTab.id === 'testsTab'){
             this.getRightCommandPanel().add(
                 Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SHOW_TABLE,
                     itemId: 'newTestButton',
                     menu: controller.menuTest(),
                     menuButtonAlign: 'right',
@@ -678,7 +656,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
              if (user.role === '2' ){
                 this.getRightCommandPanel().add(
                         Ext.create('LanistaTrainer.view.LanistaButton', {
-                            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
+                            text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SHOW_TABLE,
                             itemId: 'newMeasureButton',
                             cls: [
                                 'lanista-command-button',
@@ -691,7 +669,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
             this.getRightCommandPanel().add(
                 Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
+                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SHOW_TABLE,
                     itemId: 'chartTableButton',
                     glyph: '79@Lanista Icons' //O
                 })

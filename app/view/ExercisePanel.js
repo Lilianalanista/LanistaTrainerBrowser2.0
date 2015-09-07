@@ -160,7 +160,7 @@ Ext.define('LanistaTrainer.view.ExercisePanel', {
                                                                 resizable: false,
                                                                 tpl: [
                                                                     '<tpl for=".">',
-                                                                    '    <div>{[Ext.ux.LanguageManager.TranslationArray.SET]} {idNum}: &nbsp; {weight} Kg &nbsp; x &nbsp; {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>',
+                                                                    '    <div class="{[values.creator_id === parseInt(localStorage.getItem ( \'user_id\' )) ? \'lanista-client-blue\' : \'lanista-trainer-black\']}">{[Ext.ux.LanguageManager.TranslationArray.SET]} {idNum}: &nbsp; {weight} Kg &nbsp; x &nbsp; {training} {[values.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.training_unit == 1 ? Ext.ux.LanguageManager.TranslationArray.SEC : Ext.ux.LanguageManager.TranslationArray.MIN]}</div>',
                                                                     '</tpl>'
                                                                 ],
                                                                 weight: 0,

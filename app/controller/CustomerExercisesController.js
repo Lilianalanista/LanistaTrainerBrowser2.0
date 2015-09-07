@@ -330,7 +330,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                     store: gridStore,
                     cls: 'lanista-customer-exercise',
                     width: 205,
-                    autoScroll: true,
+                    //autoScroll: true,
+                    scrollable: 'y',
                     id: 'grid' + i,
                     columns: [
                         {
@@ -357,11 +358,11 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                         {
                             ftype: 'grouping',
                             groupHeaderTpl: [
-                                 '<tpl for=".">',
+                                '<tpl for=".">',
                                 '     <input class="lanista-img-protocolls img-right" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id]}_1.jpg" >',
                                 '     <input class="lanista-img-protocolls img-left" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id]}_2.jpg" ></div>',
                                 '     <tpl for="children">',
-                                '           <p class="lanista-protocolls-weight-p" align="left"><span class="lanista-protocolls-weight"> {data.weight} Kg / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
+                                '           <p class="lanista-protocolls-weight-p" align="left"><span class="lanista-protocolls-weight {[values.data.creator_id === parseInt(localStorage.getItem ( "user_id" )) ? "lanista-client-blue" : "lanista-trainer-black"]} "> {data.weight} Kg / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
                                 '      </tpl>',
                                 '</tpl>'
                             ],
