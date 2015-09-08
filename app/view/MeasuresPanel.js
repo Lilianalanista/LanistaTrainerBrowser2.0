@@ -39,7 +39,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
     cls: 'lanista-measures-panel',
     height: 250,
     id: 'measuresPanel',
-    width: 400,
+    width: 1200,
     defaultListenerScope: true,
 
     listeners: {
@@ -59,13 +59,13 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 xtype: 'panel',
                                 id: 'measuresTab',
                                 title: 'My Tab',
-                                items: [
+                                dockedItems: [
                                     me.processMeasuresChat({
                                         xtype: 'cartesian',
-                                        height: 550,
+                                        dock: 'bottom',
+                                        cls: 'lanista-chart-measures',
                                         id: '',
                                         itemId: 'measuresChat',
-                                        width: 1200,
                                         insetPadding: {
                                             top: 10,
                                             left: 10,
@@ -219,13 +219,13 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         listeners: {
                                             afterrender: 'onMeasuresChatAfterRender'
                                         }
-                                    }),
+                                    })
+                                ],
+                                items: [
                                     {
                                         xtype: 'gridpanel',
-                                        height: 550,
                                         hidden: true,
                                         itemId: 'measuresTable',
-                                        width: 1200,
                                         collapseFirst: false,
                                         frameHeader: false,
                                         header: false,

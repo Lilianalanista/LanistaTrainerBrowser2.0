@@ -17,7 +17,7 @@
             "Ext.chart.interactions.Abstract",
             "Ext.chart.interactions.ItemHighlight"
         ],
-        "width": 400
+        "width": 1200
     },
     "configAlternates": {
         "scrollable": "boolean"
@@ -76,20 +76,23 @@
                         {
                             "type": "Ext.chart.CartesianChart",
                             "reference": {
-                                "name": "items",
+                                "name": "dockedItems",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "dock": null,
-                                "height": 550,
+                                "cls": [
+                                    "lanista-chart-measures"
+                                ],
+                                "dock": "bottom",
+                                "height": null,
                                 "id": "",
                                 "insetPadding": [
                                     "{\"top\":10,\"left\":10,\"right\":10,\"bottom\":10}"
                                 ],
                                 "itemId": "measuresChat",
                                 "store": "MeasuresStore",
-                                "width": 1200
+                                "width": null
                             },
                             "name": "LineChart",
                             "configAlternates": {
@@ -582,14 +585,14 @@
                                 "enableColumnResize": false,
                                 "frameHeader": false,
                                 "header": false,
-                                "height": 550,
+                                "height": null,
                                 "hidden": true,
                                 "id": null,
                                 "itemId": "measuresTable",
                                 "sortableColumns": false,
                                 "store": "MeasuresStore",
                                 "title": null,
-                                "width": 1200
+                                "width": null
                             },
                             "name": "MyGridPanel3",
                             "configAlternates": {

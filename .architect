@@ -1329,7 +1329,6 @@
                     "cn": [
                         {
                             "id": "096b2705-c025-4405-b798-b9ddedb1540b",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "485d78ce-d48a-4936-a337-032d35c64ed1"
@@ -4068,7 +4067,8 @@
     "tabState": {
         "openTabs": [
             "bfc39f89-dd40-4fa4-be5d-36466ecdedb9",
-            "ab357bfa-7d40-4fb3-9c13-b7704892bf1e"
+            "ab357bfa-7d40-4fb3-9c13-b7704892bf1e",
+            "901655a0-4efe-415a-b4b1-7e600dd6eff8"
         ]
     },
     "canvasState": {
