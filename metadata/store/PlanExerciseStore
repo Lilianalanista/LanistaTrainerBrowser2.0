@@ -8,7 +8,6 @@
     "userConfig": {
         "designer|userClassName": "PlanExerciseStore",
         "model": "PlanExercise",
-        "remoteFilter": true,
         "requires": [
             "Ext.data.proxy.Ajax",
             "Ext.data.reader.Json"

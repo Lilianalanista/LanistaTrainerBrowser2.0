@@ -85,6 +85,9 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         },
         "viewport #showSelectionUserExercisesButton": {
             click: 'onShowSelectionUserExercisesButtonClick'
+        },
+        "planPanel #exercicesPanel": {
+            tabchange: 'onTabpanelTabChange'
         }
     },
 
@@ -476,6 +479,46 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
     },
 
+    onTabpanelTabChange: function(tabPanel, newCard, oldCard, eOpts) {
+        var store = newCard.store;
+
+        for (var i = 0; i < store.filters.length; i++)
+        {
+            if (store.filters.items[i].getProperty()  === 'day')
+                store.filters.removeAt(i);
+        }
+
+        store.filter([
+            {
+                property : 'day',
+                value    : parseInt(newCard.id.substr(1))
+            }
+        ]);
+
+        //store.load();
+
+        //newCard.refresh();
+
+
+
+
+
+
+        console.log('PANEL........');
+        console.log(tabPanel);
+
+
+
+
+
+        console.log('CARD....');
+        console.log(newCard);
+
+
+        console.log('STORE....');
+        console.log(store);
+    },
+
     onClosePlanPanel: function(callback) {
         var controller = this;
 
@@ -522,9 +565,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 }
             }));
 
+        planExercisesStore.setRemoteFilter( true );
         for (var i = 0; i < planExercisesStore.filters.length; i++)
         {
-            if (planExercisesStore.filters.items[i].property  == 'day')
+            if (planExercisesStore.filters.items[i].getProperty() === 'day')
                 planExercisesStore.filters.removeAt(i);
         }
 
@@ -538,7 +582,25 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 mainStage	= controller.getMainStage(),
                 recordsArray = [],
                 tabActiveId = controller.currentDay || controller.getPlanPanel ().down ('tabpanel').child('#d1'),
-                user = Ext.ux.SessionManager.getUser();
+                user = Ext.ux.SessionManager.getUser(),
+                storeD1;
+
+            if ( tabActiveId.id === 'd1' ){
+                tabActiveId.store = controller.plan.planexercises();
+                tabActiveId.store.setRemoteFilter( false );
+
+                for (var i = 0; i < tabActiveId.store.filters.length; i++)
+                {
+                    if (tabActiveId.store.filters.items[i].getProperty()  === 'day')
+                        tabActiveId.store.filters.removeAt(i);
+                }
+                tabActiveId.store.filter([
+                    {
+                        property : 'day',
+                        value    : 1
+                    }
+                ]);
+            }
 
             planPanel.workController = controller.getModuleClassName();
             controller.createDayPanels ( controller.plan.data.days );
@@ -940,17 +1002,20 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             to = days,
             newList = null;
 
-        for (from=2; from<=to; from++)
-        {
-            if (tabPanel.items.getByKey('d'+from))
-                continue;
-            tabPanel.insert(tabPanel.items.getCount() -1 , {
-                            xtype: 'planExercisesList',
-                            id: 'd'+from,
-                            title: Ext.ux.LanguageManager.TranslationArray.DAY + ' ' + from,
-                            store: controller.plan.planexercises()
-        });
-        }
+            controller.plan.planexercises().setRemoteFilter( false );
+
+            for (from=2; from<=to; from++)
+            {
+                if (tabPanel.items.getByKey('d'+from))
+                    continue;
+                tabPanel.insert(tabPanel.items.getCount() -1 , {
+                                xtype: 'planExercisesList',
+                                id: 'd'+from,
+                                title: Ext.ux.LanguageManager.TranslationArray.DAY + ' ' + from,
+                                store: controller.plan.planexercises()
+                                });
+            }
+
     },
 
     populateTabsExercisesByDay: function(records, callback) {
@@ -972,7 +1037,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             }
             if (recordsArray) {
                 if (tab){
-                    tab.update(recordsArray);
+                    if (i === 1)
+                        tab.update(recordsArray);
                     tab.recordsArray = recordsArray;
                 }
             }

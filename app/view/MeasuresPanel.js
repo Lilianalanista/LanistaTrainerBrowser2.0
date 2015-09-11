@@ -57,6 +57,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                         items: [
                             {
                                 xtype: 'panel',
+                                cls: 'lanista-genmeasures-tab',
                                 id: 'measuresTab',
                                 title: 'My Tab',
                                 dockedItems: [
@@ -194,7 +195,6 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                     'futrex'
                                                 ],
                                                 grid: true,
-                                                minimum: 0,
                                                 position: 'left'
                                             }
                                         ],
@@ -293,7 +293,10 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             itemclick: 'onMeasuresTableItemClick'
                                         }
                                     }
-                                ]
+                                ],
+                                listeners: {
+                                    afterrender: 'onMeasuresTabAfterRender'
+                                }
                             },
                             {
                                 xtype: 'panel',
@@ -302,9 +305,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 items: [
                                     me.processMeasuresChat1({
                                         xtype: 'cartesian',
-                                        height: 550,
                                         itemId: 'measuresChat',
-                                        width: 1200,
                                         insetPadding: 20,
                                         store: 'MeasuresStore',
                                         series: [
@@ -621,9 +622,7 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 items: [
                                     me.processMeasuresChat2({
                                         xtype: 'cartesian',
-                                        height: 550,
                                         itemId: 'measuresChat',
-                                        width: 1200,
                                         insetPadding: 20,
                                         store: 'CircumferencesStore',
                                         series: [
@@ -1283,6 +1282,22 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     onMeasuresTableItemClick: function(dataview, record, item, index, e, eOpts) {
         LanistaTrainer.app.getController('MeasuresController').showForm(record);
+    },
+
+    onMeasuresTabAfterRender: function(component, eOpts) {
+        var el = component.el;
+
+        el.on(
+            'click', function(e,t) {
+
+
+                alert('Pase......');
+
+
+
+            },
+            this, {delegate: '.x-tab'});
+
     },
 
     onMeasuresChatAfterRender1: function(component, eOpts) {

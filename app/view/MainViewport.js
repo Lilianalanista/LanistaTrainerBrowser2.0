@@ -353,54 +353,18 @@ Ext.define('LanistaTrainer.view.MainViewport', {
               this,{delegate: '.lanista-delete-search'});
         el.on(
             'mouseover', function(e,t) {
-                //if ( t.id === 'deleteSearchFilter' )
-                //{
-
-
-                //Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
-                //Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
-
-
-
                 el.dom.className = el.dom.className.replace(/item-not-clicked/gi,'');
                 el.dom.className = el.dom.className + ' item-clicked';
                 Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/lanista-color-no-delete/gi,'');
                 Ext.get(t).dom.className = Ext.get(t).dom.className + ' lanista-color-delete';
-
-                //el.removeCls('item-not-clicked');
-                //el.addCls('item-clicked');
-                //Ext.get(t).removeCls('lanista-color-no-delete');
-                //Ext.get(t).addCls('lanista-color-delete');
-                //}
             },
             this,{ delegate: '.lanista-delete-search'});
         el.on(
             'mouseout', function(e,t) {
-                //if ( t.id === 'deleteSearchFilter' )
-                //{
-
-
-
-
-                //Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
-                //Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
-
-
-
                 el.dom.className = el.dom.className.replace(/item-clicked/gi,'');
                 el.dom.className = el.dom.className + ' item-not-clicked';
                 Ext.get(t).dom.className = Ext.get(t).dom.className + ' lanista-color-no-delete';
                 Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/lanista-color-delete/gi,'');
-
-
-
-
-
-                //el.removeCls('item-clicked');
-                //el.addCls('item-not-clicked');
-                //Ext.get(t).addCls('lanista-color-no-delete');
-                //Ext.get(t).removeCls('lanista-color-delete');
-                //}
             },
             this,{delegate: '.lanista-delete-search'});
 
@@ -408,7 +372,9 @@ Ext.define('LanistaTrainer.view.MainViewport', {
     },
 
     onMainViewportResize: function(component, width, height, oldWidth, oldHeight, eOpts) {
-        var customerExercisesPanel;
+        var customerExercisesPanel,
+            measuresController = LanistaTrainer.app.getController('MeasuresController'),
+            activeTab = measuresController.getMeasuresPanel().down('#measureTabs').getActiveTab();
 
         component.down('#lanistaCopyRights').setY(component.el.dom.clientHeight - 40);
 
@@ -419,6 +385,13 @@ Ext.define('LanistaTrainer.view.MainViewport', {
 
         if (Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el)
             Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.setHeight(Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.dom.clientHeight - 20);
+
+        if (activeTab.el){
+            if (!measuresController.currentPanel.get(activeTab.id) || measuresController.currentPanel.get(activeTab.id) !== 'table'){
+                activeTab.down('#measuresChat').setHeight(measuresController.getMainStage().getEl().getHeight() - 200);
+                activeTab.down('#measuresChat').show();
+            }
+        }
     },
 
     onMainViewportAfterRender: function(component, eOpts) {

@@ -31,7 +31,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
     scrollable: true,
     width: 400,
     itemCls: 'lanista-plan-exercise',
-    itemSelector: 'div',
+    itemSelector: 'div.exercise-list-fields',
     itemTpl: [
         '<div class="exercise-list-delete"></div>',
         '<div class="exercise-list-fields">',

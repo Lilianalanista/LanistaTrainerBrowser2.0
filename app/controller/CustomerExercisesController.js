@@ -451,6 +451,15 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
         store.load();
 
 
+
+
+
+
+
+
+
+
+
     },
 
     init: function(application) {

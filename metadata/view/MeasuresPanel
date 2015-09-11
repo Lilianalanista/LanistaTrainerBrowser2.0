@@ -51,6 +51,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "cls": [
+                            "lanista-genmeasures-tab"
+                        ],
                         "id": "measuresTab",
                         "title": "My Tab"
                     },
@@ -432,7 +435,7 @@
                                         ],
                                         "grid": true,
                                         "maximum": null,
-                                        "minimum": 0,
+                                        "minimum": null,
                                         "position": "left",
                                         "title": null
                                     },
@@ -837,6 +840,36 @@
                                     "designerId": "81c7b9bf-685d-49ed-a948-b9e113ccec6f"
                                 }
                             ]
+                        },
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onMeasuresTabAfterRender",
+                                "implHandler": [
+                                    "var el = component.el;",
+                                    "",
+                                    "el.on(",
+                                    "    'click', function(e,t) {",
+                                    "",
+                                    "",
+                                    "        alert('Pase......');",
+                                    "",
+                                    "",
+                                    "",
+                                    "    },",
+                                    "    this, {delegate: '.x-tab'});",
+                                    ""
+                                ],
+                                "name": "afterrender",
+                                "scope": "me"
+                            },
+                            "name": "onMeasuresTabAfterRender",
+                            "designerId": "b9aa491d-6d1e-4a1b-a188-01f2c1092ff6"
                         }
                     ]
                 },
@@ -878,14 +911,14 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "height": 550,
+                                "height": null,
                                 "id": null,
                                 "insetPadding": [
                                     "20"
                                 ],
                                 "itemId": "measuresChat",
                                 "store": "MeasuresStore",
-                                "width": 1200
+                                "width": null
                             },
                             "name": "LineChart1",
                             "configAlternates": {
@@ -1971,14 +2004,14 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "height": 550,
+                                "height": null,
                                 "id": null,
                                 "insetPadding": [
                                     "20"
                                 ],
                                 "itemId": "measuresChat",
                                 "store": "CircumferencesStore",
-                                "width": 1200
+                                "width": null
                             },
                             "name": "LineChart2",
                             "configAlternates": {

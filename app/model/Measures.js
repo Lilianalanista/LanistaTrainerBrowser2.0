@@ -89,9 +89,17 @@ Ext.define('LanistaTrainer.model.Measures', {
                 return  this.porcCalculate(rec);
             },
             porcCalculate: function(rec) {
-                var birthday = new Date(LanistaTrainer.app.currentCustomer.data.birthday),
+                var birthday = LanistaTrainer.app.currentCustomer.data.birthday,
                     sum, computedFat,dia,mes, ano, fecha_hoy, ahora_ano, ahora_mes, ahora_dia, edad,
                     userGender =  LanistaTrainer.app.currentCustomer.data.gender;
+
+                if (birthday) {
+                    birthday = Ext.Date.parseDate( birthday, "Y-m-d H:i:s" );
+                    if (isNaN(birthday)) {
+                        birthday = '';
+                    }
+                }
+                birthday = new Date(birthday);
 
                 dia = birthday.getDay();
                 mes = birthday.getMonth() - 1;

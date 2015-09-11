@@ -177,32 +177,14 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
         if (!controller.currentPanel.get(activeTab.id) || controller.currentPanel.get(activeTab.id) === 'table'){
             controller.getRightCommandPanel().down('#chartTableButton').setText(Ext.ux.LanguageManager.TranslationArray.BUTTON_SHOW_TABLE);
-
-
-
-            //console.log('VALORES!!!!!!!');
-            //console.log(controller.getMainStage().getEl().getHeight(true));
-
-
-            //activeTab.down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 400);
-
-
+            controller.getRightCommandPanel().down('#chartTableButton').setGlyph('49@Lanista Icons');//1
+            activeTab.down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
             activeTab.down('#measuresChat').show();
-
-
-
-
-            console.log('VALores!!!!!!!!!!!');
-            console.log(activeTab.down('#measuresChat').getHeight());
-            console.log(activeTab.down('#measuresChat').getWidth());
-
-
-
-
             activeTab.down('#measuresTable').hide();
         }
         else{
             controller.getRightCommandPanel().down('#chartTableButton').setText(Ext.ux.LanguageManager.TranslationArray.BUTTON_SHOW_CHART);
+            controller.getRightCommandPanel().down('#chartTableButton').setGlyph('116@Lanista Icons'); //t
             activeTab.down('#measuresChat').hide();
             activeTab.down('#measuresTable').show();
         }
@@ -392,10 +374,14 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             measuresStore = Ext.getStore('MeasuresStore'),
             user = Ext.ux.SessionManager.getUser();
 
-        measuresPanel.down('#measuresChat').show();
-        measuresPanel.down('#measuresTable').hide();
-        if (user.role === '2' )
-            measuresPanel.down('#testsTab').show();
+        measuresPanel.down('#measuresTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
+        measuresPanel.down('#caliperTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
+        measuresPanel.down('#circumferencesTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
+
+        //measuresPanel.down('#measuresChat').show();
+        //measuresPanel.down('#measuresTable').hide();
+        //if (user.role === '2' )
+        //    measuresPanel.down('#testsTab').show();
 
         controller.nodesValues = [];
         controller.nodesComments = [];
@@ -430,7 +416,17 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
             Ext.getStore('MeasuresStore').removeAll();
             Ext.getStore('MeasuresStore').add(records);
-            measuresPanel.down('#measuresChat').redraw();
+
+            setTimeout(function()
+                {
+                     measuresPanel.down('#measuresChat').show();
+                     measuresPanel.down('#measuresTable').hide();
+                     if (user.role === '2' )
+                         measuresPanel.down('#testsTab').show();
+                },
+            1200);
+
+            //measuresPanel.down('#measuresChat').redraw();
 
             // **** 1 create the commands
             LanistaTrainer.app.setStandardButtons('closeMeasuresPanelButton');
@@ -669,7 +665,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                         'lanista-command-button',
                         'lanista-command-button-green'
                     ],
-                    glyph: '108@Lanista Icons' //l
+                    glyph: '49@Lanista Icons' //1
                 })
             );
         }
@@ -683,7 +679,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                                 'lanista-command-button',
                                 'lanista-command-button-green'
                             ],
-                            glyph: '108@Lanista Icons' //l
+                            glyph: '49@Lanista Icons' //1
                         })
                 );
              }
@@ -692,7 +688,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 Ext.create('LanistaTrainer.view.LanistaButton', {
                     text: Ext.ux.LanguageManager.TranslationArray.BUTTON_SHOW_TABLE,
                     itemId: 'chartTableButton',
-                    glyph: '79@Lanista Icons' //O
+                    glyph: '49@Lanista Icons' //1
                 })
             );
         }

@@ -14,7 +14,7 @@
         "height": 250,
         "id": "planExercisesList",
         "itemCls": "lanista-plan-exercise",
-        "itemSelector": "div",
+        "itemSelector": "div.exercise-list-fields",
         "scrollable": true,
         "selectedItemCls": "lanista-plan-exercise-selected",
         "store": "PlanExerciseStore",

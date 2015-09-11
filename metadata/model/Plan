@@ -148,19 +148,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "creation_date"
-            },
-            "name": "MyDate3",
-            "designerId": "e2f22227-2dbb-4619-835c-17767e542e7e"
-        },
-        {
-            "type": "Ext.data.field.Date",
-            "reference": {
-                "name": "fields",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "name": "changed_date"
             },
             "name": "MyDate4",
@@ -219,6 +206,69 @@
             },
             "name": "MyInteger22",
             "designerId": "85c7c250-4da3-4e54-a78e-4c6e39d1adac"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "creation_date_string"
+            },
+            "name": "MyField",
+            "designerId": "353f295e-c5eb-4e89-a3b2-003be650507e",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "v",
+                            "rec"
+                        ],
+                        "fn": "convert",
+                        "implHandler": [
+                            "    var creationDate;",
+                            "",
+                            "    creationDate = Ext.Date.parseDate( rec.data.creation_date, \"Y-m-d H:i:s\" );",
+                            "    if (isNaN(creationDate)) {",
+                            "        creationDate = '';",
+                            "    }",
+                            "",
+                            "    creationDate = new Date(creationDate);",
+                            "    dia = creationDate.getDate().toString().length === 1 ? '0' + creationDate.getDate() : creationDate.getDate();",
+                            "    mes = creationDate.getMonth() + 1;",
+                            "    mes = mes.toString().length === 1 ? '0' + mes : mes;",
+                            "    ano = creationDate.getFullYear();",
+                            "",
+                            "",
+                            "    return ano + '-' + mes + '-' + dia;",
+                            ""
+                        ]
+                    },
+                    "name": "convert",
+                    "designerId": "04bdfca9-be1a-4019-bd29-9516658d64e0"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "creation_date"
+            },
+            "name": "MyField5",
+            "designerId": "ed67079d-2910-4780-b765-52982363c765"
         }
     ]
 }

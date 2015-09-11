@@ -133,8 +133,8 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                                                 tpl: [
                                                     '<div class="lanista-item-plans">',
                                                     '    <div class="lanista-name-plan">{name}</div> ',
-                                                    '    <div class="lanista-delete-plan lanista-icon lanista-delete_icon_dot">...</div>',
-                                                    '    <div class="lanista-createdate-plan">{creation_date:date("Y-m-d")}</div>',
+                                                    '    <div class="lanista-delete-plan lanista-icon lanista-delete_icon_dot">&nbsp;</div>',
+                                                    '    <div class="lanista-createdate-plan">{creation_date_string}</div>',
                                                     '</div>',
                                                     ''
                                                 ],
@@ -257,8 +257,10 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
              this, {delegate: '.lanista-item-plans'});
 
         el.on('mouseout',function(e,t){
-            Ext.get(t).down('.lanista-delete-plan').setHtml('...');
-            Ext.get(t).down('.lanista-delete-plan').setHtml('...');
+            //Ext.get(t).down('.lanista-delete-plan').setHtml('...');
+            //Ext.get(t).down('.lanista-delete-plan').setHtml('...');
+            Ext.get(t).down('.lanista-delete-plan').setHtml('&nbsp;');
+            Ext.get(t).down('.lanista-delete-plan').setHtml('&nbsp;');
             Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
             Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
         },
@@ -291,7 +293,8 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
              this, {delegate: '.lanista-delete-plan'});
 
         el.on('mouseout',function(e,t){
-            Ext.get(t).setHtml('...');
+            //Ext.get(t).setHtml('...');
+            Ext.get(t).setHtml('&nbsp;');
             Ext.get(t).removeCls('lanista-color-plan-delete');
             Ext.get(t).addCls('lanista-color-plan-no-delete');
 

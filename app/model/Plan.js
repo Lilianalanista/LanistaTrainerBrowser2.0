@@ -65,10 +65,6 @@ Ext.define('LanistaTrainer.model.Plan', {
         },
         {
             type: 'date',
-            name: 'creation_date'
-        },
-        {
-            type: 'date',
             name: 'changed_date'
         },
         {
@@ -82,6 +78,30 @@ Ext.define('LanistaTrainer.model.Plan', {
         {
             type: 'int',
             name: 'person_id'
+        },
+        {
+            convert: function(v, rec) {
+                var creationDate;
+
+                creationDate = Ext.Date.parseDate( rec.data.creation_date, "Y-m-d H:i:s" );
+                if (isNaN(creationDate)) {
+                    creationDate = '';
+                }
+
+                creationDate = new Date(creationDate);
+                dia = creationDate.getDate().toString().length === 1 ? '0' + creationDate.getDate() : creationDate.getDate();
+                mes = creationDate.getMonth() + 1;
+                mes = mes.toString().length === 1 ? '0' + mes : mes;
+                ano = creationDate.getFullYear();
+
+
+                return ano + '-' + mes + '-' + dia;
+
+            },
+            name: 'creation_date_string'
+        },
+        {
+            name: 'creation_date'
         }
     ],
 

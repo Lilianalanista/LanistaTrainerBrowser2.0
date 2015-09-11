@@ -26011,14 +26011,16 @@ font-size: 18px;
 
 .lanista-color-plan-delete {
   color: red;
-  float: left!important; }
+  float: left!important;
+  font-weight: 900; }
 
 .lanista-delete_icon_dot {
   float: left!important; }
 
 .lanista-color-plan-no-delete {
   color: silver!important;
-  float: left!important; }
+  float: left!important;
+  font-weight: 900; }
 
 .lanista-grid-plan-rowsize {
   padding-top: 8px;
@@ -26837,3 +26839,6 @@ font-size: 18px;
 #exerciseProtocolls .x-grid-view {
   font: normal 17px Roboto Light!important;
   top: 10px; }
+
+.x-tab-focus.x-tab-default .x-tab-button::before {
+  content: inherit!important; }
