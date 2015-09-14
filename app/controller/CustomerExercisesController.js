@@ -424,7 +424,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             },
             null,
             false,
-            Ext.ux.LanguageManager.TranslationArray.PLAN_NAME,
+            Ext.ux.LanguageManager.TranslationArray.PLAN_NAME_DEFAULT,
             {
                 autoCapitalize: true,
                 placeHolder: Ext.ux.LanguageManager.TranslationArray.PLAN_NAME_DEFAULT,

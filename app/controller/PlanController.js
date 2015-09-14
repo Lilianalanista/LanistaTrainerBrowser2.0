@@ -402,9 +402,26 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     selectionTab.splice(internalItemId,1);
                     //activeTab.recordsArray.splice(internalItemId, 1);
                 }
+
+                activeTab.getStore().setRemoteFilter( true );
                 activeTab.getStore().load(function(records, operation, success) {
                     controller.populateTabsExercisesByDay(records);
                 });
+
+                activeTab.getStore().setRemoteFilter( false );
+                for (var i = 0; i < store.filters.length; i++)
+                {
+                    if (store.filters.items[i].getProperty()  === 'day')
+                        store.filters.removeAt(i);
+                }
+
+                store.filter([
+                    {
+                        property : 'day',
+                        value    : parseInt(newCard.id.substr(1))
+                    }
+                ]);
+
                 controller.exercisesToDelete = '';
                 controller.getRightCommandPanel().getComponent('removePlanExercisesButton').hide();
             }
@@ -495,28 +512,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             }
         ]);
 
-        //store.load();
-
-        //newCard.refresh();
-
-
-
-
-
-
-        console.log('PANEL........');
-        console.log(tabPanel);
-
-
-
-
-
-        console.log('CARD....');
-        console.log(newCard);
-
-
-        console.log('STORE....');
-        console.log(store);
     },
 
     onClosePlanPanel: function(callback) {
@@ -847,7 +842,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             trainer_id: userId,
             creator_last_name: user.last_name,
             creator_first_name: user.first_name,
-            duration: 12
+            duration: 12,
+            creation_date: Ext.Date.format(new Date(), 'Y-m-d H:i:s').toString()
         });
 
         newPlan.proxy = new Ext.data.proxy.Ajax({

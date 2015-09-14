@@ -29,9 +29,9 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
     viewModel: {
         type: 'weightsWindow'
     },
-    height: 285,
+    height: 275,
     id: 'weightsWindow',
-    width: 505,
+    width: 392,
     header: false,
     expandOnShow: false,
     modal: true,
@@ -113,14 +113,13 @@ Ext.define('LanistaTrainer.view.WeightsWindow', {
         },
         {
             xtype: 'fieldset',
-            cls: 'lanista-weights-input',
             hidden: true,
             id: 'weightSets',
             title: 'My Fields',
             items: [
                 {
                     xtype: 'numberfield',
-                    anchor: '100%',
+                    cls: 'lanista-weights-input',
                     hidden: true,
                     id: 'exerciseSets',
                     allowDecimals: false,

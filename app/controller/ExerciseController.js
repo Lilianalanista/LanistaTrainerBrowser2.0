@@ -207,7 +207,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         viewPort.add( windowPanel );
         if (activeTab.id === 'configurationTabPanel' ){
             windowPanel.setHeight( 340 );
-            windowPanel.setWidth( 680 );
+            windowPanel.setWidth( 520 );
         }
 
         windowPanel.show ();
@@ -243,7 +243,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                 windowPanel.setHeight( 340 );
             }
             else
-                windowPanel.setHeight( 300 );
+                windowPanel.setHeight( 275 );
 
             windowPanel.down( "#weightSets" ).show();
             windowPanel.down( "#exerciseSets" ).show();
@@ -617,14 +617,6 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             item.hide();
         });
 
-
-
-
-
-
-
-
-
     },
 
     loadData: function() {
@@ -719,7 +711,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {
             text:  Ext.ux.LanguageManager.TranslationArray.CONFIGURE_PROTOCOLL,
             itemId: 'changeProtollConfigurationButton',
-            glyph: '120@Lanista Icons' //x
+            glyph: '37@Lanista Icons' //%
         });
 
         controller.getRightCommandPanel().add(
@@ -739,7 +731,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {
             text:  Ext.ux.LanguageManager.TranslationArray.CONFIGURE_PROTOCOLL,
             itemId: 'changeProtollConfigurationButton',
-            glyph: '120@Lanista Icons' //x
+            glyph: '37@Lanista Icons' //%
 
         });
         var protocollButton = Ext.create('LanistaTrainer.view.LanistaButton', {

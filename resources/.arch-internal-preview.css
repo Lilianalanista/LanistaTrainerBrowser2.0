@@ -25083,7 +25083,7 @@ a.x-color-picker-item:hover {
   top: 40px;
   height: 32px; }
 
-.lanista-guest .x-btn-glyph, .lanista-guest .x-btn-inner {
+.lanista-guest .lanista-command-button .x-btn-glyph, .lanista-guest .lanista-command-button .x-btn-inner {
   border-color: white;
   color: white!important; }
 
@@ -25683,7 +25683,7 @@ font-size: 18px;
   width: 13px; }
 
 #weightKilos {
-  width: 175px;
+  width: 127px;
   float: left;
   height: 120px;
   margin-top: 8px;
@@ -25697,16 +25697,19 @@ font-size: 18px;
   left: 10px; }
 
 #weightMeasure {
-  width: 270px;
+  width: 210px;
   height: 120px;
   padding: 0px;
   margin-top: 8px;
   float: left; }
 
-#weightMeasure .lanista-weights-input {
+#weightMeasure .lanista-weights-input, #weightKilos .lanista-weights-input, #weightSets .lanista-weights-input {
   float: left;
   margin-top: 23px;
   margin-left: 10px; }
+
+#weightMeasure .lanista-weights-input {
+  margin-top: 35px; }
 
 #weightMeasure .lanista-weights-rb {
   float: right;
@@ -25721,15 +25724,16 @@ font-size: 18px;
 
 .lanista-weights-input input {
   text-align: right;
-  font-size: 25px;
+  font-size: 15px;
   background-color: #729323;
   color: #f3ffd5;
   text-shadow: 0 0 10px #f3ffd5;
   border-radius: 10px;
   min-height: 0;
-  height: 35px!important;
-  width: 132px!important;
-  line-height: 36px; }
+  height: 21px!important;
+  width: 80px!important;
+  line-height: 20px;
+  font-weight: bold; }
 
 #weightsWindow .x-border-box * {
   padding: 23px 10px 10px 20px; }
@@ -25741,10 +25745,10 @@ font-size: 18px;
   float: right; }
 
 #weightSets .x-form-trigger-wrap {
-  width: 151px!important; }
+  width: 80px!important; }
 
 #weightSets {
-  width: 177px!important;
+  width: 127px!important;
   height: 120px!important;
   margin-top: 8px!important; }
 
@@ -26842,3 +26846,24 @@ font-size: 18px;
 
 .x-tab-focus.x-tab-default .x-tab-button::before {
   content: inherit!important; }
+
+.x-btn.x-btn-menu-active.xbtn-default-small {
+  border: none!important;
+  border-color: none!important;
+  background-color: transparent!important;
+  background-image: none!important; }
+
+.x-form-spinner-default {
+  height: 11px!important; }
+
+.x-form-spinner-down-default {
+  background-position: 0 -11px !important; }
+
+.lanista-weights-input .x-form-text-wrap-default {
+  border-radius: 10px; }
+
+.lanista-weights-input .x-form-text-field-body-default {
+  min-width: 80px!important; }
+
+#weightsWindow .lanista-command-button .x-btn-inner {
+  left: -62px; }

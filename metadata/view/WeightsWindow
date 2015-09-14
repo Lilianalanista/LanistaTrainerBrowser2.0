@@ -11,11 +11,11 @@
         "designer|userClassName": "WeightsWindow",
         "expandOnShow": false,
         "header": false,
-        "height": 285,
+        "height": 275,
         "id": "weightsWindow",
         "modal": true,
         "title": null,
-        "width": 505
+        "width": 392
     },
     "configAlternates": {
         "resizable": "boolean",
@@ -58,6 +58,7 @@
                         "decimalSeparator": ",",
                         "enableKeyEvents": true,
                         "fieldLabel": null,
+                        "height": null,
                         "id": "protocollKgValue"
                     },
                     "name": "MyNumberField3",
@@ -336,9 +337,6 @@
             },
             "codeClass": null,
             "userConfig": {
-                "cls": [
-                    "lanista-weights-input"
-                ],
                 "height": null,
                 "hidden": true,
                 "id": "weightSets",
@@ -361,10 +359,13 @@
                         "allowDecimals": false,
                         "allowExponential": false,
                         "autoStripChars": true,
+                        "cls": [
+                            "lanista-weights-input"
+                        ],
                         "fieldLabel": null,
                         "hidden": true,
                         "id": "exerciseSets",
-                        "layout|anchor": "100%"
+                        "layout|anchor": null
                     },
                     "name": "MyNumberField5",
                     "configAlternates": {
