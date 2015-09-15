@@ -28704,6 +28704,7 @@ font-size: 18px;
 /* line 821, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/production/LanistaTrainer/slicer-temp/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .blured {
   -webkit-filter: blur(10px);
+  filter: blur(10px);
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
@@ -30404,6 +30405,15 @@ font-size: 18px;
 /* line 2589, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/production/LanistaTrainer/slicer-temp/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightsWindow .lanista-command-button .x-btn-inner {
   left: -62px; }
+
+/* line 2593, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/production/LanistaTrainer/slicer-temp/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+.lanista-browser-firefox .exercise-image {
+  height: 45%;
+  position: relative;
+  z-index: 2;
+  width: 150%;
+  background-size: 75%;
+  background-repeat: no-repeat; }
 
 /* including package sencha-charts */
 /*

@@ -389,6 +389,9 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             ini = 4000,
             tabAux;
 
+        if (LanistaTrainer.app.firefoxBrowser)
+            exercisePanel.addCls('lanista-browser-firefox');
+
         controller.currentPlanExercise = exerciseProtocoll;
         controller.record = record;
 

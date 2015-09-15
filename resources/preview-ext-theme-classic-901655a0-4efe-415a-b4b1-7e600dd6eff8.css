@@ -25444,6 +25444,7 @@ font-size: 18px;
 
 .blured {
   -webkit-filter: blur(10px);
+  filter: blur(10px);
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
@@ -26867,3 +26868,11 @@ font-size: 18px;
 
 #weightsWindow .lanista-command-button .x-btn-inner {
   left: -62px; }
+
+.lanista-browser-firefox .exercise-image {
+  height: 45%;
+  position: relative;
+  z-index: 2;
+  width: 150%;
+  background-size: 75%;
+  background-repeat: no-repeat; }

@@ -105,7 +105,8 @@
     "name": "Application",
     "configAlternates": {
         "panels": "array",
-        "currentCustomer": "object"
+        "currentCustomer": "object",
+        "firefoxBrowser": "boolean"
     },
     "designerId": "application",
     "customConfigs": [
@@ -117,6 +118,11 @@
         {
             "group": "(Custom Properties)",
             "name": "currentCustomer",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "firefoxBrowser",
             "type": "string"
         }
     ],
@@ -132,6 +138,8 @@
                 "fn": "launch",
                 "implHandler": [
                     "console.log(\"START\");",
+                    "",
+                    "LanistaTrainer.app.firefoxBrowser = Ext.browser.is.firefox;",
                     "",
                     "LanistaTrainer.app.fireEvent('loadExercises', function() {",
                     "    console.log(\"EXERCISES LOADED\");",
@@ -197,9 +205,9 @@
                     "                            language: data.user.language,",
                     "                            sincronized: data.user.sincronized",
                     "                        });",
-                    "                            LanistaTrainer.app.currentCustomer = ActiveCustomer;",
-                    "                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';",
-                    "                            LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');",
+                    "                        LanistaTrainer.app.currentCustomer = ActiveCustomer;",
+                    "                        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';",
+                    "                        LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');",
                     "                    }",
                     "                    catch( err ) {",
                     "                        Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);",

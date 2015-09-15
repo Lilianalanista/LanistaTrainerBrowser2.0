@@ -121,6 +121,8 @@ Ext.application({
         Ext.create('LanistaTrainer.view.MainViewport');
         console.log("START");
 
+        LanistaTrainer.app.firefoxBrowser = Ext.browser.is.firefox;
+
         LanistaTrainer.app.fireEvent('loadExercises', function() {
             console.log("EXERCISES LOADED");
 
@@ -185,9 +187,9 @@ Ext.application({
                                     language: data.user.language,
                                     sincronized: data.user.sincronized
                                 });
-                                    LanistaTrainer.app.currentCustomer = ActiveCustomer;
-                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
-                                    LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
+                                LanistaTrainer.app.currentCustomer = ActiveCustomer;
+                                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
+                                LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
                             }
                             catch( err ) {
                                 Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);
