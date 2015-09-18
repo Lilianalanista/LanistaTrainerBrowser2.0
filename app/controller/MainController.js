@@ -21,6 +21,9 @@ Ext.define('LanistaTrainer.controller.MainController', {
 
     refs: {
         mainStage: '#mainStage',
+        mainViewport: '#mainViewport',
+        lanistaCopyRights: '#lanistaCopyRights',
+        header: '#header',
         leftCommandPanel: '#leftCommandPanel',
         rightCommandPanel: '#rightCommandPanel',
         lanistaStage: '#lanistaStage'
@@ -139,6 +142,7 @@ Ext.define('LanistaTrainer.controller.MainController', {
             } else {
                 operation.execute();
             }
+
             return operation;
     },
 
@@ -157,6 +161,59 @@ Ext.define('LanistaTrainer.controller.MainController', {
 
     },
 
+    onReconect: function() {
+        var controller = this,
+            user = Ext.ux.SessionManager.getUser();
+
+        console.log("try to log in.");
+        LanistaTrainer.app.fireEvent('loginUser', user.email, user.password,
+                                     function (data) {
+                                         Ext.Msg.show({
+                                             title: 'X Colocar....',
+                                             message: 'X Colocar Go to Ini.....',
+                                             width: 300,
+                                             buttons: Ext.Msg.OK,
+                                             multiline: false,
+                                             fn: function(btn, text){
+                                                 setTimeout(function()
+                                                            {
+                                                                LanistaTrainer.app.panels = [];
+                                                                LanistaTrainer.app.getController('MainController').getMainStage().destroy();
+                                                                LanistaTrainer.app.getController('MainController').getLanistaStage().destroy();
+                                                                LanistaTrainer.app.getController('MainController').getHeader().destroy();
+                                                                LanistaTrainer.app.getController('MainController').getLanistaCopyRights().destroy();
+                                                                LanistaTrainer.app.getController('MainController').getMainViewport().destroy();
+                                                                LanistaTrainer.app.launch();
+                                                            }, 1600);
+                                             }
+
+                                         });
+                                     },
+                                     function (status) {
+                                         Ext.Msg.show({
+                                            title: 'X Colocar....',
+                                            message: 'X Colocar go to Login.....',
+                                            width: 300,
+                                            buttons: Ext.Msg.OK,
+                                            multiline: false,
+                                            fn: function(btn, text){
+                                                setTimeout(function()
+                                                            {
+                                                                LanistaTrainer.app.panels = [];
+                                                                LanistaTrainer.app.getController('MainController').getMainStage().destroy();
+                                                                LanistaTrainer.app.getController('MainController').getLanistaStage().destroy();
+                                                                LanistaTrainer.app.getController('MainController').getHeader().destroy();
+                                                                LanistaTrainer.app.getController('MainController').getLanistaCopyRights().destroy();
+                                                                LanistaTrainer.app.getController('MainController').getMainViewport().destroy();
+                                                                LanistaTrainer.app.fireEvent('showLoginPanel');
+                                                            }, 1600);
+                                                }
+                                         });
+                                     });
+
+
+    },
+
     init: function(application) {
         application.on({
             hideStage: {
@@ -169,6 +226,10 @@ Ext.define('LanistaTrainer.controller.MainController', {
             },
             showSavePanel: {
                 fn: this.onShowSavePanel,
+                scope: this
+            },
+            reconect: {
+                fn: this.onReconect,
                 scope: this
             }
         });

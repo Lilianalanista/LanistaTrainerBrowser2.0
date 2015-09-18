@@ -121,21 +121,28 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         });
 
         LanistaTrainer.app.getController('MainController').saveModel(newProtocoll, {
-            callback: function( protocoll ) {
+            callback: function( protocoll, event, success ) {
                 var groups,
                     itemsFromGroup;
 
-                var storeProtocolls = controller.getExercisePanel ().down ('#exerciseProtocolls').getStore();
-                storeProtocolls.load (function (records) {
-                    groups = storeProtocolls.getGroups();
-                    for ( var i = 0; i < groups.length; i++ ) {
-                        itemsFromGroup = groups.items[i].items;
-                        for ( var j = 0; j < itemsFromGroup.length; j++ ) {
-                            itemsFromGroup[j].data.idNum = j + 1;
+                if (success){
+                    var storeProtocolls = controller.getExercisePanel ().down ('#exerciseProtocolls').getStore();
+                    storeProtocolls.load (function (records) {
+                        groups = storeProtocolls.getGroups();
+                        for ( var i = 0; i < groups.length; i++ ) {
+                            itemsFromGroup = groups.items[i].items;
+                            for ( var j = 0; j < itemsFromGroup.length; j++ ) {
+                                itemsFromGroup[j].data.idNum = j + 1;
+                            }
                         }
-                    }
-                    controller.getExercisePanel().down ('#exerciseProtocolls').reconfigure(storeProtocolls);
-                });
+                        controller.getExercisePanel().down ('#exerciseProtocolls').reconfigure(storeProtocolls);
+                    });
+                }
+                else{
+                    console.log( "There were problems saving protocoll, Err number: " + event.error.status);
+                    if (event.error.status === 401)
+                        LanistaTrainer.app.fireEvent('reconect');
+                }
             }
         });
 
@@ -607,7 +614,20 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                     user_id: userId
                 }
             });
-            LanistaTrainer.app.getController('MainController').saveModel(planExercise);
+            LanistaTrainer.app.getController('MainController').saveModel(planExercise, {
+                callback: function(record,event,success) {
+                    var recordValue,
+                        birthdayCustomer,
+                        user = Ext.ux.SessionManager.getUser();
+
+                    if (!success)
+                    {
+                        console.log( "There were problems saving planexercise, Err number: " + event.error.status);
+                        if (event.error.status === 401)
+                            LanistaTrainer.app.fireEvent('reconect');
+                    }
+                }
+            });
         }
 
     },

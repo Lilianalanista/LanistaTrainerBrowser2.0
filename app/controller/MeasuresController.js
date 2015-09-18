@@ -716,7 +716,9 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                     user_id: userId
                 },
             failure : function(result, request){
-                //console.log( "Failure form getPlan" );
+                console.log( "There were problems in looking for TestTypesNodesStore information, Err number: " + result.status);
+                if (result.status === 401)
+                    LanistaTrainer.app.fireEvent('reconect');
             },
             success: function(response, opts) {
                 try {
@@ -1039,8 +1041,29 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             testtype: type,
             customer_id: LanistaTrainer.app.currentCustomer.data.id
         });
-        LanistaTrainer.app.getController('MainController').saveModel(TestToSave);
-        LanistaTrainer.app.getController('MainController').eraseModel(TestToSave);
+
+        LanistaTrainer.app.getController('MainController').saveModel(TestToSave, {
+            callback: function(record,event,success) {
+                if (!success)
+                {
+                    console.log( "There were problems saving testmodel, Err number: " + event.error.status);
+                    if (event.error.status === 401)
+                        LanistaTrainer.app.fireEvent('reconect');
+                }
+            }
+        });
+
+        LanistaTrainer.app.getController('MainController').eraseModel(TestToSave, {
+            callback: function(record,event,success) {
+                if (!success)
+                {
+                    console.log( "There were problems erasing the test, Err number: " + event.error.status);
+                    if (event.error.status === 401)
+                        LanistaTrainer.app.fireEvent('reconect');
+
+                }
+            }
+        });
 
 
 

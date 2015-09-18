@@ -249,7 +249,10 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                                         id: record.data.id
                                                     },
                                                     failure : function(result, request){
-                                                        console.log( "There was a problem during the request" );
+                                                        console.log( "There were problems in looking for confirmations and invitations information, Err number: " + result.status);
+                                                        if (result.status === 401)
+                                                            LanistaTrainer.app.fireEvent('reconect');
+                                                        //console.log( "There was a problem during the request" );
                                                     },
                                                     success: function(response, opts) {
                                                         try {
@@ -306,7 +309,9 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                                         id: record.data.id
                                                     },
                                                     failure : function(result, request){
-                                                        console.log( "There were problems in the declination" );
+                                                        console.log( "There were problems in the declination, Err number: " + result.status );
+                                                        if (result.status === 401)
+                                                            LanistaTrainer.app.fireEvent('reconect');
                                                     },
                                                     success: function(response, opts) {
                                                         try {
@@ -390,7 +395,9 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         params: {id: idCustomer},
                         headers: {user_id: userId},
                         failure : function(result, request){
-                            console.log( "There were problems in looking for user information" );
+                            console.log( "There were problems in looking for user birthdays information, Err number: " + result.status);
+                            if (result.status === 401)
+                                LanistaTrainer.app.fireEvent('reconect');
                         },
                         success: function(response, opts) {
                             try {
@@ -460,7 +467,9 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         params: {id: idCustomer},
                         headers: {user_id: userId},
                         failure : function(result, request){
-                            console.log( "There were problems in looking for user information" );
+                            console.log( "There were problems in looking for active users information, Err number: " + result.status);
+                            if (result.status === 401)
+                                LanistaTrainer.app.fireEvent('reconect');
                         },
                         success: function(response, opts) {
                             try {
@@ -530,7 +539,9 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         params: {id: idCustomer},
                         headers: {user_id: userId},
                         failure : function(result, request){
-                            console.log( "There were problems in looking for plan information" );
+                            console.log( "There were problems in looking for plans to expire information, Err number: " + result.status);
+                            if (result.status === 401)
+                                LanistaTrainer.app.fireEvent('reconect');
                         },
                         success: function(response, opts) {
                             try {
@@ -543,7 +554,9 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                 params: {id: data.plan.assigned_to_id},
                                 headers: {user_id: userId},
                                 failure : function(result, request){
-                                    console.log( "There were problems in looking for user information" );
+                                    console.log( "There were problems in looking for user with plan to expire information, Err number: " + result.status);
+                                    if (result.status === 401)
+                                        LanistaTrainer.app.fireEvent('reconect');
                                 },
                                 success: function(response, opts) {
                                     try {
@@ -636,7 +649,9 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         params: {id: idCustomer},
                         headers: {user_id: userId},
                         failure : function(result, request){
-                            console.log( "There were problems in looking for plan information" );
+                            console.log( "There were problems in looking for expired plans information, Err number: " + result.status);
+                            if (result.status === 401)
+                                LanistaTrainer.app.fireEvent('reconect');
                         },
                         success: function(response, opts) {
                             try {
@@ -649,7 +664,9 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                 params: {id: data.plan.assigned_to_id},
                                 headers: {user_id: userId},
                                 failure : function(result, request){
-                                    console.log( "There were problems in looking for user information" );
+                                    console.log( "There were problems in looking for users with expired plan information, Err number: " + result.status);
+                                    if (result.status === 401)
+                                        LanistaTrainer.app.fireEvent('reconect');
                                 },
                                 success: function(response, opts) {
                                     try {

@@ -274,7 +274,9 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                     user_id: userId
                 },
                 failure : function(result, request){
-                    console.log( "There were problems in looking for user exercises" );
+                    console.log( "There were problems in looking for user exercises information, Err number: " + result.status);
+                    if (result.status === 401)
+                        LanistaTrainer.app.fireEvent('reconect');
                 },
                 success: function(response, opts) {
                     try {
@@ -1389,7 +1391,9 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 user_id: userId
             },
             failure : function(result, request){
-                console.log( "There were problems in looking for user exercises" );
+                console.log( "There were problems in looking for user exercises information, Err number: " + result.status);
+                if (result.status === 401)
+                    LanistaTrainer.app.fireEvent('reconect');
             },
             success: function(response, opts) {
                 try {

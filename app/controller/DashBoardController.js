@@ -60,13 +60,13 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
         {
             LanistaTrainer.app.fireEvent('closeLoginPanel', function() {
                    LanistaTrainer.app.panels[0] = 'DashboardPanel';
-                   LanistaTrainer.app.fireEvent('displayDashBoard');
+                   LanistaTrainer.app.fireEvent('displayDashBoard', callback);
             });
         }
         else
         {
             LanistaTrainer.app.panels[0] = 'DashboardPanel';
-            LanistaTrainer.app.fireEvent('displayDashBoard');
+            LanistaTrainer.app.fireEvent('displayDashBoard', callback);
         }
     },
 

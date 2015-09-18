@@ -138,8 +138,13 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
                         controller.showCommands();
                     },
                     failure: function (result, request) {
-                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
-                        controller.showCommands();
+                        console.log( "There were problems saving information for user, Err number: " + result.status);
+                        if (result.status === 401)
+                            LanistaTrainer.app.fireEvent('reconect');
+                        else{
+                            Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
+                            controller.showCommands();
+                        }
                     }
                 });
             }

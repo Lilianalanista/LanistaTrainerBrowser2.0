@@ -34,6 +34,48 @@
             },
             "codeClass": null,
             "userConfig": {
+                "ref": "mainViewport",
+                "selector": "#mainViewport"
+            },
+            "name": "mainViewport",
+            "designerId": "469c1055-8144-42f1-ad1d-bf662e3ca94e"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "lanistaCopyRights",
+                "selector": "#lanistaCopyRights"
+            },
+            "name": "lanistaCopyRights",
+            "designerId": "a35987e6-18a5-44d5-988c-62192a6d873c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "header",
+                "selector": "#header"
+            },
+            "name": "header",
+            "designerId": "6c6ea45c-5739-4721-8ac7-2ed106fa5415"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
                 "ref": "leftCommandPanel",
                 "selector": "#leftCommandPanel"
             },
@@ -246,6 +288,7 @@
                     "    } else {",
                     "        operation.execute();",
                     "    }",
+                    "",
                     "    return operation;"
                 ]
             },
@@ -297,6 +340,73 @@
             },
             "name": "capitalizeFirstLetter",
             "designerId": "15f4978e-75e5-4dc2-b0d9-4ad0e95cf7fe"
+        },
+        {
+            "type": "applicationaction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onReconect",
+                "implHandler": [
+                    "var controller = this,",
+                    "    user = Ext.ux.SessionManager.getUser();",
+                    "",
+                    "console.log(\"try to log in.\");",
+                    "LanistaTrainer.app.fireEvent('loginUser', user.email, user.password,",
+                    "                             function (data) {",
+                    "                                 Ext.Msg.show({",
+                    "                                     title: 'X Colocar....',",
+                    "                                     message: 'X Colocar Go to Ini.....',",
+                    "                                     width: 300,",
+                    "                                     buttons: Ext.Msg.OK,",
+                    "                                     multiline: false,",
+                    "                                     fn: function(btn, text){",
+                    "                                         setTimeout(function()",
+                    "                                                    {",
+                    "                                                        LanistaTrainer.app.panels = [];",
+                    "                                                        LanistaTrainer.app.getController('MainController').getMainStage().destroy();",
+                    "                                                        LanistaTrainer.app.getController('MainController').getLanistaStage().destroy();",
+                    "                                                        LanistaTrainer.app.getController('MainController').getHeader().destroy();",
+                    "                                                        LanistaTrainer.app.getController('MainController').getLanistaCopyRights().destroy();",
+                    "                                                        LanistaTrainer.app.getController('MainController').getMainViewport().destroy();",
+                    "                                                        LanistaTrainer.app.launch();",
+                    "                                                    }, 1600);",
+                    "                                     }",
+                    "",
+                    "                                 });",
+                    "                             },",
+                    "                             function (status) {",
+                    "                                 Ext.Msg.show({",
+                    "                                    title: 'X Colocar....',",
+                    "                                    message: 'X Colocar go to Login.....',",
+                    "                                    width: 300,",
+                    "                                    buttons: Ext.Msg.OK,",
+                    "                                    multiline: false,",
+                    "                                    fn: function(btn, text){",
+                    "                                        setTimeout(function()",
+                    "                                                    {",
+                    "                                                        LanistaTrainer.app.panels = [];",
+                    "                                                        LanistaTrainer.app.getController('MainController').getMainStage().destroy();",
+                    "                                                        LanistaTrainer.app.getController('MainController').getLanistaStage().destroy();",
+                    "                                                        LanistaTrainer.app.getController('MainController').getHeader().destroy();",
+                    "                                                        LanistaTrainer.app.getController('MainController').getLanistaCopyRights().destroy();",
+                    "                                                        LanistaTrainer.app.getController('MainController').getMainViewport().destroy();",
+                    "                                                        LanistaTrainer.app.fireEvent('showLoginPanel');",
+                    "                                                    }, 1600);",
+                    "                                        }",
+                    "                                 });",
+                    "                             });",
+                    "",
+                    ""
+                ],
+                "name": "reconect",
+                "scope": "this"
+            },
+            "name": "onReconect",
+            "designerId": "0785f5c6-f044-487d-a8bf-bc4bbf0c049d"
         }
     ]
 }

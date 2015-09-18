@@ -258,9 +258,14 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                                 }
                                 else
                                 {
-                                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, "Possible problem:  " + Ext.ux.LanguageManager.TranslationArray.MSG_CUST_EXISTS_1, function () {
-                                        LanistaTrainer.app.fireEvent('showCustomersPanel');
-                                    });
+                                    console.log( "There were problems saving new customer, Err number: " + event.error.status);
+                                    if (event.error.status === 401)
+                                        LanistaTrainer.app.fireEvent('reconect');
+                                    else{
+                                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, "Possible problem:  " + Ext.ux.LanguageManager.TranslationArray.MSG_CUST_EXISTS_1, function () {
+                                            LanistaTrainer.app.fireEvent('showCustomersPanel');
+                                        });
+                                    }
                                 }
                             }
                         });
@@ -444,8 +449,13 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             params: {name: value},
             method: 'post',
             failure : function(result, request){
-                console.log( "Information could not be processed from server" );
-                LanistaTrainer.app.fireEvent( 'showPlanPanel', plan.data.name );
+                console.log( "There were problems in looking for user information, Err number: " + result.status);
+                if (result.status === 401)
+                    LanistaTrainer.app.fireEvent('reconect');
+                else{
+                    console.log( "Information could not be processed from server" );
+                    LanistaTrainer.app.fireEvent( 'showPlanPanel', plan.data.name );
+                }
             },
             success: function(response, opts) {
                 try {

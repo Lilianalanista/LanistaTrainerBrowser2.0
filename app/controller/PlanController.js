@@ -191,7 +191,16 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             });
 
             if (selection[i][3] !== 'd'){ //'d' indicates that the record must be deleted
-                LanistaTrainer.app.getController('MainController').saveModel(newPlanExercise);
+                LanistaTrainer.app.getController('MainController').saveModel(newPlanExercise, {
+                    callback: function(record,event,success) {
+                        if (!success)
+                        {
+                            console.log( "There were problems saving PlanExercise, Err number: " + event.error.status);
+                            if (event.error.status === 401)
+                                LanistaTrainer.app.fireEvent('reconect');
+                        }
+                    }
+                });
                 selection[i][2] = 1; // To mark record as saved on server
             }
         }
@@ -220,12 +229,22 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
                     LanistaTrainer.app.getController('MainController').saveModel(controller.plan, {
                         callback: function( changedPlan, operation, success ) {
-                            console.log ( changedPlan );
-                            LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
-                            LanistaTrainer.app.fireEvent( 'closeExercisesSelectionView', function() {
-                                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
-                                LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname);
-                            });
+                            if (success)
+                            {
+                                console.log ( changedPlan );
+                                LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+                                LanistaTrainer.app.fireEvent( 'closeExercisesSelectionView', function() {
+                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                                    LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname);
+                                });
+                            }
+                            else{
+                                console.log( "There were problems saving the Plan, Err number: " + event.error.status);
+                                if (operation.error.status === 401)
+                                    LanistaTrainer.app.fireEvent('reconect');
+                            }
+
+
                         },
                         scope: this
                     });
@@ -278,11 +297,15 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     controller.getRightCommandPanel().items.each(function (item) {
                         item.hide();
                     });
-
                 }
                 else {
-                    Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
-                    controller.showCommands();
+                    console.log( "There were problems saving PlanExercise, Err number: " + event.error.status);
+                    if (operation.error.status === 401)
+                        LanistaTrainer.app.fireEvent('reconect');
+                    else{
+                        Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
+                        controller.showCommands();
+                    }
                 }
 
             },
@@ -1118,9 +1141,14 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                              params: { plan_id: controller.plan.data.id },
                              headers: { user_id: localStorage.getItem("user_id") },
                              failure : function(response){
-                                 data = Ext.decode(response.responseText);
-                                 console.log ( data );
-                                 Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_PROBLEM, '', Ext.emptyFn );
+                                 console.log( "There were problems sending the email, Err number: " + response.status);
+                                 if (response.status === 401)
+                                     LanistaTrainer.app.fireEvent('reconect');
+                                 else{
+                                     data = Ext.decode(response.responseText);
+                                     console.log ( data );
+                                     Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_PROBLEM, '', Ext.emptyFn );
+                                 }
                              },
                              success: function(response, opts) {
                                  data = Ext.decode ( response.responseText);
@@ -1208,8 +1236,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                      user_id: record ? record.data.id : 0},
             headers: { user_id: localStorage.getItem("user_id") },
             failure : function(response){
-                data = Ext.decode(response.responseText);
-                Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, '', Ext.emptyFn );
+                console.log( "There were problems cloning the plan, Err number: " + response.status);
+                if (response.status === 401)
+                    LanistaTrainer.app.fireEvent('reconect');
+                else{
+                    data = Ext.decode(response.responseText);
+                    Ext.Msg.alert( Ext.ux.LanguageManager.TranslationArray.MSG_APPSTORE_ACTIVATION_ERROR_2, '', Ext.emptyFn );
+                }
             },
             success: function(response, opts) {
                 data = Ext.decode ( response.responseText);
@@ -1266,7 +1299,17 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             }
         });
 
-        LanistaTrainer.app.getController('MainController').eraseModel(PlanExercise);
+        LanistaTrainer.app.getController('MainController').eraseModel(PlanExercise, {
+            callback: function(record,event,success) {
+                if (!success)
+                {
+                    console.log( "There were problems erasing the planexercise, Err number: " + event.error.status);
+                    if (event.error.status === 401)
+                        LanistaTrainer.app.fireEvent('reconect');
+
+                }
+            }
+        });
     },
 
     showCommandsExercises: function() {

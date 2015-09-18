@@ -354,12 +354,19 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
         });
 
 
-        LanistaTrainer.app.getController('MainController').eraseModel(Plan);
+        LanistaTrainer.app.getController('MainController').eraseModel(Plan, {
+            callback: function(record,event,success) {
+                if (!success)
+                {
+                    console.log( "There were problems erasing the plan, Err number: " + event.error.status);
+                    if (event.error.status === 401)
+                        LanistaTrainer.app.fireEvent('reconect');
+
+                }
+            }
+        });
 
 
-        //Plan.destroy ({
-        //    action: 'destroy'
-        //});
 
     }
 
