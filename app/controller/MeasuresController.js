@@ -120,6 +120,13 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             });
             store.filters.add (filterFunction);
             store.load(function(records, operation, success) {
+                if (!success){
+                    console.log( "There were problems in showing measuresTab, Err number: " + operation.error.status);
+                    if (operation.error.status === 401 || operation.error.status === 403)
+                        LanistaTrainer.app.fireEvent('reconect');
+                    return;
+                }
+
                 var recordsAux;
                 recordsAux = records.filter( function(item){
                     return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
@@ -142,6 +149,12 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             });
             store.filters.add (filterFunction);
             store.load(function(records, operation, success) {
+                if (!success){
+                    console.log( "There were problems in showing measuresTab, Err number: " + operation.error.status);
+                    if (operation.error.status === 401 || operation.error.status === 403)
+                        LanistaTrainer.app.fireEvent('reconect');
+                    return;
+                }
                 var recordsAux;
                 recordsAux = records.filter( function(item){
                     return (item.data.trizeps !== 0 || item.data.scapula !== 0 || item.data.auxiliar !== 0 ||
@@ -267,9 +280,23 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 {
                     formPanel.loadRecord(record);
                     if (activeTab.id === 'measuresTab' || activeTab.id === 'caliperTab')
-                        Ext.getStore('MeasuresStore').load();
+                        Ext.getStore('MeasuresStore').load(function(records, operation, success) {
+                            if (!success){
+                                console.log( "There were problems in saving measure, Err number: " + operation.error.status);
+                                if (operation.error.status === 401 || operation.error.status === 403)
+                                    LanistaTrainer.app.fireEvent('reconect');
+                                return;
+                            }
+                        });
                     if (activeTab.id === 'circumferencesTab')
-                        Ext.getStore('CircumferencesStore').load();
+                        Ext.getStore('CircumferencesStore').load(function(records, operation, success) {
+                            if (!success){
+                                console.log( "There were problems in saving circumferences, Err number: " + operation.error.status);
+                                if (operation.error.status === 401 || operation.error.status === 403)
+                                    LanistaTrainer.app.fireEvent('reconect');
+                                return;
+                            }
+                        });
                     if (controller.currentPanel.get(activeTab.id) === 'chart')
                         activeTab.down('#measuresChat').show();
                     else
@@ -350,9 +377,23 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 {
                     Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_SAVE, Ext.emptyFn);
                     if (activeTab.id === 'measuresTab' || activeTab.id === 'caliperTab')
-                        Ext.getStore('MeasuresStore').load();
+                        Ext.getStore('MeasuresStore').load(function(records, operation, success) {
+                            if (!success){
+                                console.log( "There were problems in deleting measure, Err number: " + operation.error.status);
+                                if (operation.error.status === 401 || operation.error.status === 403)
+                                    LanistaTrainer.app.fireEvent('reconect');
+                                return;
+                            }
+                        });
                     if (activeTab.id === 'circumferencesTab')
-                        Ext.getStore('CircumferencesStore').load();
+                        Ext.getStore('CircumferencesStore').load(function(records, operation, success) {
+                            if (!success){
+                                console.log( "There were problems in deleting circumferences, Err number: " + operation.error.status);
+                                if (operation.error.status === 401 || operation.error.status === 403)
+                                    LanistaTrainer.app.fireEvent('reconect');
+                                return;
+                            }
+                        });
                     controller.getChartWindow().hide();
                 }
                 else
@@ -409,6 +450,12 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         ]);
 
         measuresStore.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in looking for protocolls, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
             mainStage.add( measuresPanel );
             measuresPanel.on('hide', function(component) {
                 component.destroy();
@@ -717,7 +764,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 },
             failure : function(result, request){
                 console.log( "There were problems in looking for TestTypesNodesStore information, Err number: " + result.status);
-                if (result.status === 401)
+                if (result.status === 401 || result.status === 403)
                     LanistaTrainer.app.fireEvent('reconect');
             },
             success: function(response, opts) {
@@ -1047,8 +1094,9 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 if (!success)
                 {
                     console.log( "There were problems saving testmodel, Err number: " + event.error.status);
-                    if (event.error.status === 401)
+                    if (event.error.status === 401 || event.error.status === 403)
                         LanistaTrainer.app.fireEvent('reconect');
+                    return;
                 }
             }
         });
@@ -1058,8 +1106,9 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 if (!success)
                 {
                     console.log( "There were problems erasing the test, Err number: " + event.error.status);
-                    if (event.error.status === 401)
+                    if (event.error.status === 401 || event.error.status === 403)
                         LanistaTrainer.app.fireEvent('reconect');
+                    return;
 
                 }
             }
@@ -1076,7 +1125,14 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             TestResultsStore = Ext.getStore('TestResultsStore');
 
         TestResultsStore.getProxy().setExtraParam( 'customer_id', LanistaTrainer.app.currentCustomer.data.id );
-        TestResultsStore.load();
+        TestResultsStore.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in searching customer tests, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
+        });
 
 
         /*Ext.define('TestModelSearch', {
@@ -1115,6 +1171,13 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         viewTest.itemSelector = 'div.lanista-testpanel-item';
 
         nodesStore.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in looking for testresult, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
             viewTest.refresh();
             viewTest.show();
         });

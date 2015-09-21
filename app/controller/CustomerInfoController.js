@@ -172,7 +172,7 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
                         }
                         else{
                             console.log( "There were problems in looking for fetchcustomertrainers information, Err number: " + event.error.status);
-                            if (event.error.status === 401)
+                            if (event.error.status === 401 || event.error.status === 403)
                                 LanistaTrainer.app.fireEvent('reconect');
                             else
                                 Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);

@@ -259,7 +259,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                                 else
                                 {
                                     console.log( "There were problems saving new customer, Err number: " + event.error.status);
-                                    if (event.error.status === 401)
+                                    if (event.error.status === 401 || event.error.status === 403)
                                         LanistaTrainer.app.fireEvent('reconect');
                                     else{
                                         Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, "Possible problem:  " + Ext.ux.LanguageManager.TranslationArray.MSG_CUST_EXISTS_1, function () {
@@ -450,7 +450,7 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
             method: 'post',
             failure : function(result, request){
                 console.log( "There were problems in looking for user information, Err number: " + result.status);
-                if (result.status === 401)
+                if (result.status === 401 || result.status === 403)
                     LanistaTrainer.app.fireEvent('reconect');
                 else{
                     console.log( "Information could not be processed from server" );
@@ -515,12 +515,21 @@ Ext.define('LanistaTrainer.controller.CustomersController', {
                                 if (item){
                                     //customerRecord.load(controller.dataCustomers[(controller.searchList.indexOf(item.text)) - 1].id, {
                                     customerRecord.load(controller.searchListId[(controller.searchList.indexOf(item.text))], {
-                                        success: function(customer) {
-                                            LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
-                                                LanistaTrainer.app.currentCustomer = customer;
-                                                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
-                                                LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
-                                            });
+                                        callback: function(records, operation, success) {
+                                        //success: function(customer) {
+                                            if (success){
+                                                LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
+                                                    LanistaTrainer.app.currentCustomer = customer;
+                                                    LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';
+                                                    LanistaTrainer.app.fireEvent('showCustomerExercisesPanel');
+                                                });
+                                            }
+                                            else{
+                                                console.log( "There were problems searching clients, Err number: " + operation.error.status);
+                                                if (operation.error.status === 401 || operation.error.status === 403 )
+                                                    LanistaTrainer.app.fireEvent('reconect');
+                                                return;
+                                            }
                                         }
                                     });
 

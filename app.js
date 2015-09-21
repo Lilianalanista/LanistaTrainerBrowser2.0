@@ -163,7 +163,7 @@ Ext.application({
                         params: {id: user.id},
                         headers: {user_id: user.id},
                         failure : function(result, request){
-                            if (result.status === 401){
+                            if (result.status === 401 || result.status === 403){
                                 console.log( "There were problems in looking for user information" );
                                 LanistaTrainer.app.fireEvent('loginUser', user.email, user.password,
                                      function (data) {

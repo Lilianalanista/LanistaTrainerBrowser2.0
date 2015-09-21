@@ -216,6 +216,12 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
          });
 
         birthdayStore.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in looking for birthdays, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
             for(var i = 0; (i < records.length && i < 20); i++){
                 containerAux = Ext.create('Ext.container.Container', {
                     tpl: [
@@ -286,6 +292,12 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
          });
 
         birthdayStore.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in looking for active customers, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
             for(var i = 0; (i < records.length && i < 20); i++){
                 containerAux = Ext.create('Ext.container.Container', {
                     tpl: [
@@ -366,6 +378,12 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
          });
 
         birthdayStore.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in looking for plan to expire, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
             for(var i = 0; (i < records.length && i < 20); i++){
                 containerAux = Ext.create('Ext.container.Container', {
                     cls: 'lanista-expire',
@@ -479,6 +497,12 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
          });
 
         birthdayStore.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in looking for expired plans, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
             for(var i = 0; (i < records.length && i < 20); i++){
                 containerAux = Ext.create('Ext.container.Container', {
                     cls: 'lanista-expire',
@@ -589,6 +613,12 @@ Ext.define('LanistaTrainer.controller.DashBoardController', {
 
         controller.storeNotification = notificationsStore;
         controller.storeNotification.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in looking for notifiactions, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
 
             if (records.length === 0){
                 controller.getDashBoardPanel().down('#customersContainer').down('#titlesCustomersAlerts').down('#notificationsBotton').hide();

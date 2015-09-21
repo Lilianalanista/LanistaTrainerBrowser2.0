@@ -112,7 +112,7 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                                 headers: {user_id: user.id},
                                 failure : function(result, request){
                                     console.log( "There were problems in looking for user information, Err number: " + result.status);
-                                    if (result.status === 401)
+                                    if (result.status === 401 || result.status === 403)
                                         LanistaTrainer.app.fireEvent('reconect');
                                 },
                                 success: function(response, opts) {

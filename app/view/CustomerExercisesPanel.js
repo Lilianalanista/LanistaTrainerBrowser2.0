@@ -277,7 +277,14 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                     if (button == 'yes') {
                         customerExerPanel = LanistaTrainer.app.getController ('CustomerExercisesController').getCustomerExercisesPanel();
                         customerExerPanel.deletePlan(record.data);
-                        component.getStore().load();
+                        component.getStore().load(function(records, operation, success) {
+                            if (!success){
+                                console.log( "There were problems deleting the plan, Err number: " + operation.error.status);
+                                if (operation.error.status === 401 || operation.error.status === 403)
+                                    LanistaTrainer.app.fireEvent('reconect');
+                                return;
+                            }
+                        });
                     }
             });
         },
@@ -359,7 +366,7 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                 if (!success)
                 {
                     console.log( "There were problems erasing the plan, Err number: " + event.error.status);
-                    if (event.error.status === 401)
+                    if (event.error.status === 401 || event.error.status === 403)
                         LanistaTrainer.app.fireEvent('reconect');
 
                 }

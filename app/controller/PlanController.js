@@ -196,8 +196,9 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                         if (!success)
                         {
                             console.log( "There were problems saving PlanExercise, Err number: " + event.error.status);
-                            if (event.error.status === 401)
+                            if (event.error.status === 401 || event.error.status === 403)
                                 LanistaTrainer.app.fireEvent('reconect');
+                            return;
                         }
                     }
                 });
@@ -239,9 +240,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                                 });
                             }
                             else{
-                                console.log( "There were problems saving the Plan, Err number: " + event.error.status);
-                                if (operation.error.status === 401)
+                                console.log( "There were problems saving the Plan, Err number: " + operation.error.status);
+                                if (operation.error.status === 401 || operation.error.status === 403)
                                     LanistaTrainer.app.fireEvent('reconect');
+                                return;
                             }
 
 
@@ -299,9 +301,11 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     });
                 }
                 else {
-                    console.log( "There were problems saving PlanExercise, Err number: " + event.error.status);
-                    if (operation.error.status === 401)
+                    console.log( "There were problems saving PlanExercise, Err number: " + operation.error.status);
+                    if (operation.error.status === 401 || operation.error.status === 403){
                         LanistaTrainer.app.fireEvent('reconect');
+                        return;
+                    }
                     else{
                         Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);
                         controller.showCommands();
@@ -428,6 +432,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
                 activeTab.getStore().setRemoteFilter( true );
                 activeTab.getStore().load(function(records, operation, success) {
+                    if (!success){
+                        console.log( "There were problems in deleting planexercises, Err number: " + operation.error.status);
+                        if (operation.error.status === 401 || operation.error.status === 403)
+                            LanistaTrainer.app.fireEvent('reconect');
+                        return;
+                    }
+
                     controller.populateTabsExercisesByDay(records);
                 });
 
@@ -603,6 +614,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 user = Ext.ux.SessionManager.getUser(),
                 storeD1;
 
+            if (!success){
+                console.log( "There were problems in looking for planExercises, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
+
             if ( tabActiveId.id === 'd1' ){
                 tabActiveId.store = controller.plan.planexercises();
                 tabActiveId.store.setRemoteFilter( false );
@@ -726,7 +744,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         store.sort('name_' + Ext.ux.LanguageManager.lang, 'ASC');
 
         exercisesPanel.down('#viewExercises').bindStore(store);
-        store.load(function() {
+        store.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in showing exerciseSelectionView, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
             exercisesPanel.selection = self.selectionsTab[self.currentDay.id.substring(1)];
             mainStage.add(exercisesPanel);
 
@@ -866,7 +890,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             creator_last_name: user.last_name,
             creator_first_name: user.first_name,
             duration: 12,
-            creation_date: Ext.Date.format(new Date(), 'Y-m-d H:i:s').toString()
+            creation_date: Ext.Date.format(new Date(), 'Y-m-d H:i:s').toString(),
+            creator_name: user.first_name + ' ' + user.last_name
         });
 
         newPlan.proxy = new Ext.data.proxy.Ajax({
@@ -889,7 +914,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
         LanistaTrainer.app.getController('MainController').saveModel(newPlan,
                     {
-                        callback: function ( record ){
+                        callback: function ( record, operation, success ){
+                            if (!success){
+                                console.log( "There were problems in creating plan, Err number: " + operation.error.status);
+                                if (operation.error.status === 401 || operation.error.status === 403)
+                                    LanistaTrainer.app.fireEvent('reconect');
+                                return;
+                            }
                             LanistaTrainer.app.getController ( 'PlanController' ).plan = record;
                             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
                             LanistaTrainer.app.fireEvent( 'showPlanPanel', planname);
@@ -952,24 +983,26 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             item.hide();
         });
 
-        if (Ext.ux.SessionManager.getIsLoggedIn()){
-            this.getRightCommandPanel().add(
-                Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
-                    itemId: 'addExerciseButton',
-                    glyph: '108@Lanista Icons' //l
-                })
-            );
+        if (parseInt(controller.plan.data.creator_id) === controller.plan.data.person_id ||
+            controller.plan.data.trainer_id === controller.plan.data.person_id){
+            if (Ext.ux.SessionManager.getIsLoggedIn()){
+                this.getRightCommandPanel().add(
+                    Ext.create('LanistaTrainer.view.LanistaButton', {
+                        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_ADD_EXERCISES,
+                        itemId: 'addExerciseButton',
+                        glyph: '108@Lanista Icons' //l
+                    })
+                );
 
-            this.getRightCommandPanel().add(
-                Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.BUTTON_DEFAULT_EXER_CONF,
-                    itemId: 'defaultValuesButton',
-                    glyph: '74@Lanista Icons' //J
-                })
-            );
+                this.getRightCommandPanel().add(
+                    Ext.create('LanistaTrainer.view.LanistaButton', {
+                        text: Ext.ux.LanguageManager.TranslationArray.BUTTON_DEFAULT_EXER_CONF,
+                        itemId: 'defaultValuesButton',
+                        glyph: '74@Lanista Icons' //J
+                    })
+                );
+            }
         }
-
         this.getRightCommandPanel().add(
             Ext.create('LanistaTrainer.view.LanistaButton', {
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_PLAN_OPTIONS,
@@ -981,32 +1014,34 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             })
         );
 
-        if (Ext.ux.SessionManager.getIsLoggedIn()){
-            this.getRightCommandPanel().add(
-                Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.CHANGE + ' / ' + Ext.ux.LanguageManager.TranslationArray.DELETE,
-                    itemId: 'changeDeleteButton',
-                    menu: controller.changeDeletePlan(),
-                    menuButtonAlign: 'right',
-                    style: 'float: left;',
-                    glyph: '73@Lanista Icons' //I
-                })
-            );
+        if (parseInt(controller.plan.data.creator_id) === controller.plan.data.person_id ||
+            controller.plan.data.trainer_id === controller.plan.data.person_id){
+            if (Ext.ux.SessionManager.getIsLoggedIn()){
+                this.getRightCommandPanel().add(
+                    Ext.create('LanistaTrainer.view.LanistaButton', {
+                        text: Ext.ux.LanguageManager.TranslationArray.CHANGE + ' / ' + Ext.ux.LanguageManager.TranslationArray.DELETE,
+                        itemId: 'changeDeleteButton',
+                        menu: controller.changeDeletePlan(),
+                        menuButtonAlign: 'right',
+                        style: 'float: left;',
+                        glyph: '73@Lanista Icons' //I
+                    })
+                );
 
-            this.getRightCommandPanel().add(
-                Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text: Ext.ux.LanguageManager.TranslationArray.DELETE,
-                    itemId: 'removePlanExercisesButton',
-                    cls: [
-                        'lanista-command-button',
-                        'lanista-command-button-red'
-                    ],
-                    hidden: true,
-                    glyph: '117@Lanista Icons' //u
-                })
-            );
+                this.getRightCommandPanel().add(
+                    Ext.create('LanistaTrainer.view.LanistaButton', {
+                        text: Ext.ux.LanguageManager.TranslationArray.DELETE,
+                        itemId: 'removePlanExercisesButton',
+                        cls: [
+                            'lanista-command-button',
+                            'lanista-command-button-red'
+                        ],
+                        hidden: true,
+                        glyph: '117@Lanista Icons' //u
+                    })
+                );
+            }
         }
-
 
 
 
@@ -1142,7 +1177,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                              headers: { user_id: localStorage.getItem("user_id") },
                              failure : function(response){
                                  console.log( "There were problems sending the email, Err number: " + response.status);
-                                 if (response.status === 401)
+                                 if (response.status === 401 || response.status === 403)
                                      LanistaTrainer.app.fireEvent('reconect');
                                  else{
                                      data = Ext.decode(response.responseText);
@@ -1237,7 +1272,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             headers: { user_id: localStorage.getItem("user_id") },
             failure : function(response){
                 console.log( "There were problems cloning the plan, Err number: " + response.status);
-                if (response.status === 401)
+                if (response.status === 401 || response.status === 403)
                     LanistaTrainer.app.fireEvent('reconect');
                 else{
                     data = Ext.decode(response.responseText);
@@ -1304,7 +1339,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 if (!success)
                 {
                     console.log( "There were problems erasing the planexercise, Err number: " + event.error.status);
-                    if (event.error.status === 401)
+                    if (event.error.status === 401 || event.error.status === 403)
                         LanistaTrainer.app.fireEvent('reconect');
 
                 }

@@ -139,7 +139,7 @@ Ext.define('LanistaTrainer.controller.UserInfoController', {
                     },
                     failure: function (result, request) {
                         console.log( "There were problems saving information for user, Err number: " + result.status);
-                        if (result.status === 401)
+                        if (result.status === 401 || result.status === 403)
                             LanistaTrainer.app.fireEvent('reconect');
                         else{
                             Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.ux.LanguageManager.TranslationArray.MSG_DATA_NOT_SAVED_1, Ext.emptyFn);

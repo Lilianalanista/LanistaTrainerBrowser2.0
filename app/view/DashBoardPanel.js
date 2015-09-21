@@ -250,7 +250,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                                     },
                                                     failure : function(result, request){
                                                         console.log( "There were problems in looking for confirmations and invitations information, Err number: " + result.status);
-                                                        if (result.status === 401)
+                                                        if (result.status === 401 || result.status === 403)
                                                             LanistaTrainer.app.fireEvent('reconect');
                                                         //console.log( "There was a problem during the request" );
                                                     },
@@ -310,7 +310,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                                     },
                                                     failure : function(result, request){
                                                         console.log( "There were problems in the declination, Err number: " + result.status );
-                                                        if (result.status === 401)
+                                                        if (result.status === 401 || result.status === 403)
                                                             LanistaTrainer.app.fireEvent('reconect');
                                                     },
                                                     success: function(response, opts) {
@@ -396,7 +396,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         headers: {user_id: userId},
                         failure : function(result, request){
                             console.log( "There were problems in looking for user birthdays information, Err number: " + result.status);
-                            if (result.status === 401)
+                            if (result.status === 401 || result.status === 403)
                                 LanistaTrainer.app.fireEvent('reconect');
                         },
                         success: function(response, opts) {
@@ -468,7 +468,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         headers: {user_id: userId},
                         failure : function(result, request){
                             console.log( "There were problems in looking for active users information, Err number: " + result.status);
-                            if (result.status === 401)
+                            if (result.status === 401 || result.status === 403)
                                 LanistaTrainer.app.fireEvent('reconect');
                         },
                         success: function(response, opts) {
@@ -540,7 +540,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         headers: {user_id: userId},
                         failure : function(result, request){
                             console.log( "There were problems in looking for plans to expire information, Err number: " + result.status);
-                            if (result.status === 401)
+                            if (result.status === 401 || result.status === 403)
                                 LanistaTrainer.app.fireEvent('reconect');
                         },
                         success: function(response, opts) {
@@ -555,7 +555,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                 headers: {user_id: userId},
                                 failure : function(result, request){
                                     console.log( "There were problems in looking for user with plan to expire information, Err number: " + result.status);
-                                    if (result.status === 401)
+                                    if (result.status === 401 || result.status === 403)
                                         LanistaTrainer.app.fireEvent('reconect');
                                 },
                                 success: function(response, opts) {
@@ -650,7 +650,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                         headers: {user_id: userId},
                         failure : function(result, request){
                             console.log( "There were problems in looking for expired plans information, Err number: " + result.status);
-                            if (result.status === 401)
+                            if (result.status === 401 || result.status === 403)
                                 LanistaTrainer.app.fireEvent('reconect');
                         },
                         success: function(response, opts) {
@@ -665,7 +665,7 @@ Ext.define('LanistaTrainer.view.DashBoardPanel', {
                                 headers: {user_id: userId},
                                 failure : function(result, request){
                                     console.log( "There were problems in looking for users with expired plan information, Err number: " + result.status);
-                                    if (result.status === 401)
+                                    if (result.status === 401 || result.status === 403)
                                         LanistaTrainer.app.fireEvent('reconect');
                                 },
                                 success: function(response, opts) {

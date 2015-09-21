@@ -168,7 +168,14 @@ Ext.define('LanistaTrainer.controller.TemplatesController', {
         //planStore.filter ({property: 'customer_id', value: '75'});
 
         templatesPanel.down('#templatesView').bindStore(planStore);
-        planStore.load();
+        planStore.load(function(records, operation, success) {
+            if (!success){
+                console.log( "There were problems in showing templates, Err number: " + operation.error.status);
+                if (operation.error.status === 401 || operation.error.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+                return;
+            }
+        });
 
         planStore.sort( {
             direction: 'DESC',

@@ -140,7 +140,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                 }
                 else{
                     console.log( "There were problems saving protocoll, Err number: " + event.error.status);
-                    if (event.error.status === 401)
+                    if (event.error.status === 401 || event.error.status === 403)
                         LanistaTrainer.app.fireEvent('reconect');
                 }
             }
@@ -623,7 +623,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                     if (!success)
                     {
                         console.log( "There were problems saving planexercise, Err number: " + event.error.status);
-                        if (event.error.status === 401)
+                        if (event.error.status === 401 || event.error.status === 403)
                             LanistaTrainer.app.fireEvent('reconect');
                     }
                 }
@@ -722,13 +722,17 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     },
 
     showExerciseConfigurationsCommands: function() {
-        controller = this;
+        var controller = this,
+            planController = LanistaTrainer.app.getController ('PlanController');
 
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });
 
         if (!Ext.ux.SessionManager.getIsLoggedIn())
+            return;
+
+        if (parseInt(planController.plan.data.creator_id) != planController.plan.data.person_id)
             return;
 
         var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {

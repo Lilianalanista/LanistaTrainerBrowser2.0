@@ -60,7 +60,7 @@ Ext.define('LanistaTrainer.controller.ImageController', {
             },
             failure : function(response){
                 console.log( "There were problems in looking for user exercises information, Err number: " + response.status);
-                if (response.status === 401)
+                if (response.status === 401 || response.status === 403)
                     LanistaTrainer.app.fireEvent('reconect');
                 else{
                     var data = Ext.decode(response.responseText);
@@ -126,7 +126,7 @@ Ext.define('LanistaTrainer.controller.ImageController', {
             },
             failure : function(response){
                 console.log( "There were problems in the image treatment, Err number: " + response.status);
-                if (response.status === 401)
+                if (response.status === 401 || response.status === 403)
                     LanistaTrainer.app.fireEvent('reconect');
                 else{
                     var data = Ext.decode(response.responseText);

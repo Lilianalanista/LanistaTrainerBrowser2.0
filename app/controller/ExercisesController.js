@@ -275,7 +275,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 },
                 failure : function(result, request){
                     console.log( "There were problems in looking for user exercises information, Err number: " + result.status);
-                    if (result.status === 401)
+                    if (result.status === 401 || result.status === 403)
                         LanistaTrainer.app.fireEvent('reconect');
                 },
                 success: function(response, opts) {
@@ -1331,6 +1331,13 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
         favoritesStore.getProxy().url = Ext.ux.ConfigManager.getRoot() + '/tpmanager/favorites/json';
         favoritesStore.load({
             callback: function(records, operation, success) {
+                if (!success){
+                    console.log( "There were problems in looking for favorites exercises, Err number: " + operation.error.status);
+                    if (operation.error.status === 401 || operation.error.status === 403)
+                        LanistaTrainer.app.fireEvent('reconect');
+                    return;
+                }
+
                 for (var i = 0; i<records.length; i++){
                     if (Number(records[i].data.type) === 0){
                         favoriteName = records[i].data.name;
@@ -1392,7 +1399,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
             },
             failure : function(result, request){
                 console.log( "There were problems in looking for user exercises information, Err number: " + result.status);
-                if (result.status === 401)
+                if (result.status === 401 || result.status === 403)
                     LanistaTrainer.app.fireEvent('reconect');
             },
             success: function(response, opts) {
