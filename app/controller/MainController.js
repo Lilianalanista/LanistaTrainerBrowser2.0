@@ -169,8 +169,8 @@ Ext.define('LanistaTrainer.controller.MainController', {
         LanistaTrainer.app.fireEvent('loginUser', user.email, user.password,
                                      function (data) {
                                          Ext.Msg.show({
-                                             title: 'X Colocar....',
-                                             message: 'X Colocar Go to Ini.....',
+                                             title: Ext.ux.LanguageManager.TranslationArray.MSG_RECONECT_TITLE,
+                                             message: Ext.ux.LanguageManager.TranslationArray.MSG_RECONECT_INFO,
                                              width: 300,
                                              buttons: Ext.Msg.OK,
                                              multiline: false,
@@ -191,8 +191,8 @@ Ext.define('LanistaTrainer.controller.MainController', {
                                      },
                                      function (status) {
                                          Ext.Msg.show({
-                                            title: 'X Colocar....',
-                                            message: 'X Colocar go to Login.....',
+                                            title: Ext.ux.LanguageManager.TranslationArray.MSG_RECONECT_TITLE,
+                                            message: Ext.ux.LanguageManager.TranslationArray.MSG_RECONECT_INFO,
                                             width: 300,
                                             buttons: Ext.Msg.OK,
                                             multiline: false,
