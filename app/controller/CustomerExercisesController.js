@@ -81,7 +81,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             customerExercisesPanel	= controller.getCustomerExercisesPanel(),
             mainStage	= controller.getMainStage(),
             newHeightProtocols = 0,
-            user = Ext.ux.SessionManager.getUser();
+            user = Ext.ux.SessionManager.getUser(),
+            storeVar;
 
         customerExercisesPanel.workController = controller.getModuleClassName();
         mainStage.add( customerExercisesPanel );
@@ -97,56 +98,107 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
         // *** 2 Show the panel
         customerExercisesPanel.show();
 
-        // PLANS
-        controller.loadPlans();
-
-        // PROTOCOLLS
-        controller.loadProtocolls();
-
-        if (user.role !== '2' ){
-            //Searching for Training's Customer
-            Ext.Ajax.request({
-                url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/fetchcustomertrainers',
-                method: 'get',
-                params: {user_id: user.id},
-                headers: {user_id: user.id},
-                failure : function(result, request){
-                    console.log( "There were problems in looking for fetchcustomertrainers information, Err number: " + result.status);
-                    if (result.status === 401 || result.status === 403)
-                        LanistaTrainer.app.fireEvent('reconect');
-                },
-                success: function(response, opts) {
-                    try {
+        //Finding the customer exercises that are from trainers created
+        Ext.Ajax.request({
+            url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/planexercises/getcustomerexercises',
+            method: 'get',
+            params: {customer_id: user.id},
+            headers: {user_id: user.id},
+            failure : function(result, request){
+                console.log( "There were problems in looking for getcustomerexercises information, Err number: " + result.status);
+                if (result.status === 401 || result.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+            },
+            success: function(response, opts) {
+                try {
                         data = Ext.decode(response.responseText);
-                        controller.infotrainer = data.entries[0];
+                        storeVar = Ext.getStore('OwnClientExercisesStore');
+                        storeVar.removeAll();
 
-                        LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');
-                        LanistaTrainer.app.fireEvent('showStage');
+                        for (var i = 0; i < data.entries.length; i++){
+                            exercise = Ext.create('LanistaTrainer.model.OwnClientExercises', {
+                                id: parseInt(data.entries[i].id),
+                                addition_id: data.entries[i].addition_id,
+                                coatchingnotes_DE: data.entries[i].coatchingnotes_DE,
+                                coatchingnotes_EN: data.entries[i].coatchingnotes_EN,
+                                coatchingnotes_ES: data.entries[i].coatchingnotes_ES,
+                                creation_date: data.entries[i].creation_date,
+                                description: data.entries[i].description,
+                                exercise_type_id: data.entries[i].exercise_type_id,
+                                ext_id: data.entries[i].ext_id,
+                                mistakes_DE: data.entries[i].mistakes_DE,
+                                mistakes_EN: data.entries[i].mistakes_EN,
+                                mistakes_ES: data.entries[i].mistakes_ES,
+                                muscle_id: data.entries[i].muscle_id,
+                                name_DE: data.entries[i].name_DE,
+                                name_EN: data.entries[i].name_EN,
+                                name_ES: data.entries[i].name_ES,
+                                short_description: data.entries[i].short_description,
+                                user_id: data.entries[i].user_id,
+                                video: data.entries[i].video
+                            });
+                            exercise.dirty = true;;
+                            storeVar.add(exercise);
+                        }
 
-                        // *** 4 Callback
-                        if (callback instanceof Function) callback();
+                        // PLANS
+                        controller.loadPlans();
 
-                        // *** 5 Load data
-                        controller.loadData();
-                    }
-                    catch( err ) {
-                        Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);
-                    }
+                        // PROTOCOLLS
+                        controller.loadProtocolls();
+
+                        if (user.role !== '2' ){
+                            //Searching for Training's Customer
+                            Ext.Ajax.request({
+                                url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/user/fetchcustomertrainers',
+                                method: 'get',
+                                params: {user_id: user.id},
+                                headers: {user_id: user.id},
+                                failure : function(result, request){
+                                    console.log( "There were problems in looking for fetchcustomertrainers information, Err number: " + result.status);
+                                    if (result.status === 401 || result.status === 403)
+                                        LanistaTrainer.app.fireEvent('reconect');
+                                },
+                                success: function(response, opts) {
+                                    try {
+                                        data = Ext.decode(response.responseText);
+                                        controller.infotrainer = data.entries[0];
+
+                                        LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');
+                                        LanistaTrainer.app.fireEvent('showStage');
+
+                                        // *** 4 Callback
+                                        if (callback instanceof Function) callback();
+
+                                        // *** 5 Load data
+                                        controller.loadData();
+                                    }
+                                    catch( err ) {
+                                        Ext.Msg.alert('Problem', 'There were problems in looking for user information', Ext.emptyFn);
+                                    }
+                                }
+                            });
+                        }
+                        else{
+                            LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');
+                            LanistaTrainer.app.fireEvent('showStage');
+
+                            // *** 4 Callback
+                            if (callback instanceof Function) callback();
+
+                            // *** 5 Load data
+                            controller.loadData();
+                        }
+
+                        Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.setHeight(Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.dom.clientHeight - 20);
+
                 }
-            });
-        }
-        else{
-            LanistaTrainer.app.fireEvent('showCustomerExercisesHeaderUpdate');
-            LanistaTrainer.app.fireEvent('showStage');
+                catch( err ) {
+                    Ext.Msg.alert('Problem', 'There were problems in looking for customerexercises information', Ext.emptyFn);
+                }
+            }
+        });
 
-            // *** 4 Callback
-            if (callback instanceof Function) callback();
-
-            // *** 5 Load data
-            controller.loadData();
-        }
-
-        Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.setHeight(Ext.getCmp('customerExercisesPanel').down('#customerProtocolls').el.dom.clientHeight - 20);
 
     },
 
@@ -375,13 +427,13 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                         {
                             ftype: 'grouping',
                             groupHeaderTpl: [
-                                '<tpl for=".">',
-                                '     <input class="lanista-img-protocolls img-right" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id]}_1.jpg" >',
-                                '     <input class="lanista-img-protocolls img-left" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id]}_2.jpg" ></div>',
-                                '     <tpl for="children">',
-                                '           <p class="lanista-protocolls-weight-p" align="left"><span class="lanista-protocolls-weight {[values.data.creator_id === parseInt(localStorage.getItem ( "user_id" )) ? "lanista-client-blue" : "lanista-trainer-black"]} "> {data.weight} Kg / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
-                                '      </tpl>',
-                                '</tpl>'
+        '<tpl for=".">',
+        '  <input class="lanista-img-protocolls img-right" type="image" src="{[ values["name"].substr(values["name"].indexOf(".") + 1).substr(0,1) === "*" ? Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/s/"+ Ext.getStore("OwnClientExercisesStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 2)).ext_id : (Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id)]}_1.jpg" >',
+        '  <input class="lanista-img-protocolls img-left" type="image" src="{[ Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname()]}/resources/images/previews/{[ values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id]}_2.jpg" ></div>',
+        '  <tpl for="children">',
+        '      <p class="lanista-protocolls-weight-p" align="left"><span class="lanista-protocolls-weight {[values.data.creator_id === parseInt(localStorage.getItem ( "user_id" )) ? "lanista-client-blue" : "lanista-trainer-black"]} "> {data.weight} Kg / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
+        '  </tpl>',
+        '</tpl>'
                             ],
                             collapsible: false
                         }
@@ -485,6 +537,62 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
 
 
 
+
+
+    },
+
+    findTrainersExercises: function() {
+        user = Ext.ux.SessionManager.getUser();
+
+        Ext.Ajax.request({
+            url: Ext.ux.ConfigManager.getRoot() +'/tpmanager/planexercises/getcustomerexercises',
+            method: 'get',
+            params: {customer_id: user.id},
+            headers: {user_id: user.id},
+            failure : function(result, request){
+                console.log( "There were problems in looking for getcustomerexercises information, Err number: " + result.status);
+                if (result.status === 401 || result.status === 403)
+                    LanistaTrainer.app.fireEvent('reconect');
+            },
+            success: function(response, opts) {
+                try {
+                    data = Ext.decode(response.responseText);
+                    storeVar = Ext.getStore('OwnClientExercisesStore');
+                    storeVar.removeAll();
+
+                        for (var i = 0; i < data.entries.length; i++){
+                            exercise = Ext.create('LanistaTrainer.model.OwnClientExercisesModel', {
+                                id: parseInt(data.entries[i].id),
+                                addition_id: data.entries[i].addition_id,
+                                coatchingnotes_DE: data.entries[i].coatchingnotes_DE,
+                                coatchingnotes_EN: data.entries[i].coatchingnotes_EN,
+                                coatchingnotes_ES: data.entries[i].coatchingnotes_ES,
+                                creation_date: data.entries[i].creation_date,
+                                description: data.entries[i].description,
+                                exercise_type_id: data.entries[i].exercise_type_id,
+                                ext_id: data.entries[i].ext_id,
+                                mistakes_DE: data.entries[i].mistakes_DE,
+                                mistakes_EN: data.entries[i].mistakes_EN,
+                                mistakes_ES: data.entries[i].mistakes_ES,
+                                muscle_id: data.entries[i].muscle_id,
+                                name_DE: data.entries[i].name_DE,
+                                name_EN: data.entries[i].name_EN,
+                                name_ES: data.entries[i].name_ES,
+                                short_description: data.entries[i].short_description,
+                                user_id: data.entries[i].user_id,
+                                video: data.entries[i].video
+                            });
+                            exercise.setDirty();
+                            storeVar.add(exercise);
+                        }
+
+                        storeVar.sync();
+                }
+                catch( err ) {
+                    Ext.Msg.alert('Problem', 'There were problems in looking for customerexercises information', Ext.emptyFn);
+                }
+            }
+        });
 
 
     },

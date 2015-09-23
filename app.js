@@ -42,7 +42,8 @@ Ext.application({
         'Circumferences',
         'TestTypesNodes',
         'TestTypes',
-        'TestResults'
+        'TestResults',
+        'OwnClientExercises'
     ],
     stores: [
         'ExerciseInitialStore',
@@ -56,7 +57,8 @@ Ext.application({
         'CircumferencesStore',
         'TestTypesNodesStore',
         'TestTypesStore',
-        'TestResultsStore'
+        'TestResultsStore',
+        'OwnClientExercisesStore'
     ],
     views: [
         'MainViewport',

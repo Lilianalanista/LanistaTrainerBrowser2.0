@@ -78,7 +78,7 @@ Ext.define('LanistaTrainer.model.Protocoll', {
         {
             type: 'int',
             convert: function(v, rec) {
-                return (rec.data.exercise_id !== 0) ? rec.data.exercise_id : (rec.data.user_exercise_id !== 0) ? rec.data.user_exercise_id : 99999;
+                return (rec.data.exercise_id !== 0) ? rec.data.exercise_id : (rec.data.user_exercise_id !== 0) ? '*' + rec.data.user_exercise_id : 99999;
 
 
             },

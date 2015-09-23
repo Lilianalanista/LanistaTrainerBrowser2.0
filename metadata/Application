@@ -40,7 +40,8 @@
             "Circumferences",
             "TestTypesNodes",
             "TestTypes",
-            "TestResults"
+            "TestResults",
+            "OwnClientExercises"
         ],
         "name": "LanistaTrainer",
         "panels": [
@@ -65,7 +66,8 @@
             "CircumferencesStore",
             "TestTypesNodesStore",
             "TestTypesStore",
-            "TestResultsStore"
+            "TestResultsStore",
+            "OwnClientExercisesStore"
         ],
         "views": [
             "MainViewport",
