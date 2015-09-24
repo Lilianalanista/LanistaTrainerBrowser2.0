@@ -362,7 +362,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                 return;
             }
 
-            for ( var i = 0; i < groups.length && i < 20; i++ ) {
+            for ( var i = 0; i < groups.length && i < 50; i++ ) {
                 //for ( var i = 0; i < groups.length; i++ ) {
                 dataGridStore = null;
                 dataStoreNew = [];
@@ -440,10 +440,20 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                     ],
                     listeners: {
                         groupclick: function(view, node, group, e, eOpts) {
-                            var Exercise = Ext.create('LanistaTrainer.model.ExerciseModel'),
+                            var ExerciseModel,
                                 protocolls = null,
-                                protocollsData = null;
+                                protocollsData = null,
+                                exerciseRecord;
 
+                            /*
+                            if (group.substr(group.indexOf(".") + 1).indexOf("*") >= 0)
+                                ExerciseModel = LanistaTrainer.model.OwnClientExercises;
+                                //Exercise = Ext.create('LanistaTrainer.model.OwnClientExercises');
+                            else
+                                ExerciseModel = LanistaTrainer.model.ExerciseModel;
+                                //Exercise = Ext.create('LanistaTrainer.model.ExerciseModel');
+
+                            */
 
                             for ( var i = 0; i < view.store.getGroups().length; i++ ) {
                                 if (view.store.getGroups().items[i].getGroupKey() === group) {
@@ -456,7 +466,33 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                 data : protocollsData.items
                             });
 
-                            LanistaTrainer.model.ExerciseModel.load(group.substr(group.indexOf(".") + 1), {
+
+
+
+
+                            if (group.substr(group.indexOf(".") + 1).indexOf("*") >= 0)
+                                exerciseRecord = Ext.getStore("OwnClientExercisesStore").getById(group.substr(group.indexOf(".") + 2));
+                             else
+                                exerciseRecord = Ext.getStore("ExerciseStore").getById(group.substr(group.indexOf(".") + 1));
+
+                            controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
+                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
+                            LanistaTrainer.app.fireEvent('showExercisePanel', exerciseRecord, protocolls);
+
+
+
+
+
+
+
+                            //LanistaTrainer.model.ExerciseModel.load(group.substr(group.indexOf(".") + 1).indexOf("*") >= 0 ?
+                            //                                        group.substr(group.indexOf(".") + 2) :
+                            //                                        group.substr(group.indexOf(".") + 1), {
+
+                            /*
+                            ExerciseModel.load(group.substr(group.indexOf(".") + 1).indexOf("*") >= 0 ?
+                                                                    group.substr(group.indexOf(".") + 2) :
+                                                                    group.substr(group.indexOf(".") + 1), {
                                 //Exercise.load(group, {
                                 callback: function(exercise, operation, success) {
                                     //success: function( exercise ) {
@@ -474,6 +510,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                 },
 
                             });
+                            */
 
 
                         }

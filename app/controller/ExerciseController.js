@@ -402,6 +402,18 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         controller.currentPlanExercise = exerciseProtocoll;
         controller.record = record;
 
+
+
+
+        console.log('VALORES!!!!!!');
+        console.log(record);
+
+
+
+
+
+
+
         exercisePanel.down('#exercisePanelHeader').data = record.data;
         exercisePanel.down('#exercisePanelContent').items.items[0].data = record.data;
         controller.setActiveItemNew();
