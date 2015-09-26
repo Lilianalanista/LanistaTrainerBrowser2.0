@@ -466,53 +466,39 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                 data : protocollsData.items
                             });
 
-
-
-
-
-                            if (group.substr(group.indexOf(".") + 1).indexOf("*") >= 0)
+                            if (group.substr(group.indexOf(".") + 1).indexOf("*") >= 0){
                                 exerciseRecord = Ext.getStore("OwnClientExercisesStore").getById(group.substr(group.indexOf(".") + 2));
-                             else
-                                exerciseRecord = Ext.getStore("ExerciseStore").getById(group.substr(group.indexOf(".") + 1));
+                                //else
+                                //    exerciseRecord = Ext.getStore("ExerciseStore").getById(group.substr(group.indexOf(".") + 1));
 
-                            controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
-                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
-                            LanistaTrainer.app.fireEvent('showExercisePanel', exerciseRecord, protocolls);
-
-
-
-
-
+                                controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
+                                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
+                                LanistaTrainer.app.fireEvent('showExercisePanel', exerciseRecord, protocolls);
+                            }
+                            else{
+                                LanistaTrainer.model.ExerciseModel.load(group.substr(group.indexOf(".") + 1), {
 
 
-                            //LanistaTrainer.model.ExerciseModel.load(group.substr(group.indexOf(".") + 1).indexOf("*") >= 0 ?
-                            //                                        group.substr(group.indexOf(".") + 2) :
-                            //                                        group.substr(group.indexOf(".") + 1), {
-
-                            /*
-                            ExerciseModel.load(group.substr(group.indexOf(".") + 1).indexOf("*") >= 0 ?
-                                                                    group.substr(group.indexOf(".") + 2) :
-                                                                    group.substr(group.indexOf(".") + 1), {
-                                //Exercise.load(group, {
-                                callback: function(exercise, operation, success) {
-                                    //success: function( exercise ) {
-                                    if (success){
-                                        controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
-                                        LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
-                                        LanistaTrainer.app.fireEvent('showExercisePanel', exercise, protocolls);
-                                    }
-                                    else{
-                                        console.log( "There were problems in looking for protocolls II, Err number: " + operation.error.status);
-                                        if (operation.error.status === 401 || operation.error.status === 403)
-                                            LanistaTrainer.app.fireEvent('reconect');
-                                        return;
-                                    }
-                                },
-
-                            });
-                            */
-
-
+                                                                                 //ExerciseModel.load(group.substr(group.indexOf(".") + 1).indexOf("*") >= 0 ?
+                                                                                 //                                        group.substr(group.indexOf(".") + 2) :
+                                                                                 //                                        group.substr(group.indexOf(".") + 1), {
+                                                                                 //Exercise.load(group, {
+                                                                                 callback: function(exercise, operation, success) {
+                                                                                     //success: function( exercise ) {
+                                                                                     if (success){
+                                                                                         controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
+                                                                                         LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
+                                                                                         LanistaTrainer.app.fireEvent('showExercisePanel', exercise, protocolls);
+                                                                                     }
+                                                                                     else{
+                                                                                         console.log( "There were problems in looking for protocolls II, Err number: " + operation.error.status);
+                                                                                         if (operation.error.status === 401 || operation.error.status === 403)
+                                                                                             LanistaTrainer.app.fireEvent('reconect');
+                                                                                         return;
+                                                                                     }
+                                                                                 }
+                                                                             });
+                            }
                         }
                     }
                 });

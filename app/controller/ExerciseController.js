@@ -394,7 +394,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             exercisePanel	= controller.getExercisePanel(),
             mainStage	= controller.getMainStage(),
             ini = 4000,
-            tabAux;
+            tabAux,
+            user = Ext.ux.SessionManager.getUser();
 
         if (LanistaTrainer.app.firefoxBrowser)
             exercisePanel.addCls('lanista-browser-firefox');
@@ -405,8 +406,10 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
 
 
 
-        console.log('VALORES!!!!!!');
+
+        console.log('RECORD....');
         console.log(record);
+
 
 
 
@@ -452,9 +455,12 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             protocollsStore.clearFilter();
             if ( record.data.ext_id.indexOf ( 'CUST' ) == -1 )
                 protocollsStore.filter ([ {property :'exercise_id', value:record.data.id } ,  {property: 'user_id',value: LanistaTrainer.app.currentCustomer.data.id} ]);
-            else
-                protocollsStore.filter ([ {property :'user_exercise_id', value: parseInt(record.data.id) - ini} , {property:'user_id', value: LanistaTrainer.app.currentCustomer.data.id} ]);
-
+            else{
+                //if (user.role === '2')
+                //    protocollsStore.filter ([ {property :'user_exercise_id', value: parseInt(record.data.id) - ini} , {property:'user_id', value: LanistaTrainer.app.currentCustomer.data.id} ]);
+                //else
+                    //protocollsStore.filter ([ {property :'user_exercise_id', value: record.data.id} , {property:'user_id', value: LanistaTrainer.app.currentCustomer.data.id} ]);
+            }
             protocollsStore.group( 'execution_date_day','DESC');
             /*
             protocollsStore.sort( {
@@ -471,6 +477,11 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                     protocoll = null,
                     groups,
                     itemsFromGroup;
+
+                if ( record.data.ext_id.indexOf ( 'CUST' ) != -1 ){
+                    protocollsStore.setRemoteFilter( false );
+                    protocollsStore.filter ([ {property :'user_exercise_id', value: record.data.id} ]);
+                }
 
                 groups = protocollsStore.getGroups();
                 for ( var i = 0; i < groups.length; i++ ) {
