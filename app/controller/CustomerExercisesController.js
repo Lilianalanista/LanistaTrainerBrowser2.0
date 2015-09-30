@@ -328,6 +328,14 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
             numRows,
             user = Ext.ux.SessionManager.getUser();
 
+        /*var myMask = new Ext.LoadMask({
+            msg    : 'Please wait...',
+            target : controller.getMainStage().down ( '#customerProtocolls' )
+        });
+
+        myMask.show();
+        */
+
         protocollsStore.clearGrouping();
         protocollsStore.clearFilter();
 
@@ -362,7 +370,7 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                 return;
             }
 
-            for ( var i = 0; i < groups.length && i < 50; i++ ) {
+            for ( var i = 0; i < groups.length && i < 20; i++ ) {
                 //for ( var i = 0; i < groups.length; i++ ) {
                 dataGridStore = null;
                 dataStoreNew = [];
@@ -428,8 +436,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                             ftype: 'grouping',
                             groupHeaderTpl: [
                                 '<tpl for=".">',
-                                '  <input class="lanista-img-protocolls img-right" type="image" src="{[ values["name"].substr(values["name"].indexOf(".") + 1).substr(0,1) === "*" ? Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/s/"+ Ext.getStore("OwnClientExercisesStore").getById(values["name"].substr(values["name"].indexOf(".") + 2)).data.ext_id : Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname() + "/resources/images/previews/" + (values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id) ]}_1.jpg" >',
                                 '  <input class="lanista-img-protocolls img-right" type="image" src="{[ values["name"].substr(values["name"].indexOf(".") + 1).substr(0,1) === "*" ? Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/s/"+ Ext.getStore("OwnClientExercisesStore").getById(values["name"].substr(values["name"].indexOf(".") + 2)).data.ext_id : Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname() + "/resources/images/previews/" + (values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id) ]}_2.jpg" >',
+                                '  <input class="lanista-img-protocolls img-right" type="image" src="{[ values["name"].substr(values["name"].indexOf(".") + 1).substr(0,1) === "*" ? Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + "/tpmanager/img/s/"+ Ext.getStore("OwnClientExercisesStore").getById(values["name"].substr(values["name"].indexOf(".") + 2)).data.ext_id : Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + Ext.ux.ConfigManager.getAppname() + "/resources/images/previews/" + (values["name"].substr(values["name"].indexOf(".") + 1) === 99999 ? 99999 : Ext.getStore("ExerciseStore").getProxy().getRecord(values["name"].substr(values["name"].indexOf(".") + 1)).ext_id) ]}_1.jpg" >',
                                 '  <tpl for="children">',
                                 '      <p class="lanista-protocolls-weight-p" align="left"><span class="lanista-protocolls-weight {[values.data.creator_id === parseInt(localStorage.getItem ( "user_id" )) ? "lanista-client-blue" : "lanista-trainer-black"]} "> {data.weight} Kg / {data.training} {[values.data.training_unit == 0 ? Ext.ux.LanguageManager.TranslationArray.REP : values.data.training_unit == 2 ? Ext.ux.LanguageManager.TranslationArray.MIN : Ext.ux.LanguageManager.TranslationArray.SEC]} </span></p>',
                                 '  </tpl>',
@@ -439,6 +447,10 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                         }
                     ],
                     listeners: {
+                        afterrender: function(obj, eOpts) {
+                            if (parseInt(obj.id.substr(4)) === 19)
+                                myMask.hide();
+                        },
                         groupclick: function(view, node, group, e, eOpts) {
                             var ExerciseModel,
                                 protocolls = null,
@@ -479,25 +491,25 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                                 LanistaTrainer.model.ExerciseModel.load(group.substr(group.indexOf(".") + 1), {
 
 
-                                                                                 //ExerciseModel.load(group.substr(group.indexOf(".") + 1).indexOf("*") >= 0 ?
-                                                                                 //                                        group.substr(group.indexOf(".") + 2) :
-                                                                                 //                                        group.substr(group.indexOf(".") + 1), {
-                                                                                 //Exercise.load(group, {
-                                                                                 callback: function(exercise, operation, success) {
-                                                                                     //success: function( exercise ) {
-                                                                                     if (success){
-                                                                                         controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
-                                                                                         LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
-                                                                                         LanistaTrainer.app.fireEvent('showExercisePanel', exercise, protocolls);
-                                                                                     }
-                                                                                     else{
-                                                                                         console.log( "There were problems in looking for protocolls II, Err number: " + operation.error.status);
-                                                                                         if (operation.error.status === 401 || operation.error.status === 403)
-                                                                                             LanistaTrainer.app.fireEvent('reconect');
-                                                                                         return;
-                                                                                     }
-                                                                                 }
-                                                                             });
+                                    //ExerciseModel.load(group.substr(group.indexOf(".") + 1).indexOf("*") >= 0 ?
+                                    //                                        group.substr(group.indexOf(".") + 2) :
+                                    //                                        group.substr(group.indexOf(".") + 1), {
+                                    //Exercise.load(group, {
+                                    callback: function(exercise, operation, success) {
+                                        //success: function( exercise ) {
+                                        if (success){
+                                            controller.getMainStage().getLayout().getActiveItem().addCls ('blured');
+                                            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisePanel';
+                                            LanistaTrainer.app.fireEvent('showExercisePanel', exercise, protocolls);
+                                        }
+                                        else{
+                                            console.log( "There were problems in looking for protocolls II, Err number: " + operation.error.status);
+                                            if (operation.error.status === 401 || operation.error.status === 403)
+                                                LanistaTrainer.app.fireEvent('reconect');
+                                            return;
+                                        }
+                                    }
+                                });
                             }
                         }
                     }
@@ -505,7 +517,6 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                 protocollsPanel.insert ( i, dailyGrid );
             }
         });
-
 
     },
 

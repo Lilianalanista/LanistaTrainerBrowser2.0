@@ -391,7 +391,9 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
 
     onLoadExercises: function(afterLoadCallback) {
 
-        var controller = this;
+        var controller = this,
+            user = Ext.ux.SessionManager.getUser();
+
         Ext.getStore('ExerciseStore').setProxy(new Ext.data.proxy.LocalStorage({
             $configStrict: false,
             type: 'localstorage',

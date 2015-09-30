@@ -481,6 +481,7 @@
                         },
                         {
                             "id": "f4ae9db5-9e3f-430b-a842-bb05a28af975",
+                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "5e08d8f9-6263-4cee-836e-0de2af8c252a",
@@ -2319,6 +2320,19 @@
                 }
             ]
         },
+        "69e129ff-233b-43f3-adcd-ec30ae8795cc": {
+            "id": "69e129ff-233b-43f3-adcd-ec30ae8795cc",
+            "cn": [
+                {
+                    "id": "db431075-3cf0-472d-9ba1-f62ad4ac87d2",
+                    "cn": [
+                        {
+                            "id": "7104e8e5-5998-4bde-bda0-1e1041711015"
+                        }
+                    ]
+                }
+            ]
+        },
         "model": true,
         "66a8eaf7-a566-40b9-8b53-cc931f03fe3f": {
             "id": "66a8eaf7-a566-40b9-8b53-cc931f03fe3f",
@@ -3380,6 +3394,9 @@
                 },
                 {
                     "id": "a8e222b8-04a2-4a92-b4cc-8761ab9734d5"
+                },
+                {
+                    "id": "ee9f95d6-3e7e-46a0-ada0-60e6eaf6cf03"
                 }
             ]
         },
@@ -4150,18 +4167,17 @@
     "tabState": {
         "openTabs": [
             "901655a0-4efe-415a-b4b1-7e600dd6eff8",
-            "52ded827-c29d-4d9f-8209-c4791844ebf6",
+            "3cebb1f9-1e3f-4ce1-a430-d2db18adcf91",
             "5a730e34-4f69-481d-8544-8c9947de6064",
-            "5276ac9b-8d40-4de3-b7e5-775fb50be203",
-            "760477f7-1a9e-486b-b65e-c999cd4ad142"
+            "5d37b0c7-cd7b-47a4-ba76-021716e9e6ee"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "760477f7-1a9e-486b-b65e-c999cd4ad142",
-        "selectedInstance": "6f43478b-dd35-432e-9b3a-1c4d67a36dc9"
+        "topInstance": "5a730e34-4f69-481d-8544-8c9947de6064",
+        "selectedInstance": "dd3df9fe-60c1-48e8-a5fd-6d27d54fcb23"
     },
     "editMode": "code",
     "userSettings": {}

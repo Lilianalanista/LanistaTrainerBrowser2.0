@@ -1606,16 +1606,19 @@ font-size: 18px;
 
 //Managing deleting searching exercises
 .lanista-delete-search {
-    color: gainsboro;
+    color: limegreen;
     font-size: 13px!important;
+    font-weight: 600;
 }
 
 .lanista-color-delete {
-    color: red!important;
+    color: red;
+    font-weight: 600;
 }
 
 .lanista-color-no-delete {
-    color: gainsboro;
+    color: limegreen;
+    font-weight: 600;
 }
 
 //Color for Header for Customers Favorites

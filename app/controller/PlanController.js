@@ -114,23 +114,31 @@ Ext.define('LanistaTrainer.controller.PlanController', {
     },
 
     onAddExerciseButtonClick: function(button, e, eOpts) {
-        var planDayPanel = this.getPlanPanel ().down ('tabpanel').getActiveTab();
+        var controller = this,
+            planDayPanel = this.getPlanPanel ().down ('tabpanel').getActiveTab(),
+            planExercisesStore = controller.plan.planexercises();
 
-        this.currentDay = planDayPanel;
-        this.currentExercisePosition = planDayPanel.getStore ().getCount();
-
-        if (!this.selectionsTab){
-            this.selectionsTab = [];
-            this.selectionsTab[1] = [];
+        if (planExercisesStore.data.length === 0 && (controller.rounds_min === 3 && controller.training_min === 12 && controller.training_unit === 0)){
+            controller.firstConfig = true;
+            controller.getRightCommandPanel().down('#defaultValuesButton').fireEvent('click');
         }
-        if (!this.selectionsTab[planDayPanel.id.substring(1)])
-            this.selectionsTab[planDayPanel.id.substring(1)] = [];
+        else{
+            this.currentDay = planDayPanel;
+            this.currentExercisePosition = planDayPanel.getStore ().getCount();
 
-        LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
-        LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {
-            LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisesSelectionView';
-            LanistaTrainer.app.fireEvent( 'showExerciseSelectionView' );
-        });
+            if (!this.selectionsTab){
+                this.selectionsTab = [];
+                this.selectionsTab[1] = [];
+            }
+            if (!this.selectionsTab[planDayPanel.id.substring(1)])
+                this.selectionsTab[planDayPanel.id.substring(1)] = [];
+
+            LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+            LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {
+                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisesSelectionView';
+                LanistaTrainer.app.fireEvent( 'showExerciseSelectionView' );
+            });
+        }
     },
 
     onCloseExercisesSelectionViewButtonClick: function(button, e, eOpts) {
@@ -145,68 +153,9 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             userId = localStorage.getItem("user_id"),
             ini = 4000;
 
-        this.selectionsTab[this.currentDay.id.substring(1)] = exercisesPanel.selection;
-        var selection = this.selectionsTab[this.currentDay.id.substring(1)],
-            isCustom = false;
-            storeExercises = Ext.getStore('ExerciseStore');
 
-        for ( var i = 0; i < selection.length; i++ ) {
-            if (selection[i][2] === 1) //Record already added in previous saving
-                continue;
+        controller.fnSavePlanExercises(function () {
 
-            isCustom = isNaN (selection[i][1].substring (0,1));
-            var newPlanExercise = Ext.create('LanistaTrainer.model.PlanExercise', {
-                exercise_id : isCustom ? 0 : selection [i][0],
-                user_exercise_id : isCustom ? parseInt((selection [i][0]) - ini) : 0,
-                plan_id: controller.plan.data.id,
-                day: currentDay,
-                position: (currentExercisePosition + i + 1),
-                rounds_min: controller.rounds_min,
-                training_unit: controller.training_unit,
-                training_min: controller.training_min
-            });
-
-            newPlanExercise.proxy = new Ext.data.proxy.Ajax({
-                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
-                model: 'LanistaTrainer.model.PlanExercise',
-                noCache: false,
-                reader: {
-                    type: 'json',
-                    rootProperty: 'entries'
-                },
-                writer: {
-                    type: 'json',
-                    rootProperty: 'records',
-                    allowSingle: false
-                },
-                api: {
-                    create: undefined,
-                    read: undefined,
-                    update: undefined,
-                    destroy: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/deleteexercise'
-                },
-                headers: {
-                    user_id: userId
-                }
-            });
-
-            if (selection[i][3] !== 'd'){ //'d' indicates that the record must be deleted
-                LanistaTrainer.app.getController('MainController').saveModel(newPlanExercise, {
-                    callback: function(record,event,success) {
-                        if (!success)
-                        {
-                            console.log( "There were problems saving PlanExercise, Err number: " + event.error.status);
-                            if (event.error.status === 401 || event.error.status === 403)
-                                LanistaTrainer.app.fireEvent('reconect');
-                            return;
-                        }
-                    }
-                });
-                selection[i][2] = 1; // To mark record as saved on server
-            }
-        }
-
-        setTimeout(function() {
                 if ( currentDay > controller.plan.data.days ) {
                     controller.plan.set ( 'days', currentDay );
 
@@ -258,7 +207,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     });
                 }
                 controller.favorite = undefined;
-        },2500);
+
+        });
 
     },
 
@@ -961,13 +911,34 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
     onDefaultValuesChanged: function(defaultValues) {
         var controller = this,
-            planPanel = controller.getPlanPanel();
+            planPanel = controller.getPlanPanel(),
+            planDayPanel;
 
         if (defaultValues){
             controller.rounds_min = defaultValues[0];
             controller.training_min = defaultValues[1];
             controller.training_unit = defaultValues[2];
         }
+
+        if (controller.firstConfig){
+            planDayPanel = this.getPlanPanel ().down ('tabpanel').getActiveTab();
+            controller.currentDay = planDayPanel;
+            controller.currentExercisePosition = planDayPanel.getStore ().getCount();
+
+            if (!controller.selectionsTab){
+                controller.selectionsTab = [];
+                controller.selectionsTab[1] = [];
+            }
+            if (!controller.selectionsTab[planDayPanel.id.substring(1)])
+                controller.selectionsTab[planDayPanel.id.substring(1)] = [];
+
+            LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+            LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {
+                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'ExercisesSelectionView';
+                LanistaTrainer.app.fireEvent( 'showExerciseSelectionView' );
+            });
+        }
+
         /*
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeGenericPanel', controller.getDefaultPlanValuesPanel(), function() {
@@ -1507,6 +1478,89 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             })
         );
 
+
+    },
+
+    fnSavePlanExercises: function(callback) {
+            var controller = this,
+            userId = localStorage.getItem("user_id"),
+            currentExercisePosition = controller.currentExercisePosition,
+            currentDay = controller.currentDay.id.substring (1),
+            idExercisePlan,
+            planExercisesItems,
+            exercisesPanel = controller.getExercisesPanel(),
+            userId = localStorage.getItem("user_id"),
+            ini = 4000;
+
+        this.selectionsTab[this.currentDay.id.substring(1)] = exercisesPanel.selection;
+        var selection = this.selectionsTab[this.currentDay.id.substring(1)],
+            isCustom = false;
+            storeExercises = Ext.getStore('ExerciseStore');
+
+        for ( var i = 0; i < selection.length; i++ ) {
+            if (selection[i][2] === 1) //Record already added in previous saving
+                continue;
+
+            isCustom = isNaN (selection[i][1].substring (0,1));
+            var newPlanExercise = Ext.create('LanistaTrainer.model.PlanExercise', {
+                exercise_id : isCustom ? 0 : selection [i][0],
+                user_exercise_id : isCustom ? parseInt((selection [i][0]) - ini) : 0,
+                plan_id: controller.plan.data.id,
+                day: currentDay,
+                position: (currentExercisePosition + i + 1),
+                rounds_min: controller.rounds_min,
+                training_unit: controller.training_unit,
+                training_min: controller.training_min
+            });
+
+            newPlanExercise.proxy = new Ext.data.proxy.Ajax({
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
+                model: 'LanistaTrainer.model.PlanExercise',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    rootProperty: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    rootProperty: 'records',
+                    allowSingle: false
+                },
+                api: {
+                    create: undefined,
+                    read: undefined,
+                    update: undefined,
+                    destroy: Ext.ux.ConfigManager.getServer() + Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/deleteexercise'
+                },
+                headers: {
+                    user_id: userId
+                }
+            });
+
+            if (selection[i][3] !== 'd'){ //'d' indicates that the record must be deleted
+                LanistaTrainer.app.getController('MainController').saveModel(newPlanExercise, {
+                    callback: function(record,event,success) {
+                        if (!success)
+                        {
+                            console.log( "There were problems saving PlanExercise, Err number: " + event.error.status);
+                            if (event.error.status === 401 || event.error.status === 403)
+                                LanistaTrainer.app.fireEvent('reconect');
+                            return;
+                        }
+                        else{
+                            //selection[i][2] = 1; // To mark record as saved on server
+
+                            if (i === selection.length){
+                                i = 0;
+                                if (callback instanceof Function) callback();
+                                return;
+                            }
+                        }
+                    }
+                });
+                selection[i][2] = 1; // To mark record as saved on server
+            }
+        }
 
     },
 

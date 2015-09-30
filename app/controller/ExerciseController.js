@@ -403,20 +403,6 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         controller.currentPlanExercise = exerciseProtocoll;
         controller.record = record;
 
-
-
-
-
-        console.log('RECORD....');
-        console.log(record);
-
-
-
-
-
-
-
-
         exercisePanel.down('#exercisePanelHeader').data = record.data;
         exercisePanel.down('#exercisePanelContent').items.items[0].data = record.data;
         controller.setActiveItemNew();
@@ -443,8 +429,12 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         if ( currentPlan ) {
             controller.currentPlanExercise.training = controller.currentPlanExercise.training_min;
             controller.currentPlanExercise.weight = controller.currentPlanExercise.weight_min;
-            exercisePanel.down('#exercisePanelContent').child('#configurationTabPanel').tab.show();
-            exercisePanel.down('#configurationPanel').update ( controller.currentPlanExercise );
+
+            if ((parseInt(currentPlan.data.creator_id) === currentPlan.data.person_id) ||
+                (currentPlan.data.trainer_id === currentPlan.data.person_id)){
+                exercisePanel.down('#exercisePanelContent').child('#configurationTabPanel').tab.show();
+                exercisePanel.down('#configurationPanel').update ( controller.currentPlanExercise );
+            }
         }
 
         if ( LanistaTrainer.app.currentCustomer ) {
@@ -459,7 +449,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                 //if (user.role === '2')
                 //    protocollsStore.filter ([ {property :'user_exercise_id', value: parseInt(record.data.id) - ini} , {property:'user_id', value: LanistaTrainer.app.currentCustomer.data.id} ]);
                 //else
-                    //protocollsStore.filter ([ {property :'user_exercise_id', value: record.data.id} , {property:'user_id', value: LanistaTrainer.app.currentCustomer.data.id} ]);
+                //protocollsStore.filter ([ {property :'user_exercise_id', value: record.data.id} , {property:'user_id', value: LanistaTrainer.app.currentCustomer.data.id} ]);
             }
             protocollsStore.group( 'execution_date_day','DESC');
             /*
@@ -521,8 +511,15 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                 controller.showInfoTabCommands();
             }
             else{
-                exercisePanel.down('#exercisePanelContent').setActiveTab(2);
-                controller.showExerciseConfigurationsCommands();
+                if ((parseInt(currentPlan.data.creator_id) === currentPlan.data.person_id) ||
+                    (currentPlan.data.trainer_id === currentPlan.data.person_id)){
+                    exercisePanel.down('#exercisePanelContent').setActiveTab(2);
+                    controller.showExerciseConfigurationsCommands();
+                }
+                else{
+                    exercisePanel.down('#exercisePanelContent').setActiveTab(0);
+                    controller.showInfoTabCommands();
+                }
             }
         }
         else{
@@ -755,7 +752,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         if (!Ext.ux.SessionManager.getIsLoggedIn())
             return;
 
-        if (parseInt(planController.plan.data.creator_id) != planController.plan.data.person_id)
+        if ((parseInt(planController.plan.data.creator_id) != planController.plan.data.person_id) &&
+            (planController.plan.data.trainer_id != planController.plan.data.person_id))
             return;
 
         var changeButton = Ext.create('LanistaTrainer.view.LanistaButton', {
@@ -810,7 +808,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             item.hide();
         });
 
-        if ( !LanistaTrainer.app.currentCustomer ) {
+        //if ( !LanistaTrainer.app.currentCustomer ) {
             if ( controller.record.data.ext_id.indexOf ( 'CUST' ) == -1 ){ //Lanista exercise
                 var videoButton = Ext.create('LanistaTrainer.view.LanistaButton', {
                     text:  'VIDEO',
@@ -846,7 +844,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             }
 
 
-        }
+        //}
 
     },
 

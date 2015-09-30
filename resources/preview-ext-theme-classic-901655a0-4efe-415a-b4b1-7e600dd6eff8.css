@@ -26085,14 +26085,17 @@ font-size: 18px;
   position: absolute!important; }
 
 .lanista-delete-search {
-  color: gainsboro;
-  font-size: 13px!important; }
+  color: limegreen;
+  font-size: 13px!important;
+  font-weight: 600; }
 
 .lanista-color-delete {
-  color: red!important; }
+  color: red;
+  font-weight: 600; }
 
 .lanista-color-no-delete {
-  color: gainsboro; }
+  color: limegreen;
+  font-weight: 600; }
 
 .lanista-header-color-favorites {
   background-color: rgba(52, 172, 251, 0.2) !important; }
