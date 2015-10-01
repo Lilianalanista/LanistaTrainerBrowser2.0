@@ -326,15 +326,15 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                 '</div>'
             ),
             numRows,
-            user = Ext.ux.SessionManager.getUser();
+            user = Ext.ux.SessionManager.getUser(),
+            myMask;
 
-        /*var myMask = new Ext.LoadMask({
+        var myMask = new Ext.LoadMask({
             msg    : 'Please wait...',
             target : controller.getMainStage().down ( '#customerProtocolls' )
         });
 
         myMask.show();
-        */
 
         protocollsStore.clearGrouping();
         protocollsStore.clearFilter();
@@ -447,8 +447,8 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                         }
                     ],
                     listeners: {
-                        afterrender: function(obj, eOpts) {
-                            if (parseInt(obj.id.substr(4)) === 19)
+                        viewready: function(obj, eOpts) {
+                            if (parseInt(obj.id.substr(4)) === 19 || parseInt(obj.id.substr(4)) === groups.length - 1)
                                 myMask.hide();
                         },
                         groupclick: function(view, node, group, e, eOpts) {

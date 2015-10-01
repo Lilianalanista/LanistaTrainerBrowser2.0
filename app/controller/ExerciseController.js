@@ -802,14 +802,15 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
     },
 
     showInfoTabCommands: function() {
-        controller = this;
+        var controller = this,
+            currentPlan = LanistaTrainer.app.getController ('PlanController').plan;
 
         controller.getRightCommandPanel().items.each(function (item) {
             item.hide();
         });
 
         //if ( !LanistaTrainer.app.currentCustomer ) {
-            if ( controller.record.data.ext_id.indexOf ( 'CUST' ) == -1 ){ //Lanista exercise
+            //if ( controller.record.data.ext_id.indexOf ( 'CUST' ) == -1 ){ //Lanista exercise
                 var videoButton = Ext.create('LanistaTrainer.view.LanistaButton', {
                     text:  'VIDEO',
                     itemId: 'videoButton',
@@ -819,8 +820,12 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                 controller.getRightCommandPanel().add(
                     videoButton
                 );
-            }
-            else{//Onw exercise
+            //}
+            //else{//Onw exercise
+
+            if ((parseInt(currentPlan.data.creator_id) === currentPlan.data.person_id) ||
+                    (currentPlan.data.trainer_id === currentPlan.data.person_id)){
+
                 var changeOwnExerciseButton = Ext.create('LanistaTrainer.view.LanistaButton', {
                     text:  Ext.ux.LanguageManager.TranslationArray.CHANGE,
                     itemId: 'changeOwnExerciseButton',
@@ -842,8 +847,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                     deleteOwnExerciseButton
                 );
             }
-
-
+            //}
         //}
 
     },
