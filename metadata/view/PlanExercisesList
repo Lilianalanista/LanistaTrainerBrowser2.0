@@ -132,7 +132,7 @@
                     "        Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';",
                     "",
                     "        if (parseInt(controller.plan.data.creator_id) === controller.plan.data.person_id){",
-                    "            Ext.get(t).down('.exercise-list-delete').setHtml('u');",
+                    "            Ext.get(t).down('.exercise-list-delete').setHtml('<div class=\"lanista-header-item-exercise\"> <div class=\"lanista-header-item-exercise-left\"> b </div> <div class=\"lanista-header-item-exercise-delete\"> u </div> <div class=\"lanista-header-item-exercise-right\"> c </div> </div>');",
                     "            Ext.get(t).dom.className = Ext.get(t).dom.className + ' exercise-apply-delete';",
                     "        }",
                     "",

@@ -482,6 +482,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                 }
 
                 exercisePanel.down('#exercisePanelContent').down('#protocollsTabPanel').down('#exerciseProtocolls').reconfigure(protocollsStore);
+
                 if ( protocollsStore.data && protocollsStore.data.items.length > 0 ) {
                     exercisePanel.down('#protocollPanel').protocollInformation = protocollsStore.data.items[0].data;
                     exercisePanel.down('#protocollPanel').update (protocollsStore.data.items[0].data);
@@ -495,11 +496,13 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                         execution_date: '1900-01-01'
                     });
 
-                    exercisePanel.down('#protocollPanel').protocollInformation = protocoll.data;
-                    exercisePanel.down('#protocollPanel').update ( protocoll );
+                    exercisePanel.down('#protocollPanel').protocollInformation = exerciseProtocoll;
+                    exercisePanel.down('#protocollPanel').update ( exerciseProtocoll );
                     Ext.getCmp('exercisePanel').down('#exerciseProtocolls').getView().emptyText = Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT;
                     Ext.getCmp('exercisePanel').down('#exerciseProtocolls').getView().refresh();
                 }
+
+
             });
 
             exercisePanel.down('#exercisePanelContent').child('#protocollsTabPanel').tab.show();

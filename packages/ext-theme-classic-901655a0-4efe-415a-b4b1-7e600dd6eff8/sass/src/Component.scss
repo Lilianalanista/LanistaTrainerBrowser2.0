@@ -1382,6 +1382,7 @@ font-size: 18px;
     font-size: 18px;
     color: red;
     text-align: right;
+    font-weight: 900;
 }
 
 //Rights Label
@@ -2601,3 +2602,23 @@ font-size: 18px;
     background-size: 75%;
     background-repeat: no-repeat;
 }
+
+.lanista-header-item-exercise{
+    width: 100%;
+    float: left;
+}
+
+.lanista-header-item-exercise-left{
+    float:left;
+    color: darkturquoise;
+}
+
+.lanista-header-item-exercise-delete{
+    width: 45%;
+    float: left;
+}
+
+.lanista-header-item-exercise-right{
+    color: darkturquoise;
+}
+

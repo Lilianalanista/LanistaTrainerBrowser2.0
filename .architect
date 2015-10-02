@@ -4167,16 +4167,15 @@
     "tabState": {
         "openTabs": [
             "901655a0-4efe-415a-b4b1-7e600dd6eff8",
-            "5a730e34-4f69-481d-8544-8c9947de6064",
-            "5276ac9b-8d40-4de3-b7e5-775fb50be203"
+            "a0b0768f-a567-47c7-ae7b-4a38dd90a70b"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "5276ac9b-8d40-4de3-b7e5-775fb50be203",
-        "selectedInstance": "a2264994-03d9-4c87-b661-916b4c7a945b"
+        "topInstance": "a0b0768f-a567-47c7-ae7b-4a38dd90a70b",
+        "selectedInstance": "6815226b-cf34-44e7-8289-c2d47ff6746f"
     },
     "editMode": "code",
     "userSettings": {}
