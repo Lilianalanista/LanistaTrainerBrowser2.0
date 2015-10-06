@@ -2147,6 +2147,69 @@
             },
             "name": "fnSavePlanExercises",
             "designerId": "ee9f95d6-3e7e-46a0-ada0-60e6eaf6cf03"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "direction",
+                    "record"
+                ],
+                "fn": "fnMoveExercise",
+                "implHandler": [
+                    "",
+                    "",
+                    "    record.data.position = direction === 'left' ? record.data.position - 1 : record.data.position + 1;",
+                    "",
+                    "    record.proxy = new Ext.data.proxy.Ajax({",
+                    "        url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',",
+                    "        model: 'LanistaTrainer.model.PlanExercise',",
+                    "        noCache: false,",
+                    "        reader: {",
+                    "            type: 'json',",
+                    "            rootProperty: 'entries'",
+                    "        },",
+                    "        writer: {",
+                    "            type: 'json',",
+                    "            rootProperty: 'records',",
+                    "            allowSingle: false",
+                    "        },",
+                    "        headers: {",
+                    "            user_id: userId",
+                    "        }",
+                    "    });",
+                    "",
+                    "",
+                    "    LanistaTrainer.app.getController('MainController').saveModel(controller.plan, {",
+                    "        callback: function( changedPlan, operation, success ) {",
+                    "            if (success)",
+                    "            {",
+                    "                ",
+                    "                ",
+                    "                ",
+                    "                ",
+                    "            }",
+                    "            else{",
+                    "                console.log( \"There were problems saving the Plan, Err number: \" + operation.error.status);",
+                    "                if (operation.error.status === 401 || operation.error.status === 403)",
+                    "                    LanistaTrainer.app.fireEvent('reconect');",
+                    "                return;",
+                    "            }",
+                    "",
+                    "",
+                    "        },",
+                    "        scope: this",
+                    "    });",
+                    ""
+                ]
+            },
+            "name": "fnMoveExercise",
+            "designerId": "aa4269b2-5f5a-4a08-8ffc-bc17e2012402"
         }
     ]
 }

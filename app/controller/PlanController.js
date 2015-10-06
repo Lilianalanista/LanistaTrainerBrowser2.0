@@ -1564,6 +1564,53 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
     },
 
+    fnMoveExercise: function(direction, record) {
+
+
+            record.data.position = direction === 'left' ? record.data.position - 1 : record.data.position + 1;
+
+            record.proxy = new Ext.data.proxy.Ajax({
+                url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
+                model: 'LanistaTrainer.model.PlanExercise',
+                noCache: false,
+                reader: {
+                    type: 'json',
+                    rootProperty: 'entries'
+                },
+                writer: {
+                    type: 'json',
+                    rootProperty: 'records',
+                    allowSingle: false
+                },
+                headers: {
+                    user_id: userId
+                }
+            });
+
+
+            LanistaTrainer.app.getController('MainController').saveModel(controller.plan, {
+                callback: function( changedPlan, operation, success ) {
+                    if (success)
+                    {
+
+
+
+
+                    }
+                    else{
+                        console.log( "There were problems saving the Plan, Err number: " + operation.error.status);
+                        if (operation.error.status === 401 || operation.error.status === 403)
+                            LanistaTrainer.app.fireEvent('reconect');
+                        return;
+                    }
+
+
+                },
+                scope: this
+            });
+
+    },
+
     init: function(application) {
         application.on({
             closePlanPanel: {

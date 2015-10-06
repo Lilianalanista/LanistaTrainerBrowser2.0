@@ -2611,14 +2611,21 @@ font-size: 18px;
 .lanista-header-item-exercise-left{
     float:left;
     color: darkturquoise;
+    width: 30%;
+    text-align: left;
 }
 
 .lanista-header-item-exercise-delete{
     width: 45%;
     float: left;
+    width: 40%;
+    text-align: center;
 }
 
 .lanista-header-item-exercise-right{
     color: darkturquoise;
+    text-align: right;
+    width: 30%;
+    float: right;
 }
 
