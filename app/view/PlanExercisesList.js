@@ -102,21 +102,23 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
         el.on(
             'click', function(e,t) {
                 var controller = LanistaTrainer.app.getController ('PlanController'),
-                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab();
+                    activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
+                    itemRecord, internalItemId;
 
-                for (var i = 0; i < activeTab.el.dom.childNodes.length; i++){
-                    activeTab.el.dom.childNodes[i].internalId = i;
+                if (e.event.target.className === 'lanista-header-item-exercise-delete'){
+                    for (var i = 0; i < activeTab.el.dom.childNodes.length; i++){
+                        activeTab.el.dom.childNodes[i].internalId = i;
+                    }
+                    internalItemId = Ext.get(t).dom.parentNode.internalId;
+                    this.markDeleteExercises(t, internalItemId);
                 }
-                //if (!t.parentNode.classList.contains('lanista-list-itemrounded-deleting'))
-                //    t.parentNode.className = t.parentNode.className + ' lanista-list-itemrounded-deleting';
-
-                var internalItemId = Ext.get(t).dom.parentNode.internalId;
-                this.markDeleteExercises(t, internalItemId);
+                if (e.event.target.className === 'lanista-header-item-exercise-left'){
+                    itemRecord = activeTab.recordsArray[internalItemId];
+                    itemRecord.internalId = internalItemId;
+                    controller.fnMoveExercise('left', itemRecord);
+                }
             },
             this, {delegate: '.exercise-list-delete'});
-            //this, {delegate: '.lanista-header-exercise-main'});
-
-        //fnMoveExercise
 
         el.on(
             'mouseover', function(e,t) {
@@ -138,7 +140,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                 }
             },
             this,{delegate: '.exercise-list-delete'});
-            //this,{delegate: '.lanista-header-exercise-main'});
+        //this,{delegate: '.lanista-header-exercise-main'});
 
         el.on(
             'mouseover', function(e,t) {
@@ -147,15 +149,15 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                 //Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
                 //Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
 
-                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
-                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
+                Ext.get(t).up('.lanista-plan-exercise').dom.className = Ext.get(t).up('.lanista-plan-exercise').dom.className.replace(/item-not-clicked/gi,'');
+                Ext.get(t).up('.lanista-plan-exercise').dom.className = Ext.get(t).up('.lanista-plan-exercise').dom.className + ' item-clicked';
 
                 if (parseInt(controller.plan.data.creator_id) === controller.plan.data.person_id){
                     //Ext.get(t).down('.exercise-list-delete').setHtml('<div class="lanista-header-item-exercise"> <div class="lanista-header-item-exercise-left"> b </div> <div class="lanista-header-item-exercise-delete"> u </div> <div class="lanista-header-item-exercise-right"> c </div> </div>');
                     //Ext.get(t).down('.exercise-list-delete').setHtml(' <div class="lanista-header-item-exercise-left"> b </div> <div class="lanista-header-item-exercise-delete"> u </div> <div class="lanista-header-item-exercise-right"> c </div> ');
                     //Ext.get(t).down('.exercise-list-delete').setHtml('<div class="lanista-header-item-exercise-delete"> u </div>');
                     //Ext.get(t).down('.exercise-list-delete').setHtml('u');
-                    Ext.get(t).up('.lanista-plan-exercise').down('.exercise-list-delete').setHtml('<span class="lanista-header-item-exercise-left">b</span> <span class="lanista-header-item-exercise-delete">u</span> <span class="lanista-header-item-exercise-right">c</span>');
+                    Ext.get(t).up('.lanista-plan-exercise').down('.exercise-list-delete').setHtml('<span> <span class="lanista-header-item-exercise-left">b</span> <span class="lanista-header-item-exercise-delete">u</span> <span class="lanista-header-item-exercise-right">c</span> </span>');
 
 
 
@@ -170,15 +172,15 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
             //this,{ delegate: '.lanista-plan-exercise'});
             this,{delegate: '.exercise-list-fields'});
 
-
+        /*
         el.on(
             'mouseout', function(e,t) {
-                /*
-                if (e.relatedTarget.className === 'lanista-header-item-exercise-left' ||
-                    e.relatedTarget.className === 'lanista-header-item-exercise-delete' ||
-                    e.relatedTarget.className === 'lanista-header-item-exercise-right')
-                    return;
-                */
+
+                //if (e.relatedTarget.className === 'lanista-header-item-exercise-left' ||
+                //    e.relatedTarget.className === 'lanista-header-item-exercise-delete' ||
+                //    e.relatedTarget.className === 'lanista-header-item-exercise-right')
+                //    return;
+
                 var controller = LanistaTrainer.app.getController ('PlanController');
 
                 //Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');
@@ -199,6 +201,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
             },
             //this,{delegate: '.lanista-plan-exercise'});
             this,{delegate: '.exercise-list-fields'});
+        */
 
     },
 
