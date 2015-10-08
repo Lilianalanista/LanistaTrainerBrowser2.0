@@ -393,6 +393,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 });
 
                 activeTab.getStore().setRemoteFilter( false );
+
+                /*
                 for (var i = 0; i < store.filters.length; i++)
                 {
                     if (store.filters.items[i].getProperty()  === 'day')
@@ -403,6 +405,19 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     {
                         property : 'day',
                         value    : parseInt(newCard.id.substr(1))
+                    }
+                ]);
+                */
+                for (i = 0; i < activeTab.getStore().filters.length; i++)
+                {
+                    if (activeTab.getStore().filters.items[i].getProperty()  === 'day')
+                        activeTab.getStore().filters.removeAt(i);
+                }
+
+                activeTab.getStore().filter([
+                    {
+                        property : 'day',
+                        value    : parseInt(activeTab.id.substr(1))
                     }
                 ]);
 
@@ -481,7 +496,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
     },
 
     onTabpanelTabChange: function(tabPanel, newCard, oldCard, eOpts) {
-        var store = newCard.store;
+        var controller = this,
+            store = newCard.store;
 
         for (var i = 0; i < store.filters.length; i++)
         {
@@ -496,6 +512,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             }
         ]);
 
+        controller.currentDay = newCard;
     },
 
     onClosePlanPanel: function(callback) {
@@ -1564,12 +1581,15 @@ Ext.define('LanistaTrainer.controller.PlanController', {
 
     },
 
-    fnMoveExercise: function(direction, record) {
+    fnMoveExercise: function(record1, record2) {
+        var controller = this,
+            userId = localStorage.getItem("user_id"),
+            pos1, pos2;
 
-
-            record.data.position = direction === 'left' ? record.data.position - 1 : record.data.position + 1;
-
-            record.proxy = new Ext.data.proxy.Ajax({
+            pos1 = record1.data.position;
+            pos2 = record2.data.position;
+            record1.set ( 'position', pos2 );
+            record1.proxy = new Ext.data.proxy.Ajax({
                 url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
                 model: 'LanistaTrainer.model.PlanExercise',
                 noCache: false,
@@ -1587,24 +1607,55 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 }
             });
 
-
-            LanistaTrainer.app.getController('MainController').saveModel(controller.plan, {
-                callback: function( changedPlan, operation, success ) {
+            LanistaTrainer.app.getController('MainController').saveModel(record1, {
+                callback: function( planExercise, operation, success ) {
                     if (success)
                     {
-
-
-
+                                record2.set ( 'position', pos1 );
+                                record2.proxy = new Ext.data.proxy.Ajax({
+                                    url: Ext.ux.ConfigManager.getRoot() + '/tpmanager/planexercises/json',
+                                    model: 'LanistaTrainer.model.PlanExercise',
+                                    noCache: false,
+                                    reader: {
+                                        type: 'json',
+                                        rootProperty: 'entries'
+                                    },
+                                    writer: {
+                                        type: 'json',
+                                        rootProperty: 'records',
+                                        allowSingle: false
+                                    },
+                                    headers: {
+                                        user_id: userId
+                                    }
+                                });
+                                LanistaTrainer.app.getController('MainController').saveModel(record2, {
+                                    callback: function( changedPlanExercise, operation, success ) {
+                                        if (success)
+                                        {
+                                            LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
+                                            LanistaTrainer.app.fireEvent( 'closePlanPanel', function() {
+                                                LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'PlanPanel';
+                                                LanistaTrainer.app.fireEvent( 'showPlanPanel', controller.planname);
+                                            });
+                                        }
+                                        else{
+                                            console.log( "There were problems saving the Plan, Err number: " + operation.error.status);
+                                            if (operation.error.status === 401 || operation.error.status === 403)
+                                                LanistaTrainer.app.fireEvent('reconect');
+                                            return;
+                                        }
+                                    },
+                                    scope: this
+                                });
 
                     }
                     else{
-                        console.log( "There were problems saving the Plan, Err number: " + operation.error.status);
+                        console.log( "There were problems updating position for Exercise-Plan, Err number: " + operation.error.status);
                         if (operation.error.status === 401 || operation.error.status === 403)
                             LanistaTrainer.app.fireEvent('reconect');
                         return;
                     }
-
-
                 },
                 scope: this
             });

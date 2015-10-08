@@ -430,8 +430,9 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             controller.currentPlanExercise.training = controller.currentPlanExercise.training_min;
             controller.currentPlanExercise.weight = controller.currentPlanExercise.weight_min;
 
-            if ((parseInt(currentPlan.data.creator_id) === currentPlan.data.person_id) ||
-                (currentPlan.data.trainer_id === currentPlan.data.person_id)){
+            if (((parseInt(currentPlan.data.creator_id) === currentPlan.data.person_id) ||
+                (currentPlan.data.trainer_id === currentPlan.data.person_id)) &&
+                (Ext.ux.SessionManager.getIsLoggedIn())){
                 exercisePanel.down('#exercisePanelContent').child('#configurationTabPanel').tab.show();
                 exercisePanel.down('#configurationPanel').update ( controller.currentPlanExercise );
             }
@@ -813,44 +814,47 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
         });
 
         //if ( !LanistaTrainer.app.currentCustomer ) {
-            //if ( controller.record.data.ext_id.indexOf ( 'CUST' ) == -1 ){ //Lanista exercise
-                var videoButton = Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text:  'VIDEO',
-                    itemId: 'videoButton',
-                    glyph: '89@Lanista Icons' //Y
+        //if ( controller.record.data.ext_id.indexOf ( 'CUST' ) == -1 ){ //Lanista exercise
+        var videoButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+            text:  'VIDEO',
+            itemId: 'videoButton',
+            glyph: '89@Lanista Icons' //Y
 
-                });
-                controller.getRightCommandPanel().add(
-                    videoButton
-                );
-            //}
-            //else{//Onw exercise
+        });
+        controller.getRightCommandPanel().add(
+            videoButton
+        );
+        //}
+        //else{//Onw exercise
 
-            if ((parseInt(currentPlan.data.creator_id) === currentPlan.data.person_id) ||
-                    (currentPlan.data.trainer_id === currentPlan.data.person_id)){
+        if (!Ext.ux.SessionManager.getIsLoggedIn())
+            return;
 
-                var changeOwnExerciseButton = Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text:  Ext.ux.LanguageManager.TranslationArray.CHANGE,
-                    itemId: 'changeOwnExerciseButton',
-                    glyph: '73@Lanista Icons'//I
-                });
-                var deleteOwnExerciseButton = Ext.create('LanistaTrainer.view.LanistaButton', {
-                    text:  Ext.ux.LanguageManager.TranslationArray.DELETE ,
-                    itemId: 'deleteOwnExerciseButton',
-                    glyph: '68@Lanista Icons', //D
-                    cls: [
+        if ((parseInt(currentPlan.data.creator_id) === currentPlan.data.person_id) ||
+            (currentPlan.data.trainer_id === currentPlan.data.person_id)){
+
+            var changeOwnExerciseButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+                text:  Ext.ux.LanguageManager.TranslationArray.CHANGE,
+                itemId: 'changeOwnExerciseButton',
+                glyph: '73@Lanista Icons'//I
+            });
+            var deleteOwnExerciseButton = Ext.create('LanistaTrainer.view.LanistaButton', {
+                text:  Ext.ux.LanguageManager.TranslationArray.DELETE ,
+                itemId: 'deleteOwnExerciseButton',
+                glyph: '68@Lanista Icons', //D
+                cls: [
                     'lanista-command-button',
                     'lanista-command-button-red'
-                    ]
-                });
-                controller.getRightCommandPanel().add(
-                    changeOwnExerciseButton
-                );
-                controller.getRightCommandPanel().add(
-                    deleteOwnExerciseButton
-                );
-            }
-            //}
+                ]
+            });
+            controller.getRightCommandPanel().add(
+                changeOwnExerciseButton
+            );
+            controller.getRightCommandPanel().add(
+                deleteOwnExerciseButton
+            );
+        }
+        //}
         //}
 
     },
