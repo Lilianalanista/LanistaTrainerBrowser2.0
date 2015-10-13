@@ -106,7 +106,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
     onTabpanelTabChange: function(tabPanel, newCard, oldCard, eOpts) {
         var controller = this,
-            store;
+            store,
+            user = Ext.ux.SessionManager.getUser();
 
         controller.showCommands();
 
@@ -119,6 +120,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 property: "user_id", value: LanistaTrainer.app.currentCustomer.data.id
             });
             store.filters.add (filterFunction);
+
             store.load(function(records, operation, success) {
                 if (!success){
                     console.log( "There were problems in showing measuresTab, Err number: " + operation.error.status);
@@ -128,6 +130,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 }
 
                 var recordsAux;
+
+
                 recordsAux = records.filter( function(item){
                     return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
                 });
@@ -138,6 +142,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 Ext.getStore('MeasuresStore').loadRecords(recordsAux);
                 //tabPanel.down('#measuresChat').redraw();
                 newCard.down('#measuresChat').redraw();
+
+
             });
 
         }else if ( newCard.id == 'caliperTab' ) {
@@ -413,14 +419,10 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
     onShowMeasuresPanel: function(callback) {
         var controller = this,
-            mainStage	= controller.getMainStage(),
-            measuresPanel = controller.getMeasuresPanel(),
+            mainStage = controller.getMainStage(),
+            measuresPanel,
             measuresStore = Ext.getStore('MeasuresStore'),
             user = Ext.ux.SessionManager.getUser();
-
-        measuresPanel.down('#measuresTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
-        measuresPanel.down('#caliperTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
-        measuresPanel.down('#circumferencesTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
 
         //measuresPanel.down('#measuresChat').show();
         //measuresPanel.down('#measuresTable').hide();
@@ -432,6 +434,8 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         controller.testType = '';
         controller.getTestTypesNodes();
 
+
+        /*
         measuresStore.removeFilter('itemsFilter');
         measuresStore.setRemoteFilter( true );
 
@@ -455,19 +459,49 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
             { property: 'record_date',  direction: 'DESC' }
         ]);
 
-        measuresStore.load(function(records, operation, success) {
+        measuresStore.load(function(records, operation, success) { */
             var recordsAux;
 
-            if (!success){
-                console.log( "There were problems in looking for protocolls, Err number: " + operation.error.status);
-                if (operation.error.status === 401 || operation.error.status === 403)
-                    LanistaTrainer.app.fireEvent('reconect');
-                return;
-            }
+            //if (!success){
+            //    console.log( "There were problems in looking for protocolls, Err number: " + operation.error.status);
+            //    if (operation.error.status === 401 || operation.error.status === 403)
+            //        LanistaTrainer.app.fireEvent('reconect');
+            //   return;
+            //}
 
 
-            //Ext.getStore('MeasuresStore').removeAll();
-            //Ext.getStore('MeasuresStore').add(records);
+            //measuresStore.setRemoteFilter( false );
+            //measuresStore.removeFilter('itemsFilter');
+            //filterFunction = new Ext.util.Filter({
+            //    id:'itemsFilter',
+            //    filterFn: function(item){
+            //        return (item.data.weight !== 0 || item.data.height !== 0 || item.data.futrex !== 0);
+            //    }
+            //});
+            //measuresStore.filters.add (filterFunction);
+
+
+            Ext.getStore('CircumferencesStore').proxy.setHeaders({user_role: user.role,
+                                                              user_id: user.id});
+
+            Ext.getStore('CircumferencesStore').sort([
+                { property: 'record_date',  direction: 'DESC' }
+            ]);
+
+            measuresPanel = controller.getMeasuresPanel();
+
+
+            //measuresPanel.down('#measuresTab').down('#measuresChat').show();
+            measuresPanel.down('#measuresTab').down('#measuresTable').hide();
+
+
+            //measuresPanel.down('#measuresTab').down('#measuresChat').setStore( 'MeasuresStore' );
+            measuresPanel.down('#measuresTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
+            measuresPanel.down('#caliperTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
+            measuresPanel.down('#circumferencesTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
+
+        //Ext.getStore('MeasuresStore').removeAll();
+        //Ext.getStore('MeasuresStore').add(records);
 
 
             /********************
@@ -489,10 +523,6 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                          measuresPanel.down('#testsTab').show();
                 },
             1200);
-            */
-
-
-
 
 
             measuresStore.setRemoteFilter( false );
@@ -504,18 +534,19 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
                 }
             });
             measuresStore.filters.add (filterFunction);
-            measuresPanel.down('#measuresTab').down('#measuresChat').redraw();
-            measuresPanel.down('#measuresTab').down('#measuresChat').show();
+        */
+
+
+            //measuresPanel.down('#measuresTab').down('#measuresChat').redraw();
+            //measuresPanel.down('#measuresTab').down('#measuresChat').show();
             measuresPanel.down('#measuresTab').down('#measuresTable').hide();
+
             if (user.role === '2' )
                 measuresPanel.down('#testsTab').show();
-
-
-
             //measuresPanel.down('#measuresChat').redraw();
 
-
             mainStage.add( measuresPanel );
+
             measuresPanel.on('hide', function(component) {
                 component.destroy();
             }, controller);
@@ -539,7 +570,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
             // *** 5 Load data
             controller.loadData();
-        });
+        //});
 
     },
 

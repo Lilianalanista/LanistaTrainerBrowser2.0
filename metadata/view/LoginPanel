@@ -91,9 +91,11 @@
                     "codeClass": null,
                     "userConfig": {
                         "border": false,
+                        "container|align": "stretch",
                         "header": false,
                         "height": 360,
                         "id": "bottonPanel",
+                        "layout": "vbox",
                         "layout|flex": 1,
                         "title": "",
                         "width": null

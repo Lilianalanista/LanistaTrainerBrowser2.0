@@ -25132,28 +25132,33 @@ a.x-color-picker-item:hover {
   width: 152px!important; }
 
 #bottonPanel .x-btn-glyph {
-  height: 150px!important;
-  width: 150px!important;
-  font-size: 72px;
-  line-height: 140px;
-  background-color: rgba(255, 255, 255, 0.2); }
+  height: 110px!important;
+  width: 110px!important;
+  font-size: 50px;
+  line-height: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  float: left; }
 
 #bottonPanel .x-btn-inner {
-  top: 130px!important;
-  font-size: 26px;
+  top: 28px!important;
+  font-size: 19px;
   width: 186px;
   height: 88px;
-  line-height: 25px;
+  line-height: 20px;
   white-space: initial;
-  left: -163px; }
+  left: initial;
+  float: left;
+  text-align: right; }
 
 #bottonPanel .x-panel-body {
-  padding: 0 18%; }
+  padding: 0 0%; }
 
 #bottonPanel .lanista-command-button {
-  width: 165px;
-  height: 250px!important;
+  width: 400px!important;
   margin-left: 0px; }
+
+.lanista-command-button-templates {
+  top: 140px!important; }
 
 .x-help-panel {
   background-color: rgba(255, 255, 255, 0.9);

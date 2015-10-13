@@ -15,18 +15,22 @@
 
 // @require @packageOverrides
 Ext.Loader.setConfig({
-
+    paths: {
+        Overrides: 'overrides'
+    }
 });
 
 
 Ext.application({
 
     requires: [
+        'Ext.Loader',
         'Ext.ux.LanguageManager',
         'Ext.ux.SessionManager',
         'Ext.ux.ConfigManager',
         'Ext.ux.PreviewPlugin',
-        'Ext.util.Cookies'
+        'Ext.util.Cookies',
+        'overrides.packages.Canvas'
     ],
     panels: [
         
@@ -469,6 +473,12 @@ Ext.application({
             }));
 
         }
+
+
+
+
+
+
 
     }
 

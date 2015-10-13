@@ -25132,28 +25132,33 @@ a.x-color-picker-item:hover {
   width: 152px!important; }
 
 #bottonPanel .x-btn-glyph {
-  height: 150px!important;
-  width: 150px!important;
-  font-size: 72px;
-  line-height: 140px;
-  background-color: rgba(255, 255, 255, 0.2); }
+  height: 110px!important;
+  width: 110px!important;
+  font-size: 50px;
+  line-height: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  float: left; }
 
 #bottonPanel .x-btn-inner {
-  top: 130px!important;
-  font-size: 26px;
+  top: 28px!important;
+  font-size: 19px;
   width: 186px;
   height: 88px;
-  line-height: 25px;
+  line-height: 20px;
   white-space: initial;
-  left: -163px; }
+  left: initial;
+  float: left;
+  text-align: right; }
 
 #bottonPanel .x-panel-body {
-  padding: 0 18%; }
+  padding: 0 0%; }
 
 #bottonPanel .lanista-command-button {
-  width: 165px;
-  height: 250px!important;
+  width: 400px!important;
   margin-left: 0px; }
+
+.lanista-command-button-templates {
+  top: 140px!important; }
 
 .x-help-panel {
   background-color: rgba(255, 255, 255, 0.9);
@@ -25904,7 +25909,8 @@ font-size: 18px;
   font-family: 'Lanista Icons';
   font-size: 18px;
   color: red;
-  text-align: right; }
+  text-align: right;
+  font-weight: 900; }
 
 .main-stage-footer {
   text-align: right;
@@ -26879,3 +26885,25 @@ font-size: 18px;
   width: 150%;
   background-size: 75%;
   background-repeat: no-repeat; }
+
+.lanista-header-item-exercise {
+  width: 100%;
+  float: left; }
+
+.lanista-header-item-exercise-left {
+  float: left;
+  color: darkturquoise;
+  width: 30%;
+  text-align: left; }
+
+.lanista-header-item-exercise-delete {
+  width: 45%;
+  float: left;
+  width: 40%;
+  text-align: center; }
+
+.lanista-header-item-exercise-right {
+  color: darkturquoise;
+  text-align: right;
+  width: 30%;
+  float: right; }

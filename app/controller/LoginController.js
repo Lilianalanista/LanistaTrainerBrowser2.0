@@ -191,6 +191,10 @@ Ext.define('LanistaTrainer.controller.LoginController', {
                 text: Ext.ux.LanguageManager.TranslationArray.BUTTON_EXPLORE_TEMPLATES,
                 itemId: 'showTemplatesPanelButton',
                 style: 'float: right;',
+                cls: [
+                    'lanista-command-button',
+                    'lanista-command-button-templates'
+                ],
                 glyph: '110@Lanista Icons' //n
             })
         );

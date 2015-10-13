@@ -15,7 +15,8 @@
         "id": "measuresPanel",
         "requires": [
             "Ext.chart.interactions.Abstract",
-            "Ext.chart.interactions.ItemHighlight"
+            "Ext.chart.interactions.ItemHighlight",
+            "Ext.draw.engine.Canvas"
         ],
         "width": 1200
     },
@@ -378,26 +379,6 @@
                                     ]
                                 },
                                 {
-                                    "type": "Ext.chart.axis.Time",
-                                    "reference": {
-                                        "name": "axes",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "dateFormat": "d-m-Y",
-                                        "fields": [
-                                            "record_date"
-                                        ],
-                                        "step": [
-                                            " [Ext.Date.DAY, 90]"
-                                        ],
-                                        "title": null
-                                    },
-                                    "name": "MyTimeAxis",
-                                    "designerId": "e63f75a1-5340-4d33-a000-2c6789c01225"
-                                },
-                                {
                                     "type": "Ext.chart.axis.Numeric",
                                     "reference": {
                                         "name": "axes",
@@ -444,6 +425,27 @@
                                         "grid": "boolean"
                                     },
                                     "designerId": "818bf438-f5ec-4464-bf27-bfcdcf20a265"
+                                },
+                                {
+                                    "type": "Ext.chart.axis.Time",
+                                    "reference": {
+                                        "name": "axes",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "dateFormat": "d-m-Y",
+                                        "fields": [
+                                            "record_date"
+                                        ],
+                                        "step": [
+                                            " [Ext.Date.MONTH,3]",
+                                            " "
+                                        ],
+                                        "title": null
+                                    },
+                                    "name": "MyTimeAxis",
+                                    "designerId": "e63f75a1-5340-4d33-a000-2c6789c01225"
                                 },
                                 {
                                     "type": "Ext.chart.Legend",

@@ -30,7 +30,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         'Ext.view.Table',
         'Ext.grid.column.Date',
         'Ext.chart.interactions.Abstract',
-        'Ext.chart.interactions.ItemHighlight'
+        'Ext.chart.interactions.ItemHighlight',
+        'Ext.draw.engine.Canvas'
     ],
 
     viewModel: {
@@ -167,18 +168,6 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                         ],
                                         axes: [
                                             {
-                                                type: 'time',
-                                                fields: [
-                                                    'record_date'
-                                                ],
-                                                dateFormat: 'd-m-Y',
-                                                step: [
-                                                    Ext.Date.DAY,
-                                                    90
-                                                ],
-                                                position: 'bottom'
-                                            },
-                                            {
                                                 type: 'numeric',
                                                 fields: [
                                                     'percentage'
@@ -196,6 +185,18 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                                 ],
                                                 grid: true,
                                                 position: 'left'
+                                            },
+                                            {
+                                                type: 'time',
+                                                fields: [
+                                                    'record_date'
+                                                ],
+                                                dateFormat: 'd-m-Y',
+                                                step: [
+                                                    Ext.Date.MONTH,
+                                                    3
+                                                ],
+                                                position: 'bottom'
                                             }
                                         ],
                                         legend: me.processMyLegend3({

@@ -52,7 +52,8 @@
             "Ext.ux.SessionManager",
             "Ext.ux.ConfigManager",
             "Ext.ux.PreviewPlugin",
-            "Ext.util.Cookies"
+            "Ext.util.Cookies",
+            "overrides.packages.Canvas"
         ],
         "stores": [
             "ExerciseInitialStore",
@@ -521,11 +522,34 @@
                     "    }));",
                     "",
                     "}",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
                     ""
                 ]
             },
             "name": "setProxies",
             "designerId": "4b0733de-d84b-4332-ace2-3d8a17523dde"
+        },
+        {
+            "type": "Ext.Loader",
+            "reference": {
+                "name": "loader",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "paths": [
+                    "{        ",
+                    "        'Overrides': 'overrides'",
+                    "    }"
+                ]
+            },
+            "name": "Loader3",
+            "designerId": "2247cb12-f045-42f1-a7c8-27cff1c9906d"
         }
     ]
 }

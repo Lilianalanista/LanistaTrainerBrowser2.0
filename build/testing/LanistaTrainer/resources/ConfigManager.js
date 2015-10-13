@@ -2,7 +2,7 @@ Ext.define('Ext.ux.ConfigManager', {
 	singleton:  		true,
 	root:				'',
 	server:				'',
-    appname:            'http://lanista-training.com/desktop',
+    appname:            'http://athlet-beta.lanista-training.com/',
 	
 	constructor: function(config) {
 		this.callParent();

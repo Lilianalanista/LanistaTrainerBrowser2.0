@@ -59,7 +59,11 @@ Ext.define('LanistaTrainer.view.LoginPanel', {
                     height: 360,
                     id: 'bottonPanel',
                     header: false,
-                    title: ''
+                    title: '',
+                    layout: {
+                        type: 'vbox',
+                        align: 'stretch'
+                    }
                 },
                 {
                     xtype: 'container',
