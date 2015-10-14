@@ -125,16 +125,30 @@ Ext.application({
 
     launch: function() {
         Ext.create('LanistaTrainer.view.MainViewport');
+        var user;
+
         console.log("START");
 
         LanistaTrainer.app.firefoxBrowser = Ext.browser.is.firefox;
+
+        Ext.ux.SessionManager.loadLastUser();
+        user = Ext.ux.SessionManager.getUser();
+
+        if ( Ext.ux.SessionManager.getIsLoggedIn() && !user.language ){
+            window.localStorage.clear();
+            LanistaTrainer.app.panels = [];
+            location.reload(true);
+            return;
+        }
 
         LanistaTrainer.app.fireEvent('loadExercises', function() {
             console.log("EXERCISES LOADED");
 
             Ext.ux.SessionManager.loadLastUser();
-            if ( !Ext.ux.SessionManager.getIsLoggedIn() )
+            user = Ext.ux.SessionManager.getUser();
+            if ( !Ext.ux.SessionManager.getIsLoggedIn()){
                 LanistaTrainer.app.fireEvent('showLoginPanel');
+            }
             else
             {
                 var user = Ext.ux.SessionManager.getUser(),
@@ -219,7 +233,8 @@ Ext.application({
                                     image: data.user.image,
                                     last_change: data.user.last_change,
                                     language: data.user.language,
-                                    sincronized: data.user.sincronized
+                                    sincronized: data.user.sincronized,
+                                    role: data.user.role
                                 });
                                 LanistaTrainer.app.currentCustomer = ActiveCustomer;
                                 LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'CustomerExercisesPanel';

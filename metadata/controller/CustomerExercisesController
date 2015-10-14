@@ -575,7 +575,7 @@
                     "            groupField: 'exercise_id_forgroup',",
                     "            sorters: [{property: 'execution_date', direction: 'ASC'}]",
                     "        });",
-                    "        ",
+                    "",
                     "        groupsFromDate = gridStore.getGroups();",
                     "        if (groupsFromDate.length){",
                     "            for ( var j = 0; j < groupsFromDate.length; j++ ) {",

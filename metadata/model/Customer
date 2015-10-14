@@ -233,6 +233,19 @@
             },
             "name": "MyBoolean",
             "designerId": "bcbbdb56-db33-4e28-b575-e906133f03f5"
+        },
+        {
+            "type": "Ext.data.field.String",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "role"
+            },
+            "name": "MyString53",
+            "designerId": "d6a9f968-e18a-4a18-9554-0b6dd49ba962"
         }
     ]
 }

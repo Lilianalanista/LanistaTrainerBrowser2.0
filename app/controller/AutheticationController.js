@@ -135,7 +135,8 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                                             image: data.user.image,
                                             last_change: data.user.last_change,
                                             language: data.user.language,
-                                            sincronized: data.user.sincronized
+                                            sincronized: data.user.sincronized,
+                                            role: data.user.role
                                         });
 
                                         LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {

@@ -23575,33 +23575,39 @@ a.x-monthpicker-item-inner:hover {
 
 /* line 423, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #bottonPanel .x-btn-glyph {
-  height: 150px!important;
-  width: 150px!important;
-  font-size: 72px;
-  line-height: 140px;
-  background-color: rgba(255, 255, 255, 0.2); }
+  height: 110px!important;
+  width: 110px!important;
+  font-size: 50px;
+  line-height: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  float: left; }
 
-/* line 431, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 432, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #bottonPanel .x-btn-inner {
-  top: 130px!important;
-  font-size: 26px;
+  top: 28px!important;
+  font-size: 19px;
   width: 186px;
   height: 88px;
-  line-height: 25px;
+  line-height: 20px;
   white-space: initial;
-  left: -163px; }
+  left: initial;
+  float: left;
+  text-align: right; }
 
-/* line 441, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 444, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #bottonPanel .x-panel-body {
-  padding: 0 18%; }
+  padding: 0 0%; }
 
-/* line 445, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 448, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #bottonPanel .lanista-command-button {
-  width: 165px;
-  height: 250px!important;
+  width: 400px!important;
   margin-left: 0px; }
 
-/* line 451, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 453, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+.lanista-command-button-templates {
+  top: 140px!important; }
+
+/* line 457, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-help-panel {
   background-color: rgba(255, 255, 255, 0.9);
   width: 1100px !important;
@@ -23621,27 +23627,27 @@ a.x-monthpicker-item-inner:hover {
   box-shadow: rgba(0, 0, 0, 0.8) 0 0.2em 0.6em;
   background-image: none; }
 
-/* line 471, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 477, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-help-panel .x-panel-body {
   border: 0; }
 
-/* line 475, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 481, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-help-panel .x-window-body-default {
   background-color: transparent; }
 
-/* line 479, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 485, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .item-clicked {
   cursor: pointer; }
 
-/* line 483, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 489, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .item-not-clicked {
   cursor: default; }
 
-/* line 489, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 495, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #exercisesPanel .x-panel-body-default {
   top: 95px!important; }
 
-/* line 495, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 501, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-user-fieldset {
   padding: 25px 0px;
   margin-left: auto;
@@ -23649,21 +23655,21 @@ a.x-monthpicker-item-inner:hover {
   margin-top: 25px;
   width: 800px!important; }
 
-/* line 503, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 509, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-user-settings-field {
   width: 800px!important; }
 
-/* line 507, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 513, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-user-fieldset .x-fieldset-body {
   width: 820px!important;
   margin-left: 23px; }
 
-/* line 512, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 518, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-user-info-panel .x-fit-panel .x-panel-default {
   padding-top: 120px!important;
   top: 0px!important; }
 
-/* line 517, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 523, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-user-info-panel .x-panel-body-default {
   overflow: auto!important;
   width: 880px!important;
@@ -23671,12 +23677,12 @@ a.x-monthpicker-item-inner:hover {
   margin-left: auto!important;
   margin-right: auto!important; }
 
-/* line 525, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 531, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-boundlist-item img {
   padding-left: 10px;
   padding-right: 20px; }
 
-/* line 531, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 537, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .trainer-foto-header, .trainer-logo-header {
   top: 120px!important;
   position: relative!important;
@@ -23690,25 +23696,25 @@ a.x-monthpicker-item-inner:hover {
   letter-spacing: -1px !important;
   text-transform: uppercase!important; }
 
-/* line 545, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 551, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-user-setup.trainer-logo-header {
   right: -108px !important; }
 
-/* line 549, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 555, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-user-setup.trainer-foto-header {
   right: -200px !important; }
 
-/* line 553, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 559, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-user-setup.lansita-header-customer-image-not-found {
   position: relative;
   right: -90px !important; }
 
-/* line 559, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 565, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-image-panel-settings {
   padding-left: 320px;
   padding-top: 180px; }
 
-/* line 565, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 571, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .customer-list-background {
   width: 100px;
   height: 100px;
@@ -23723,7 +23729,7 @@ a.x-monthpicker-item-inner:hover {
   margin-right: auto;
   margin-top: -100px; }
 
-/* line 580, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 586, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .customer-list-image {
   width: 100px;
   height: 100px;
@@ -23737,29 +23743,29 @@ a.x-monthpicker-item-inner:hover {
   border-width: 4px!important;
   border-color: #34acfb; }
 
-/* line 594, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 600, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .customer-item {
   text-align: center;
   float: left;
   width: 205px;
   height: 190px; }
 
-/* line 601, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 607, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .customer-list-lastname {
   font-family: "Avenir LT Std";
   text-transform: uppercase;
   font-weight: bold;
   font-size: 130%; }
 
-/* line 608, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 614, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .customer-list-firstname {
   font-size: 130%; }
 
-/* line 612, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 618, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercises-header, .customer-header {
   margin-top: 18px!important; }
 
-/* line 616, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 622, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .header-filter {
   float: left;
   font-family: "Avenir LT Light";
@@ -23769,17 +23775,17 @@ a.x-monthpicker-item-inner:hover {
   margin-left: -530px;
   width: 486px; }
 
-/* line 628, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 634, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercise-filter-plan {
   margin-left: -457px !important;
   margin-top: -50px !important; }
 
-/* line 633, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 639, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .filterTitle {
   width: 30%!important;
   float: left!important; }
 
-/* line 638, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 644, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .filterTitle span {
   width: 100%!important;
   float: left!important;
@@ -23789,7 +23795,7 @@ a.x-monthpicker-item-inner:hover {
   line-height: 23px;
   text-align: center; }
 
-/* line 648, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 654, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .filterText {
   width: 66%;
   float: left!important;
@@ -23805,29 +23811,29 @@ a.x-monthpicker-item-inner:hover {
   border-top: 0;
   color: gray; }
 
-/* line 664, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 670, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .header-filter > .filterText:first-of-type {
   border-top: 1px solid #4c4c4c!important; }
 
-/* line 669, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 675, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customerexercises-panel .x-panel-default {
   width: 230px!important; }
 
-/* line 673, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 679, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercise-list-img-right {
   margin-right: 0px!important;
   border-radius: 0 3px 3px 0!important; }
 
-/* line 678, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 684, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercise-list-img-left {
   margin-left: 0px!important;
   border-radius: 3px 0 0 3px!important; }
 
-/* line 697, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 703, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .protocolls-panel .x-box-target {
   height: 0px; }
 
-/* line 701, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 707, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .protocolls-panel .x-box-target {
   width: 220px!important; }
 
@@ -23844,49 +23850,49 @@ border-color: transparent!important;
 font-size: 18px;
 }
 */
-/* line 719, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 725, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-row-cell {
   height: 20px;
   line-height: 16px; }
 
-/* line 724, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 730, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-grid-row {
   display: none;
   border-color: transparent!important; }
 
-/* line 729, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 735, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise .x-grid-view {
   background-color: #f4f4f4!important;
   width: 230px!important; }
 
-/* line 734, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 740, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise .x-grid-body {
   width: 230px!important; }
 
-/* line 738, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 744, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise .x-column-header {
   text-align: center;
   font-size: 18px;
   width: 196px!important; }
 
-/* line 744, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 750, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise .x-grid-with-row-lines .x-grid-table {
   width: 215px!important;
   height: 0px!important; }
 
-/* line 749, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 755, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise .x-grid-group-hd {
   border-color: transparent!important; }
 
-/* line 753, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 759, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise .x-grid-with-row-lines .x-grid-td {
   font-size: 18px; }
 
-/* line 757, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 763, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise td {
   padding-top: 0px; }
 
-/* line 762, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 768, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise td .x-grid-group-hd {
   border: 1px solid #b9b9b9!important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
@@ -23901,47 +23907,47 @@ font-size: 18px;
   padding: 0px 0px 4px 0px;
   width: 182px!important; }
 
-/* line 777, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 783, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise td .x-grid-group-hd .x-grid-group-title input {
   margin-right: -4px; }
 
-/* line 781, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 787, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-exercise .x-group-hd-container table {
   border-color: transparent; }
 
-/* line 786, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 792, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-protocolls-weight {
   font-size: 12px;
   line-height: 10px;
   margin-left: 55px; }
 
-/* line 793, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 799, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-client-blue {
   color: dodgerblue; }
 
-/* line 798, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 804, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainer-black {
   color: black; }
 
-/* line 802, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 808, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-protocolls-weight-p {
   margin-top: 0px!important;
   margin-bottom: 0px!important; }
 
-/* line 807, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 813, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-img-protocolls .img-right .x-border-box * {
   margin-left: 15px!important; }
 
-/* line 811, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 817, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-img-protocolls .img-left .x-border-box * {
   margin-left: -4px !important; }
 
-/* line 815, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 821, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-grid-customer-exercise-column span {
   font-size: 17px;
   color: lightslategray; }
 
-/* line 821, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 827, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .blured {
   -webkit-filter: blur(10px);
   filter: blur(10px);
@@ -23951,7 +23957,7 @@ font-size: 18px;
   -ms-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out; }
 
-/* line 831, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 837, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercise_name {
   margin-top: 120px;
   font-family: Bebas Neue;
@@ -23962,53 +23968,53 @@ font-size: 18px;
   width: 70%!important;
   float: right!important; }
 
-/* line 842, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 848, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercise-images {
   height: 625px;
   width: 250px;
   position: fixed;
   top: 130px!important; }
 
-/* line 849, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 855, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercise-image {
   height: 40%;
   position: relative;
   z-index: 2; }
 
-/* line 855, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 861, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercise-panel-content {
   top: 220px!important; }
 
-/* line 859, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 865, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercise-planpanel {
   background-color: #f4f4f4!important;
   padding-top: 15px; }
 
-/* line 864, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 870, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercise-description {
   margin-left: 325px;
   font-size: 18px; }
 
-/* line 869, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 875, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercise-coaching-key, .exercise-errors {
   margin-top: 40px; }
 
-/* line 873, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 879, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercise-coaching-key span, .exercise-errors span {
   font-family: 'Roboto Medium';
   font-size: 20px; }
 
-/* line 878, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 884, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-tbar-exercise .x-tab-bar-strip-default {
   border-color: grey;
   background-color: #34acfb;
   left: 250px; }
 
-/* line 884, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 890, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-tbar-exercise .x-tab-default-top-active, .lanista-tbar-exercise .x-tab-default-top, .lanista-tbar-exercise .x-tab-default-top-over {
   background-image: transparent; }
 
-/* line 888, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 894, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercise-panel {
   position: fixed;
   top: 50%;
@@ -24022,17 +24028,17 @@ font-size: 18px;
   -ms-transform: translateX(-50%) translateY(-50%);
   background-color: rgba(255, 255, 255, 0.498); }
 
-/* line 902, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 908, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .md-show {
   visibility: visible; }
 
-/* line 906, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 912, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-protocoll {
   width: 650px;
   left: 370px;
   font-size: 17px; }
 
-/* line 912, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 918, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .protocoll-configuration {
   font-family: "Roboto Medium";
   font-size: 40px;
@@ -24042,7 +24048,7 @@ font-size: 18px;
   text-align: right;
   float: right!important; }
 
-/* line 922, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 928, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-group-grid-exercise {
   background-color: cornflowerblue;
   height: 25px;
@@ -24050,15 +24056,15 @@ font-size: 18px;
   padding-top: 7px;
   color: white; }
 
-/* line 930, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 936, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercises-protocolls-td {
   font-size: 14px; }
 
-/* line 934, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 940, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #rowProtocolls .x-column-header-inner {
   background: transparent!important; }
 
-/* line 939, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 945, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weightPicker {
   left: 0px !important;
   width: 320px !important;
@@ -24068,7 +24074,7 @@ font-size: 18px;
   background-color: rgba(255, 255, 255, 0.9);
   position: absolute; }
 
-/* line 949, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 955, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .numberpad-button {
   float: left;
   width: 55px;
@@ -24077,7 +24083,7 @@ font-size: 18px;
   margin-bottom: 0;
   margin-top: 5px; }
 
-/* line 959, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 965, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .numberpad {
   width: 260px;
   height: 260px;
@@ -24085,7 +24091,7 @@ font-size: 18px;
   margin-left: auto;
   margin-top: 10px; }
 
-/* line 967, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 973, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .numberpad-button span {
   border-style: solid;
   border-radius: 50%;
@@ -24097,7 +24103,7 @@ font-size: 18px;
   color: #4aacd8;
   width: 100%; }
 
-/* line 979, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 985, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weightPicker .x-btn-default-small, .lanista-trainingPicker .x-btn-default-small {
   margin-right: auto;
   margin-left: auto;
@@ -24112,7 +24118,7 @@ font-size: 18px;
   left: 25px;
   margin-top: 10px; }
 
-/* line 994, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1000, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weightPicker input, .lanista-trainingPicker input {
   text-align: right;
   font-size: 25px;
@@ -24123,49 +24129,49 @@ font-size: 18px;
   min-height: 0;
   width: 100%; }
 
-/* line 1005, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1011, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weightPicker .x-form-item-body, .lanista-trainingPicker .x-form-item-body {
   width: 260px!important;
   top: 5px;
   left: 26px; }
 
-/* line 1011, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1017, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-font {
   font-family: 'Lanista-2-0';
   color: #4aacd8;
   font-size: 32px; }
 
-/* line 1017, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1023, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .weight-option-button {
   width: 33.33%;
   height: 42px!important;
   float: left;
   text-align: center; }
 
-/* line 1024, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1030, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .weight-option-button .x-panel-body-default {
   height: 42px!important; }
 
-/* line 1028, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1034, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .weight-option-button span {
   font-size: 18px;
   height: 42px;
   width: 100%; }
 
-/* line 1034, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1040, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .training-helpbuttons {
   margin-top: 10px; }
 
-/* line 1038, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1044, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weightPicker .x-btn-wrap, .lanista-trainingPicker .x-btn-wrap {
   height: 40px!important; }
 
-/* line 1042, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1048, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weightPicker .x-btn-button {
   height: 40px!important;
   width: 250px!important; }
 
-/* line 1047, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1053, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weightPicker .x-btn-default-small .x-btn-inner, .lanista-trainingPicker .x-btn-default-small .x-btn-inner {
   height: 40px!important;
   width: 250px!important;
@@ -24173,12 +24179,12 @@ font-size: 18px;
   line-height: 31px;
   font-weight: bold; }
 
-/* line 1055, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1061, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .weight-option-button .lanista-traininghelp-item {
   width: 30px;
   margin-left: 37px; }
 
-/* line 1062, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1068, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainingPicker {
   left: auto!important;
   right: 0px !important;
@@ -24188,7 +24194,7 @@ font-size: 18px;
   background-color: rgba(255, 255, 255, 0.9);
   position: absolute; }
 
-/* line 1073, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1079, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainingPicker .x-toolbar-default {
   height: 53px!important;
   border-color: transparent;
@@ -24196,23 +24202,23 @@ font-size: 18px;
   background-image: none;
   background-color: transparent; }
 
-/* line 1081, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1087, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainingPicker .lanista-buttongroup-traininghelp {
   width: 200px!important; }
 
-/* line 1085, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1091, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainingPicker .x-box-target {
   height: 49px!important; }
 
-/* line 1089, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1095, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-training-clear .x-btn-button {
   height: 40px; }
 
-/* line 1093, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1099, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainingPicker .x-btn-group-default-framed {
   border-color: black!important; }
 
-/* line 1097, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1103, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainingPicker .x-btn-group-default-framed-notitle {
   border-radius: 11px!important;
   background-color: transparent!important;
@@ -24220,11 +24226,11 @@ font-size: 18px;
   width: 260px!important;
   left: 22px!important; }
 
-/* line 1108, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1114, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weights-rb input {
   width: 13px; }
 
-/* line 1112, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1118, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightKilos {
   width: 127px;
   float: left;
@@ -24232,16 +24238,16 @@ font-size: 18px;
   margin-top: 8px;
   margin-left: 21px; }
 
-/* line 1120, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1126, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightKilos .x-fieldset-header-text, #weightMeasure .x-fieldset-header-text, #weightSets .x-fieldset-header-text, #weightSets .x-fieldset-header-text, #weightIndications .x-fieldset-header-text {
   font: normal 12px/14px Roboto Light;
   font-size: 14px; }
 
-/* line 1125, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1131, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightKilos .x-form-item-body, #weightMeasure .x-form-item-body, #weightSets .x-form-item-body {
   left: 10px; }
 
-/* line 1129, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1135, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightMeasure {
   width: 210px;
   height: 120px;
@@ -24249,31 +24255,31 @@ font-size: 18px;
   margin-top: 8px;
   float: left; }
 
-/* line 1137, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1143, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightMeasure .lanista-weights-input, #weightKilos .lanista-weights-input, #weightSets .lanista-weights-input {
   float: left;
   margin-top: 23px;
   margin-left: 10px; }
 
-/* line 1143, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1149, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightMeasure .lanista-weights-input {
   margin-top: 35px; }
 
-/* line 1147, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1153, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightMeasure .lanista-weights-rb {
   float: right;
   width: 85px!important; }
 
-/* line 1152, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1158, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weights-echrb .x-form-cb-wrap {
   height: 25px;
   float: left; }
 
-/* line 1157, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1163, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #protocollKgValue {
   margin-top: 11px; }
 
-/* line 1161, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1167, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weights-input input {
   text-align: right;
   font-size: 15px;
@@ -24287,88 +24293,88 @@ font-size: 18px;
   line-height: 20px;
   font-weight: bold; }
 
-/* line 1175, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1181, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightsWindow .x-border-box * {
   padding: 23px 10px 10px 20px; }
 
-/* line 1179, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1185, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightBottons {
   border: none; }
 
-/* line 1187, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1193, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightBottons a {
   float: right; }
 
-/* line 1191, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1197, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightSets .x-form-trigger-wrap {
   width: 80px!important; }
 
-/* line 1195, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1201, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightSets {
   width: 127px!important;
   height: 120px!important;
   margin-top: 8px!important; }
 
-/* line 1201, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1207, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #exerciseSets {
   margin-top: 11px; }
 
-/* line 1205, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1211, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightIndications {
   left: 19px!important;
   width: 449px!important;
   top: 10px; }
 
-/* line 1211, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1217, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #exerciseIndications {
   width: 400px!important; }
 
-/* line 1215, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1221, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #exerciseIndications .x-form-item-body {
   left: 22px; }
 
-/* line 1219, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1225, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightsWindow .x-window-body-default {
   height: 311px!important;
   background: white!important; }
 
-/* line 1224, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1230, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightsWindow .x-window-default {
   background: white!important;
   background-color: transparent!important; }
 
-/* line 1229, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1235, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightsWindow {
   background: white!important;
   background-color: transparent!important; }
 
-/* line 1236, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1242, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-toolbar-training .x-btn-default-toolbar-small {
   width: 87px!important;
   height: 43px!important;
   top: 0px!important;
   left: -2px !important; }
 
-/* line 1243, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1249, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-toolbar-training .x-btn-default-toolbar-small .x-btn-inner {
   font-size: 18px;
   font-weight: bold; }
 
-/* line 1248, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1254, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .button-selected-color {
   background-color: silver;
   border-color: black; }
 
-/* line 1253, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1259, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .button-unselected-color {
   background-color: transparent; }
 
-/* line 1257, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1263, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainingPicker .lanista-closeProtocollButton {
   left: 230px!important;
   width: 80px!important; }
 
-/* line 1262, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1268, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainingPicker .lanista-saveProtocollButton {
   left: 140px!important;
   width: 80px!important;
@@ -24377,26 +24383,26 @@ font-size: 18px;
   font-size: 21px;
   line-height: 51px; }
 
-/* line 1271, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1277, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-closeProtocollButton .x-btn-glyph, .lanista-saveProtocollButton .x-btn-glyph {
   height: 58px!important;
   width: 58px!important;
   font-size: 21px;
   line-height: 51px; }
 
-/* line 1278, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1284, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-trainingPicker .x-fieldset {
   border-color: transparent; }
 
-/* line 1284, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1290, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-plan-panel .x-panel-default {
   margin-top: 100px; }
 
-/* line 1288, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1294, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-list-item-selected {
   box-shadow: 0 0 20px #59d76e; }
 
-/* line 1292, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1298, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-plan-exercise {
   width: 180px!important;
   height: 195px!important;
@@ -24406,11 +24412,11 @@ font-size: 18px;
   margin-left: 20px;
   float: left; }
 
-/* line 1302, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1308, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-headerplan-panel {
   top: 100px!important; }
 
-/* line 1306, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1312, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-header-info {
   width: 40%;
   color: #999;
@@ -24419,7 +24425,7 @@ font-size: 18px;
   font-size: 17px;
   padding-top: 20px; }
 
-/* line 1315, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1321, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-header-description {
   margin-top: 10px;
   width: 50%;
@@ -24433,19 +24439,19 @@ font-size: 18px;
   border-color: #e6e6e6;
   font-family: 'Roboto Light'; }
 
-/* line 1329, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1335, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-header-attribute {
   width: 30%;
   float: left; }
 
-/* line 1334, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1340, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-header-value {
   float: right;
   width: 70%;
   text-align: right;
   font-family: 'Roboto Medium'; }
 
-/* line 1341, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1347, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercices-foter {
   height: 35px;
   box-shadow: 0 1px 0 0 #fff inset;
@@ -24459,7 +24465,7 @@ font-size: 18px;
   font-family: 'Roboto Light'!important;
   font-size: 14px; }
 
-/* line 1355, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1361, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercices-title {
   font-family: 'Roboto Medium';
   font-size: 13px;
@@ -24471,20 +24477,20 @@ font-size: 18px;
   height: 70px!important;
   background-color: white; }
 
-/* line 1367, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1373, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercices-weight {
   float: left; }
 
-/* line 1371, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1377, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercices-training {
   float: right; }
 
-/* line 1375, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1381, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-exercices-sets {
   text-align: center;
   width: 100%; }
 
-/* line 1380, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1386, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .exercise-apply-delete {
   font-family: 'Lanista Icons';
   font-size: 18px;
@@ -24492,59 +24498,59 @@ font-size: 18px;
   text-align: right;
   font-weight: 900; }
 
-/* line 1389, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1395, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .main-stage-footer {
   text-align: right;
   font-size: 13px;
   color: #5f7883; }
 
-/* line 1396, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1402, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-configuration-tabpanel .protocoll-configuration {
   width: 100%;
   text-align: left!important; }
 
-/* line 1401, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1407, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-configuration-tabpanel .x-form-textarea {
   width: 650px!important; }
 
-/* line 1405, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1411, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customerexercises-panel .lanista-grid-plans-customer {
   width: 450px!important;
   margin-left: 12px; }
 
-/* line 1410, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1416, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customerexercises-panel .lanista-grid-plans-customer .x-grid-view {
   width: 450px!important; }
 
-/* line 1414, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1420, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customerexercises-panel .lanista-grid-plans-customer .x-grid-body {
   width: 430px!important; }
 
-/* line 1418, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1424, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customerexercises-panel .lanista-grid-plans-customer .x-column-header {
   width: 450px!important; }
 
-/* line 1422, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1428, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customerexercises-panel .lanista-grid-plans-customer .x-grid-with-row-lines .x-grid-table .x-box-target {
   width: 450px!important; }
 
-/* line 1426, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1432, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customerexercises-panel .x-grid-header-ct {
   width: 450px!important; }
 
-/* line 1430, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1436, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-name-plan {
   float: left;
   font-size: 15px;
   width: 65%; }
 
-/* line 1436, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1442, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-delete-plan {
   width: 17%;
   font-size: 15px!important;
   text-align: center; }
 
-/* line 1442, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1448, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-createdate-plan {
   float: right;
   text-align: center;
@@ -24552,7 +24558,7 @@ font-size: 18px;
   font-size: 12px;
   color: #4aacd8; }
 
-/* line 1451, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1457, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #listsContainer {
   z-index: 2;
   border: 1px solid #999;
@@ -24563,12 +24569,12 @@ font-size: 18px;
   margin-bottom: 10px;
   left: 494px; }
 
-/* line 1462, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1468, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .option-buttons {
   margin-top: 110px;
   margin-bottom: 10px; }
 
-/* line 1467, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1473, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .option-buttons .option-active {
   background-color: white!important;
   background-image: none;
@@ -24579,7 +24585,7 @@ font-size: 18px;
   margin-top: 0;
   color: black!important; }
 
-/* line 1478, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1484, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .option-buttons .x-btn-default-small {
   border-radius: 0;
   margin-right: 20px;
@@ -24589,17 +24595,17 @@ font-size: 18px;
   transition: 500ms linear 0s;
   height: 30px!important; }
 
-/* line 1488, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1494, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .option-buttons .x-btn-inner {
   font-weight: bold;
   font-size: 140%;
   color: white; }
 
-/* line 1494, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1500, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .option-buttons .option-active .x-btn-inner {
   color: black!important; }
 
-/* line 1498, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1504, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #showPlansOption {
   background-image: none;
   border: 0;
@@ -24607,7 +24613,7 @@ font-size: 18px;
   background-color: #4aacd8;
   width: 100%; }
 
-/* line 1506, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1512, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #showWarningsOption {
   margin-top: 20px;
   background-image: none;
@@ -24616,73 +24622,73 @@ font-size: 18px;
   background-color: #fdb825;
   width: 95%; }
 
-/* line 1515, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1521, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-icon {
   font-family: 'Lanista Icons';
   font-size: 18px; }
 
-/* line 1520, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1526, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-color-plan-delete {
   color: red;
   float: left!important;
   font-weight: 900; }
 
-/* line 1526, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1532, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-delete_icon_dot {
   float: left!important; }
 
-/* line 1530, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1536, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-color-plan-no-delete {
   color: silver!important;
   float: left!important;
   font-weight: 900; }
 
-/* line 1536, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1542, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-grid-plan-rowsize {
   padding-top: 8px;
   padding-bottom: 8px; }
 
-/* line 1541, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1547, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-user-fieldset .x-fieldset-header-text, .lanista-myexercise-configuration .x-fieldset-header-text {
   font: 20px/22px Roboto Light;
   color: #000;
   padding: 1px 0; }
 
-/* line 1547, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1553, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #planDescription .x-form-text {
   height: 100px; }
 
-/* line 1551, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1557, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #trainingPlanOptions .x-fieldset-body {
   width: 820px!important;
   margin-left: 23px;
   margin-top: 25px; }
 
-/* line 1558, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1564, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-css-shadow {
   z-index: 0!important;
   box-shadow: transparent!important;
   width: 0!important;
   height: 0!important; }
 
-/* line 1565, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1571, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-video {
   width: 100% !important;
   height: 75% !important;
   z-index: 6 !important; }
 
-/* line 1571, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1577, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-video-item {
   width: 100%;
   height: 85%;
   position: relative;
   background: black; }
 
-/* line 1578, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1584, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-video-window span {
   background: black!important; }
 
-/* line 1583, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1589, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-copyright {
   height: 20px!important;
   left: -100px !important;
@@ -24690,7 +24696,7 @@ font-size: 18px;
   width: 1423px;
   text-align: right; }
 
-/* line 1591, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1597, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-copyrights-text {
   display: block!important;
   font-size: 13px;
@@ -24698,98 +24704,98 @@ font-size: 18px;
   text-align: left;
   padding-left: 193px; }
 
-/* line 1599, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1605, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-copyrights-text span {
   font-family: 'Harabara Bold'; }
 
-/* line 1603, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1609, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-copyright .x-fit-item {
   position: absolute!important; }
 
-/* line 1609, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1615, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-delete-search {
   color: limegreen;
   font-size: 13px!important;
   font-weight: 600; }
 
-/* line 1615, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1621, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-color-delete {
   color: red;
   font-weight: 600; }
 
-/* line 1620, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1626, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-color-no-delete {
   color: limegreen;
   font-weight: 600; }
 
-/* line 1626, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1632, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-header-color-favorites {
   background-color: rgba(52, 172, 251, 0.2) !important; }
 
-/* line 1630, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1636, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-header-color-favorites .header-title {
   color: #34acfb!important; }
 
-/* line 1635, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1641, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-list-itemrounded-selected .customer-list-background {
   box-shadow: 0 0 20px #59d76e; }
 
-/* line 1642, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1648, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-list-itemrounded-selected-delete .customer-list-background,
 .lanista-x-exercise .lanista-list-itemrounded-selected-delete,
 .lanista-exercise-planpanel .lanista-list-itemrounded-selected-delete {
   box-shadow: 0 0 20px #FC0536!important; }
 
-/* line 1646, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1652, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #viewCustomers, #viewFavorites {
   top: 10px!important; }
 
-/* line 1650, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1656, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #viewFavorites {
   top: 13px!important; }
 
-/* line 1654, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1660, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-favorites-delete {
   float: right;
   margin-right: 25px; }
 
-/* line 1659, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1665, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-item-delete {
   text-align: right; }
 
-/* line 1663, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1669, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-active .x-btn-glyph {
   box-shadow: 0 0 5px #4aacd8,inset 0 0 20px #4aacd8;
   background-color: #4aacd8;
   color: white;
   overflow: visible; }
 
-/* line 1671, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1677, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-duration-icon {
   font-family: 'Lanista Icons';
   color: #999;
   float: left;
   font-size: 18px; }
 
-/* line 1678, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1684, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-privacy-icon {
   font-family: 'Lanista Icons';
   color: #999;
   float: right;
   font-size: 18px; }
 
-/* line 1685, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1691, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #templatesPanel, #defaultPlanValuesPanel {
   padding-top: 120px; }
 
-/* line 1689, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1695, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-content {
   height: 142px;
   overflow: hidden;
   background-image: linear-gradient(to bottom right, #f7f7f7, #e0e0e0);
   text-align: left; }
 
-/* line 1696, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1702, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-name {
   height: 40px;
   line-height: 15px;
@@ -24799,7 +24805,7 @@ font-size: 18px;
   margin: 10px;
   margin-top: 20px; }
 
-/* line 1706, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1712, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-description {
   font-size: 13px;
   padding-left: 10px;
@@ -24807,7 +24813,7 @@ font-size: 18px;
   height: 70px;
   overflow: hidden; }
 
-/* line 1714, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1720, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-template-item {
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -24821,7 +24827,7 @@ font-size: 18px;
   transition: 100ms linear 0s;
   float: left; }
 
-/* line 1728, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1734, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-duration {
   font-family: 'Roboto Medium';
   color: #555;
@@ -24829,7 +24835,7 @@ font-size: 18px;
   font-size: 16px;
   float: left; }
 
-/* line 1736, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1742, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-footer {
   height: 35px;
   box-shadow: 0 1px 0 0 #fff inset;
@@ -24840,14 +24846,14 @@ font-size: 18px;
   position: relative;
   overflow: hidden; }
 
-/* line 1747, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1753, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-header-plan-duration {
   text-transform: initial;
   font-size: 16px;
   font-family: "Roboto Medium";
   line-height: 15px; }
 
-/* line 1754, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1760, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .dashboard-customer-background {
   margin-right: inherit;
   margin-top: 35px;
@@ -24866,7 +24872,7 @@ font-size: 18px;
   top: 10px;
   position: relative; }
 
-/* line 1773, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1779, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .plan-header-customer-info {
   margin-right: inherit;
   margin-top: -40px;
@@ -24881,7 +24887,7 @@ font-size: 18px;
   border-color: cornflowerblue;
   border-width: thin; }
 
-/* line 1788, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1794, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-plan-default-value {
   font-family: "Roboto Medium";
   font-size: 40px;
@@ -24890,139 +24896,139 @@ font-size: 18px;
   margin-top: 150px;
   margin-left: 200px; }
 
-/* line 1797, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1803, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-setrounds {
   margin-top: 230px;
   margin-left: 290px; }
 
-/* line 1803, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1809, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-command-button-cancel-defaultvalues {
   z-index: 10; }
 
-/* line 1808, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1814, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-header-template {
   padding-top: 30px; }
 
-/* line 1813, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1819, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-myexercise-panel {
   padding-top: 95px!important;
   top: 0px!important; }
 
-/* line 1818, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1824, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-myexercise-configuration {
   margin-top: 12px;
   margin-bottom: 12px; }
 
-/* line 1823, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1829, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-myexercise-configuration {
   border: 0px;
   padding: 0px 0px!important; }
 
-/* line 1828, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1834, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-myexercise-configuration legend {
   -webkit-padding-start: 0px!important; }
 
-/* line 1832, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1838, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-field-myexercise .x-form-item-body {
   width: 35%!important; }
 
-/* line 1836, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1842, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-field-myexercise .x-form-item-body input {
   border-width: 1px 1px 0px 0px; }
 
-/* line 1840, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1846, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-field-myexercise .x-field-label-cell {
   padding-top: 10px!important;
   background-color: gainsboro;
   border-top: 1px solid #fff; }
 
-/* line 1846, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1852, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-myexercise-configuration .x-form-text {
   border-bottom: 0px; }
 
-/* line 1850, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1856, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-myexercise-configuration .lanista-field-myexercise:last-of-type .x-field-label-cell, .lanista-field-myexercise:last-of-type .x-field-label-cell {
   border-bottom-left-radius: 0.4em; }
 
-/* line 1854, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1860, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-myexercise-configuration .lanista-field-myexercise:first-of-type .x-field-label-cell, .lanista-field-myexercise:first-of-type .x-field-label-cell {
   border-top: 1px solid gainsboro!important; }
 
-/* line 1858, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1864, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-myexercise-configuration .lanista-field-myexercise:last-of-type .x-form-field {
   border-bottom: 1px solid gainsboro; }
 
-/* line 1862, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1868, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-myexercise-panel .lanista-field-myexercise-other input {
   border-bottom-width: 1px; }
 
-/* line 1866, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1872, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-myexercise-img {
   height: 300px;
   width: 45%;
   background-color: #f7f7f7;
   background-size: cover; }
 
-/* line 1873, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1879, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .customer-exercise-img-right {
   float: right; }
 
-/* line 1877, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1883, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .customer-exercise-img-left {
   float: left; }
 
-/* line 1881, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1887, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-myexercise-image-title {
   font-size: 17px;
   margin-top: 12px;
   height: 32px; }
 
-/* line 1887, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1893, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-myexercise-image-title-right {
   float: right; }
 
-/* line 1891, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1897, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customer-myexercise-image-title-left {
   float: left; }
 
-/* line 1896, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1902, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-measures-panel {
   margin-top: 120px; }
 
-/* line 1901, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1907, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .menu-customer-first_name, .menu-customer-last_name {
   font-size: 17px;
   font-family: Roboto Medium; }
 
-/* line 1906, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1912, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .menu-customer-first_name {
   float: left; }
 
-/* line 1910, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1916, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .menu-customer-email {
   font-style: italic;
   font-size: 15px; }
 
-/* line 1915, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1921, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #myExerciseInfoPanel {
   top: 100px; }
 
-/* line 1920, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1926, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #titlesCustomersAlerts, #titlesPlans {
   width: 310px;
   height: 633px!important; }
 
-/* line 1926, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1932, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #customers {
   width: 26%;
   left: 315px!important; }
 
-/* line 1932, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1938, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-birthday-customer-item {
   height: 75px;
   overflow: scroll; }
 
-/* line 1937, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1943, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-birthday-customer, .lanista-active-customer {
   float: left;
   overflow: hidden;
@@ -25035,28 +25041,28 @@ font-size: 18px;
   color: white;
   -webkit-font-smoothing: antialiased; }
 
-/* line 1950, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1956, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #customersContainer {
   padding-top: 104px;
   width: 100%; }
 
-/* line 1955, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1961, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #customersContainer .x-box-inner, .x-box-target {
   width: 100%; }
 
-/* line 1959, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1965, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #plansContainer {
   top: 395px!important;
   left: 0px!important;
   width: 100%!important; }
 
-/* line 1974, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1980, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #plansToExpire .x-border-box, #planExpired .x-border-box {
   width: 100%!important;
   height: 100px;
   padding: 5px 5px 0px 5px; }
 
-/* line 1980, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1986, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #plansToExpire span, #planExpired span {
   display: table;
   font-size: 14px;
@@ -25067,57 +25073,57 @@ font-size: 18px;
   height: 100%;
   padding: 5px; }
 
-/* line 1991, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 1997, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #plansToExpire {
   width: 50%!important;
   background-image: linear-gradient(to bottom right, #417711, #dc4225); }
 
-/* line 1996, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2002, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #planExpired {
   width: 49%!important;
   background-image: linear-gradient(to bottom right, #292484, #417711);
   left: 453px!important; }
 
-/* line 2002, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2008, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #plans {
   width: 74%!important;
   left: 315px!important; }
 
-/* line 2007, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2013, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #plansContainer .x-box-inner, #plansContainer .x-box-target {
   width: 100%!important; }
 
-/* line 2011, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2017, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #birthdayCustomers {
   height: 141px!important;
   background: rgba(117, 203, 0, 0.95);
   background-image: linear-gradient(to bottom right, #e0be00, #417711) !important; }
 
-/* line 2019, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2025, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #birthdayCustomers .x-box-item, #activeCustomers .x-box-item {
   height: 151px!important;
   padding: 5px 0px 5px 5px; }
 
-/* line 2024, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2030, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #birthdayCustomers .x-box-item span, #activeCustomers .x-box-item span {
   height: 100%!important; }
 
-/* line 2028, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2034, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #birthdayCustomers .x-box-inner, #activeCustomers .x-box-inner {
   height: 141px!important; }
 
-/* line 2032, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2038, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #activeCustomers {
   height: 141px!important;
   background: rgba(117, 203, 0, 0.95);
   background-image: linear-gradient(to bottom right, #00ade0, #5e6153) !important;
   top: 5px!important; }
 
-/* line 2041, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2047, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-toexpire-plan-data {
   float: left; }
 
-/* line 2045, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2051, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-dashboard-customer-background {
   width: 60px;
   height: 60px;
@@ -25136,12 +25142,12 @@ font-size: 18px;
   top: -8px;
   position: relative; }
 
-/* line 2065, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2071, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #activeCustomers .lanista-dashboard-customer-background {
   background-image: linear-gradient(to right bottom, #114c77, #00e0b1) !important;
   background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important; }
 
-/* line 2071, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2077, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-dashboard-customer-photo {
   width: 60px;
   height: 60px;
@@ -25155,7 +25161,7 @@ font-size: 18px;
   top: 52px;
   z-index: 1; }
 
-/* line 2085, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2091, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-dashboard-expire-photo {
   width: 40px;
   height: 40px;
@@ -25176,7 +25182,7 @@ font-size: 18px;
   color: white;
   top: 50px; }
 
-/* line 2106, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2112, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-dashboard-expire-background {
   width: 40px;
   height: 40px;
@@ -25194,20 +25200,20 @@ font-size: 18px;
   top: 9px;
   position: relative; }
 
-/* line 2126, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2132, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #plansToExpire .lanista-dashboard-expire-background {
   background-image: linear-gradient(to bottom right, #dc4225, #417711) !important; }
 
-/* line 2130, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2136, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-expire {
   padding-bottom: 5px; }
 
-/* line 2134, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2140, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-dashboard-text-exp {
   float: right;
   text-align: right; }
 
-/* line 2139, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2145, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-dashboard-text {
   font-family: "Avenir LT Std";
   font-weight: lighter;
@@ -25217,38 +25223,38 @@ font-size: 18px;
   white-space: nowrap;
   overflow: hidden; }
 
-/* line 2150, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2156, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-birthday-lastname {
   font-family: "Roboto Light";
   text-transform: uppercase;
   font-weight: bold; }
 
-/* line 2156, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2162, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-toexpire-plan .lanista-dashboard-name {
   padding-top: 11px; }
 
-/* line 2160, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2166, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #titlesCustomersAlerts span {
   width: 100%!important; }
 
-/* line 2164, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2170, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #titlesCustomersAlerts #titles {
   width: 100%!important; }
 
-/* line 2168, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2174, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #titlesPlans span {
   height: 27% !important;
   padding-bottom: 5px;
   color: white;
   width: 100%; }
 
-/* line 2176, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2182, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .title-component {
   height: 100%;
   background: #e6e6e6;
   padding: 15px 10px 10px 10px!important; }
 
-/* line 2182, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2188, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .top-component, .botton-component {
   height: 50%;
   width: 100%;
@@ -25256,7 +25262,7 @@ font-size: 18px;
   padding: 10px;
   line-height: 13px; }
 
-/* line 2190, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2196, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .top-component div:first-child, .botton-component div:first-child {
   font-size: 15px;
   color: #98BA10;
@@ -25265,7 +25271,7 @@ font-size: 18px;
   -webkit-text-fill-color: transparent;
   -webkit-animation: hue 60s infinite linear; }
 
-/* line 2199, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2205, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .top-component div:last-child, .botton-component div:last-child {
   font-family: "Roboto Black";
   font-size: 18px;
@@ -25274,30 +25280,30 @@ font-size: 18px;
   letter-spacing: -1px;
   text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3); }
 
-/* line 2208, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2214, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .botton-component div:first-child {
   color: #17ACC5;
   background-image: -webkit-linear-gradient(92deg, #60b0a3, #4786ba); }
 
-/* line 2213, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2219, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #titlesPlans .top-component div:first-child {
   color: #C59E17;
   background-image: -webkit-linear-gradient(92deg, #417711, #dc4225); }
 
-/* line 2218, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2224, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #titlesPlans .botton-component div:first-child {
   color: #6B17C5;
   background-image: -webkit-linear-gradient(92deg, #292484, #417711); }
 
-/* line 2223, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2229, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #dashboardNotificationsButton {
   top: 120px; }
 
-/* line 2227, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2233, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #dashboardNotificationsButton span {
   height: 100%!important; }
 
-/* line 2231, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2237, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #titles {
   background: #e6e6e6;
   padding: 15px -1px 10px 10px !important;
@@ -25305,12 +25311,12 @@ font-size: 18px;
   height: 140px;
   color: white; }
 
-/* line 2239, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2245, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #notificationsBotton {
   width: 88px;
   float: left; }
 
-/* line 2244, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2250, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #titlesCustomersAlerts #notificationsBotton .x-btn-glyph {
   font-family: Lanista Icons;
   border-style: none!important;
@@ -25319,7 +25325,7 @@ font-size: 18px;
   border-color: #FDB825;
   line-height: 90px; }
 
-/* line 2253, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2259, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #notificationContainer {
   float: left;
   margin-top: 48px;
@@ -25335,7 +25341,7 @@ font-size: 18px;
   text-align: center;
   font-family: Roboto Medium; }
 
-/* line 2269, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2275, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-window {
   background-color: #4aacd8;
   height: 500px!important;
@@ -25347,18 +25353,18 @@ font-size: 18px;
   -webkit-box-shadow: none;
   box-shadow: none; }
 
-/* line 2281, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2287, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-dashboard-notification {
   padding: 4px; }
 
-/* line 2285, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2291, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-text {
   background-color: ghostwhite;
   padding: 10px;
   font-family: Roboto Black;
   font-size: 17px; }
 
-/* line 2292, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2298, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-footer {
   bottom: 0px;
   position: relative;
@@ -25371,78 +25377,78 @@ font-size: 18px;
   -webkit-font-smoothing: antialiased;
   padding-right: 0px; }
 
-/* line 2307, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2313, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-window .x-item-selected {
   background-color: darkgray; }
 
-/* line 2312, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2318, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #confirmInvitation {
   float: left;
   width: 30%; }
 
-/* line 2317, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2323, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #rejectInvitation {
   float: right;
   width: 30%; }
 
-/* line 2322, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2328, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-date {
   width: 40%;
   float: left; }
 
-/* line 2327, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2333, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #notificationsWindow .x-tool-img {
   background-image: none; }
 
-/* line 2331, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2337, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #notificationsWindow .x-window-header-default-top {
   background-color: transparent!important; }
 
-/* line 2335, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2341, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #notificationsWindow .x-window-header-default .x-tool-img {
   background-color: transparent!important; }
 
-/* line 2339, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2345, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #notificationsWindow .x-tool-over .x-tool-close {
   background-position: 0px!important; }
 
-/* line 2343, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2349, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-message {
   font-size: 20px;
   background-color: ghostwhite;
   padding: 6px 0px 0px 9px; }
 
-/* line 2350, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2356, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #notificationsWindow .x-window-body-default {
   border-style: none;
   background: transparent; }
 
-/* line 2355, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2361, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-firstname {
   float: left; }
 
-/* line 2359, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2365, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-email {
   font-size: 14px!important;
   font-family: Roboto Light!important; }
 
-/* line 2364, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2370, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-window .x-item-selected .invitation-confirm {
   background-color: deepskyblue; }
 
-/* line 2368, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2374, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-notification-window .x-item-selected .invitation-reject {
   background-color: crimson; }
 
-/* line 2372, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2378, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .notification-hidden {
   background-color: transparent!important; }
 
-/* line 2377, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2383, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-test-item {
   height: 130px; }
 
-/* line 2381, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2387, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-test-node {
   float: left;
   border-style: solid!important;
@@ -25450,64 +25456,64 @@ font-size: 18px;
   border-color: black;
   height: 40px; }
 
-/* line 2389, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2395, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-test-sides {
   float: left; }
 
-/* line 2393, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2399, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-test-rightside, .lanista-test-leftside {
   height: 50px; }
 
-/* line 2397, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2403, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-node-selected {
   background-color: darkgray; }
 
-/* line 2401, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2407, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-testnode-icon {
   font-family: 'Lanista Icons';
   font-size: 18px;
   color: darkgray; }
 
-/* line 2407, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2413, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-testnode-icon {
   float: left; }
 
-/* line 2411, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2417, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-test-comment input {
   margin-left: 25px;
   width: 595px; }
 
-/* line 2416, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2422, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #exerciseProtocolls {
   float: right; }
 
-/* line 2420, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2426, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #exerciseProtocolls .x-grid-with-row-lines .x-grid-table {
   width: 200px!important; }
 
-/* line 2424, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2430, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #exerciseProtocolls .x-grid-group-hd-not-collapsible {
   width: 200px!important; }
 
-/* line 2428, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2434, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #exerciseProtocolls table {
   width: 200px!important; }
 
-/* line 2439, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2445, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-grid-record-date-measures .x-column-header-text {
   background-image: none; }
 
-/* line 2443, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2449, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-grid-record-date-measures {
   background-image: none!important;
   background-color: transparent!important; }
 
-/* line 2448, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2454, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-legend-container {
   height: 30px;
   border: 1px solid #ccc; }
 
-/* line 2453, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2459, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-legend-item {
   padding: .8em 1em .8em 1.8em;
   color: #333;
@@ -25526,11 +25532,11 @@ font-size: 18px;
   width: 107px;
   border-left: 1px solid rgba(204, 204, 204, 0.5); }
 
-/* line 2472, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2478, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-legend-item:first-child {
   border-left: 0; }
 
-/* line 2476, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2482, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-legend-item-marker {
   position: absolute;
   width: .8em;
@@ -25540,18 +25546,18 @@ font-size: 18px;
   left: .7em;
   top: .85em; }
 
-/* line 2486, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2492, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-registration #lanistaStage {
   background-image: url(../resources/images/login-background.png);
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 200px 43px #424242 inset; }
 
-/* line 2493, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2499, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #registerPanel {
   top: 225px; }
 
-/* line 2497, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2503, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-register-welcome .lanista-label-welcome {
   font-size: x-large;
   height: 35px;
@@ -25560,7 +25566,7 @@ font-size: 18px;
   top: 43px;
   color: #686868; }
 
-/* line 2506, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2512, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-register-welcome {
   width: 625px!important;
   height: 425px;
@@ -25568,89 +25574,89 @@ font-size: 18px;
   background-color: rgba(255, 255, 255, 0.4);
   margin-right: auto; }
 
-/* line 2514, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2520, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-registration #header {
   background-color: transparent!important; }
 
-/* line 2518, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2524, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-registration .header-logo {
   font-family: "Harabara Bold"!important; }
 
-/* line 2522, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2528, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-registration .lanista-command-button .x-btn-glyph {
   border-color: ghostwhite!important;
   color: ghostwhite!important; }
 
-/* line 2527, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2533, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-registration .lanista-command-button .x-btn-inner {
   color: ghostwhite!important; }
 
-/* line 2531, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2537, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-field-register {
   width: 500px;
   margin-left: auto;
   margin-right: auto; }
 
-/* line 2537, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2543, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-register-welcome .x-fieldset-default {
   border: none!important;
   top: 45px;
   padding-left: 30px;
   padding-right: 30px; }
 
-/* line 2544, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2550, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #agb {
   padding-left: 31px; }
 
-/* line 2549, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2555, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .login-buttons-container .x-box-inner {
   overflow: initial; }
 
-/* line 2553, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2559, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-customerexercises-panel {
   overflow: initial; }
 
-/* line 2557, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2563, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #customerExercisesPanel .x-panel-body-default {
   top: 250px; }
 
-/* line 2561, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2567, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #exerciseProtocolls .x-grid-view {
   font: normal 17px Roboto Light!important;
   top: 10px; }
 
-/* line 2566, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2572, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-tab-focus.x-tab-default .x-tab-button::before {
   content: inherit!important; }
 
-/* line 2570, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2576, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-btn.x-btn-menu-active.xbtn-default-small {
   border: none!important;
   border-color: none!important;
   background-color: transparent!important;
   background-image: none!important; }
 
-/* line 2577, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2583, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-form-spinner-default {
   height: 11px!important; }
 
-/* line 2581, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2587, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .x-form-spinner-down-default {
   background-position: 0 -11px !important; }
 
-/* line 2585, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2591, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weights-input .x-form-text-wrap-default {
   border-radius: 10px; }
 
-/* line 2589, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2595, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-weights-input .x-form-text-field-body-default {
   min-width: 80px!important; }
 
-/* line 2593, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2599, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 #weightsWindow .lanista-command-button .x-btn-inner {
   left: -62px; }
 
-/* line 2597, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2603, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-browser-firefox .exercise-image {
   height: 45%;
   position: relative;
@@ -25659,26 +25665,26 @@ font-size: 18px;
   background-size: 75%;
   background-repeat: no-repeat; }
 
-/* line 2606, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2612, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-header-item-exercise {
   width: 100%;
   float: left; }
 
-/* line 2611, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2617, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-header-item-exercise-left {
   float: left;
   color: darkturquoise;
   width: 30%;
   text-align: left; }
 
-/* line 2618, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2624, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-header-item-exercise-delete {
   width: 45%;
   float: left;
   width: 40%;
   text-align: center; }
 
-/* line 2625, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
+/* line 2631, /Users/lilianadiaz/Sites/LanistaTrainerBrowser2.0/build/temp/testing/LanistaTrainer/sass/../../../../../packages/ext-theme-classic-901655a0-4efe-415a-b4b1-7e600dd6eff8/sass/src/Component.scss */
 .lanista-header-item-exercise-right {
   color: darkturquoise;
   text-align: right;

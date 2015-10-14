@@ -89,6 +89,10 @@ Ext.define('LanistaTrainer.model.Customer', {
             type: 'boolean',
             defaultValue: false,
             name: 'synchronized'
+        },
+        {
+            type: 'string',
+            name: 'role'
         }
     ]
 });
