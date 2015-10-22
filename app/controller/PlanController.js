@@ -477,6 +477,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 }
             }
             else{
+                /*
                 for (var i = 0; i < records.length ; i++) {
                     for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
                         if(this.getExercisesPanel().selection[j][0] === records[i].data.id) {
@@ -488,6 +489,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                         Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                     }
                 }
+                */
             }
         }
 
@@ -685,8 +687,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             self = this,
             mainStage			= self.getMainStage(),
             viewportXCapacity	= Math.floor(mainStage.getEl().getWidth(true)/187);
-            viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/177) * viewportXCapacity;
-            exercisesPanel		= self.getExercisesPanel();
+        viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/177) * viewportXCapacity;
+        exercisesPanel		= self.getExercisesPanel();
 
         store.clearFilter();
         if ( userExercises === true )
@@ -1092,22 +1094,22 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             var selectionsTab = [],
                 itemTab = [];
 
-                selectionsTab[0] = [];
-                for ( i = 1; i < tabPanel.items.length; i++ ) {
-                    //selectionsTab[i] = [];
-                    tab = tabPanel.child('#d' + i);
-                    if (tab.recordsArray){
-                        selection = [];
-                        for ( j = 0; j < tab.recordsArray.length; j++ ) {
-                            itemTab = [];
-                            itemTab[0] = tab.recordsArray[j].exercise_id !== 0 ? tab.recordsArray[j].exercise_id : (parseInt(tab.recordsArray[j].user_exercise_id) + ini);
-                            itemTab[1] = tab.recordsArray[j].exercise_ext_id;
-                            itemTab[2] = 1;
-                            selection.push(itemTab);
-                        }
-                        selectionsTab.push(selection);
+            selectionsTab[0] = [];
+            for ( i = 1; i < tabPanel.items.length; i++ ) {
+                //selectionsTab[i] = [];
+                tab = tabPanel.child('#d' + i);
+                if (tab.recordsArray){
+                    selection = [];
+                    for ( j = 0; j < tab.recordsArray.length; j++ ) {
+                        itemTab = [];
+                        itemTab[0] = tab.recordsArray[j].exercise_id !== 0 ? tab.recordsArray[j].exercise_id : (parseInt(tab.recordsArray[j].user_exercise_id) + ini);
+                        itemTab[1] = tab.recordsArray[j].exercise_ext_id;
+                        itemTab[2] = 1;
+                        selection.push(itemTab);
                     }
+                    selectionsTab.push(selection);
                 }
+            }
             controller.selectionsTab = selectionsTab;
             controller.currentDay = controller.getPlanPanel ().down ('tabpanel').getActiveTab();
         }
@@ -1515,7 +1517,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             storeExercises = Ext.getStore('ExerciseStore');
 
         for ( var i = 0; i < selection.length; i++ ) {
-            if (selection[i][2] === 1) //Record already added in previous saving
+            if (selection[i][2] === 1 && (!selection[i][3] || (selection[i][3] && selection[i][3] != 'd'))) //Record already added in previous saving
                 continue;
 
             isCustom = isNaN (selection[i][1].substring (0,1));
@@ -1554,7 +1556,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 }
             });
 
-            if (selection[i][3] !== 'd'){ //'d' indicates that the record must be deleted
+            //if (selection[i][3] !== 'd'){ //'d' indicates that the record must be deleted
                 LanistaTrainer.app.getController('MainController').saveModel(newPlanExercise, {
                     callback: function(record,event,success) {
                         if (!success)
@@ -1576,8 +1578,13 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     }
                 });
                 selection[i][2] = 1; // To mark record as saved on server
-            }
+            //}
         }
+
+        if (i === selection.length){
+            if (callback instanceof Function) callback();
+        }
+
 
     },
 

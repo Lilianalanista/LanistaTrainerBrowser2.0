@@ -275,8 +275,10 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
             activeTab = controller.getPlanPanel().down('tabpanel').getActiveTab(),
             selectionTab;
 
+        //if (!controller.currentDay || !dataview.recordsArray) return;
         if (!controller.currentDay) return;
 
+        /*
         selectionTab = controller.selectionsTab[controller.currentDay.id.substring(1)];
 
         if (activeTab.id === el.id){
@@ -302,6 +304,7 @@ Ext.define('LanistaTrainer.view.PlanExercisesList', {
                 }
             }
         }
+        */
 
         for (var i = 0; i < el.dom.childNodes.length; i++)
         {

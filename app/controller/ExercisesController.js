@@ -125,6 +125,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                 }
                             }
                             else{
+
+                                /*
                                 for ( var i = 0; i < records.length ; i++) {
                                     for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
                                         if(this.getExercisesPanel().selection[j][0] === records[i].data.id) {
@@ -136,6 +138,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                         Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                     }
                                 }
+                                */
+
                             }
                         }
                     }
@@ -177,6 +181,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                 }
                             }
                             else{
+
+                                /*
                                 for (var i = 0; i < records.length ; i++) {
                                     for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
                                         if(this.getExercisesPanel().selection[j][0] === records[i].data.id) {
@@ -188,6 +194,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                         Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                     }
                                 }
+
+                                */
                             }
                         }
                     }
@@ -1190,6 +1198,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                 }
             }
             else{
+                /*
                 for (var i = 0; i < records.length ; i++) {
                     for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
                         if(this.getExercisesPanel().selection[j][0] === records[i].data.id) {
@@ -1201,6 +1210,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                         Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                     }
                 }
+                */
+
             }
         }
         LanistaTrainer.app.fireEvent('showSearchHeaderUpdate', Ext.ux.LanguageManager.TranslationArray.EXERCISES.toUpperCase());
@@ -1324,6 +1335,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                     }
                                 }
                                 else{
+                                    /*
                                     for (var k = 0; k < records.length ; k++) {
                                         for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
                                             if(this.getExercisesPanel().selection[j][0] === records[k].data.id) {
@@ -1335,6 +1347,8 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                             Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                         }
                                     }
+                                    */
+
                                 }
                             }
 

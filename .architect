@@ -4175,15 +4175,18 @@
     "tabState": {
         "openTabs": [
             "901655a0-4efe-415a-b4b1-7e600dd6eff8",
-            "application"
+            "3cebb1f9-1e3f-4ce1-a430-d2db18adcf91",
+            "a0b0768f-a567-47c7-ae7b-4a38dd90a70b",
+            "aa89f94c-06f3-4926-bc83-e15dfd25119d",
+            "52ded827-c29d-4d9f-8209-c4791844ebf6"
         ]
     },
     "canvasState": {
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "application",
-        "selectedInstance": "540e0df4-6911-4642-bb43-5792b95099a5"
+        "topInstance": "3cebb1f9-1e3f-4ce1-a430-d2db18adcf91",
+        "selectedInstance": "ee9f95d6-3e7e-46a0-ada0-60e6eaf6cf03"
     },
     "editMode": "code",
     "userSettings": {}
