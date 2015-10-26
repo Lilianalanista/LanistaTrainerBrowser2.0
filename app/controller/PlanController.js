@@ -124,7 +124,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         }
         else{
             this.currentDay = planDayPanel;
-            this.currentExercisePosition = planDayPanel.getStore ().getCount();
+            //this.currentExercisePosition = planDayPanel.getStore ().getCount();
+            this.currentExercisePosition = planDayPanel.getStore().getAt(planDayPanel.getStore().getCount() - 1).data.position;
 
             if (!this.selectionsTab){
                 this.selectionsTab = [];
@@ -690,6 +691,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         viewportCapacity	= Math.floor((mainStage.getEl().getHeight(true)-47)/177) * viewportXCapacity;
         exercisesPanel		= self.getExercisesPanel();
 
+        store.loadPage(1);
+
         store.clearFilter();
         if ( userExercises === true )
         {
@@ -942,7 +945,10 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         if (controller.firstConfig){
             planDayPanel = this.getPlanPanel ().down ('tabpanel').getActiveTab();
             controller.currentDay = planDayPanel;
-            controller.currentExercisePosition = planDayPanel.getStore ().getCount();
+            //controller.currentExercisePosition = planDayPanel.getStore ().getCount();
+            controller.currentExercisePosition = planDayPanel.getStore().getCount() !== 0 ?
+                                                    planDayPanel.getStore().getAt(planDayPanel.getStore().getCount() - 1).data.position:
+                                                    0;
 
             if (!controller.selectionsTab){
                 controller.selectionsTab = [];
@@ -1517,8 +1523,23 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             storeExercises = Ext.getStore('ExerciseStore');
 
         for ( var i = 0; i < selection.length; i++ ) {
-            if (selection[i][2] === 1 && (!selection[i][3] || (selection[i][3] && selection[i][3] != 'd'))) //Record already added in previous saving
-                continue;
+            //if (selection[i][2] === 1 && (!selection[i][3] || (selection[i][3] && selection[i][3] != 'd'))) //Record already added in previous saving
+            if (selection[i][2] === 1) //Record already added in previous saving
+            {
+                if (selection[i][3] && selection[i][3] != 'd')
+                {
+                    selection[i][3] = '';
+                }
+
+                if (i === selection.length - 1){
+                    if (callback instanceof Function) callback();
+                    return;
+                }
+                else
+                    continue;
+            }
+
+            currentExercisePosition = currentExercisePosition + 1;
 
             isCustom = isNaN (selection[i][1].substring (0,1));
             var newPlanExercise = Ext.create('LanistaTrainer.model.PlanExercise', {
@@ -1526,7 +1547,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 user_exercise_id : isCustom ? parseInt((selection [i][0]) - ini) : 0,
                 plan_id: controller.plan.data.id,
                 day: currentDay,
-                position: (currentExercisePosition + i + 1),
+                position: (currentExercisePosition),
                 rounds_min: controller.rounds_min,
                 training_unit: controller.training_unit,
                 training_min: controller.training_min
@@ -1568,8 +1589,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                         }
                         else{
                             //selection[i][2] = 1; // To mark record as saved on server
-
                             if (i === selection.length){
+                                controller.currentExercisePosition = currentExercisePosition;
                                 i = 0;
                                 if (callback instanceof Function) callback();
                                 return;
@@ -1581,9 +1602,6 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             //}
         }
 
-        if (i === selection.length){
-            if (callback instanceof Function) callback();
-        }
 
 
     },
