@@ -135,7 +135,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                     for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
                                         recordExe = this.getExercisesPanel().selection[j];
                                         if(recordExe[0] === records[i].data.id) {
-                                            if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
+                                            //if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
                                                 break;
                                         }
                                     }
@@ -197,7 +197,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                     for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
                                         recordExe = this.getExercisesPanel().selection[j];
                                         if(recordExe[0] === records[i].data.id) {
-                                            if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
+                                            //if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
                                                 break;
                                         }
                                     }
@@ -1216,7 +1216,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                     for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
                         recordExe = this.getExercisesPanel().selection[j];
                         if(recordExe[0] === records[i].data.id) {
-                            if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
+                            //if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
                                 break;
                         }
                     }
@@ -1355,7 +1355,7 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                         for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
                                             recordExe = this.getExercisesPanel().selection[j];
                                             if(recordExe[0] === records[i].data.id) {
-                                                if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
+                                                //if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
                                                     break;
                                             }
                                         }

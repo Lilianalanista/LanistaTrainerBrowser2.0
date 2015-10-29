@@ -118,14 +118,16 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             planDayPanel = this.getPlanPanel ().down ('tabpanel').getActiveTab(),
             planExercisesStore = controller.plan.planexercises();
 
-        if (planExercisesStore.data.length === 0 && (controller.rounds_min === 3 && controller.training_min === 12 && controller.training_unit === 0)){
+
+        if (controller.numExercisesPlan === 0 && (controller.rounds_min === 3 && controller.training_min === 12 && controller.training_unit === 0)){
+        //if (planExercisesStore.data.length === 0 && (controller.rounds_min === 3 && controller.training_min === 12 && controller.training_unit === 0)){
             controller.firstConfig = true;
             controller.getRightCommandPanel().down('#defaultValuesButton').fireEvent('click');
         }
         else{
             this.currentDay = planDayPanel;
             //this.currentExercisePosition = planDayPanel.getStore ().getCount();
-            this.currentExercisePosition = planDayPanel.getStore().getAt(planDayPanel.getStore().getCount() - 1).data.position;
+            this.currentExercisePosition = planDayPanel.getStore().getCount() === 0 ? 0 : planDayPanel.getStore().getAt(planDayPanel.getStore().getCount() - 1).data.position;
 
             if (!this.selectionsTab){
                 this.selectionsTab = [];
@@ -502,6 +504,9 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         var controller = this,
             store = newCard.store;
 
+        if (!store)
+            return;
+
         for (var i = 0; i < store.filters.length; i++)
         {
             if (store.filters.items[i].getProperty()  === 'day')
@@ -590,6 +595,8 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                     LanistaTrainer.app.fireEvent('reconect');
                 return;
             }
+
+            controller.numExercisesPlan = controller.plan.planexercises().data.length;
 
             if ( tabActiveId.id === 'd1' ){
                 tabActiveId.store = controller.plan.planexercises();
@@ -724,6 +731,12 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 return;
             }
             exercisesPanel.selection = self.selectionsTab[self.currentDay.id.substring(1)];
+
+            //Note:  because of changes in the behavior of the functionality, the array 'selection' will be here deleted
+            //       and it will be used to keep the new exercises selected and not the exercises that already belong
+            //       to the plan
+            exercisesPanel.selection = [];
+
             mainStage.add(exercisesPanel);
 
             self.showCommandsExercises();
@@ -1507,7 +1520,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
     },
 
     fnSavePlanExercises: function(callback) {
-            var controller = this,
+        var controller = this,
             userId = localStorage.getItem("user_id"),
             currentExercisePosition = controller.currentExercisePosition,
             currentDay = controller.currentDay.id.substring (1),
@@ -1520,13 +1533,19 @@ Ext.define('LanistaTrainer.controller.PlanController', {
         this.selectionsTab[this.currentDay.id.substring(1)] = exercisesPanel.selection;
         var selection = this.selectionsTab[this.currentDay.id.substring(1)],
             isCustom = false;
-            storeExercises = Ext.getStore('ExerciseStore');
+        storeExercises = Ext.getStore('ExerciseStore');
+
+        if (selection.length === 0){
+            if (callback instanceof Function) callback();
+            return;
+        }
 
         for ( var i = 0; i < selection.length; i++ ) {
             //if (selection[i][2] === 1 && (!selection[i][3] || (selection[i][3] && selection[i][3] != 'd'))) //Record already added in previous saving
+            /*
             if (selection[i][2] === 1) //Record already added in previous saving
             {
-                if (selection[i][3] && selection[i][3] != 'd')
+                if (selection[i][3] && selection[i][3] === 'd')
                 {
                     selection[i][3] = '';
                 }
@@ -1538,6 +1557,7 @@ Ext.define('LanistaTrainer.controller.PlanController', {
                 else
                     continue;
             }
+            */
 
             currentExercisePosition = currentExercisePosition + 1;
 
@@ -1578,27 +1598,27 @@ Ext.define('LanistaTrainer.controller.PlanController', {
             });
 
             //if (selection[i][3] !== 'd'){ //'d' indicates that the record must be deleted
-                LanistaTrainer.app.getController('MainController').saveModel(newPlanExercise, {
-                    callback: function(record,event,success) {
-                        if (!success)
-                        {
-                            console.log( "There were problems saving PlanExercise, Err number: " + event.error.status);
-                            if (event.error.status === 401 || event.error.status === 403)
-                                LanistaTrainer.app.fireEvent('reconect');
+            LanistaTrainer.app.getController('MainController').saveModel(newPlanExercise, {
+                callback: function(record,event,success) {
+                    if (!success)
+                    {
+                        console.log( "There were problems saving PlanExercise, Err number: " + event.error.status);
+                        if (event.error.status === 401 || event.error.status === 403)
+                            LanistaTrainer.app.fireEvent('reconect');
+                        return;
+                    }
+                    else{
+                        //selection[i][2] = 1; // To mark record as saved on server
+                        if (i === selection.length){
+                            controller.currentExercisePosition = currentExercisePosition;
+                            i = 0;
+                            if (callback instanceof Function) callback();
                             return;
                         }
-                        else{
-                            //selection[i][2] = 1; // To mark record as saved on server
-                            if (i === selection.length){
-                                controller.currentExercisePosition = currentExercisePosition;
-                                i = 0;
-                                if (callback instanceof Function) callback();
-                                return;
-                            }
-                        }
                     }
-                });
-                selection[i][2] = 1; // To mark record as saved on server
+                }
+            });
+            selection[i][2] = 1; // To mark record as saved on server
             //}
         }
 

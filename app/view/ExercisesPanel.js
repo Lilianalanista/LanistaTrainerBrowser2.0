@@ -103,6 +103,30 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                             break;
                         }
                     }
+
+                    if (i === this.selection.length){
+                        this.selection.push( itemId );
+                        Ext.get(t).addCls ( 'lanista-list-item-selected' );
+                    }
+                    else{
+                        this.selection.splice(i, 1);
+                        Ext.get(t).removeCls ( 'lanista-list-item-selected' );
+                    }
+
+
+
+
+
+
+
+                    /*
+
+                    for(var i = 0; i < this.selection.length; i++) {
+                        if(this.selection[i][0] === itemId[0]) {
+                            break;
+                        }
+                    }
+
                     if (i === this.selection.length)
                     {
                         this.selection.push( itemId );
@@ -129,6 +153,16 @@ Ext.define('LanistaTrainer.view.ExercisesPanel', {
                             }
                         }
                     }
+                    */
+
+
+
+
+
+
+
+
+
                 }
                 else {
                     itemRecord = component.getRecord(t);
