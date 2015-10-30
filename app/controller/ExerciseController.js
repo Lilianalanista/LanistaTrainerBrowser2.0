@@ -431,7 +431,7 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
             controller.currentPlanExercise.weight = controller.currentPlanExercise.weight_min;
 
             if (((parseInt(currentPlan.data.creator_id) === currentPlan.data.person_id) ||
-                (currentPlan.data.trainer_id === currentPlan.data.person_id)) &&
+                 (currentPlan.data.trainer_id === currentPlan.data.person_id)) &&
                 (Ext.ux.SessionManager.getIsLoggedIn())){
                 exercisePanel.down('#exercisePanelContent').child('#configurationTabPanel').tab.show();
                 exercisePanel.down('#configurationPanel').update ( controller.currentPlanExercise );
@@ -497,8 +497,8 @@ Ext.define('LanistaTrainer.controller.ExerciseController', {
                         execution_date: '1900-01-01'
                     });
 
-                    exercisePanel.down('#protocollPanel').protocollInformation = exerciseProtocoll;
-                    exercisePanel.down('#protocollPanel').update ( exerciseProtocoll );
+                    exercisePanel.down('#protocollPanel').protocollInformation = !exerciseProtocoll ? protocoll.data : exerciseProtocoll;
+                    exercisePanel.down('#protocollPanel').update ( !exerciseProtocoll ? protocoll.data : exerciseProtocoll );
                     Ext.getCmp('exercisePanel').down('#exerciseProtocolls').getView().emptyText = Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT;
                     Ext.getCmp('exercisePanel').down('#exerciseProtocolls').getView().refresh();
                 }
