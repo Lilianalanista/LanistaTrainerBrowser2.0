@@ -56,6 +56,7 @@
                             "lanista-genmeasures-tab"
                         ],
                         "id": "measuresTab",
+                        "scrollable": true,
                         "title": "My Tab"
                     },
                     "name": "MyPanel18",
@@ -76,6 +77,274 @@
                                 "scrollable": "boolean"
                             },
                             "designerId": "485d78ce-d48a-4936-a337-032d35c64ed1"
+                        },
+                        {
+                            "type": "Ext.grid.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "collapseFirst": false,
+                                "enableColumnHide": false,
+                                "enableColumnMove": false,
+                                "enableColumnResize": false,
+                                "frameHeader": false,
+                                "header": false,
+                                "hidden": true,
+                                "id": null,
+                                "itemId": "measuresTable",
+                                "scrollable": "y",
+                                "sortableColumns": false,
+                                "store": "MeasuresStore",
+                                "title": null
+                            },
+                            "name": "MyGridPanel3",
+                            "designerId": "dbf4ef7f-7e3c-49cc-afad-ed64636d97e4",
+                            "cn": [
+                                {
+                                    "type": "Ext.view.Table",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "scrollable": [
+                                            "y"
+                                        ]
+                                    },
+                                    "name": "MyGridView2",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "a1ed4612-642d-49a6-95df-63fde9e74fef"
+                                },
+                                {
+                                    "type": "Ext.grid.column.Date",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "cls": [
+                                            "lanista-grid-record-date-measures"
+                                        ],
+                                        "dataIndex": "record_date",
+                                        "draggable": false,
+                                        "enableColumnHide": false,
+                                        "flex": 1,
+                                        "format": "d-m-y",
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "name": "MyDateColumn",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "425b1824-7463-4cb1-ae08-7e7f06492ad7",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onDatecolumnAfterRender",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.DATE.toUpperCase());"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "name": "onDatecolumnAfterRender",
+                                            "designerId": "c5a01485-227a-4b18-81d5-1d8b575d687c"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "height",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "name": "MyColumn1",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "860a52ef-94e0-4ac2-88d3-b343f1840eb2",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE.toUpperCase());"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "name": "onGridcolumnAfterRender",
+                                            "designerId": "17ad85da-6f61-4523-9147-7ae242380d03"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "weight",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "name": "MyColumn2",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "c56bea3b-d0d3-4527-a1d4-1e724d56a625",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender2",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "name": "onGridcolumnAfterRender2",
+                                            "designerId": "d21e20eb-91e0-4da0-8756-88b79f20df59"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "futrex",
+                                        "flex": 1,
+                                        "hideable": false,
+                                        "resizable": false,
+                                        "text": null
+                                    },
+                                    "name": "MyColumn3",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "669f6110-d2d7-4935-b3f8-879888ac1262",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender1",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_FAT.toUpperCase());"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "name": "onGridcolumnAfterRender1",
+                                            "designerId": "8e40a846-de79-48ed-a60e-1fc0e82f8692"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.grid.column.Column",
+                                    "reference": {
+                                        "name": "columns",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "align": "center",
+                                        "dataIndex": "percentage",
+                                        "flex": 1,
+                                        "text": null
+                                    },
+                                    "name": "MyColumn4",
+                                    "configAlternates": {
+                                        "scrollable": "boolean"
+                                    },
+                                    "designerId": "3aec8e60-414a-4f78-9b3e-fd8540e138d6",
+                                    "cn": [
+                                        {
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onGridcolumnAfterRender3",
+                                                "implHandler": [
+                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());"
+                                                ],
+                                                "name": "afterrender",
+                                                "scope": "me"
+                                            },
+                                            "name": "onGridcolumnAfterRender3",
+                                            "designerId": "caef65b8-1288-4f1c-af64-20dc2ea35013"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onMeasuresTableItemClick",
+                                        "implHandler": [
+                                            "LanistaTrainer.app.getController('MeasuresController').showForm(record);"
+                                        ],
+                                        "name": "itemclick",
+                                        "scope": "me"
+                                    },
+                                    "name": "onMeasuresTableItemClick",
+                                    "designerId": "81c7b9bf-685d-49ed-a948-b9e113ccec6f"
+                                }
+                            ]
                         },
                         {
                             "type": "Ext.chart.CartesianChart",
@@ -573,273 +842,6 @@
                                     },
                                     "name": "onMeasuresChatAfterRender",
                                     "designerId": "b78c21c0-0c48-49e7-a990-2ac9571fedf7"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Ext.grid.Panel",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "collapseFirst": false,
-                                "enableColumnHide": false,
-                                "enableColumnMove": false,
-                                "enableColumnResize": false,
-                                "frameHeader": false,
-                                "header": false,
-                                "height": null,
-                                "hidden": true,
-                                "id": null,
-                                "itemId": "measuresTable",
-                                "sortableColumns": false,
-                                "store": "MeasuresStore",
-                                "title": null,
-                                "width": null
-                            },
-                            "name": "MyGridPanel3",
-                            "configAlternates": {
-                                "scrollable": "boolean"
-                            },
-                            "designerId": "dbf4ef7f-7e3c-49cc-afad-ed64636d97e4",
-                            "cn": [
-                                {
-                                    "type": "Ext.view.Table",
-                                    "reference": {
-                                        "name": "viewConfig",
-                                        "type": "object"
-                                    },
-                                    "codeClass": null,
-                                    "name": "MyGridView2",
-                                    "configAlternates": {
-                                        "scrollable": "boolean"
-                                    },
-                                    "designerId": "a1ed4612-642d-49a6-95df-63fde9e74fef"
-                                },
-                                {
-                                    "type": "Ext.grid.column.Date",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "align": "center",
-                                        "cls": [
-                                            "lanista-grid-record-date-measures"
-                                        ],
-                                        "dataIndex": "record_date",
-                                        "draggable": false,
-                                        "enableColumnHide": false,
-                                        "flex": 1,
-                                        "format": "d-m-y",
-                                        "hideable": false,
-                                        "resizable": false,
-                                        "text": null
-                                    },
-                                    "name": "MyDateColumn",
-                                    "configAlternates": {
-                                        "scrollable": "boolean"
-                                    },
-                                    "designerId": "425b1824-7463-4cb1-ae08-7e7f06492ad7",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onDatecolumnAfterRender",
-                                                "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.DATE.toUpperCase());"
-                                                ],
-                                                "name": "afterrender",
-                                                "scope": "me"
-                                            },
-                                            "name": "onDatecolumnAfterRender",
-                                            "designerId": "c5a01485-227a-4b18-81d5-1d8b575d687c"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "align": "center",
-                                        "dataIndex": "height",
-                                        "flex": 1,
-                                        "text": null
-                                    },
-                                    "name": "MyColumn1",
-                                    "configAlternates": {
-                                        "scrollable": "boolean"
-                                    },
-                                    "designerId": "860a52ef-94e0-4ac2-88d3-b343f1840eb2",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onGridcolumnAfterRender",
-                                                "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE.toUpperCase());"
-                                                ],
-                                                "name": "afterrender",
-                                                "scope": "me"
-                                            },
-                                            "name": "onGridcolumnAfterRender",
-                                            "designerId": "17ad85da-6f61-4523-9147-7ae242380d03"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "align": "center",
-                                        "dataIndex": "weight",
-                                        "flex": 1,
-                                        "text": null
-                                    },
-                                    "name": "MyColumn2",
-                                    "configAlternates": {
-                                        "scrollable": "boolean"
-                                    },
-                                    "designerId": "c56bea3b-d0d3-4527-a1d4-1e724d56a625",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onGridcolumnAfterRender2",
-                                                "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.FORM_PLANEXRCISE_WEIGHT.toUpperCase());"
-                                                ],
-                                                "name": "afterrender",
-                                                "scope": "me"
-                                            },
-                                            "name": "onGridcolumnAfterRender2",
-                                            "designerId": "d21e20eb-91e0-4da0-8756-88b79f20df59"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "align": "center",
-                                        "dataIndex": "futrex",
-                                        "flex": 1,
-                                        "hideable": false,
-                                        "resizable": false,
-                                        "text": null
-                                    },
-                                    "name": "MyColumn3",
-                                    "configAlternates": {
-                                        "scrollable": "boolean"
-                                    },
-                                    "designerId": "669f6110-d2d7-4935-b3f8-879888ac1262",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onGridcolumnAfterRender1",
-                                                "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.BODY_FAT.toUpperCase());"
-                                                ],
-                                                "name": "afterrender",
-                                                "scope": "me"
-                                            },
-                                            "name": "onGridcolumnAfterRender1",
-                                            "designerId": "8e40a846-de79-48ed-a60e-1fc0e82f8692"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "Ext.grid.column.Column",
-                                    "reference": {
-                                        "name": "columns",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "align": "center",
-                                        "dataIndex": "percentage",
-                                        "flex": 1,
-                                        "text": null
-                                    },
-                                    "name": "MyColumn4",
-                                    "configAlternates": {
-                                        "scrollable": "boolean"
-                                    },
-                                    "designerId": "3aec8e60-414a-4f78-9b3e-fd8540e138d6",
-                                    "cn": [
-                                        {
-                                            "type": "basiceventbinding",
-                                            "reference": {
-                                                "name": "listeners",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "fn": "onGridcolumnAfterRender3",
-                                                "implHandler": [
-                                                    "component.setText(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());"
-                                                ],
-                                                "name": "afterrender",
-                                                "scope": "me"
-                                            },
-                                            "name": "onGridcolumnAfterRender3",
-                                            "designerId": "caef65b8-1288-4f1c-af64-20dc2ea35013"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "basiceventbinding",
-                                    "reference": {
-                                        "name": "listeners",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "fn": "onMeasuresTableItemClick",
-                                        "implHandler": [
-                                            "LanistaTrainer.app.getController('MeasuresController').showForm(record);"
-                                        ],
-                                        "name": "itemclick",
-                                        "scope": "me"
-                                    },
-                                    "name": "onMeasuresTableItemClick",
-                                    "designerId": "81c7b9bf-685d-49ed-a948-b9e113ccec6f"
                                 }
                             ]
                         },
@@ -1508,14 +1510,14 @@
                                 "enableColumnResize": false,
                                 "frameHeader": false,
                                 "header": false,
-                                "height": 550,
+                                "height": null,
                                 "hidden": true,
                                 "id": null,
                                 "itemId": "measuresTable",
                                 "sortableColumns": false,
                                 "store": "MeasuresStore",
                                 "title": null,
-                                "width": 1200
+                                "width": null
                             },
                             "name": "MyGridPanel4",
                             "configAlternates": {
@@ -2731,14 +2733,14 @@
                                 "enableColumnResize": false,
                                 "frameHeader": false,
                                 "header": false,
-                                "height": 550,
+                                "height": null,
                                 "hidden": true,
                                 "id": null,
                                 "itemId": "measuresTable",
                                 "sortableColumns": false,
                                 "store": "CircumferencesStore",
                                 "title": null,
-                                "width": 1200
+                                "width": null
                             },
                             "name": "MyGridPanel5",
                             "configAlternates": {

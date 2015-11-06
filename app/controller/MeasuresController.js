@@ -207,6 +207,7 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
         else{
             controller.getRightCommandPanel().down('#chartTableButton').setText(Ext.ux.LanguageManager.TranslationArray.BUTTON_SHOW_CHART);
             controller.getRightCommandPanel().down('#chartTableButton').setGlyph('116@Lanista Icons'); //t
+            activeTab.down('#measuresTable').setHeight(controller.getMainStage().getEl().getHeight() - 200);
             activeTab.down('#measuresChat').hide();
             activeTab.down('#measuresTable').show();
         }
@@ -490,16 +491,17 @@ Ext.define('LanistaTrainer.controller.MeasuresController', {
 
         measuresPanel = controller.getMeasuresPanel();
 
-
         //measuresPanel.down('#measuresTab').down('#measuresChat').show();
         measuresPanel.down('#measuresTab').down('#measuresTable').hide();
-
 
         //measuresPanel.down('#measuresTab').down('#measuresChat').setStore( 'MeasuresStore' );
         measuresPanel.down('#measuresTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
         measuresPanel.down('#caliperTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
         measuresPanel.down('#circumferencesTab').down('#measuresChat').setHeight(controller.getMainStage().getEl().getHeight() - 200);
 
+        measuresPanel.down('#measuresTab').down('#measuresTable').setHeight(controller.getMainStage().getEl().getHeight() - 200);
+        measuresPanel.down('#caliperTab').down('#measuresTable').setHeight(controller.getMainStage().getEl().getHeight() - 200);
+        measuresPanel.down('#circumferencesTab').down('#measuresTable').setHeight(controller.getMainStage().getEl().getHeight() - 200);
         //Ext.getStore('MeasuresStore').removeAll();
         //Ext.getStore('MeasuresStore').add(records);
 

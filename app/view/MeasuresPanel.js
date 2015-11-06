@@ -21,14 +21,14 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         'LanistaTrainer.view.MeasuresPanelViewModel',
         'Ext.tab.Panel',
         'Ext.tab.Tab',
+        'Ext.grid.Panel',
+        'Ext.view.Table',
+        'Ext.grid.column.Date',
         'Ext.chart.CartesianChart',
         'Ext.chart.series.Line',
         'Ext.chart.axis.Time',
         'Ext.chart.Legend',
         'Ext.XTemplate',
-        'Ext.grid.Panel',
-        'Ext.view.Table',
-        'Ext.grid.column.Date',
         'Ext.chart.interactions.Abstract',
         'Ext.chart.interactions.ItemHighlight',
         'Ext.draw.engine.Canvas'
@@ -60,7 +60,85 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                 xtype: 'panel',
                                 cls: 'lanista-genmeasures-tab',
                                 id: 'measuresTab',
+                                scrollable: true,
                                 title: 'My Tab',
+                                items: [
+                                    {
+                                        xtype: 'gridpanel',
+                                        hidden: true,
+                                        itemId: 'measuresTable',
+                                        scrollable: 'y',
+                                        collapseFirst: false,
+                                        frameHeader: false,
+                                        header: false,
+                                        enableColumnHide: false,
+                                        enableColumnMove: false,
+                                        enableColumnResize: false,
+                                        sortableColumns: false,
+                                        store: 'MeasuresStore',
+                                        viewConfig: {
+                                            scrollable: 'y'
+                                        },
+                                        columns: [
+                                            {
+                                                xtype: 'datecolumn',
+                                                cls: 'lanista-grid-record-date-measures',
+                                                draggable: false,
+                                                resizable: false,
+                                                enableColumnHide: false,
+                                                align: 'center',
+                                                dataIndex: 'record_date',
+                                                hideable: false,
+                                                flex: 1,
+                                                format: 'd-m-y',
+                                                listeners: {
+                                                    afterrender: 'onDatecolumnAfterRender'
+                                                }
+                                            },
+                                            {
+                                                xtype: 'gridcolumn',
+                                                align: 'center',
+                                                dataIndex: 'height',
+                                                flex: 1,
+                                                listeners: {
+                                                    afterrender: 'onGridcolumnAfterRender'
+                                                }
+                                            },
+                                            {
+                                                xtype: 'gridcolumn',
+                                                align: 'center',
+                                                dataIndex: 'weight',
+                                                flex: 1,
+                                                listeners: {
+                                                    afterrender: 'onGridcolumnAfterRender2'
+                                                }
+                                            },
+                                            {
+                                                xtype: 'gridcolumn',
+                                                resizable: false,
+                                                align: 'center',
+                                                dataIndex: 'futrex',
+                                                hideable: false,
+                                                flex: 1,
+                                                listeners: {
+                                                    afterrender: 'onGridcolumnAfterRender1'
+                                                }
+                                            },
+                                            {
+                                                xtype: 'gridcolumn',
+                                                align: 'center',
+                                                dataIndex: 'percentage',
+                                                flex: 1,
+                                                listeners: {
+                                                    afterrender: 'onGridcolumnAfterRender3'
+                                                }
+                                            }
+                                        ],
+                                        listeners: {
+                                            itemclick: 'onMeasuresTableItemClick'
+                                        }
+                                    }
+                                ],
                                 dockedItems: [
                                     me.processMeasuresChat({
                                         xtype: 'cartesian',
@@ -221,79 +299,6 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                             afterrender: 'onMeasuresChatAfterRender'
                                         }
                                     })
-                                ],
-                                items: [
-                                    {
-                                        xtype: 'gridpanel',
-                                        hidden: true,
-                                        itemId: 'measuresTable',
-                                        collapseFirst: false,
-                                        frameHeader: false,
-                                        header: false,
-                                        enableColumnHide: false,
-                                        enableColumnMove: false,
-                                        enableColumnResize: false,
-                                        sortableColumns: false,
-                                        store: 'MeasuresStore',
-                                        columns: [
-                                            {
-                                                xtype: 'datecolumn',
-                                                cls: 'lanista-grid-record-date-measures',
-                                                draggable: false,
-                                                resizable: false,
-                                                enableColumnHide: false,
-                                                align: 'center',
-                                                dataIndex: 'record_date',
-                                                hideable: false,
-                                                flex: 1,
-                                                format: 'd-m-y',
-                                                listeners: {
-                                                    afterrender: 'onDatecolumnAfterRender'
-                                                }
-                                            },
-                                            {
-                                                xtype: 'gridcolumn',
-                                                align: 'center',
-                                                dataIndex: 'height',
-                                                flex: 1,
-                                                listeners: {
-                                                    afterrender: 'onGridcolumnAfterRender'
-                                                }
-                                            },
-                                            {
-                                                xtype: 'gridcolumn',
-                                                align: 'center',
-                                                dataIndex: 'weight',
-                                                flex: 1,
-                                                listeners: {
-                                                    afterrender: 'onGridcolumnAfterRender2'
-                                                }
-                                            },
-                                            {
-                                                xtype: 'gridcolumn',
-                                                resizable: false,
-                                                align: 'center',
-                                                dataIndex: 'futrex',
-                                                hideable: false,
-                                                flex: 1,
-                                                listeners: {
-                                                    afterrender: 'onGridcolumnAfterRender1'
-                                                }
-                                            },
-                                            {
-                                                xtype: 'gridcolumn',
-                                                align: 'center',
-                                                dataIndex: 'percentage',
-                                                flex: 1,
-                                                listeners: {
-                                                    afterrender: 'onGridcolumnAfterRender3'
-                                                }
-                                            }
-                                        ],
-                                        listeners: {
-                                            itemclick: 'onMeasuresTableItemClick'
-                                        }
-                                    }
                                 ],
                                 listeners: {
                                     afterrender: 'onMeasuresTabAfterRender'
@@ -488,10 +493,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                     }),
                                     {
                                         xtype: 'gridpanel',
-                                        height: 550,
                                         hidden: true,
                                         itemId: 'measuresTable',
-                                        width: 1200,
                                         collapseFirst: false,
                                         frameHeader: false,
                                         header: false,
@@ -848,10 +851,8 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
                                     }),
                                     {
                                         xtype: 'gridpanel',
-                                        height: 550,
                                         hidden: true,
                                         itemId: 'measuresTable',
-                                        width: 1200,
                                         collapseFirst: false,
                                         frameHeader: false,
                                         header: false,
@@ -1238,29 +1239,6 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
         return config;
     },
 
-    onMeasuresChatAfterRender: function(component, eOpts) {
-        var el = component.el;
-
-        component.series[0].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_BODYWEIGHT.toUpperCase());
-        component.series[1].setTitle(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE.toUpperCase());
-        component.series[2].setTitle(Ext.ux.LanguageManager.TranslationArray.BODY_FAT.toUpperCase());
-        component.series[3].setTitle(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());
-
-        el.on(
-            'mouseover', function(e,t) {
-                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
-                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
-            },
-            this,{ delegate: '.x-legend-item'});
-
-        el.on(
-            'mouseout', function(e,t) {
-                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-not-clicked';
-                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');
-            },
-            this,{delegate: '.x-legend-item'});
-    },
-
     onDatecolumnAfterRender: function(component, eOpts) {
         component.setText(Ext.ux.LanguageManager.TranslationArray.DATE.toUpperCase());
     },
@@ -1283,6 +1261,29 @@ Ext.define('LanistaTrainer.view.MeasuresPanel', {
 
     onMeasuresTableItemClick: function(dataview, record, item, index, e, eOpts) {
         LanistaTrainer.app.getController('MeasuresController').showForm(record);
+    },
+
+    onMeasuresChatAfterRender: function(component, eOpts) {
+        var el = component.el;
+
+        component.series[0].setTitle(Ext.ux.LanguageManager.TranslationArray.FILTER_BODYWEIGHT.toUpperCase());
+        component.series[1].setTitle(Ext.ux.LanguageManager.TranslationArray.BODY_SIZE.toUpperCase());
+        component.series[2].setTitle(Ext.ux.LanguageManager.TranslationArray.BODY_FAT.toUpperCase());
+        component.series[3].setTitle(Ext.ux.LanguageManager.TranslationArray.CALIPOMETRIE.toUpperCase());
+
+        el.on(
+            'mouseover', function(e,t) {
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-not-clicked/gi,'');
+            },
+            this,{ delegate: '.x-legend-item'});
+
+        el.on(
+            'mouseout', function(e,t) {
+                Ext.get(t).dom.className = Ext.get(t).dom.className + ' item-not-clicked';
+                Ext.get(t).dom.className = Ext.get(t).dom.className.replace(/item-clicked/gi,'');
+            },
+            this,{delegate: '.x-legend-item'});
     },
 
     onMeasuresTabAfterRender: function(component, eOpts) {

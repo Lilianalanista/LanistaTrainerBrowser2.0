@@ -391,6 +391,10 @@ Ext.define('LanistaTrainer.view.MainViewport', {
                 activeTab.down('#measuresChat').setHeight(measuresController.getMainStage().getEl().getHeight() - 200);
                 activeTab.down('#measuresChat').show();
             }
+            if (!measuresController.currentPanel.get(activeTab.id) || measuresController.currentPanel.get(activeTab.id) === 'table'){
+                activeTab.down('#measuresTable').setHeight(measuresController.getMainStage().getEl().getHeight() - 200);
+                activeTab.down('#measuresTable').show();
+            }
         }
     },
 

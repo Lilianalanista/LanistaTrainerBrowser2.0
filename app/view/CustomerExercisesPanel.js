@@ -245,26 +245,32 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                 LanistaTrainer.app.fireEvent( 'showPlanPanel', record.data.name );
             });
         },
-             this, {delegate: '.lanista-name-plan'});
+              this, {delegate: '.lanista-name-plan'});
 
         el.on('mouseover',function(e,t){
-            Ext.get(t).removeCls('item-not-clicked');
-            Ext.get(t).addCls('item-clicked');
-            Ext.get(t).down('.lanista-delete-plan').setHtml('u');
-            Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
-            Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
+            record = component.getView().getRecord(t.parentNode);
+                Ext.get(t).removeCls('item-not-clicked');
+                Ext.get(t).addCls('item-clicked');
+                if (parseInt(record.data.creator_id) === record.data.person_id){
+                    Ext.get(t).down('.lanista-delete-plan').setHtml('u');
+                    Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
+                    Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
+                }
         },
-             this, {delegate: '.lanista-item-plans'});
+              this, {delegate: '.lanista-item-plans'});
 
         el.on('mouseout',function(e,t){
-            //Ext.get(t).down('.lanista-delete-plan').setHtml('...');
-            //Ext.get(t).down('.lanista-delete-plan').setHtml('...');
-            Ext.get(t).down('.lanista-delete-plan').setHtml('&nbsp;');
-            Ext.get(t).down('.lanista-delete-plan').setHtml('&nbsp;');
-            Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
-            Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
+            record = component.getView().getRecord(t.parentNode);
+            if (parseInt(record.data.creator_id) === record.data.person_id){
+                //Ext.get(t).down('.lanista-delete-plan').setHtml('...');
+                //Ext.get(t).down('.lanista-delete-plan').setHtml('...');
+                Ext.get(t).down('.lanista-delete-plan').setHtml('&nbsp;');
+                Ext.get(t).down('.lanista-delete-plan').setHtml('&nbsp;');
+                Ext.get(t).down('.lanista-delete-plan').removeCls('lanista-color-plan-delete');
+                Ext.get(t).down('.lanista-delete-plan').addCls('lanista-color-plan-no-delete');
+            }
         },
-             this, {delegate: '.lanista-item-plans'});
+              this, {delegate: '.lanista-item-plans'});
 
 
         //---------------------------------------------------------------
@@ -273,7 +279,8 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
 
         el.on('click',function(e,t){
             record = component.getView().getRecord(component.getView().getSelectedNodes()[0]);
-            Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_PLAN, record.data.name, function(button) {
+            if (parseInt(record.data.creator_id) === record.data.person_id){
+                Ext.Msg.confirm(Ext.ux.LanguageManager.TranslationArray.MSG_DELETE_PLAN, record.data.name, function(button) {
                     if (button == 'yes') {
                         customerExerPanel = LanistaTrainer.app.getController ('CustomerExercisesController').getCustomerExercisesPanel();
                         customerExerPanel.deletePlan(record.data);
@@ -286,27 +293,33 @@ Ext.define('LanistaTrainer.view.CustomerExercisesPanel', {
                             }
                         });
                     }
-            });
+                });
+            }
         },
-             this, {delegate: '.lanista-delete-plan'});
+              this, {delegate: '.lanista-delete-plan'});
 
         el.on('mouseover',function(e,t){
-            Ext.get(t).setHtml('u');
-            Ext.get(t).removeCls('item-not-clicked');
-            Ext.get(t).addCls('item-clicked');
-            Ext.get(t).removeCls('lanista-color-plan-no-delete');
-            Ext.get(t).addCls('lanista-color-plan-delete');
+            record = component.getView().getRecord(t.parentNode);
+            if (parseInt(record.data.creator_id) === record.data.person_id){
+                Ext.get(t).setHtml('u');
+                Ext.get(t).removeCls('item-not-clicked');
+                Ext.get(t).addCls('item-clicked');
+                Ext.get(t).removeCls('lanista-color-plan-no-delete');
+                Ext.get(t).addCls('lanista-color-plan-delete');
+            }
         },
-             this, {delegate: '.lanista-delete-plan'});
+              this, {delegate: '.lanista-delete-plan'});
 
         el.on('mouseout',function(e,t){
-            //Ext.get(t).setHtml('...');
-            Ext.get(t).setHtml('&nbsp;');
-            Ext.get(t).removeCls('lanista-color-plan-delete');
-            Ext.get(t).addCls('lanista-color-plan-no-delete');
-
+            record = component.getView().getRecord(t.parentNode);
+            if (parseInt(record.data.creator_id) === record.data.person_id){
+                //Ext.get(t).setHtml('...');
+                Ext.get(t).setHtml('&nbsp;');
+                Ext.get(t).removeCls('lanista-color-plan-delete');
+                Ext.get(t).addCls('lanista-color-plan-no-delete');
+            }
         },
-             this, {delegate: '.lanista-delete-plan'});
+              this, {delegate: '.lanista-delete-plan'});
 
 
 
