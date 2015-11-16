@@ -491,7 +491,6 @@ $base-gradient: "none";
 }
 
 //Exercises Panel
-//#exercisesPanel .x-panel-default{
 #exercisesPanel .x-panel-body-default{
     top: 95px!important;
     //padding-top: 100px;
@@ -624,9 +623,7 @@ $base-gradient: "none";
     font-family: "Avenir LT Light";
     font-size: 15px;
     margin-top: -10px;
-    //margin-top: -48px;
     text-align: left;
-    //margin-left: -45px;
     margin-left: -530px;
     width: 486px;
 }
@@ -686,41 +683,17 @@ $base-gradient: "none";
     border-radius: 3px 0 0 3px!important;
 }
 
-//.x-grid-view {
-//    width:  230px!important;
-//}
-
-//.x-grid-body {
-//    width:  230px!important;
-//}
-
-//.x-column-header {
-//    text-align: center;
-//    font-size: 18px;
-//    width:  196px!important;
-//}
+.lanista-no-protocolls{
+    font-size: 20px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    margin-top: 15%;
+}
 
 .protocolls-panel .x-box-target {
     height:  0px;
 }
-
-.protocolls-panel .x-box-target {
-    width:  220px!important;
-}
-
-/*.x-grid-with-row-lines .x-grid-table {
-width:  215px!important;
-height:  0px!important;
-}
-
-.x-grid-group-hd {
-border-color: transparent!important;
-}
-
-.x-grid-with-row-lines .x-grid-td {
-font-size: 18px;
-}
-*/
 
 .lanista-row-cell {
     height: 20px;
@@ -792,12 +765,10 @@ font-size: 18px;
 .lanista-protocolls-weight {
     font-size: 12px;
     line-height: 10px;
-    //color: #4aacd8;
     margin-left: 55px;
 }
 
 .lanista-client-blue{
-    //color: #4aacd8;
     color: dodgerblue;
 }
 
@@ -1110,7 +1081,6 @@ font-size: 18px;
 
 //**********************************
 //New Object
-//.lanista-trainingPicker .lanista-weights-rb input{
 .lanista-weights-rb input{
     width: 13px;
 }
@@ -1184,10 +1154,6 @@ font-size: 18px;
 
 #weightBottons{
     border: none;
-    //float: right;
-    //width: 160px;
-    //height: 120px;
-    //left: -27px!important;
 }
 
 #weightBottons a{
@@ -1968,15 +1934,6 @@ font-size: 18px;
     width: 100%!important;
 }
 
-//#titlesPlans{
-//    width: 26%!important;
-//}
-
-//#planExpired{
-//    left: 462px!important;
-//    width: 50%!important;
-//}
-
 #plansToExpire .x-border-box, #planExpired .x-border-box{
     width: 100%!important;
     height: 100px;
@@ -2018,8 +1975,6 @@ font-size: 18px;
     height: 141px!important;
     background: rgba(117,203,0,0.95);
     background-image: linear-gradient(to bottom right, #e0be00,#417711) !important;
-    //background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
-    //top: 3px!important;
 }
 
 #birthdayCustomers .x-box-item, #activeCustomers .x-box-item{
@@ -2038,8 +1993,6 @@ font-size: 18px;
 #activeCustomers{
     height: 141px!important;
     background: rgba(117,203,0,0.95);
-    //background-image: linear-gradient(to bottom right, #e0be00,#417711) !important;
-    //background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
     background-image: linear-gradient(to bottom right, #00ade0,#5E6153) !important;
     top: 5px!important;
 }
@@ -2058,7 +2011,6 @@ font-size: 18px;
     font-size: 40px;
     line-height: 60px;
     color: white;
-    //background-image: -webkit-linear-gradient(#4786ba, #60b0a3) !important;
     background-image: linear-gradient(to bottom right, #417711,#e0be00) !important;
     display: block;
     margin-right: auto;
@@ -2069,7 +2021,6 @@ font-size: 18px;
 }
 
 #activeCustomers .lanista-dashboard-customer-background{
-    //background-image: linear-gradient(to bottom right, #417711,#e0be00) !important;
     background-image: linear-gradient(to right bottom, #114C77, #00E0B1) !important;
     background-image: -webkit-linear-gradient(#60b0a3, #4786ba) !important;
 }
@@ -2120,10 +2071,8 @@ font-size: 18px;
     line-height: 40px;
     color: white;
     background-image: linear-gradient(to bottom right, #417711,#292484) !important;
-    //background-image: -webkit-linear-gradient(#4786ba, #60b0a3) !important;
     display: block;
     margin-right: auto;
-    //margin-left: auto;
     background-color: grey;
     top: 9px;
     position: relative;
@@ -2150,7 +2099,6 @@ font-size: 18px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    //padding-top: 3px;
 }
 
 .lanista-birthday-lastname{
@@ -2173,7 +2121,6 @@ font-size: 18px;
 
 #titlesPlans span{
     height: 27% !important;
-    //margin: 0px 10px 0px 0px !important;
     padding-bottom: 5px;
     color: white;
     width: 100%;
@@ -2299,19 +2246,16 @@ font-size: 18px;
     bottom: 0px;
     position: relative;
     background-color: darkgrey;
-    //background-color: #ebebeb;
     height: 35px;
     line-height: 35px;
     text-align: center;
     color: white;
-    //color: #A8A8A8;
     font-family: Roboto Black;
     -webkit-font-smoothing: antialiased;
     padding-right: 0px;
 }
 
 .lanista-notification-window .x-item-selected{
-    //background-color: rgba(74,172,216,0.5) !important;
     background-color: darkgray;
 }
 

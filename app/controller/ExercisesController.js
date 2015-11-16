@@ -129,23 +129,21 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                 }
                             }
                             else{
-
-
-                                for ( var i = 0; i < records.length ; i++) {
-                                    for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
-                                        recordExe = this.getExercisesPanel().selection[j];
-                                        if(recordExe[0] === records[i].data.id) {
-                                            //if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
+                                if (this.getExercisesPanel().selection){
+                                    for ( var i = 0; i < records.length ; i++) {
+                                        for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
+                                            recordExe = this.getExercisesPanel().selection[j];
+                                            if(recordExe[0] === records[i].data.id) {
+                                                //if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
                                                 break;
+                                            }
+                                        }
+                                        if (j !== this.getExercisesPanel().selection.length){
+                                            itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
+                                            Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                         }
                                     }
-                                    if (j !== this.getExercisesPanel().selection.length){
-                                        itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
-                                        Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
-                                    }
                                 }
-
-
                             }
                         }
                     }
@@ -191,23 +189,21 @@ Ext.define('LanistaTrainer.controller.ExercisesController', {
                                 }
                             }
                             else{
-
-
-                                for (var i = 0; i < records.length ; i++) {
-                                    for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
-                                        recordExe = this.getExercisesPanel().selection[j];
-                                        if(recordExe[0] === records[i].data.id) {
-                                            //if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
+                                if (this.getExercisesPanel().selection){
+                                    for (var i = 0; i < records.length ; i++) {
+                                        for(var j = 0; j < this.getExercisesPanel().selection.length; j++) {
+                                            recordExe = this.getExercisesPanel().selection[j];
+                                            if(recordExe[0] === records[i].data.id) {
+                                                //if (!recordExe[2] || (recordExe[2] && recordExe[2] === 1 && recordExe[3] === 'd'))
                                                 break;
+                                            }
+                                        }
+                                        if (j !== this.getExercisesPanel().selection.length){
+                                            itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
+                                            Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
                                         }
                                     }
-                                    if (j !== this.getExercisesPanel().selection.length){
-                                        itemNode = this.getExercisesPanel().down('#viewExercises').getNode(records[i]);
-                                        Ext.get(itemNode).addCls ( 'lanista-list-item-selected' );
-                                    }
                                 }
-
-
                             }
                         }
                     }

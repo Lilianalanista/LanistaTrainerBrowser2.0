@@ -25350,25 +25350,16 @@ a.x-color-picker-item:hover {
   margin-left: 0px!important;
   border-radius: 3px 0 0 3px!important; }
 
+.lanista-no-protocolls {
+  font-size: 20px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  margin-top: 15%; }
+
 .protocolls-panel .x-box-target {
   height: 0px; }
 
-.protocolls-panel .x-box-target {
-  width: 220px!important; }
-
-/*.x-grid-with-row-lines .x-grid-table {
-width:  215px!important;
-height:  0px!important;
-}
-
-.x-grid-group-hd {
-border-color: transparent!important;
-}
-
-.x-grid-with-row-lines .x-grid-td {
-font-size: 18px;
-}
-*/
 .lanista-row-cell {
   height: 20px;
   line-height: 16px; }

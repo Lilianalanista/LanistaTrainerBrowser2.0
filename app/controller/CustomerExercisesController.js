@@ -560,6 +560,11 @@ Ext.define('LanistaTrainer.controller.CustomerExercisesController', {
                 });
                 protocollsPanel.insert ( i, dailyGrid );
             }
+
+            if (groups.length === 0){
+                myMask.hide();
+                protocollsPanel.setHtml('<div class="lanista-no-protocolls">' + Ext.ux.LanguageManager.TranslationArray.LIST_PROTOCOLLS_EMPTYTEXT + '</div>');
+            }
         });
 
     },
