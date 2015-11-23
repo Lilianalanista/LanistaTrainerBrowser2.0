@@ -50,6 +50,8 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
     },
 
     onShowCustomerInfoPanelButton: function(button, e, eOpts) {
+        button.setDisabled( true );
+
         LanistaTrainer.app.fireEvent('close' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1], function() {
             LanistaTrainer.app.panels[LanistaTrainer.app.panels.length] = 'UserInfoPanel';
             LanistaTrainer.app.fireEvent('showCustomerInfoPanel');
@@ -57,6 +59,8 @@ Ext.define('LanistaTrainer.controller.CustomerInfoController', {
     },
 
     onCloseCustomerInfoPanelButton: function(button, e, eOpts) {
+        button.setDisabled( true );
+
         LanistaTrainer.app.panels.splice(LanistaTrainer.app.panels.length - 1, 1);
         LanistaTrainer.app.fireEvent('closeCustomerInfoPanel', function() {
             LanistaTrainer.app.fireEvent('show' + LanistaTrainer.app.panels[LanistaTrainer.app.panels.length - 1]);

@@ -40,6 +40,8 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
             cookie,
             i = 1;
 
+        //button.setDisabled( true );
+
         LanistaTrainer.app.fireEvent('hideStage', function () {
 
             var form = self.getLoginPanel(),
@@ -51,6 +53,7 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
             if (email === '' || password === '') {
                 //Ext.Msg.alert('Email oder Passwort waren leer', 'Versuche es noch mal !', function() {
                 Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_EMPTY_TEXT, Ext.ux.LanguageManager.TranslationArray.MSG_TRY_AGAIN, function() {
+                    button.setDisabled( false );
                     LanistaTrainer.app.fireEvent('showStage');
                     LanistaTrainer.app.fireEvent('setFieldsFocus', true, 'user_email');
                 });
@@ -59,6 +62,7 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                 if(reg.test(email) === false) {
                     //Ext.Msg.alert('Falsche Emailadresse', Ext.ux.LanguageManager.TranslationArray.MSG_TRY_AGAIN, function() {
                     Ext.Msg.alert(Ext.ux.LanguageManager.TranslationArray.MSG_EMAIL_INVALID_1, Ext.ux.LanguageManager.TranslationArray.MSG_TRY_AGAIN, function() {
+                        button.setDisabled( false );
                         LanistaTrainer.app.fireEvent('showStage');
                         LanistaTrainer.app.fireEvent('setFieldsFocus', true, "user_email");
                     });
@@ -192,6 +196,7 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
                                                  function (status) {
                                                      console.log("MARK 2");
                                                      console.log(status);
+                                                     button.setDisabled( false );
                                                      if (status == 3){
                                                          Ext.Msg.alert('Anmeldungsfehler', 'Konto inaktiv. Bitte bestätige die Aktivierungsmail', function() {
                                                              LanistaTrainer.app.fireEvent('showStage');
@@ -227,6 +232,8 @@ Ext.define('LanistaTrainer.controller.AutheticationController', {
             customer = LanistaTrainer.app.currentCustomer;
 
         event = user.role === '2' ? 'closeUserInfoPanel' : 'closeCustomerInfoPanel';
+
+        button.setDisabled( true );
 
         LanistaTrainer.app.fireEvent('hideStage', function () {
             LanistaTrainer.app.fireEvent('logoutUser', function () {
